@@ -1,6 +1,6 @@
 \documentclass[]{article}
-\input{/home/flow/LaTeX/Packages/mathdoc}
-\input{/home/flow/LaTeX/Packages/mathsym}
+\input{../mathdoc}
+\input{../mathsym}
 
 \author{Book: Brown \& Churchill 8th, Presenter: Richard Fabiano, Notes by Michael Reed}
 \title{Fourier Series and Boundary Value Problems}
@@ -76,7 +76,7 @@ Consider the finite interval $(a,b)$.
 	Thus $C_p(a,b)$ is a vector space. It is an example of \underline{function spaces}.
 	If $f,g\in C_p(a,b)$, then $f\cdot g\in C_p(a,b)$.
 \end{note}
-We can define an inner product $(f,g)=\int_a^b f(x) g(x) \, dx$. 
+We can define an inner product $(f,g)=\int_a^b f(x) g(x) \, dx$.
 Further, we can define orthogonal functions as $f\perp g \iff (f,g)=0$.
 We can also define norm (length) as $||f||=\sqrt{(f,f)}=\left(\int_a^b f^2(x) \, dx\right)^{1/2}$.
 Thus $C_p(a,b)$ is an infinite dimensional normed vector space.
@@ -85,11 +85,11 @@ Let $f\in C_p(0,\pi)$. \underline{Assume} $f$ has a Fourier cosine series
 \begin{equation}
 f(x)=\frac{a_0}{2} + \sum_{n=1}^{\infty}a_n \cos{nx}
 \end{equation}
-for $0<x<\pi$. 
+for $0<x<\pi$.
 Can we determine the the coefficients $a_i$? Yes, if we assume also we can integrate term by term.
 $\int_0^\pi f(x) \, dx = \int_0^\pi \frac{a_0}{2} \, dx + \sum_{n=1}^{\infty} \int_0^\pi a_n \cos{nx} \, dx$. $\int_0^\pi f(x) \, dx = \frac{\pi}{2}a_0$, so $a_0 = \frac{2}{\pi} \int_0^\pi f(x) \, dx$ because $\int_0^\pi a_n \cos{nx} \, dx = \frac{1}{n} \sin{nx}\big\rvert_0^\pi=0$.
 In HW: $\int_0^\pi\cos{mx}\cdot\cos{nx} \, dx = \begin{cases}0 & \text{for } m\neq n \\ \pi/2 & \text{for }m=n\end{cases}$.
-Rewrite $f$ as $f(x)=\frac{a_0}{2}+\sum_{m=1}^\infty a_m \cos{mx}$. Multiply by $\cos{nx}$ and integrate: 
+Rewrite $f$ as $f(x)=\frac{a_0}{2}+\sum_{m=1}^\infty a_m \cos{mx}$. Multiply by $\cos{nx}$ and integrate:
 $$\int_0^\pi f(x) \cos{nx} \, dx = \frac{a_0}{2}\int_0^\pi \cos{nx} \, dx + \sum_{m=1}^\infty a_m \int_0^\pi \cos{mx} \cdot \cos{nx} \, dx$$
 $\int_0^\pi f(x) \cos{nx} \, dx = a_n \frac{\pi}{2}$, so $a_n = \frac{2}{\pi} \int_0^\pi f(x) \cos{nx} \, dx$.
 We write: $f(x) \sim \frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos{nx}$, where $a_n=\frac{2}{\pi} \int_0^\pi f(x)\cos{nx} \, dx$ for $n\in\mb N$.
@@ -184,7 +184,7 @@ Homework: Sec. 7 p.18: 2,3,4; Sec. 8 p.22: 3,4 (Tuesday)
 \section{Convergence of Fourier Series}
 
 Goal is to prove a Fourier theorem-
-conditions on $f(x)$ which guarantee convergence of Fourier series for $f$. 
+conditions on $f(x)$ which guarantee convergence of Fourier series for $f$.
 Also analyze convergence behavior. Develop theory for $-\pi<x<\pi$ then extend to $-c<x<c$.
 
 \begin{recall}
@@ -234,10 +234,10 @@ Converse not necessarily true: $f(x) = \begin{cases} 0 & x<0 \\ 1 & x\geq 0 \end
 \end{recall}
 Geometric argument: If $f(x) = c$ is constant, then $a_n=\frac{2}{\pi} c\int_0^\pi \cos{nx}\, dx = 0$. When $f$ is not constant, it is \say{almost} constant over small subintervals.
 
-Let $f\in C_p(a,b)$ and $a_n=\frac{2}{\pi} \int_0^\pi f(x) \cos{nx} \, dx$ for $n=0,1,\dots$ with the partial sum $S_N$ defined as $S_N(x) = \frac{a_0}{2} + \sum_{n=1}^N a_n \cos{nx}$. 
+Let $f\in C_p(a,b)$ and $a_n=\frac{2}{\pi} \int_0^\pi f(x) \cos{nx} \, dx$ for $n=0,1,\dots$ with the partial sum $S_N$ defined as $S_N(x) = \frac{a_0}{2} + \sum_{n=1}^N a_n \cos{nx}$.
 Then $\int_0^\pi \left[ f(x) - S_N(x) \right]^2 \, dx = \int_0^\pi \left[ f(x) \right]^2 \, dx + \int_0^\pi \left[ S_N(x) \right]^2 \, dx - 2\int_0^\pi f(x) S_N(x) \, dx$.
 \begin{align*}I_N &= \int_0^\pi f(x) S_N(x) \, dx = \frac{a_0}{2} \int_0^\pi f(x) \, dx + \sum_{n=1}^N a_n \int_0^\pi f(x) \cos{nx} \, dx = \frac{\pi}{2} \left[ \frac{a_0^2}{2} + \sum_{n=1}^N a_n^2 \right] \end{align*}
-For $J_N$: $\int_0^\pi S_N(x)\cdot1\,dx = \int_0^\pi \left[ \frac{a_0}{2} + \sum_{n=1}^N a_n \cos{nx} \right] \, dx = \frac{a_0}{2}$ 
+For $J_N$: $\int_0^\pi S_N(x)\cdot1\,dx = \int_0^\pi \left[ \frac{a_0}{2} + \sum_{n=1}^N a_n \cos{nx} \right] \, dx = \frac{a_0}{2}$
 and $$\int_0^\pi S_N(x) \cdot \cos{nx} \, dx = \int_0^\pi \left[ \frac{a_0}{2} + \sum_{m=1}^N a_m \cos{mx} \right] \cos{nx} \, dx = \frac{\pi}{2} a_n.$$
 So $J_N = \int_0^\pi \left[ S_N(x) \right]^2 \, dx = \int_0^\pi S_N(x) S_N(x) \, dx $ and $$J_N = \frac{a_0}{2} \int_0^\pi S_N(x)\, dx + \sum_{n=1}^N a_n \int_0^\pi S_N(x) \cos{nx} \, dx = \frac{\pi}{2} \left[ \frac{a_0^2}{2} + \sum_{n=1}^N a_n^2 \right].$$
 So $0\leq \int_0^\pi \left[ f(x) - S_N(x) \right]^2 \, dx = \int_0^\pi [f(x)]^2\, dx - \frac{\pi}{2} \left[ \frac{a_0^2}{2} + \sum_{n=1}^N a_n^2 \right]$.
@@ -257,13 +257,13 @@ HW Sect. 11, p.33: 1,2,4
 	Observe $\displaystyle \sin\left(\frac{u}{2}+Nu\right) = \sin{\frac{u}{2}}\cos{Nu}+\cos{\frac{u}{2}}\sin{Nu}$. Hence \begin{align*}\int_0^\pi G(u) \sin \left(\frac{u}{2} + Nu\right) \, du &= \frac{\pi}{2} \cdot \frac{2}{\pi} \int_0^\pi \left[ G(u) \sin{\frac{u}{2}} \right] \cos{Nu} \, du + \frac{\pi}{2} \cdot \frac{2}{\pi} \int_0^\pi \left[ G(u) \cos{\frac{u}{2}}\right] \sin{Nu} \, du \\ &=\frac{\pi}{2} a_n + \frac{\pi}{2} b_n, \end{align*} where $a_n$ is Fourier cosine coefficient for $G(u)\sin{\frac{u}{2}}$ and $b_n$ is Fourier sine coefficient for $G(u)\cos{\frac{u}{2}}$. By previous result, $a_n\ra 0$ and $b_n\ra 0$ as $N\ra\infty$.
 \end{proof}
 \begin{definition}
-	[Dirichlet Kernel] $\displaystyle D_N(u) = \frac{1}{2} + \sum_{n=1}^N \cos{nu}$. Observe 
+	[Dirichlet Kernel] $\displaystyle D_N(u) = \frac{1}{2} + \sum_{n=1}^N \cos{nu}$. Observe
 	\begin{enumerate}
 		\item $D_N(u)$ is continuous, even, and has period $2\pi$.
 		\item $\int_0^\pi D_N(u) \, du = \frac{\pi}{2}$.
 		\item $\displaystyle D_N(u) = \frac{\sin{\left(\frac{u}{2} + Nu\right)}}{2\sin{\frac{u}{2}}}$, $u\neq 2n\pi$, $n=0,\pm1,\pm2,\dots$.
 	\end{enumerate}
-	To see this: $\sin{(A+B)} = [\sin{A} \cos B + \cos A \sin B]$ and $\sin(A-B) = [\sin A \cos B - \cos A \sin B] $ 
+	To see this: $\sin{(A+B)} = [\sin{A} \cos B + \cos A \sin B]$ and $\sin(A-B) = [\sin A \cos B - \cos A \sin B] $
 	and $2\sin A \cos B = [\sin(A+B) + \sin(A-B)]$. So \begin{align*}
 	2\sin{\frac{u}{2}} D_N(u) &= \sin{\frac{u}{2}} + 2 \sum_{n=1}^N \sin{\frac{u}{2}}\cos{nu} = \sin{\frac{u}{2}} + \sum_{n=1}^N \left[ \sin{\left(\frac{u}{2} + nu \right)} + \sin{\left(\frac{u}{2} - nu \right)} \right] \\ &= \sin{\frac{u}{2}} + \left[ \left( \sin{\frac{3}{2}u} - \sin{\frac{u}{2}} \right) + \left(\sin{\frac{5}{2}u}-\sin{\frac{3}{2}u} \right) + \cdots + \left( \sin{\frac{2N+1}{2}u} - \sin{\frac{2N-1}{2}u} \right) \right] \\ & = \sin{\left(\frac{u}{2}+Nu\right) },\end{align*}
 	which is a telescoping sum.
@@ -273,8 +273,8 @@ HW Sect. 11, p.33: 1,2,4
 \end{lemma}
 \begin{proof} Since $g(u)=g(u)-g(0+)+g(0+)$, define $I_N$ and $J_N$ by
 	\begin{align*} \int_0^\pi g(u) D_N(u) \, du &= \int_0^\pi [g(u) - g(0+)]D_N(u)\, du + \int_0^\pi g(0+) D_N(u) \, du = I_N + J_N. \end{align*}
-	Then $\displaystyle I_N = \int_0^\pi [g(u) - g(0+)] \frac{\sin{\left(\frac{u}{2}+Nu\right)}}{2\sin{\frac{u}{2}}}\, du = \int_0^\pi G(u) \sin{\left(\frac{u}{2} + Nu\right)} \, du, $ 
-	where $\displaystyle G(u) = \frac{g(u)-g(0+)}{2\sin{\frac{u}{2}}}$. 
+	Then $\displaystyle I_N = \int_0^\pi [g(u) - g(0+)] \frac{\sin{\left(\frac{u}{2}+Nu\right)}}{2\sin{\frac{u}{2}}}\, du = \int_0^\pi G(u) \sin{\left(\frac{u}{2} + Nu\right)} \, du, $
+	where $\displaystyle G(u) = \frac{g(u)-g(0+)}{2\sin{\frac{u}{2}}}$.
 	From the Riemann-Lebesgue lemma, we know that $\lim_{N\ra\infty} = 0$ as long as $G(u)$ is PWC on $(0,\pi)$.
 	One possible problem is at $u=0$, where denominator is 0. $G(u)$ is PWC on $(0,\pi)$ as long as $\displaystyle G(0+) = \lim_{u\ra0+} G(u)$ exists. $\displaystyle G(0+) = \lim_{u\ra0+} \frac{g(u)-g(0+)}{u} \cdot \frac{u}{2\sin{\frac{u}{2}}}$. But $\displaystyle \lim_{u\ra0+} \frac{g(u)-g(0+)}{u}$ exists because it is $g_+'(0)$ which is assumed to exist. And $\displaystyle \lim_{u\ra0+} \frac{u}{2\sin{\frac{u}{2}}} = 1$. Also $J_N = g(0+) \int_0^\pi D_N(u) \, du = \frac{\pi}{2} g(0+)$.
 \end{proof}
@@ -288,7 +288,7 @@ Given $f\in C_p(-\pi,\pi)$, use notation $\displaystyle S(x) = \frac{a_0}{2} + \
 	When $f$ is continuous at $x$, then equation (\ref{eqn2}) $= f(x)$, so Fourier series converges to $f(x)$.
 \end{note}
 \begin{proof}
-	We want to show $S_N(x) \ra \frac{f(x+) + f(x-)}{2}$. We will set $x\pm\pi $ because $f$, $D_N$ are period $2\pi$: \begin{align*} S_N(x) &= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \, dx + \frac{1}{\pi} \sum_{n=1}^N \int_{-\pi}^\pi f(s) \cos{n(s-x)}\, ds = \frac{1}{\pi} \int_{-\pi}^\pi f(s) \left[ \frac{1}{2} + \sum_{n=1}^N \cos{n(s-x)} \right] \, dx \\ &= \frac{1}{\pi}\int_{-\pi}^\pi f(s) D_N(s-x) \, ds = \frac{1}{\pi} \int_{x-\pi}^{x+\pi} f(s) D_N(s-x) \, ds = \frac{1}{\pi} [I_N + J_N ], \end{align*} where $I_N = \int_x^{x+\pi} f(s) D_N(s-x)\, ds$ and $J_N = \int_{x-\pi}^x f(s) D_N(s-x) \, ds$. Consider $I_N$: Let $u=s-x$, so $\displaystyle I_N = \int_0^\pi f(x+u) D_N(u)\, du = \int_0^\pi g(u) D_N(u)\, du$, where $g(u) = f(x+u)$. 
+	We want to show $S_N(x) \ra \frac{f(x+) + f(x-)}{2}$. We will set $x\pm\pi $ because $f$, $D_N$ are period $2\pi$: \begin{align*} S_N(x) &= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \, dx + \frac{1}{\pi} \sum_{n=1}^N \int_{-\pi}^\pi f(s) \cos{n(s-x)}\, ds = \frac{1}{\pi} \int_{-\pi}^\pi f(s) \left[ \frac{1}{2} + \sum_{n=1}^N \cos{n(s-x)} \right] \, dx \\ &= \frac{1}{\pi}\int_{-\pi}^\pi f(s) D_N(s-x) \, ds = \frac{1}{\pi} \int_{x-\pi}^{x+\pi} f(s) D_N(s-x) \, ds = \frac{1}{\pi} [I_N + J_N ], \end{align*} where $I_N = \int_x^{x+\pi} f(s) D_N(s-x)\, ds$ and $J_N = \int_{x-\pi}^x f(s) D_N(s-x) \, ds$. Consider $I_N$: Let $u=s-x$, so $\displaystyle I_N = \int_0^\pi f(x+u) D_N(u)\, du = \int_0^\pi g(u) D_N(u)\, du$, where $g(u) = f(x+u)$.
 	Observe $g$ is PWC on $(0,\pi)$. Also, $\displaystyle g_+'(0) = \lim_{u\ra0+} \frac{g(u)-g(0+)}{u} = \lim_{u\ra0+} \frac{f(x+u)-f(x+)}{u} = \lim_{v\ra x+} \frac{f(v) - f(x+)}{v-x} = f_+'(x)$, which \underline{exists}. We can apply the previous theorem, which says $\displaystyle \lim_{N\ra\infty} I_N = \lim_{N\ra\infty} \int_0^\pi g(u) D_N(u) \, du = \frac{\pi}{2} g(0+) = \frac{\pi}{2} f(x+)$. Similarly, for $J_N$ we get $\displaystyle{\lim_{N\ra\infty}} J_N $ $= \frac{\pi}{2} f(x-)$. $S_N(x) = \frac{1}{\pi} [I_N + J_N]$, so $S_N(x) \ra \frac{1}{2} f(x+) + \frac{1}{2} f(x-)$.
 \end{proof}
 
@@ -309,8 +309,8 @@ Last time: Proved a Fourier theorem, conditions on $f(x)$ which guarantee Fourie
 Other Intervals.
 Given $f(x)$ on $-c<x<c$, we use $g(s) = f\left(\frac{cs}{\pi}\right)$ using $x=\frac{cs}{\pi}$. $g$ defined on $-\pi<s<\pi$. Apply results to $g$, then translate them back to $f$.
 \begin{theorem}
-	Suppose $f$ is PWS on $(-c,c)$. Let $F(x)$ be the $2c$-periodic extension of $f(x)$. Def. Fourier series 
-	$S(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \left[ a_n \cos{\left(\frac{n\pi x}{c}\right)} + b_n \sin{\left(\frac{n\pi x}{c} \right)} \right]$  
+	Suppose $f$ is PWS on $(-c,c)$. Let $F(x)$ be the $2c$-periodic extension of $f(x)$. Def. Fourier series
+	$S(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \left[ a_n \cos{\left(\frac{n\pi x}{c}\right)} + b_n \sin{\left(\frac{n\pi x}{c} \right)} \right]$
 	where $a_n = \frac{1}{c} \int_{-c}^c f(x) \cos{\frac{n\pi x}{c}} \, dx$, $b_n = \frac{1}{c} \int_{-\pi}^\pi f(x) \sin{\frac{n\pi x}{c}} \, dx$. Then the Fourier series converges to $\frac{F(x+)-F(x-)}{2}$ for all $x\in (-\infty,\infty)$.
 \end{theorem}
 
@@ -367,14 +367,14 @@ To show this type of convergence it is often useful to use Weierstrass M-test: I
 	Observe that $|a_n \cos{nx} + b_n\sin{nx} | \leq |a_n\cos{nx}| + |b_n\sin{nx}|\leq |a_n|+ |b_n| \leq 2\sqrt{a_n^2+b_n^2}$. the result follows from Weierstrass M-test once we verify that $\sum_{n=1}^\infty 2\sqrt{a_n^2 + b_n^2} <\infty$ (next).
 \end{proof}
 \begin{definition}
-	%\underline{Aside}: 
+	%\underline{Aside}:
 	[Cauchy-Schwarz inequality] $|\langle p,q\rangle |\leq ||p||\cdot||q||$ on $\mb R^N$ with Euclidean norm $\vp = \mat{ p_1 & \cdots & p_N}$ and $\vq = \mat{q_1 & \cdots & q_N}$. Then
 	\begin{align*}
 		\left|\sum_{n=1}^N p_nq_n\right| &\leq \sqrt{\sum_{n=1}^N p_n^2}\sqrt{\sum_{n=1}^N{q_n^2}}, \qquad & \qquad
 		\left| \sum_{n=1}^N p_n q_n \right|^2 &\leq \sum_{n=1}^N p_n^2 \sum_{n=1}^N q_n^2.
 	\end{align*}
 \end{definition}
-%\underline{End aside}. 
+%\underline{End aside}.
 \begin{lemma}
 	Assume hypotheses on $f$ from previous theorem. Then $\sum_{n=1}^\infty \sqrt{a_n^2+b_n^2}<\infty$.
 \end{lemma}
@@ -406,7 +406,7 @@ We next investigate differentiating Fourier series.
 	From last time: $\alpha_0 = 0$, $\alpha_n = nb_n$, $\beta_n = -na_n$, $n=1,2,\dots$. The result follows.
 \end{proof}
 \begin{example}
-	$f(x) = x$ on $0<x<\pi$. 
+	$f(x) = x$ on $0<x<\pi$.
 	Sine series: $S(x) = 2\sum_{n=1}^\infty \frac{(-1)^{n+1}}{n}\sin{nx}$. Calculate derivative term by term. $S'(x) = 2\sum_{n=1}^\infty (-1)^{n+1} \cos{nx}$. This series doesn't even converge for any $x$.
 	Cosine series: $C(x) = \frac{\pi}{2} - \frac{4}{\pi} \sum_{n=1}^\infty \frac{\cos{(2n-1)x}}{(2n-1)^2}$. Calculate derivative term by term: $C'(x) = \frac{4}{\pi} \sum_{n=1}^\infty \frac{\sin{(2n-1)x}}{2n-1}$
 	\begin{note}
@@ -432,7 +432,7 @@ HW: Sec.20 p.58: 1,2,3,5
 \begin{example}
 	[Quiz 1, Problem 1]
 	$f(x) = 1$ on $0<x<\pi$. $$b_n = \frac{2}{\pi}\int_0^\pi\sin{nx}\, dx = \frac{2}{\pi} \left( -\frac{1}{n} \right) \cos{nx} \bigg\rvert_0^\pi = \frac{-2}{n\pi} \left[ (-1)^n-1 \right] = \frac{2}{\pi} [1-(-1)^n] = \begin{cases} \frac{4}{n\pi} & n \text{ odd} \\ 0 & n \text{ even} \end{cases}$$ So $f(x) \sim \sum_{n=1}^\infty b_n \sin{nx} $ and set $n=2k-1$ to get $f(x) = \sum_{k=1}^\infty \frac{1}{2k-1}\sin{(2k-1)x}$.
-	
+
 	The Fourier sine series on $(0,\pi)$ represents the odd extension of $f$ on $(-\pi,\pi)$ and the $2\pi$-periodic extension (of the odd extension) on $(-\infty,\infty)$.
 \end{example}
 
@@ -449,12 +449,12 @@ HW: Sec.20 p.58: 1,2,3,5
 \end{theorem}
 \begin{proof}
 	Define $F(x) = \int_{-\pi}^x f(s)\, ds - \frac{a_0}{2}x$. $F(x)$ is continuous on $-\pi\leq x\leq \pi$. If $f$ is continuous at $x$, then $F$ is differentiable at $x$ and $F'(x) = f(x) - \frac{a_0}{2}$. Thus $F$ is PWS on $(-\pi,\pi)$, since $f$ is PWC there.
-	Also, $F(-\pi) = \frac{a_0\pi}{2}$ and $F(\pi) = \int_{-\pi}^\pi f(s) \, ds - \frac{a_0\pi}{2} = \pi a_0 - \frac{\pi a_0}{2} = \frac{\pi a_0}{2}$. So $F(-\pi) = F(\pi)$. We can apply our Fourier theorem to $F(x)$. 
+	Also, $F(-\pi) = \frac{a_0\pi}{2}$ and $F(\pi) = \int_{-\pi}^\pi f(s) \, ds - \frac{a_0\pi}{2} = \pi a_0 - \frac{\pi a_0}{2} = \frac{\pi a_0}{2}$. So $F(-\pi) = F(\pi)$. We can apply our Fourier theorem to $F(x)$.
 	\begin{equation}
 		F(x) = \frac{A_0}{2} + \sum_{n=1}^\infty (A_n\cos{nx} + B_n\sin{nx})
 		\label{star1}
 	\end{equation}
-	on $-\pi\leq x \leq \pi$, where $A_n = \frac{1}{\pi} \int_{-\pi}^\pi F(x) \cos{nx} \, dx$ and $B_n = \frac{1}{\pi} \int_{-\pi}^\pi F(x) \sin{nx} \, dx$. For $n = 1,2,\dots$, set $u=F(x)$ and $dv = \cos{nx} \, dx$ so that 
+	on $-\pi\leq x \leq \pi$, where $A_n = \frac{1}{\pi} \int_{-\pi}^\pi F(x) \cos{nx} \, dx$ and $B_n = \frac{1}{\pi} \int_{-\pi}^\pi F(x) \sin{nx} \, dx$. For $n = 1,2,\dots$, set $u=F(x)$ and $dv = \cos{nx} \, dx$ so that
 	\begin{align*}
 		A_n &= \frac{1}{\pi} \int_{-\pi}^\pi F(x)\cos{nx} \, dx = \frac{1}{\pi} F(x) \left(\frac{1}{n}\right) \sin{nx} \bigg \rvert_{-\pi}^\pi - \frac{1}{n\pi} \int_{-\pi}^\pi \left[ f(x) - \frac{a_0}{2} \right] \sin{nx} \, dx \\ &= -\frac{1}{n\pi} \int_{-\pi}^\pi f(x)\sin{nx} \, dx = -\frac{b_n}{n} \\
 		B_n &= \frac{1}{\pi} \int_{-\pi}^\pi F(x) \sin{nx}\, dx = \frac{1}{\pi} \left[ -F(x) \frac{1}{n} \cos{nx} \bigg \rvert_{-\pi}^\pi + \frac{1}{n} \int_{-\pi}^\pi \left( f(x) - \frac{a_0}{2}\right) \cos{nx} \, dx \right] = \frac{1}{n}a_n \\
@@ -601,7 +601,7 @@ HW: Sec. 27: 2,3. Sec. 29, 1.
 \end{example}
 
 \section{The Fourier Method}
-(Previously did \S36) 
+(Previously did \S36)
 Some ideas aboud linear combinations.
 \begin{definition}
 	[\underline{Function space}] A vector space whose elements are functions
@@ -630,15 +630,15 @@ Some ideas aboud linear combinations.
 \begin{example}
 	[A wave equation example] $y_{tt}(x,t) = a^2 y_{xx}(x,t)$ on $0<x<c$ and $0<t$ with BC $y(0,t)=0$ and $y(c,t)=0$. IC is $y(x,0)=f(x)$ and $y_t(x,0)=0$.
 	Assume solution has the form $y(x,t)=X(x)T(t)$. Plug in: $\frac{T''(t)}{a^2T(t)}=\frac{X''(x)}{X(x)} = -\lambda \implies$\underline{$X''(x)+\lambda X(x)=0$, $X(0)=0$, and $X(c)=0$}. Also $T''(t)+\lambda a^2 T(t)=0$ and $T'(t)=0$.
-	
+
 	\underline{$\lambda=0$}: $X''(x)=0 \implies X(x)=Ax+B$ but BC imply $X(x)=0$.
-	
+
 	\underline{$\lambda<0$}: $\lambda=-\alpha^2$, $X''(x)-\alpha^2 X(x)=0$. Then $X(x) = c_1e^{\alpha x} + c_2 e^{-\alpha x}$. At $X(0)=0$: $c_1+c_2=0$, so $c_1=-c_2$. At $X(c)=0$: $c_1e^{\alpha c} - c_1e^{-\alpha c} = 0 = c_1 \left[ e^{\alpha c} - e^{-\alpha c}\right]$, which implies $c_1 = 0$, so $c_2=0$.
-	
+
 	\underline{$\lambda>0$}: $\lambda = \alpha^2$, $X''(x) + \alpha^2 X(x) = 0$ and $X(x) = c_1 \cos{\alpha x} + c_2 \sin{\alpha x}$. At $X(0)=0$: $c_1+0=0$, so $c_1=0$. So $X(x) = c_2\sin{\alpha x}$. At $X(c)=0$: $\sin{(\alpha c)} = 0$, so $\alpha = \pm\frac{n\pi}{c}$, $n=1,2,\dots$.
 	So $\lambda_n = \frac{n^2\pi^2}{c^2}$, $n=1,2,\dots$. with corresponding solutions (eigenfunctions) $X_n(x) = \sin{\frac{n\pi}{c}x}$.
 	Use $\lambda_n$ to get corresponding $T_n(t)$: $T''(t) + \frac{n^2\pi^2a^2}{c^2}T(t) = 0$, $T_n(t) = c_1\cos{\frac{n\pi a}{c}t} + c_2\sin{\frac{n\pi a}{c}t}$. So $T_n(t) = \cos{\frac{n\pi a}{c}t}$.
-	
+
 	So $y_n(x,t) = \sin{\frac{n\pi}{c}x} \cos{\frac{n\pi a}{c} t}$ for $n=1,2,\dots$ is a solution of PDE and BC and $y_t(x,0)=0$.
 	Thus the series (Infinite linear combination) also satisfies these.
 	$y(x,t) = \sum_{n=1}^\infty B_n \sin{\frac{n\pi}{c}x}\cos{\frac{n\pi a}{c}t}$ satisfies PDE, BC, and $y_t(x,0)=0$.
@@ -648,7 +648,7 @@ Some ideas aboud linear combinations.
 \end{example}
 HW: \S34: 2,4,5,6. \S37 1,3.
 
-Previously, we used Fourier method (separation of variables) to solve two different problems: 
+Previously, we used Fourier method (separation of variables) to solve two different problems:
 \begin{enumerate}
 	\item Heat Equation with insulated BC. PDE: $u_t(x,t) = ku_{xx} (x,t)$, BC: $u_x(0,t) = 0 = u_x(c,t)$, IC: $u(x,0) = f(x)$. This leads to the BVP $X''(x) + \lambda X(x) = 0$, $X'(0)=0$, $X'(c)=0$. Eigenvalues: $\lambda_0 = 0$, $\lambda_n = \frac{n^2\pi^2}{c^2}$, $n=1,2,\dots$. Eigenfunctions: $X_0(x) = 1$, $X_n(x) = \cos{\frac{n\pi}{c}x}$.
 	\item Wave equation. PDE: $y_{tt}(x,t)=a^2y_{xx}(x,t)$. BC: $y(0,t)=0 = y(c,t)$, IC: $y(x,0)=f(x)$, $y_t(x,0)=0$. This leads to the BVP: $X''(x) + \lambda X(x)=0$, $X(0)=0$, $X(c)=0$. Eigenvalues $\lambda_n = \frac{n^2\pi^2}{c^2}$ for $n=1,2,\dots$. Eigenfunctions: $X_n(x) = \sin{\frac{n\pi}{c}x}$. We will study other BC's and BVP's later (Sturm-Liouville).
@@ -683,7 +683,7 @@ HW \S39: 1, 2
 	\end{equation} where $n=1,2,\dots$.
 	Also $u(x,0) = f(x)$ implies $\sum_{n=1}^\infty B_n(0) \sin{(nx)} = f(x)$, so $$B_n(0) = b_n = \frac{2}{\pi} \int_0^\pi f(x) \sin{(nx)}.$$
 	We can solve equation (\ref{eqn16}) using integrating factor $e^{n^2kt} B_n'(t) + n^2ke^{n^2kt} B_n(t) = \frac{2[1-(-1)^n]}{n\pi}e^{n^2kt} q(t)$, where the LHS is $\frac{d}{dt} \left[ e^{n^2kt} B_n(t) \right] = \frac{2[1-(-1)^n]}{n\pi} e^{n^2kt} q(t)$. Integrate 0 to $t$: $e^{n^2kt} B_n(t) - b_n = \frac{2[1-(01)^n]}{n\pi} \int_0^t e^{n^2k\tau} q(\tau) \, d\tau$. So $B_n(t) = b_n e^{-n^2kt} + \frac{2[1-(-1)^n]}{n\pi} \int_0^t e^{-n^2k(t-\tau)}q(\tau) \, d\tau$.
-	So the solution 
+	So the solution
 	\begin{align*}
 		u(x,t) &= \sum_{n=1}^\infty B_n(t) \sin{nx} = \sum_{n=1}^\infty b_n e^{-n^2kt} \sin{nx} + \sum_{n=1}^\infty \frac{2[1-(-1)^n]}{n\pi} \left[ \int_0^t e^{-n^2k(t-\tau)} q(\tau) \, d\tau \right] \sin{nx} \\
 		&=\sum_{n=1}^\infty b_n e^{-n^2kt} \sin{nx} + \frac{4}{\pi} \sum_{j=1}^\infty \frac{\sin{(2j-1)x}}{2j-1} \int_0^t e^{-(2j-1)^2k(t-\tau)} q(\tau) \, d\tau
@@ -697,13 +697,13 @@ We solved several heat equation examples.
 
 \begin{example}
 	[already solved] $y_{tt}(x,t) = a^2 y_{xx}(x,t)$ on $0<x<c$ with $y(0,t)=0$ and $y(c,t)=0$; $y(x,0)=f(x)$ and $y_t(x,0)=0$; where $f$ is continuous on $[0,c]$ and $f(0)=0=f(c)$. We used separation of variables to get the solution $y(x,t)=\sum_{n=1}^\infty B_n \sin{\frac{n\pi x}{c}} \cos{\frac{n\pi a t}{c}}$, where $B_n = \frac{2}{c} \int_0^c f(x) \sin{\frac{n\pi x}{c}}\, dx$.
-	We observe the solution can be written in a different form, not involving series. 
+	We observe the solution can be written in a different form, not involving series.
 	\underline{Observe}: $$\sin{\frac{n\pi x}{c}}\cos{\frac{n\pi a t}{c}} = \frac{1}{2} \left[ \sin{\frac{n\pi}{c}(x+at)} + \sin{\frac{n\pi}{c}(x-at)} \right],$$ where we used $2\sin{E}\cos{F} = \sin{(E+F)}+\sin{(E-F)}$. Then
 	$$y(x,t) = \frac{1}{2} \left[ \sum_{n=1}^\infty B_n \sin{\frac{n\pi}{c}(x+at)} + \sum_{n=1}^\infty B_n \sin{\frac{n\pi}{c}(x-at)} \right].$$
 	Also, $f(x) \sim \sum_{n=1}^\infty B_n \sin{\frac{n\pi}{c}x}$.
 	Let $F(x)$ be the $2c$ periodic extension of the odd extension of $f(x)$ to $(-c,c)$. Then $F(x) = \sum_{n=1}^\infty B_n \sin{\frac{n\pi x}{c}}$ for all $x\in(-\infty,\infty)$.
 	Thus $$y(x,t) = \frac{1}{2} \left[ F(x+at) + F(x-at) \right].$$
-	
+
 	Let's check that this is a solution. $y_x(x,t) = \frac{1}{2} \left[ F'(x+at) + F'(x-at) \right]$, $y_{xx}(x,t) = \frac{1}{2} [ F''(x+at) + F''(x-at)]$, $y_{tt}(x,t) = \frac{1}{2} [a^2 F''(x+at) + a^2 F''(x-at)] = a^2 y_{xx}(x,t)$.
 	BC: $y(0,t) = \frac{1}{2} [ F(at) + F(-at)] = \frac{1}{2} [ F(at)-F(at)] = 0$ because $F$ is odd; $y(c,t) = \frac{1}{2} [F(c+at) + F(c-at)] = 0$ since $F$ is odd and $2c$ periodic. IC: $y(x,0) = F(x) = f(x)$ on $(0,c)$; $y_t(x,0) = \frac{1}{2} [ aF'(x) - aF'(x) ] =0$.
 	Thus $y(x,t)$ is a solution to the given wave equation.
@@ -726,8 +726,8 @@ HW \S45; 1,2,3,4
 
 \section{Orthonormal Sets}
 
-We will generalize geometry of vectors in 3-space to more general vector spaces whose elements (vectors) are functions. 
-In 3-space, vectors are defined as directed line segments. %Can then 
+We will generalize geometry of vectors in 3-space to more general vector spaces whose elements (vectors) are functions.
+In 3-space, vectors are defined as directed line segments. %Can then
 Define the following geometrically:
 \begin{itemize}
 	\item Length of vector
@@ -903,7 +903,7 @@ This includes all regular SL problems, plus some singular.
 	\end{enumerate}
 \end{recall}
 \begin{proof}
-	We have $[rX_m']' + [q+\lambda_m p]X_m = 0$ and	$[rX_n']' + [q+\lambda_n p] X_n = 0$. Multiply by $X_n$ and $X_m$ respectively and subtract the equations to get 
+	We have $[rX_m']' + [q+\lambda_m p]X_m = 0$ and	$[rX_n']' + [q+\lambda_n p] X_n = 0$. Multiply by $X_n$ and $X_m$ respectively and subtract the equations to get
 	\begin{align*}
 	(\lambda_m - \lambda_n) p X_m X_n &= X_m (rX_n')' - X_n (rX_m')' = [ X_m (rX_n')' + X_m' r X_n'] - [X_n (rX_m')' + X_m' r X_n'] \\
 	&= \frac{d}{dx} [X_m (r X_n') - X_n ( r X_m')]
@@ -950,9 +950,9 @@ HW Sect. 69: 1,2
 \end{proof}
 \begin{example}
 	$X''(x) + \lambda X(x) = 0$ with $X'(0) = 0$ and $hX(c) + X'(c) = 0$, $h>0$. This is a regular SL problem, $r(x) \equiv 1$, $p(x) \equiv 1$, $q(x) \equiv 0$, $a_1 = 0$, $a_2 = 1$, $b_1 = h$ and $b_2 = 1$.
-	
+
 	Case $\lambda = 0$: Then $X''(x) = 0$. Genereal solution is $X(x) = Ax+B$. $X'(0)$ implies $A= 0$, so $X(x) = B$. Then $hX(c) + X'(c) = 0$ implies $hB = 0$, so $B = 0$. So $X(x) = 0$, $\lambda = 0$ not an eigenvalue.
-	
+
 	Consider $\lambda>0$, say $\lambda = \alpha^2$, where $\alpha >0$. Thus $X''(x) + \alpha^2 X(x) = 0$. General solution is $X(x) = c_1 \cos{\alpha x} + c_2 \sin{\alpha x}$. $X'(0) = 0$ implies $\alpha c_2 \cos{(0)} = 0$, so $c_2 = 0$. So $X(x) = c_1 \cos{\alpha x}$. $hX(c) + X'(c) = 0$ implies $c_1 h \cos{(\alpha c)} - \alpha c_1 \sin{(\alpha c)} = 0 = h\cos{(\alpha c)} - \alpha \sin{(\alpha c)}$, so $\frac{h}{\alpha} = \tan{(\alpha c)}$ or $\frac{hc}{\alpha c} = \tan{(\alpha c)}$. $\ra$ so $\frac{hc}x = \tan{x}$ for $x = \alpha c$. If $x$ is a root, then $\alpha = \frac{x}{c}$ and $\lambda = \alpha^2$ is an eigenvalue. Plot $y = \tan{x}$ and $y = \frac{hc}{x}$: geometrically there are countably infinite number of solutions at the intersection points. As $n\ra \infty$, $x_n \sim (n-1)\pi$. Then $\alpha_n = \frac{x_n}{c} \sim \frac{(n-1)\pi}{c}$ as $n\ra \infty$. So $\lambda_n = \alpha_n^2$. Corresponding eigenfunction $X_n(x) = \cos{\alpha_n x}$, for $n=1,2,\dots$. Also $\{\cos{\alpha_n x}\}_{n=1}^\infty$ is orthogonal. Note: $||X_n(x)||^2 = \int_0^c \cos^2{\alpha_n x}\, dx = \dots = \frac{ch + \sin^2{(\alpha_n c)}}{2h}$. So $\phi_n(x) = \frac{1}{||X_n||} X_n(x) = \sqrt{\frac{ 2h}{ch + \sin^2{(\alpha_n c)}}}\cos{(\alpha_n x)}$, where $\{\phi_n\}_{n=1}^\infty$ is an orthonormal set.
 \end{example}
 
@@ -969,14 +969,14 @@ Exam: Chapter 3, Starting with \S26 we did other boundary conditions, \S28. \S32
 	Consider temperature in cylinder on $0<x<1$ with perfect insulation at $x = 0$ and at $x=1$, surface heat transfer into a medium with temperature 0. Initial temperature distribution $f(x)$. The model: $u_t(x,t) = ku_{xx}(x,t)$, $u_x(0,t) = 0$, $u_x(1,t) = -hu(1,t)$, $u(x,0) = f(x)$. Newton's law of cooling $h[T-u(x,t)]$, $h>0$. Do separation of variables: $u(x,t) = X(x) T(t)$. Get: $X''(x) + \lambda X(x) = 0$, $X'(0) = 0$, $hX(1) + X'(1) = 0$. We solved this last time: ($c = 1$) $X_n(x) = \cos{\alpha_n x}$, $n=1,2,\dots$, $\lambda_n = \alpha_n^2$, $\alpha_n$'s are roots of $\tan{\alpha_n} = \frac{h}{\alpha_n}$. Normalized eigenfunctions $\phi_n(x) = \sqrt{ \frac{2h}{h + \sin^2{\alpha_n}}} \cos{\alpha_n x}$. We also get $T_n(t) = e^{-\lambda_n kt} = e^{-\alpha_n^2 kt}$. So solution is $$ u(x,t) = \sum_{n=1}^\infty c_n e^{-\alpha_n^2 kt} \sqrt{ \frac{2h}{h + \sin^2{\alpha_n}}} \cos{\alpha_n x}.$$ Using IC: $f(x) = \sum_{n=1}^\infty c_n \phi_n(x)$, so $c_n = (f(x),\phi_n(x)) = \int_0^1 f(x) \phi_n(x) \, dx$.
 \end{example}
 HW 73: 1,2,4.
-Next: (not in text) Vibrations of solid elastic beam. 
+Next: (not in text) Vibrations of solid elastic beam.
 
 \newpage
 
 Transverse vibrations of solid elastic beam.
 Consider elastic beam of length $l$ (much larger than cross sectional are). Let $w(x,t) = $ transverse displacement at time $t$ and position $x$. Under reasonable assumptions, can derive the Euler-Bernoulli beam equation: $$ m(x) w_{tt}(x,t) + \frac{\partial^2}{\partial x^2} [EI(x)w_{xx}(x,t)] = 0. $$
 Assume all parameters are constant, we get $ w_{tt}(x,t) + \beta w_{xxxx} (x,t) = 0$, $\beta = \frac{EI}{m} > 0$.
-\underline{Boundary Conditions}: 
+\underline{Boundary Conditions}:
 \begin{enumerate}
 	\item[]\underline{Clamped}: $w(\bar{x},t) = 0$, $w_x(\bar{x},t) = 0$ for $\bar{x} = 0$ or $l$.
 	\item[]\underline{Hinged}: $w(\bar{x}) = 0$, $w_{xx}(\bar{x},t) = 0$ for $\bar{x} = 0$ or $l$.
