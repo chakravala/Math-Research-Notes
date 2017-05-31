@@ -1,0 +1,161 @@
+\documentclass[]{article}
+\input{/home/flow/LaTeX/Packages/mathdoc}
+\input{/home/flow/LaTeX/Packages/mathsym}
+\usepackage{blindtext}
+
+\title{ $p$-adic Modular Forms (UNCG)}
+\author{Presenter: David Roe, Notes by Michael Reed}
+%date{}
+
+\begin{document}
+\maketitle
+
+\section*{Congruences between and interpolation of Modular Forms}
+
+\begin{example}
+	$E_k = \frac{1}{2} \zeta(1-k) + \sum_{n\geq 1} \sigma_{k-1}(n) q^n$, where $\sigma_{k-1}(n) = \sum_{d\mid n} d^{k-1}$. Fix a prime $p$, like $\sigma_{k-1}(n) \equiv \sigma_{k'-1}(n)(\mod p^m)$. This will hold as long as $k\equiv k' \pmod{\phi(p^m)}$. (almost). To get his exactly, need to modify $\sigma_{k-1}$ to remove the $d$ that are divisible by $p$.
+	Define $\sigma_{k-1}^* (n) = \sum_{d\mid n,(d,p) = 1} d^{k-1}$.
+	Define $E_k^*(q) = E_k(q) - p^{k-1} E_k(q^p) = (1-p^{k-1})\frac{\zeta(1-k)}{2} + \sum_{n\geq 1} \sigma_{k-1}^* (n) q^n$.
+	\begin{fact}
+		If $k \equiv k' \pmod{\phi(p^m)}$ then $E_k^*(q) = E_{k'}^*(q) \pmod{p^m}$.
+	\end{fact}
+	Method 1 to see equality of constant terms:
+	$\frac{\zeta(1-k)}{2} = -\frac{B_k}{2k}$ and $(1-p^{k-1}) \frac{B_k}{k} \equiv (1-p^{k-1}) \frac{B_{k'}}{k'}\pmod{p^m}$ if $k\equiv k' \pmod{\phi(p^m)}$ (Kummer congruences).
+\end{example}
+
+$\Delta = q \prod_{n=1}^\infty (1-q^n) = (\eta(q))^{24} \in S_{12}(SL_2(\mb Z))$.
+
+$\omega = \eta(q)^2\eta(q^{11})^2 = q\prod_{n=1}^\infty (1-q^n)^2(1-q^{11n})^2 \in S_{12}(\Gamma_0(11))$.
+
+Why is $\Delta \equiv \omega \pmod{11}$? $(1-q^n)^11 \equiv (1-q^{11n})\pmod{11}$, so the two are equal.
+
+\begin{remark}
+	$E: y^2 + y = x^3-x^2$. Label $11a^3$. Consider $\#E(\mb F_l) = l+1-a_l$. Then $a_l \equiv \tau(l)\pmod{11}$.
+\end{remark}
+
+Look up $q$-expansion principle.
+
+\begin{definition}
+	A $p$-adic modular form is $q$-expansion $f = \sum_{n\geq 0} a_nq^n \in \mb Q_p[[q]]$ such that there is some sequence $f_i$ of classical modular forms of weight $k_i$ and $f = \lim_{i} f_i$, i.e. if $f_i = \sum_{n\geq 0} a_{i,n} q^n$ then $a_n = \lim_i a_{i,n}$ with $a_{i,n}\in\mb Q$. (level $\Gamma$ is fixed).
+\end{definition}
+
+\begin{theorem}
+	If $f_1$ and $f_2$ are modular forms with rational Fourier coefficients, with $k_1,k_2$ and $f_1 \equiv f_2\pmod{p^m}$ then $k_1 \equiv k_2 \pmod{\phi(p^m)}$.
+	
+	So the weight of $f$ is well defined in $\displaystyle \lim_{\la m} \mb Z / \phi(p^m)\mb Z = \lim_{\la m} \mb Z/(p-1)\mb Z \times \mb Z/p^{m-1}\mb Z = \mb Z/(p-1) \mb Z \times \mb Z_P =: \mc W$ is Weight space.
+\end{theorem}
+\begin{theorem}
+	[Serre] Let $f_i = \sum_{n\geq 0} a_{i,n} q^n$ a sequence of $p$-adic modular forms of weight $k_i$. Assume
+	\begin{itemize}
+		\item for $n\geq 1$, $a_{i,n} \ra a_n \in \mb Q_p$ uniformly in $n$
+		\item $k_i \ra k \in w$
+	\end{itemize}
+	Then:
+	\begin{itemize}
+		\item $a_{i,0} \ra a_0 \in \mb Q_p$
+		\item $f = \sum_{n\geq 0} a_n q^n$ is a $p$-adic modular form of weight $k$.
+	\end{itemize}
+\end{theorem}
+\begin{remark}
+	The interpolation of the constant term of $E_k^*$ is called the Kubota-Leopoldt $p$-adic $L$-function. $L_p(1-s,\omega^i)$, where $\omega_i$ is determined by which disc in $\mc W$.
+\end{remark}
+
+\subsection*{Hida families}
+Let $u\subseteq \mc W$ open containing 2.
+
+\begin{definition}
+	A Hida family is a formal $q$-expansion $f = \sum_{n\geq 1} a_n q^n$ where $a_n\in \mb Z_p[[w]]$ where $w$is a local coordinate on $u$ so that, if $k\in u\cap \mb Z^{\geq 2}$ then $f_k = \sum_{n\geq 1} a_n (k) q^n$ is a normalized \ul{ordinary} eigenform of weight $k$ and level $\Gamma_0(N_p)$.
+	$u_p(\sum_{n\geq 0}) a_n q^n) = \sum_{n\geq 0} a_{pn} q^n$. $u_p f = \lambda f$ if $f$ eigenform, $f$ is ordinary if $\lambda \in \mb Z_p^\times$.
+\end{definition}
+\begin{theorem}
+	[Hida] If $f\in S_k(\Gamma_1(N_p))$, ordinary, $(N,p)=1$ and $k>2$; then $f$ fits into a Hida family.
+\end{theorem}
+
+\section*{Overconvergent Modular Forms}
+
+Can write down eigenforms in this $p$-adic world. Make space smaller, get the space of overconvergent modular forms. Upshot: the $u_p$ operator is compact (sense of $p$-adic Banach spaces) and thus has a characteristic power-series. The \ul{slope} of an eigenform is the $p$-adic valuation of its $u_p$-eigenvalue. Ordinary forms are precisely those with slope 0. There is a rigid analytic object, called the eigencurve, that captures the $p$-adic variation of overconvergent modular forms.
+
+\begin{theorem}
+	If $f$ is an overconvergent modular form of weight $k\in\mb Z_{\geq 2}$ and slope $<k-1$ then $f$ is classical. Conversely, if $f$ is classical then the slope $\leq k-1$.
+\end{theorem}
+Classical modular forms $\hookrightarrow$ overconvergent modular forms. Classical Modular forms $\iff$ classical modular symbols $\twoheadleftarrow$ overconvergent modular symbols.
+Stevens showed that if you restrict to slope $<k-1$, the bottom map is also an isomorphism.
+
+\section*{Modular Symbols}
+
+$\Delta_0 = \text{Div}^\circ (\mb P^1(\mb Q)) = $ formal sums of $\mb Q\cup \{\infty\}$ with integer coefficients and total sum 0. Spanned by $\{\alpha,\beta\} = \alpha \ra \beta = \beta-\alpha$. $\Gamma = $ some congruence subgroup, e.g. $\Gamma_0(N)$. $V =$ coefficient module with a right action of $\mb Z[\Gamma]$. For now, $V = \mb Q$, trivial action. $\text{Hom}(\Delta_0,V)$ = homologies as additive groups. $\Gamma$ acts by $(\Phi\mid \gamma)(D) = \Phi(\gamma D)\cdot \gamma$. $\text{Symb}_\Gamma(V) = \{\Phi\in \text{Hom}(\Delta_0,V) \mid \Phi = \Phi \mid \gamma\}$ i.e. $\Phi(\gamma D) = \Phi(D)\mid \gamma\inv$ for all $\gamma\in \Gamma, D\in\Delta_0$. To get a finite description of modular symbols, we need to describe $\Delta_0$ as a $\mb Z[\Gamma]$-module.
+
+Suppose $\mat{a&b\\c&d} \in GL_2^+(\mb Q) = \{\det>0\}$. Then $GL_2^+(\mb Q)\ra \Delta_0$ and $\mat{a&b\\c&d} \mapsto \{\frac{a}{c},\frac{b}{d}\}$, equivariant. Gives a surjective map $\mb Z[GL_2^+(\mb Q)] \ra \Delta_0$. Let $G = PSL_2(\mb z)$ and $\mb Z[G]\twoheadrightarrow \Delta_0$. Still surjective uses Manin's trick, i.e. continued fractions.
+
+The fact that $\mb Z[G] \twoheadrightarrow \Delta_0$ is equivariant allows us to give a finite generating set for $\text{Symb}_\Gamma(\mb Q)$. $\Gamma \backslash SL_2(\mb Z)$ is finite. So if we pick coset reps for $\Gamma$ in $SL_2(\mb Z)$, the values on their images in $\Delta_0$ will determine any modular symbol.
+
+\begin{theorem}
+	[Manin] The kernel of the map $\mb Z[G] \ra \Delta_0$ is $I = \mb Z[G](1+\sigma) + \mb Z[G](1+\tau+\tau^2)$ where $\sigma = \mat{0&-1\\1&0}$, $\tau = \mat{0&-1\\1&-1}$.
+\end{theorem}
+
+\begin{example}
+	$\Gamma = \Gamma_0(11)$. Fundamental domain. How do we find this? Start with ideal triangle with vertices $0,-1,\infty$. The path from $\{\infty,0\}$ has 12 images inside this domain. Only need value of $\Phi$ on paths on the boundary. $\mat{7&2 \\ -11&-3} \{0,\frac{-1}{2}\} = \{\frac{-1}{2},\frac{-2}{3}\}$ is like matrix multiplication: $\mat{7&2 \\ -11&-3} \mat{0\\1} = \mat{\frac{2}{-3}}$. Also $\mat{8&3\\-11&-4} \{\frac{-1}{3},\frac{-1}{2}\} = -\{\frac{-2}{3},-1\}$ and $\mat{1&-1\\0&1}\{\infty0\} = -\{-1,\infty\}$.
+	So $\Delta_0$ is generated by $\{0,\frac{-1}{3}\}$, $\{\infty,0\}$, and $\{\frac{-1}{2},\frac{-1}{2}\}$.
+	There is only one more relation $(1-\mat{1&-1\\0&1}) \{\infty,0\} + (1-\mat{7&2\\-11&3}) \{0,\frac{-1}{3}\} + (1-\mat{8&3\\-11&-4}) \{\frac{-1}{3},\frac{-1}{2}\} = 0$.
+\end{example}
+
+To do weight $k>2$, replace $V$ with $\text{Symb}^{k-2}(\mb Q^2) = \mb Q[X,Y]_{k-2}$ with homogeneous degree $k-2$. $\mat{a&b\\c&d} = \gamma \in \Gamma$ acts on the right by $(P\mid \gamma)(X,Y) = P(dX-cY,-bD+aY) = P((X,Y)\gamma^*)$.
+
+\begin{recall}
+	\ul{$\text{Sym}^{k-1}(\mb C)$} was the coefficient module weight $k$ modular symbols.
+\end{recall}
+Let: $V_k = \text{Sym}^k$ and refer to this as weight $k$. So weight 0 symbols will correspond to weight 2 modular forms.
+
+Today we'll define a new coefficient module that will $p$-adically interpolate between modular symbols of different weights. This coefficient module will be called $D$, we'll get maps from $\text{Symb}_\Gamma(D) \ra \text{Symb}_\Gamma(V_k)$. $D$ will have an action of $\Gamma$ depending on $k$, it will be an infinite dimensional $p$-adic Banach space.
+
+\subsection*{Analytic functions and distributions}
+
+$A = \{f(z)\in \mb Q_p[[z]]\mid f(z) = \sum_{n=0}^\infty a_n z^n \text{ then }|a_n|_P \ra 0 \text{ as } n\ra \infty \}$. These are precisely the analytic functions on $\mb Z_p$. There is a norm on $A$, $||f|| = \max|a_n|$. This  norm makes $A$ a $p$-adic Banach space. $D = \text{Hom}_{cts}(A,\mb Q_p)$. This has an induced norm.
+
+Given $\mu\in D$, can define a sequence of moments $\{\mu(z^j)\}_{j=0}$.
+
+\begin{theorem}
+	The map $D\ra \mb Q_p^\infty$, $\mu\mapsto (\mu(z^j))_{j=0}^\infty$ is injective and the image consists of bounded sequences.
+\end{theorem}
+$\Gamma$ acts on $A$ by $(\gamma\underset{k}{\cdot}f)(z) = (a+cz)^k f(\frac{b+dz}{a+cz})$, $(\mu\mid_k\gamma)(f) = \mu(\gamma\underset{k}{\cdot}f)$.
+
+\begin{example}
+	$(1+z)\inv = 1-z+z^2-z^3+\dots \ra 1-pz+pz^2-pz^3+\dots$.
+\end{example}
+To make sense, we need plc, pta. Define $\Sigma_0(p) = \left\{\mat{a&b\\c&d} \in SL_2(\mb Q_p) \mid plc,pta,ad-bc\neq 0\right\}$. So need $\Gamma\subset\Gamma_0(p)$.
+This action of $\Sigma_0(p)$ is enough to define Hecke-operators. $\mu\mid T_l = \mu\mid\mat{l&0\\0&0} + \sum_{a=0}^{l-1} \mu\mid\mat{1&a\\0&l}$, $\mu\mid \mc U_p = \sum_{a=0}^{p-1} \mu \mid \mat{1&a\\0&p}$. Notation: $D_k$ is $D$ equipped with this action.
+
+\begin{proposition}
+	The map $D_k \ra V_k$ is $\Sigma_0(p)$-equivariant. So we get a \ul{specialized map} $\text{Symb}_\Gamma(D_k) \ra \text{Symb}_\Gamma(V_k)$.
+\end{proposition}
+\ul{$p$-stabilization}: Suppose $f\in S_{k+2}(\Gamma_0(N))$ is an eigenform, $p\nmid N$. Then $f(z)$ is an eigenform for $T_p$, not $\mc U_p$. Check: the 2-$d$ space is spanned by $f(z)$ and $f(pz)$ \ul{is} stable under $\mc U_p$ and $\mc U_p$ has characteristic polynomial $X^2-a_p(f)X+p^{k+1}$. An appropriate combination will give \ul{two} modular forms of level $\Gamma_0(N)$.
+
+How do we work with $D_k$ on a computer?
+How do you work with $\mb Z_p$ on a computer? $a_0+a_1p+a_2p^2+a_3p^3+\dots \rightsquigarrow a_0+a_1=+\dots + a_{m-1}p^m + O(p^m)$. $\mb Z_p\supset p\mb Z_p\supset p^2\mb Z_p\supset \dots$. We really work in $\mb Z_p/p^m\mb Z_p \cong \mb Z/p^m\mb Z$.
+$D$ is given by a sequence of moments. Let $D_k^0 = \{\mu:\mu(z^j)\in \mb Z_p\,\forall j\}$.
+
+Find a filtration on $D_k^0$.
+Two filtrations $\text{Fil}_{box}^m$ and $\text{Fil}_{tri}^m$ but $\text{Fil}_{box}^m$ is \ul{not} stable under the action of $\Sigma_0(p)$. $\text{Fil}_{tri}^m$ is, so we use it.
+
+\begin{recall}
+	The map $\text{Symb}_\Gamma(D_k) \ra \text{Symb}_\Gamma(V_k(\mb Q_p))$. When slope $<k+1$,  $\text{Symb}_\Gamma(D_k) \underset{\rho_k^*}{\overset{\sim}{\ra}} \text{Symb}_\Gamma(V_k(\mb Q_p))$.
+	$\rho_k: D_k \ra V_k(\mb Q_p) = \text{Symb}^k(\mb Q_p^2) = \mb Q_p[X,Y]_k$. $\mu \mapsto \int (Y-zX)^k \, d\mu(z) = \sum_{j=0}^k(-1)^j\binom{k}{j}\mu(z^j) X^j Y^{k-1}$.
+\end{recall}
+
+\subsection*{Lifting eigensymbols}
+
+Suppose $f\in \text{Symb}_\Gamma(V_k(\mb Q_p))$ and $I$ have lifted it to precision $m$, i.e. $I$ have an element $\tilde{f} \in \text{Symb}_\Gamma(D_k/\text{Fil}^mD_R)$ with $\rho_k^*\tilde{f} = f \pmod{\text{precision}}$. Choose \ul{any} lift $\tilde{\tilde{f}}$ of $\tilde{f}$ to precision $m+1$, $\tilde{\tilde{f}}\in \text{Map}(\Delta_0,D_R/\text{Fil}^{m+1}D_k)$. Have an eigenvalue $\lambda$ of $f$ for $\mc U_p$.
+
+Claim: $\frac{1}{\lambda} \mc U_p \tilde{\tilde{f}}$ is actually a modular symbol of precision $m+1$ lifting $f$.
+
+\subsection*{$p$-adic $L$-functions}
+
+$L(f,\chi,s) = \sum_{n=0}^\infty \frac{a_n\chi(n)}{n^s}$. For weight $k+2$, we care most about the special values $L(f,\chi,1),\dots,L(f,\chi,k+1)$. Think about fixing $f$ and varying $\chi$. Get a function of $\chi \mapsto \mb C$. There is a period attached to $f$, $\Omega_f^\pm$ so that $\frac{L(f,\chi,j+1)}{\Omega_f^\pm(-2\pi i)}$ is algebraic.
+
+$\mu_f$ is the interpolation: $\mu_f(z^j\cdot \chi) = \frac{1}{\lambda^n}\frac{p^{n(j+1)}}{(-2\pi i)^j} \frac{j!}{\tau(\chi\inv)} \frac{L(f,\chi\inv,j+1)}{\Omega_f^\pm}$, $\lambda = \mc U_p$ eigenvalue of $f$, $\tau(\chi\inv) = $ some Gauss sum, $\Omega_f^\pm$ periods, $\mu_f$ is a distribution on $\mb Z_p^\times$. Here $\chi$ is a character of conductor $p^n$.
+
+\begin{theorem}
+	$\mu_f = \Phi_f(\{0,\infty\})|_{\mb Z_p^\times}$, where $\Phi_f$ is the overconvergent modular symbol lifting one attached to$f$.
+\end{theorem}
+
+\end{document}

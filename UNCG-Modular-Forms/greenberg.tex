@@ -1,0 +1,282 @@
+\documentclass[]{article}
+\input{/home/flow/LaTeX/Packages/mathdoc}
+\input{/home/flow/LaTeX/Packages/mathsym}
+\usepackage{blindtext}
+
+\title{Lattices \& Modular Forms (UNCG)}
+\author{Presenter: Matt Greenberg, Notes by Michael Reed}
+%date{}
+
+\begin{document}
+\maketitle
+
+%\section*{Lattices \& modular forms I}
+
+\subsection*{Introduction: Lattices \& elliptic modular forms}
+
+$\{\text{Modular forms}\,f(\tau)$ \,\text{weight}\, $k\} \iff \{ \text{functions on lattices in} \, \mb C,\,\text{homology of degree}\, -k\}$.
+
+$f(\tau) = F(\mb Z\cdot 1 + \mb \tau)$.
+
+(homology of weight-$k$: $F(\lambda L) = \lambda^{-k} F(L)$).
+
+\ul{Hecke operators}: $\displaystyle F(\mid T_p)^{(L)} = \sum_{L'\subset L,|L/L'| = p} F(L')$.
+
+$\{L'\subset L: |L/L'| = p\} \ra$ transitive Aut($L$).
+
+\begin{example}
+	$L = \mb Z^2$. has $p+1$ sublattices of index $p$. $\mb Z^2 \mat{1&a\\0&p}$, $0\leq \mc O \leq p-1$, $\mb Z^2 \mat{p&0\\0&1}$.
+\end{example}
+
+$pL \subset L' \underset{\text{index}\,p}{\subset}$ is index $p^2$.
+
+$L'/pL\subset L/pL$ is an $\mb F_p$-function space. $\dim L'/pL = 1$ and $\dim L/pL = 2$.
+
+$\{L'\subset L: \text{index}\,p\} = \mb P(L/pL = \mb F_p^2) = \mb P'(\mb F_p)$.
+
+\subsubsection*{Higher rank}
+
+\ul{Certain} lattices ($V$, \ul{extra} structure). Extra structure: quadratic symplectic Hermitian forms.
+
+\subsubsection*{Forms \& spaces}
+
+$\dim_F V = n$, $\text{char}F\neq 2$. 
+
+$\mb B(V) = $ bilinear forms on $V$ = $\text{Hom}(V\oplus V,F)$.
+
+$B\in \mb B(V)$. $B(\sigma_1,\sigma_2) = B(\sigma_1\oplus \sigma_2)$.
+
+$(V,B)$ bilinear space.
+
+$\mb B(V) \times (\text{bases of}\,V) \ra M_n(F)$. $(B(e_i,e_j)) = [B]_e$. $\mb B(V) = B$ and bases of $V$ are $e_1,\dots,e_n$.
+
+$B(\sum x_i e_i, \sum y_i e_i) = \vx[B]_e \vy\,^t$.
+
+$\text{Hom}((V,B),(W,C)) = \{\phi: V\ra W: \text{diagram}\}$. 
+
+Diagram: $V\oplus V \underset{B}{\ra} F$ and $V\oplus V \underset{\phi\oplus\phi}{\ra} W\oplus W \underset{C}{\ra} F$ i.e. $C(\phi(\sigma_1),\phi(\sigma_2)) = B(\sigma_1,\sigma_2)$. $\ra$ notion of isomorphism.
+
+Direct sum $(V,B) \oplus (W,C) = (V\oplus W,B\oplus C)$. $(B \oplus C)((\sigma_1,w_1),(\sigma_2,w_2)) = B(\sigma_2,\sigma_2) + C(w_1,w_2)$.
+
+Group actions on $\mb B(V)$. $GL(V) \circlearrowright \mb B(V)$.
+
+$(g,B) \mapsto B^q(\sigma_1,\sigma_2) = B(g\sigma_1,g\sigma_2)$. $\mc S_2 = \{1,t\} \circlearrowleft \mb B(V)$, $B^t(\sigma_1,\sigma_2) = B(\sigma_2,\sigma_1)$.
+
+$\mc S_2 \times GL(V) \circlearrowleft \mb B(V)$. $\mb B^\pm (V) = \pm 1$-eigenspace of $t$ is $GL(V)$-stable. $\mb B^+(V) = $ symmetric bilinear forms. $\mb B^-(V) = $ antisymmetric, alternating, symplectic forms.
+
+Explicitly, $\forall \sigma_1,\sigma_2$, $B\in \mb B^+ \iff B(\sigma_1,\sigma_2) = B(\sigma_2,\sigma_1)$. $B\in \mb B^- \iff B(\sigma_1,\sigma_2) = - B(\sigma_2,\sigma_1)$. $\iff B(\sigma,\sigma) = 0$, $\forall \sigma$.
+
+\begin{definition}
+	$\sigma\in V$ is \ul{isotropic} if $B(\sigma,\sigma) = 0$. When $B$ is symmetric $B(\sigma,\sigma) =: Q(\sigma)$. $Q = $ quadratic form associated to $V$.
+\end{definition}
+\begin{lemma}
+	$B$ is symmetric (resp. alt) if and only if $[B]_2^t = [B]_e$ (resp $[B]_e^t = - [B]_e$) for any basis $e$ of $V$.
+\end{lemma}
+
+Prototypes: $B \in \mb B^t(F^n)$. $B = I$. $B \in \mb B^-(F^{2n}): B = \mat{ & I\\-I&} =: J$, where $I$ is $n\times n$. 
+
+\subsection*{Characterization of forms}
+
+$(*)$ assume throughout section $B$ is \ul{nondegenerate}.
+
+\subsubsection*{Symmetric forms / quadratic spaces}
+\begin{itemize}
+	\item[(A)] $F = \mb C$. Unique isomorphism class of quadratic spaces. $\mc B = \sum_i x_i y_i$
+	\item[(B)] $F = \mb R$. Isomorphism classes of $B \iff \{k: 0\leq k\leq n\}$. $(V,B) \ra \#$of positive eigenvalues of $B$- \# of negative ones. Sylvester's \say{Law of inertia}.
+	\begin{example}
+		$\mat{1&0\\0&1}$ pos. definite. $\mat{1&0\\0&-1}$ indefinite $\la$ has isotropic vectors. $\mat{-1 &\\ &-1}$ neg. definite.
+	\end{example}
+	$(X_1,X_2)\mat{1&\\&-1}\mat{y_1\\y_2} = x_1y_1 - x_2y_2$. $Q(x,x) = x^2 - x^2 = 0$. $(x,x)\in\mb R^2$ is isotropic.
+	\begin{definition}
+		$(\mb R^2,\mat{1&\\&-1})$ is called a hyperbolic plane.
+	\end{definition}
+	\begin{definition}
+		$W\subset V$ is \ul{totally isotropic} if $B|_{W\oplus W} = 0$.
+	\end{definition}
+	\begin{example}
+		$F\cdot(1,1)\subset \mb R^2$ is isotropic.
+	\end{example}
+	\begin{theorem}
+		[Witt] The dimension of a maximal isotropic subspace of $(V,B)$ is well-defined \& invariant under isomorphism. Called the \ul{Witt} \ul{index}. Over $\mb R$, the Witt index is a complete invariant in a given dimension.
+	\end{theorem}
+	\item[(C)] $F = \mb F_p$. If $e$ and $e'$ are base of $V$ over $F$, then $\det[B]_e \equiv \det[B]_{e'} \pmod{F^{*2}}$. i.e. $\det B = \det[B]_e \in F^*/F^{*2}$.
+	\begin{theorem}
+		$\det B$ is a complete invariant of quadratic space of $\mb F_p$.
+	\end{theorem}
+	\item[(D)] $F = \mb Q_p$. Hasse invariant $S(B)$. $$S(\mb Q_p^n, a_1x_1y_1 + a_2x_2y_2 + \dots + a_nx_ny_n) = \prod_{i\leq j} \left(\frac{a_i,a_j}{\mb Q_p}\right) \in \{\pm 1\} \text{ (Hilbert symbols)}.$$
+	\begin{theorem}
+		$(n,\det B, S(B))$ is a complete invariant of quadratic spaces over $\mb Q_p$.
+	\end{theorem}
+	\item[(E)] $F = \mb Q$. $(V,B) \rightsquigarrow (V_p,B_p)$, $V_p = V\underset{\mb Q}{\oplus} \mb Q_p$, $V\oplus V \underset{B}{\ra} \mb Q \ra \mb Q_p$ and $V\oplus V \ra V_p\oplus V_p \underset{\exists !B_p}{\ra} \mb Q_p$.
+	
+	$(V,B) \cong (V',B') \implies (V_p,B_p) \cong (V_p',B_p')$ for all $\leq \infty$.
+	\begin{theorem}
+		[Hasse-Minkowski] $\Longleftarrow$.
+	\end{theorem}
+\end{itemize}
+
+%\newpage\section*{Lattices \& modular forms II}
+
+\ul{Last time}: $(V,B)$, where $B$ is either symmetric $\rightsquigarrow$ quadratic space or alternating $\rightsquigarrow$ symplectic space. $B$ symmetric: $Q(\vx) = B(\vx,\vx)$ quadratic form. Write $(V,Q) = (V,B)$.
+
+\subsection*{Classification of quadratic spaces}
+
+$\mb F_p$, $\mb R$, $\mb C$, $\mb Q_p$, $\mb Q$. $(V,Q) \approx (V',Q') \iff (V_p,Q_p) \approx (V_p',Q_p')$. (Hasse-Minkowski).
+
+\begin{theorem}
+	[Witt decomposition theorem] $V = \mat{0&1\\1&0}^m \perp V_0 \la$ anisotropic (no isotropic vectors).
+\end{theorem}
+
+Classifying quadratic spaces $\iff$ classifying anisotropic spaces. There is a unique quadratic space of $\dim 2n$ with Witt index $n$. $V = \mat{0&1\\1&0}^n \la$ \ul{split} quadratic space. $\mat{0&1\\1&0}^n \approx \mat{0 &&&1\\&&1&\\&\text{\reflectbox{$\ddots$}}&&\\1&&&0}$.
+$\dim V = 2n+1$, with index $n$. $Q \sim \mat{0&1\\1&0}^n + (\text{1-d piece }ax^2)$. split: $\mat{0&1\\1&0}^n \approx \mat{ &&&1\\&&1&\\&\text{\reflectbox{$\ddots$}}&&\\1&&&} \approx \mat{0&1\\1&0}^n \perp {1}$.
+
+Automorphic forms for classical groups simplest when positive definite at $\infty$. $Q_\infty = x_1^2 + \dots + x_n^2$. anisotropic. - no analysis, no geometry, just algebra. (Gross, Algebraic modular forms). Hecke operators: simplest when $Q_p$ is \ul{split}.
+
+Consider $x^2+y^2+z^2 = Q(x,y,z)$. pos. definite at $\infty$. What's the Witt index of $Q_p(x,y,z)$? (0 or 1). Hasse invariant $ = 1$: Witt index $ = 1$. Hasse invariant $ = -1$: Witt index $ = 0$. (Hasse inv. of $Q_\infty$ is~-1).
+
+$\text{Hasse}(Q_p) = \left(\frac{-1,-1}{\mb Q_p}\right)$. Hilbert symbol related to quaternions. $x^2+y^2+z^2 = N(xi+yj+zk)$. $\{xi+yj+zk\} = $ trace zero subspace of $\mb H$. Norm form on trace zero subspace. quaternion algebra $\rightsquigarrow$ ternary quadratic forms. $\text{Hasse}(\mb Q_1) = \begin{cases} 1 & \text{if } \mb H_p \text{ is split} \\ -1 & \text{if } \mb H_p \text{ is ramified} \end{cases}$ and $1 = \begin{cases} 1 & \text{if } p\neq 2,\infty \\ -1 & \text{if } p = 2,\infty \end{cases}$. 
+If $p\neq 2,\infty$, there is a hyperbolic plane in $V$. Find one! 
+($\iff$ Split the quaternion algebra)
+
+\subsection*{Symplectic spaces}
+
+$B = \mat{ & I\\ -I&}$ prototype, $I$ is $n\times n$. $\dim V = 2n$.
+
+\begin{remark}
+	$W \subset V$ is \ul{isotropic} if $W\subset W^\perp$ (nonetheless, $\dim V = \dim W + \dim W^\perp$). (uses nondegeneracy, not symmetry).
+\end{remark}
+
+\subsubsection*{Classification of symplectic spaces over $F$ ($\text{char}F\neq 2$)}
+
+\begin{theorem}
+	There is a \ul{unique} isometry class of nondegenerate symplectic spaces over $F$ of $\dim 2n$. There are no nondegenerate symplectic spaces of odd dimension.
+\end{theorem}
+
+\begin{definition}
+	$e_1,\dots,e_n,f_1,\dots,f_n$ is a \ul{symplectic base} \ul{of} \ul{$V$} if $B(e_i,e_j) = B(f_i,f_j) = 0$, $B(e_i,f_j) = \delta_{ij} = \begin{cases} 1 & i = j \\ 0 & i\neq j \end{cases}$. $(B(f_i,e_i) = -1)$.
+\end{definition}
+
+\begin{theorem}
+	Every symplectic space has a symplectic basis.
+\end{theorem}
+\begin{proof}
+	Take $e_1 \neq 0$. Choose $f_1'$ such that $B(e_1,f_1') \neq 0$. Let $f_1 = \frac{1}{B(e_1,f_1')}f_1'$. $B(e_1,f_1) = 1$. $B\mid_{<e_1,f_1>} = \mat{0&1\\-1&0}$. Observe that $<e_1,f_1>^\perp\cap<e_1,f_1> \,= 0$ and $\dim<e_1,f_1>^\perp + \dim<e_1,f_1> \,= 2n$.
+	$\therefore V = <e_1,f_1> \oplus <e_1,f_1>^\perp$. $B\mid_{<e_1,f_1>}^\perp$ is a nondegenerate symplectic space. Proceed inductively.
+\end{proof}
+\begin{example}
+	$n=2$. $\mat{a&b} \mat{0&1\\-1&0}\mat{c\\d} = \mat{a&b}\mat{d\\-c} = ad-bc$.
+\end{example}
+\begin{definition}
+	A \ul{Lagrangian} in $V$ is a maximal isotropic subspace; such has dimension $n$.
+\end{definition}
+\begin{example}
+	$<e_1,\dots,e_n>,<f_1,\dots,f_n>$ Lagrangians.
+\end{example}
+Hecke operators $\iff$ Lagrangians of $V/\mb F_p$.
+\begin{example}
+	$(p^2+1)(p+1)$ Lagrangians in $\mb F_p^4$.
+\end{example}
+
+\subsection*{Symmetry groups}
+
+$G(V,B) = \{g\in GL(V): B^g = B\}$. $B$ symmetric, $Q$ assoc. quadratic form $O(Q) = G(V,B)$ orthogonal group of $Q$. $S_{p_{2n}}(F) = G\left(F^{2n},\mat{&I\\-I&}\right)$. symplectic group.
+
+\begin{example}
+	$F = \mb R$, $Q = x_1^2 + x_2^2 + x_3^2$. $O(Q) = O(3) \la$ orthogonal matrices.
+\end{example}
+\begin{example}
+	$n = 1$. $S_{p_2}$ matrices in $GL_2(F)$ preserving $ad-bc$. $S_{p_2} = SL_2$.
+\end{example}
+\subsection*{\say{Accidental} isomorphisms}
+
+$PGL_2(F) \cong SO_F(x^2-y^2-z^2)$. $-a^2-bc$. Action of $GL_2(F) \circlearrowleft al_2(F) = \left\{\mat{a&b\\c&-a}\right\}$ trace-zeros. $(g,A) \mapsto gAg\inv$. $GL_2\ra GL_3$ witnesses this action. $\det(gAg\inv) = \det A$. $Q = \det$ is a quadratic form. $\rightsquigarrow F^* \ra GL_2 \ra SO(-a^2-bc) \ra 1$ nontrivial.
+$SL_2\times SL_2$, $SO(2,2)$.
+
+%\newpage
+
+Review: $(V,B)$, $B$ symmetric - quadratic space or alternatic - sympletic space.
+
+\subsection*{Lattices in quadratic/symplectic spaces}
+
+$\mc O$ principal ideal domain, $\mc O = \mb Z$ or $\mb Z_p$. $F = $ field of quotients. $\dim_F V = n$.
+
+\begin{definition}
+	A $\mc O$-lattice $L$ in $V$ is a finitely generated subgroup of $V$ such that $FL = V$.
+\end{definition}
+
+\begin{remark}
+	By structure theory, $L$ is \ul{free}, i.e. has a basis: $L = \mc O_{e_1}+\mc O_{e_e} + \dots + \mc O_{e_n}$.
+\end{remark}
+
+$L$ lattice in $(V,B)$. $e$ basis of $L$, $\det[B]_e\in F^*/\mc O^{*2}$. Let $\det L\in F^*/\mc O^{2*}$ be this class.
+
+\begin{remark}
+	If $\mc O^* = \pm 1$ then $F^*/\mc O^{*2} = F^*$ and $\det L\in F^*$.
+\end{remark}
+
+$N(L) = $ norm of $L = <B(L,L)>$. $(\text{char}\mc \neq 2)$. $L$ \ul{integral} if $N(L)\subset \mc O\la$ $\det[B]_e\in N(L)$. $\mc O = \mb Z \implies \det L \in \mb Z$. $L$ \ul{maximal} if $L$ is maximal among $M$ with $N(M) = N(L)$. \ul{Dual}: $L^\vee = \{x\in V: B(x,L)\subset \mc O\}$. $L$ is \ul{integral} $\iff L\subset L^\vee$. $L$ is \ul{unimodular} if $L = L^\vee$ ($\implies$ maximal).
+
+\begin{example}
+	$V = F^2 = Fe_1 + Ff_1$. $B(e_1,e_1) = B(f_1,f_1) = 0$, $B(e_1,f_1) = 1$. ($B(f_1,e_1) = \pm 1$). $L_0 = \mc O_{e_1} + \mc O_{f_1}$ is unimodular. $L_1 = \mc O_{e_1} + p\mc O_{f_1}$. $B(\frac{1}{p}e_1,\mc O_{e_1}+\mc Opf_1) = \mc O$. $\therefore \frac{1}{p}e_1 \in L_1^\vee\backslash L_1$. $L_1^\vee = \frac{1}{p} \mc O_{e_1} + \mc O_{f_1}$. $\det L_1 = p_1$, $\det L_1^\vee = \frac{1}{p}$. \ul{non maximal}: $\mc O_{e_1} + \mc O_{e_2} + \mc O_{f_1} + p\inv \mc O_{f_2}\subset \mc Oe_1+\mc Oe_2 + p\inv \mc Of_1 + p\inv \mc Of_2$, $\mc Oe_2 \la$ maximal. \ul{$N = p\inv$}.
+\end{example}
+
+\ul{Equivalence}. $G(V,B) = \{g\in GL(V) : B^g = B\}$.
+$L$ and $M$ are \ul{isometric} if $\exists g\in G(V,B)$ such that $Lg = M$. $L\subseteq V$, $g\in GL(V)$, $Lg$, We say $ = \{xg:x\in L\}$. Suppose $F = \mb Q$. We say $L$ and $M$ are \ul{locally} \ul{isometric} if $\forall p\leq \infty L_p \cong M_p$ ($L_p = L\otimes \mb Z_p\subset V\otimes \mb Q_p \circlearrowright G(V_p,B_p)\supset G(V,B)$). i.e. $\forall p$ .$\exists g_p\in G(V_p,B_p)$ such that $L_pg_p = M_p$. $L$ and $M$ isometric $\implies $ $L$ and $M$ locally isometric. Converse \ul{false} in general. $V = F = $ \# field. $B = 0$.
+Lattices = fractional ideals. $G(V,B) = GL_1(F) = F^*$. $F^*\backslash$ Fractional ideals = Class group of $F$. often nontrivial.
+$\text{gen}(L) = $ genus of $L = $ set of all $M$ locally equivalent to $L$. $l(L) = $ class of $L = $ set of lattices $M$ equivalent to $L$. $l(L) \subset \text{gen}(L)$.
+Finiteness of class $\#$s:
+
+\begin{theorem}
+	$\text{gen}(L) = \cup_{i=1}^n l(L_i)$.
+\end{theorem}
+
+$h := $ class number $<\infty$.
+
+\subsection*{Computation of class $\#$s}
+
+\begin{theorem}
+	Suppose $n\geq 3$, $p$ prime, $L$ is unimodular. Then every class in $\text{gen}(L)$ has a representative $M$ such that $M_q = L_q$ for all $q\neq p$.
+\end{theorem}
+
+To try to \say{fill out} genus:
+\begin{enumerate}
+	\item Compute lots of lattices $M(p)/\mb Z_p$ equivalent to $L_p$.
+	\item Test whether the unique $M$ such that $M_q = L_q$ $\forall q\neq p$, $\cdot M_p = M(p)$ (uses strong appox.). (good algorithms for isomorphism testing).
+\end{enumerate}
+
+\subsection*{Kneser's neighbor method}
+
+let $X$ $\mb Z_p$-submodule of $L$ that's isotropic $\mod p$. $X\subset L$, $X\nsubseteq pL$. $B(X,X)\in p\mc O$.
+
+\begin{definition}
+	Define $L_X = $ neighbor of $L$ associated to $X = p\inv X+(L\cap pX^\vee)$.
+\end{definition}
+\begin{theorem}
+	[Kneser] $L_X$ is a lattice equivalent to $L$ over $\mb Z_p$.
+\end{theorem}
+\begin{example}
+	$X = \mb Z_p e_1$, $(V,B) = \bigoplus\mat{0&1\\1&0} = \bigoplus Fe_1\oplus Ff_i$. $$L_X = p\inv \mb Z_pe_i + \mb Z_p e_2 + \dots + \mb Z_p e_n + p\mb Z_p f_1 + \mb Z_p f_2 + \dots + \mb Z_pf_n.$$ ($L = \bigoplus \mb Z_pe_i\oplus \mb Z_p f_i$).
+\end{example}
+Enumerate isotropic lines in $(V,Q)$.
+\begin{example}
+	$\dim_Q V = 3$. $B = \mat{0&0&1\\0&1&0\\1&0&0}$. How many isotropic lines in $\mb F_p^3$? over $\mb F_p$. $Q = $ homogenous polynomial of degree 2 in $x_1,x_2,x_3$. $Q(x_1,x_2,x_3) = 0$ has $p+1 = |\mb P^1|$ solutions in $\mb P^2(\mb F_p)$.
+\end{example}
+
+$PGL_2 \overset{\sim}{\longrightarrow} SO(1,2)$. $\mat{1&0\\0&p} \mapsto \mat{p\inv &&\\&1&\\&&p}$, $\mb Z_{\mb{P}\inv}e_1 + \mb Z_pg + \mb Z_pf_1$.
+
+\begin{definition}
+	[Gross] Suppose $G = G(V,B)$, $G(V_\infty,B_\infty) = G(\mb R)$ is compact. An \ul{algebraic modular form} of level $L$ and trivial weight (analogue of weight 2) is a function $\chi:\text{gen}(L) \ra \mb C$ that's constnat on $l(M)$ $\forall M\in \text{gen}(L)$. Gross showed is that algebraic modular forms encode automorphic representations of $G(\mb A)$ with level $\prod K_p$, $K_p := \text{stab}_G L_p$ with \ul{trivial infinite component}. $f$ modular forms $GL_2$-analogues of Dirichlet characters. $ l_N^+(Q) = (\mb Z/N\mb Z)^* \ra \mb C^*$
+\end{definition}
+
+To study automorphic forms on $S_{p_4}$ vis this method, work with $G(V,B)$ where $V$ is a 2-$d$ Hermitian space over a quaternion algebra. $M_2(F)\subset R = M_2(\mc O)$. $M_2(F)e_1 + M_2(F)e_2 + \dots + M_2(F)e_n$, $B$ Hermite form.
+
+\begin{theorem}
+	[Morita equivalence] $$\{\text{finite dimensional Hermitian spaces over }M_2(F)\} \iff \{\text{finite dimensional symplectic vs.}\}.$$
+\end{theorem}
+$V \ra e_{11} V$, $e_{11} \mat{1&0\\0&0}$.
+
+\begin{theorem}
+	$B(e_{11}x,e_{11}y) = g(x,y)e_{12}$. $g(x,y)$ symplectic form!
+\end{theorem}
+
+\end{document}

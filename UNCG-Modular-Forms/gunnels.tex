@@ -1,0 +1,288 @@
+\documentclass[]{article}
+\input{/home/flow/LaTeX/Packages/mathdoc}
+\input{/home/flow/LaTeX/Packages/mathsym}
+\usepackage{blindtext}
+
+\title{Modular Forms \& Modular Symbols (UNCG)}
+\author{Presenter: Paul Gunnels, Notes by Michael Reed}
+%\date{}
+
+\begin{document}
+\maketitle
+
+$\mf H = \{ z \in \mb C \mid \Im z > 0 \}$
+
+$\Gamma = SL_2(\mb Z) = \{ \mat{a & b \\ c & d} \mid a,b,c,d,\in \mb Z, ad-bc = 1 \}$
+
+$\gamma = \mat{a & b \\ c & d}$, and $z\in\mf H$. Then $\gamma\cdot z = \frac{az+b}{cz+d}$ and $f: \mf H \ra \mb C$.
+
+$k\in \mb Z_{\geq 0}$ is \say{weight}. 
+
+$(f\mid_k \gamma)(z) = f(\frac{az+b}{cz+d})(cz+d)^{-k}$.
+
+\begin{definition}
+	$f: \mf H \ra \mb C$. Weight $k$ modular form.
+	\begin{enumerate}
+		\item holomorphic
+		\item $f\mid_k j = f$ for all $j\in \Gamma$
+		\item $f$ \say{holomorphic at $\infty$}
+	\end{enumerate}
+\end{definition}
+
+$M_k = \mb C$ - v.s of weight $k$ modular forms.
+
+\begin{fact}
+	finite dimensional $\mb C$-v.s. for all $k$.
+\end{fact}
+
+Dimension $M_k = \begin{cases} \lfloor \frac{k}{12} \rfloor & k \equiv 2 (12) \\ \lfloor \frac{k}{12} \rfloor + 1 \end{cases}$
+
+$S_k \subset M_k$ cuspoidal modular forms.
+
+$T = \mat{1 & 1 \\ 0 & 1} \in \Gamma$
+
+$f\mid_k T = f \iff f$ invariant under $z\mapsto z + 1$. Can take its Fourier series, $q=e^{2\pi i z}$.
+
+Fourier expansion: $f(q) = \sum_{n\in \mb Z} a_n q^n$, $a_n \in\mb C$.
+\begin{itemize}
+	\item can only have finitely many non-zero $a_n$ for negative $n$.
+	\item \say{holomorphic at $\infty$} $\iff$ $a_n = 0$ for all $n<0$.
+	\item \say{rapidly diverging} $\iff a_0 = 0$.
+\end{itemize}
+
+\begin{example}
+	Eisenstein series. $E_k(z) = \frac{(k-1)!}{2(2\pi i)^k} \sum_{m,n\in\mb Z}' (mz+n)^{-k}$, $k\geq 4$.
+	$E_k(q) = \frac{1}{2} \zeta(1-k) + \sum_{n\geq 1} \sigma_{k-1}(n)q^n$, where $\sigma_r(n) := \sum_{d\mid n}' d^n$ and $\frac{1}{2} \zeta(1-k) \in\mb Q$.
+	$E_4 = \frac{1}{240} + q + 9q^2 + 28q^3 \dots$.
+	$E_6 = \frac{-1}{504} + q + 33q^2 + 244 q^3 + \dots$.
+	(Aside: $E_2 = \frac{-1}{24} + q + 3q^2 + 4q^3 + \dots$ not modular but almost ...)
+	$M_* = \oplus_{k\geq 0} M_k \simeq \mb C[E_4,E_6]$. $f\in M_k, g\in M_l \ra fg\in M_{k+l}$.
+\end{example}
+
+\begin{example}
+	$\dim M_8 = \dim M_4 = 1$, then $E_8 = 120 E_4^2$. Look at $q$-expansion:% $\sigma_7 (n) = \sigma_3 (n) + 120 \sum_{m=1}^{n-1}' \sigma_3 (m)\sigma_3 (n-m)$.
+\end{example}
+
+\begin{example}
+	$-147 E_6^2 + 8000 E_4^3 = \Delta = q - 24q^2 + 252q^3 + \dots$. Weight 12 cusp form.
+	\begin{fact}
+		$M_k \simeq \mb C E_k \oplus S_k$. $\Delta(q) = \sum_{n\geq 1} \tau(n) q^n$ is the Ramanujan $\tau$ function.
+	\end{fact}
+\end{example}
+\begin{example}
+	Using theta series to make modular forms. $L\subset \mb R^n$ integral even unimodular lattice. Lattice: cocompact ... $\mb R^n/L = $ torus. $v_i\cdot v_j \in \mb Z$, $v_i\cdot v_i\in 2\mb Z$, $\det{v_i\cdot v_j} = 1$. $\implies 8\mid n$.
+\end{example}
+
+$n = 8$: $E_8$ root lattice.
+
+$n = 16$: $E_8\oplus E_8$, $D_{16}$.
+
+$n = 14$: Leech lattice, 23 Nieman lattice.
+
+$n = 32$: $\geq 80,000,000$.
+
+\begin{definition}
+	$r:\mb Z \ra \mb Z$. $m\mapsto \#\{x\in L \mid \frac{1}{2}(x\cdot x) = m \}$. $f_L(q) = \sum r_L(m) q^m$.
+	\begin{fact}
+		$f_L$ is modular form of weight $\frac{n}{2}$. e.g. $E_8$ root lattice $\implies f_{E_8} \in M_4$. Then $f_{E_8} = 240 E_4$. Q: can prove using definition of $E_8$?
+	\end{fact}
+	Take $\mb R^{16}/L_1$, $\mb R^{16}/L_2$ isospectral tori.
+\end{definition}
+
+\section*{Level structures}
+
+$N\in \mb Z_{\geq 0}$. $\Gamma(N) \subset SL_2(\mb Z)$. $\{\mat{a & b \\ c&d} \equiv I\mod N \}$ principal congruence subgroup.
+
+\begin{definition}
+	$\Gamma \subset SL_2(\mb Z)$ is a congruence subgroup if $\Gamma(N) \subset \Gamma$ for some $N$. Hecke subgroup: $\Gamma_0(N) = \{\mat{a & b \\ c & d} \equiv \mat{* & * \\ 0 & *} \mod N \}$.
+	$\Gamma_1(N) = \{\mat{a & b \\ c & d} \equiv \mat{1 & * \\ 0 & 1} \mod N \}$.
+	$N$ \say{bad}. Can define $M_*(\Gamma)$, $f\mid_k \gamma = f$ for $\gamma \in \Gamma$. $f(\frac{az+b}{cz+d})$ hole removable at $\infty$ ... ? ... got $S_k(\Gamma)$ cusp forms. $\text{Eis}(\Gamma)$ Eisenstein series. Most time: geometry of these groups.
+\end{definition}
+
+\section*{Hecke operators}
+
+Main goal: develop explicit way to compute the action of these operators on modular forms.
+
+\begin{definition}
+	[today] given $n$, define $M_L(\mb Z) \subset X_n = \{ \mat{a & b \\ 0 & d} \mid a \geq 1, ad = n, 0\leq b < d \}$. Extend slash action to $GL_2(\mb Q)$ via $f\mid_k \gamma = (\det \gamma)^{k-1} (cz+d)^{-k} f(\frac{az+b}{cz+d})$.
+	$(T_n f)(z) = \sum_{\gamma \in X_n} (f\mid_k \gamma)(z)$.
+		\begin{enumerate}
+			\item $T_m T_n = T_n T_m$ if $\gcd(n,m) = 1$.
+			\item $T_{p^n} = T_{p^{n-1}} T_p - p^{k-1} T_{p^{n-1}}$, where $p$ prime.
+		\end{enumerate}
+		Look for simultaneous eigenfunctions. These have the deepest connections to arithmetic geometry.
+
+	For level $N>1$, can consider $T_n$ with $\gcd(n,N) = 1$. Can compute the Hecke action directly on $q$-expansions. $p$: prime: $f = \sum a_n q^n$. $T_p f = \sum_{m\geq 0} (a_{mp}+ p^{k-1} a_{m/p}) q^m$.
+\end{definition}
+\begin{example}
+	Try it for $S_{12} = \mb C \Delta$ or $S_{24} \simeq \mb C^2$.
+\end{example}
+
+Last time: Hecke operator. $T_n:M_k \ra M_k$ and $T_n:S_k \ra S_k$. $\Gamma = SL_2(\mb Z)$, $T_n$, $n\in \mb Z_{\geq 0}$. $\Gamma$ congruence subgroup level $N$, $T_n$, $\gcd(n,N) = 1$. $\mc U_p$, $p\mid N$.
+$T_n T_m = T_M T_n$, $\gcd(m,n) = 1$. $T_{p^n} = T_{p^{n-1}} T_p - p^{k-1} T_{p^{n-2}}$, $p$ prime. Suppose $f$ eigneform, $f = \sum a_n q^m$, $a_1 = 1.$ $\implies a_n f = T_n f$.
+
+$a_n a_m = a_{nm}$, $\gcd(m,n) = 1$. $a_{p^n} = a_{p^{n-1}} a_p - p^{k-1}a_{p^{n-2}}$, $p$ prime. e.g. $M_{12} = \mb C E_{12} \oplus \mb C \Delta$. Connection with arithmetic geometry. $E$ elliptic curve $/\mb Q$, $E: y^2 + a_1 xy + a_2 y = x^3 + a_2 x^2 + a_4x + a_6$, $a_i \in \mb Q$.
+
+$N = N_E \in\mb Z$ c.... of $E$. $p\mid N_E \iff E/\mb F_p$ singular. $p\nmid N_E: -\# E(\mb F_p) + p + 1 = a_p(E)$. $p\mid N_E: a_p(E) \in \{0,\pm 1\}$ depending on singularity $\mod p$. (3 cusps diagram, 0, 1, -1)
+
+\begin{definition}
+	$\sum a_n(E) n^{-s} = \prod_{p\nmid N_E} (1-a_p(E)p^{-s}+p^{1-2s})\inv \cdot \prod_{p\mid N_E} (1-a_p(E)p^{-s})\inv$.
+\end{definition}
+
+\begin{theorem}
+	$f = \sum a_n(E)q^n$, $q = e^{2\pi i z}$ is weight 2 eigenform on $\Gamma_0(N)$.
+\end{theorem}
+
+\section*{Modular Symbols}
+
+$\mf H$ upper $\frac{1}{2}$ plane. $\Gamma$ one of $\Gamma_0(N), \Gamma_1(N), \Gamma(N)$. $\Gamma \backslash \mf H = $ open Riemann surface. Topological invertible surface of some genus with some points deleted.
+We compactify by $\mf H^* = \mf H \cup \mb P'(\mb Q)$. Satake topology.
+$\Gamma$ acts on $\mf H^*$. $\frac{m}{n} \in \mb Q \iff (m:n) \iff \mat{m\\n}$ with $m,n\in\mb Z$. $\infty \iff \mat{1\\0}$. $\mat{a & b \\ c & d} \mat{m\\n} = \dots$.
+Same as $\mat{a&b\\c&d}\cdot q = \frac{aq+b}{cq+d}$.
+$\Gamma \backslash \mf H^*$ compact Riemann surface. $X_0(N),X_1(N),X(N)$. $\Gamma\backslash\mf H$, $Y_0(N),Y_1(N),Y(N)$.
+
+\begin{example}
+	$N=1$, $\Gamma = SL_2(\mb Z)$. $Y \simeq \mb P^1 \backslash \{\text{pt}\}$. $X \simeq \mb P^1$.
+\end{example}
+
+\begin{example}
+	$N=3$. $Y(3) \simeq \mb P^1 \backslash \{4\text{ pts}\}$. $X(3) \simeq \mb P^1$.
+\end{example}
+
+\begin{example}
+	$N=7$. $Y(7) \simeq C \backslash \{24\text{ pts}\}$ genus 3 Klein quartic. $X(7) \simeq C$. $\Gamma$ orbits in $\partial \mf H^* = \mf H^* \backslash \mf H$ called \ul{cusps} of $\Gamma$.
+\end{example}
+
+$f\in S_2(\Gamma)$. $f \, dz$ holomorphic 1 form on $X_\Gamma$. $\dim S_2(\Gamma) = $ genus of $X_\Gamma$. $\mb P^1(\mb Q)\in \alpha,\beta$ cusps on $\mf H$ equivalent $\mod \Gamma$. get a homology ?close? in $\{\alpha,\beta\}\in H_1(X_\Gamma,\mb Z)$.
+
+Get pairing $S_2(\Gamma)\times H_1(X_\Gamma;\mb Z) \ra \mb C$. $<f, \{\alpha,\beta\}> = 2\pi i \int_\alpha^\beta f(z)\, dz$.
+
+Extend to $S_2(\Gamma)\times H_1(X_\Gamma, \mb R) \ra \mb C$.
+
+\begin{theorem}
+	This pairing is perfect. i.e. $S_2(\Gamma)^\vee \simeq H_1(X_r,\mb R)$.
+\end{theorem}
+Now can extend the notation $\{\alpha,\beta\}$ to any $\alpha,\beta \in \mb P^1 (\mb Q)$, not necessarily $\Gamma$-equivalent. Given $\{\alpha,\beta\}$, look at $2\pi i \int_\alpha^\beta f(z)\, dz \implies$ gre... elt in $S_2(P)^\vee \implies \{\alpha,\beta\}\in H_1(X_\Gamma,\mb R)$.
+
+\begin{theorem}
+	[Monin-Drinfield] If $\Gamma$ is $\{\alpha,\beta\} \in H_1(X_\Gamma,\mb Q)$ a congruence subgroup, then
+	\ul{Properties}:
+	\begin{enumerate}
+		\item $\{\alpha,\beta\} = - \{\beta,\alpha\}$. \say{2 term}
+		\item $\{\alpha,\beta\} = \{\alpha,\gamma\} + \{\gamma,\beta\}$. \say{3 term}
+		\item $\{g\alpha,g\beta\} = \{\alpha,\beta\}$. $\forall g\in\Gamma$.
+		\item $\{\alpha,g\alpha\} \in H_1(X_\Gamma,\mb Z)$ $\forall g\in\Gamma$.
+	\end{enumerate}
+\end{theorem}
+\begin{definition}
+	$\mc M_2(\Gamma) = \mb Q$ v.s. generated by sym.... . $\{\alpha,\beta\}$, $\alpha,\beta\in \mb P^1(\mb Q)$ modulo 1. 2-term, 2. 3-term, and 3. ($\Gamma$-action).
+\end{definition}
+\begin{theorem}
+	[Manin] $\mc M_2(\Gamma) \simeq H_1(X_\Gamma, \partial X_\Gamma; \mb Q)$.
+\end{theorem}
+\begin{definition}
+	$\mc B_2(\Gamma) = \mb Q$ v.s. generated by the points of $\mb P^1(\mb Q)$ modulo $\Gamma$. $\partial \{\alpha,\beta\} \in\mc M_2(\Gamma) \ra \beta-~\alpha \in~\mc B_2(\Gamma)$.
+\end{definition}
+\begin{definition}
+	$\mc S_2(\Gamma) = \ker\partial$.
+\end{definition}
+\begin{theorem}
+	[Manin] $\mc S_2(\Gamma) \simeq H_1 (X_\Gamma,\mb Q)$ gives a c... model of $S_2(\Gamma)^\vee$.
+\end{theorem}
+\begin{fact}
+	There is an action of $HO$, on $\mc S_2(\Gamma)$ that's compatible with the pairing. $<T_nf, \{\alpha,\beta\}> \,=\, <~f,T_n\{\alpha,\beta\}>$.
+\end{fact}
+\begin{definition}
+	$T_n\{\alpha,\beta\} = \sum_{g\in X_n} \{g\alpha, g\beta\}$.
+\end{definition}
+
+\ul{Next time}. Unimodular r..ymblae Manin's trick (\say{modular symbol algorithm}) examples.
+
+$\mf H^* = \mf H\cup \partial \mf H = \mf H \cup \mb P^1(\mb Q)$.
+
+$X_\Gamma = \Gamma \backslash \mf H^*$, $Y_\Gamma = \Gamma\backslash \mf H$.
+$\partial X_\Gamma = X_\Gamma \backslash Y_\Gamma$.
+
+$\alpha,\beta\in \partial \mf H^*$.
+$\{\alpha,\beta\} \in H_1(X_\Gamma,\mb R)$.
+
+$\{\alpha,\beta\} = -\{\beta,\alpha\}$. $\{\alpha,\beta\} = \{\alpha,\gamma\} + \{\gamma,\beta\}$. $\{g\alpha,g\beta\} = \{\alpha,\beta\}$ for all $\gamma\in\Gamma$.
+
+$\mc M_2(\Gamma) = \mb Q$ v.s. generated by $\{\alpha,\beta\}$/above relations. $\mc M_2(\Gamma) \simeq H_1(X_\Gamma,\partial X_\Gamma;\mb Q)$.
+
+$\partial$ boundary maps. $\partial: \mc M_2(\Gamma) \ra \mc B_2(\Gamma)$ and $\{\alpha,\beta\} \mapsto \beta-\alpha$. $\mc A_2(\Gamma) = \ker\partial$. $\mc A_2(\Gamma) \simeq H_1(X_\Gamma,\mb Q)$. Has Hecke action $T_n(\alpha,\beta\} = \sum_{g\in X_n}\{g\alpha,g\beta\}$.
+Eigenvalues of these $T_n$ agree with eigenvalues of $T_n$ on $S_2(\Gamma)$. Need to make this compatible. Idea: Identify a finite spanning set of modular symbols in $\mc A_2(\Gamma)$, $\mc M_2(\Gamma)$. Need an algorithm that expresses an arbitrary modular symbol in terms of finite spanning set.
+
+$\alpha \iff \mat{p_1\\q_1}$, $\beta \iff \mat{p_2\\q_2}$. $\mb R/g = \beta$. $\displaystyle\frac{p_1}{q_1} \left|\det{(g\mat{p_1&p_2\\q_1&q_2})}\right| = \left|\det{\mat{p_1&p_2\\q_1&q_2}}\right|$. 
+
+\begin{definition}
+	$\{\alpha,\beta\}$ is \ul{unimodular} if $\det{(\alpha,\beta)} = 1$. Any unimodular symbol is an $SL_2(\mb Z)$ translate of~$\{0,\infty\}$. 
+\end{definition}
+
+Farey tesselation of $\mf H$. $\frac{a}{b} + \frac{c}{d} = \frac{a+c}{b+d}$. So $\frac{0}{1} + \frac{1}{1} = \frac{1}{2}$.
+
+\section*{Manin's Trick}
+
+\begin{theorem}
+	$\{\alpha,\beta\} = \sum\{\alpha_i,\beta_i\}$ where terms are unimodular.
+\end{theorem}
+\begin{proof}
+	WLOG assume $\{\alpha,\beta\} = \{0,p/q\}$. $\frac{p}{q} = \text{continued fraction} = [[a_1,\dots,a_r]]$. $\frac{p_k}{q_k} = [[a_1,\dots,a_k]]$. $\{\frac{p_k}{q_k},\frac{p_{k+1}}{q_{k+1}}\}$ is unimodular. $\implies \{0,p/q\} = \{0,\infty\} + \{\infty,\frac{p_1}{q_1}\} + \{\frac{p_1}{q_1},\frac{p_2}{q_2}\} + \dots \{\frac{p_{r-1}}{q_{r-1}},\frac{p_r}{q_r}\}$.
+\end{proof}
+\begin{remark}
+	This works for $GL_2(\mc O_F)$ if $\mc O_F$ is non-euclidean.
+\end{remark}
+Now specialize to $\Gamma_0(N)$, in fact $\Gamma_0(p)$. We pass from modular symbols to $M$-symbols.
+\begin{proposition}
+	$\Gamma_0(p)\backslash SL_2(\mb Z) \overset{~}{\iff} \mb P^1(\mb F_p)$.
+\end{proposition}
+\begin{proof}
+	$\mat{*&*\\a&b}\in SL_2(\mb Z) \mapsto (a:b) \in \mb P^1(\mb F_p)$.
+\end{proof}
+
+$\mc M_2(\Gamma_0(p)) \simeq \mb Q^{p+1}/~$. $S = \mat{0&1\\-1&0}$ and $R = \mat{0&1\\-1&1}$. The relations have the form $(c:d)+(c:d)S = 0$ and $(c:d) + (c:d)R+(c:d)R^2 = 0$.
+$(c:d) + (-d:c) = 0$ and $(c:d) + (-d:c+d)+(-c-d:c) = 0$.
+
+\begin{theorem}
+	This gives a presentation for $\mc M_2(\Gamma_0(p))$.
+\end{theorem}
+\begin{example}
+	$p=11$. $|\mb P^1(\mb F_11)| = 11+1 = 12$. $A = 10$. we take (12) $(0:1),(1:0),(1:1),\dots,(1:A)$, which corresponds to $01,10,11,\dots,1A$. 2 term: $10=-01$, $11=-1A$, $12=-15$, $13=-17$, $14 = -18$, $16=-19$, (6). 3: term: $10+01+1A=0$, $11+19+15 = 0$, $12+14+17=0$, and $13+16+18 = 0$.
+	Claim: can cut down to 3 symbols. 10, 12,14. 
+	
+	$$\mb Q^3 \simeq \begin{cases}01=-10 \\ 11 = 1A = 0 \\ 16 = -12 \\ 13 = 12+14 \\ 1(7)(9)? = -12\\ 17 = -12-14 \\ 18 = -14 \\ 19 = 12 \end{cases}$$
+	$X_0(11) = $ torus.
+\end{example}
+Instead of lifting back to modular symbols, we use Heilbronn matrices.
+
+$Y_n = \left\{\mat{a&b\\c&d} \mid \det = n, a>b\geq 0, d>c\geq 0 \right\}$.
+
+Claim $\#Y_n < \infty$. Claim: $T_n(c:d) = \sum_{g\in Y_n}(c:d)g$. $X_n \neq Y_n$.
+
+\begin{example}
+	$Y_2 = \{\mat{1&0\\0&2},\mat{2&0\\0&1},\mat{2&1\\0&1},\mat{1&0\\1&2}\}$.
+\end{example}
+\begin{example}
+	$X_2 = \{\mat{2&0\\0&1},\mat{1&0\\0&2},\mat{1&1\\0&2}\}$.
+\end{example}
+
+\begin{example}
+	$T_2$ on $\mc M_2(\Gamma_0(11)) ~ = \mb Q^3$.
+	\begin{align*}
+		T_2(1:0) &= 10+10+10+16 = 3\cdot10-12 \\
+		T_2(1:2) &= 14+15+11+17 = 14-12-12-14 = -2\cdot 14 \\
+		T_2(1:4) &= 18+16+12+18 = -14 - 12 + 12 -14 = -2\cdot 14
+	\end{align*}
+	$$\mat{&10&12&14\\10&3&0&0\\12&-1&-2&0\\14&0&0&-2}$$
+	Eigenvalues are $3,-2,-2$. $M_2(\Gamma_0(11)) \simeq \mb CE \oplus S_2(\Gamma_0(11))$.
+\end{example}
+$H^1(Y_0(N),\mb C) \simeq \text{Eis}_2(\Gamma_0(N)) \oplus S_2(\Gamma_0(N)) \oplus S_2(\Gamma_0(N))$.
+
+Know $\exists E/\mb Q$ elliptic curve cond 11. $a_2(E) = -2$. $\#E(\mb F_2) + (2+1)$.
+
+$H^1(X_0(N),\mb C) \simeq S_2(\Gamma_0(N)) \oplus \conj{S_2(\Gamma_0(N))}$. Eichler-Shimura isomorphism.
+
+$\mc A_2(\Gamma) \subset \mc M_2(\Gamma)$. $\mc A_2^+(\Gamma)$
+
+
+\end{document}

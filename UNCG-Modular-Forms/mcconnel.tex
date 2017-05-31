@@ -1,0 +1,147 @@
+\documentclass[]{article}
+\input{/home/flow/LaTeX/Packages/mathdoc}
+\input{/home/flow/LaTeX/Packages/mathsym}
+\usepackage{blindtext}
+
+\title{The Well-Rounded Retract and the Voronoi Polyhedron (UNCG)}
+\author{Presenter: Mark McConnell, Notes by Michael Reed}
+%date{}
+
+\begin{document}
+\maketitle
+
+$G = GL_n(\mb R) = \{n\times n \text{ matrices, invertible}\} = $ space of lattice bases, by row vectors.
+
+$GL_n(\mb Z) = \{n\times n, \text{ in } \mb Z, \text{ invertible}\} \iff \det\gamma = \pm 1$. $GL_n(\mb Z)\backslash G = $ space of lattices.
+
+Consider two lattices equivalent ($\sim$) if they differ by
+\begin{itemize}
+	\item orthogonal transformation (rotation/reflection). $\mc O_n(\mb R)$
+	\item scaling by positive real numbers (\ul{homotheties}) $\mb R^+$.
+\end{itemize}
+Let $X = G/\mb R_+\cdot \mc O_n(\mb R) = $ space of lattice bases $\mod \sim$. $GL_n(\mb Z)\backslash X = $ space of lattices.
+
+\begin{remark}
+	Can rescale ?in?to? homothety so $g\in G$ has $\det g = \pm 1$. $y$ to $\mc O_n(\mb R)$, can get $\det g = \pm 1 \implies G = SL_n(\mb R)$. $X = SL_n(\mb R)/SO_n(\mb R)$, both with $\det = 1$. $SL_n(\mb Z)\backslash X$.
+\end{remark}
+\begin{remark}
+	$\Gamma(N) = \{\gamma \in SL_n(\mb Z)\mid \gamma \equiv I\mod N\}$. $\Gamma_0(N,k) = \{\gamma \in SL_n(\mb Z)\mid \gamma \equiv \mat{*&*\\0&*}\mod N\}$. [?canonincal? $\Gamma_0(N)\subseteq SL_2(\mb Z)$ is $\Gamma_0(N,1)$].
+\end{remark}
+\begin{remark}
+	Can do this for any semisimple Lie group $G$. $G$ has a manifold compact subgroup $K$. $X = G/K$. \ul{Riemannian symmetric space}. $\Gamma\backslash X$ locally symmetric space.
+\end{remark}
+
+Let $\Gamma \subseteq SL_n(\mb Z)$ any arithmetic group.
+
+\begin{remark}
+	$X = \mathfrak{h}$ for $SL_2$.
+\end{remark}
+
+\subsection*{Hecke Correspondence}
+
+\begin{enumerate}
+	\item Pick $g\in SL_n(\mb R)$. lattice with basis $g$. Fix prime $l$. Fix $k = \{1,\dots,n\}$. There are only finitely many sublattices $M\subseteq L$ such that $L/M \cong (\mb Z/l\mb Z)^k$.
+	\begin{definition}
+		The \ul{Hecke correspondence} $T(l,k)$ sending $\Gamma\backslash X \ra \Gamma \backslash X$ is the one-to-many function $L\mapsto $ set of those $M$.
+	\end{definition}
+	\item Let $t = \mat{1 \\ &\ddots \\ &&1 \\ &&&l \\ &&&& \ddots \\ &&&&&l}$. The $l$ block is $k\times k$ and the 1 blcok is $n-k\times n-k$. Two maps: $\Gamma\cap \Gamma_0(l,k)\backslash X \overset{r}{\ra} \Gamma\backslash X$ and $\Gamma\cap \Gamma_0(l,k)\backslash X \overset{s}{\ra} \Gamma\backslash X$. $\Gamma\cap \Gamma_0(l,k)\cdot g \overset{r}{\mapsto} \Gamma\cdot g$ and $\Gamma\cap \Gamma_0(l,k)\cdot g \overset{s}{\mapsto} \Gamma\cdot tg$.
+	\begin{definition}
+		The Hecke correspondence $T(l,k)$ is $\mc A\circ r\inv$, $r\inv$ is preimage.
+	\end{definition}
+\end{enumerate}
+Why did $\Gamma_0(l,k)$ appear? Could do $X\overset{r}{\ra} \Gamma\backslash X$ and $X\overset{s}{\ra} \Gamma\backslash X$.
+$\Gamma g$ lifts in $X$ to $\{g,\gamma_0g,\gamma_1g,\dots\}$. $s(\gamma_0g) = s(\gamma_1g)$ \ul{if and only if} $t\gamma_0g$ and $t\gamma_1g$ ($\la$ right action) are in the same $\Gamma$-coset.
+\ul{iff} $\exists \gamma_2 \in \Gamma$ so $\gamma_2 = t\gamma_0gg\inv \gamma_1\inv t\inv$, where $\gamma_0gg\inv\gamma_1\inv\in \Gamma$. \ul{iff} $\gamma_0\gamma_1\inv \in \Gamma\cap[t\inv \Gamma t]$, where ?$\Gamma$ is $\gamma_2$?. \ul{iff} $\gamma_0\gamma_1\inv \in \Gamma_0(l,k)$.
+\begin{definition}
+	The \ul{Hecke operator} $T(l,k)$ sending $H_*(\Gamma\backslash X)\mapsto H_*(\Gamma\backslash X)$ is $s_*\circ r^*$.
+\end{definition}
+For any spaces $S_1,S_2$ and continuous maps $f:S_1\ra S_2$, $\exists$ natural $f_*:H_i(S_1)\ra H_i(S_2)$. In general, there is no $f^*$ back the other way. But there is if $f$ has finitely many sheets.
+\begin{example}
+	$f$ is a covering map with finitely many sheets.
+\end{example}
+$(N)$ is torsion-free for $N\geq 3 \implies (\Gamma(N)\cap \Gamma_0(l,k))\backslash X \ra \Gamma(N)\backslash X = Y(N)$ is a covering map.
+
+\subsection*{Well-Rounded Retract}
+
+This is a subset $W\subseteq X$. $\exists$ a deformation retraction $X\ra W$. Furthermore, the retraction is $GL_n(\mb Z)$-equivariant $\implies$ ?? to a retraction $\Gamma\backslash X \ra \Gamma\backslash W$. $G(3)\backslash \mf h$.
+
+\begin{example}
+	$SL_2$, $Y(3)$. Graph 4 vertices, 6 edges dual to tetrahedron. $\Gamma(3)\backslash W$ is the graph $\Gamma(3)\backslash X = Y(3)$ retracts onto the graph.
+\end{example}
+
+How to do the $WR$ retraction: fix $g$, $L = $ its lattice.
+\begin{enumerate}
+	\item find the shortest non-geo retraction in $L$, fix the line $V_1$ through that vector, rescale in the $n-1$ direction $\perp V_1$.
+	\item eventually some linear independent vector becomes tied for shortest, fix space $V_2$ spanned by those two, rescale (shrink) $\perp V_2$.
+	\item $\dots$ etc.
+\end{enumerate}
+STOP: a bunch of vectors all tied for shortest. \ul{def} well-rounded
+
+$G = SL_n(\mb R) = $ space of bases of $\mb R^n$. $X = G/K = $ space of bases of $\mb R^n \mod$ rotation. $g\in G$. $L = $ lattice spanned by $g = \{\vy = \vy g \mid \vx \in \mb Z^n\}$.
+
+\begin{definition}
+	The \ul{arithmetic minimum} of $L$ is $\min\{||\vy||\mid \vy\in L, \vy\neq \vzero \}$. The \ul{minimal vectors} of $L$ are the $\vy$ where the arithmetic minimum is attained.
+\end{definition}
+\begin{definition}
+	$L$ is \ul{well-rounded} if its minimal vectors span $\mb R^n$.
+\end{definition}
+\begin{definition}
+	$gK\in X$ is \ul{well-rounded} if its lattice $L$ is well-rounded. $W\subset X$ is the set of well-rounded points.
+\end{definition}
+\begin{theorem}
+	[Ash 1984] \begin{enumerate}
+		\item $W$ is a deformation retract of $X$.
+		\item The retraction is $GL_n(\mb Z)$-equivariant $\implies$ descends to a deformation retraction $\Gamma\backslash X \ra \Gamma\backslash W$.
+		\item $W$ is a locally finite regular cell complex. $GL_n(\mb Z)$ acts on cells. $\Gamma \backslash W$ is a finite cell complex.
+	\end{enumerate}
+\end{theorem}
+A 0-cell and a 1-cell makes $S^1$, \ul{irregular}. Two 0-cell's and two 1-cells also makes $S^1$, \ul{regular}.
+\begin{corollary}
+	Can compute $H_*(\Gamma\backslash X)$ by $ \cong H_*(\Gamma\backslash W)$.
+\end{corollary}
+\begin{example}
+	[$n=2$] $\vy\in L$ have the form $\vy = \vx g$ for $\vx\in \mb Z^n$. $||\vy||^2 = \vx g g^T \vx^T$, $gg^T$ symmetric matrix. Write $gg^T = \mat{a&b\\b&c}$. \ul{Problem}: Find the lows of $\mat{a&b\\b&c}$ where $\vx = \mat{1\\0},\mat{0\\1}$ are minimal vectors. (multiply by homothety so arithmetic minimum $ = 1$.). $\mat{1&0}\mat{a&b\\b&c}\mat{1\\0} = 1 \implies a = 1$. $\mat{0&1} \mat{a^b\\b&c} \mat{0\\1} = 1 \implies c = 1$. $\mat{1&1}\mat{1&b\\b&1}\mat{1\\1} \geq 1$ is $2+2b \geq 1$ or $2b\geq -1$ or $-\frac{1}{2} \leq b$. $\mat{-1&1}$ yields $b\leq \frac{1}{2}$. So $|b|\leq \frac{1}{2}$.
+\end{example}
+\begin{lemma}
+	When $|b|\leq \frac{1}{2}$, $\forall \mat{k\\q} = \vx \in \mb Z^2$, $\vx\neq \vzero$, $\mat{k&q} \mat{1&b\\b&1}\mat{k\\q} \geq 1$.
+\end{lemma}
+\begin{proof}
+	Complete the square. Use method of \textit{Exer. 0.1.2}.
+\end{proof}
+\ul{Answer} Lows is a 1-cell $\{\mat{1&b\\b&1} \mid b\in[-\frac{1}{2},\frac{1}{2}]\}$. $gg^T = \mat{1&b\\b&1} = $ \ul{Gram matrix of $g$}. $(i,j)$ entry of Gram matrix = dot product of rows $i$ and $j$ of $g$. Up to roration, $g = \mat{1&0\\\cos\theta&\sin\theta}$ and $\cos\theta = b$ and $|b|\leq \frac{1}{2}$. $60^\circ \leq \theta \leq 120^\circ$ are the angles of the points of radius one half from the origin of the fundamental domain.
+
+\section*{An algorithm for Hecke Operators for SL in higher rank}
+
+Computing $W$ as a whole is a(n infinite) linear programming (LP) problem. Fix bound $r$. Look at all $\mat{p&q}\in\mb Z^2$, $||\mat{p&q}||\leq r$. Set up a LP like the previous exercise. Ask software to solve $\implies$ some bounded subset of $W$. 
+Well-rounded retract for $SL_n$ is based on work of Voronoi (1998). modern: Voronoi polyhedron.
+
+Why computing Hecke operators with $W$ might be hard.
+
+\begin{example}
+	$SL_2$, $T(2,1)$. For $z\in \mf h$, the Hecke correspondence $T(2,1)$ sends it to \ul{three} points $2z,\frac{z}{2}, \frac{z+1}{2}$ or $X = \{\mat{2&0\\0&1},\mat{1&0\\0&1},\mat{1&1\\0&2}\}$. The arcs arcs are split at the center (breaking cells).
+\end{example}
+Manin had a Hecke algorithm for $n=2$. It used \ul{uni}modular symbols to avoid the problem of breaking cells. Ash-Rudolph generalized Manin's algorithm to $SL_n$ $\forall n$, but only in the top non-vanishing degree of $H_*$ or $H^*$. Top degree = $\frac{n(n+1)}{2}-n = \dim W$. To compute degree $(\dim W)-1$, Gunnel's algorithm.
+
+\subsection*{The Well-Tempered Complex}
+
+(MacPherson-McConnel 1994-95, 2014, 2016-present) An algorithm to compute $T(l,k)$ on $H_i(\Gamma\backslash W)$, $\forall SL_n$, $\forall i$. Fix $l,k\in\{1,\dots,n\}$. Fix $L = g\cdot K$. Let $M\subseteq L$ be one of the sublattices where $L/M \cong (\mb Z/l\mb Z)^k$.
+\begin{recall}
+	$T(l,k)$ correspondence is the map $L\mapsto $ (set of all such $M$).
+\end{recall}
+\begin{definition}
+	Let $t$ be a continuously varying real parameter, $t\geq 1$. The \ul{tempered length} of $\vy\in L$ is $\begin{cases} ||\vy|| & \text{if } \vy\in M \\ t\cdot ||\vy|| & \text{if } \vy\in L, \vy\notin M \end{cases}$. For a given $t$, let $W_t$ be the image of the $WR$ retraction done using the tempered length.
+\end{definition}
+\begin{remark}
+	After $t\geq l$, all $W_t = W_l$ because $l\cdot L\subseteq M$. Stops at $t = l$.
+\end{remark}
+\begin{definition}
+	The \ul{well-tempered complex} $\tilde{W}$ is the subset of $X\times [1,l]$ that  has value $W_t$ over $t$ in 2nd coordinate.
+\end{definition}
+\begin{theorem}
+	[M-M 2016] \begin{enumerate}
+		\item $\tilde{W}$ is a def. retract of $X\times [1,l]$
+		\item retract is $\Gamma_0(l,k)$-equivariant $\implies$ descends $(\Gamma\cap \Gamma_0(l,k))\backslash \tilde{W}$.
+		\item $\tilde{W}$ is a loc. finite ?alg.? cell complex, computable by LP (set $\mu = \frac{1}{t^2}$, it's \ul{linear} in $\mu,a,b,c,\dots$).
+	\end{enumerate}
+\end{theorem}
+\end{document}
