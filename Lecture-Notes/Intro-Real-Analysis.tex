@@ -1,0 +1,1192 @@
+\documentclass[]{article}
+\input{../mathdoc}
+\input{../mathsym}
+
+\author{Book: Russell Gordon 2nd, Presenter: Brett Tangedal, Notes by Michael Reed}
+\title{Introduction to Real Analysis}
+%\date{}
+
+\begin{document}
+\maketitle
+
+%\subsection{First Exam}
+Calculus was developed approximately from the 1630s to 1700 by Newton (1642-1727) and Leibniz (1646-1716). The Elements of Euclid (300 BC) developed mathematics using axiomatic and rigorous development of Euclidean geometry. In 1821 the French mathematician Cauchy gave the first mainly rigorous development of Calculus.
+\begin{example}
+	$\mb Z =\{\dots,-3,-2,-1,0,1,2,3,\dots\}$ are the integers or Zahlen.
+\end{example}
+
+\begin{proposition}
+	[M5] Given any nonzero $c\in \mb Q$, there exists an element $d\in\mb Q$ such that $c\cdot d=1$.
+\end{proposition}
+
+\begin{example}
+	What is the smallest set of numbers that contains $\mb Z$ and where axiom (M5) holds? Answer: Set of rational numbers $\mb Q = \{a/b\mid a,b\in\mb Z,b\neq0\}$. $\mb Q$ is a field.
+\end{example}
+
+%On p.6 of the book:
+\begin{definition}
+	A field is a set of \ul{at least} 2 elements that has 2 operations defined on it.
+\end{definition}
+
+On a field $\mb F$, the additive identity (0) does not equal the multiplicative identity (1).
+
+\begin{example}
+	Consider $\mb F_2$, a field which contains 2 elements $\bar 0,\bar 1$.
+\end{example}
+
+\begin{example}
+	[HW Example (9) on p.9] Let $x$ be an irrational number. Prove that there exists an irrational number $y$ such that $xy$ is a rational number.
+	\begin{proof}
+		\textit{I worked (alone) (with $X$)}.
+		
+		(M5): Given any non-zero real number $a$, there exists an element $b\in\mb R$ such that $ab=1$.
+		
+		We know there exists a non-zero number $y$ such that $xy=1$. Since $x$ is irrational it must be non-zero. \ul{Assume} $y$ is rational. If $y$ is rational, so is $\frac{1}{y}$ since $x=\frac{1}{y}$. So $x$ is rational, which is a contradiction since $x$ was assumed to be irrational.
+	\end{proof}
+\end{example}
+
+\begin{theorem}
+	If $x\in\mb R$ and $\forall\epsilon>0(|x|<\epsilon)$, then $x=0$ by (A12).
+\end{theorem}
+\begin{proof}
+	[Proof (by Contradiction)] \ul{Assume} $x\neq 0$. By (Q2) we have $|x|\neq 0$ and so $0<|x|$. Let $\epsilon=\frac{|x|}{2}$ and note that we have $\epsilon>0$. By assumption, $|x|<\frac{|x|}{2}$ implies that multiplication by $\frac{1}{|x|}>0$. Then $1<\frac{1}{2}$, which is a contradiction. Therefore, $x=0$.
+\end{proof}
+
+\ul{Given}: $\mb R$ is an \say{ordered field} and $\mb Q$ is an \say{ordered field}. However, we still need 1 more axiom to completely distinguish $\mb R$ from $\mb Q$ and do calculus.
+
+\begin{example}
+	$\sqrt{2}$ is an irrational number. $\mb R$ is the set of real numbers.
+\end{example}
+
+We're all comfortable with the rational numbers $\mb Q$ and we use the \say{metric} $|x-y|$ to measure the distance between 2 rational numbers $x$ and $y$.
+
+Irrational numbers have always been trickier and harder to grasp. On the other hand, almost all numbers that arise in science are irrational, such as $\sqrt{2}$, $5^{1/3}$, $\pi$, $\ln{4}$, $\sin{27\deg}$, $\tan{17\deg}$, $\dots$, so the applications of math to the sciences actually \ul{forces} us to come to grips with the irrational numbers.
+How do we think of $\pi$, for example, as a number? We write it as $\pi = 3.1415926\dots$. Notice that there is a (infinite) sequence of \ul{rational} numbers implied here: $$\frac{3}{1},\frac{31}{10},\frac{314}{100},\frac{3141}{1000},\cdots.$$
+We can denote this sequence as $x_1,x_2,x_3,x_4,\dots$ and with each rational number in this sequence, we get \say{one step} closer to $\pi$.
+We have $x_1<x_2<x_3<\dots$.
+
+Since we understand $\mb Q$ so well, we want to use $\mb Q$ as our \say{base field.}
+The only way to understand irrational numbers in terms of rational numbers is by way of limits, i.e. by use of infinite processes.
+The sequence $x_1,x_2,x_3,\dots$ is a sequence of rational numbers that \ul{converges} to an irrational number.
+
+The new axiom we still need to completely characterize the system of real numbers $\mb R$ is required to ensure that certain sequences of rational and real numbers converge \ul{within} the real number system.
+
+\ul{$\sim$ 1870}: One can construct the set of real numbers from the set of rational numbers alone (Weierstrass, Cantor, Dedekind).
+
+Consider the prime numbers: $2,3,5,7,\dots$
+If you complete $\mb Q$ with respect to the usual metric, you get the $\mb R$. If you complete $\mb Q$ with respect to the $p$-adic metric you get $\mb Q_p$.
+
+Completeness can be proven as a theorem; however, for our purposes we are going to assume it as an axiom.
+
+\begin{definition}
+	[Function] A function $f:A\ra B$ is a rule of correspondence that assigns to each element of the set $A$ exactly one element in the set $B$ such that $a\in A \mapsto f(a) \in B$. The \ul{domain} is $A$ and the \ul{codomain} is $B$. The \ul{range} is $\{f(a) \mid a\in A\}$.
+\end{definition}
+
+\begin{definition}
+	[Infinite sequence of real numbers] A sequence of real numbers is a \ul{function} $f:\mb Z^+ \ra \mb R$ with domain $\mb Z^+$ and codomain $\mb R$. A better definition: The domain is instead $\{n\in \mb Z\mid n\geq m\}$, where $m$ is a fixed integer. If $m=1$, we recover the book definition, but sometimes we want $m=0$ or even $m=37$.
+\end{definition}
+
+$f(1)=x_1,f(2)=x_2, f(3)=x_3,\dots$ can be represented as $\{x_n\}_{n=1}^\infty = \{x_n\}$
+
+\begin{definition}
+	If $\{x_n\}$ is an infinite sequence of real numbers, we say that $x_1,x_2,x_3,\dots$ converges to $x\in\mb R$ if given any $\epsilon>0$, there exists a positive integer $N\in\mb Z$ such that we have $|x_n-x|<\epsilon$ for all $n\geq N$.
+\end{definition}
+
+\begin{definition}
+	A sequence $x_1,x_2,x_3,\dots$ of real numbers is said to converge to a number $L\in\mb R$ if for each $\epsilon>0$ or $\forall\epsilon>0$ there exists $N\in\mb Z^+$ such that \begin{equation*} \label{eq1}
+	\forall n\geq N(|x_n -L|<\epsilon),
+	\end{equation*}
+	where $\epsilon$ is an arbitrary positive real number.
+\end{definition}
+The game we are always going to play is: given some $\epsilon$ find $N$
+\begin{note}
+	$(|x_n-L|<\epsilon) \implies (L-\epsilon<x_n<L+\epsilon)$.
+\end{note}
+\begin{remark}
+	Infinitesimals are \say{ghosts of departed quantities,} we don't need them here.
+\end{remark}
+
+\begin{definition}
+	The sequence $\{x_n\}$ is convergent (or converges) if there exists a number $L\in \mb R$ such that $\{x_n\}$ converges to $L$. The sequence $\{x_n\}$ is divergent (or diverges) if $\{x_n\}$ does not converge.
+\end{definition}
+\begin{example}
+	$x_1=1,x_2=-1,x_3=1,x_4=-1,\dots$ does not converge.
+\end{example}
+
+\begin{theorem}
+	If $\{x_n\}$ is a convergent sequence, then the number $L$ appearing in equation \ref{eq1} above is \ul{uniquely} \ul{defined}. $L$ is called \ul{The} limit of the sequence $\{x_n\}$.
+\end{theorem}
+\begin{proof}
+	Let $\{x_n\}$ be a convergent sequence and suppose that $\{x_n\}$ converges to the real numbers $a$ and $b$. Let $\epsilon>0$. By definition, there exists $N_1\in\mb Z^+$ such that $\forall n\geq N_1 (|x_n -a|< \frac{\epsilon}{2})$. Similarly, there exists $N_2\in \mb Z^+$ such that $\forall n\geq N_2 (|x_n-b|<\frac{\epsilon}{2})$. Set $M = \max{\{N_1,N_2\}}$. Then by triangle inequality we get $$|a-b|=|a-x_M + x_M -b| \leq |a-x_M|+|x_M-b| = |x_M-a|+|x_M-b|.$$
+	We know that $|x_M-a|<\frac{\epsilon}{2}$ and $|x_M-b|<\frac{\epsilon}{2}$. So $|x_M-a|+|x_M-b|<\frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$. Therefore, $|a-b|<\epsilon$ for every $\epsilon>0$. By (A12) $a-b=0$ or $a=b$, so the limit $L$ is uniquely defined.
+\end{proof}
+
+Homework: p.58: look at 1-5, read sec. 2.1
+
+\begin{definition}
+	A sequence $x_1,x_1,\dots$ of real numbers is said to converge to a number $L\in\mb R$ if(f) $\forall\epsilon>0$ there exists $N\in\mb Z^+$ such that $|x_n-L|<\epsilon$ for all $n\geq N$.
+\end{definition}
+\newpage
+\begin{definition}
+	Let $\{x_n\} $ be a sequence of real numbers
+	\begin{enumerate}
+		\item[a)] The sequence $\{x_n\}$ is \ul{bounded above} if there exists $M\in\mb R$ such that $x_n\leq M$ for all $n\geq 1$. The number $M$ is an upper bound of the $\{x_n\}$. 
+		\item[d)] The sequence $\{x_n\}$ is \ul{increasing} if $x_n\leq x_{n+1}$ for all $n\geq 1$. The sequence $\{x_n\}$ is strictly increasing if $x_n< x_{n+1}$ for all $n\geq 1$.
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+	$\frac{1}{1},\frac{1}{2},\frac{1}{3},\cdots$ is strictly decreasing and bounded below (0 is a lower bound).	
+\end{example}
+\begin{example}
+	$1,1,1,1,\dots$ is an increasing sequence (and decreasing).
+\end{example}
+
+\begin{definition}
+	[Completeness Axiom (version I)] An infinite sequence $x_1,x_2,\dots$ of real numbers that is increasing and bounded above \ul{always} converges to a unique real number $L\in\mb R$. This also works when the sequence is decreasing and bounded below.
+\end{definition}
+\begin{note}
+	$\mb R$ is a \ul{complete} \ul{ordered} field.
+\end{note}
+\begin{example}
+	$x_n=(1+\frac{1}{n})^n$, so $x_1=2$, $x_2=9/4$, $x_3=64/27$. Can prove that this sequence is strictly increasing and bounded above by 3. By the completeness axiom, this sequence converges to a unique real number. We'll call this number $e$.
+\end{example}
+For any positive real number $t>0$, it can be proved that there exists a positive real number denoted by $\sqrt{t}$ such that $(\sqrt{t})^2=t$ and there is no other positive real number whose square is $t$. You need the completeness axiom to prove this! We define: $\sqrt{0} = 0$.
+
+\begin{enumerate}
+	\item[s1.] $|t|=\sqrt{t^2}$ for all $t\in\mb R$.
+	\item[s2.] If $0\leq s\leq t$, then $\sqrt{s}\leq\sqrt{t}$.
+	\item[s3.] $\sqrt{s}\cdot\sqrt{t} = \sqrt{s\cdot t} $ for all $s,t\geq0\in\mb R$.
+\end{enumerate}
+
+\begin{note}
+	$||(x_1,y_1)-(x_2,y_2)|| = \sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$ is the definition of distance between points in $\mb R^2$.
+\end{note}
+\begin{remark}
+	A sequence $(x_1,y_1),(x_2,y_2),\dots$ of points in $\mb R^2$ is said to converge to a point $(L,M)\in\mb R^2$ if $\forall\epsilon>0$ there exists $N\in\mb Z^+$ such that $ ||(x_n,y_n)-(L,M)|| < \epsilon $ for all $n\geq N$.
+\end{remark}
+
+HW due Friday Feb.3, Prove:
+
+Problem 1: If $\lim_{n\ra\infty} x_n=L$ and $\lim_{n\ra\infty}y_n=M$, then this $(x_1,y_1),(x_2,y_2),\dots$ converges to $(L,M)$
+
+Problem 2: p.58 (4); 
+Problem 3: p.58 (11)a; 
+Problem 4: p.59 (18)
+
+\begin{proposition}
+	\ul{Archimedean Property of $\mb R$}: Given any $x\in\mb R$ there exists $N\in\mb Z^+$ such that $x<N$.
+\end{proposition}
+
+\begin{proof}
+	Assume otherwise (proof by contradiction)! Note that $x\in\mb R$ is \ul{fixed}. We are trying to prove that
+	\begin{enumerate}
+		\item There exists $N\in\mb Z^+$ such that $x<N$
+		\item The negation of (1) reads: $n\leq x$ for all $n\in\mb Z^+$. 
+	\end{enumerate}
+	Using the completeness axiom, we will show that (2) leads to a contradiction.
+	Note that the positive integers $1,2,3,\dots$ form  a strictly increasing (infinite) sequence of real numbers.
+	By assumption (2), this sequence is bounded above by the real  number $x$. Therefore, by the completeness axiom there exists a unique real number $L\in \mb R$ such that $\lim_{n\ra\infty} n = L$. We now show this is impossible and therefore we have a contradiction! Set $\epsilon=\frac{1}{2}$. There is at most 1 positive integer in the open interval $(L-\frac{1}{2},L+\frac{1}{2})$.
+	If $1,2,3,\dots$ really did converge to $L$, we would need more than 1 positive integer in $(L-\frac{1}{2},L+\frac{1}{2})$ (actually we need an infinite number).
+\end{proof}
+\begin{note}
+	When we negate an existential quantifier, we change over to a universal quantifier. If we negate a universal quantifier we change over to an existential quantifier.
+\end{note}
+
+\begin{proposition}
+	$\{\frac{7n}{4n+5}\} \underset{n\ra\infty}{\longrightarrow} \frac{7}{4}$. Have to show $\forall\epsilon>0$ there exists $N\in\mb Z^+$ such that $|x_n-L|<\epsilon$ for all $n\geq N$. Given $\epsilon$. Goal: Find $N\in\mb Z^+$ such that this all works out.
+\end{proposition}
+\begin{proof}
+	$|\frac{7n}{4n+5}-\frac{7}{4}|=|\frac{28n-7(4n+5)}{4(4n+5)}|=|\frac{-35}{4(4n+5)}|=\frac{35}{4(4n+5)} < \frac{35}{4(4n)}<\frac{3}{n}\leq \frac{3}{N}<\epsilon$ because $N\leq n\implies \frac{1}{n}\leq\frac{1}{N}$. Choose $\epsilon>0$. Let $x=\frac{3}{\epsilon}$. By the Archimedean principle of $\mb R$, there exists $N\in\mb Z^+$ such that $x<N$ or $\frac{3}{\epsilon}<N$ or $\frac{3}{N}<\epsilon$.
+\end{proof}
+
+p.54) In order for a sequence \ul{not} to converge to $L$, there must be at least 1 positive real number $\epsilon(>0)$ such that for every positive integer $N$ there exists an integer $n\geq N$ such that $|x_n-L|\geq \epsilon$.
+
+
+p.54) $x_1,x_2,x_3,\dots$ converges to $L\in\mb R$ if $\forall \epsilon >0$ there exists $N\in\mb Z^+$ such that $|x_n-L|<\epsilon$ for all $n\geq N$.
+%$$\lim_{n\ra} x_n=L$$
+\begin{theorem}
+	If $\{x_n\}$ is convergent (say $\lim_{n\ra\infty} x_n =L$), then $\{x_n\}$ is bounded (there exists $M$, a positive real number, such that $|x_n|\leq M$ for all $n\geq 1$). 
+	\label{thm2-5}
+\end{theorem}
+\begin{proof}
+	Set $\epsilon=1$. By assumption there exists $N\in\mb Z^+$ such that $|x_n-L|<1$ for all $n>N$.
+	\ul{Claim}: The positive real number $M= \max{\{|x_1|,|x_2|,\dots,|x_N|,|L|+1\}}$ is a bound for our sequence.
+	\begin{note}
+		$|x_j|\leq M$ for $j=1,\dots,N$.
+	\end{note}
+	Assume $n>N$. Then $|x_n| = |x_n-L+L|\leq |x_n-L| + |L| < 1+|L| \leq M$.
+\end{proof}
+If $A$ then $B$. Contrapositive is: If not $B$, then not $A$.
+\ul{Contrapositive of Theorem \ref{thm2-5}}: If $\{x_n\}$ is not bounded, then $\{x_n\}$ does not converge.
+Converse to \ul{If $A$, then $B$}: If $B$, then $A$.
+\ul{Converse of Theorem \ref{thm2-5}}: If $\{x_n\}$ is bounded, then $\{x_n\}$ converges. $\la$ This is \ul{not} true. Counter example: $\{(-1)^n\} = -1,1,-1,1,\dots$.
+
+\begin{theorem}
+	Suppose that $\lim_{n\ra\infty} a_n = L$ and $\lim_{n\ra\infty} b_n = M$. Then 
+	\begin{enumerate}
+		\item[a)] $\{ca_n\} = ca_1,ca_2,ca_3,\dots$ converges to $c\cdot L$ for any given fixed constant $c\in\mb R$.
+		\begin{proof}
+			True if $c=0$, so assume $c\neq 0$. Since $c$ can be factored, $|ca_n-c\cdot L| = |c||a_n-L|$. By definition, there exists $N\in\mb Z^+$ such that $|a_n-L|<\frac{\epsilon}{|c|}$ for all $n\geq N$. Therefore, $\forall n\geq N$ we have $|ca_n-cL|=|c||a_n-L| < |c|\cdot \frac{\epsilon}{|c|} = \epsilon$.
+		\end{proof}
+		\item[b)] $\{a_n+b_n\} = a_1+b_1,a_2+b_2,a_3+b_3,\dots$ converges to $L+M$.
+		\begin{proof}
+			We want to show that $|(a_n+b_n) - (L+m)| = |(a_n-L)+(b_n-M)|\leq |a_n-L| + |b_n-M| <\epsilon$ by triangle inequality. Let $\epsilon>0$. By definition, there exists $N_1$ such that $|a_n-L|<\frac{\epsilon}{2}$ for all $n\geq N_1$. By assumption there exists $N_2$ such that $|b_n-M|<\frac{\epsilon}{2}$ for all $n\geq N_2$. Let $N=\max{\{N_1,N_2\}}$.
+			\ul{Claim}: $|(a_n+b_n) - (L+M)|< \epsilon$ holds $\forall n\geq N$ since $|(a_n-L)+(b_n-M)|\leq |a_n-L|+|b_n-M| <\frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$.
+		\end{proof}
+		\item[c)] $\{a_n-b_n\}$ converges to $L-M$.
+		\begin{proof}
+			By Setting $c=-1$, $-b_1,-b_2,\dots \ra (-1) M$ by (a). Then by (b), this sequence converges to $L+(-1)M$.
+		\end{proof}
+		\item[d)] $\{a_n\cdot b_n\}= a_1b_1,a_2b_2,a_3b_3\dots \ra L\cdot M$.
+		\begin{proof}
+			\ul{See book}.
+		\end{proof}
+		\item[e)] Assume furthermore that $b_j\neq 0$ for all $j\geq 1$ and that $M\neq 0$. Then $\{\frac{a_n}{b_n}\}$ converges to $\frac{L}{M}$
+		\begin{proof}
+			First, we wish to prove that $\frac{1}{b_1},\frac{1}{b_2},\frac{1}{b_3},\dots$ converges to $\frac{1}{M}$. (once we know this, apply (d) to obtain the general case). Since $M\neq 0$, $|M|>0$. Set $\alpha = \frac{|M|}{2}>0$. Since $\{b_n\}$ converge to $M$, we know there exists $N_1\in\mb Z^+$ such that $|b_n-M|<\alpha$ for all $n\geq N_1$. So $|M-b_n|<\alpha$ and $ |M|-|b_n| \leq ||M|-|b_n||\leq |M-b_n|<\alpha$ by (a7) and (a10). or: $|M|-\alpha < |b_n|$ for all $n\geq N_1$. Since $\alpha = \frac{|M|}{2}$, this becomes: $\frac{|M|}{2} < |b_n|$ for all $n\geq N_1$ or $\frac{1}{|b_n|}<\frac{2}{|M|}$ for all $n\geq N_1$. The sequence $\{\frac{1}{b_n}\}$ is bounded as $\left| \frac{1}{b_n} \right| \leq C$ for all $n\geq 1$, if we use $C = \max{\left\{\left|\frac{1}{b_1}\right|,\dots,\left|\frac{1}{b_{N_1}}\right|,\frac{2}{\left|M\right|}\right\}}$.
+		\end{proof}
+	\end{enumerate}
+	\label{thm2.7}
+\end{theorem}
+
+\ul{Study for exam}: Don't worry about Prob 1 on HW1 /HW2. Look at Definitions, Theorems (hand out). HW problems. (7 problems on exam).
+
+\newpage
+
+%\begin{theorem}
+%	Suppose that the sequence $\{a_n\}$ converges to $L$ and that the sequence of $\{b_n\}$ converges to $M$.
+%	\begin{enumerate}
+%		\item[a)] $\{ca_n\}$ converges to $cL$
+%		\item[b)] $\{a_n+b_n\}$ converges to $L+M$
+%		\item[c)] $\{a_n-b_n\}$ converges to $L-M$
+%		\item[d)] $\{a_n\cdot b_n\}$ converges to $L\cdot M$
+%		\item[e)] Assume furthermore that $b_j\neq 0$ for all $j\geq 1$ and that $M\neq 0$. Then $\{\frac{a_n}{b_n}\}$ converges to $\frac{L}{M}$
+%		\begin{proof}
+%			First, we wish to prove that $\frac{1}{b_1},\frac{1}{b_2},\frac{1}{b_3},\dots$ converges to $\frac{1}{M}$. (once we know this, apply (d) to obtain the general case). Since $M\neq 0$, $|M|>0$. Set $\alpha = \frac{|M|}{2}>0$. Since $\{b_n\}$ converge to $M$, we know there exists $N_1\in\mb Z^++$ such that $|b_n-M|<\alpha$ for all $n\geq N_1$. So $|M-b_n|<\alpha$ and $ |M|-|b_n| \leq ||M|-|b_n||\leq |M-b_n|<\alpha$ by (a7) and (a10). or: $|M|-\alpha < |b_n|$ for all $n\geq N_1$. Since $\alpha = \frac{|M|}{2}$, this becomes: $\frac{|M|}{2} < |b_n|$ for all $n\geq N_1$ or $\frac{1}{|b_n|}<\frac{2}{|M|}$ for all $n\geq N_1$. The sequence $\{\frac{1}{b_n}$ is bounded as $\left| \frac{1}{b_n} \right| \leq C$ for all $n\geq 1$, if we use $C = \max{\{|\frac{1}{b_n},\dots,|\frac{1}{b_{N_1}}|,\frac{2}{|M|}\}}$.
+%		\end{proof}
+%	\end{enumerate}
+%\end{theorem}
+
+Bounded above ($\forall n\geq1(x_n\leq M)$) \& bounded below ($\forall n\geq 1(m\leq x_n)$) $\implies $ bounded ($\forall n\geq 1(|x_n|\leq B)$, where $B\in\mb R^+$). Since $-B\leq x_n \leq B$ so $B=\max{\{|m|,|M|\}}$.
+\begin{example}
+	[Exam 1, 8.] $0\leq x_n$ for all $n\geq 1$. $\{x_n\}$ converges to $L$. We want to prove \ul{$0\leq L$}. 
+\end{example}
+\begin{proof}
+	Proof by contradiction: Assume $L<0$. Given any $\epsilon>0$ there exists $N\in\mb Z^+$ such that $|x_n - L|<\epsilon$ for all $n\geq N$, so $L-\epsilon<x_n<L+\epsilon$. Pick $\epsilon$ such that $L+\epsilon=0$ by choosing $\epsilon=-L>0$. For this $\epsilon$ there exists $N\in \mb Z^+$ such that $L-\epsilon<x_n<L+\epsilon=0$ for all $n\geq N$. Therefore $x_N<0$. \ul{Contradiction}.
+\end{proof}
+\begin{recall}
+	$b_1, b_2, b_3,\dots \ra M$, where $b_j \neq 0$ for all $j\geq 1$ and $M\neq0$. Want to prove: $\frac{1}{b_1},\frac{1}{b_2},\frac{1}{b_3},\dots \ra \frac{1}{M}$. 
+\end{recall}
+\begin{proof}
+	From Monday: Showed there exists $N_1 \in \mb Z^+$ such that $\frac{1}{|b_n|}<\frac{2}{|M|}$ for all $n\geq N_1$. Note that
+	\begin{equation}
+		\left|\frac{1}{b_n}-\frac{1}{M}\right| = \left| \frac{M-b_n}{b_n\cdot M}\right| = \frac{|M-b_n|}{|b_n||M|} = \frac{|b_n-M|}{|b_n||M|}.
+		\label{eq1}
+	\end{equation}
+	Since $\frac{1}{|b_n|}<\frac{2}{|M|}$ %\leq \frac{2|b_n-M|}{|M|^2}<\epsilon$ 
+	for all $n\geq N_1$, we have %$\implies$ 
+	$\frac{1}{|b_n||M|} < \frac{2}{|M|^2}$ for all $n\geq N_1$.
+	Let an arbitrary $\epsilon>0$ be given. Since $\{b_n\}$ converges to $M$ by assumption, there exists $N_2\in \mb Z^+$ such that $|b_n-M|<\frac{|M|^2\epsilon}{2}$ for all $n\geq N_2$. 
+	Set $N=\max{\{N_1,N_2\}}$. Then we have $\frac{|b_n-M|}{|b_n||M|}<\frac{2}{|M|^2} \cdot \frac{|M|^2}{2}\cdot \epsilon = \epsilon$ for all $n\geq N$. Going back to equation~(\ref{eq1}), we have
+	%So $\left| \frac{1}{b_n}-\frac{1}{M} \right| \leq \frac{2|b_n-M|}{|M|^2}$ for all $n\geq N_1$, so $|b_n-M| < \frac{|M|^2\epsilon}{2}$. Then $\frac{2|b_n-M|}{|M|^2} < \epsilon$ for all $n\geq N_2$. Let $N=\max{\{N_1,N_2\}}$. Put together: 
+	$\left| \frac{1}{b_n}-\frac{1}{M} \right| < \epsilon$ for all $n\geq N$.
+\end{proof}
+
+\begin{example}
+	[Exam 1, 7.] $a_n\leq x_n \leq b_n$ for all $n\geq 1$.
+\end{example}
+\begin{proof}
+	We are assuming that $\lim_{n\ra\infty} a_n = L$ and $\lim_{n\ra\infty} b_n = L$. Given $\epsilon>0$, there exists $N_1$ such that $|a_n-L|<\epsilon$ for all $n\geq N_1$ and there exists $N_2\in\mb Z^+$ such that $|b_n-L|<\epsilon$ for all $n\geq N_2$.
+	Want to prove that $\lim_{n\ra\infty} x_n = L$. We have $L-\epsilon<a_n<L+\epsilon$ for all $n\geq N_1$ and $L-\epsilon<b_n<L+\epsilon$ for all $n\geq N_2$.
+	Let $N=\max{\{N_1,N_2\}}$ Then $L-\epsilon<a_n\leq x_n\leq b_n<L+\epsilon$ for all $n\geq N$, which proves that $\lim_{n\ra\infty} x_n=L$.
+\end{proof}
+
+\begin{theorem}
+	Let $a,b\in\mb R$ with $a<b$. Assume $\{x_n\}$ is a sequence with $a\leq x_n \leq b$ for all $n\in \mb Z^+$ and that $\{x_n\}$ converges to $L$. Then $a\leq L\leq b$.
+	\label{thm5}
+\end{theorem}
+\begin{proof}
+	(sketch) Look at the sequence $x_1-a,x_2-a,x_3-a,\dots \ra L-a$, where $0\leq x_n -a$ for all $n\geq 1$. Then (\ul{number 8 on Exam 1}) $0\leq L-a$. To get other inequality look at $b-x_1,b-x_2,\dots \ra b-L$.
+\end{proof}
+
+\begin{recall}
+	[\ul{Archimedean Property of $\mb R$}] Given any $x\in \mb R$, there exists $N \in \mb Z^+$ such that $x<N$.
+\end{recall}
+
+\begin{corollary}
+	Given any $x\in\mb R$, there exists $N\in\mb Z^+$ such that $-N<x$.
+	\label{cor1}
+\end{corollary}
+\begin{proof}
+	If $x\geq 0$, just pick $N=1$. If $x<0$ then we use the Archimedean property to find $N\in\mb Z^+$ such that $-x<N \implies x>-N$.
+\end{proof}
+\begin{corollary}
+	If $t>0$, there exists $N\in\mb Z^+$ such that $0<\frac{1}{N}<t$.
+	\label{cor2}
+\end{corollary}
+\begin{proof}
+	By the Archimedean property, there exist $N\in\mb Z^+$ such that $\frac{1}{t}<N \implies 1<t\cdot N$ by (i3) $\implies 0<\frac{1}{N}<t$ by (i6).
+\end{proof}
+\begin{definition}
+	$\mb Z^+ = \{1,2,3,\dots\}$.
+	A nonempty subset $A\subseteq \mb Z$ contains a least element if there exists $q\in A$ such that $q\leq a$ for all $a\in A$.
+\end{definition}
+\begin{proposition}
+	[\ul{Well ordering property}] Every nonempty subset $S$ of the positive integers $\mb Z^+$ contains a least element, i.e., there exists $q\in S$ such that $q\leq a$ for all $a\in S$. (equivalent to induction).
+	Read Appendix~C.
+\end{proposition}
+\begin{corollary}
+	If $y>0$, there exists $n_y\in\mb Z^+$ such that $n_y-1\leq y<n_y$.
+	\label{cor3}
+\end{corollary}
+\begin{proof}
+	Consider the set $E_y = \{m\in\mb Z^+ \mid y< m\}$. $E_y$ is  nonempty by the Archimedean property. By Well-ordering, there exists an element $n_y\in E_y$ such that $y<n_y$ and $n_y \leq a$ for all $a\in E_y$. Note in particular $n_y-1\notin E_y$ since $n_y-1<n_y$, i.e. $n_y-1\leq y$.
+\end{proof}
+\begin{theorem}
+	[Density Theorem] If $x$ and $y$ are real numbers with $x<y$, then there exists a rational number $r\in \mb Q$ such that $x<r<y$.
+\end{theorem}
+\begin{proof}
+	First assume that $x>0$. Since $0<y-x$, it follows from Corollary \ref{cor2} that there exists $n\in\mb Z^+$ such that $0<\frac{1}{n}<y-x$. Then $1<n(y-x) = ny-nx$. Therefore, we have: $nx+1<ny$. If we apply Corollary~\ref{cor3} to $nx>0$ there exists $m\in\mb Z^+$ such that $m-1\leq nx<m$. Then $m\leq nx+1 < ny$. So $nx<m<ny$ and $x<\frac{m}{n}<y$.
+	Assume $x$ and $y$ are arbitrary elements in $\mb R$ with $x<y$. By Corollary \ref{cor1}, there exists $N\in \mb Z^+$ such that $-N<x<y \implies 0< x+N < y+N$. By what was already proven, there exists $r_1\in\mb Q$ such that $x+N<r_1<y+N$. Then $x<r_1-N<y$. We are done since $r_1-N$ is a rational number.
+\end{proof}
+
+\begin{recall}
+	[Density Theorem] $x<y$, there exists $r\in\mb Q$ such that $x<r<y$.
+\end{recall}
+\begin{proposition}
+	Let $L$ be a fixed real number. Then there exists an infinite sequence of rational numbers $r_1,r_2,r_3,\dots$ that converges to $L$.
+	\label{prop5}
+\end{proposition}
+\begin{proof}
+	Use Density Theorem and Squeeze Theorem.
+	Let $a_n = L$ for $n=1,2,3,\dots$ and $b_n = L+ \frac{1}{n}$ for $n\geq 1$. So $\lim_{n\ra\infty} b_n = L$ and $a_n<b_n$ for all $n\geq 1$. For each $n\in\mb Z^+$, use the Density Theorem to pick $r_n\in\mb Q$ such that $a_n<r_n<b_n$. By the Squeeze Theorem $\lim_{n\ra\infty} r_n = L$.
+\end{proof}
+
+\begin{example}
+	[\ul{Square roots}] Let $a\in\mb R^+$. We will show that there exists a unique positive real number $s$ such that $s^2 = a$. This unique real number $s$ is denoted by $\sqrt{a}$.
+\end{example}
+\begin{proof}
+	Strategy: Construct an infinite sequence $s_1,s_2,s_3,\dots$ in $\mb R$ that converges to a real number $s$ with the desired properties. Let $s_1$ be \ul{any} fixed positive real number and define $s_{n+1} := \frac{1}{2} \left( s_n + \frac{a}{s_n} \right)$ for $n=1,2,3,\dots$.
+	\ul{Claim}: $0<s_n$ for $n=1,2,3,\dots$.
+	\ul{Claim}: $s_n^2 \geq a$ for $n\geq 2$.
+	$$ 2s_{n+1} = s_n + \frac{a}{s_n} = \frac{s_n^2+a}{s_n} \implies 2 s_n s_{n+1} = s_n^2 + a$$ or: $s_n^2 - 2s_n \cdot s_{n+1} + a = 0$. $s_n$ is a real number solution to this quadratic equation. The discriminant: $(-2s_{n+1})^2 - 4\cdot 1 \cdot a \geq 0$ or $4s_{n+1}^2 \geq 4a$ or $s_{n+1}^2 \geq a$ for $n\geq 1$, which implies that $s_n^2 \geq a$ for $n\geq 2$.
+	For $n\geq 2$, we have $s_n-s_{n+1} = s_n - \frac{1}{2} s_n - \frac{a}{2s_n} = \frac{1}{2} s_n - \frac{a}{2s_n} = \frac{s_n^2-a}{2s_n} \geq 0$ since $s_n>0$ for all $n\geq 1$ and %we know that 
+	$s_n^2-a\geq 0$ for all $n\geq 2$. %We get the property 
+	We now have the inequalities $0<\dots\leq s_5 \leq s_4 \leq s_3 \leq s_2$
+	since if $s_n-s_{n+1} \geq 0$, then $s_{n+1}\leq s_n$.
+	So, by the Completeness Axiom, we know the sequence $s_1,s_2,s_3,\dots$ \ul{converges}. Call the limit $s$, i.e. $\lim_{n\ra\infty} s_n = s$. %(check the sequence converges to the limit $a^2$ using definition)
+\end{proof}
+
+Exam 2 will  be on March 3rd.
+
+\begin{recall}
+	%\ul{Recap}: 
+	$a\in\mb R^+$ (fixed positive real number). $s_1>0$ $\la$ chosen arbitrarily. $s_{n+1} = \frac{1}{2}\left(s_n + \frac{a}{s_n} \right)$ for $n\in\mb Z^+$.
+\end{recall}
+\begin{proof}
+	At a point in the proof we had $s_n$, where $n\in\mb Z^+$, satisfies the quadratic equation $s_n^2 - 2s_{n+1} s_n + a=0$.
+	If there exists $x\in\mb R$ such that $x^2 + bx + c = 0$, then $b^2 \geq 4c$.
+	We had $x=s_n \in \mb R$ for $1\cdot x^2 - 2s_{n+1} x + a = 0 \implies 4s_{n+1}^2 \geq 4a$ or $s_{n+1}^2 \geq a$ for all $n\geq 1$. We showed that $s_2 \geq s_3 \geq s_4 \geq \dots \geq 0$. The sequence $s_1,s_2,s_3,\dots$ defined in this way converges to some real number $s \geq 0$ by the Completeness Axiom.
+	
+	Let's complete the square of the quadratic equation: $x^2+bx=-c$, so $x^2 + bx + \left(\frac{b}{2}\right)^2 = \frac{b^2}{4} - c$. Then $0\leq \left( x + \frac{b}{2} \right)^2 = \frac{b^2}{4} -c \implies \frac{b^2}{4} \geq c \implies b^2 \geq 4c$.
+	\ul{Claim}: $s^2 = a$. We have $s_n^2 \ra s^2$ since $s_n \ra s$, and $s_{n+1} \ra s$, $a\ra a$. Then $s_n^2 - 2s_{n+1} s_n + a = 0 \implies s^2-2s^2 + a = 0$ or $s^2 = a$.
+\end{proof}
+
+\begin{example}
+	[HW] $a = 8$. \ul{Choose}: $s_1 = 3$. Then $s_2 = \frac{1}{2} \left( 3 + \frac{8}{3} \right) = \frac{1}{2} \left( \frac{9}{3} + \frac{8}{3} \right) = \frac{17}{6}$. Calculate $s_3$ \ul{as rational} \ul{numbers}; $s_4$, $\cdots$. Then approximate $\sqrt{8}$ as rational decimal. $\sqrt{8} < \cdots< s_3 < s_2 < s_1$.
+\end{example}
+
+\begin{definition}
+	Given $a\in\mb R^+$, a positive real number $s$ is said to be \ul{a} square root of $a$ if $s^2 = a$.
+\end{definition}
+\begin{proposition}
+	Assume $s,t$ are both positive real numbers with $s^2 = a$ and $t^2 = a$.
+	\ul{Claim}: $s=t$, i.e. positive square roots are uniquely defined.
+	We set $\sqrt{a}:=s$, where $s$ is the unique positive real number such that $s^2=a$.
+\end{proposition}
+\begin{proof}
+	WLOG $0<s<t$. (i9): $0<s^2<t^2$. Contradiction is $0<a<a$.
+\end{proof}
+\newpage
+
+\begin{enumerate}
+	\item[s1.] $|t| = \sqrt{t^2}$, $\forall t\in\mb R \backslash \{0\}$.
+	\begin{enumerate}
+		\item[i)] $t>0$: $|t|=t \stackrel{?}{=} \sqrt{t^2}$ $\la$ by definition is a positive real number such that when you square it you get $t^2$. True since $(t)^2 = t^2$.
+		\item[ii)] $t<0$: $|t| = -t \stackrel{?}{=} \sqrt{t^2}$. True since $(-t)^2=t^2$ and $-t>0$.
+	\end{enumerate}
+	\item[s2.] If $0<s\leq t$, then $0<\sqrt{s} \leq \sqrt{t}$.
+	\begin{proof}
+		By contradiction: $0<\sqrt{t} < \sqrt{s} \implies $ (i9) $ 0<(\sqrt{t})^2 < (\sqrt{s})^2$ or $0<t<s$. Contradiction.
+	\end{proof}
+	\item[s3.] $\sqrt{s}\cdot \sqrt{t} = \sqrt{st}$, $\forall s,t\in\mb R^+$.
+	\begin{proof}
+		By Definition, we are looking for the positive real number such that when you square it you get~$st$. Note that  $\left( \sqrt{s} \cdot \sqrt{t} \right)^2 = \left(\sqrt{s}\right)^2\left(\sqrt{t}\right)^2 = s \cdot t$, and since $\sqrt{s}\cdot \sqrt{t} >0$, we are done.
+	\end{proof}
+\end{enumerate}
+
+Set $0:=\sqrt{0}$. So $x\mapsto \sqrt{x}$ is a function defined on the interval: $[0,\infty)$.
+
+\begin{example}
+	[\ul{Cube root again}] Assume $b>0$ fixed. Let $t_1>0$ be chosen in an arbitrary way. Define recursively: $t_{n+1} = \frac{1}{3} \left[ 2t_n + \frac{b}{t_n^2} \right]$ for $n=1,2,3,\dots$.
+\end{example}
+
+\begin{example}
+	[HW] $b=2$; $t_1 = 2$. $t_2 = \frac{1}{3} \left[ 2\cdot 2 + \frac{2}{2^2} \right] = \frac{1}{3} \left[ 4 + \frac{1}{2} \right] = \frac{1}{3} \left[ \frac{9}{2} \right] = \frac{3}{2}$. Find $t_3$ and $t_4$ as rational numbers.
+\end{example}
+
+HW Prove cubic formula converges similar to square root formula.
+
+\begin{definition}
+	A positive integer $n$ is a perfect square if $n=d^2$, where $d\in\mb Z^+$.
+\end{definition}
+\begin{example}
+	$1,4,9,16,25,36,49$ are the first 7 perfect squares listed in increasing order.
+\end{example}
+\begin{recall}
+	[Corollary \ref{cor3}] If $y\in\mb R^+$, then there exists $n_y\in\mb Z^+$ such that $n_y-1\leq y < n_y$.
+\end{recall}
+\begin{theorem}
+	If $m\in\mb Z^+$ is \ul{not} a perfect square, then $\sqrt{m}$ is irrational.
+\end{theorem}
+\begin{proof}
+	Let $n$ be an integer with $n<\sqrt{m} <n+1$. We know that $m$ is not a perfect square, so $\sqrt{m}$ is not an integer, which allows us to use the Corollary \ref{cor3} as a strict inequality.
+	Goal: Prove that $\alpha = \sqrt{m} - n$ is irrational. Assume instead that $\alpha=\sqrt{m}-n$ is rational. By assumption, we have $0<\sqrt{m}-n <1$. $\la$ Because of this we have $\alpha = \frac{p}{q}$, where $p,q\in\mb Z^+$ and $0<p<q$. Assume this is carried out so that $q$ is as small as possible, \ul{using well-ordering}. Then $\frac{q}{p} = \frac{1}{\sqrt{m} -n} \cdot \frac{\sqrt{m}+n}{\sqrt{m}+n} = \frac{\sqrt{m}+n}{m-n^2} = \frac{\alpha+2n}{m-n^2}$, since $\alpha+2n = \sqrt{m} + n$. \ul{Solve for $\alpha$}: $$\frac{q(m-n^2)}{p} = \alpha + 2n \implies \alpha = \frac{(m-n^2)q}{p} - 2n = \frac{(m-n^2)q-2np}{p} = \frac{r}{p},$$ where $r\in\mb Z^+$ and $p\in\mb Z^+$. We have contradicted the well-ordering principle because $p<q$ and $q$ was assumed to be the smallest possible but we have another rational number for $\alpha$ with smaller denominator. Thus $\alpha$ is irrational. We know $\sqrt{m} = \alpha + n$, which is the sum of an irrational and integer (rational) number. In Homework \#1, Problem 3, it was proven that this sum is irrational, i.e. $\sqrt{m}$ is irrational.
+\end{proof}
+\begin{corollary}
+	$\sqrt{2},\sqrt{3},\sqrt{5},\sqrt{6},\sqrt{7},\sqrt{8},\sqrt{10},\dots$ are \ul{all} \ul{irrational}.
+\end{corollary}
+\begin{recall}
+	[Density Theorem] Between any two real numbers, there is a rational number.
+\end{recall}
+\begin{theorem}
+	[One corollary to the Density Theorem] If $x$ and $y$ are real numbers with $x<y$, then there exists an irrational number $z$ such that $x<z<y$.
+	\label{thm8}
+\end{theorem}
+\begin{proof}
+	If we apply the Density Theorem to the real numbers $\frac{x}{\sqrt{2}} < \frac{y}{\sqrt{2}}$, we obtain a rational number $r\neq 0$ such that $\frac{x}{\sqrt{2}} < r < \frac{y}{\sqrt{2}}$. Multiply through \ul{by $\sqrt{2}$}: $x< r\cdot \sqrt{2} < y$. Claim: $z = r\sqrt{2}$ is \ul{irrational}. By Homework \#1, Problem 4, the product of a nonzero rational and irrational number is irrational. $z$ is irrational.
+\end{proof}
+
+\section*{Subsequences}
+
+\begin{example}
+	$1,\frac{1}{2},\frac{1}{3},\frac{1}{4},\frac{1}{5},\dots,\frac{1}{10},\dots$. Pick: $\frac{1}{2},\frac{1}{5},\frac{1}{10},\dots$.
+\end{example}
+\begin{definition}
+	Let $\{x_n\}$ be a sequence and let $\{p_n\}$ be a strictly increasing sequence of positive integers. Then $\{x_{p_n}\}$ is called a subsequence of $\{x_n\}$.
+	\label{def-subsequence}
+\end{definition}
+\begin{example}
+	From previous example, if $p_1 = 3, p_2=7,p_3=8,p_4=17,\dots$, then $\frac{1}{3},\frac{1}{7},\frac{1}{8},\frac{1}{17},\dots$.
+\end{example}
+\begin{definition}
+	A sequence is \say{increasing} if $x_n\leq x_{n+1}$ for all $n\in\mb Z^+$.
+	A sequence is decreasing if $x_n\geq x_{n+1}$ for all $n\in\mb Z^+$.
+	A sequence is \ul{monotone} if it is either increasing or decreasing.
+\end{definition}
+\begin{proposition}
+	Given definition \ref{def-subsequence}, we claim that $n\leq p_n$ for $n=1,2,3,4,\dots$.
+\end{proposition}
+\begin{proof}
+	(By induction). $Q(1):p_1\geq 1$ since $p_1\in\mb Z^+$. $Q(k): p_k\geq k$ for some $k\in\mb Z^+$. Want to show that $Q(k)\implies Q(k+1)$ for any given $k\in\mb Z^+$. $Q(k+1): p_{k+1} \geq k+1$. Assume that $p_k\geq k$. Then $p_k+1 \geq k+1$. We know that $p_{k+1} > p_k$ and  $p_{k+1} \geq p_k + 1$ because we are working with integers. Thus $p_{k+1} \geq p_k+1 \geq k+1$.
+\end{proof}
+\begin{theorem}
+	[Monotone Subsequence Theorem] If $\{x_n\}$ is any given sequence of real numbers then there is a subsequence of $\{x_n\}$ that is monotone.
+\end{theorem}
+\begin{proof}
+	We will say that the $p$-th term $x_p$ is a \say{peak} if $x_p \geq x_n$ for all $n>p$.
+	If $x_p$ is a \say{peak,} then $x_p\geq x_{p+n}$ for all $n\geq 1$. 
+	If $x_p$ is \ul{not} a peak, then there $\exists m>p$ such that $x_p<x_m$.
+	\ul{Two cases}.
+	
+	\ul{Case 1}: $\{x_n\}$ has infinitely many peaks. In this case, we list the peaks by increasing subscripts: $x_{p_1},x_{p_2},x_{p_3},\dots$. Since each term is a peak, we have $x_{p_1} \geq x_{p_2} \geq x_{p_3} \geq x_{p_4} \geq \dots$ $\la $ this is a decreasing (i.e. monotone) subsequence of $\{x_n\}$.
+	
+	\ul{Case 2}: $\{x_n\}$ has only a finite number of peaks (possibly zero peaks).
+	In this case, we list the peaks by increasing subscripts: $x_{m_1},x_{m_2},\dots,x_{m_k}$. Let $s_1 := m_k+1$. Since $x_{s_1}$ is \ul{not} a peak, then $\exists s_2 > s_1$ such that $x_{s_1} < x_{s_2}$. Since $x_{s_2}$ is \ul{not} a peak, then there $\exists s_3 > s_2$ such that $x_{s_2} < x_{s_3}$. Continuing in this way, we obtain a strictly increasing (i.e. monotone) sequence $x_{s_1} < x_{s_2} < x_{s_3} < x_{s_4} < \dots$ $\la$ subsequence.
+\end{proof}
+
+\begin{example}
+	[p.74, \#3] (a) Sequence that has subsequences that converge to 1,2,3: $1,2,3,1,2,3,1,2,3,\dots$.
+	(b)~Sequence that has subsequences that converge to $\pm\infty$: $1,-1,2,-2,3,-3,\dots$.
+	(c) Sequence with subsequences that are strictly increasing, strictly decreasing, and constant: $1,-1,0,2,-2,0,\dots$.
+	(d) Unbounded sequence which has a convergent subsequence: $1,1,1,2,1,3,1,4,\dots$.
+	(e) Sequence that has no convergent subsequence: $1,2,3,4,5,\dots$.
+\end{example}
+\begin{theorem}
+	[Bolzano-Weierstrass Theorem] Every \ul{bounded} \ul{sequence} has a \ul{convergent} \ul{subsequence}.
+\end{theorem}
+\begin{proof}
+	If $\{x_n\}$ is bounded, then it is bounded below and bounded above, i.e. there exist $a,b\in\mb R$ such that $a\leq x_n$ for all $n\geq 1$ and $x_n\leq b$ for all $n\geq 1$.
+	We wish to prove that $\{x_n\}$ has a subsequence $x_{p_1},x_{p_2},x_{p_3},\dots$ that converges. Once we know a subsequence that does converge to a limit $L$, then by Theorem \ref{thm5} we have $a\leq L \leq b$. From the theorem proved last time, we know that \ul{$\{x_n\}$} has a monotone (i.e. increasing or decreasing) subsequence, say $x_{p_1},x_{p_2},x_{p_3},\dots$. By the Completeness Axiom, this subsequence $x_{p_1},x_{p_2},\dots$ \ul{converges}. The Bolzano-Weierstrass Theorem is equivalent to the Completeness Axiom.
+\end{proof}
+\begin{recall}
+	[Theorem \ref{thm5}] Let $a,b\in\mb R$ with $a<b$. Assume $\{x_n\}$ is a sequence with $a\leq x_n \leq b$ for all $n\in\mb Z^+$ and that \ul{$\{x_n\}$} converges to \ul{$L$}. Then $a\leq L \leq b$.
+\end{recall}
+\begin{proof}
+	Go back and write it up.
+\end{proof}
+\begin{theorem}
+	If $\{x_n\}$ is a sequence of numbers that converges to $L$, then every subsequence of this sequence also converges to $L$.
+	\label{thm2-17}
+\end{theorem}
+\begin{proof}
+	By assumption, given $\epsilon>0$, there exists $N\in\mb Z^+$ such that $|x_n-L|<\epsilon$ for all $n\geq N$. Let $x_{p_1},x_{p_2},x_{p_3},\dots$ be any given subsequence of $\{x_n\}$. We want to show that this subsequence also converges to $L$. $p_1<p_2<p_3<\dots$ is an infinite sequence of strictly increasing positive integers. We proved last time: $n\leq p_n$ for all $n\in\mb Z^+$.
+	Note that $|x_{p_n} - L|<\epsilon$ for all $n\geq N$.
+\end{proof}
+\begin{theorem}
+	Let $\{x_n\}$ be a sequence with two distinct subsequences $x_{p_1},x_{p_2},x_{p_3},\dots \ra L$ and $x_{q_1},x_{q_2},x_{q_3},\dots \\\ra M$ that converge to 2 \ul{different} limits $L\neq M$. Then $\{x_n\}$ does \ul{not} converge.
+\end{theorem}
+\begin{proof}
+	(by Contradiction): Assume $\{x_n\}$ does converge to say $K\in\mb R$. Then, by theorem \ref{thm2-17} $x_{p_1},x_{p_2},\dots$ converges to $K$ and $x_{q_1},x_{q_2},\dots$ converges to $k$. \ul{Contradiction}.
+\end{proof}
+
+\begin{definition}
+	A sequence $\{x_n\}$ is a \ul{Cauchy} sequence if for each $\epsilon>0$ there exists $N\in\mb Z^+$ such that $|x_m-x_n|<\epsilon$ for all $m,n\geq N$.
+\end{definition}
+\begin{theorem}
+	If $\{x_n\}$ is a convergent sequence of real numbers, then it is a Cauchy sequence.
+\end{theorem}
+\begin{proof}
+	Since $\{x_n\}$ is convergent, say to $L$, then given any $\epsilon>0$ there exists $N\in\mb Z^+$ such that $|x_n - L|<\frac{\epsilon}{2}$ for all $n\geq N$. Also $|x_m-L|<\frac{\epsilon}{2}$ for all $m\geq N$. 
+	Assume $m,n\geq N$. $|x_m - x_n| = |x_m-L + L - x_n| \leq |x_m-L| + |x_n-L| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$.
+\end{proof}
+\begin{recall}
+	An infinite sequence $\{x_n\}$ is said to be a \say{Cauchy sequence} if $\forall \epsilon>0$ there exists $N\in\mb Z^+$ such that $|x_m-x_n|<\epsilon$ for all $m,n\geq N$.
+\end{recall}
+\ul{From last time}: If $\{x_n\}$ converges, then it is a Cauchy sequence.
+\begin{lemma}
+	If $\{x_n\}$ is a Cauchy sequence, then it is bounded.
+\end{lemma}
+\begin{proof}
+	Let $\epsilon=1$. Since $\{x_n\}$ is Cauchy, then $\exists N$ such that $|x_m-x_n|<1$ for all $m,n\geq N$.
+	Note that $|x_m-x_N|<1$ for all $m\geq N$. Then $|x_m| = |x_m-x_N+x_N| \leq |x_m-x_N| + |x_N| < 1+ |x_N|$. Let $M = \max{\{|x_1|,|x_2|,\dots,|x_{N-1}|,|x_N|+1\}}$. \ul{Claim}: $|x_m|\leq M$ for all $m\geq 1$.
+\end{proof}
+\begin{theorem}
+	A sequence $\{x_n\}$ of real numbers is convergent \ul{iff} it is a Cauchy sequence. ($\implies$) Done.
+	($\Longleftarrow$) Assume $\{x_n\}$ is a Cauchy sequence. We wish to show this sequence converges to some real \# $L\in\mb R$.
+\end{theorem}
+\begin{note}
+	\ul{$\forall \epsilon>0$} there exists $N\in\mb Z^+$ such that $|x_n-L|<\epsilon$ for all $n\geq N$. Also $p_1<p_2<p_3<\dots$.
+\end{note}
+\begin{proof}
+	By the lemma just proved, the sequence $\{x_n\}$ is bounded since it is Cauchy and so by the Bolzano-Weierstrass Theorem, there is a subsequence $x_{p_1},x_{p_2},x_{p_3},\dots$ of $\{x_n\}$ that converges, say to $L\in\mb R$. Goal: show that the original sequence $\{x_n\}$ also converges to $L$.
+	Given $\epsilon>0$, since $\{x_n\}$ is Cauchy, $\exists N \in\mb Z^+$ such that $|x_m-x_n|<\frac{\epsilon}{2}$ for all $m,n\geq N$. Since $x_{p_1},x_{p_2},\dots$ converges to $L$, there $\exists K\in\mb Z^+$ such that $K\geq N$ and $K$ is equal to one of the $p_j$'s so that $|x_K-L|<\frac{\epsilon}{2}$.
+	Since \ul{$K\geq N$}, we know that $|x_m-x_K|<\frac{\epsilon}{2}$ for all $m\geq N$. We also have $|x_K-L|<\frac{\epsilon}{2}$. We want $|x_m-L| = |x_m-x_K+x_K-L| \leq |x_m-x_K|+|x_K-L| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$ for all $m\geq N$.
+\end{proof}
+\begin{remark}
+	Cauchy sequences are valid for complex numbers and metric spaces using a definition of distance. Monotone sequences don't make sense for complex numbers because they are not ordered, but Cauchy sequences can apply because of the definition of distance. A metric space is complete if it contains all the limits of its Cauchy sequences.
+\end{remark}
+\ul{Midterm \#1}: This Friday March 3rd. \ul{Midterm \#3}: Friday, April 7th. \ul{Midterm \#4}: Tuesday, May 2nd.
+
+\begin{example}
+	[p.63] Consider the following sequence $c_n = \sum_{k=1}^\infty \frac{1}{k^2}$. $c_1 = 1$, $c_2 = 1+ \frac{1}{4} = \frac{5}{4}$, $c_3 = 1 + \frac{1}{4} + \frac{1}{9} = \frac{49}{36}$, $\dots$. It is a strictly increasing sequence $c_1 < c_2 < c_3 < \dots$. Can show this is a Cauchy sequence, it converges! Converges to $\frac{\pi^2}{6}$, first proved by Euler.
+\end{example}
+
+Sources for exam: HW, class theorems, new applications, book theorems.
+
+\ul{Theorems/Results whose proofs you should know}:
+\begin{recall}
+	[\ul{Corollary \ref{cor2}}] If $t>0$, there exists $N\in\mb Z^+$ such that $0<\frac{1}{N}<t$.
+\end{recall}
+\begin{recall}
+	[\ul{Corollary \ref{cor3}}] If $y>0$, there exists $n_y\in\mb Z^+$ such that $n_y-1\leq y <n_y$.
+\end{recall}
+
+\begin{example}
+	[\ul{Quick Application of Corollary \ref{cor2}}]
+	$\{\frac{1}{n}\}_{n=1}^\infty$ converges to 0.
+\end{example}
+\begin{proof}
+	Need to prove: \ul{Given $\epsilon>0$}, we need to find \ul{$N\in\mb Z^+$} (find Waldo) such that $\frac{1}{n}=|\frac{1}{n}|<\epsilon$ for all $n\geq N$. By Cor.2 there exists $N\in\mb Z^+$ such that $0<\frac{1}{N}<\epsilon$. Claim: $\frac{1}{n} \leq \frac{1}{N}$ for all $n\geq N$ since $0<N\leq n \implies n\geq N$ by (i10). Thus $\frac{1}{n}\leq \frac{1}{N} < \epsilon \implies \frac{1}{n}<\epsilon$ for all $n\geq N$.
+\end{proof} 
+
+\begin{example}
+	[Slight strengthening of Bernoulli's inequality] Assume $x>-1$ and \ul{$x\neq 0$}. Prove $(1+x)^n > 1+nx$ for each positive integer \ul{$n\geq 2$}.
+\end{example}
+\begin{proof}
+	\ul{Base case}: $(n=2)$: $(1+x)^2 \stackrel{?}{>} 1 + 2\cdot x \implies 1+2x + x^2 \stackrel{?}{>} 1+2x $. Note that $x^2>0$ if $x\neq 0$ by (i5), so $1+2x+x^2 > 1 + 2x + 0$ by VIII.
+	\ul{Induction Step}: Assume that $(1+x)^k>1+kx$ for some positive integer $k\in\mb Z^{\geq 2}$. Want to prove: $(1+x)^{k+1}$. Since $x>-1$, we have that $1+x>0$ and so: $(1+x)^{k+1} \stackrel{(i3)}{>} (1+kx)(1+x)$. From here the proof is same as other proof from HW.
+\end{proof}
+
+Exam will not have proof of Density theorem, but know how to use it and what it states, same with square root theorem and monotone subsequence theorem.
+Know these proofs:
+
+\begin{recall}
+	[\ul{Proposition \ref{prop5}}] Let $L\in\mb R$ be fixed. Then there exists an infinite sequence of rational numbers $r_1,r_2,\dots$ that converges to $L$. (needs squeeze theorem and density theorem).
+\end{recall}
+
+Squeeze theorem will be given on exam.
+
+\begin{recall}
+	[\ul{Theorem \ref{thm8}}] If $x,y\in\mb R$ with $x<y$, then there exists an irrational number $z$ such that $x<z<y$.
+\end{recall}
+\begin{recall}
+	[\ul{3 proofs}] 
+	If $\{x_n\}$ is convergent, then it is Cauchy.
+	If $\{x_n\}$ is Cauchy, then it is bounded.
+	If $\{x_n\}$ is Cauchy, then it converges.
+\end{recall}
+
+\begin{definition}
+	[p.13] A set $S\subseteq \mb R$ is an \say{interval} if $S$ contains at least 2 points and for any 2 points $x,y\in S$, every real number between $x$ and $y$ belongs to $S$ as well.
+\end{definition}
+9 different forms for how an interval looks.
+\begin{enumerate}
+	\item $(a,b) = \{x\in\mb R \mid a<x<b \}\la$ \ul{bounded} \ul{open} interval. \ul{$a<b$}, $a,b\in\mb R$
+	\item $[a,b) = \{ x\in\mb R \mid a\leq x <b \} \la$ bounded, half-open.
+	\item $(a,b] = \dots$
+	\item $[a,b] = \{ x\in\mb R \mid a\leq x \leq b\} \la$ bounded, \ul{closed}.
+	\item $(-\infty,a) = \{x\in\mb R\mid x<a\} \la $ unbounded open interval.
+	\item $(-\infty,a] \la $ unbounded closed interval.
+	\item $(b,\infty)$
+	\item $[b,\infty)$
+	\item $(-\infty,\infty) = \mb R \la$ unbounded, both \ul{open} \& \ul{closed}.
+\end{enumerate}
+Read p.13
+\begin{recall}
+	[\ul{Bolzano-Weierstrass}] If $x_n\in[a,b]$ for all $n\in\mb Z^+$, then $\{x_n\}$ has a subsequence $\{x_{p_n}\}$ that converges to a limit $L$ with $a\leq L \leq b$, i.e. $L\in[a,b]$.
+\end{recall}
+
+\begin{example}
+	$f(x) = \frac{1}{x}$ on $(0,1)$ is unbounded. A function that is continuous on $[a,b]$ is always bounded.
+\end{example}
+\ul{Read \S1.5}: \ul{\ul{Real}-\ul{valued} functions} (codomain = $\mb R$)
+
+We'll focus just on functions whose domains are intervals. Say $f:I \ra \mb R$, where \ul{$I$ is an interval}.
+
+\begin{example}
+	Polynomials (addition, multiplication, subtraction) $\frac{1}{2}x+4$, rational functions (addition, multiplication, subtraction, division) $\frac{1}{x}$, algebraic functions (addition, multiplication, subtraction, division, roots) 	$\frac{\sqrt{x}+16}{(x^2-4)^{1/3}+14x^8}$, transcendental functions $\sin{x},e^x$
+\end{example}
+\begin{example}
+	Domain of $\tan{(x)}$ is all reals except: $\{\dots,-\frac{3\pi}{2},-\frac{-\pi}{2},\frac{\pi}{2},\frac{3\pi}{2},\frac{5\pi}{2},\dots\}$. Consider \ul{$\tan{(x)}$} on $(-\frac{\pi}{2},\frac{\pi}{2})$.
+	\ul{Domain of $\arcsin{(x)}$} is $[-1,1]$.
+\end{example}
+\begin{definition}
+	[p.40] $I = $ interval; $f:I\ra \mb R$. Let $J$ be a subinterval of $I$. The function $f$ is \ul{increasing} on $J$ if $f(x)\leq f(y)$ for any $x,y \in J$ with $x<y$.
+\end{definition}
+
+\begin{definition}
+	$I$ is an interval; $f:I\ra \mb R$, $J$ is a subinterval.
+	\begin{enumerate}
+		\item[a)] The function $f$ is bounded above on $J$ if \ul{$\exists M\in\mb R$ such that $f(x) \leq M$ for all $x\in J$}.
+		%\item[b)] The function $f$ is bounded below on $J$ if \ul{$\exists M\in\mb R$ such that $f(x) \geq M$ for all $x\in J$}.
+		\item[b)] The function $f$ is \ul{bounded} on $J$ if $\exists M\in\mb R^+$ such that $|f(x)| \leq M$ for all $x\in J$.
+	\end{enumerate}
+\end{definition}
+\newpage
+\ul{Read \S1.5}, 
+\ul{Read \S3.1}:
+\begin{recall}
+	A sequence $\{x_n\}$ converges to $L\in \mb R$ if $\forall \epsilon>0$ there $\exists \ul{N\in\mb Z^+}$ such that $|x_n-L|<\epsilon$ \ul{for all $n\geq N$}.
+\end{recall}
+\begin{remark}
+	Among the 9 types of intervals, there are 4 of these that are \ul{\say{open.}}
+	\begin{enumerate}
+		\item[i)] $(a,b)$, $a<b$,
+		\item[ii)] $(a,\infty)$, $a\in\mb R$,
+		\item[iii)] $(-\infty,b)$, $b\in\mb R$,
+		\item[iv)] $(-\infty,\infty) = \mb R$.
+	\end{enumerate}
+\end{remark}
+\begin{definition}
+	Let $I$ be an \ul{open} interval that contains the point $c$ and suppose that $f$ is a function defined on $I$ except possibly at $c$. The function $f$ has limit $L$ at $c$ if $\forall \epsilon>0$ there exists \ul{$\delta>0$} ($\delta\in\mb R^+$) such that $|f(x)-L| <\epsilon$ \ul{for all $x\in I$} that satisfy: \ul{$0<|x-c|<\delta$}.
+\end{definition}
+\begin{remark}
+	We'll usually pick $\delta>0$ small enough so that all $x$ satisfy $0<|x-c|<\delta$ are in $I$, i.e. $(c-\delta,c+\delta)\subseteq I$.
+	Pick $\delta \leq \min{\{|b-c|,|c-a|\}}$.
+\end{remark}
+\begin{note}
+	[Short hand notation] Limit of a sequence: $\lim_{n\ra\infty} x_n = L$. Limit of a function at $c$: $\lim_{x\ra c} f(x) = L$.
+\end{note}
+\begin{note}
+	$f'(c) = \lim_{x\ra c} \frac{f(x)-f(c)}{x-c}$ is actually the limit of $g(x) = \frac{f(x)-f(c)}{x-c}$. Assume $f(x)$ is defined on the open interval $I$. $g(x) \la$ is defined on all of $I$ except at $x=c$.
+\end{note}
+
+\begin{example}
+	[Exam \#7] \ul{Fact 3}: $1+na \leq (1+a)^n$ for all $n\in\mb Z^+$. Follows from Bernoulli's inequality since $-1<0<a$.
+\end{example}
+
+Read \say{Elements of Style} on canvas files.
+
+\begin{definition}
+	Let $I$ be an open interval that contains a point $c$ and suppose $f$ is defined on $I$ except possibly at $c$.
+	The function $f$ has a limit $L$ at $c$ written $\lim_{x\ra c} f(x) = L$ if $\forall \epsilon>0$ there exists $\delta>0$ such that $\forall x\in I$ with $0<|x-c|<\delta$ we have $| f(x) - L|< \epsilon$.
+\end{definition}
+\begin{example}
+	Let $f(x) = x$ on $I=\mb R$. Let $c\in\mb R$. We wish to prove that $\lim_{x\ra c} x = c$.
+\end{example}
+\begin{proof}
+	\ul{Given $\epsilon>0$} we need to \ul{find some $\delta>0$} such that $|x-c|<\epsilon$ for all $x\in I$ with $0<|x-c|<\delta$.
+	Just choose $\delta = \epsilon$, you're done.
+\end{proof}
+\begin{remark}
+	Given $\epsilon$ you have to go out and find $\delta$, typically $\delta(\epsilon)$ depends on $\epsilon$.
+\end{remark}
+\begin{question}
+	Assuming the set-up above, with some given $L\in \mb R$, what does it mean if \ul{$\lim_{x\ra c} f(x) \neq L$}?
+\end{question}
+It means: \ul{$\exists\epsilon>0$} such that $\forall \delta>0$ we have $|f(x)-L|\leq \epsilon$ \ul{for} \ul{some} $x\in I$ with \ul{$0<|x-c|<\delta$}.
+
+\begin{theorem}
+	Let $I$ be an open interval that contains a point $c$ and suppose $f$ is defined on $I$ except possibly at $c$.
+	a) \ul{$\lim_{x\ra c}f(x) = L$} \ul{iff} for \ul{every} sequence \ul{$\{x_n\}$} in \ul{$I \backslash \{c\}$} that converges to $c$, the sequence \ul{$\{f(x_n)\}$ converges to $L$}. Visualize: $a<x_n<b$ for all $n\in\mb Z^+$; \ul{$x_n\neq c$ for all $n\in\mb Z^+$}.
+\end{theorem}
+\begin{example}
+	$x_n = c+\frac{(b-c)}{2n}$ for $n=1,2,3,\dots$ on $a<x_n<b$.
+\end{example}
+\begin{proof}
+	$(\implies)$ Assume $\lim_{x\ra c} f(x) = L$. Let \ul{$\{x_n\}$ be} a sequence of the type described above.
+	\ul{Want to show}: Given $\epsilon>0$ there exists $N\in\mb Z^+$ such that $|f(x_n)-L|<\epsilon$ for all $n\geq N$.
+	\ul{Given}: For every $\epsilon>0$ there exists $\delta>0$ such that $|f(x)-L|<\epsilon$ for all $x$ in $I$ with $0<|x-c|<\delta$.
+	Also given: We have $x_1,x_2,x_3,\dots \in I\backslash \{c\}$ and given any $\epsilon_1>0$ there exists $N_1 \in \mb Z^+$ such that $|x_m-c|<\epsilon_1$ for all $m\geq N_1$.
+	Set $\epsilon_1 = \delta$. Then $\exists N_1\in\mb Z^+$ such that \ul{$0<|x_m-c|<\delta$} for all $m\geq N_1$.
+	\ul{Claim}: $N=N_1$ works, i.e. we claim that \ul{$|f(x_m)-L|<\epsilon$ for all $m\geq N_1=N$}.
+\end{proof}
+\begin{remark}
+	[\ul{Chain of events}] Start with $\epsilon>0$. Then you have $\delta$. Set $\epsilon_1 = \delta$. Then you get $N_1$. Use $N=N_1$ to finish the proof.
+\end{remark}
+
+\begin{theorem}
+	[p.85] $P:$\say{The function $f$ has a limit $L$ at $x=c$}, i.e. $\lim_{x\ra c} f = L$ for $f:I\backslash \{c\} \ra \mb R$.
+	$Q:$\say{for \ul{each} sequence $\{x_n\}$ in $I\backslash\{c\}$ that converges to $c$, the sequence $\{f(x_n)\}$ converges to $L$.}.
+	\ul{Last time}: $P\implies Q$ proved.
+	Now $Q\implies P$. We will prove the contrapositive, i.e. $\neg P\implies \ul{\neg Q}$.
+	\ul{Not $P$}: There exists an $\epsilon>0$ such that for \ul{all} $\delta >0$ there is a point $x\in I$ such that $0|x-c|<\delta$ and $|f(x)-L|\geq \epsilon$.
+	\ul{Not Q}: There \ul{exists a sequence} $\{x_n\}$ in \ul{$I\backslash \{c\}$} that \ul{converges to $c$} where the sequence \ul{$\{f(x_n)\}$} does not converge to~$L$.
+	\label{thm3.2}
+\end{theorem}
+\newpage
+\begin{proof}
+		\ul{Not $P$}: There \ul{exists an $\epsilon>0$} such that \ul{for \ul{all} $\delta >0$} there is a point $x\in I$ such that $0|x-c|<\delta$ and $|f(x)-L|\geq \epsilon$.
+		For this \ul{$\epsilon>0$}, for each $\delta=\frac{1}{n}$, $n\in\mb Z^+$, there is a point \ul{$x_n\in I$} such that $0<|x_n-c|<\frac{1}{n}$ and $|f(x_n)-L|\geq \epsilon$.
+		Note that $x_n \in I \backslash \{c\}$ for all $n\in\mb Z^+$ and $\lim_{n\ra\infty} x_n = c$.
+\end{proof}
+\begin{theorem}
+	$I$ is an open interval containing some point $c$. Two functions $f,g$ defined on all of $I$ except possibly at $c$. Suppose that $\lim_{x\ra c} f(x) = S$ and $\lim_{x\ra c} g(x) = T$.
+	\begin{enumerate}
+		\item[a)] The function $f+g$ has a limit at $c$ and $\lim_{x\ra c} [ f(x) + g(x) ] = S+T$.
+		\begin{proof}
+			[Proof (Using $Q$).] Let $\{x_n\}$ be a sequence in $I\backslash\{c\}$ that converges to $c$.
+			Want to prove that $\displaystyle\lim_{n\ra\infty} [f(x_n)+g(x_n)] = S+T$.
+			We know that: $\lim_{n\ra\infty}f(x_n) = S$ by Theorem \ref{thm3.2} ($P\implies Q$) and $\lim_{n\ra\infty} g(x_n) = T$ by Theorem \ref{thm3.2} ($P\implies Q$).
+			By Theorem \ref{thm2.7}(b), we have $\displaystyle\lim_{n\ra\infty} [f(x_n)+g(x_n)] = S+T$.
+			$\displaystyle\lim_{x\ra c} [ f(x) + g(x) ] = S+T \la$ This now follows from Theorem \ref{thm3.2} ($Q\implies P$).
+		\end{proof}
+		\begin{proof}
+			[Proof of $a)$ just using the definition \ul{of limits} of functions.] \ul{Given}: Given $\epsilon>0$ there exists $\delta_1>0$ such that for all $x\in I$ with $0<|x-c|<\delta_1$, we have $|f(x)-S|<\frac{\epsilon}{2}$. Given $\epsilon>0$ there exists $\delta_2>0$ such that for all $x\in I$ with $0<|x-c|<\delta_2$, we have $|f(x)-T|<\frac{\epsilon}{2}$.
+			Set $\delta = \min{\{\delta_1,\delta_2\}}$ and note that $\delta>0$. Then for all \ul{$x\in I$} with \ul{$0<|x-c|<\delta$}, we have: $|f(x) +g(x) - (S+T)| = |(f(x)-S) + (g(x)-T)| \leq |f(x)-S| + |g(x)-T| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$.
+		\end{proof}
+		\item[e)] Should assume that $g(x) \neq 0$ \ul{for all $x\in I\backslash{\{c\}}$}. $\lim_{x\ra c} g(x) = T \neq 0$. $g(x) = x$ on $\mb R$, $c=0$. $\frac{f(x_n)}{g(x_n)}$.
+	\end{enumerate}
+\end{theorem}
+\begin{definition}
+	Open interval. $\lim_{x\ra c^+} f(x)$. $\forall \epsilon>0$ there exists $\delta>0$ such that $\dots$ \ul{$|f(x)-L|<\epsilon$} for all $x$ with $x \in (c,c+\delta)$ or $0<x-c<\delta$ because $c<x<c+\delta$.
+\end{definition}
+HW Due Fri March 24: P.90 \#2, P.90 \#11 a), b); P.91 \#21, P91 \#25.
+
+\begin{definition}
+	Let $I$ be an interval (not necessarily open). Let $f:I\ra \mb R$ be a function and $c\in I$. We say that $f$ is \say{continuous at $c$} if $\lim_{x\ra c} f(x) = f(c)$ if $c$ is not an end point of $I$.
+	$\lim_{x\ra c^+} f(x) = f(c)$ if $c$ is the left end point [Assuming that the left end point of $I$ is in $I$.]. 
+	$\lim_{x\ra c^-} f(x) = f(c)$ if $c$ is the right end point [Assuming that the right end point of $I$ is in $I$.]. 
+	These 3 limits are assumed to exist for the $c$ in question!
+	\label{deflim}
+\end{definition}
+\ul{By Theorem \ref{thm3.2}}, Definition \ref{deflim} is equivalent to the following: 
+$$\text{The sequence $\{f(x_n)\}$ converges to $f(c)$ for \ul{each} sequence $\{x_n\}$ in $I\backslash\{c\}$ that converges to $c$.}$$
+The function $f$ is \say{continuous on $I$} if $f$ is continuous at \ul{each} point $c\in I$.
+\begin{theorem}
+	Let $f$ and $g$ be functions defined on interval $I$, let $c\in I$, $k$ a fixed constant. If $f$ and $g$ are continuous at $c\in I$, then $f+g$, $f-g$, $kf$, and $fg$ (i.e. $fg(x)=f(x)\cdot g(x)$) are all continuous at $c$.
+	\begin{align*}
+		\lim_{x\ra c} f(x) &= f(c), & \lim_{x\ra c} g(x) &= g(c), & \lim_{x\ra c} [f(x) + g(x)] &= f(c) + g(c)
+	\end{align*}
+	If \ul{$g(x)\neq 0$} by assumption for all $x\in I$, then $\frac{f}{g}:I\ra \mb R$ is continuous at $c$.
+	Thus $\lim_{x\ra c} \frac{f}{g} = \frac{f(c)}{g(c)}$.
+	\label{thm3.11}
+\end{theorem}
+\begin{example}
+	[\ul{Polynomials}] $f(x) = a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x^1 + a_0x^0$, where $n\in\mb Z^{\geq 0}$ continuous on~$I$, \ul{$f_0(x)=a_0\in \mb R$}. Prove the $f_i(x)$ are separately continuous on $I$. Is $f(x) = k$ continuous on $I = \mb R$? Yes, $\lim_{x\ra c} k = k \implies |f(x)-L|<\epsilon \implies |k-k|<\epsilon$. \ul{$f(x)$} is continuous $\lim_{x\ra c} x = c$. Apply Theorem \ref{thm3.11} and use induction to prove for all polynomials.
+\end{example}
+\begin{example}
+	[\ul{Rational functions}] i.e. functions of the form $\frac{f(x)}{g(x)}$, where $f(x)$ and $g(x)$ are both polynomials and $g(x) \neq 0$.
+\end{example}
+\begin{remark}
+	A function $f:[a,b]\ra \mb R$ continuous on $I = [a,b]$ has a lot of nice properties.
+\end{remark}
+
+\newpage
+
+Printed notes start here
+
+$\delta_1>0$, $f(x)<0$ $\forall x\in [a,a+\delta_1)$. $\delta_2>0$, $f(x)>0$ $\forall x\in (b-\delta-2,b]$
+
+$$|x-c|<\delta \iff -\delta < x-c <\delta.$$
+
+\begin{proof}
+	Given $f(a)<0$. \ul{Given $\lim_{x\ra a^+}f(x) = f(a)$}.
+	Given $\epsilon>0$ there exists $\delta>0$ such that $|f(x)-f(a)|<\epsilon$ for all $x\in [a,a+\delta)$.
+	Let $\epsilon = |f(a)|$. Then $\exists \delta_1>0$ such that $|f(x)-f(a)|<|f(a)|$ \ul{for all $x\in [a,a+\delta_1)$}.
+	So $-|f(a)|<f(x)-f(a) < |f(a)| \implies f(x) < f(a) + |f(a)| = 0$.
+\end{proof}
+
+\begin{theorem}
+	[Spivak p.122] If $f$ \ul{is continuous on} $[a,b]$ with $a<b$ and $f(a)<0<f(b)$, then there is some $x\in(a,b)$ such that \ul{$f(x) = 0$}. In our book: If $f(a)<f(b)$ and $v\in\mb R$ such that $f(a)<v<f(b)$, then some $c\in(a,b)$ such that $f(c) = v$.
+\end{theorem}
+\begin{lemma}
+	[p. 99] If $S$ is a nonempty subset of $\mb R$ that is \ul{bounded} \ul{above} and \ul{$B = \sup{S}$} [$B$ exists from Theorem~(2) in the Supremums and Infimums handout]. Then there is a sequence $\{x_n\}$ in $S$, i.e. $x_j\in S$ for all $j\in \mb Z^+$, such that $\lim_{n\ra\infty} x_n = B$.
+\end{lemma}
+\begin{proof}
+	If $\epsilon = 1$, then $\exists x_1\in S$ such that $B-1<x_1 \leq B$ by definition of $B$ and according to Theorem (1) from supremems and infimums handout. If $\epsilon = \frac{1}{2}$, then $\exists x_2\in S$ such that $B-\frac{1}{2} < x_2 \leq B$. If $\epsilon = \frac{1}{n}$ for $n\in \mb Z^+$, then $\exists x_n \in S$ such that $B-\frac{1}{n} < x_n \leq B$. Use \ul{Squeeze Theorem!}
+\end{proof}
+
+\begin{example}
+	Consider $f(x) = 0$ for $x\in\{c_1,c_2,c_2\}$. $S = \{x\in [a,b]: f(x)<0\} = [a,c_1)\cup (c_2,c_2)$ and $\sup S = c_3$. Also $S\subset [a,b]$.
+\end{example}
+
+\ul{p.97 \#4 HW}. \ul{p.97 \#7}: Let $f:\mb R \ra \mb R$ be continuous on $\mb R$, $\dots$ $f(x)=0$ for all rational $x$ in $\mb R$. Prove $f(x)=0$ for all $x\in \mb R$. \ul{p.107 \#3}: $f(x) = x^3+2x-1$ on $[0,1]$, $f(0) = -1$, $f(1) = 2$. For Bisection method, compute each $f(*)$ as rational \#'s. \ul{p.107 \#16(a)}: Assume that $\exists a,b\in\ I$ with $a<b$ such that $f(a)\neq f(b)$ and $f$ is continuous on $I$.
+
+\begin{theorem}
+	[\ul{Spivak's} Theorem 2] If $f$ is continuous on $[a,b]$ and $a<b$, then $f$ is bounded above on $[a,b]$, i.e. \ul{$\exists M\in\mb R$} such that $f(x)\leq M$ for all $x\in[a,b]$.
+\end{theorem}
+\begin{proof}
+	Prove the contrapositive, which says that: \ul{If $f$ is \ul{not} bounded above on $I$}, then $\exists$ a point $z\in[a,b]$ where $f(x)$ is \ul{not} continuous.
+	If $f(x)$ is bounded above on $I=[a,b]$, then $\exists M\in \mb R$ such that $f(x)\leq M$ \ul{for} \ul{all $x\in I$}. If $f(x)$ is not bounded above on $I$, then $\forall M\in\mb R$ there exists $x\in I$ such that $M<f(x)$.
+	For each positive integer $n\in\mb Z^+$, there exists $x_n\in I$ such that \ul{$f(x_n)>n$}. So now we have constructed an infinite sequence \ul{$\{x_n\}$} in $\ul{I}$.
+	By the Bolzano-Weierstrass Theorem, $\{x_n\}$ has a subsequence $\{x_{p_n}\}$ that converges to a limit $z$ with $a\leq z\leq b$.
+	Since \ul{$f(x_{p_n}) > p_n \geq n$} for all $n\in\mb Z^+$ and so the sequence $f(x_{p_1}),f(x_{p_2}),\dots$ is unbounded.
+	If $\{y_n\}$ converges, then $\{y_n\}$ is bounded. \ul{Contrapositive}: If $\{y_n\}$ is not bounded, then $\{y_n\}$ does \ul{not} converge.
+	Therefore, $f(x_{p_1}),f(x_{p_2}),\dots$ does not converge and so $f$ is not continuous at $z$.
+\end{proof}
+\begin{definition}
+	If $S$ is a non-empty subset of $\mb R$ \ul{and} \ul{$f:S\ra \mb R$} is a real-valued function whose domain is $S$, we let $f(S)$ denote the set of all values in $\mb R$ taken on by $f$ for $x\in S$, i.e. $f(S) := \{f(x):x\in S\}$.
+\end{definition}
+\begin{note}
+	If the function $f$ is bounded above on $S$, i.e. $\exists M\in \mb R$ such that $f(x)\leq M$ for all $x\in S$ if and only if the set $f(S)$ is bounded above. Similarly, $f$ is bounded below on $S$ iff $f(S)$ is bounded below.
+\end{note}
+\begin{definition}
+	Let $I$ be an interval, let $f:I\ra \mb R$, and let $c\in I$. The function $f$ is said to \say{obtain its absolute maximum value on $I$ at $c$} if $f(x) \leq f(c)$ for all $x\in I$.
+\end{definition}
+\begin{example}
+	$f(x) = x^2$ on $I = [0,1)$ does not have an absolute maximum value on $I$.
+\end{example}
+\begin{example}
+	$f(x) = \begin{cases} \frac{1}{x} & \text{for } x\in(0,1] \\ 0 & \text{for } x = 0 \end{cases}$ does not have an absolute maximum on $[0,1]$.
+\end{example}
+\begin{theorem}
+	[\ul{Spivak} Theorem 3] If $f$ is continuous on $[a,b]$, then $\exists d\in[a,b]=I$ such that $f(x) \leq f(d)$ for all $x\in I$.
+\end{theorem}
+
+\begin{recall}
+	[\ul{Spivak} Theorem 3] If $f$ is continuous on the closed and bounded interval $[a,b]$, then $.\exists.$ some number $d\in[a,b]$ such that $f(x) \leq f(d)$ for all $x\in[a,b]$, i.e. $f$ obtains its absolute maximum value on $I = [a,b]$.
+\end{recall}
+\begin{proof}
+	By Spivak's Theorem 2 (proved in class last time), we know that the set $S=\ul{f([a,b])}$ is \ul{bounded} \ul{above} and therefore we have a uniquely defined number $\beta\in\mb R$ such that \ul{$\beta = \sup{\{f([a,b])\}}$}.
+	Note that $f(x) \leq \ul{\beta}$ for all $x\in I$. We will prove $.\exists.$ a point $\ul{d}\in[a,b]$ such that \ul{$f(d) = \beta$} and then \ul{we're done}.
+	For each positive integer $n\in\mb Z^+$, $\exists d_n\in[a,b]$ such that \ul{$\beta-\frac{1}{n}<f(d_n)\leq \beta$}. See Theorem 1 on p.3 of the \say{Supremums \& Infimums} handout. Note that $d_1,d_2,d_3,\dots$ is an infinite sequence of points in \ul{$[a,b]$}. By Bolzano-Weierstrass, there is a subsequence \ul{$\{d_{q_n}\}$} that you know converges to a point $d\in[a,b]$. Since $f$ is \ul{continuous} at every point in $I$, it is continuous at $d$. This implies that: $\lim_{n\ra\infty} f(d_{q_n}) = \ul{f(d)}$. Note that $\lim_{n\ra\infty} f(d_{q_n}) = \ul{\beta}$ from this and \ul{Squeeze} \ul{Theorem}. Therefore \ul{$f(d) = \beta$}.
+\end{proof}
+\begin{remark}
+	This is a very important proof, study it carefully.
+\end{remark}
+
+\section*{\ul{\S3.4}: \ul{Uniform Continuity}}
+
+\begin{definition}
+	[Handout \ul{Definition 2}] The function $f$ defined on the interval $I$: $f:I\ra\mb R$ is continuous at $c\in I$ if for every $\epsilon>0$ there exists $s>0$ such that $|f(x) - f(c)<\epsilon$ \ul{for all $x\in I$} that satisfy $|x-c|<\delta$.
+\end{definition}
+\begin{remark}
+	Works equally well for an endpoint $c\in I$.
+\end{remark}
+Suppose that a function $f$ is continuous on an interval $I$, i.e. $f$ is continuous at every point $\in I$. By definition, for each \ul{$c\in I$} and each \ul{$\epsilon>0$}, there exists $\ul{\delta(\epsilon,c)}>0$ such that $|f(x)-f(c)|<\epsilon$ for all $x\in I$ that satisfy $|x-c|<\delta(\epsilon,c)$.
+\begin{example}
+	Consider $f(x) = x^2$. Let $\epsilon = 0.4$. Then at $f(2) = 4$ a narrower $\delta$ is required than at $f(1) = 1$.
+\end{example}
+\begin{definition}
+	Let $I$ be an interval. A function $f: I\ra\mb R$ is \ul{uniformly} \ul{continuous} on $I$ if for every $\epsilon>0$ there exists $\delta>0$ such that $|f(y)-f(x)|<\epsilon$ for all $x,y\in I$ that satisfy $|y-x|<\delta$.
+\end{definition}
+\begin{remark}
+	If you have a function that is uniformly continuous on an interval than the function is continuous at every point in the interval, but the converse need not be true.
+\end{remark}
+
+\begin{definition}
+	Let $I$ be an interval. A functions $f:I\ra \mb R$ is \ul{uniformly} \ul{continuous} \ul{on} \ul{$I$} if $\forall \epsilon>0$ there exists \ul{$\delta>0$} such that \ul{$|f(y) - f(x)|<\epsilon$} for all $x,y\in I$ that satisfy \ul{$|y-x|<\delta$}.
+\end{definition}
+\begin{theorem}
+	If $f:I\ra \mb R$ is uniformly continuous on $I$, then $f$ is continuous on $I$, i.e. $f$ is continuous for each point $c\in I$.
+\end{theorem}
+\begin{proof}
+	Set \ul{$x=c\in I$} and show $f$ is continuous at $c$. Note that \ul{$f$ is continuous at $c$} if \ul{$\forall \epsilon>0$} \ul{there exists} \ul{$\delta>0$} such that $|f(y)-f(c)|<\epsilon$ for all $y\in I$ that satisfy $|y-c|<\delta$.
+\end{proof}
+\begin{remark}
+	The converse statement is definitely \ul{not} true!
+	However, we do have the following:
+\end{remark}
+\begin{theorem}
+	If $f:[a,b] \ra \mb R$ is \ul{continuous on the closed} \& bounded interval $[a,b]$, then $f$ is uniformly continuous on $[a,b]$.
+\end{theorem}
+
+\begin{example}
+	[Recall + Negation] $f:I\ra\mb R$. $f$ is uniformly continuous on $I$ if $\forall \epsilon>0$ there exists $\delta>0$ such that $|f(y)-f(x)|<\epsilon$ for all $x,y\in I$ that satisfy \ul{$|y-x|<\delta$}.
+	\ul{Negation}: $f$ is \ul{not} uniformly continuous on $I$ if \ul{$\exists \epsilon>0$} such that $\forall \delta>0$ $|f(y)-f(x)|\geq \epsilon$ \ul{ \ul{for some} $\ul{x,y}\in I$} that satisfy $|y-x|<\delta$.
+\end{example}
+\begin{proof}
+	Assume $f$ is continuous on $I=[a,b]$ but not uniformly continuous on $I$. We seek to obtain a contradition.
+	For the \ul{$\epsilon>0$} above, let $\delta = \frac{1}{n}$ (\ul{$n\in\mb Z^+$}) and we know \ul{$\exists x_n,y_n\in I$} with \ul{$0\leq\ul{|y_n-x_n|}<\frac{1}{n}$} such that $|f(y_n)-f(x_n)| \geq \epsilon$.
+	In this way, we generate 2 infinite sequences \ul{$\{x_n\}$} and $\{y_n\}$ both in \ul{$I$}.
+	By the Bolzano-Weierstrass Theorem, $.\exists.$ a subsequence $\{x_{p_n}\}$ that converge to some point $z\in I$.
+	Note that $y_{p_n} = x_{p_n} + (y_{p_n} - x_{p_n})$ for each $n\in\mb Z^+$. By construction, $\lim_{n\ra\infty} (y_{p_n}-x_{p_n}) - x_{p_n}) = 0$.
+	Therefore $\lim_{n\ra\infty} y_{p_n} = z+0 = z$. Since $f$ is continuous at $z\in I$, \ul{the sequence} \ul{$\{f(y_{p_n})-f(x_{p_n})\}$} converges to $f(z)-f(z) \ul{= 0}$ and $f|(y_{p_n}) - f(x_{p_n})|\geq \epsilon>0$. \ul{Contradiction}. $\displaystyle\lim_{n\ra\infty} |y_n - x_n| = 0 \implies \lim_{n\ra\infty}(y_n - x_n) = 0$.
+\end{proof}
+\begin{remark}
+	By using $-\frac{1}{n} \leq y_n - x_n \leq \frac{1}{n}$, the theorem could have also been proved by the Squeeze theorem.
+\end{remark}
+ 
+\newpage
+
+Exam: Be prepeared to present proofs of \ul{Lemma 1} and \ul{Lemma 2} from the IVT handout as well as EVT part 2: 
+If $f:[a,b]\ra\mb R$ is continuous on $[a,b]$, then $\exists d\in I$ such that $f(x)\leq f(d)$ for all $x\in I$. 
+Then $\exists c\in I$ such that $f(c) \leq f(x)$ for all $x\in I$. 
+$\la$ know both version.
+\ul{HW \#4}: All but \#1. \ul{HW \#5}: All but \#3.
+
+\begin{definition}
+	Let $I$ be an interval, let $f:I \ra \mb R$, and let $c\in I$. The function $f$ is differentiable at $c$ provided that the limit $\lim_{x\ra c} \frac{f(x) - f(c)}{x-c}$ \ul{exists}. 
+	The domain of $g(x) = \frac{f(x) - f(c)}{x-c}$ is $I\backslash\{c\}$.
+	If $f$ is differentiable at $c$ we say $f$ has a \say{derivative} at $c$, and this derivative at $c$ is denoted by \ul{$f'(c)$}.
+\end{definition}
+\begin{theorem}
+	Let $I$ be an interval, $f:I\ra\mb R$, $c\in I$.  The function $f$ is differentiable at $c$ with derivative $f'(c) = L$ \ul{iff} for \ul{each} sequence $\{x_n\}$ in $I\backslash\{c\}$ that converges to $c$, the sequence $\{\frac{f(x_n)-f(c)}{x_n-c}\}$ converges to $L$.
+\end{theorem}
+\begin{theorem}
+	Same hypotheses as above. If \ul{$f$ is differentiable at $c$}, then \ul{$f$ is continuous at $c$}. Therefore, if $f$ is differentiable on an interval $J$, then $f$ is continuous on $J$ as well.
+\end{theorem}
+\begin{proof}
+	Notice that for all \ul{$x\in I\backslash \{c\}$}, we have $f(x) - f(c) = \ul{(x-c)}\cdot \left(\frac{f(x)-f(c)}{x-c} \right)$. Let \ul{$\{x_n\}$} be an arbitrary sequence in $I\backslash \{c\}$ that converges to $c$. Then $\lim_{n\ra\infty} (x_n - c) = 0$ and $\lim_{n\ra\infty} \left( \frac{f(x_n) - f(c)}{x_n-c} \right) = L\in \mb R$. So $\lim_{n\ra\infty} [f(x_n)- f(c)] = 0 \implies \lim_{n\ra\infty} f(x_n) = f(c)$.
+\end{proof}
+\begin{theorem}
+	[\ul{Product Rule}, \ul{Quotient Rule}] \ul{Read proof on your own}! Also \ul{Chain Rule}.
+\end{theorem}
+\begin{theorem}
+	If \ul{$f(x) = x^n$}, where $n$ is a fixed positive integer, then $f'(c) = n\cdot c^{n-1}$ for any given $c\in\mb R$.
+\end{theorem}
+\begin{proof}
+	Look at $\lim_{x\ra c} \frac{x^n - c^n}{x-c}$. We will use the following identity: \begin{align*}x^n - c^n &= (x-c)(x^{n-1} + x^{n-2}\cdot c + x^{n-3}\cdot c^2 + \dots + x^2 \cdot c^{n-3} + x\cdot c^{n-2} + c^{n-1}) \\ &= \ul{x^n} + x^{n-1} c + \dots + x^2 c^{n-2} + xc^{n-1} - x^{n-1}c - \dots - x^2c^{n-2} - xc^{n-1} \ul{- c^n}\end{align*}
+	For $n=1$: $x-c = x-c$, then $X^2 - c^2 = (x-c)(x+c)$, then $x^3-c^3 = (x-c)(x^2 + xc + c^2)$.
+	Thus $\lim_{x\ra c} \frac{x^n - c^n}{x-c} = \lim_{x\ra c} [ x^{n-1} + x^{n-2}c + \dots + xc^{n-2} + c^{n-1}] = n\cdot c^{n-1}$.
+\end{proof}
+
+\begin{definition}
+	Let $I$ be an interval, let $f:I\ra\mb R$, and let $c\in I$. 
+	\begin{enumerate}
+		\item[d)] The function $f$ has a \ul{relative} \ul{maximum} value  at $c$ if $\exists \delta>0$ such that $f(x)\leq f(c)$ for all $x\in I$ that satisfy \ul{$|x-c|<\delta$}, i.e. $c-\delta<x<c+\delta$.
+	\end{enumerate}
+\end{definition}
+Let $f:[a,b] \ra\mb R$, $a<b$.
+\begin{theorem}
+	[\ul{Interior-Extremum Theorem}] Let $c\in I$ be such that $a<c<b$, i.e. $c$ is an \say{interior point} of $I$. Assume that $f$ has a relative $\max$/$\min$ value at $c$. If the derivative of $f$ \ul{at} \ul{$c$} \ul{exists}, then $f'(c) = 0$.
+	\label{thm-IET}
+\end{theorem}
+\begin{lemma}
+	Let $g$ be defined on $I\backslash\{c\}$ and assume that $\ul{\lim_{x\ra c} g(x) = L} >0$, i.e. given any $\epsilon>0$ there exists $\delta>0$ such that $|g(x)-L|<\epsilon$ for all $x\in I$ such that $0<|x-c|< \ul{\delta}$. Then $\exists\delta_1 >0$ such that \ul{$0<g(x)$ for all $x$ such that $0<|x-c|<\delta$}.
+\end{lemma}
+\begin{proof}
+	[Proof (sketch)] Set $\epsilon = L$. Then $\exists \delta_1 > 0$ such that $|g(x)-L|<L$ for all $x\in I$ such that $0<|x-c|<\delta$, $-L<g(x)-L<L$ or $0<g(x)<2L$.
+\end{proof}
+\begin{proof}
+	[Proof of Theorem \ref{thm-IET}] Let $g(x) = \frac{f(x)-f(c)}{x-c}$. Note that $g(x)$ is defined on \ul{$I\backslash\{c\}$}. Note that since the derivative of $f$ at $c$ exists, equal $ = f'(c)$, we have \ul{$\lim_{x\ra c} g(x) = f'(c)$}. Now assume that \ul{$f'(c) > 0$}. We wish to obtain a contradiction. By the Lemma, $\exists \delta_1 > 0$ such that $\ul{0 < g(x)}=\frac{f(x)-f(c)}{x-c}$ for all $x$ such that $0<|x-c|<\delta_1$ or $c-\delta_1<x<c$. % or $c<x<c+\delta_1$.
+	Assume \ul{$c<x<c+\delta_1$}. Then $0<x-c$ and so $0 < \left( \frac{f(x)-f(c)}{x-c} \right) \cdot (x-c) = f(x) - f(c)$, i.e. $f(c)<f(x)$ for all $x$ with $c<x<c+\delta_1$, \ul{contradiction}.
+\end{proof}
+\begin{theorem}
+	[Rolle's Theorem] Suppose that $f$ is \ul{continuous} on \ul{$I=[a,b]$}, that the derivative $f'$ exists at every point in the \ul{open interval $(a,b)$}, and that $f(a) = f(b) = 0$. Then there exists at least one point $c\in(a,b)$ such that $f'(c) = 0$.
+\end{theorem}
+
+%% deleted here?????
+
+\begin{recall}
+	[Rolle's theorem] i) $f$ is continuous on $I = [a,b]$, ii) $f'$ exists $\forall x \in (a,b)$. $f(a) = f(b) = 0$, iii) \ul{$f(a) = f(b) = 0$}. Then $\exists c\in (a,b)$ such that $f'(c) = 0$.
+\end{recall}
+\begin{proof}
+	\ul{Case 1}: If $f(x) = 0$ for all $x\in I$, then $f'(x) = 0$ for all $x\in (a,b)$. 
+	\ul{Case 2}: Assume \ul{$f(t) >0$} for some $t \in(a,b)$. By Extreme Value Theorem, \ul{$\exists c\in (a,b)$}, where $f(x) < f(c)$ for all $x\in I$. 
+	By Interior Extremum Theorem, $f'(c) = 0$.
+	\ul{Case 3}: Assume $f(t) < 0$ for some $t\in (a,b)$. 
+\end{proof}
+\begin{theorem}
+	[Mean Value Theorem] Suppose that $f$ is continuous on $I = [a,b]$ and that $f'(x)$ exists $\forall x\in (a,b)$. Then there exists at least one point $c \in (a,b)$ such that $f(b)-f(a) = f'(c)(b-a)$.
+\end{theorem}
+\begin{note}
+	$f'(c) = \frac{f(b)-f(a)}{b-a}$ is the slope of the secant line from $a$ to $b$.
+\end{note}
+\begin{proof}
+	Consider the function $\phi(x)$ defined on $I = [a,b]$ by $\phi(x) = f(x) - \left[ f(a) + \frac{f(b)-f(a)}{b-a}\cdot(x-a) \right]$. Note that 
+	\begin{enumerate}
+		\item[i)] $\phi(x)$ is continuous on $I$. 
+		\item[ii)] $\phi(x)$ is differentiable on $(a,b)$ and $\phi'(x) = f'(x) - \frac{f(b)-f(a)}{b-a}$. 
+		\item[iii)] $\phi(a) = 0 \phi(b)$
+	\end{enumerate}
+	By Rolle's Theorem, $\exists c \in(a,b)$ such that $\phi'(c) = 0$ or $\exists c\in (a,b)$, where $f'(c) = \frac{f(b)-f(a)}{b-a}$.
+\end{proof}
+\begin{corollary}
+	[\ul{1st Cor. to MVT}] Suppose $f$ is continuous on $I = [a,b]$, $a<b$, and that $f$ is differentiable on $(a,b)$ with $f'(x) = 0$ for all $x\in(a,b)$. Then $f$ is constant on $I$. 
+\end{corollary}
+\begin{proof}
+	We will show $f(x) = \ul{f(a)}$ for all $x\in I$. Assume $a< x$ and apply the MVT to $f$ on $[a,x]$. By MVT, $\exists c$ with $a<c<x$ such that $0 = f'(c) (x-a) = f(x) - f(a) \implies f(x) = f(a)$. 
+\end{proof}
+\begin{corollary}
+	[\ul{2nd Cor. to MVT}] Suppose $f$ and $g$ are continuous on $[a,b]$ and they are both differentiable on $(a,b)$. Assume $f'(x) = g'(x)$ for all $x\in(a,b)$. Then .$\exists$. a constant $c$ such that $f = g+C$ for all $x\in I$.
+\end{corollary}
+\begin{proof}
+	Consider the function $h(x) = f(x) - g(x)$. Note $h'(x) = f'(x) - g'(x) = 0$ for all $x\in(a,b)$. By 1st Corollary to MVT, we have $h(x) = C$ for all  $x\in I$.
+\end{proof}
+
+\section*{Riemann Integral}
+
+Assume $[a,b]$ is a closed bounded interval, $a<b$. 
+
+\begin{definition}
+	A partition of $I$ is a \ul{finite}, \ul{ordered} set $P := (x_0,x_1,\dots,x_n)$ of points in $I$ such that $a = x_0 < x_1 < x_2 < \dots < x_n = b$.
+\end{definition}
+\begin{definition}
+	The \ul{norm} of a partition $P$, denoted $||P||$, is equal to $P = \max\{x_i - x_{i-1}: 1\leq i \leq n\}$, i.e. $||P|| =$ the largest of the widths $x_i - x_{i-1}$.
+\end{definition}
+\begin{definition}
+	A tagged partition $^tP$ of an interval $[a,b]$ consists of a partition $(x_0,x_1,\dots,x_n)$ of $[a,b]$ along with a set of points, known as \say{tags} that satisfy \ul{$x_{i-1} \leq t_i \leq x_i$} for $1\leq i \leq n$. Also, $||^tP|| = ||P||$.
+\end{definition}
+\begin{definition}
+	Let $f:[a,b] \ra \mb R$ and let $^tP = \{(t_i,[x_{i-1},x_i]): 1\leq i \leq n\}$ be a tagged partition of $[a,b]$. The \say{Riemann Sum} $S(f,^tP)$ of $f$ associated to $^tP$ is defined by: $S(f,^tP) = \sum_{i=1}^n f(t_i)(x_i - x_{i-1})$.
+\end{definition}
+\begin{definition}
+	A function $f:[a,b] \ra \mb R$ is said to be \say{Riemann Integrable} on $[a,b]$ if there exists a number $L\in\mb R$ such that $\forall \epsilon>0$ there exists $\delta>0$ such that if $^tP$ is \ul{any} tagged partition of $[a,b]$ with $||^tP|| < \delta$, then $|S(f,^tP)-L| <\epsilon$. 
+	The set of all Riemann-Integrable functions on $[a,b]$ will be denoted by $\mc R[a,b]$.
+\end{definition}
+\begin{theorem}
+	If $f\in\mc R[a,b]$, then the value $L$ above is uniquely determined.
+\end{theorem}
+\begin{proof}
+	Assume $L'$ and $L''$ both satisfy the definition and let $\epsilon>0$. Then $\exists \delta'>0$ such that $|S(f,^tP_1) - L'|<\frac{\epsilon}{2}$ for all tagged partitions $^tP_1$ of $[a,b]$ with $||P||<\delta'$. Also $\exists \delta''>0$ such that $|S(f^tP_2)-L''|<\frac{\epsilon}{2}$ for all tagged partitions $^tP_2$ of $[a,b]$ with $||^tP_2||<\delta''$. Let $\delta = \min\{\delta',\delta''\}$ and pick a specific tagged partition $^tP$ with $||^tP||<\delta$. Since $||^tP|| < \delta'$ and $||^tP||<\delta''$, we have $|S(f,^tP) - L'|< \frac{\epsilon}{2}$ and $|S(f,^tP)-L''|<\frac{\epsilon}{2}$. 
+	By triangle-inequality $|L'-L''| = L' - S(f,^tP) + S(f,^tP) - L''| \leq |L' S(f,^tP)| + |S(f,^tP)-L''| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$. This uniquely \ul{determined} value \ul{$L$} is usualy denoted by $\int_a^b f(x) \, dx$ or $\int_a^b f$. 
+\end{proof}
+\begin{itemize}
+	\item 26.67 points of 32 determined for HW.
+	\item 51 points out of 68 determined for exams.
+	\item Sum of those 2 is 77.67, so $\frac{26.67}{77.67} = 34.33$ \%; $\frac{51}{77.6} = 65.67 \ra$ divide by 3 $\ra$ 21.89.
+	\item (.3433)(\ul{HW \%}) + (.2189)(Exam \#1 \%) + (.2189)(Exam \#2 \%) + (.2189)(.)
+\end{itemize}
+
+Let \ul{$I = [a,b]$, $a<b$}, $P = (x_0,x_1,\dots,x_n)$, $a = x_0<x_1<\dots < x_{n-1} < x_n = b$. Subintervals: (non-overlapping) $I_1 = [x_0,x_1], I_2 = [x_1,x_2], I_n = [x_{n-1},x_n]$. Tags are chosen with $t_i\in I_i$ for $i = 1,2,\dots,n$.
+
+\begin{example}
+	The function $f(x) = k = $ constant $\forall x\in[a,b]$ is in $\mc R[a,b]$. Guess: \ul{$\int_a^b f = k\ul{(b-a)}$}.
+	If $^tP = \{(t_i,[x_{i-1},x_i])\}_{i=1}^n$ is \ul{any} partition of $[a,b]$, then $$S(f,^tP) = \sum_{i=1}^n f(t_i) (x_i - x_{i-1}) = k(x_1 - x_0) + k(x_2 - x_1) + \dots + k(x_n - x_{n-1}) = k[x_n - x_0] = k(b-a).$$ Hence for any $\epsilon>0$, we'll choose $\delta = 1$. Then if $||^tP||<1$, we have $| S(f,^tP) - k(b-a) | = 0 < \epsilon$. Since $\epsilon>0$ is arbitrary, we conclude that $f(x) = k$ is in $\mc R[a,b]$ 
+\end{example}
+\begin{example}
+	Suppose that $c\leq d$ are points in $[a,b]$. If $\phi:[a,b] \ra \mb R$ satisfies \ul{$\phi(x) = 1$} for all $x\in[c,d]$ (if $c=d$, then $[c,d] = \{c\}$) and \ul{$\phi(x) = 0$} elsewhere in $[a,b]$, then we claim that \ul{$\phi \in \mc R[a,b]$} and that $\int_a^b \phi = \ul{(d-c)}$.
+	\ul{Goal}: Given any \ul{$\epsilon>0$}, we choose \ul{$\delta = \frac{\epsilon}{4}$} and we will show that if \ul{$||^tP|| <\delta$}, then we have $$\ul{|S(\phi,^tP) - (d-c)| \leq 2\delta} = \frac{\epsilon}{2} < \epsilon.$$
+	For a \ul{given tagged partition} $^tP$ with $||^tP||<\delta$, assume \ul{$t_i$ is the first tag} (reading from left to right) in $[c,d]$ and assume $t_{i+N}$ is the last tag in $[c,d]$, where \ul{$N\geq 0$}.
+	Note, for any $x_0<x_1<x_2$, we could have $t_1 = t_2$.
+	\ul{Case 1}: We could actually have \ul{no} tags in \ul{$[c,d]$}. In this case, note that $S(\phi,^tP) = \sum_{i=1}^n \ul{\phi(t_i)}(x_i-x_{i-1}) = 0$ since $\phi(t_i) = 0$ for \ul{all} of our tags. We \ul{claim} in this case that \ul{$d-c<2\delta$}.
+	\begin{proof}
+		[Proof of claim]  $t_j < c$ and $d<t_{j+1}$, $-c<-t_j$, so $d-c<t_{j+1} - t_j$. Then $x_{j-1} \leq t_J \leq x_j \leq t_{j+1} \leq x_{j+1}$. Since $||^tP|| < \delta$, we have $\begin{cases} x_j - x_{j-1} < \delta \\ x_{j+1} - x_j < \delta \end{cases} \implies d-c < t_{j+1} - t_j \leq x_{j+1} - x_{j-1} < \ul{2\delta}$.
+	\end{proof}
+\end{example}
+\begin{theorem}
+	Suppose that $\ul{f},g\in\ul{\mc R[a,b]}$ and that \ul{$k\in\mb R$} is a constant. Then
+	\begin{enumerate}
+		\item[a)] $k\cdot f \in \mc R[a,b)$ and $\int_a^b kf = k\int_a^b f$.
+		\item[b)] $f+g\in\mc R[a,b]$ and $\int_a^b(f+g) = \ul{\int_a^b f} + \int_a^b g$.
+		\item[c)] If $f(x) \leq g(x)$ for all $x\in[a,b]$, then $\int_a^b f \leq \int_a^b g$.
+		\item[d)] If $|f(x)|\leq M\in \mb R^{\geq0}$ for all $x\in[a,b]$, then $\left|\int_a^b \right| \leq M(b-a)$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+	[p.199 of Bartle \& Sherbert] Suppose \ul{$f$} and \ul{$g$} are in $\mc R[a,b]$.
+	\begin{enumerate}
+		\item[(a)] $k\cdot f \in\mc R[a,b]$
+		\item[(b)] $f+g \in\mc R[a,b]$
+		\item[(c)] If $f(x) \leq g(x)$ for all $x\in[a,b]$, then $\int_a^b f \leq \int_a^b g$.
+		\item[(4)] $\left| S(f,^tP)-\int_a^bf \right| < \frac{\epsilon}{2}$, \ul{top of p.200}. $\left| \int_a^b f - S(f^tP) \right| < \ul{\frac{\epsilon}{2}} \overset{a9}{\implies} -\frac{\epsilon}{2} < \int_a^b f - S(f,^tP) < \frac{\epsilon}{2} \implies \int_a^b f - \frac{\epsilon}{2} < S(f,^tP)$. 
+	\end{enumerate}
+\end{theorem}
+\begin{recall}
+	Squeeze Theorem for infinite sequences: $\ul{a_n} \leq x_n \leq \ul{b_n}$ for all $n\geq 1$. Assume that $\lim_{n\ra\infty} a_n = \lim_{n\ra\infty} b_n = L$, then $\lim_{n\ra\infty} x_n = L$
+\end{recall}
+
+Bottom of p.1 on Squeeze Theorem of Integrals handout: (4) $\left| S(\omega_{\epsilon/3},^tP_2) - \int_a^b \omega_{\epsilon/3} \right| < \frac{\epsilon}{3}$.
+
+\begin{theorem}
+	[Big Theorem] If $f:[a,b]\ra\mb R$ is continuous on $[a,b]$ with \ul{$a<b$}, then $f\in\mc R[a,b]$.
+\end{theorem}
+
+\begin{proof}
+	First of all, we know $f$ is \ul{uniformly} continuous on $[a,b]$, i.e. given \ul{$\epsilon>0$} there exists $\delta>0$ such that if $u,v\in[a,b]$ and $|u-v|<\delta$, then $|f(u) - f(v)| < \frac{\epsilon}{(b-a)}$. Let $P = (x_0,x_1,\dots,x_n)$ be a partition of $[a,b]$ such that $||P||<\delta$. Subintervals: $I_1 = [x_0,x_1], I_2 = [x_1,x_2], \dots, I_n = [x_{n-1},x_n]$. Since $||P||<\delta$, we have: $x_1-x_0<\delta, x_2-x_1<\delta, \dots, x_n-x_{n-1}<\delta$. Let $u_i \in I_i$ be a point where $f$ attains its absolute minimum value on $I_i$. Let $v_i \in I_i$ be a point where $f$ attains its absolute maximum value on $I_i$. We're using the Extreme Value Theorem. Let $\alpha_\epsilon(x)$ be the step function defined by $\alpha_\epsilon(x) = f(u_i)$ for $x\in[x_{i-1},x_i)$ for $i = 1,\dots, n-1$ and we set $\alpha_\epsilon(x) = f(u_n)$ for $x\in[x_{n-1},x_n]$. We define $\omega_\epsilon(x)$ the same way with $\omega_\epsilon(x) = f(v_i)$. Is $\alpha_\epsilon(x) \leq f(x)$ for all $x\in[a,b]$? Yes, also $f(x) \leq \omega_\epsilon(x)$ for all $x\in[a,b]$. We know $\alpha_\epsilon(x),\omega_\epsilon(x)\in\mc R[a,b]$. $0 = \int_a^b \ul{0} \leq \int_a^b (\ul{\omega_\epsilon - \alpha_\epsilon}) = (f(v_1) - f(u_1))\cdot(x_1 - x_0) + \dots = \sum_{i=1}^n (f(v_i)-f(u_i))\cdot(x_i-x_{i-1})$. Need to check $|u_i-v_i| \leq \ul{x_i - x_{i-1}} < \delta$. Then $\sum_{i=1}^n (f(v_i)-f(u_i))\cdot (x_i - x_{i-1}) < \sum_{i=1}^n \frac{\epsilon}{(b-a)} \cdot (x_i - x_{i-1}) = \frac{\epsilon}{(b-a)} \sum_{i=1}^n (x_i - x_{i-1}) = \frac{\epsilon}{(b-a)} \cdot (b-a) = \epsilon$.
+\end{proof}
+
+Theorems you should be able to prove on Exam \#4.
+\begin{enumerate}
+	\item[1.)] If $f:I\ra\mb R$ is differentiable at \ul{$c\in I$}, then $f$ is continuous at $c$. (\ul{$I = $ interval})
+	\item[2.)] Product rule for derivatives: $(fg)'(c) = f'(c)\cdot g(c) + f(c)\cdot g'(c)$.
+	\item[3.)] Suppose that $f$ is continuous on $I = [a,b]$ and that $f$ is differentiable on $(a,b)$, and that $f'(x) = 0$ for all $x\in(a,b)$. Then $f(x)$ is constant on $I = [a,b]$. (Corollary to MVT)
+	\item[4.)] If $f\in\mc R[a,b]$, then the limit value $L$ is uniquely determined.
+	\item[5.)] Theorem 7.1.4 parts (a), (b), (c) on p.199 of Bartle \& Sherbert. $f,g\in\mc R[a,b]$, $k$ is a constant.
+	\begin{enumerate}
+		\item[(a)] $\int_a^b kf = k\int_a^b f$
+		\item[(b)] $\int_a^b(f+g) = \int_a^bf + \int_a^b g$
+		\item[\ul{(c)}] If $f(x) \leq g(x)$ for all $x\in[a,b]$, then $\int_a^b f\leq \int_a^b g$.
+	\end{enumerate}
+\end{enumerate}
+
+$\ul{S(kf,^tP)} = \sum_{i=1}^n k\cdot f(t_i)(x_i-x_{i-1}) = k\cdot \sum_{i=1}^n f(t_i)(x_i-x_{i-1}) = \ul{k\cdot S(f,^tP)}$.
+
+\begin{proof}
+	[Proof of (a)]: If $k=0$, then $\int_a^b0 =0 = 0\cdot \int_a^b f$. Since $f\in\mc R[a,b]$, \ul{given any $\epsilon>0$} \ul{there exists $\delta>0$} such that if $^tP$ is any tagged partition with \ul{$||^tP||<\delta$}, then \ul{$|S(f,^tP)-\int_a^b f|<\frac{\epsilon}{|k|}$}. We want $\ul{|S(kf,^tP)-k\cdot \int_a^b f}| = |k\cdot S(f,^tP)-k\cdot \int_a^b f| = |k|\cdot |S(f,^tP)-\int_a^b f| < |k|\cdot \frac{\epsilon}{|k|} = \epsilon$.
+\end{proof}
+
+\begin{recall}
+	[Problem \#1 HW \#5] Let $f:[a,b]\ra\mb R$ be \ul{continuous} \ul{at} \ul{$c\in[a,b]$} and suppose that \ul{$f(c)>0$}. Then there exists a positive number $m\in\mb R^+$ and an interval $[u,v] \subset [a,b]$ such that $c\in[u,v]$ and $f(x)\geq m$ for all $x\in[u,v]$.
+\end{recall}
+\begin{example}
+	[\ul{HW \# 6 \#3}] \ul{Suppose $f$ is continuous on $[a,b]$}, \ul{that $f(x)\geq 0$} \ul{for all $x\in[a,b]$}, and that $\int_a^b f = 0$. Prove \ul{that $f(x) = 0$} for all $x\in[a,b]$.
+		\begin{proof}
+			[Proof (by contradiction)] Assume that there exists a point \ul{$c\in[a,b]$} such that $f(c)>0$. To get a contradiction, I want to show that $\int_a^b f>0$.
+			
+			$h(x) : \begin{cases} 0 & \text{on }[a,u) \\ m & \text{on }[u,v] \\ 0 & \text{on }(v,b] \end{cases}$. $h(x)\in\mc R[a,b]$ and $h(x)\leq f(x)$ for all $x\in[a,b]$. $f(x)\in\mc R[a,b]$. Then $0< m(v-u) = \int_a^b h(x) \leq \int_a^b f(x)$.
+		\end{proof}
+\end{example}
+
+\begin{definition}
+	A function \ul{$F$} such that $F'(x) = f(x)$ \ul{for all $x\in[a,b]$} is \ul{called} \ul{\say{antiderivative}} of $f$ on $[a,b]$.
+	$\int_a^b f(x) \, dx = F(b) - F(a)$
+\end{definition}
+\begin{theorem}
+	[\ul{Fundamental Theorem of Calculus (First Form)}] Suppose you have two functions $f,F$ on $[a,b]$ ($a<b$) such that
+	\begin{enumerate}
+		\item[(a)] $F$ is continuous on $[a,b]$.
+		\item[(b)] $F'(x) - f(x)$ for all $x\in(a,b)$.
+		\item[(c)] \ul{$f\in\mc R[a,b]$}.
+	\end{enumerate}
+	Then we have \ul{$\int_a^b f = F(b) - F(a)$}.
+\end{theorem}
+\begin{example}
+	$\int_0^\pi \sin{x} \, dx$
+\end{example}
+\begin{proof}
+	Given $\epsilon>0$. Since $f\in\mc R[a,b]$, there exists \ul{$\delta>0$} such that for any tagged partition $^tP$ with \ul{$||^tP|| < \delta$}, we have \ul{$|S(f,^tP) - \int_a^b f | < \epsilon$}. Take any partition $P$ with $||P||<\delta$.
+	Assume, as usual, that $I_i = [x_{i-1},x_i]$ for $i = 1,\dots,n$. Apply the Mean Value Theorem to the function $F$ on $I_i$ ($i$ fixed in the range $1\leq i \leq n$) to conclude that $\exists u_i \in (x_{i-1},x_i)$ such that $F(x_i) - F(x_{i-1}) = F'(u_i)\cdot (x_i-x_{i-1})$. The tagged partition we'll use here is $^uP = \{(u_i,[x_{i-1},x_i])\}$.
+	Then $F(b)-F(x) = \sum_{i=1}^n (F(x_i)-F(x_{i-1})$ because $(F(x_1)-F(x_0)) + (F(x_2)-F(x_1)) + \dots + (F(x_n) - F(x_{n-1})) = F(x_i) - F(x_{i-1})$. By \ul{MVT} and condition (b), $F(b)-F(a) = \sum_{i=1}^n F'(u_i) (x_i - x_{i-1}) = \sum_{i=1}^n f(u_i) (x_i - x_{i-1}) = S(f,^uP)$. Thus $|S(f,^uP)-\int_a^b| <\epsilon$ since $||^uP||<\delta$. $\implies |F(b) - F(a) - \int_a^b f | < \epsilon$. Since $\epsilon>0$ \ul{was} \ul{arbitrary}, we conclude that $F(b)-F(a) = \int_a^b f$.
+\end{proof}
+\begin{theorem}
+	If $f\in\mc R[a,b]$ and if $[c,d]\subseteq[a,b]$, then the restriction \ul{of $f$ to $[c,d]$ is in $\mc R[c,d]$}.
+\end{theorem}
+\begin{definition}
+	If \ul{$f\in\mc R[a,b]$}, then the function defined by \ul{$\ul{F(x)} := \int_a^x f$} for any \ul{$x\in[a,b]$} is called the \ul{indefinite} \ul{integral} of $f$, where $[c,d] = [a,x]$.
+\end{definition}
+\begin{theorem}
+	The indefinite integral $F(x)$ defined above is continuous on $[a,b]$.
+\end{theorem}
+\begin{theorem}
+	[\ul{Fundamental Theorem of Calculus (2nd Form)}] Let \ul{$f\in\mc R[a,b]$} and \ul{assume} \ul{$f$} is \ul{continuous} at a point $c\in[a,b]$. Then the indefinite integral $F(x)$ is \ul{differentiable} at $c$ and $F'(c) = f(c)$.
+\end{theorem}
+\begin{theorem}
+	If \ul{$f$} is \ul{continuous} \ul{on $[a,b]$}, then the indefinite integral $F(x)$ is differentiable \ul{on $[a,b]$} and \ul{$F'(x) = f(x)$} for all $x\in[a,b]$, i.e. the indefinite integral $F(x)$ is an anti-derivative of $f(x)$.
+\end{theorem}
+\end{document}

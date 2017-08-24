@@ -1,0 +1,1506 @@
+\documentclass[]{article}
+\input{../mathdoc}
+\input{../mathsym}
+
+\author{Book: Bak-Newman 3rd, Presenter: Talia Fernos, Notes by Michael Reed}
+\title{Complex Analysis}
+%\date{}
+
+\begin{document}
+\maketitle
+
+\section{The Complex Numbers}
+\subsection{Section 1.1}
+$\mb{C} = $ Complex numbers. $\mb C$ is a vector space over $\mb{R}$ = real numbers of dim 2. Every complex number $z$ can be written in \say{coordinates} $(a,b)$ and we will leave behind this notation immediately. Instead we use $a+bi$, where $i=\sqrt{-1}$.
+\begin{definition}
+	[Addition] $(a,b)+(c,d)=(a+c,b+d)$.
+\end{definition}
+\begin{definition}
+	[Multiplication] $(a,b)\cdot(c,d)=(ac-bd,ad+bc)$. We get $(a+bi)(c+di)=ac+(bi)(di)+adi+bic$. After simplification we have $ac-bd+(ad+bc)i$.
+\end{definition}
+\begin{definition}
+	[Polar Coordinates] makes multiplication even easier (later).
+\end{definition}
+\begin{example}
+	$5i$ is \underline{purely imaginary} because it has no real part. $\pi$ is \underline{purely real} because it has no imaginary part.
+\end{example}
+\begin{example}
+	Given the "action" of adding by some $z\in\mb C$, can this process be undone? Addition can be undone.% Suppose we have the function $A(\text{student})=\text{age}$.
+\end{example}
+\begin{definition}
+	[Additive Identity] $z+0=0+z=z$, $0=(0,0)=0+0i$.
+\end{definition}
+\begin{definition}
+	[Additive Inverse] $z-z=0$, $z=x+yi$, $-z=-x-yi$.
+\end{definition}
+\begin{definition}
+	[Multiplicative Identity] $z\cdot1=z$, $1=1+0i$.
+\end{definition}
+\begin{definition}
+	[Multiplicative Inverse] Let $z=x+yi$, then the inverse of $z$ is $\frac{1}{z}=\frac{1}{x+yi}$. Then $z^{-1}=\frac{1}{x+yi}\cdot\frac{x-yi}{x-yi}=\frac{x-yi}{x^2+y^2+0}=\frac{x}{x^2+y^2}-\frac{y}{x^2+y^2}i$.
+\end{definition}
+All of these operations makes $\mb C$ into a field.
+\begin{note}
+	$\mb C$ is the smallest field that contains both $\mb R$ and $i$, where $i^2=-1$.
+\end{note}
+\begin{theorem}
+	[Fundamental Theorem of Algebra] Every univariate polynomial with $\mb C$-coefficients has a root in $\mb C$. i.e. $\mb C$ is algebraically closed.
+\end{theorem}
+A polynomial is an expression $p(x)=a_n x^n+ a_{n-1} x^{n-1} + \cdots + a_1 x^1 + a_0$. A \underline{root} is a solution to the equation $p(x)=0$. For example, in the linear polynomial $x+1=0$ means $x=-1$. For quadratic equations $ax^2+bx+c=0$, we have $x=\frac{-b\pm \sqrt{b^2-4ac}}{2a}$ as the algorithm for finding the roots using radicals. So $z^2+1=0$ leads to $z=\frac{-0\pm\sqrt{0^2-4}}{2}=\pm\sqrt{-1}=\pm i$, giving two solutions to $z^2+1=0$. Suppose $z^2-i=0$, where $a=1,b=0,c=-i$. Then $z=\frac{-0\pm\sqrt{0^2+4i}}{2}=\pm\sqrt{i}=\pm\frac{\sqrt{2}}{2}\pm\frac{\sqrt{2}}{2}i$. $(\frac{1}{\sqrt{2}}+\frac{1}{\sqrt{2}}i)^2=\frac{1}{(\sqrt{2})^2}-\frac{1}{(\sqrt{2})^2}+2\cdot\frac{1}{\sqrt{2}\cdot\sqrt{2}}i=\frac{1}{2}-\frac{1}{2}+\frac{2}{2}i=i$ because $\frac{1}{\sqrt{2}}=\frac{\sqrt{2}}{2}$.
+
+\subsection{$\mb C$ plane}
+Let $z=x+yi$, $i^2=-1$. There is a tie here between Analysis, Geometry, and Algebra. We are going to use our understanding of planar geometry. For example, the parallelogram rule gives the geometric interpretation for the addition rule. When you add two complex numbers $z_1,z_2\in\mb C$, then the resulting number $z_1+z_2$ gives the diagonal of the parallelogram made by $z_1$ and $z_2$. Addition of complex numbers is also like translation on the complex plane.
+
+What about multiplication? Let's multiply by $i$. When a complex number is multiplied by $i$, it is a rotation by $\pi/2$ on the complex plane. Q: What is the answer for $\pi+i$? Answer soon (polar coordinates). If you write $z=x+yi$, then $\Re{z}=x$ is the real part of $z$ and $\Im{z}=y$ is the imaginary part of $z$. $\Re{z},\Im{z}\in\mb R$.
+
+\begin{definition}
+	[Complex Conjugate] Let $z=x+yi$, then the complex conjugate of $z$ is $\conj{z}=x-yi$. Complex conjugation is reflection across the $\mb R$-axis.
+\end{definition}
+Using the complex conjugate, the inverse of $z$ is $\frac{1}{z}=\frac{1}{z\conj{z}}\cdot \conj{z}$. The complex conjugate of $2+i$ is $\conj{2+i}=2-i$.
+\begin{definition}
+	$\Re{z}=(z+\conj{z})/2$ and $\Im{z}=(z-\conj{z})/2$, where $z=x+yi$. Then $z+\conj{z}=x+iy+x-iy=2x$, $z-\conj{z}=x+iy-x+iy=2iy=2i(y)$.
+\end{definition}
+\begin{definition}
+	[Absolute Value] The absolute value or modulus of $z$ is $|z|=\sqrt{z\cdot\conj{z}}$ because we want it to be a positive $\mb R$ value. When $z=x+yi$, $|z|=\sqrt{x^2+y^2}$.
+\end{definition}
+Therefore the complex conjugate can be written as $\frac{1}{z}=\frac{1}{z\conj{z}}\cdot\conj{z}=\frac{\conj{z}}{|z|^2}$.
+
+\begin{definition}
+	[Triangle Inequality] $|z_1+z_2|\leq|z_1|+|z_2|$.
+\end{definition}
+
+$x=r\cos{\theta}$, $y=r\sin{\theta}$, $z=x+yi=r\cos{\theta}+r\sin{\theta}i=|z|\cos{\theta}+|z|\sin{\theta}i$. $\theta$ is well defined "modulo $2\pi$."
+
+\begin{example}
+	Describe $\{z:\Re{z}>0\}$.
+\end{example}
+\begin{example}
+	$\{z:z=\conj{z}\}$. Then $z=x+iy=x-iy$, so $2iy=0$ and $y=0$.
+\end{example}
+\begin{example}
+	$\{z: |\arg{z}-\pi/2| < \pi/2\}$, so $-\pi/2<\arg{z}-\pi/2<\pi/2$ or $0<\arg{z}<\pi$. This is the upper half plane.
+\end{example}
+\begin{example}
+	$\{z: |z+1|<1 \}=\{z: |z-(-1)|<1\}$ is a disk centered at negative 1 of radius 1.
+\end{example}
+\begin{definition}
+	$r=|z|=\sqrt{x^2+y^2}$ for $z=x+yi$, $\theta=\arg{z}$, and $z=r\cos{\theta}+ri\sin{\theta}=|z|\cos\theta+|z|\sin\theta i$.
+	Also we have $\cis{\theta}=\cos\theta+i\sin\theta=e^{i\theta}$.
+	For now, believe that $e^{i\theta}:=\cos\theta + i\sin\theta$. \underline{Polar coordinates} are $z=re^{i\theta}$. The conjugate is $\conj{z}=re^{-i\theta}$ by setting any $i$ to $-i$. The modulus is $|e^{i\theta}|=\sqrt{e^{i\theta}\cdot e^{-i\theta}}=\sqrt{e^{i\theta-i\theta}}=1$.	
+\end{definition}
+
+If $M_{z_0} (z) = z\cdot z_0$ with $z_0=r_0e^{i\theta_0}$ and $z=re^{i\theta}$, then $M_{z_0}(z) = (re^{i\theta})(r_0e^{i\theta_o})=rr_0e^{i(\theta+\theta_0)}$ has two parts (rotating by $\theta_0$ and scaling by $r_0$).
+
+\begin{example}
+	[\underline{Finding roots}] $i^2=-1$ and $(-i)^2=-1$ was observed. Find $z$ such that $z^2=-1$. Thus $z=re^{i\theta}$ and $z^2=r^2e^{2i\theta}=-1$. $|r^2e^{2i\theta}|=|-1|=1=|r^2| |e^{2i\theta}|$ so $r=1$ because $|z_1 z_2|^2 = z_1z_2 \conj{z_1 z_2}= z_1\conj{z_1} z_2\conj{z_2} = |z_1|^2 |z_2|^2$. Solving for $\theta$, $e^{2i\theta}=-1=e^{i\pi}$, so $2\theta=\pi\pmod{2\pi}$ or $\theta=\pi/2\pmod{2\pi}$.
+\end{example}
+
+For the fourth roots of unity, we are looking for $z$ such that $z^4=1=1e^{2\pi i}$ and $(e^{i\theta})^4=e^{2\pi i}$. These values form an inscribed square within the unit circle. For the 8th roots of unity ($z^8=1$) this is an octagon.
+
+\subsection{Cubic Polynomials}
+$ax^2+bx+c=0$ is a quadratic polynomial with solution by radicals $\frac{-b\pm\sqrt{b^2-4ac}}{2a}$.
+$ax^3+bx^2+cx+d=0$ is a cubic polynomial and it has some really complicated solution along these lines for any cubic. This also works for 4th degree polynomials. However, for 5th degree polynomials there is no such possible method for every possible quintic. A counter example was provided by Abel-Ruffini in 1799 as $x^5-x+1=0$. Does every polynomial have a root in $\mb C$? Yes, according to the Fundamental Theorem of Algebra.
+
+\subsection{Topological and Analytic Aspects of $\mb C$}
+\subsubsection{Sequences and Series}
+Review material from Calculus III (and we're going to introduce vocabulary).
+\underline{Sequence} is a list of numbers and \underline{series} is an infinite sum of a sequence.
+
+\begin{definition}
+	A sequence $z_1,z_2,\dots,z_n,\dots$ or $\{z_n\}$ is said to \underline{converge} to $z$ if the sequence of real numbers $|z_n-z|\ra 0$. This means for every disk centered at $z$, all but finitely many of the $z_n$ are contained in disk.
+\end{definition}
+\begin{note}
+	$|\Re{z}|,|\Im{z}|\leq|z|\leq|\Re{z}|+|\Im{z}|$. $z=\Re z + (\Im z )i$. $|\Re z|=\sqrt{(\Re z)^2}\leq\sqrt{(\Re z)^2+(\Im z)^2}=|z|$. By triangle inequality $|z|\leq|\Re z|+ |\Im z i| = |\Re z| + |\Im z|$.
+\end{note}
+
+\begin{proposition}
+	$z_n \ra z$ ($z_n$ converges to $z$) if and only if Both $\Re z_n \ra \Re z$ \underline{and} $\Im z_n \ra \Im z$.
+\end{proposition}
+
+
+So $z_n \ra z$ means exactly $|z_n-z|\ra 0$.
+$0\leq |\Re(z_n-z)|\leq |z_n-z|\ra 0$ shows that if $z_n\ra z$ then $\Re z$ and $\Im z$ also converge respectively. $\Re z_n \ra \Re z$? $|\Re z_n - \Re z| \ra 0$, they are equal. Use this inequality to deduce that if $\Re z_n \ra \Re z$ \underline{and} $\Im z_n \ra \Im z$ then $z_n \ra z$.
+
+\begin{example}
+	Suppose we have a sequence $\{z_n\}$, where $z^n\ra 0$ for $|z|<1$, $z^n\ra \infty$ for $|z|>1$, and is not convergent for $|z|=1$ (except $z=1$). $|z^n-0|=|z^n|=|z|^n\ra0$.
+\end{example}
+\begin{example}
+	Does $\frac{n}{n+i}\ra 1$? Rewriting, does $\left|\frac{n}{n+i}-1\right| = \left|\frac{n-n-i}{n+i}\right|=\left| \frac{-i}{n+i} \right| \ra 0$? We can say $\left|\frac{-i}{n+i}\right| = 1\cdot\left|\frac{1}{n+i}\right|= \sqrt{\frac{1}{n+i}\frac{1}{n-i}} = \sqrt{\frac{1}{n^2+1}}\ra 0$. So yes.
+\end{example}
+Given a sequence $\{z_n\}$, when asked if it's convergent (hypothesize)
+\begin{enumerate}
+	\item Gives limit $L$
+	\item Check $|z_n-L|\ra 0$
+	\item If step 2 fails, go back to 1.
+\end{enumerate}
+\underline{Maybe}: I only care that the sequence converges without caring about the limit.
+\begin{theorem}
+	[Proposition 1.4] $\{z_n\}$ converges if and only if for every $ \epsilon>0$ there is $N>0$ such that $n,m>N$ implies $|z_n-z_m|<\epsilon$. This is a Cauchy sequence.
+\end{theorem}
+Skip proof, series next time.
+\begin{example}
+	(Logic Exmaple) For every person $A$ there is a person $B$ such that $A$ loves $B$: everybody loves somebody. There is a person $B$ such that for every $A$, $A$ loves $B$. There is somebody that everybody loves.
+\end{example}
+Challenge to the assertion that $\{z_n\}$ is Cauchy. Show for $\epsilon=1$. Have to find $N=10,000,000$, $n,m>10,000,000$, such that $|z_{10,000,100}-z_{10,000,001}|<\epsilon=1$.
+
+\begin{definition}
+	[Region] Open and connected set.
+\end{definition}
+
+\underline{Chapter 1}: $z_n \ra z$ means exactly (equivalent to) $\Re z_n \ra \Re z$ \underline{AND} $\Im z_n \ra \Im z$.
+Sequences: Lists of umbers ($\mb C$).
+Series $\ra$ sequences.
+
+\begin{definition}
+	Say $\sum_{k=1}^{\infty} z_k$ converges (it's a series) if the sequence of partial sums $\{s_n\}$ converges, i.e. the sequence of $\mb C$-numbers $\{S_n\}$ converges. $S_n = \sum_{k=1}^{n} z_k$ makes sense, i.e. it's a $\mb C$-number.
+\end{definition}
+
+\underline{Properties}: Sum and difference of convergent sequences is convergent.
+
+\underline{Divergence Test}: $\lim_{k\ra \infty} z_k 0$? If yes, series does converge, if not then series does not converge.
+
+\begin{example}
+	$\sum_{k=1}^{\infty} \frac{1}{k^2}$ is convergent since $z_k = \frac{1}{k^2} \ra 0$.
+\end{example}
+
+\begin{example}
+	$\sum_{k=1}^\infty k$ diverges. $z_k \not{\ra} 0$.
+\end{example}
+
+To have hope of convergence, $z_k \ra 0$. If $z_k$ does not go to 0 as $k\ra \infty$, then there is no hope that the series converges. However, there are cases where $z_k$ goes to 0 but the series does not, as with $\{k^{-1}\}$.
+
+Read examples on P.13.
+
+\subsubsection{Classification of Sets in $\mb C$}
+\begin{itemize}
+	\item[(*)] $D(z_0,r) = \{z:|z-z_0|<r\}$ is the open disk of radius $r$, centered at $z_0$. In Cartesian coordinates, $z=(x,y)$, $z_0=(x_0,y_0)$, and $(x-x_0)^2+(y-y_0)^2=r^2$.
+	\item Complement: $\tilde{S} = \mb C \backslash S$, $S\subset \mb C$.
+	\item[(*)] $S$ is open if every point in $S$ has disk captured in $S$.
+	\item[(*)] $S$ is closed if $\tilde{S}=\mb C \backslash S$ open.
+	$\partial S = \{z\in\mb C: (\forall r>0)((S\cap D(z,r)\neq \emptyset)\land(\tilde{S}\cap D(z,r)\neq \emptyset))\}$.
+	\item $\bar{S}$ = closure of $S$ = $S\cup \partial S$.
+	$S$ is \underline{bounded} if there is $N$ such that $S\subset D(0,N)$.
+	\item[(*)] $S$ is \underline{compact} if and only if it's closed and  bounded.
+	\item[(*)] $S$ is connected if it's not \underline{disconnected}.
+	\item[(*)] $S$ is disconnected if it's the union of two \underline{disjoint open sets}.
+	\item[(*)] Line segment between $z_1$ and $z_2$ is all the points in between.
+	\item Don't want you to know: polygonal line (instead polygonal path)
+\end{itemize}
+
+\begin{definition}
+	$S\subset \mb C$ is polygonally connected if any two points can be connected by polygonal path.
+\end{definition}
+\begin{itemize}
+	\item[(*)] Region is a connected open set.
+\end{itemize}
+
+\begin{proposition}
+	Region is polygonally connected.
+\end{proposition}
+
+\begin{note}
+	Regions can have points that are connected  by a polygonal path made up of horizontal and vertical lines.
+\end{note}
+
+\begin{remark}
+	Avoid using any letters for $\mb C$-numbers besides $z,w,\alpha,\beta$ (not $x,y,r,a,b,n$).
+\end{remark}
+
+\subsubsection{Continuous Functions}
+\begin{definition}
+	$f(z)$ ($\mb C$-valued function) is continuous close to $z_0$. If $f$ is defined on some disk $D(z_0,r)$. (If $z_n\ra z_0$ then $f(z_n)\ra f(z_0)$ ) $\iff$ (For every $\epsilon > 0$ there is a $\delta>0$ if $|z-z_0|<\delta \ra |f(z)-f(z_0)|<\epsilon$).
+\end{definition}
+
+Let $z=x+yi$, then $f(z)=f(x,y) = u(x,y) + v(x,y)i$ is continuous if and only if $u(x,y)$ and $v(x,y)$ are continuous. This is exactly the same in spirit as $z_n\ra z \iff \Re \land \Im$.
+
+\begin{example}
+	Polynomials $f(x,y) = x^2 + y^2 - 2xyi$. $f(z) = z^{-1}$ on $\mb C \backslash \{0\}$.
+\end{example}
+Sums, products are continuous. Quotients of continuous functions are continuous everywhere except where denominator is 0.
+
+For future reference, $f\in C^n$ means that $u$ and $v$ have continuous partial derivatives of the $n$-th order.
+
+For future: \underline{Important}: Uniform convergence. $f_n(x) = x^n$ on $[0,1]$. $$f(x)=\lim_{n\ra \infty} x^n$$ Convergence of $f(x)$ is not uniform as it is  not continuous.
+(*) Uniform limit of continuous functions is continuous.
+\underline{Series}:% Theorem 1.9 ()
+\begin{theorem}[Weierstrass M-Test]
+	$f_k$ continuous on $D = $ region for $k\in\mb N$. If $|f_k(z)|\leq M_k$ for every $z\in D$ and $\sum M_k$ converges, then $\sum_{k=1}^\infty f_k(z)$ converges to a continuous function on $D$.
+\end{theorem}
+Why are continuous functions important? If $f$ is continuous and $C $ is compact and connected, then so is $f(C)$.
+\begin{equation*}
+	\text{(*) }f(x,y) = u(x,y)+v(x,y)i
+\end{equation*}
+
+\begin{theorem}
+	%[thm 1.10] 
+	If $u,(x,y)$ is real valued and $u_x,u_y\equiv 0$ on a region, then $u=$ constant.
+\end{theorem}
+
+know open closed, starred. definitions. know thm 1.10.
+Comments on HW1: Redo 26 for Tuesday, need to post HW for Tuesday. 26: need triangle-inequality and squeezing theorem (only true for real numbers). Use Exercise 8. $| z_1 - z_1 | \leq |z_1| + |z_2|$
+
+Question: is $z_1<z_2$ or $z_1>z_2$? No, there is no order.
+Lexicographical order: $(1,2)<(1,3)<(2,3)$ (forget this).
+Instead, look at $|z|\in\mb R$.
+
+\begin{example}
+	$|z|<2$, so $\sqrt{z\conj{z}}<2 \ra -4<z\conj{z}<4$.
+\end{example}
+
+The squeezing theorem has order built in.
+
+\underline{Review}: Weierstrass M-test.
+$f_k$ is continuous on domain $D$, $k=1,2,\dots$. Assume $|f_k(z)|\leq M_k$ on $D$ and $\sum_{k=1}^\infty M_k$ is convergent. Conclusion: $\sum_{k=1}^\infty f_k(z)$ converges to a continuous function $f$ on $D$.
+
+Keep in Mind $\sum_{k=1}^\infty r^k$ if $|r|<1$ for $r\in \mb R$. Proof of convergence: calculus book. \underline{Root and Ratio} test: 
+
+$\displaystyle \sum_{k=1}^\infty a_k$, $a_k>0$.
+Ratio test:
+$\displaystyle \frac{a_{k+1}}{a_k} \ra \rho = \begin{cases} \rho <1 & \ra \text{series converges }L \\ \rho=1 & \text{inconclusive} \\ \rho > 1 & \ra \text{diverges }r\end{cases}$, $\displaystyle \frac{a_{k+1}}{a_k} = \frac{r^{k+1}}{r^k} = r$.
+
+\section{Analytic Polynomials}
+\underline{Secret Pause}: What is analytic?
+\begin{example}
+	$e^x = \sum_{k=0}^\infty \frac{1}{k!}x^k$ for every $x$. $e^x$ is analytic: it is equal to its Taylor expansion on a domain.
+\end{example}
+\begin{example}
+	$e^{-x^2}$, derivative is $-2xe^{-x^2}$, at $x=0$ value is 0. (maybe not this function)
+\end{example}
+
+There are functions that are not analytic but have a Taylor expansion, but they are not equal.
+What is an analytic polynomial? $P(x,y) = U(x,y) + v(x,y)i$.
+What is a polynomial? For just now: we mean $u(x,y),v(x,y)$ are polynomials:
+\begin{example}
+	$P(x,y)=xy$, $P(x,y) = x^2-y^2+2xyi$.
+\end{example}
+
+OR: could talk about $z$ as variable: $P(z) = z^2 = x^2-y^2+2xyi$ and $z=x+yi$.
+Here: because we can express the function as a polynomial in the complex variable $z$, is what makes it an analytic polynomial.
+\begin{example}
+	Consider $P(x,y) = x^2+y^2-2xyi$, it is \underline{not analytic}.
+\end{example}
+
+\begin{definition}
+	$P(x,y)$ polynomial in $\mb R$ variables $x,y$ is analytic if there are complex numbers $\alpha_k\in \mb C$ such that $P(x,y) = \alpha_0 + \alpha_1 z + \alpha_2 z^2 + \cdots + \alpha_N z^N$ with $z=x+yi$.
+\end{definition}
+
+\begin{example}
+	$P(x,y) = x = \frac{z+\conj{z}}{2} \neq \sum_{k=0}^\infty \alpha_k z^k$, so it is not analytic. Read example on P.22. $x^2+y^2-2xyi$ is not analytic.
+\end{example}
+Why can't you just set $y=0$? Because equality must hold all the time for all $x,y$ where the function is defined.
+What kind of set will be allowed for this equality? They are going to be Regions.
+
+Set $f(x,y) = u(x,y)+v(x,y)i$, where $(x,y)=z=x+yi$. Observe $u(x,y),v(x,y)$ are real valued functions of two variables, so we have $u_x=\frac{\partial u}{\partial x}$, $u_y = \frac{\partial u}{\partial y}$, and $v_x,v_y$. So $f_x = u_x+v_x i$ and $f_y = u_y + v_y i$.
+
+\begin{proposition}
+	A polynomial $P(x,y)$ is analytic if and only if $P_y=iP_x$.
+\end{proposition}
+\begin{example}
+	$P(x,y) = u(x,y) + v(x,y) i$, so $P_y(x,y) = u_y + v_y i = iP_x = i(u_x + v_x i) = -v_x + u_x i$.
+\end{example}
+\begin{definition}
+	[\underline{Cauchy-Riemann Equations}] $f=u+vi$ is analytic if and only if $u_x=v_y$ and $u_y=-v_x$.
+\end{definition}
+\begin{example}
+	Let's use them to test the functions. $f_1(x,y) = x^2-y^2+2xyi$. We know that $f_1$ is analytic because we showed it is equal to $z^2$. Let $f_2(x,y) = x^2 + y^2 - 2xyi$. Use CR equations to test. $u_x = 2x$, $u_y = 2y$, $v_x=-2y$, and $v_y=-2x$. $u_y$ and $v_x$ satisfy CR but $u_x$ and $v_y$ do not, so it is not analytic.
+\end{example}
+
+\begin{definition}
+	$f:\mb C \ra \mb C$ is differentiable at $z_0\in \mb C$ if $f(z_0)$ exists (is defined), $f$ is defined on an open disk $D(z_0,r)$, and $\displaystyle \lim_{h\ra 0} \frac{f(z_0+h)-f(z_0)}{h} = f'(z_0)$ exists with $h\in \mb C$.
+\end{definition}
+\begin{example}
+	$f(z) = \conj{z}$, $f(x,y) = x-yi$. So $u(x,y) = x$ and $v(x,y) = -y$. \begin{align*} \lim_{h\ra 0} \frac{f(z+h)-f(z)}{h} &= \lim_{h\ra 0} \frac{\conj{z+h}-z}{h} = \lim_{h\ra 0} \frac{\conj{h}}{h}, &
+	\frac{\conj{h}}{h} &= \begin{cases} 1 & h\in\mb R \\ -1 & h\in i\mb R\\ \cdots & \text{other things}\end{cases}, &
+	\frac{\conj{i}}{i}&=-1\cdot\frac{i}{i}\end{align*}
+	 Limit does not exist, $f$ is not complex differentiable anywhere.
+\end{example}
+
+\begin{proposition}
+	The sum and product of differentiable functions is also differentiable. The quotient is also differentiable provided the denominator is not equal to zero.
+\end{proposition}
+
+\begin{proposition}
+	Polynomials are differentiable.
+\end{proposition}
+\begin{proof}
+	$P(z) = c$ with $c\in \mb C$ is differentiable. Then $\displaystyle \lim_{h\ra 0} \frac{P(z+h)-P(z)}{h} = \lim_{h\ra 0} \frac{c-c}{h} = 0$.
+	$P(z) = z$? $\displaystyle \lim_{h\ra 0} \frac{z+h-z}{h} = \lim_{h\ra0} \frac{h}{h} = 1$. All polynomials $ P(z) = \sum_{k=0}^N \alpha_k z^k$ are differentiable due to proposition 3. 
+\end{proof}
+
+\subsection{Power Series}
+\begin{definition}
+	$\{a_n\}$ is a sequence of $\mb R$-numbers.
+	$\sup a_n = $ the smallest number that is larger than all $a_n$.
+\end{definition}
+
+\begin{example}
+	$a_n=-1/n$ for $n\geq 1$. The $\sup a_n = 0$. Observe for no $n$ we have $a_n=0$.
+\end{example}
+\begin{example}
+	$b_n=(-1)^n = \begin{cases} -1 & \text{odd} \\ 1 & \text{even} \end{cases}$ so $\sup b_n = 1$.
+\end{example}
+
+\begin{definition}
+	$\displaystyle \overline{\lim_{n\ra\infty}}a_n = $ limit superior or $\displaystyle \limsup_{n\ra\infty} a_n = \lim_{n\ra\infty} \left(\sup_{k\geq n} a_k\right)$. So at $n=1$ it is $\displaystyle \sup_{k\geq 1} a_k$ and at $n=2$ it is $\displaystyle \sup_{k\geq 2} a_k$.
+\end{definition}
+\begin{example}
+	$a_1$ was strictly bigger (or equal to) all $a_n$. Then $\displaystyle\sup_{k\geq 1} a_k = a_1$. $\displaystyle\sup_{k\geq 2} a_k < a_1$.
+\end{example}
+$\displaystyle \overline{\lim_{n\ra\infty}} a_n$ always exists.
+\begin{example}
+	$\displaystyle \overline{\lim_{n\ra \infty}} b_n = 1$
+\end{example}
+\begin{example}
+	$\displaystyle \overline{\lim_{n\ra \infty}} a_n = 0$
+\end{example}
+
+\underline{In fact}: If $\{a_n\}$ convergent sequence, then $\overline{\lim}$ $ a_n = \lim a_n$.
+\begin{example}
+	$a_n=1/n$, $\sup_{k\geq 1} a_n = 1$, $\sup_{k\geq 2} a_n = 1/2$, and $\displaystyle \sup_{k\geq n} 1/n = 1/n$.
+\end{example}
+
+\underline{Take away}: (*) $\displaystyle \overline{\lim_n}$ $\displaystyle a_n = \lim_n a_n$ (if $\{a_n\}$ convergent). (*) $\displaystyle \overline{\lim_n}$ $ a_n$ is a number when $\{a_n\}$ is bounded \underline{even} if sequence doesn't converge.
+
+\subsubsection{Properties of $\displaystyle \overline{\lim_n}$  $a_n = L$}
+\begin{enumerate}
+	\item For every $N$, every $\epsilon>0$ there is a $k\geq N$ such that $a_k \geq L-\epsilon$.
+	\item For every $\epsilon>0$ there is an $N$ such that $a_k \leq L+\epsilon$ for every $k> N$.
+	\item For $c\geq 0$ we have $\overline{\lim}$ $ca_n = c\cdot L$.
+\end{enumerate}
+\begin{definition}
+	A power series $\displaystyle \sum_{k=0}^\infty c_k z^k$, where $C_k\in\mb C$ and $z$ is a complex variable.
+\end{definition}
+
+\newpage
+
+\begin{theorem}
+	$\displaystyle \overline{\lim_k} |C_k|^{1/k} = L \implies$
+	\begin{enumerate}
+		\item If $L=0$ then $\sum_{k=0}^\infty C_k z^k$ converges everywhere.
+		\item If $L=\infty$ then $\sum_{k=0}^\infty C_kz^k$ does not converge except at $z=0$.
+		\item If $0<L<\infty$ then setting $R=1/2$ and $\sum C_kz^k$ converges for $|z|<R$, diverges for $|z|>R$, and for $|z|=R$ \underline{Who knows??} Must test more.
+	\end{enumerate}
+\end{theorem}
+
+\underline{Power series at $z=0$}: $\sum_{k=0}^\infty C_k 0^k = C_0$. \underline{Object}: $0^0$ is undefined. \underline{In this case} allow $0^0=1$.
+
+\underline{Look at} Theorem for geometric series. $C_k=r^k$. So $\overline{\lim_k} |C_k|^{1/k} = \overline{\lim_k} |r| = |r|$. If I were to apply the root test from Calc III: $\lim|r^kz^k| = |r\cdot z| < 1$ convergent. $|z|<\frac{1}{|r|}$.
+
+\begin{theorem}
+	[Weierstrass M-test (*)] If $|a_k z^k| \leq M_k$ on $D$ domain and $\sum M_k$ convergent then $\sum C_k z^k$ convergent.
+\end{theorem}
+
+\begin{proof}
+	\underline{Case 1}: $L=0$. $\overline{\lim}|C_k|^{1/k} = 0$ also means $\overline{\lim}|C_k|^{1/k} |z| = 0$ for every $z$ because of (3). By (2) $\epsilon = 1/2$ there is an $N$ so that if $k>N$ then $|C_k|^{1/k}|z|\leq 0+\frac{1}{2}$, which we raise to the poewr $k$. So $|C_k|\cdot|z|^k = |C_k z^k| \leq \frac{1}{2^k}$. Since $\frac{1}{2^k}$ is convergent then $\sum C_k z^k$ convergent by Weierstrass M-test.
+	
+	\underline{Case 2}: $L=\infty$. Assume $z\neq 0$. $L = \infty$ means that for some $N$, if $n\geq N$ then $\sup_{k\geq n} |C_k|^{1/k} > \frac{1}{|z|}$. $|z|$ is also some fixed positive $\mb R$-number. \underline{In particular}, $|C_k|^{1/k} \not{\ra} 0$. \underline{And so} $|C_k|^{1/k} \cdot |z| >1$ and $|C_k z^k|>1$ does not converge to 0 by divergence test. (Similar to Case (3) $|z|> R$).
+	
+	\underline{Case 3}: $0<L<\infty$, $R=1/L$. Assume $|z|<R$. There is a $\delta$ so that $|z| = R(1-2\delta)$ and $\delta=\frac{1}{2}(1-\frac{|z|}{R})$. So $\overline{\lim}|C_k|^{1/k} |z| = L\cdot |z| = L\cdot R(1-2\delta) = 1-2\delta$. Apply (2) again: Take $\epsilon=\delta$ then there is an $N$ such that $|C_k|^{1/k} |z| \leq L+\epsilon = (1-2\delta) + \delta = 1-\delta < 1$. So then $|C_k z^k| \leq (1-\delta)^k$, which is like geometric series $\sum(1-\delta)^k$. So again, by Weierstrass M-test, convergent.
+\end{proof}
+
+This Theorem can be tested by using a geometric series like $C_k = 1$.
+Go through examples at end of 2.2.
+
+\begin{example}
+	$\lim n^{1/n} = 1$. $\sum nz^n$ convergent for $|z|<1$. Divergent: $|z|\geq 1$.
+\end{example}
+\begin{example}
+	$\sum\frac{1}{n!}z^n$. $\lim \left(\frac{1}{n!}\right)^{1/n} \ra 0$. Convergent everywhere.
+\end{example}
+\begin{example}
+	$\sum\frac{z^n}{n}$. $\lim\left(\frac{1}{n}\right)^{1/n} = 1$, convergent at $|z|<1$ and divergent at $|z|>1$. Convergent for every $|z|=1$ except $z=1$.
+\end{example}
+
+\subsection{Differentiability and Uniqueness of Power Series}
+
+Q: Are power series differentiable? $\frac{d}{d z} \left( \sum_{n=0}^\infty C_nz^n \right) = \sum_{n=0}^\infty \frac{d}{d z} \left( c_n z^n \right) = 0+ \sum_{n=1}^\infty nC_n z^{n-1}$.
+
+If $\sum_{n=0}^\infty C_n z^n $ convergent is $\sum_{n=1}^\infty n C_n z^{n-1}$ convergent?
+$\overline{\lim}|nC_n|^{1/(n-1)} = \overline{\lim} \left( |nC_n|^{1/n} \right) ^{n/(n-1)} = \overline{\lim_n}\left(|n|^{1/n} \right)^{n/(n-1)} \overline{\lim} \left( |C_n|^{1/n} \right)^{n/(n-1)} = \overline{\lim} |C_n|^{1/n}$ which is convergent, radius of convergence is the same.
+
+\begin{theorem}
+	$f(z) = \sum C_n z^n$ convergent, $|z|<R \implies f'(z) $ exists and is equal to $\sum nC_n z^{n-1}$ on $|z|<R$.
+\end{theorem}
+\begin{proof}
+	$R=\infty$ converges everywhere. $\frac{f(z+h)-f(z)}{h} = \sum C_n \frac{[(z+h)^n-z^n]}{h}$ so $\frac{f(z+h)-f(z)}{h} - \sum nC_n z^{n-1} = \sum_{n=2}^\infty C_n b_n$, where $b_n = \frac{(z+h)^n-z^n}{h}-nz^{n-1}$. When $n=0$ then $=0$, if $n=1$ then $=C_1$. There is no $n=0$ here, so at $n=1$ then $C_1$. Next $$b_n = \sum_{k=0}^n \binom{n}{k} h^{k-1} z^{n-k} \leq |h| \sum_{k=0}^n \binom{n}{k} |z|^{n-k}$$ using the triangle inequality, where $|h|<1$. Then $b_n = |h| \sum_{k=0}^n \left( | z | +1 \right)^n.$ \underline{Combine}: $$\left| \frac{f(z+h) - f(z)}{h} - \sum_{n=0}^\infty nC_nz^{n-1} \right| \leq |h| \sum_{n=0}^\infty |C_n| (|z| +1)^n  = |h| L \underset{n\ra0}{\longrightarrow} 0. $$ $|z|+1=w$.
+\end{proof}
+
+\begin{example}
+	$\sum_{n=0}^\infty \frac{1}{n!} z^n$ (secret = $e^z$). $\frac{d}{dz} \left(\sum_{n=0}^\infty \frac{1}{z^n} \right) = \sum_{n=1}^\infty \frac{n}{n!} z^{n-1} = \sum_{n=0}^\infty \frac{1}{n!} z^n$
+\end{example}
+\begin{corollary}
+	Power series are $\infty$-differentiable (i.e. $f^{(n)}(z)$ exists for every $n$).
+\end{corollary}
+
+Taylor vs Maclaurin series for a $\mb R$-variable. ($f= \infty$-differentiable) $\sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n$, Idea here is to take limits of polynomials $P_N(x)$ of degree $N$,  $P_N(0) = f(0)$, $P_N'(0) = f'(0), \dots$, $P^{(n)}(0) = f^{(n)}(0)$. We will mostly for $x_0=0$, which is Maclaurin series. $P_3(x) = a_3 x^3 + a_2x^2 + \cdots + a_0$, $P_3(0) = f(0) = a_0$. $P_3'(x) = 3a_3x^2 + 2a_2x + a_1$ and $P_3'(0) = f'(0)=a_1$. $P_3''(x) = 6a_3 x + 2a_2$ and $P_3''(0) = f''(0) = 2a_2 \ra a_2 = \frac{1}{2}f'(0)$. For $P_3'''(x) = 6a_3$ and $P_3'''(0) = f'''(0) \ra a_3 = \frac{f'''(0)}{6} = \frac{f'''(0)}{3!}$.
+\begin{corollary}
+	$f(z) = \sum C_n z^n$ has convergence $R>0$. $C_n = \frac{f^{(n)}(0)}{n!}$. Go over proof.
+\end{corollary}
+\begin{example}
+	$\frac{1}{1-z} \equiv \sum_{k=0}^\infty z^k$ iff $|z|<1$.
+\end{example}
+\begin{theorem}
+	[Uniqueness] $\sum C_n z^n = 0$ for every $z\in\{z_k:k\in\mb N\}$ property $z_k\underset{k\ra\infty}{\longrightarrow} 0$ then $\sum_{n=0} C_nz^n \equiv 0$ when $|z|<R$. Also $z_k\neq z_l$ when $k\neq l$.
+\end{theorem}
+\begin{example}
+	\underline{Suppose}: $z_k = \frac{1}{k} \ra 0$. \underline{Saying in the assumption}: $\sum_{n=0}^\infty C_n \left(\frac{1}{n}\right)^n = 0$.
+\end{example}
+\begin{proof}
+	$f(z) = C_0 + C_1 z + C_2 z^2 + \cdots $. Know $f$ differentiable on some disk. Know $f(z_k) =0$. Case 1 is not possible of convergence. Have $R>0$ or $f$ is $\infty$-differentiable there (\& in particular continuous). $f(z_k) = 0 \ra f(0)$, $z_k\ra 0$. Function is continuous at $z_0$ if $z_k \ra z_0$ and $f(z_k)\ra f(z_0)$. So $f(0) = 0 = C_0$. \underline{Problem with induction}:  Can show $f'(0)=0$, shows $C_1=0$. \underline{Don't know} $f'(z_k)=0$ for every $k$.
+\end{proof}
+\underline{Power series}: Converges at $z=0$ or converges everywhere ($R=\infty$) or $0<R<\infty$ converges $|z|<R$, $|z|>R$ diverges.
+\begin{corollary}
+	Power series expansions are unique and they are the Maclaurin series at $z=0$ and you don't need too much information about the function, it's enough to know the values on sequence $z_k\ra0$.
+\end{corollary}
+
+\section{Analyticity and Cauchy-Riemann equations}
+
+\begin{proposition}
+	$f = u+iv$, differentiable at $z$, then $f_x,f_y$ exists and satisfy Cauchy Riemann equations. $u_x=v_y$ and $u_y=-v_x$.
+\end{proposition}
+\begin{proof}
+	Assume $h\ra 0$ on $\mb R$. $\displaystyle \frac{f(x+h,y)-f(x,y)}{h} \underset{h\ra0}{\longrightarrow} f_x$. Assume that $h\ra 0$ on $i\mb R$. $h=i\eta$ such that $m\ra0$ on $\mb R$. (*) $\displaystyle\frac{f(z+h)-f(z)}{h} = \frac{f(x,y+h)-f(x,y)}{i\eta} = f_y/i$.
+\end{proof}
+
+\begin{proof}
+	[Redo proof. Uniqueness Theorem] $f(z) = \sum_{k=0}^\infty C_k z^k$, there are $z_n\ra 0$. $f(z_n) = 0$ then $f(z) \equiv 0$ (i.e.) all coefficients $C_k=0$.
+	
+	By Assumption $f(z_n)=0$ is defined on some disk of positive radius, so $f$ is continuous at $z=0$. $f(z_k)\ra f(0)$. $f(0) = \sum_{k=0}^\infty C_k (0^k) = C_0 = 0$.
+	What do we have left? $f(z)=\sum_{k=1}^\infty C_k z^k = z \sum_{k=0}^\infty C_{k+1} z^k$. \underline{Consider}: $\frac{f(z)}{z} = \sum_{k=0}^\infty C_{k+1} z^k$, $\lim_{n\ra\infty} \frac{f(z_n)}{z_n} = \lim_{n\ra \infty} 0 = 0$. \underline{Repeat} $\frac{f(z)}{z^2} = \sum_{k=0} C_{k+1} z^k$.
+\end{proof}
+
+\begin{definition}
+	$f$ is analytic at $z$ if it's differentiable on a neighborhood of $z$ and is \underline{analytic on set $S$} if it's analytic for each $z\in S$. Differentiable at every point in that 'hood. At a point $z$, $\lim_{n\ra0} \frac{f(z+h)-f(z)}{h} $ exists (*) then $f$ satisfies the Cauchy-Riemann equations.
+	Analyticity at a point $z$ is pretty strong because we insist something happens on a whole 'hood of $z$.
+\end{definition}
+\begin{note}
+	\underline{Don't worry}: In general for $\mb R$-variable you can be differentiable at point but not in a 'hood. For $\mb C$ differentiable at $z=0$ implies differentiable on $D(r,0)$.
+\end{note}
+\begin{proposition}\underline{Q}: Is the converse true? 
+	Says when \underline{true}: If happen to know that Cauchy-Riemann equations satisfied, is differentiability implied? \underline{Answer}: No, but under added hypotheses there are.
+\end{proposition}
+\begin{definition}
+	If analytic on $\mb C$ we say $f$ is \underline{entire}.
+\end{definition}
+\begin{proposition}
+	$f$ analytic and $|f| = $ constant then $f$ is constant.
+\end{proposition}
+\begin{proof}
+	To prove this we'll need: $f=u+iv$, $f$ analytic, $u = $ constant then $f$ is constant. Look at HW, apply to this proposition.
+	
+	Assume $|f|$ is constant. Either $|f|\equiv0$ (then $f\equiv 0$)or $|f|\neq 0$. Assume $|f|^2 = u^2 + v^2\neq0$. \underline{Differentiate}: $\frac{\partial}{\partial x} |f|^2 = 2uu_x + 2vv_x = \frac{\partial}{\partial x} C = 0$, where $C$ is constant. Similarly for $y$: $2uu_y+2vv_y = 0$. Substituting using the Cauchy-Riemann equations, $u\cdot(uu_x-vu_y)=u^2u_x+uvu_y=0$ and $v(uu_y+vu_x) = uvu_y+v^2u_x= 0$. Adding them together, $(u^2+v^2)u_x = 0$, so $u_x=0$ because $u^2+v^2= |f|^2 = $ constant. Similarly, show $u_y=0$, implying $u$ is constant and by Prop3.6 $f$ is constant.
+\end{proof}
+
+\subsection{$e^z, \sin{z}, \cos{z}$}
+
+\underline{Start with $e^z$}: Know $e^x$ is if $x\in\mb R$. Like to generalize to $z\in\mb C$.
+\underline{Properties}: $$e^{z_1+z_2} = e^{z_1}\cdot e^{z_2}$$
+\begin{definition}
+	Want to define $f(z)$ such that \begin{itemize}
+		\item[(1)] $f(x) = e^x$,
+		\item[(2)] $f(z_1+z_2) = f(z_1)\cdot f(z_2)$.
+	\end{itemize}
+\end{definition}
+\underline{First}: $z=x+iy$. Apply (2) to $z$ as $f(x+iy)=f(x)\cdot f(iy)$. Then apply (1) to get $f(x+iy) = e^x\cdot f(iy)$.
+\underline{Q}: Who is $f(iy)$? Set $f(iy)=A(y) + iB(y)$.
+Combine to get $f(z) = e^x A(y) = e^x B(y)i$.
+\underline{Another condition}: 
+\begin{itemize}
+	\item[(3)] $f$ is analytic.
+\end{itemize}
+This tells $u_x=v_y$: $e^x A(y) + e^xB'(y)$, so $A(y) = B'(y)$. With $u_y=-v_x$: $e^x A'(y) = -e^xB(y)$, so $A'(y) = -B(y)$. \underline{Differential Equation} $A''=-A$. Solutions to this equation live in a 2-dimensional vector space: $A(y) = \alpha \cos{y} + \beta \sin{y}$. \underline{Looking for}: $\alpha,\beta$. $B(y) = -A'(y) = -\beta\cos{y} + \alpha \sin{y}$. At \underline{$z=0$} $f(0) = e^0 = A(0) + iB(0)$, so $A(0) = 1$ and $B(0)=0$ and $\alpha=1$, $\beta=0$.
+\underline{Figured out}: $$f(z) = e^x\cos{y} + ie^x\sin{y},$$
+where $z=x+iy$. We want $f(x+iy)=f(x)\cdot f(iy)$, so $f(iy) = e^{iy} = \cos{y} + i\sin{y}$.
+
+\underline{Double angle formula}: find $\cos{2y} = \dots$, so $f(i2y) = \cos{2y} + i\sin{2y} = f(iy + iy) = (\cos{y} + i\sin{y})(\cos{y}+i\sin{y})$. \underline{Expand}: $\cos^2{y} -\sin^2{y} + 2iy\cos{y}\sin{y}$, so $\cos{2y} = \cos^2{y}-\sin^2{y}$ and $\sin{2y} = 2\cos{y}\sin{y}$.
+
+Talk about hyperbolic sine and cosine. $\sin{y} = \frac{1}{2i}(e^{iy}-e^{-iy}) = \Im e^{iy}$ and $\cos{y}\frac{1}{2}(e^{iy}+e^{-iy}) = \Re e^{iy}$.
+
+$z\mapsto e^z = e^x e^{iy}$, where $e^{iy} = \cos{y} + i\sin{y}$. Is 0 in the image? No. Which $z$ gives $e^z=1$? $e^x\cos{y} = 1$ and $e^x\sin{y}=0$, so $x=0$ and $y=0\pmod{2\pi k}$. \underline{Suppose}: image is $e^x<1$, then $e^x\cos{y} = e^x$ and $e^x \sin{y} = 0$. \underline{Q}: $e^x<1$, so $x$ is where? $x<0$.
+
+\section{Line Integrals and Entire Functions}
+
+Properties of line integrals.
+Consider $z(t) = x(t) + iy(t)$ and $a\leq t\leq b$.
+\begin{definition}
+	$\int_a^b z(t) \, dt = \int_a^b x(t) \, dt + i\int_a^b y(t) \, dt$
+\end{definition}
+Want to think about a class of \say{nice curves.}
+\begin{definition}
+	$z(t)$ is \underline{differentiable} if $\dot{z}(t) = x'(t) + iy'(t)$ is continuous on $[a,b]$ and $z(t)$ is \underline{piecewise} \underline{differentiable} if $\dot{z}(t)$ is continuous on $[a,b]$ except for finitely many points. Called $C^1$, i.e. has derivative and derivative is continuous.
+\end{definition}
+\begin{note}
+	Book will allow what should be piecewise smooth to be smooth.
+\end{note}
+\begin{definition}
+	$z(t)$ is \underline{smooth} if $\dot{z}(t) \neq 0$ (except for finitely many points = piecewise smooth). $\dot{z}(t)$ is 2-equations ($\Re z=0$ and $\Im z = 0$).
+\end{definition}
+\begin{example}
+	$z(t) = t^2 + it^3$ on $-1\leq t \leq 1$. $\dot{z}(t) = 2t = 3it^2 = 0$ for $t=0$.
+\end{example}
+\underline{Usually}: Curve $C: z(t) = x(t) + iy(t)$ on $a\leq t \leq b$ (assumed it's smooth / piecewise smooth).
+\underline{Assume}: $f(z): \mb C$-value function, assume it's continuous on $C$.
+The line integral of $f$ along $C$ is $\int_C f(z) \, dz = \int_a^b f(z(t))\dot{z}(t) \, dt$, which is *like a chain rule*.
+
+(*) $\int_C f = \int_C f(z) \, dz$ ($\la$ lazy way to write \say{line integral}) is independent of parametrization (as long as we're going in the same direction).
+\begin{example}
+	$f(z) = e^z$ and $z(t) = t^2 + 0i$ on $t\in[1,2]$. So $\int_C f(z) \, dz = \int_z^2 e^{t^2}(2t)\, dt$. Set $\tau = t^2$ and $d\tau = 2t\, dt$, so $\tau(1) = 1$ and $\tau(2) = 4$. Then we get $\int_1^4 e^\tau \, dt = \int_1^4 e^t \, dt = e^4 - e$.
+	\underline{Do smae}: $\omega(t) = t$ on $1\leq t \leq 4$. So $\int_C f(z) \, dz = \int_1^4 e^t\, dt = e^4 -e$.
+\end{example}
+\underline{Q}: When are we for sure that $\int_{C_1} f = \int_{C_2} f$? \underline{A}: When $C_1$ and $C_2$ are \say{smoothely equivalent.}
+$C_1: z(t)$ on $a\leq t\leq b$ and $C_2: \omega(t)$ on $c\leq t \leq d$.
+\begin{definition}
+	$C_1$ and $C_2$ are smoothly equivalent if there is a 1-1 map $\lambda : [c,d] \ra [a,b]$ such that $\lambda$ is 
+	\begin{enumerate}
+		\item $\lambda$ is 1-1
+		\item $\lambda$ is differentiable and has continuous derivative
+		\item $\lambda(c) = a$ and $\lambda(d) = b$
+		\item $\lambda'(t)>0$ on $t\in(c,d)$
+		\item $\omega(t) = z(\lambda(t))$
+	\end{enumerate}
+	Item (4) means that $\lambda $ is increasing, in particular haven't changed directions.
+\end{definition}
+\begin{example}
+	[Optional Exercise] Smooth equivalence is an equivalence relation on curves.
+\end{example}
+\begin{proposition}
+	If $C_1$ and $C_2$ are smoothly equivalent, then $\int_{C_1} f = \int_{C_2} f$.
+\end{proposition}
+\begin{proof}
+	\underline{Idea of proof}: $I_1=\int_{C_1} f(z) \, dz = \int_a^b f(z(t))\dot{z}(t) \, dt$. $\dot{z}(t) = x'(t) + iy'(t)$ and $f(z(t) = u(z(t)) + iv(z(t))$. Then $I_1=\int_a^b u(z(t))x'(t)\, dt - \int_a^b v(z(t))y'(t)\, dt + i\int_a^b v(z(t))x'(t)\, dt + i\int_a^b u(z(t))y'(t) \, dt$. Where did the $i$ and minus come from? It comes from $iv(z(t))$ and $iy'(t)$ in $f(z(t))$ and $\dot{z}(t)$. Then $I_2 = \int_{C_2} f(z) \, dz = \int_c^d f(\omega(t))\dot{\omega}(t) \, dt = \int_c^d [u(\omega(t))+iv(\omega(t))]\dot{\omega}(t)\,dt$. Does $I_1 =?= I_2$?
+	\underline{Chain rule as before}: $\tau = \lambda(t)$ and $d\tau = \lambda'(t)\, dt$. 
+	We have $\dot{\omega}(t) = x'(\lambda(t))\lambda'(t) + y'(\lambda(t))\lambda'(t)i$.
+	\underline{Look @}: $\int_c^d u(z(\lambda(t))) x'(\lambda(t)) \lambda'(t) \, dt = \int_a^b u(z(\tau))x'(\tau)\, d\tau$.
+\end{proof}
+\begin{definition}
+	$C: z(t)$ on $a\leq t \leq b$. Define $-C: z(a+b-t)$ on $a\leq t \leq b$.
+\end{definition}
+\begin{proposition}
+	$\int_{-C} f = -\int_C f$.
+\end{proposition}
+\begin{proof}
+	\underline{Read this}: Leave as exercise. Where did they use fact: $\int_a^b r(t) \, dt = -\int_b^a r(t) \, dt$. (line in proof).
+\end{proof}
+\begin{example}
+	$f(z) = x^2 + iy^2$. $C: z(t) = t+ it$ on $0\leq t \leq 1$. $\dot{z} (t) = 1+i$. So $f(z(t)) = t^2 + it^2$ and $\int_C f(z) \, dz = \int_0^1 (t^2+it^2) ( 1+i) \, dt = (1+i)^2\int_0^1 t^2\, dt = 2i/3$.
+\end{example}
+\begin{example}
+	$f(z) = \frac{1}{z}$, $C:z(t) = R\cos{t} + iR\sin{t}$, where $R>0$ and $0\leq t\leq 2\pi$. $\dot{z}(t) = -R\sin{t} + iR\cos{t}$. $f(z) = \frac{\conj{z}}{|z|^2}$, so $f(z(t)) = \frac{R\cos{t}-iR\sin{t}}{R^2}$. Then $\int_C f(z) \, dz = \int_0^{2\pi} \frac{R\cos{t} - R\sin{t}}{R^2}\left(-R\sin{t} + iR\cos{t}\right) \, dt = \int_0^{2\pi} (-\cos{t}\sin{t}+\sin{t}\cos{t}) + i(\sin{t}^2 + \cos{t}^2) \, dt = \int_0^{2\pi} i\, dt = 2\pi i$.
+\end{example}
+
+\underline{Michael Garrison presentation}:
+Let $z(t) = x(t) + iy(t)$ on $a\leq t \leq b$. So $\int_a^b z(t) \, dt = \int_a^b x(t) \, dt + i\int_a^b y(t) \, dt$. Then $\dot{z}(t)$ is differentiable if $\dot{z}(t) = x'(t) + iy'(t)$ is continuous on $[a,b]$ except for finitely many points. $z(t)$ is smooth if $\dot{z}(t)\neq 0$ except for finitely many points on $[a,b]$.
+Let $C$ be a smooth curve given by $z(t)$ on $a\leq t\leq b$. Suppose $f$ is continuous at all points $z(t)$.
+Then $\int_C f(z) \, dz = \int_a^b f(z(t))\dot{z}(t) \, dt$.
+\begin{example}
+	$f(x) = x^2 + iy^2$ with $C:z(t) = t+it$ on $0\leq t \leq 1$, so $\dot{z}(t) = 1+i$. Then $\int_C f(z) \, dz = \int_0^1 (t^2+it) (1+i) \, dt = \int_0^1 (1+i)^2 t^2 \, dt = (1+i)^2 \int_0^1 t^2 \, dt = t^3 = \frac{t^3}{3} \big\rvert_0^1 = 2i/3$.
+\end{example}
+
+$\int_C f = \int_a^b f(z(t))\dot{z}(t) \, dt$, where $C:z(t)$ on $a\leq t\leq b$. The RHS appears to depend on \say{parametrization} of $C$, while LHS doesn't appear that way: showed in fact independent, up to smooth equivalence.
+
+\begin{example}
+	$\int_C z^k = 0$, where $C = $ circle centered at 0.
+\end{example}
+
+\begin{proposition}
+	$C$ is smooth, $f,g$ are continuous on $C$, $\alpha\in\mb C$. $$\int_C(\alpha f + g)\, dz = \alpha \int_C f \, dz + \int_C g \, dz$$ shows Linearity.
+\end{proposition}
+
+Notation: (bad) Let $\alpha, \beta\in\mb C$, then $\alpha << \beta$ means $|\alpha|\leq |\beta|$. Inequalities come from order on $\mb R$. This confuses us to think there's an order on $\mb C$. \underline{Other people}: $N>>1$ means \underline{$N$ is much greater than 1}.
+
+\begin{lemma}
+	$G(t)$ is $\mb C$-valued function. $\left| \int_a^b G(t) \, dt \right| \leq \int_a^b |G(t)| \,dt $. In book: $$\int_a^b G(t) \, dt << \int_a^b | G(t) | \implies \left| \int_a^b G(t) \, dt \right| \leq \left| \int_a^b |G(t)| \,dt \right| = \int_a^b |G(t)| \,dt .$$
+\end{lemma}
+\begin{proof}
+	$e^{-i\theta} \int_a^b G(t) \, dt = R e^{i\theta}\cdot e^{-i\theta}$ for $R>0$ and $\int_a^b e^{-i\theta} g(t)\, dt = R \in\mb R$! Since $e^{-i\theta} G(t) = A(t) + iB(t)$, it follows that $\int_a^b A(t) \, dt + i\int_a^b B(t) \, dt = R \implies i\int_a^b B(t)\, dt = 0$.
+	
+	\underline{Recap}: $R = \int_a^b e^{-i\theta} G(t) \, dt = \int_a^b A(t) \, dt$. $A(t) = \Re(e^{-i\theta} G(t))$. \underline{Recall}: $\Re z \leq |\Re z| \leq |z|$. Then $A(t) \leq |A(t)| \leq |e^{-i\theta} G(t)|$.
+	So $R = \int_a^b A(t) \, dt \leq \int_a^b |A(t) | \, dt \leq \int_a^b |e^{-i\theta} G(t) | \, dt = \int_a^b |G(t)| \, dt$.
+\end{proof}
+\begin{example}
+	Real valued $\left| \int_a^b f(x) \, dx \right| \neq \int_a^b |f(x)| \, dx$. For example: $\int_{-1}^1 x\, dx = 0 \neq \int_{-1}^1 |x| \, dx = 1$.
+\end{example}
+\begin{theorem}
+	[$M$-$L$ Formula] \underline{Assumptions}: $|f(z)|\leq M$ for each $z\in C$. $l(C) = $ length of $C$ is $L$. \underline{Conclusion}: $\left| \int_C f(z) \, dz \right| \leq M\cdot L$.
+\end{theorem}
+\begin{proof}
+	$C:z(t) = x(t) + iy(t)$ on $a\leq t \leq b$. Then $\left| \int_C f(z) \, dz \right| = \left| \int_a^b f(z(t)) \dot{z}(t) \, dt \right| \leq \int_a^b | f(z(t))\dot{z}(t) | \, dt$. Since $|f(z(t))| \leq M$ for $z(t)\in C$ and $|f(z(t)) \dot{z}(t) | \leq M |\dot{z}(t)|$, $\left| \int_C f(z) \, dz \right| \leq M\int_a^b | \dot{z}(t) | \, dt = ML$, because $|\dot{z}(t) | = \sqrt{ x'(t)^2 + y'(t)^2}$.
+\end{proof}
+\begin{proposition}
+	Assume $f,f_n$ are continuous and smooth on $C$, then $f_n \ra f$ uniformly. \underline{Conclusion}: $\int_C f = \lim_{n\ra\infty} \int_C f_n \in \mb C$.
+\end{proposition}
+\begin{example}
+	$f_n(x) = x^n \ra \begin{cases} 0 & x\in[0,1) \\ 1 & x=1 \end{cases}$ is not uniform.
+\end{example}
+\begin{proof}
+	Want to show $\left| \int_C f(z) \, dz - \int_C f_n(z) \, dz \right| \underset{n\ra\infty}{\longrightarrow} 0\in\mb R$. So $$\left| \int_a^b (f(z(t)) - f_n(z(t)) ) \dot{z}(t) \, dt \right| \leq \int_a^b | f(z(t)) - f_n(z(t)) \dot{z}(t) | \, dt \leq \epsilon\int_a^B |\dot{z}(t) | \, dt = \epsilon \cdot l(C)$$ by the $M$-$L$ formula. Uniform convergence means that for every $\epsilon>0$ there's an $N$ if $n>N$ then $|f(z)-f_n(z)|<\epsilon$. Assume $n>N$. Therefore $\int_C f_n \ra \int_C f$.
+\end{proof}
+\begin{proposition}
+	[New Fundamental Theorem of Calculus] $f=F'$, $F$ is anlytic. $C:z(t)$ on $a\leq t \leq b$. \underline{Conclusion}: $$\int_C f \, dz = F(z(b)) - F(z(a)) = \int_a^b f(z(t)) \dot{z}(t) \, dt = \int_a^b F'(z(t)) \dot{z}(t) \, dt.$$
+\end{proposition}
+\begin{proof}
+	Let's consider some $\lambda(t)$ some curve (smooth). $\dot{\lambda}(t) = \lim_{h\ra0} \frac{\lambda(t+h) - \lambda(t)}{h}$, where $h\in\mb R$.
+	Consider $\gamma(t) = F(z(t))$ on $a\leq t \leq b$. Then $\dot{\gamma}(t) = \lim_{h\ra 0} \frac{F(z(t+h)) - F(z(t))}{h} = \frac{F(z(t+h)) - F(z(t))}{z(t+h)-z(t)} \cdot \frac{z(t+h) - z(t)}{h} $.
+	If $|h|<\delta$ then $\dot{z}(t) \neq 0$ (because $C$ is smooth), $z(t+h) - z(t) \neq 0$. Thus $\dot{\gamma}(t) = F'(z(t)) \cdot \dot{z}(t)$. This is important because $\dot{\lambda}(t) = \Re(\lambda)' + i\Im(\lambda)'$.
+	\underline{Consider}: $\int_C f(z) \, dz = \int_a^b f(z(t)) \dot{z}(t) \, dt = F'(z(t))\dot{z}(t) = \int_a^b \dot{\gamma}(t) \, dt = \gamma(b)-\gamma(a) = F(z(a))-F(z(b))$.
+\end{proof}
+
+\begin{example}
+	[Brian's Presentation] (a) Consider $\frac{z^{k+1}}{k+1} \implies \left( \frac{z^{k+1}}{k+1} \right)' = z^k$. Since we know that $\frac{z^{k+1}}{k+1}$ is analytic throughout $C$, we have shown that $z^k$ is the derivative of an analytic function throughout $C$. By FTC, $\int_C z^k \, dz = \int_a^b (z(t))^k \dot{z}(t) \, dt = \frac{z(b)^{k+1}}{k+1} - \frac{z(a)^{k+1}}{k+1} = 0$.
+	(b) $\int_C z^k \, dz = 0$ using the parametrization of $C$ on $0\leq \theta \leq 2\pi$. $\int_C z^k \, dz = \int_0^{2\pi} R^K e^{ik\theta} \cdot \dot{z}(t) \, dt = i R^{k+1} \int_0^{2\pi} $
+\end{example}
+
+\subsection{Closed Curve Theorem for Entire Functions}
+\begin{definition}
+	$C$ cruve is \underline{closed} if $C:z(t)$ on $a\leq t\leq b$ and $z(a) = z(b)$. $C$ curve is \underline{simple closed} if $z(s) = s(t) \implies s=t$ or $s,t=a,b$.
+\end{definition}
+\begin{example}
+	$\infty$ shaped cruve is not simple closed but closed.
+\end{example}
+\begin{theorem}
+	$f$ entire function, $R = $ rectangle and $\Gamma$ is the boundary of $R$ $\implies$ $\int_C f(z) \, dz  = 0$.
+\end{theorem}
+\underline{First}:
+\begin{lemma}
+	$f(z) = \alpha + \beta z$ and $R,\Gamma $ as above, then $\int_{\Gamma} f(z) \, dz = 0$.
+\end{lemma}
+\begin{proof}
+	Let $\Gamma$ be a counter clockwise curve. \underline{FTC}: $F(z) = \alpha z + \frac{\beta}{2} z^2$. $\int_{\Gamma} f(z) \, dz = F(z(b)) - F(z(a)) = 0$.
+\end{proof}
+\begin{proof}
+	[Proof of Theorem] Let $\Gamma$ be a counter clockwise curve along the boundary of rectangle $R$. \underline{Consider}: $I = \int_{\Gamma} f(z) \, dz$. \underline{Objective}: Show $I=0$. or equivalently $|I| < $ any positive $\mb R$ number. Lets partition the rectangle into 4 pieces and let each piece have a counterclockwise boundary $\Gamma_1,\Gamma_2,\Gamma_3,\Gamma_4$. Then $\int_{\Gamma} f(z) \, dz = \sum_{i=1}^4 \int_{\Gamma_i} f(z) \, dz$. There is some $\Gamma^{(i)}$ with the property $\frac{|I|}{4} \leq \left| \int_{\Gamma^{(i)}} f(z) \, dz \right|$ because of above and triangle inequality. $\Gamma^{(1)}$ is the boundary of $R^{(1)}$. Repeat and choose $R^{(2)}$ and $\Gamma^{(2)}$ $\dots$ $ R^{(1)} \supset R^{(2)} \supset R^{(3)} \supset \cdots$ (*). We know $\text{Diam} R^{(k+1)} = \frac{1}{2} \text{diam} R^{(k)}$ and $\frac{|I|}{4^k} \leq \left| \int_{\Gamma^{(k)}} f(z) \, dz \right| $ with (*) nested compact sets $\cap_k R^{(k)} \neq 0$. Pick $z_0 \in \cap_k R^{(k)}$.
+	\underline{Know}: $f$ analytic. $\frac{f(z) - f(z_0)}{z-z_0} \overset{z\ra z_0}{\longrightarrow} f'(z_0)$. Take a linear approximation of $f$: $f(z) = f(z_0) + f'(z_0)(z-z_0) + \epsilon_z ( z-z_0)$, where $\epsilon_z (z-z_0)$ is an error term and has property that $\epsilon_z \ra 0$ as $z\ra z_0$.
+	\underline{By previous lemma}: $\int_{\Gamma^{(k)}} f(z) \, dz = \int_{\Gamma^{(k)}} [ f(z_0) + f'(z_0)(z-z_0)] \, dz + \int_{\Gamma^{(k)}} \epsilon_z ( z - z_0) \, dz = \int_{\Gamma^{(k)}} \epsilon_z ( z- z_0) \, dz$. 
+	Let's assume that $s$ is the longest side of $\Gamma$. $\int_{\Gamma^{(k)}} \, |dz| = l(\Gamma^{(k)})   = $ length of $\Gamma^{(k)}$ $\leq \frac{4s}{2^k}$.
+	Then $\int_{\Gamma^{(k)}} \epsilon_z (z- z_0) \, dz$, \underline{Assuming} $z\in\Gamma^{(k)}$: $|z-z_0| \leq \frac{\sqrt{2}s}{2^k}$.
+	Take $\epsilon>0$, find $N$, $|z-z_0| \leq \frac{\sqrt{2} \cdot s}{2^N}$ then $|\epsilon_z| \leq \epsilon$. Take $k>N$. Then $|z-z_0| < \frac{\sqrt{2} s}{ 2^k} < \frac{\sqrt{2} s}{2^N} \implies |\epsilon_z | \leq \epsilon$.
+	$\left| \int_{\Gamma^{(k)}} f(z) \, dz \right| = \left| \int_{\Gamma^{(k)}} \epsilon_z(z-z_0) \, dz \right| \leq \epsilon \cdot \frac{\sqrt{2}s}{2^k} \cdot \frac{4s}{2^k}$ by $M$-$L$ theorem. The conclusion is $\frac{|I|}{4^k} \leq \epsilon\cdot \frac{\sqrt{2}s}{2^k} \cdot \frac{4s}{2^k} \implies |I| \leq 4\sqrt{2} s^2 \cdot \epsilon \implies I=0$.
+\end{proof}
+
+\begin{theorem}
+	$f$ is entire and $\Gamma = $ special simple closed curve (PWS), then $\int_{\Gamma} f(z) \, dz = 0$.
+\end{theorem}
+\underline{Difference with FTC}: Don't know: $f = F'$, $F'$ analytic.
+
+\underline{Q}: What is $\ln 5$? \underline{A}: It's a number $x$ such that $e^x = 5$.
+
+\begin{theorem}
+	If $f$ is entire, then $f$ is everywhere the derivative of an analytic function, i.e. there is an $F$ such that $F' = f$. So $F(z) = \int_0^z f(\zeta) \, d\zeta$.
+\end{theorem}
+
+\begin{example}
+	[Stephen's presentation] A curve $C$ is \underline{closed} if $C: z(t) $ for $a\leq t\leq b$ then $z(a)=z(b)$ and is \underline{simple closed} if $z(s)=z(t) \implies s=t$ or $s,t=a,b$.
+	$f$ is an entire function, $R$ is a rectangle, $\Gamma$ is boundary of $R$, $\implies \int_{\Gamma} f(z) \, dz =0$. If $\Gamma$ is a special simple closed curve.
+	$M$-$L$ formula: Let $f$ be continuous, $|f(z)|\leq M$ on $C$ for each $z\in\mb C$ and $l(c) = L$. Then $\left| \int_C f(z) \, dz \right| \leq M\cdot L$.
+\end{example}
+
+Math Club/AWM student chapter: Fernos: Fractals and $\mb C$-dynamics. (Julia set, Fatou set, and Mandelbrot set).
+
+\begin{theorem}
+	[Integral Theorem] $f$ is entire $\implies$ $f$ is everywhere the derivative of an analytic function. i.e. $\exists F$, $F'(z) = f(z)$ for each $z$.
+\end{theorem}
+\begin{recall}
+	[FTC] If $f = F'$, $C:z(t)$ on $a\leq t \leq b$, then $\int_C f \, dz = F(z(b)) - F(z(a))$.
+\end{recall}
+\begin{proof}
+	Define $F(z) = \int_0^z f(\zeta) \, d\zeta = \int_{C_1} f(\zeta) \, d\zeta + \int_{C_2} f(\zeta) \, d\zeta $. \underline{Specific path} $C_1$ followed by $C_2$, where $C_1$ is the real component of $z$ and $C_2$ is the imaginary component of $z$.
+	Examine $F(z+h)$. Claim: $F(z+h) = F(z) + \int_z^{z+h} f(\zeta) \, d\zeta$.
+	LHS and RHS agree on sticks.
+	By Rectangle theorem, they're equal.
+	$\implies$ $\frac{F(z+h) - F(z)}{h} = \frac{1}{h} \int_z^{z+h} f(\zeta) \, d\zeta$. \underline{Observe}: $\frac{1}{h} \int_z^{z+h} f(z) \, d\zeta = f(z)$.
+	$\implies$ $\frac{F(z+h) - F(z)}{h} - f(z) = \frac{1}{h} \int_z^{z+h} [ f(\zeta) - f(z)] \, d\zeta$. We want to show $\lim_{h\ra 0} \left( \frac{F(z+h)-F(z)}{h} - f(z) \right) = 0$. Free to look at $|h|$ very small. Fix $\epsilon>0$ there's a $\delta>|h|>0$ such that $|f(\zeta) - f(z)|<\epsilon$ for $\zeta$ in path from $z$ to $z+h$ because $f$ is continuous. Then $\left| \frac{F(z+h)-F(z)}{h} - f(z) \right| \leq \frac{1}{|h|} \left| \int_z^{z+h} [f(\zeta)-f(z)] \, d\zeta \right| (=) (\leq) \frac{1}{|h|} \cdot \epsilon \cdot |h| = \epsilon$ by $M$-$L$ formula.
+\end{proof}
+\begin{corollary}
+	[Closed Curve Theorem] $f$ entire and $C$ smooth, closed, then $\int_C f(z) \, dz = 0$.
+\end{corollary}
+\section{Cauchy Integral Formula and Taylor Expansion}
+\begin{theorem}
+	[Rectangle Theorem II] $f$ is entire, $a\in\mb C$. $g(z) = \begin{cases} \frac{f(z) - f(z)}{z-a} & z\neq a \\ f'(a) & z=a \end{cases}$. $\lim_{h\ra 0} \frac{f(a+h) -f(a)}{h} = f'(a)$. Set $z=a+h$ so $z-a=h$, then $\lim_{z\ra a} \frac{f(z)-f(a)}{z-a} = f'(a)$. Let $\int_{\Gamma} g(z) \, dz = 0$, where $\Gamma$ is the boundary of rectangle $R$.
+	
+	\underline{Case 1}: $a\notin R$, then $g(z)$ is analytic on $R$, so by previous rectangle theorem (check).
+	
+	\underline{Case 2}: $a\in R$. Divide $R$ so that $a$ is not on corner of two rectangles. $\int_{\Gamma} g(z) \, dz = \sum_{k=1}^9 \int_{\Gamma_k} g(z) \, dz$. Also want the special rectangle containing $a$ (call it $\Gamma_1$) so that $l(\Gamma_1) < \epsilon$. \underline{Observe}: $g$ is continuous at $z=a$. For every $z\in \Gamma_1$, $|g(z)| \leq M$. So $\left| \int_{\Gamma} g(z) \, dz \right| = \left| \sum_{k=1}^9 \int_{\Gamma_k} g(z) \, dz \right| \leq M\cdot \epsilon + \left| \sum_{k=2}^9 \int_{\Gamma_k} g(z) \, dz \right| = M\cdot \epsilon + 0 \implies \int_{\Gamma} g(z) \, dz = 0$. \underline{Because} $\Gamma_2, \dots \Gamma_9$ doesn't contain $a$.%, so by previous Rectangle theorem has zero integral.
+\end{theorem}
+\begin{corollary}
+	Let $g(z) = \begin{cases} \frac{f(z) - f(z)}{z-a} & z\neq a \\ f'(a) & z=a \end{cases}$. The Integral theorem and closed curve theorem apply to $g$ as well. $g$ is derivative of analytic function and $\int_C g = 0$, where $C$ is smooth closed.
+	\label{cor5-2}
+\end{corollary}
+\begin{proposition}
+	[Cauchy's Integral Formula] $f$ is entire, $a\in\mb C$, $|a|<R$. $C: Re^{i\theta}$ on $0\leq \theta\leq 2\pi$. $f(a) = \frac{1}{2\pi i} \int_C \frac{f(z)}{z-a} \, dz$.
+\end{proposition}
+\begin{proof}
+	By corollary \ref{cor5-2}, $\int_C g(z) \, dz = 0$, $g$ as before. Then $\int_C \frac{f(z)}{z-a} \, dz \implies \int_C \frac{f(z)}{z-a} \, dz = \int_C \frac{f(a)}{z-a} \, dz = f(a) \int_C \frac{1}{z-a} \, dz =(?) 2\pi i f(a)$. Prove $\int_C \frac{1}{z-a} \, dz = 2\pi i$ next.
+\end{proof}
+\begin{lemma}
+	$a\in\mb C$. $C_\rho$ is circle of radius $\rho$ centered at $\alpha$, with $a$ within $C$. $\int_C \frac{1}{z-a} \, dz = 2\pi i$. \underline{Observe}: $\alpha=a=0$.
+\end{lemma}
+\begin{proof}
+	Let's first: $z$ on $C\rho$, $\int_{C_\rho} \frac{1}{z-\alpha} \, dz$. $z-\alpha: \rho e^{i\theta}$ and $\dot{z}(\theta) - i\rho^{i\theta}$. Then $\int_0^{2\pi} \frac{i\rho e^{i\theta}}{\rho e^{i\theta}} \, d\theta = i2\pi$.
+\end{proof}
+
+\begin{fact}
+	$\int_{\text{unit circle}} \frac{1}{z} \, dz \neq 0$ shows $\ln z \neq $ analytic.
+\end{fact}
+\begin{recall}
+	For $n>1$, $\int_{C_\rho} \frac{1}{(z-\alpha)^n} \, dz = 0$. $\frac{1}{z-a} = \frac{1}{(2-\alpha) + (\alpha -a)} = \frac{1}{z\cdot\alpha} \left( \frac{1}{1-\omega} \right)$. $\omega = \frac{a-\alpha}{z-\alpha}$. $\frac{1}{1-\omega} = \sum_{k=0}^\infty \omega^k$ for $|\omega|<1$. So $|\omega| = \left| \frac{a-\alpha}{z-\alpha} \right| = \frac{|a-\alpha|}{\rho} < 1$. Then $\frac{1}{z-\alpha} \left[ 1+ \frac{a-\alpha}{z-\alpha} + \left( \frac{a-\alpha}{z-\alpha} \right)^2 + \dots \right] = \frac{1}{z-\alpha} + \frac{a-\alpha}{(z-\alpha)^2} + \dots$. So $\int_{C_\rho} \frac{1}{z-a} \, dz = \sum \int \text{above} = \int_{C_\rho} \frac{1}{z-\alpha} \, dz = 2\pi i$.
+\end{recall}
+\begin{example}
+	[Ashley, HW Ch5, \#3] a) $f$ entire + odd $\implies f(z)=-f(-z)$, so $f(z) = \frac{f(z)+f(z)}{2} = \frac{f(z)-f(-z)}{2}$. Since $f$ is entire, $f(z) = \sum_{k=0}^\infty \frac{f^{(k)} (0)}{k!}z^k = \frac{1}{2} \left[ \sum_{k=0}^\infty \frac{f^{(k)}(0)z^k}{k!} - \sum_{k=0}^\infty \frac{f^{(k)}(0)}{k!}z^k(-1)^k \right]$. Thus, $f(z) = \frac{1}{2} \left[ \frac{f(0)}{0!} + \frac{f'(0)z}{1!} + \frac{f''(0)z^2}{2!} + \frac{f'''(0)z^3}{3!} + \frac{f^{(4)}(0)z^4}{4!} + \frac{f^{(5)}z^5}{5!} + \dots - \left( \dots \right) \right]$ and so on.
+\end{example}
+
+%Don't memorize \#'s of propositions, lemmas.
+
+%$M$-$L$ formula: $|\int_C f(z)\,dz| \leq \int_C |f(z)|\, dz$
+
+\begin{example}
+	[HW2, \#26] $P(z) \ra \infty$ if $z\ra \infty$. $z\ra\infty$ means $|z|\ra\infty$. \underline{Want to show}: $|z|\ra\infty$. Then $|P(z)|\ra\infty$. $P(z) = \sum_{n=0}^N a_n z^n$. $\lim_{|z|\ra\infty} |P(z)| \leq \sum_{n=0}^N |a_n|\cdot |z^n|$ by triangle inequality. Pull out $z^N$ so $P(z) = z^N \sum_{n=0}^N a_n z^{N-n}$. Then $|P(z)| = |z^N| \cdot |\sum_{n=0}^N \frac{a_n}{z^{n-N}}|$. Know $a_n\neq 0$ and $N\neq0$. By triangle inequality, $|a_N| + \sum_{n=0}^{N-1} | \frac{a_n}{z^{n-N}}|\geq |\sum_{n=0} \frac{a_n}{z^{n-N}} \geq |a_N| - \sum_{n=0}^{N-1} | \frac{a_n}{z^{n-N}}|$.
+\end{example}
+
+\begin{theorem}
+	[Taylor expansion for Entire Functions] $f$ entire $\implies$ $f$ has power series expansion. and $f^{(k)}(0)$ exists, so $f(z) = \sum_{k=0}^\infty \frac{f^{(k)}(0)}{k!} z^k$.
+\end{theorem}
+\begin{proof}
+	Let $a>0$ and $R=a+1$, $C$ = circle of radius $R$ centered at 0, $|\omega|=R$. By Cauchy's integral formula, $f(z) = \frac{1}{2\pi i} \int_C \frac{f(\omega)}{\omega-z} \, d\omega$, where $|z|\leq a<R$. Like last time, $\frac{1}{\omega-z} = \frac{1}{\omega(1-\frac{z}{\omega})} = \sum_{k=0}^\infty \frac{1}{\omega} \cdot \left( \frac{z}{\omega} \right)^k = \sum_{k=0}^\infty \frac{z^k}{\omega^{k+1}}$ because $|\frac{z}{\omega}|<1$. Then $f(z) = \frac{1}{2\pi i} \int_{C(a)} f(\omega) \cdot \sum_{k=0}^\infty \frac{1}{\omega} \left(\frac{z}{\omega}\right)^k \, d\omega = \sum_{k=0}^\infty \frac{1}{2\pi i} \left( \int_{C(a)} \frac{f(\omega)}{\omega^{k+1}} \, d\omega \right) z^k = \sum_{k=0}^\infty C_k(a) z^k$, where $C_k(a) = \frac{1}{2\pi i} \cdot \int_C \frac{f(\omega)}{\omega^{k+1}} \, d\omega \in\mb C$. All smae coefficients. In fact it's independent of $a$. $a\ra\infty$ converges to $f$ everywhere, $C_k = \frac{f^{(k)}(0)}{k!}$. Power series are unique, so $C_k(a) = C_k$.
+\end{proof}
+\begin{corollary}
+	Entire functions are $\infty$-differentiable and equal to their power series everywhere.
+\end{corollary}
+\begin{example}
+	$e^z \equiv \sum_{k=0}^\infty \frac{1}{k!} z^k$, \say{is identically equal to.}
+\end{example}
+\begin{corollary}
+	Same but for power series centered at $a$: $f$ entire $\implies f(z) \equiv \sum_{k=0}^\infty \frac{f^{(k)}}{k!}(z-a)^k$. Look over carefully proof.
+\end{corollary}
+\begin{proposition}
+	$g(z) = \begin{cases} \frac{f(z)-f(a)}{z-a} & z\neq a \\ f'(a) & z=a \end{cases}$. If $f$ is entire then $g$ is entire.
+\end{proposition}
+\begin{note}
+	\underline{By what we showed}: $f$ entire $\implies$ has derivatives everywhere. $f \equiv$ power series expansion.
+\end{note}
+\begin{proof}
+	$z\neq a$. By previous corollary $f(z) = \sum_{k=0}^\infty \frac{f^{(k)}}{k!}(z-a)^k$. $g(z) = f'(a) + \frac{f''(a)}{2!}(z-a) + \frac{f^{(3)}(a)}{3!}(z-a)^2 + \dots$.
+	\underline{What is power series expansion?} Constant term = $f'(a) = g(a)$. %Also $\frac{g(z)-g(a)}{z-a} = \frac{f(z)-f(a)}{(z-a)^2} - \frac{f'(a)}{z-a}$.
+	We know $\frac{f(z)-f(a)}{z-a} = \sum_{k=1}^\infty \frac{f^{(k)}(a)}{k!} (z-a)^{k-1} = g(z)$, where $z\neq a$.
+	$g(z) - \frac{f(z)-f(a)}{z-a}$ The $\lim_{z\ra a} = \lim \Sigma$.
+\end{proof}
+
+\begin{example}
+	[Brandon's Presentation] Power series expansion for an entire function $f$ around $a\in\mb C$. $f(z) = \sum_{k=0}^\infty \frac{f^{(k)}(a)}{k!}(z-a)^k$.
+	\begin{enumerate}
+		\item[a.] $z^2$ around $a=2$. $f^{(0)}(z)= z^2$, $f^{(1)}(z)2z$, $f^{(2)}(z) = 2$, and $f^{(k)}(z) = 0$ for $k\geq 3$. So $\sum_{k=0}^\infty \frac{f^{(k)}(a)}{k!}(z-a)^k = \frac{f^{(0)}(z)}{0!}(z-2)^0 + \frac{f^{(1)}(z)}{1!}(z-2)^1 + \frac{f^{(2)}(z)}{2!}(z-2)^2 = 4 + 4(z-2) + (z02)^2$.
+		\item[b.] $e^z$ around $a\in\mb C$. $f^{(k)} (z) = e^z$ and $f^{(k)}(0) = 1$. $e^z = \sum_{k=0}^\infty \frac{f^{(k)}(a)}{k!}(z-a)^k = e^a \sum_{k=0}^\infty \frac{f^{(k)}(0)}{k!}(z-a)^k = e^a e^{z-a}$.
+	\end{enumerate}
+\end{example}
+\begin{example}
+	$f(z) = z^2-a^2 = (z-a)(z+a)$, where $a\in\mb C$ and $f(a) = 0$. $0=f(a) = \int_C\frac{f(z)}{z-a} \, dz = \int_C(z+a) \, dz = 0 $
+\end{example}
+\underline{HW}: Read \S6.1 and \S6.2. \underline{Exam}: Chapters 4, 5, \S6.1, \S6.2.
+\begin{recall}
+	[Proposition] \underline{Last time}: If $f$ entire $\implies$ $g$ entire. $g = \begin{cases} \frac{f(z)-f(a)}{z-a} & z\neq a \\ f'(a) & z=a \end{cases}$.
+\end{recall}
+\begin{corollary}
+	If $f$ is entire and $f(z_1),\dots,f(z_N) = 0$ then $g_N(z) = \frac{f(z)}{(z-z_1)\cdots(z-z_N)}$ is entire. If define $g_N(z_1) = \lim_{z\ra z_i}$.
+\end{corollary}
+\begin{proof}
+	By previous proposition, $g_1(z) = \frac{f(z)-f(z_1)}{z-z_1} = \frac{f(z)}{z-z_1}$ is entire. \underline{Inductively}: $g_k(z) = \frac{g_{k-1}(z) - g_{k-1}(z_k)}{z-z_k}$ is entire $\implies g_N$ entire.
+\end{proof}
+\begin{example}
+	$f(z) = z^2-a^2$, so $g_2(z) = \frac{z^2-a^2}{(z-a)(z+a)} = 1$.
+\end{example}
+\begin{example}
+	$f(z) = e^z-1$. $f(z) = 0$ when $z=0 = 2\pi k i$. $g_1(z) = \frac{e^z-1}{z}$.
+\end{example}
+\subsection{\S5.2 Liouville's Theorem and Fundamental Theorem of Algebra}
+\begin{theorem}
+	[Liouville's Theorem] A bounded entire function is constant.
+\end{theorem}
+\begin{proof}
+	\underline{Fix}: $a,b\in\mb C$, $C$ = circle of radius $R$ (large so that $a,b$ are in the circle) centered at 0. If $f$ is constant then $|f(a)-f(b)| = 0 = \left|\frac{1}{2\pi i} \int_C \frac{f(z)}{z-a} \, dz - \frac{1}{2\pi i} \int_C \frac{f(z)}{z-b}\, dz \right| = \left| \frac{1}{2\pi i} \int_C \frac{f(z)(z-b) - f(z)(z-a)}{(z-a)(z-b)} \right| = \left| \frac{1}{2\pi i} \int_C \frac{f(z)(a-b)}{(z-a)(z-b)} \right|$ by Cauchy's integral formula. We know that $\frac{1}{|z-a|}\leq B$ and by triangle inequality $|z|-|a|\leq |z-a|$. $z\in\mb C$, $0<R\cdot |a| = z$. Assume $|f(z)|\leq M$. Using $M$-$L$ formula $\left| \frac{1}{2\pi i} \int_C \frac{f(z)(a-b)}{(z-a)(z-b)} \right| \leq \frac{M|a-b|2\pi R}{2\pi(R-|a|)}$, where the length of $C$ is $2\pi R$.
+\end{proof}
+\begin{theorem}
+	[Liouville's Theorem Part 2] \underline{Read over}: (Not on exam). If $f$ is bounded by a polynomial of degree $N$ then $f$ is a polynomial of degree $\leq N$.
+\end{theorem}
+\begin{theorem}
+	[Fundamental Theorem of Algebra!] If $P(z) = $ \underline{nonconstant} polynomial then it has $\mb C$-root, i.e. $\exists z_0\in\mb C$ such that $P(z_0) = 0$. (This means $\mb C$ is algebraically closed)
+\end{theorem}
+\begin{example}
+	$p(x) = x^2+1$ has no root in $\mb R$ since $p(z) = (z-i)(z+i)$, where $i^2=-1$.
+\end{example}
+\begin{theorem}
+	Odd polynomial then has a $\mb R$ root.
+\end{theorem}
+\begin{proof}
+	[Proof. (FTA)] Is by contrapositive. Assume $P(z)\neq 0$ for any $z$ and conclude $P(z) \equiv $ constant. $f(z) = \frac{1}{p(z)}$ is analytic. If $p(z)=0 \implies $ Not bounded. Bounded $\implies$ not zero. From the homework \#26: when $P\neq$ constant then $|P(z)|\ra \infty$ as $|z|\ra\infty $. By \underline{Liouville's Theorem}, $f$ is constant!.
+\end{proof}
+\begin{proof}
+	[Proof. (FTA)] Contradiction. Assume $P(z)\neq 0$ and $P(z)\neq$ constant for any $z$ and conclude $P(z) \equiv $ constant. $f(z) = \frac{1}{p(z)}$ is analytic. If $p(z)=0 \implies $ Not bounded. Bounded $\implies$ not zero. From the homework \#26: when $P\neq$ constant then $|P(z)|\ra \infty$ as $|z|\ra\infty $. By \underline{Liouville's Theorem}, $f$ is constant! Contradiction.
+\end{proof}
+Read Remarks (1)-(3) following Fundamental Theorem of Algebra.
+\begin{corollary}
+	Every polynomial $P(z)=az^N + a_{N-1}z^{N-1} + \dots + a_0 = a_N(z-z_1)(z-z_2)\cdots(z-z_N)$ can be factored into $N$ linear roots.
+\end{corollary}
+\underline{Consider}: New polynomial $P_0 = (z-z_1)\cdots(c-z_N) = \frac{P(z)}{a_N} = 1\cdot z^N + C_{N-1}z^{N-1} + \dots + C_0$.
+\underline{Q}: Do the coefficients $C_k$ tell me something about the roots?
+\begin{example}
+	$(z-2)(z-3) = z^2-(2+3)z+(-2)(-3)$. Here $C_1 = 2+3 = $ sum of roots and $C_0 = (-2)(-3) = $ product of roots.
+\end{example}
+\begin{example}
+	$(z-2)(z-3)(z-5) = z^3 - (2+3)z^2+(-2)(-3)z - 5z^2 + (-1)(-1)(5)(2+3)z + (-2)(-3)(-5) = z^3 - (2+3+5)z^2 + (2\cdot 3 + 2\cdot 5+ 3\cdot 5)z + (-2)(-3)(-5)$.
+\end{example}
+\underline{In general}: $P_0(z) = (z-z_1)\cdots(z-z_N) = \sum_{k=0}^N C_k z^k$, where $C_N = 1$. $C_k$ come from $$C_k = \pm \sum_{j_1}^{j_{N-k}} z_{j_1}\cdots z_{j_{N-k}} = \pm \sum_{j=1}^{N-k} \prod_{k=1}^{N-k} z_k $$ and $C_0 = \pm z_1 \cdot z_N$ and $C_{N-1} \pm \sum_{j=1}^N z_j$.
+$(z-z_1)(z-z_2)$
+
+Review
+
+\begin{theorem}
+	$f$ analytic on Disk $D$, $a\notin \Gamma$, $\int_{\Gamma} f \, dz = 0 = \int_{\Gamma} \frac{f(z)-f(a)}{z-a} \, dz$.
+\end{theorem}
+\begin{recall}
+	[Rectangle Theorem 1] $f$ is entire, $\Gamma = 2R$, $\implies \int_{\Gamma}=0$.
+\end{recall}
+\begin{recall}
+	[rectangle Theorem 2]$f$ entire $\int_{\Gamma} f = 0$.
+\end{recall}
+
+\begin{theorem}
+	$f$ analytic on $D$, then there are $F,G$ also analytic on $D$. $F'=f$, $G'(z) = \begin{cases} \frac{f(z)-f(a)}{z-a} & z\neq a \\ f'(a) & z=a \end{cases} $.
+\end{theorem}
+\underline{Analogue}: \S5.8: If $f$ analytic on $D$ then $g$ analytic on $D$.
+\begin{recall}
+	[Liouville Theorem] Bounded entire = constant. $f(z) = \cos{x}$.
+\end{recall}
+\underline{FTC I}: If $f=F'$, $F$ analytic on $C$, then $\int_C f(z) \, dz = F(z(a))-F(z(b))$. 
+
+\underline{FTC II}: $C:z(t)$, $a\leq t \leq b$, Can find $F(z) = \int_0^{z} f(\zeta) \, d\zeta$.
+
+$\int_C f(z) \, dz = \int_a^b f(z(t)) \dot{z}(t) \, dt$, $\dot{z}(t)$ exists $\neq 0$. $C:z(t)$, $a\leq t \leq b$. $c_1\sim c_2$ then $\int_{c_1}f = \int_{c_2} f$, $f = $ continuous.
+
+\underline{If we had}: $f$ entire FTC. LHS $ = -(F(b)-F(a))$, RHS $ = F(a)-F(b)$.
+
+$- \int_C f(z) \, dz = \int_{-C} f(z) \, dz$. \underline{Calculus II}: $\int_a^b f(x) \, dx = -\int_b^a f(x) \, dx$.
+
+$C:z(t)$ on $a\leq t \leq b$, then $-C:z(b+a-t)$ on $a\leq t \leq b$, $\omega(t) = z(b+a-t) = z(l(t))$, where $l(t) = b+a-t$. $\dot{\omega}(t) = \dot{z}(l(t)) \cdot \frac{dl}{dt} = -\dot{z}(l(t))$. (is a negative involution)
+
+\begin{recall}
+	[\underline{ML} Formula] $|f(z)|\leq M$, $z\in C$, $l(c) = $ length $ = L$, $\implies \left| \int_C f(z) \, dz \right| \leq M\cdot L$. $\Leftarrow \left| \int_a^b G(t) \, dt \right| \leq \int_a^b |G(t)| \, dt$, where $G$ is continuous and $\mb C$-valued.
+\end{recall}
+
+\section{\underline{\S6.1} Analyticity on $D(\alpha;r)$}
+\begin{recall}
+	[\underline{Rectangle Theorem}] $f$ analytic on $D(\alpha;r)$ and $R$ rectangle $\subset D(\alpha;r)$, $\Gamma = $ boundary of disk $\implies \int_{\Gamma}f\, dz = \int_{\Gamma} g_a \, dz = 0$, where $g_a(z) = \begin{cases}
+	\frac{f(z)-f(a)}{z-a} & z\neq a \\ f'(a) & z=a \end{cases}$.
+\end{recall}
+
+\begin{theorem}
+	[\underline{Closed Curve Theorem}] $C\subset D$ closed smooth curve, $f$ analytic on $D$, $a\in D(\alpha,r)$ $\implies \int_C f = \int_c g_a = 0$.
+\end{theorem}
+\begin{theorem}
+	[\underline{Cauchy $\int$-theorem}] Suppose $f$ analytic on $D(\alpha;r)$ $\la$ on disk. $0<\rho<r$, $|a-\alpha|<\rho$. $f(a) = \frac{1}{2\pi i} \int_{C_\rho} \frac{f(z)}{z-a} \, dz$. (*)
+\end{theorem}
+\begin{definition}
+	[\underline{Power Series}] $f$ analytic on $D(\alpha,r)$ $\implies \exists C_k$ $f(z) = \sum_{k=0}^\infty C_k(z-\alpha)^k$ for every $z\in D(\alpha,r)$.
+\end{definition}
+\section{\underline{\S6.2} Analyticity on Open Region}
+\begin{definition}
+	[\underline{Power Series}] $f$ analytic on open domain $D$ $\implies \exists C_k$ $f(z) = \sum_{k=0}^\infty C_k(z-\alpha`)^k$ for every $z\in D(\alpha,r)$.
+\end{definition}
+\begin{recall}
+	$\frac{1}{1-z} = \sum z_k$ for $|z|<1$, diverges $|z|>1$. or $\frac{1}{1-2z} = \sum_{k=0}^\infty 2^k z^k$ for $|2z|<1$ or $|z|<\frac{1}{2}$, Diverges $|z|>\frac{1}{2}$.
+	\underline{Best power series}: All the power series convergence tests (optimal) rely on a comparison to some geometric series (root test or ratio test). 3 cases: 1) convergent at single point, 2) convergent for every $z\in \mb C$, (*) 3) Radius of convergence is finite and series diverges outside of that disk.
+\end{recall}
+\begin{example}
+	$f(z) = \frac{1}{z-1}$ \underline{analytic on $\mb C\backslash \{1\}$}. Look at power series expansion about a different point at $z=2$. $\frac{1}{z-1} = \frac{1}{1-(-(z-2))} = \sum_{k=0}^\infty (-(z-2)^k) = \sum_{k=0}^\infty (-1)^k (z-2)^k$ converges when $|z-2|<1$ and Diverges $|z-2|>1$.
+\end{example}
+
+\section{\S6.3 Uniqueness, MVT, Maximum Modulus Theorem, Critical Points, and Saddle Points}
+\begin{definition}
+	$f$ is analytic at $z$ means $f$ is differentiable on $D(z,r)$, some $r>0$. $\lim_{h\ra 0} \frac{f(\omega+h)-f(\omega)}{h}$ exists means $f$ is differentiable at $\omega$ $\implies$ CR equations.
+\end{definition}
+\begin{proposition}
+	$f$ is analytic at $z=\alpha \implies g_\alpha$ is also analytic at $z=\alpha$.
+\end{proposition}
+\begin{proof}
+	\underline{In the proof}: $f(z) = \sum \frac{f^k(\alpha)}{k!} (z-\alpha)^k$.
+\end{proof}
+\begin{theorem}
+	$f$ analytic at $z=\alpha$ then $f$ is infinitely differentiable.
+\end{theorem}
+\begin{proof}
+	Differentiate power sereis expansion.
+\end{proof}
+\begin{theorem}
+	[Power Series Uniqueness] Suppose $f$ is analytic on $D$ open connected region. $z_n\in D$, $z_n\neq z_m$, $n\neq m$, $z_n\ra z_0 \in D$. If $f(z_n)\equiv 0 \implies f\equiv 0$ on $D$. $z_0$ is an accumulation point.
+	\label{thm6.9}
+\end{theorem}
+\begin{proof}
+	$f$ has a power series expansion about $z_0$ and converges on disk $D(z_0,r)$.
+	(skipping) $\overset{?}{\implies} f\equiv 0$ on $D(z_0,r)$.
+	Why? $f(z) = \sum_{k=0}^\infty C_k(z-z_0)^k$. $f(z_n)=0$, $f$ analytic so it's continuous, $\lim_{n\ra\infty}f(z_n) = 0 = f(z_0) = C_0$. \underline{Exercise}: What Proposition/Theorem \# does proof appear in before Chapter 6?
+	\underline{Left to show}: $f\equiv 0$ on $D$. $z_0\in A = \{z\in D: z= \text{limit of zeros of $f$}\} \neq \emptyset$. $B = D\backslash A$. \underline{Show}: $B$ empty. \underline{Recall}: $D$ open connected means if $D=A\amalg B$ (disjoint union) and both $A$ and $B$ open then one of the sets empty. Show $A$ and $B$ are open. \underline{Know}: $A$ open? \underline{Means}: $z\in A$ find, $D(z,r)\subset A$. \underline{$B$ open}: $z\in B \implies$ some $\delta>0$, $0<|z-\omega|<\delta$, $f(\omega) \neq 0$.
+\end{proof}
+Homework: everybody drink water or coffee!
+
+On quiz: prove the $\overset{?}{\implies}$ part of the theorem's proof: Suppose $f$ is analytic on $D(z_0,r)$. $z_n\in D(z_0,r)$, $z_n\neq z_m$, $n\neq m$, $z_n\ra z_0 \in D(z_0,r)$. If $f(z_n)\equiv 0 \implies f\equiv 0$ on $D(z_0,r)$. $z_0$ is an accumulation point.
+
+\underline{For Thursday}: Redo \#3 for $\frac{1}{2}$ credit and \#9 for full credit.
+
+Power series expansion $\sum_{k=0}^\infty C_k(z-a)^k$, power series about $z=a$. We know $C_k = \frac{f^k(a)}{k!}$.
+\begin{example}
+	[Exam question] $\sum_{k=0}^\infty \frac{e}{k!}(z-1)^k = e\sum_{k=0}^\infty \frac{1}{k!}(z-1)^k = e^1e^{z-1} = e^z$.
+\end{example}
+\begin{recall}
+	[p.31 Theorem 2.12] If $z_k \ra 0$, $z_k\neq z_l$, $k\neq l$, and $f$ analytic on Disk $D(0,r)$; then $f(z_k)=0 \implies f\equiv 0$ on Disk. Used in proof of Theorem \ref{thm6.9}.
+\end{recall}
+\begin{proof}
+	$\implies f(z) = \sum_{k=0}^\infty C_k z^k$, show $C_k=0$ for any $k$. $f(0) = C_0 \overset{?}{=} 0$. $\lim_{k\ra \infty} f(z_k) = 0$ and $z_k\ra 0 = C_0 = f(0)$ by continuity of $f$. $g_1(z) = \frac{f(z)}{z} = \sum_{k=1}^\infty C_k z^{k-1}$. Also $g_1(z_k) = \frac{f(z_k)}{z_k} \equiv 0$ so $\lim_{k\ra \infty} g_1(z_k) = 0 = C_1$.
+\end{proof}
+
+\begin{proof}
+	A power series about $z_0$ with an accumulation point $z_n \ra z_0$, $P(z) = \sum_{k=0}^\infty C_k(z-z_0)^k$, has a positive radius of convergence. If $P(z_n) = 0$ then $C_k = 0$ for all $k$ and in particular $P(z) \equiv 0$.
+	Why uniqueness? $f(z) = \sum_{k=0}^\infty C_k(z-z_0)^k = \sum_{k=0}^\infty C_k'(z-z_0)^k$. Then \begin{equation}
+	\sum_{k=0}(C_k-C_k')(z-z_0)^k = 0
+	\label{eqbluestar}
+	\end{equation}. In fact, it is enough to have equation (\ref{eqbluestar}) hold on $\infty$-many points accumulating to $z_0$. Develop $e^z = e^{x+iy} = e^x \cdot e^{iy}$ so that $e^{z_1+z_2} = e^{z_1}\cdot e^{z_2}$. $\mb R\subset \mb C$ is a set with an accumulation point. Or $\cos^2{x} + \sin^2{x} = 1$ for $x\in \mb R$. Everbody entire $\implies \cos^2{z} + \sin^2{z} = 1$.
+\end{proof}
+
+\begin{corollary}
+	$f,g$ analytic function on domain $D$ and $f(z) = g(z)$ on some set with an accumulation point $\implies f\equiv g$ on $D$.
+\end{corollary}
+\underline{But wait}: $f(z) = \sin{z}$ and $f(2\pi k) = \sin(2\pi k) = 0$, zeros from a discrete set.
+\begin{example}
+	$f(z) = \sin{(\frac{1}{z})}$. $f(\frac{1}{2\pi k}) = \sin{(2\pi k)}$.
+\end{example}
+\begin{recall}
+	[\say{Exercise 26}] $P(z) \neq$ constant polynomial, then $|P(z)| \underset{|z|\ra\infty}{\longrightarrow} \infty (\iff) P(z) \ra \infty$ as $z\ra \infty)$. (Recall polynomials are entire).
+\end{recall}
+\begin{theorem}
+	If $f$ entire and $f(z) \ra \infty$ as $z\ra \infty$, then $f$ is a polynomial.
+\end{theorem}
+\begin{proof}
+	$f(z)\ra\infty$ as $z\ra\infty$ means $|f(z)|\ra\infty$ as $|z|\ra\infty$. $|f(z)|>1$ if $|z|>M$. If $f(z) = 0$ some $z$ means $|z|\leq M$, which is a closed bounded set. $f$ can't have $\infty$-many zeros. If it did they would accumulate to some $z_0$ and by \underline{uniqueness theorem} $f\equiv 0$ on $D(0,M)$.
+	$f$ has finitely many zeros $\alpha_1,\dots,\alpha_N$. $g(z) = \frac{f(z)}{(z-\alpha_1)\dots(z-\alpha_N)} \neq 0$ and entire. Look at $h(z) = \frac{(z-\alpha_1)\dots(z-\alpha_N)}{f(z)}$ is also entire. $|z|>M$ and $\frac{1}{|f(z)|}<1$. When $|z|>>M$ then $|h(z)|\leq |z-\alpha_1|\dots|z-\alpha_N|\leq A+|z|$ (Extended Liouville's Theorem). $\implies h(z)$ is a polynomial of degree at most $N$.
+	\underline{Conclude}: $h = $ constant. \underline{Why?} $h\neq 0$ By Fundamental Theorem of Algebra.
+\end{proof}
+\begin{remark}
+	[*] closed bounded sets are compact $\implies$ any $\infty$-sequence of points has an accumulation point.
+\end{remark}
+
+\underline{MVT in Calc 1 and Calc 2}:
+\begin{recall}
+	[\underline{Rolle's Theorem}] $f(x)$ is differentiable on $(a,b)$ and continuous on $[a,b]$ with $f(a) = f(b)$. $\implies \exists c'\in(a,b)$ such that $f'(c') = 0$.
+\end{recall}
+\begin{recall}
+	[\underline{Mean Value Theorem}] Assume $f(x)$ is differentiable on $(a,b)$ and continuous on $[a,b]$. Conclude $\exists c'\in(a,b)$ such that $F'(c') = \frac{F(b)-F(a)}{b-a}$ is the slope of secant line.
+\end{recall}
+\begin{recall}
+	[\underline{Mean Value Theorem for $\int$'s}] $f$ is continuous then $\exists c \in(a,b)$, $\frac{1}{b-a} \int_a^b f(x) \, dx = $ avg. value $ = f(c)$.
+\end{recall}
+
+\begin{theorem}
+	[Mean Value Theorem] $f$ analytic on $D$, $\alpha\in D$. $C:D(\alpha,r)\subset D$. $\frac{1}{2\pi} \int_0^{2\pi} f(\alpha + re^{i\theta}) \, d\theta = f(\alpha)$.
+\end{theorem}
+\begin{proof}
+	By Cauchy $\int$-formula: $f(\alpha) = \frac{1}{2\pi i} \int_C \frac{f(z)}{z-\alpha} \, dz$. Then $C:z(\theta) = \alpha re^{i\theta}$ on $0\leq \theta\leq 2\pi$ and $\dot{z}(\theta) = re^{i\theta} = z(\theta)-\alpha$. So $f(\alpha) = \frac{1}{2\pi} \int_0^{2\pi} \frac{f(\alpha + re^{i\theta})}{re^{i\theta}} re^{i\theta} \, d\theta$.
+\end{proof}
+\begin{definition}
+	$z$ is a relative, i.e. local, \underline{maximum} if $|f(z)|\geq |f(\omega)|$ for all $\omega\in D(z,\alpha)$, some $\alpha$.
+\end{definition}
+\begin{theorem}
+	[Maximum Modulus Theorem] $f$ analytic and nonconstant on $D$, does not have a relative maximum in $D$, i.e. $\forall z\in D$ and $\delta>0$ there exists $\omega\in D(z,\delta) \cap D$, $|f(\omega)| > |f(z)|$.
+\end{theorem}
+
+HW \#1,3,5,9; Chapter 6.
+
+\underline{Option 1}: HW can be turned in By Wednesday noon and Office Hours are 3:15-4:45 T/Th. Today's HW: Turn in by noon tomorrow. \underline{HW}: Either turn in to my office or main math office. 
+\underline{Schedule}: Next week April 2-7: Tuesday Midterm, Thursday Extra Study Time! (No class). 3 more weeks April 10; April 17 HW 7; April 24 HW8.
+
+\begin{example}
+	[HW6 Problem 1] Consider $f = \frac{1}{z} = \frac{1}{a+z-a} = \frac{1}{z+b} = \frac{1}{a}\cdot \frac{1}{1-\frac{1}{a}}$. Also $\sum_{k=0}^\infty r^k = \frac{1}{1-r}$. Then $\sum_{k=0}^\infty \frac{1}{a}\left(-\frac{b}{a}\right)^k = \sum_{k=0}^\infty \frac{1}{a} \left(\frac{1}{a}\right)^k (-1)^k b^k = \sum_{k=0}^\infty \frac{(-1)^k}{a^{k+1}} b^k = \sum_{k=0}^\infty (-1)^k \left(\frac{1}{1+i} \right)^{k+1} (z-(1+i))^k = \sum_{k=0}^\infty (-1)^k \left(\frac{1-i}{2}\right)^{k+1}(z-(i+i))^k $, where $\frac{1}{1+i} = \frac{1-i}{2}$.
+\end{example}
+
+\underline{Chapter 6 and Chapter 7}: Midterm 3.
+
+\underline{Chapter 6 \S3} Continued
+
+\begin{theorem}
+	[Maximum Modulus Theorem] $f$ analytic and nonconstant on open set $D$, then no point in $D$ is a relative maximum, meaning for each $z_0\in D$ and $\delta>0$ there $\omega\in D(z_0,\delta)$, $|f(\omega)|>|f(z_0)|$.
+\end{theorem}
+\begin{recall}
+	$z$ is a \underline{relative maximum} means $|f(z)|\geq |f(\omega)|$ for each $\omega \in D(z,\delta)$, $\la \delta$ small enough.
+\end{recall}
+\begin{recall}
+	[\underline{MVT}] $f(\alpha) = \frac{1}{2\pi} \int_0^{2\pi} f(\alpha + re^{i\theta}) \, d\theta$, $f$ analytic.
+\end{recall}
+\begin{proof}
+	MVT $\alpha = z_0$. $|f(z_0)| \leq \frac{1}{2\pi} \int_0^{2\pi} |f(z_0+re^{i\theta})|\, d\theta \leq \frac{1}{2\pi} \cdot 2\pi \cdot \underset{\theta\in[0,2\pi]}{\max}|f(z_0+re^{i\theta})|$, where $[0,2\pi]$ is compact and $|f(z+re^{i\theta})|$ continuous, means there is $\omega_r = z+re^{i\theta}$ for some $\theta$ where $\max$ is achieved. Then $|f(z_0)\leq |f(\omega_r)|$ if we have equality all the time, then $|f(z_0+re^{i\theta})| \equiv $ constant on some disk $ = f$ constant on that disk (Theorem 3.7).
+\end{proof}
+(*) If $f$ is analytic on $D = $ bounded \& open and $f$ is continuous on $D$, then $|f|$ is also continuous and it attains a maximum and by Maximum Modulus Theorem it must attain on the boundary $\partial D$.
+\begin{theorem}
+	[Minimum Modulus Theorem] $f\neq$ constant and analytic. If $z\in D$ is a relative minimum, then \underline{$f(z_0) = 0$}.
+\end{theorem}
+\begin{proof}
+	\underline{Assume}: $f$ analytic and $f(z_0)\neq 0$, show $f$ nonconstant. $g(z) = \frac{1}{f(z)}$ is also analytic in some neighborhood $D(z_0,\delta)$. $z_0$ is a relative minimum for $f$ and $z_0$ is a relative maximum, a contradiction. If $|f(z_0)|\leq |f(z)|$, for $z$ close to $z_0$, then $\frac{1}{|f(z)|} \leq \frac{1}{|f(z_0)|}$.
+\end{proof}
+\begin{theorem}
+	$f$ nonconstant, analytic and $D$ closed disk and contains a relative maximum at $z_0\in \partial D$. \underline{Conclusion}: $f'(z_0) \neq 0$.
+	\underline{Reason}: Not really looking for a relative (i.e. local) minimum/maximum of $f$. Rather $|f|$ its local/relative minimum and maximum.
+\end{theorem}
+\begin{theorem}
+	$z_0$ is a \underline{saddle point} of $f$ $\iff$ $f'(z_0) = 0$ and $f(z_0) \neq 0$. $\la$ saddle point for $|f|$.
+\end{theorem}
+\begin{proof}
+	Given by Bak + Collaborator. In one direction derivative $<0$ and in other direction derivative is $>0$. Hyperbolic paraboloid and related to hyperbolic geometry.
+\end{proof}
+
+\section{\underline{Chapter 7 \S1} Open mapping Theorem \& Schwartz Lemma}
+
+\begin{definition}
+	$f$ is continuous at $z_0$, for every $z_n\ra z_0$, $f(z_n) \ra f(z_0)$.
+\end{definition}
+\begin{theorem}
+	$f$ is continuous at $z_0$ if for every disk $D(f(z_),\epsilon)$ there is another disk $D(z_0,\delta)$, i.e. the inverse image of an open set is open: $f\inv (D(f(z_0),\epsilon)) \supseteq D(z_0,\delta)$.
+\end{theorem}
+\begin{example}
+	$f(z) \equiv 0$, $f\inv(D(0,1)) = \mb C = $ open set. Not true for a continuous function: image of an open set is open. $f(z) \equiv 0:f(\mb C) = \{0\}$ is not an open set.
+\end{example}
+\begin{theorem}
+	[Open Mapping] $f$ is a non-constant entire function, then the image of an open set under $f$ is also open.
+\end{theorem}
+$f:X\ra Y$ map or function. functions produce unique outputs, but may have $x_1,x_2 \in X$, $x_1\neq x_2$, and $f(x_1) = f(x_2)$. (fails to be one-to-one). for each $x_0\in X$, $\{f(x_0)\} = \{*\}\in Y - f\{x_0\}$. on the other hand $f\{x_1,x_2\} = \{*\}$. \underline{Look at}: $f\inv\{*\} = \{x_1,x_2\}\in X$.
+\begin{example}
+	Let $U$ be an open set. $f(U) = $ open. Let $f(x) = x^2$ on $[0,\infty)$ closed or $(-\infty,\infty)$ open. $f(z) = z^2$.
+\end{example}
+
+\begin{example}
+	[HW6 \#9] \underline{Problem says}: Prove \underline{directly} $e^z\dots$ attains max/min on $\partial D$. \underline{Q}: What does your solution have to do with $e^z$? \underline{A}: Nothing!
+	$e^z = $ specific function.
+\end{example}
+
+\begin{definition}
+	[\underline{Weierstrass Function}] $f(x) = \sum_{n=0}^\infty a_n \cos{(b^n\pi x)}$
+	each is $\infty$-differentiable for $x\in[0,1]$. $f(x) = \lim_{N\ra\infty} \sum_{n=0}^N a_n\cos{(b^n\pi x)}$ convergence is unform. Therefore $f(x)$ is continuous but \say{Differentiable Nowhere.} $\lim_{h\ra0} \frac{f(x+h) - f(x)}{h}$ does not exist.
+\end{definition}
+\underline{Post HW}: Due Tuesday, April 11, (Chapter 7). \underline{Midterm 3}: Chapters 2, 3 6. Also post some review exercises. * understand where Cauchy-Riemann equations come from, how you get them from analyticity.
+
+\begin{theorem}
+	[Open Mapping Theorem] $f:\mb C \ra \mb C$, nonconstant and entire. For any open set $U$, $f(U)$ is open.
+\end{theorem}
+\begin{proof}
+	Show that if $f \neq$ constant and analytic at $\alpha$, then there is $r,\epsilon>0$ so that $D(,r) \subset f(D(\alpha,\epsilon))$, \underline{Assume}: $f(\alpha)=0$. \underline{i.e. show}: $\omega_0 \in D(0,\epsilon)$ $\exists z_0\in D(\alpha,r)$ such that $f(z_0) = \omega_0$.
+	
+	$f\neq$ constant. (Uniqueness Theorem/Maximum Modulus Theorem). For some $r$, $|f(z)| \neq 0$ for $z\in C_r = \partial D(\alpha,r)$ because otherwise $f = $ constant on some disk. $$\epsilon = \frac{\underset{\zeta\in C_r}{\min}|f(\zeta)|}{2}.$$
+	\underline{Fix}: $\omega \in D(0,\epsilon)$, $g(z) = f(z) - \omega$, $z\in C_r$. $\epsilon+|\omega| \leq 2\epsilon \leq |f(z)|$. So $\epsilon\leq |f(z)| - |\omega| \leq |f(z) - \omega| = |g(z)|$. $g(\alpha) = |0-\omega| = |\omega| <\epsilon$. $g(z)$ must have minimum in $D(\alpha,r)$
+\end{proof}
+* Read Schwartz lemma \S7.2 and \underline{Example} following about \say{Bilinear transofmation.} Read Example 1 and 2, Skipping Proposition 7.3 End of \S7.1.
+
+\begin{theorem}
+	[\underline{Morera's Theorem}] $f$ continuous on $D$ open and $\int_{\Gamma} f(z) \, dz = 0$ for every $\Gamma = \partial R \implies f$ is analytic on $D$.
+\end{theorem}
+\begin{remark}
+	We will actually show: If $\int_{\Gamma} f = 0$, $\Gamma = \partial R$, where $R$ is a rectangle with sides parallel to the real and imaginary axes.
+\end{remark}
+\begin{proof}
+	$F(z) = \int_{z_0}^z f(\zeta) \, d\zeta = \int_C f$, where $C$ is a horizontal/vertical polygonal path from $z_0$ to $z$.
+	$\frac{F(z+h)-F(z)}{h} \ra f(z)$ by continuity, worked out before. * because of rectangle condition $\frac{\int_z^{z+h} f(\zeta)\, d\zeta}{h}$. $F$ has a derivative and so is analytic in some 'hood of $z$, $F'=f$ and analytic functions are $\infty$-differentiable, $f$ is also analytic.
+\end{proof}
+\begin{definition}
+	$\{f_n\}$, $f$ defined on $D$, $f_n \rightrightarrows f$ \say{$f_n$ converges to $f$, \underline{uniformly on compacta}} means for every compact set in $D$, $f_n$ converges uniformly to $f$ on that compact set.
+\end{definition}
+\begin{recall}
+	Uniform convergence means rate of convergence is independent of $x$-value.
+\end{recall}
+\begin{example}
+	$D(0,1)$, $f_n \rightrightarrows f$. Then $D(0,r) \ra N_r$ and $f_n(x) \ra f(x)$.
+\end{example}
+\begin{theorem}
+	$f_n$ analytic on open domain $D$ and $f_n \rightrightarrows f$, then $f$ is analytic on $D$.
+\end{theorem}
+\begin{proof}
+	First know: \underline{$f$ is continuous}. Try Apply Morera's Theorem to conclude $f$ analytic, i.e. must know $\int_{\Gamma} f = 0$, where $\Gamma = \partial R$ and $R\subset D$. $\int_{\Gamma} = \int_{\Gamma} \lim_{n\ra \infty} f_n \overset{?}{=} \lim_{n\ra\infty} \int_{\Gamma} f_n = 0$. Why is $\overset{?}{=}$ true? Exactly by uniform convergence.
+\end{proof}
+\begin{theorem}
+	$f$ continuous on open $D$, analytic on $D$ \underline{except possibly} on some line segment $L\subset D$. \underline{Conclusion}: $f$ is analytic on $D$.
+\end{theorem}
+\begin{proof}
+	Use Morera's Theorem again. Assume $L\subset \mb R$ (by pre-composing with $z\mapsto Az+B$). \underline{Show}: $\int_{\Gamma} f = 0$, $\Gamma = \partial R$ in $D$.
+	\underline{Case 1}: If $\Gamma \subset D \backslash L$, so $f$ analytic $\implies \int_{\Gamma} f = 0$.
+	\underline{Case 2}: If $\Gamma \cap L \neq \emptyset$, let $\Gamma_\epsilon$ such that $\Gamma$ is truncated by $i\epsilon$ and $\int_{\Gamma} f = \lim_{\epsilon\ra 0} \int_{\Gamma_\epsilon} f$. $\int_a^b f(x+i\epsilon) \, dx \underset{\epsilon\ra 0}{\longrightarrow} \int_a^b f(x) \, dx$, $f$ is continuous.
+	\underline{Case 3}: $\Gamma$ is split into $\Gamma_1$ and $\Gamma_2$  so that $\int_{\Gamma} F = \int_{\Gamma_1} f + \int_{\Gamma_2} f = 0$.
+\end{proof}
+
+\underline{Farthing's} presentation
+\begin{recall}
+	[Open Mapping Theorem] $f$ is a nonconstant entire function then the image of an open set under $f$ is also open.
+\end{recall}
+\begin{recall}
+	[Morera's Theorem] $f$ continuous on $D$ open set, and $\int_{\Gamma} f(z) \, dz = 0$ for every $\Gamma = \partial R$ then $f$ analytic on $D$.
+\end{recall}
+\begin{recall}
+	[Definition] $\{f_n\}$, $f$ defined on $D$, then $f$ converges uniformly on compacta ($f_n\leftleftarrows f$) means for every compact set in $D$, $f_n$ converges uniformly to $f$ on that compact set.
+\end{recall}
+\begin{recall}
+	[Theorem] If $f$ analytic on open domain $D$ and $f_n \leftleftarrows f$, then $f$ analytic on $D$.
+\end{recall}
+\begin{recall}
+	[Theorem] If $f$ continuous on open set $D$ and analytic on $D$ except possibly at some line segment $L\subset D$, then $f$ analytic on $D$.
+\end{recall}
+
+\begin{example}
+	$e^{x+y} = e^x \cdot e^y$ and $\log{(x\cdot y)} = \log{(x)} + \log{(y)}$ and $\prod_{n=1}^\infty a_n = \lim_{N\ra\infty} \prod_{n=1}^N a_n$
+\end{example}
+\begin{recall}
+	Open set $D$ containing line segmet $L$, $f$ continuous on $D$ and analytic on $D\backslash L \implies f$ analytic on~$D$.
+\end{recall}
+\begin{theorem}
+	[Schwartz' Reflection Principle] (Cook up a function to apply the above Theorem) $f = $ analytic on $D$ (\& continuous on $\bar{D}$), $f(x) \in \mb R$, $x\in\mb R$, $\partial D \cap \mb R = L = $ line segment. $\ra$ Conclusion: $$g(z) = \begin{cases} f(z) & z\in D\cup L \\ \conj{f(\conj{z})} & z\in D^* \end{cases}.$$
+\end{theorem}
+\begin{proof}
+	By the previous theorem, it's sufficient to show that $g$ analytic on $D^*$. Fix $z\in D^*$. $$\frac{g(z+h)-g(z)}{h} \overset{\Delta}{=} \conj{\frac{f(\conj{z+h}) - f(\conj{z})}{h}} = \conj{ \left[ \frac{ f(\conj{z}+\conj{h}) - f(\conj{z})}{\conj{h}} \right] } = \conj{ f'(\conj{z})}.$$
+\end{proof}
+\begin{corollary}
+	$f$ analytic on region symmetric with respect to $\mb R$-axis and $f(x)\in\mb R$, $x\in\mb R \implies \conj{f(\conj{z})} = f(z)$.
+\end{corollary}
+
+\begin{example}
+	[\underline{Solution to 7.18}] Draw 4 axes, look at 3 maps. Rotation by $R_{-\theta}$ so multiply by $e^{-i\theta}$. Then $z\mapsto \conj{z}$. Then map back to $R_{\theta}$. Then this is reflection about the line $\theta$.
+\end{example}
+
+Look at $\gamma :[a,b] \ra \mb C$ analytic, 1-1, and $\gamma'(z)\neq 0$ (call regular analytic).
+\underline{Analytic means}: Let $S$ be a region containing $[a,b]$ and $\gamma: S\ra \mb C$.
+\underline{Observation 1}: $\gamma'(z) \neq 0$ \& 1-1, $z\in[a,b] \implies \gamma'(z) \neq 0 $ on $S' \subset S$ smaller.
+\underline{Observation 2}: $S^* = S$ (if not look at $S\cap S^*$, then $(S\cap S^*)^* = S^* \cap S^{**} = S^*\cap S$.
+
+\begin{example}
+	$f:D\ra U$, $f$ analytic on $D$ and continuous on $\bar{D}$. Assume $A\subset \partial D$ is an analytic arc. $\gamma : [a,b] \ra A$ and $\gamma : S \ra A'$. Then assume $f\circ \gamma$ is also analytic.
+	Previous: $g(z) = \begin{cases} f(z) & z\in D\cup L \\ \conj{f{(\conj{z})}} & z\in D^* \end{cases}$.
+	\underline{Objective}: Know how to reflect about analytic arc.
+\end{example}
+
+\underline{Analytic means}: $\gamma\inv \ra z\mapsto \conj{z} \ra \gamma \implies \gamma\inv(\conj{\gamma(z)})$, this is the reflection. Call this $z\mapsto z^*$, special for $\gamma$. $\omega \mapsto \omega^\wedge$ is reflection about $\lambda$. Extension of $f: z\mapsto (f(z^*))^\wedge$
+
+\begin{example}
+	Consider unit circle centered at 0. Then reflecting over the circle maps the point (0,0) to the point at infinity.
+\end{example}
+
+$f(g(z)) = g(f(z)) = z $ means $f$ and $g$ are inverse. Use to define $\log$. Problem: $e^z$ is not 1-1 because $e^z = e^x \cdot e^{iy}$ maps the imaginary axis to the unit circle, so the inverse would be multi-valued. Weill be able to define a \say{branch of $\log$}, where $\say{log{z}} = \int_1^z \frac{1}{\xi} \, d\xi$.
+
+%%%%%%%%%%% inserted here
+
+
+
+
+Redo \#9: Full credit: \underline{Due April 19}.
+
+Neil's presentation
+\begin{recall}
+	[Open Mapping Theorem] then image of an open set under a non-constant analytic mapping is an open set.
+\end{recall}
+\begin{example}
+	[3a)] If $f$ is non-constant and analytic on $S$ and $f(s) = T$, show that $f(z)$ is a boundary point  and then $z$ is a boundary point of $s$.
+	
+	$z$ must be a boundary point of $S$ since by the Open Mapping Theorem if $z$ is in the interior of $S$ be ...
+\end{example}
+
+\underline{\S8.1}: $f$ analytic on a disk $D$, $\int_{C_r} f(z) \, dz = 0$. \underline{But}: $\int_{|z|=1} \frac{1}{z} \, dz = 2\pi i$. \underline{Idea}: hole in the domain of anlyticity of $f(z) = \frac{1}{z}$.
+\begin{definition}
+	Bizarre. $D$ open connected, say $D$ is \underline{simply connected} iff (these are equivalent $D\subset \mb C$. 
+	\begin{enumerate}
+		\item[$*$] Every loop in $D$ can be continuously deformed to a point.
+		\item[($*$)] Any simple closed curve in $D$ has interior also in $D$.
+		\item[$*$] $\hat{\mb C} = \mb C \cup \{\infty\}$ like a 2-sphere, $\hat{\mb C} \backslash D$ connected.
+	\end{enumerate}
+	$\mb C\backslash\{*\} \neq $ simply connected.
+	\underline{Basic idea}: \underline{No holes}.
+\end{definition}
+\begin{remark}
+	[Riddle] Find a curve so that if either nail is removed, it will fall, but it is hanging with both.
+\end{remark}
+\begin{example}
+	$\mb C\backslash \mb R$ not connected (not even a candidate)
+\end{example}
+\begin{example}
+	Annulus $A = \{z: 1<|z|<3\}$.
+\end{example}
+\begin{example}
+	$\{z:\Re{z}>0\}\backslash \{y = \sin{(\frac{1}{x})}, x\in (0,1]\}$, simply connected.
+\end{example}
+\begin{recall}
+	Polygonal path is a finite connected chain of horizontal and vertical line segments.
+\end{recall}
+\underline{Objective}: Define $\log{z}$. $\log{z} = \int_{z_0}^z \frac{1}{\zeta} \, d\zeta + \log{z_0}$ want to be analytic on asome big set.
+$\int_{C_1-C_2} \frac{1}{z} \, dz = 2\pi i$.
+
+\underline{Claim 1}: A \underline{nontrivial} closed polygonal path has an equal \# of horizontal and vertical line segments (and positive).
+
+\underline{Nontrivial}: Not a point, not a line segment that is backtracked.
+
+\underline{Claim 2}: A closed polygonal path is the \underline{\say{sum}} of finitely many rectangles. \underline{sum}: touching edges cancel.
+
+\begin{proof}
+	[Pf. of Claim 1] Assume $\gamma(a) = \gamma(b)$ is a corner, it's the North-West corner. \underline{Conclusion}: $\#h = \#v >~0$.
+\end{proof}
+\begin{proof}
+	[Proof of Claim 2] By induction on \# of sides.
+\end{proof}
+\begin{theorem}
+	$f$ analytic on a simply connected domain, $D$. $\Gamma$ is a simple closed polygonal path $\subset D$. Conclusion: $\int_{\Gamma} f = 0$.
+\end{theorem}
+\begin{proof}
+	Trivial. Follows from definition
+\end{proof}
+\begin{theorem}
+	$f$ analytic on simply connected region $D$ then there is an anti-derivative $F$, i.e. $F' = f$.
+\end{theorem}
+\begin{proof}
+	$z_0\in D$.  $F(z) = \int_{z_0}^z f(\zeta) \, d\zeta$, \underline{some} polygonal path connecting $z$ to $z_0$.
+	\underline{Claim}: $F(z)$ is independent of our choice. \say{well defined} $\ra$ if you have different choices, the answer is the same. Need to show that if $\Gamma_1$ and $\Gamma_2$ are polygonal paths from $z$ to $z_0$ then $\int_{\Gamma_1} f = \int_{\Gamma_2} f$. This is equivalent to $\int_{\Gamma_1} f - \int_{\Gamma_2} f = 0$. by previous theorem because \say{$\Gamma_1-\Gamma_2$} closed polygonal path.
+\end{proof}
+\begin{example}
+	[Well define] My office hours are 1 hour after class. Let's say class is at \underline{11 AM}. 49 hours ago started class.
+\end{example}
+\begin{theorem}
+	$f$ analytic on simply connected $D$ and $C$ is simple closed smooth then $\int_C f = 0$.
+\end{theorem}
+\begin{proof}
+	$\int_C f = F(z(b)) - F(z(a)) = 0$.
+\end{proof}
+
+$\log{z}$. \underline{Assume}: $\frac{d}{dx} \log{x} = \frac{1}{x}$.
+\underline{Define}: $\log{z} = \int_1^z \frac{1}{\zeta} \, d\zeta + \log{(1)}$.
+
+\begin{example} [HW\#3(a)]
+	$f$ nonconstant and analytic and $f(S) = T$ then If $f(fz) \in \partial T$ then $z\in \partial S$.
+	\underline{Contrapositive}: Assume $z\notin \partial S$, but $z\in S$ so there is $\delta>0$ $D(z,\delta)\subset S$ then $f(D(z,\delta)) \subset T$. By assumption $f(D(z,\delta))$ open by the Open Mapping Theorem $\implies$ $f(z)$ \say{inside} $T$, i.e. in interior, not in $\partial T$.
+	
+	b) Show that there is a $z\in \partial S$ with $f(z)$ in the interior of $T$.
+\end{example}
+\begin{example}
+	[HW \#15] $f(x) = mx + b$ is $\mb R$-line. $\mb C$-linear or Affine $\ra f(z) = z_0 + e^{i\theta} z$, $\theta = \arg{z_1-z_0}$. \underline{Show}: maps $\mb R$-axis to the line through $z_0, z_1$, $f(t) = z_0 + e^{i\theta} t = \Re z_0 + \cos{\theta t} + i(\Im z_0 + \Im e^{i\theta}t)$, $6 + \frac{pi}{2}t$.
+\end{example}
+Correction: \underline{NW corner}: piece-wise horizontal and vertical simple closed path.
+
+\underline{Last time}: $\S8.2$: $\log{z}$. Say $f$ is an analytic branch of $\log{z}$ in the domain $D$ if: 
+\begin{enumerate}
+	\item[1)] $f$ is analytic on $D$.
+	\item[2)] $e^{f(z)} = z$.
+\end{enumerate}
+\begin{enumerate}
+	\item[$*$] $e^z$ is very not 1-1, in fact it's $\infty$-to-1.
+	\item[$*$] $e^z = e^x\cdot e^{i\theta}$, $|e^z| = e^x \neq 0 \implies \log{0}$ will be undefined.
+\end{enumerate}
+\begin{theorem}
+	Suppose $g$ is the inverse of $f$ at $z_0 \in \mb C$ and $g$ is continuous at $z_0$. If $f$ is differentiable at $g(z_0)$ and $f'(g(z_0)) \neq 0$ \underline{then} $\ra$ $g$ is also differentiable at $z_0$ and $g'(z_0) = \frac{1}{f'(g(z_0))}$.
+\end{theorem}
+\begin{proof}
+	Look at book's proof.
+\end{proof}
+\begin{definition}
+	[Inverse function] $f(g(z)) = z$. Apply chain rule: $f'(g(z))g'(z) = 1$, so $g'(z) = \frac{1}{f'(g(z))} \ra f(z) = e^z$, $f'(z) = e^z$. \underline{So} \underline{If} I have an inverse function, call it $g(z)$ to $e^z$, $g'(z) = \frac{1}{f'(g(z))} = \frac{1}{e^{g(z)}} = \frac{1}{z}$.
+\end{definition}
+\begin{theorem}
+	$D$ simply connected (open, connected, no holes) and $0\notin D$, $z_0\in D$, fix $\log{z_0} = \omega_0$. Define $f(z) = \int_{z_0}^z \frac{1}{\zeta} \, d\zeta + \log(z_0)$ and $f$ is an analytic branch of $\log{z}$ on $D$.
+\end{theorem}
+\begin{note}
+	There are $\infty$-many $\omega$ for which $e^\omega = z_0$.
+\end{note}
+\begin{proof}
+	$\frac{1}{\zeta}$ is analytic on $D$ ($0\notin D$), so $f$ is well defined because any two paths \underline{yield} the \underline{same value}. $f'(z) = \frac{1}{z}$ so analytic. \underline{Show}: $e^{f(z)} = z$. \underline{Instead}: $g(z) = ze^{-f(z)}$. \underline{Show}: $g\equiv 1$. $g'(z) = e^{-f(z)} + ze^{-f(z)} (-f'(z)) = e^{-f(z)} - e^{-f(z)}(z)\frac{1}{z} = 0 \implies g = c$, constant. $g(z_0) = z_0 e^{-f(z_0)} = z_0/z_0 = 1 \implies g\equiv 1$.
+\end{proof}
+\begin{remark}
+	$\int_{z_0}^{z_0} \frac{1}{\zeta} \, d\zeta = 0$ because $0\notin D$.
+\end{remark}
+Look at branches of $\log{z}$. \underline{Fix}: $z_0 =1$, $log{(1)} = 0$. Domain is open and simply connected $\mb C\backslash \{z: \Re z \leq 0\}$. $f(z) = \int_1^z \frac{d\zeta}{\zeta} + 0$ analytic branch of $\log{z}$, $-\pi<\arg{z}<\pi$. \underline{Instead}: $0<\arg{z} <2\pi$.
+
+\underline{Other inverse function}: $e^{f(z)} = z$, $f(z) = $ analytic branch of $\log{z}$.
+\underline{Now}: invert $z^2$. Call that $(\sqrt{z})^2 = z$. Also $e^{\frac{1}{2}\log{z}} = \left(e^{\log{z}}\right)^{1/2} = \sqrt{z}$. \underline{Let's check:} $\left( e^{\frac{1}{2}\log{z}} \right)^2 = z$, $e^{\frac{1}{2}\log{z}} = e^{\frac{1}{2}\left[ \log{z} + 2\pi Ki\right]} = e^{\frac{1}{2}\log{z} + \pi Ki}$, where $K$ even, get the same thing. So there's only 2-branches.
+
+\begin{example}
+	[HW \#19, Ch.7] $f$ analytic on $|z|\leq 1$, $\Im z > 0$ and $f$ is $\mb R$ on the circular boundary of the domain. \underline{Show}: $g(z) = \begin{cases} f(z), & |z|\leq 1, \Im z>0 \\ \conj{f(\frac{1}{\conj{z}})}, & |z|> 1, \Im z > 0 \end{cases}$ then $g$ is analytic on upper half plane.
+	
+	1) Show $g$ is differentiable, $\lim_{h\ra 0}$. 
+\end{example}
+
+
+Regarding \#19 on Ch.7; I took the approach \underline{they want is}: \underline{Assumption}: $f(z)$ is analytic and $f(z)$ is continuous boundary and $\mb R$ values. Conclusion $g(z) = \begin{cases} f(z) & \dots \\ \conj{f(\frac{1}{\conj{z}})} & \dots \end{cases}$ is analytic. (I think they want you to re-prove Morera's Theorem).
+
+Bilinear transformations: $z\mapsto \frac{-1}{z}$, maps half unit circle to upper half plane.
+
+\section*{Chapter 9: Isolated Singularities}
+
+\underline{\S9.1}: Classification of singularities, Riemann's Principle, and Casorati-Weierstrass Theorem
+
+Want to focus on behavior of an analytic function near an \underline{isolated} \underline{singularity}.
+
+\begin{definition}
+	The deleted neighborhood of $\{z:0<|z-z_0|<\delta\}$, means $z\neq z_0$.
+\end{definition}
+\begin{definition}
+	$f$ has an isolated singularity at $z_0$ if for some $\delta$, $f$ is analytic on the punctured-$\delta$-'hood of~$z_0$ (but not at $z_0$).
+\end{definition}
+\begin{observe}
+	$f$ is not continuous at $z_0$.
+\end{observe}
+\begin{example}
+	\begin{itemize}
+		\item Removable singularity: $f(z) = \begin{cases} \sin{z} & z\neq 3 \\ 0 & z=2 \end{cases}$.
+		\item Pole of order 1: $g(z) = \frac{1}{z-3}$
+		\item Essential singularity: $e^{1/z}$, wild
+	\end{itemize}
+\end{example}
+\begin{definition}
+	$z\neq z_0$, $f(z) = \frac{A(z)}{B(z)}$ in some deleted 'hood of $z_0$ and $A(z) = $ analytic, $A(z_0) \neq 0$, and $B(z_0) = 0$ then we say $z_0$ is a pole. If $B(z)$ has a zero of order $k$. $\begin{cases} \frac{B(z)}{(z-z_0)^k} & z\neq z_0 \\ \lim_{z\ra z_0} \uparrow & \dots \end{cases}$, $z\neq z_0$.
+\end{definition}
+\begin{definition}
+	If there is an analytic function $g$ and $z_0$ and $g\equiv f$ on some deleted 'hood of $z_0$ then we say $z_0$ is a \underline{removable singularity} of $f$.
+\end{definition}
+\begin{definition}
+	Assume $z_0$ is an isolated singularity of $f$ and it's not removable and not a pole. Then we call it essential.
+\end{definition}
+\begin{theorem}
+	[Riemann's Principle of Removable Singularities] Assume $z_0$ is an isolated singularity and $\lim_{z\ra z_0} (z-z_0) f(z) = 0$. \underline{Conclusion}: $z_0$ is removable.
+\end{theorem}
+\begin{proof}
+	Consider $h(z) = \begin{cases} (z-z_0)f(z), & z\neq 0 \\ 0, & z=0 \end{cases}$. \underline{Observe} $h(z)$ is analytic on the deleted 'hood of $z_0$ and continuous at $z_0$. \underline{Conclusion}: $h$ is analytic also at $z_0$. \underline{Now}: Since $h(z) = 0$, $g(z) = \frac{h(z_0)}{z-z_0}$ also analytic by modified version of Corollary 5.9. $g(z) = f(z)$ except at $z_0$. \underline{Conclusion}: $z_0$ is removable.
+\end{proof}
+\begin{corollary}
+	If $f$ is bounded on a deleted 'hood of an isolated singularity $z_0$, then it's removable.
+\end{corollary}
+\begin{proof}
+	$|(z-z_0)f(z)|\leq M \cdot |z-z_0| \underset{z\ra z_0}{\longrightarrow} 0$ by Riemann's principle.
+\end{proof}
+\begin{definition}
+	$z\neq z_0$, $f(z) = \frac{A(z)}{B(z)}$, $A$ and $B$ are analytic on 'hood of $z_0$. $A(z_0) \neq 0$ and $B(z_0) = 0$. Then we say $f$ has a pole at $z_0$.
+\end{definition}
+\begin{theorem}
+	$f$ analytic on a deleted `hood of $z_0$ and $\exists k \in\mb Z_{>0}$ such that $\lim_{z\ra z_0} (z-z_0)^k f(z) \neq 0$ has a removable singularity and $\lim_{z\ra z_0} (z-z_0)^{k+1} f(z) = 0$. Then $f$ has a pole of order $k$ at $z_0$.
+\end{theorem}
+\begin{proof}
+	$g(z) = \begin{cases} (z-z_0)^k f(z) & z\neq z_0 \\ 0 & z=z_0 \end{cases} \implies g$ is analytic. Since $g(z_0) = 0 \implies A(z) = \frac{g(z)}{z-z_0}$ is analytic at~$z_0$ (by Corollary 5.9). $f(z) = \frac{A(z)}{(z-z_0)^k} = A(z) \cdot \frac{1}{(z-z_0)^k}$.
+\end{proof}
+\begin{example}
+	$f(z) = \frac{1}{z^2 + 25}$, $\mb C\backslash \{\pm 5i\}$, two isolated singularties. $z_0 = 5i$, $A(z) = $ ? $z-z_0 = z-5i$ so $\frac{1}{z^2+25} = \frac{A(z)}{z-5i}$, where $A(z) = \frac{1}{z+5i}$. \underline{Conclusion}: $z_0$ is essential $\lim_{z\ra z_0} (z-z_0)^{k+1} f(z) \not{\ra} 0$ for all $k$.
+\end{example}
+\begin{theorem}
+	[Casorati-Weierstrass] If $f$ has an essential singularity at $z_0$ and $D$ is any deleted `hood of~$z_0$. Then $R = \{f(z): z\in D\}$. \underline{Conclusion} $\bar{R} = \mb C$ (i.e. $R$ is dense).
+\end{theorem}
+\underline{Actual Theorem}: \underline{Picard's Theorem}: With the assumptions as above, $R$ is all of $\mb C$ except maybe 1-point.
+\begin{example}
+	$e^{1/z}$, wild!
+\end{example}
+\begin{proof}
+	Suppose $\bar{R} \neq \mb C$. \underline{Means}: $\exists$ small ball centered at $\omega_0$ of radius $\delta$, $R\cap B(\omega_0,\delta) = \emptyset$. Pick $z\in D$, then $|f(z) - \omega_0| \leq \delta \ra \left| \frac{1}{f(z)-\omega_0} \right| < \frac{1}{\delta}$ \underline{Bounded} for any $z\in D$. \underline{Conclusion}: 1) $\frac{1}{f(z)-\omega_0}$ is analytic on $D$. 2) $\frac{1}{f(z)-\omega_0}$ has a removable singularity. $\implies g(z) = \begin{cases} \frac{1}{f(z) - \omega_0} & z\neq z_0 \\ \lim & z = z_0 \end{cases}$ is analytic and $f(z) = \omega_0 + \frac{1}{g(z)}$ for $z\neq z_0$. Either $g(z_0) \neq 0$ and so $f$ has a removable singularity or $g(z_0) = 0$ and $f$ has a pole at $z_0$.
+\end{proof}
+
+\underline{\S9.1}: Laurent Series:
+
+Let $M_k\in \mb C$. $\sum_{k=-\infty}^\infty M_k = \sum_{k=0}^\infty M_k + \sum_{k=1}^\infty M_{-k}$. $L$ means both sums converge and their sum is $L$.
+
+$\sum_{k=-\infty}^\infty C_k z^k$ in general will converge on an annulus.
+
+\underline{3-types of annuli}:
+\begin{itemize}
+	\item $\{z: 0<|z|< R\}$
+	\item $\{z: r<|z|<R\}$
+	\item $\mb C\backslash \{0\}$. $|z|\neq 0$.
+\end{itemize}
+
+$\sum_{k=0}^\infty C_k z^k$ converges for $|z|<R$. For $\sum_{k=1}^\infty C_{-k} z^{-k} = \sum_{k=1}^\infty C_{-k} (\frac{1}{z})^k$. $|frac{1}{z}| < 1000$. $\frac{1}{1000}<|z|$. $\frac{1}{1000} < |z|$.
+
+\ul{Chapter 9 continued} \S9.2
+
+\begin{recall}
+	If $\conj{\lim}_{k>0} |C_k|^{1/k} = L$ then $\sum_{k=0}^\infty C_k z^k$ converges on disk of radius $R = \frac{1}{L}$ centered at $z=0$.
+\end{recall}
+\begin{recall}
+	$\sum_{k=-\infty}^\infty C_k z^k = \sum_{k=1}^\infty C_{-k} \left( \frac{1}{z} \right)^k + \sum_{k=0}^\infty C_k z^k$. For this to converge, we demand each piece converge, so we will get an annulus.
+\end{recall}
+\begin{theorem}
+	$f(z) = \sum C_k z^k$ converges on the annulus $D = \{z: R_1 < |z| < R_2\}$, where $(*)$ $R_2 = \frac{1}{\conj{\lim}_{k\ra\infty} | C_k |^{1/k}}$ and $R_1 = \conj{\lim}_{k\ra\infty} |C_{-k}|^{1/k}$. \ul{In particular}: If $R_1<R_2$ then we get a domain of convergence.
+	\ul{3 types of annuli}: $\mb C\backslash\{0\} : \{z:0<|z| < \infty\}$, punctured disk $\{z: 0<|z|<R\}$, standard: $\{z: R_1 < |z| < R_2\}$, $R_1<R_2$. (\ul{Missing?}) No. $\{z: R_1 < |z| < \infty\}$.
+\end{theorem}
+\begin{theorem}
+	If $f$ is analytic on $A: R_1 < |z| < R_2$, then $f$ has a unique Laurent expansion on $A$ and $f(z) = \sum_{k=-\infty}^\infty a_k z^k$, where $a_k = \frac{1}{2\pi i} \int_{C_R} \frac{f(z)}{z^{k+1}} \, dz$ for $R_1 < R < R_2$ and circle of radius $R$ centered at 0 (everything also holds for $z=z_0$).
+\end{theorem}
+
+\ul{3-types of isolated discontinuities}: $\exists g(z)$ analytic. \ul{Removable}: $f(z) = g(z)$ on some punctured neighborhood of $z=z_0$; \ul{pole}: order $k$, $g(z) = (z-z_0)^kf(z)$ but $(z-z_0)^{k-1}f(z)$ Not analytic; \ul{essential} $\uparrow$ never happens.
+\ul{What happens in each case}: Look at $k>0$: $a_k = \frac{1}{2\pi i} \int_{C_R} f(z) z^k \, dz$. If \ul{Removable}: $a_k = 0$ for all $k>0$. If pole of order $N$ then $a_k = 0$ for $k>N$. If essential then none of the above.
+
+\begin{definition}
+	$f(z) = \sum_{k=-\infty}^\infty C_k z^k = \sum_{k=1}^\infty C_{-k} \left( \frac{1}{z} \right)^k + \sum_{k=0}^\infty C_k z^k$, where the negative part is called \ul{principle part} and positive part is \ul{Analytic part}.
+\end{definition}
+
+\ul{Assume} $z = 0$ is an isolated singularity: Removable $\iff$ Laurent expansion has no principle part (i.e. $C_k = 0$ for $k>0$). Pole of order $N$ $\iff$ Laurent expansion has $C_k = 0$ and $C_{-N}\neq 0$ for $k<-N$. \ul{Essential Singularity} $\iff$ there are $\infty$-many negative terms $C_k \neq 0$, $k>0$.
+
+\begin{example}
+	$f(z) = \frac{1}{z^5} + \frac{1}{z^4} + \frac{1}{z^3} + \frac{1}{z^2} + \frac{1}{z}$. Check this is \ul{the} Laurent expansion at $z=0$. Then $z^5f(z) = 1 + z + z^2 + z^3 + z^4$ analytic. $\ra f(z) = \sum_{k=-N}^{-1} C_k z^k + \sum_{k=0}^\infty C_k z^k = z^N f(z)$.
+\end{example}
+
+\begin{definition}
+	$\hat{\mb C} = \mb C \cup \{\infty\}$ is \say{one point compactification of $\mb C$.} Warning: When we do $\mb R$-calculus, we deal with $\mb R\cup \{-\infty,\infty\}$, $-\infty \neq \infty$. Similarly, could consider $\hat{\mb R} = \mb R \cup \{\infty\} \subset \hat{\mb C}$. \ul{Hausdorff}.
+\end{definition}
+Stereographic Projection: bijection between point of $\mb C$ and sphere without it's north pole $N = (0,0,1)$. \ul{Type 1}: If $l$ is a line through $N$ and not parallel to $x$-$y$ plane, then $l$ intersects the $x$-$y$ plane in a unique point and intersects the sphere in one additional point (besides $N_1$). \ul{Type II}: parallel to $x$-$y$ plane, i.e. tanget at $N$. \ul{Of type 1}: 3-subtypes. Type E: equator $\ra$ unit circle; Type L: lower $\ra$ unit disk; Type U: Upper. \ul{Riemann Sphere}. Type II corresponds to $\infty$. Parallel lines meet at the point at infinity. More generally, lines and circles $\ra$ circles through $\infty$ and circles and \ul{map is conformal}, i.e. angle preserving.
+
+\begin{theorem}
+	If $f$ is analytic at $z_0$ and $f'(z_0) \neq 0$, then 
+	\begin{enumerate}
+		\item[$*$] $f$ is \say{locally 1-1} means there's small disk centered at $z_0$, $f$ is one-to-one
+		\item[$*$] $f$ is conformal at $z_0$.
+	\end{enumerate}
+\end{theorem}
+fact 1. Assume $f$ is analytic on a whole open domain. \ul{$f'$ is also analytic}.
+Fact 2: If a function is analytic and is 0 on a sequence $z_k$, $f(z_k) = 0$, $z_k\ra z_0$, then $f\equiv 0$.
+If $f$ is analytic and not constant, then $f'$ has finitely many zeros on a disk. So, an analytic function is conformal most of the time.
+
+\ul{Moebius Transformations} $A(z) = \frac{az+b}{cz+d}$. $A'(z) = a(cz+d)\inv + (az+b)(-c)(cz+d)^2 = \frac{acz+ad-acz-bc}{(cz+d)^2} = \frac{ad-bc}{(cz+d)^2} \neq 0$. Let $A = \mat{a & b \\ c & d}$, $A'\neq 0$ exactly $\det{A} \neq 0$.
+
+\begin{example}
+	$A = \mat{a & b \\ c & d}$, $B = \mat{\alpha & \beta \\ \delta & \gamma}$, $\det(A),\det{B}\neq 0$, then $A(B(z)) = C(z)$, $C = A\cdot B$.
+\end{example}
+$\alpha \cdot A = \mat{} = \alpha A(z) = \frac{\alpha a z + \alpha b}{\alpha c z + \alpha d} = A(z)$.
+
+$ A = \mat{a & b \\ c & d}$, $A:\hat{\mb C} \ra \hat{\mb C}$. $A(z) = \frac{az+b}{cs+d}$. If $\det{A} \neq 0$ then $A$ conformal (i.e. it preserves angles). \ul{Also}: Maps circles/\ul{lines} $\ra$ circles \& \ul{lines}, where lines are \ul{circles through $\infty$}. Parallel lines intersect at $\infty$ and have angle 0.
+
+\ul{Interesting Fact}: For every triple pf points $(z_1,z_2,z_3)$ there is a Mobius transformation, $\mat{a & b \\ c & d}$ 
+$$ \mat{a&b\\c&d}:(z_1,z_2,z_3) \ra (\infty,0,1)$$
+$$ \mat{a&b\\c&d} \iff A(z) = \frac{(z-z_2)(z_3-z_1)}{(z-z_1)(z_3-z_2)}$$
+
+$\hat{\mb R} \subset \hat{\mb C}$, $*$ Map Circle/lines $\ra$ Circle/lines, $*$ preserves angles. $A = \mat{a&b\\c&d}$, $ad-bc \neq 0$ and $a,b,c,d\in\mb R$. \ul{Observe}: $x\in\mb R$, then $\frac{ax+b}{cx+d} \in\hat{\mb R}$, so preserve $\hat{\mb R}\subset \hat{\mb C}$.
+
+\begin{example}
+	$\mat{0&1//1&0}(z) = \frac{0z+1}{1z+0} = \frac{1}{z}$ and $\mat{0&1//1&0}(i) = \frac{1}{i} = -i$. Now switch to $\mat{0&1//-1&0}(z) = \frac{0z+1}{-1z+0} = \frac{1}{z}$ and $\mat{0&1//-1&0}(i) = \frac{1}{-i} = i$.
+\end{example}
+\begin{fact}
+	If $\mat{a&b\\c&d}$ has $\det \neq 0$, then it's conformal and $\det>0$, then preserves \say{Upper half-plane} = $\mb H$ = open. Has a way of measuring distances makes it into a geometry.
+\end{fact}
+\ul{Pause}: Consider 3-model types of geometry. \ul{Euclid's 5$^\text{th}$}: For every line $l$ and every $p\notin l$ there is a unique line through $p$ and parallel to $l$. \ul{Say it's False}: \ul{False type 1}: there is no parallel line. \ul{False type 2}: there are parallels but more than one.
+\begin{example}
+	\ul{Sphere}: False type 1. \say{Lines} geodesics are great circles. \ul{Falste type 2}: hyperbolic geometry \ul{\& model}: $\mb H$. \ul{One axiom}: geodesics are unique. Take this as a black box. Find what lines look like in $\mb H$.
+\end{example}
+
+Consider the line $i\mb R_+$. Argue $i\mb R_+$ is a geodesic. Reflection about $i\mb R$ is a symmetry is achievable $\mat{a&b\\c&d}$. Conclusion is that $i\mb R_+$ is geodesic.
+
+\ul{Consider}: What happens to this geodesic under $\mat{a&b \\ c&d}$, assuming are symmetries of $\mb H$.
+
+\begin{example}
+	$i\mb R$ and $z\mapsto z+1$.
+\end{example}
+
+\begin{example}
+	\ul{Understand}: $z\mapsto \frac{1}{-z}$. $A(z) = \frac{-1}{z}$. $z = re^{i\theta}$ and $\frac{1}{-z} = \frac{1}{r} e^{i(\pi-\theta)}$.
+\end{example}
+\ul{In fact}: here is a complete \ul{list of geodesics}: $*$ vertical 1/2 lines $\perp$ to $\mb R$-axis. $*$ semi-circles that $\perp$ to $\mb R-$ axis.
+
+\begin{fact}
+	Circles are Euclidean circles, but the center is off. \ul{Non-Euclidean}: fails Euclid's 5th postulate. There are infinite parallel lines through any one point.
+\end{fact}
+
+$*$ Angle sum of \ul{any} triangle = $\alpha + \beta + \gamma < \pi$. 
+$*$ Area of a triangle is $\pi-\alpha-\beta-\gamma$. An ideal triangle has all angles zero and has Maximum area of $\pi$.
+
+
+Poincare Disk: geodesics are circles that are orthogonal to the boundary circle. Triangles are thin.
+
+Looks like a lettuce leaf.
+
+Exam is 12-3 on May 4th.
+\end{document}

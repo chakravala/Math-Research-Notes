@@ -1,0 +1,180 @@
+\documentclass[]{article}
+\input{../mathdoc}
+\input{../mathsym}
+
+\author{Book: Thomas Judson 2017, Presenter: Igor Erovenko, Notes by Michael Reed}
+\title{Abstract Algebra}
+%date{}
+
+\begin{document}
+\maketitle
+
+%\begin{abstract}
+%\end{abstract}
+
+\section{Proofs}
+
+Let $p$ and $q$ be statements. \say{If $p$ then $q$.} $p$ is the hypothesis and $q$ is the conclusion. \ul{Implication} is $p\implies q$, read \say{$p$ implies $q$.}
+
+\begin{tabular}{|c|c|c|}
+	\hline 
+	$p$ & $q$ & $p\implies q$ \\ 
+	\hline 
+	T & T & T \\ 
+	\hline 
+	T & F & F \\ 
+	\hline 
+	F & T & T \\ 
+	\hline 
+	F & F & T \\ 
+	\hline 
+\end{tabular}
+
+\subsection*{Methods of proof}
+
+\begin{enumerate}
+	\item Direct proof. Assume $p$ is true, show $q$ is true. $p\implies \dots \implies \dots \implies\dots \implies q$.
+	\begin{example}
+		Show that if $n$ is an odd integer, then $n^2$ is odd. $p = $ \say{$n$ is odd} and $q = $ \say{$n^2$ is odd.}
+		\begin{proof}
+			Suppose $n$ is an odd integer. Then $n = 2k+1$ for some integer $k$. In this case, $n^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$. Notice that $2k^2+2k$ is an integer. So, $n^2$ is odd.
+		\end{proof}
+	\end{example}
+	\item Reduction to cases. If $p$ is true, then one of $p_1,p_2,\dots,p_n$ must be true. Then show each $p_i \implies q$.
+	\begin{example}
+		Show that if $n$ is an integer, then $n^2-n$ is even. $p = $ \say{$n$ is an integer} and $q = $ \say{$n^2-n$ is even.}
+		\begin{proof}
+			Suppose $n$ is an integer. Then $n$ is even or odd.
+			\ul{Case 1}: $n$ is even. In this case, $n=2k$ for some integer $k$ and $n^2-n = (2k)^2 - 2k = 4k^2 - 2k = 2(2k^2-k)$ is even. \ul{Case 2}: $n$ is odd. In this case $n = 2k+1$ for some integer $k$ and $n^2-n = (2k+1)^2-(2k+1) = 4k^2 + 4k + 1 - 2k -1 = 4k^2 +2k = 2(2k+k)$ is even.
+		\end{proof}
+	\end{example}
+	\item Proof by contradiction. If $p$ is true, then either $q$ is true or it is not true. Show that $\neg q$ is impossible. Assume: $p$ is true and $q$ is false (not $q$ is true). Show: this leads to a contradiction.
+	\begin{example}
+		Show that $\sqrt{2}$ is irrational. If $r$ is rational, then $r^2 \neq 2$.
+		\begin{proof}
+			Assume $r$ is rational and $r^2 = 2$. Then $r = \frac{m}{n}$ for some integers $m$ and $n$, in lowest terms. Then $(\frac{m}{n})^2 = 2$. So, $m^2 = 2n^2$. It follows that $m^2$ is even, and hence $m$ is even. Then $m = 2k$ and we get $(2k)^2 = 4k^2 = 2n^2$ or $2k^2 = n^2$. Therefore $n^2$ is even, and consequently $n$ is even. Both $m$ and $n$ are even, which contradicts our assumption that $\frac{m}{n}$ is in lowest terms. Therefore $r^2 \neq 2$ and $\sqrt{2}$ is irrational.
+		\end{proof}
+	\end{example}
+\end{enumerate}
+
+To disprove a general statement: find one counterexample.
+
+\begin{example}
+	Every integer is odd. False, $4$ is not odd.
+\end{example}
+
+Equivalences: $p$ if and only if $q$. $p\Longleftrightarrow q$, needs proofs for both $p\implies q$ and $q\implies p$.
+
+\section{Sets}
+
+A \ul{set} is a well-defined collection of objects. Requires a criterion for determining set membership. $a\in A$ means $a$ is a \ul{member} or an \ul{element} of a set $A$.
+
+$$X = \{ x_1,x_2,\dots,x_n\}, \, X = \{ x: x \text{ satisfies } P\} = \{x \mid x \text{ satisfies } P\}.$$
+
+$\mb N$ natural numbers $\{1,2,3,4,\dots\}$.
+$\mb Z$ integers $\{\dots,-3,-2,-1,0,1,2,3,\dots\}$.
+$\mb Q$ rational numbers $\{\frac{m}{n} \mid m,n\in \mb Z, n\neq 0\}/\sim$.
+$\mb R$ real numbers.
+$\mb C$ complex numbers $\{a+bi \mid a,b\in\mb R\}$.
+$\mb H$ Hamiltonian quaternions $\{a+bi+cj+dk \mid a,b,c,d\in\mb R\}$.
+
+\begin{definition}
+	[Subset] $A\subset B$ or $A\subseteq B$, $a\in A \implies a\in B$.
+\end{definition}
+\begin{definition}
+	[Equality of sets]
+	$A = B \Longleftrightarrow A \subseteq B$ and $B\subseteq A$.
+\end{definition}
+
+\begin{definition}
+	[Proper subset] $A\subsetneq B \Longleftrightarrow A\subseteq B$ and $A\neq B$.
+\end{definition}
+\begin{definition}
+	[Empty set] $\emptyset \subseteq A$ for any set $A$.
+\end{definition}
+
+\begin{definition}
+	[Union] $A\cup B = \{ x\mid x\in A \text{ or } x\in B\}$.
+\end{definition}
+\begin{definition}
+	[Intersection] $A\cap B = \{x \mid A \text{ and } x\in B\}$.
+\end{definition}
+\begin{definition}
+	[Difference] $A-B = A\backslash B = \{x \mid x\in A \text{ and } x\notin B\}$.
+\end{definition}
+
+\begin{proposition}
+	Let $A,B,$ and $C$ be sets.
+	\begin{enumerate}
+		\item $A\cup A = A$, $A\cap A = A$, $A\backslash A = \emptyset $.
+		\item $A\cup \emptyset = A$, $A\cap \emptyset = \emptyset$.
+		\item $A\cup (B\cup C) = (A\cup B)\cup C$.
+		$A\cap (B\cap C) = (A\cap B) \cap C$.
+		\item $A\cup B = B\cup A$. $A\cap B = B\cap A$.
+		\item $A\cup (B\cap C) = (A\cup B) \cap (A\cup C)$.
+		\begin{proof}
+			Let $x\in A\cup (B\cap C)$. Then $x\in A$ or $x\in B\cap C$. \ul{Case 1}: $x\in A$. In this case, $x\in A\cup B$ and $x\in A\cup C$, so $x\in (A\cup B)\cap (A\cup C)$. \ul{Case 2}: $x\in B\cap C$. In this case, $x \in B$ and $x\in C$. So, $x\in A\cup B$ and $x\in A\cup C$. Hence $x \in (A\cup B)\cap (A\cup C)$. Therefore $A\cup (B\cap C) \subseteq (A\cup B)\cap (A\cup C)$.
+		\end{proof}
+		\item $A\cap (B\cup C) = (A\cap B) \cup (A\cap C)$.
+	\end{enumerate}
+\end{proposition}
+
+\subsection*{Cartesian products and mappings}
+
+Cartesian product of $A$ and $B$ is $A\times B = \{(a,b)\mid a\in A \text{ and } b\in B\}$.
+In general, $A_1\times A_2\times\dots\times A_n = \{(a_1,a_2,\dots,a_n)\mid a_i\in A_i \text{ for } 1\leq i \leq n\}$.
+\ul{Notation}: $A\times A\times \dots\times A = A^n$.
+
+\begin{example}
+	$\mb R^2, \mb R^3$.
+\end{example}
+
+A \ul{relation} from $A$ to $B$ is a subset of $A\times B$.
+A \ul{mapping} (or a \ul{function}) $f$ from $A$ to $B$ is a relation from $A$ to $B$ such that for every $a\in A$ there exists a unique $b\in B$ for which $(a,b)\in f$. \ul{Notation}: $(a,b) \in f \ra f(a) = b$ or $f:a\mapsto b$ and on the level of sets $f:A\ra B$. $A$ is the domain of $f$, $B$ is the codomain, $f(A) = \{f(a)\mid a\in A\}\subseteq B$ is the range of $f$.
+
+\begin{definition}
+	A mapping $f:A\ra B$ is
+	\begin{enumerate}
+		\item \ul{injective} (or one-to-one) if $f(a_1) = f(a_2) \implies a_1 = a_2$.
+		\item \ul{surjective} (or onto) if $f(A) = B$, or for every $b\in B$ there exists $a\in A$ such that $f(a) = b$.
+		\item \ul{bijective} (or one-to-one correspondence) if it's injective and surjective.
+	\end{enumerate}
+\end{definition}
+\begin{example}
+	$f:\mb R\ra \mb R$, $f(x) = e^x$. $e^{x_1} = e^{x_2} \overset{?}{\implies} x_1 = x_2$ then $\ln(e^{x_1}) = \ln(e^{x_2})$, so injective. $f(\mb R) = \mb R^+ = (0,\infty) \neq \mb R$, not surjective and not bijective.
+	$f:\mb R \ra (0,\infty)$ is bijective.
+\end{example}
+\begin{example}
+	$f:\mb Z\ra Z$, $f(n) = n^2$. $f(-1) = 1 = f(1)$, not injective. $2\notin f(\mb Z)$, not surjective and not bijective.
+\end{example}
+\begin{example}
+	$f:\mb R\ra \mb R$, $f(x) = 2x+1$. $2x_1 + 1 = 2x_2 + 1 \implies x_1 = x_2$, injective. Given any $y\in \mb R$ find $x\in \mb R$ such that $2x+1 = y$: $x = (y-1)/2$, surjective and bijective.
+\end{example}
+
+A \ul{composition} of mappings $f:A\ra B$ and $g:B\ra C$ is a mapping $g\circ f: A\ra C$ defined by $(g\circ f)(a) = g(f(a))$. $A \overset{f}{\lra} B \overset{g}{\lra} C$ or $a \rightsquigarrow f(a) \rightsquigarrow g(f(a))$.
+\begin{theorem}
+	Let $f:A\ra B$, $g:B\ra C$, and $h:C\ra D$ be mappings.
+	\begin{enumerate}
+		\item The composition of mappings is associative: $(h\circ g) \circ f = h\circ(g\circ f)$.
+		\begin{proof}
+			Let $a\in A$. Then $((h\circ g)\circ f)(a) = (h\circ g)(f(a)) = h(g(f(a))) \equiv h((g\circ f)(a)) = (h\circ(g\circ f))(a)$.
+		\end{proof}
+		\item If $f$ and $g$ are injective, then so is $g\circ f$.
+		\begin{proof}
+			$(g\circ f)(a_1) = (g\circ f)(a_2) \implies g(f(a_1)) = g(f(a_2)) \implies f(a_1) = f(a_2) \implies a_1 = a_2$.
+		\end{proof}
+		\item If $f$ and $g$ are surjective, then so is $g\circ f$.
+		\begin{proof}
+			$A\os{f}{\lra} B \os{g}{\lra} C$ or $A\os{g\circ f}{\lra} C$. $g(b) = c$, $f(a) = b$.
+		\end{proof}
+		\item If $f$ and $g$ are bijective, then so is $g\circ f$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+	The \ul{identity} mapping on a set $A$ is $\text{id}_A: A\ra A$, $\text{id}_A(a) = a$.
+	An \ul{inverse} mapping of a mapping $f:A\ra B$ is a mapping $g:B\ra A$ such that $g\circ f = \text{id}_A \ra g(f(a)) = a$, $f\circ g = \text{id}_B \ra f(g(b)) = b$.
+	A mapping is \ul{invertible} if it has an inverse mapping. \ul{Notation}: $f\inv$ inverse of $f$.k
+\end{definition}
+
+\end{document}

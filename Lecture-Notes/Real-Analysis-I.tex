@@ -1,0 +1,177 @@
+\documentclass[]{article}
+\input{../mathdoc}
+\input{../mathsym}
+
+\author{Book: Walter Rudin 3rd, Presenter: Maya Chhetri, Notes by Michael Reed}
+\title{Real Analysis I}
+%date{}
+
+\begin{document}
+\maketitle
+
+%\begin{abstract}
+%\end{abstract}
+
+\section{Chapter 1}
+
+\ul{Notation}: $\mb{N} = \{0,1,2,3,\dots\}$ - set of natural numbers.
+$\mb Z = \{0,\pm 1, \pm 2,\dots\}$ - set of integers.
+$\mb Q = \{\frac{m}{n}:m,n\in\mb Z,\, n\neq 0\}$ - set of rationals $\ra$ we know $\mb Q$.
+$\mb R$ - set of all real numbers.
+$\mb C = \{a+ib: a,b\in\mb R \text{ and } i^2 = -1\}$.
+
+\ul{Sets} - collection of objects. Empty set - $\emptyset$ - a set which contains no objects.
+$A\subset B$ if $a\in A \implies a\in B$ for all $a\in A$.
+\begin{example}
+	$A\varsubsetneq B$ - a proper subset if $A\subset B$ and $\exists x_0 \in B$ such that $x_0 \notin A$.
+\end{example}
+\begin{note}
+	$A = B$ iff $A\subset B$ and $B\subset A$.
+\end{note}
+
+\ul{Order on a set}: Let $S$ be a set. An order, denoted by '$<$' is a \ul{relation} on $S$ satisfying:
+\begin{enumerate}
+	\item[(i)] If $x,y\in S$ then one of the following must hold:
+	$x<y$, $x = y$, $y<x$.
+	\item[(ii)] If $x,y,z\in S$ with $x<y$ and $y<z$ then $x<z$ (transitive property).
+\end{enumerate}
+\begin{example}
+	$S = \mb N$ with \say{$<$} ($x<y$ if $y-x>0$) is an ordered set.
+\end{example}
+\begin{definition}
+	[Upper bound] Let $(S,<)$ be an ordered set. Let $E\subset S$. We say that $\beta$ is an \ul{upper bound of $E$} if $s\leq\beta$ for all $s\in E$.
+\end{definition}
+\begin{definition}
+	[Lower bound] $\alpha$ is a \ul{lower bound of $E$} if $\alpha \leq s$ for all $s\in E$.
+\end{definition}
+
+\begin{example}
+	$(S = \mb Q,<)$ and
+	\begin{enumerate}
+		\item $E = \{x \in \mb Q: 0\leq x < 1\}$. $\beta = 1$ is an upper bound of $E$ and $1\notin E$. $\beta \geq 1$ are upper bounds of $E$. $\alpha = 0$ is a lower bound of $E$ and $0\in E$. $\alpha \leq 0$ are lower bounds of $E$.
+	\end{enumerate}
+\end{example}
+\begin{definition}
+	[Least upper bound] Let $E\subset (S,<)$. We say that $\alpha \in S$ is the least upper bound or supremum of $E$ if:
+	\begin{itemize}
+		\item[(i)] $\alpha$ is an upper bound of $E$, and
+		\item[(ii)] if $\gamma$ is an upper bound of $E$, then $\alpha \leq \gamma$ (or $\gamma $ is not an upper bound for any $\gamma < \alpha$).
+	\end{itemize}
+\end{definition}
+\ul{We write}: $\alpha = \text{lub} E$ or $\alpha = \sup E$.
+\begin{example}
+	[continued] $\sup E = 1 \notin E$, $\inf = 0 \in E$. $\max E$ is a the $\sup E$ and it belongs to $E$.
+\end{example}
+
+Rational numbers $\mb Q$ has holes.
+\begin{lemma}
+	$\sqrt{2} \notin \mb Q$. That is $x^2 = 2$ has no solution in $\mb Q$.
+\end{lemma}
+\begin{proof}
+	We will prove by contradiction (BWOC). Suppose $\sqrt{2} \in \mb Q$. Then $\sqrt{2} = \frac{m}{n}$, with $m,n\in \mb Z$, $n\neq 0$ and $\frac{m}{n}$ in least terms or $\gcd (m,n) = 1$. Then $2 = \frac{m^2}{n^2} \implies m^2 = 2n^2$. Then $m^2$ is even. \ul{So $m$ is even}.
+	\begin{proof}
+		Suppose $m$ is odd. Then $m = 2k + 1$ for some $k \in \mb Z$. $\implies m^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1 \implies m^2$ is odd, a contradiction. So $m$ must be even.
+	\end{proof}
+	Then $m = 2l$ for some $l\in \mb Z$. Then $(2l)^2 = 2n^2 \implies 4l^2 = 2n^2 \implies 2l^2 = n^2$. So $n^2$ is even and hence $n$ is even. This is a contradiction to $\frac{m}{n}$ being in least terms. So $\sqrt{2} \notin \mb Q$.
+\end{proof}
+
+Prove that $\sup E = 1$ if $E = \{x \in \mb Q : 0 \leq x < 1\}$.
+
+\begin{proof}
+	\begin{enumerate}
+		\item[(i)] Clearly $x<1$ for all $x\in E$. So $1$ is an upper bound of $E$.
+		\item[(ii)] If $\gamma < 1$ then $\gamma$ is not an upper bound of $E$. If $\gamma \leq 0$, then clearly $\gamma$ is not an upper bound of $E$. If $0<\gamma < 1$, then $x = \frac{\gamma + 1}{2}$. But $\gamma < x\in E$ by construction, so $\gamma$ is not an upper bound. Therefore \ul{$ \sup E = 1$}.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	[Uniqueness of supremum] Let $(S,<)$ be an ordered set. If $E\subset S$ has supremum (or infimum) in $S$, then it is unique.
+	\begin{proof}
+		Let $\alpha_1 = \sup E$ and $\alpha_2 = \sup E$. Then by definition $\alpha_1$ and $\alpha_2$ are upper bounds of $E$. But $\alpha_1 = \sup E$ and $\alpha_2$ is an upper bound of $E$, so $\alpha_1 \leq \alpha_2$. Switching roles of $\alpha_1$ and $\alpha_2$, we get $\alpha_2 \leq \alpha_1$. Combining these two, $\alpha_1 = \alpha_2$. So $\sup E$ is unique.
+	\end{proof}
+\end{theorem}
+\begin{example}
+	$A := \{ x\in\mb Q : x>0 \text{ and } x^2 \leq 2\}$. $B:=\{ x\in\mb Q: x>0 \text{ and } x^2\geq 2\}$. $A\cap B = \{ x \in\mb Q : x>0 \text{ and } x^2 = 2\} = \emptyset$ - showed.
+	\begin{enumerate}
+		\item $A$ is bounded above in $\mb Q$ ($B$ is bouned below in $\mb Q$).
+		If $a\in A$ and $b\in B$ then $a\leq b$.
+		\item There is no upper bound of $A$ in $A$.
+		Let $p>0\in \mb Q$ be fixed and arbitrary. Set $q:= p - \frac{p^2-2}{p+2} = \frac{2(p+2)}{p+2}$. $q^2-2 = \frac{4p^2 + 8p +4}{(p+2)} - 2 = \frac{4p^2 + 8p + 4 - 2p^2 - 8p - 8}{(p+2)^2} = \frac{2(p^2-2)}{(p+2)^2}$. So, $q^2 < 2$ if and only if $p^2 < 2$. Therefore $q\in A$ if and only if $p\in A$.
+		
+		Suppose $p\in A$ is an upper bound of $A$. Then $q = \frac{2p+2}{p+2} > p$ and $q\in A$. Therefore $p$ cannot be an upper bound of $A$.
+		\item $A$ has no least upper bound or supremum in $\mb Q$.
+		$B$ is the set of upper bounds of $A$. Repeating the argument of 2. for $B$, there is no lower bound of $B$ in $B$.
+		That means $A$ has no least upper bound in~$\mb Q$.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	[Least upper bound property] Let $(S,<)$ be an ordered set. Then $S$ is said to have the least upper bound property if every nonempty subset of $S$ that is bounded above has supremum in $S$ i.e., $\forall E\subset S$ with $E\neq \emptyset$ and bounded above, $\sup E \in S$.
+\end{definition}
+\begin{example}
+	$(Q,<)$ (usual ordering) does not have least upper bound property.
+	
+	\begin{proof}
+		[Reason] $A = \{x\in\mb Q: x>0 \text{ and } x^2\leq 2\}\subset \mb Q$. 
+		\begin{itemize}
+			\item $A\neq\emptyset$ since $1\in \mb Q$.
+			\item $A$ is bounded above (by $B$).
+		\end{itemize}
+		But $\sup A$ does not exist in $\mb Q$
+	\end{proof}
+\end{example}
+
+\begin{theorem}
+	Let $(S,<)$ with the least upper bound property. Let $B\subset S$ with $B\neq \emptyset$ and $B$ is bounded below.
+	Set $L = $ set of all lower bounds of $B$. Then $\alpha = \sup L$ exists in $S$, and $\alpha = \inf B$.
+	\begin{proof}
+		First, we want to show:
+		\begin{enumerate}
+			\item[(i)] $L$ is nonempty, and
+			\item[(ii)] $L$ is bounded above.
+		\end{enumerate}
+		$L$ is nonempty since $B$ is bounded below and hence $\exists l\in S$ such that $l\leq b$ for all $b\in B$. By definition of $L$, $l \leq b$ for all $l\in L$ and $\forall b\in B$ and $B\neq\emptyset$. So $L$ is bounded above.
+		By the least upper bound property of $S$, $\sup L\in S$. Define $\alpha = \sup L$. \ul{We claim}:
+		\begin{enumerate}
+			\item[(a)] $\alpha$ is a lower bound of $B$, and
+			\begin{proof}
+				$\alpha = \sup L$ and if $b\in B$ then $\alpha \geq l$ for all $l\in L$. But $l\leq b$ for $b\in B$, so $b$ is an upper bound of $L$. Therefore, $\alpha \leq b$ since $\alpha = \sup L$.
+			\end{proof}
+			\item[(b)] $\gamma>\alpha$ is not a lower bound of $B$.
+			\begin{proof}
+				If $\gamma > \alpha$ then $\gamma \notin L$ and so $\alpha = \inf B$.
+			\end{proof}
+		\end{enumerate}
+		(a), (b) $\implies \alpha = \inf B$.
+		
+	\end{proof}
+\end{theorem}
+
+\begin{definition}
+	[Field] A field $F$ is a set with two operations
+	\begin{itemize}
+		\item addition '+'
+		\item multiplication '$\cdot$'
+	\end{itemize}
+	Satisfying the following axioms:
+	\begin{enumerate}
+		\item[(A1)] $x+y \in F$, $\dots$ (A5).
+		\item[(M1)] $x\cdot y \in F$, $\dots$ (M5).
+		\item[(D)] $x\cdot(y+z) = x\cdot y + x\cdot z$ for all $x,y,z\in F$.
+	\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+	Let $(F,+\cdot)$ be a field. Then for $x,y,z\in F$,
+	\begin{enumerate}
+		\item[(a)] If $x+y = x+z$, then $y = z$. (Cancellation law)
+		\begin{proof}
+			$y \overset{A4}{=} 0+y \overset{A5}{=} (-x+x) + y \overset{A3}{=} -x+(x+y) \overset{A3}{=} -x+(x+z)= (-x+x)+z \overset{A5}{=} 0+z \overset{A4}{=} z$
+		\end{proof}
+		\item[(b)] If $x+y = x$, then $y = 0$.
+		\item[(c)] If $x+y = 0$, then $y = -x$.
+		\item[(d)] $-(-x)=x$.
+	\end{enumerate}
+\end{proposition}
+
+\end{document}

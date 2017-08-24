@@ -1,0 +1,1193 @@
+\documentclass[10pt,a4paper]{article}
+\input{../mathdoc}
+\input{../mathsym}
+
+\author{Book: David Lay 4th, Presenter: Dan Yasaki, Notes by Michael Reed}
+\title{Linear Algebra}
+\date{}
+
+\begin{document}
+\maketitle
+
+\underline{Linear function}: a function $f: \mb{R}^n \rightarrow \mb{R}$ such that
+$$f(\vx) = \sum_{k=1}^n a_k x_k = b.$$
+
+\underline{Homogeneous system of linear equations}: a linear equation system, where $\vx\in \mb{R}^n$ and $A$ is the $m\times n$ coefficient matrix, is homogeneous if written in the form $$A\vx=\vzero.$$
+
+\underline{Consistent system of linear equations}: a linear equation system, where $\vb\in \mb{R}^m$ and $A$ is the $m\times n$ coefficient matrix, is consistent if it is true that
+$$\exists \vx\in\mb{R}^n(A\vx=\vb).$$
+
+\underline{Inconsistent system of linear equations}: a linear equation system, where $\vb\in \mb{R}^m$ and $A$ is the $m\times n$ coefficient matrix, is inconsistent if it is true that
+$$\neg \exists \vx \in \mb{R}^n (A\vx=\vb).$$
+
+\underline{Linearly independent}: a set of vectors $\{\vv_1,\cdots,\vv_n\}$ is linearly independent if and only if %the matrix equation $A\vx=0$ has only the trivial solution.
+$$\neg \exists \vx \in \mb{R}^n ( \mat{ \vv_1 & \cdots & \vv_n } \vx=\vzero \land \vx\neq\vzero).$$
+
+\underline{Linearly dependent}: a set of vectors $\{\vv_1,\cdots,\vv_n\}$ is linearly dependent if and only if
+$$\exists \vx \in \mb{R}^n (\mat{ \vv_1 & \cdots & \vv_n }\vx=\vzero \land \vx\neq \vzero).$$
+
+\underline{Standard matrix of a linear transformation}: for the standard matrix $A$ of the linear transformation  $T:\mb{R}^m\ra \mb{R}^n$ it is true that
+$$\forall \vx\in \mb{R}^n (T(\vx)=A\vx \iff A = \mat{ T(\ve_1) & \cdots & T(\ve_n) } ).$$
+
+\underline{Linear transformation}: a function $T:\mb{R}^n\ra \mb{R}^m$ is linear for all $\vu,\vv\in \mb{R}^n$ if
+$$(\forall c \in \mb{R} )(\forall d\in \mb{R}) (T(c\vu+d\vv) = cT(\vu) + dT(\vv)).$$
+
+\underline{Injective function}: a function $T:\mb{R}^n \ra \mb{R}^m$ with $A = \mat{ \vv_1 & \cdots & \vv_n }$ such that
+$$\forall \vx \forall \vy (T(\vx)=T(\vy) \rightarrow \vx=\vy)\iff \neg \exists \vx \in \mb{R}^n ( \mat{ \vv_1 & \cdots & \vv_n } \vx=\vzero \land \vx\neq\vzero).$$
+
+\underline{Surjective function}: a function $T:\mb{R}^n \ra \mb{R}^m$ with $A = \mat{ \vv_1 & \cdots & \vv_n }$ such that
+$$\forall \vy \exists \vx(T(\vx)=\vy) \iff \spn{\vv_1,\cdots,\vv_n} = \mb{R}^m.$$
+
+\underline{Span of a set of vectors}: the set of all linear combinations of the vectors $\{\vv_1,\cdots,\vv_n\}$ is 
+$$\spn{\vv_1, \cdots, \vv_n} = \{ \vb\in \mb{R}^m | \exists \vx\in \mb{R}^n ( \mat{ \vv_1 & \cdots & \vv_n } \vx = \vb ) \}.$$
+
+\underline{Range of a linear transformation}: the set of all images of a linear transformation $T:\mb{R}^n \ra \mb{R}^m$ is
+$$\{\vu\in \mb{R}^m | \forall \vx\in \mb{R}^n(T(\vx)=\vu)\}. $$
+
+\underline{Invertible matrix} (equivalently, non-singular): An $n\times n$ matrix $A$ is invertible if and only if $A$ is row equivalent to $I_n$ by successive row reduction operations.
+
+\newpage
+
+\begin{definition}
+	A (non-empty) subset $H\subset \mb{R}^n$ is a subspace of $\mb{R}^n$ if
+	%\begin{enumerate}
+	(i) $\vzero \in H$.
+	(ii) $\forall \vu,\vv\in H(\vu+\vv\in H)$.
+	(iii) $(\forall c\in \mb{R}) (\forall \vu\in H) (c\vu\in H)$.
+	%\end{enumerate}
+\end{definition}
+\begin{definition}
+	\underline{Column space} is $\col{A} = \spn{\va_1,\va_2,\cdots,\va_n}$.
+	\underline{Nullspace} is $\nul{A} = \{\vx\mid A\vx=\vzero\}$,
+\end{definition}
+
+
+
+\begin{definition}
+	A \underline{basis} for a subspace $H \subseteq \mb{R}^n$ is a linearly independent set in $H$ that also generates $H$ (or spans). i.e., a basis for $H$ is a set $\mc S\subseteq H$ such that (i) $\mc S$ is linearly independent (ii) $\spn{\mc S} = H$.
+\end{definition}
+
+\begin{definition}[Coordinate system]
+	%\underline{Coordinate system}: 
+	Let $H$ be a subspace of $\mb{R}^n$ with basis $\mc{B}=\{\vb_1,\vb_2,\cdots,\vb_p\}$. For each $\vx\in H$, the coordinates of $\vx$ relative to $\mc{B}$ are the weights $c_1,c_2,\cdots,c_p$ such that $\vx = c_1 \vb_1+c_2 \vb_2 + \cdots + c_p \vb_p$. The vector $[\vx]_\mc B = \mat{c_1 &c_2 &\cdots &c_3}^T$ is the coordinate vector of $\vx$ relative to $\mc B$.
+\end{definition}
+%\begin{remark}Think of this as the "address" of $\vec{x}$.\end{remark}
+
+%More generally, $\mathbb{R}^n$ is $n$-dimensional since $\{\vec{e}_1,\vec{e}_2,\cdots,\vec{e}_n\}$ is a basis.
+
+\begin{definition}
+	Let $A$ be an $m\times n$ matrix. The \underline{rank} of $A$, denoted $\rnk{A}$, is the $\dim(\col{A})$. The \underline{nullity} of $A$, defined by $\nullity{A}$, is $\dim(\nul{A})$.
+\end{definition}
+\begin{note}
+	The (number of pivots of $A) = \dim(\col{A}) = \rnk{A}$. The number of non-pivot columns of $A = \dim(\nul{A}) = \nullity{A}$. 
+\end{note}
+
+\begin{theorem}[Rank Theorem]
+	For a matrix $A$, the (number of columns of $A) = \rnk{A}+\nullity{A}$.
+\end{theorem}
+
+\begin{theorem}[Basis Theorem]
+	Let $H$ be a $p$-dimensional subspace of $\mb{R}^n$. 
+	\begin{enumerate}
+		\item[(i)] Then any linearly independent set of exactly $p$ vectors in $H$ is a basis for $H$. 
+		\item[(ii)] Any set of $p$ vectors in $H$ that span $H$ is a basis for $H$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Determinants]
+	$A$ is an $n\times n$ matrix. $A = (a_{ij})$. if $n=1$, then $\det(\mat{a}) = a$. if $n\geq 2$, then $|A| = \det(A) = \sum_{j=1}^n (-1)^{1+j} a_{1j} \det(A_{1j})$, where $A_{1j}$ is the $(n-1)\times (n-1)$ matrix obtained by removing 1st row, $j$-th column of $A$.
+\end{definition}
+
+\begin{theorem}
+	Let $T: \mb{R}^2 \ra \mb{R}^2$ be a linear transformation. $T(\vx) = A\vx$. If $S$ is a parallelogram in $\mb{R}^2$, then $\area{T(S)} = |\det(A)| \area{S}$. 
+\end{theorem}
+
+\begin{remark}
+	Let $T:\mb{R}^n \ra \mb{R}^m$ be $T(\vx) = A\vx$. Then $(\im{T} = \col{A}) \land (\ker(T) = \nul{A}).$
+\end{remark}
+
+\begin{definition}
+	Let $V$ be a vector space. An indexed set $\mc B = \{\vb_1\cdots,\vb_p\}\subseteq V$ is a \underline{basis} for $V$ if
+	\begin{enumerate}
+		\item[(i)] $\mc B$ is linearly independent.
+		\item[(ii)] $\spn{\mc B} = V$.
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Spanning Set Theorem]
+	Let $S = \{\vv_1,\cdots,\vv_2\}$ be a set in a vector space $V$ and let $H = \spn{S}$.
+	\begin{enumerate}
+		\item[(i)] If one of the $\vv_k\in S$ is a linear combination of the other vectors in $S$, then $H = \spn{S - \{\vv_k\}}$.
+		\item[(ii)] If $H\neq \{\vzero\}$, some subset of $S$ is a basis for $H$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Unique Representation Theorem]
+	Let $\mc B = \{\vb_1,\cdots,\vb_n\}$ be a basis for a vector space $V$. Then for each $\vx\in V$, there exists a unique collection of scalars $c_1,\cdots,c_n$, such that $\vx = c_1 \vb_1 + \cdots + c_n \vb_n$.
+\end{theorem}
+
+%\begin{definition}
+	Let $\mc B = \{\vb_1,\cdots,\vb_n\}$ be a basis for $V$. Let $\vx \in V$. The \underline{$\mc B$-coordinates} of $\vx$ are the weights $c_1,\cdots,c_n$ such that $\vx = c_1 \vb_1 + \cdots + c_n \vb_n$. The \underline{$\mc B$-coordinate vector} of $\vx$ is $\mat{\vx}_\mc B = \mat{c_1&\cdots&c_n}^T$.
+%\end{definition}
+
+More generally, let $\mc B = \{\vb_1,\cdots,\vb_n\}$ be a basis for $\mb{R}^n$. Let $P_\mc B = \mat{\vb_1&\cdots&\vb_n}$. Then $P_\mc B$ is the change of coordinates matrix from $\mc B$ to $\mc E$. 
+$$\forall \vx\in \mb{R}^n\left(P_\mc B \mat{\vx}_\mc B = \mat{\vx}_\mc E\right).$$
+
+\begin{theorem}
+	Let $\mc{B} = \{\vb_1,\cdots,\vb_n\}$ and $\mc C = \{\vc_1,\cdots,\vc_n\}$ be bases for a vector space $V$. There is a unique $n\times n$ matrix $\underset{\mc C\la \mc B}{P}$ such that $$\mat{\vx}_\mc C = \underset{\mc C \la \mc B}{P} \mat{\vx}_\mc B$$ for all $\vx\in V$. Furthermore, the columns of $\underset{\mc C\la \mc B}{P}$ are $\mat{\vb_1}_\mc C,\cdots,\mat{\vb_n}_\mc C$, where
+	$\underset{\mc C\la \mc B}{P}$ is the change of coordinates matrix from $\mc B$ to $\mc C$.
+\end{theorem}
+
+Time saver: $\mat{\vc_1 & \cdots & \vc_n \mid \vb_1 & \cdots & \vb_n}$ is row reduced to $\mat{I \mid \underset{\mc C\la \mc B}P}$.
+\begin{remark}
+	If $V = \mb{R}^n$ and $\mc E$ is the standard basis, then $$\underset{\mc C\la \mc B}P = P^{-1}_\mc C P_\mc{B} = \underset{\mc C\la \mc E}P \underset{\mc E\la \mc B}P.$$
+\end{remark}
+
+\newpage
+
+\section{Matrix Algebra}
+
+\subsection{Subspaces of $\mb{R}^n$}
+
+\begin{definition}
+A (non-empty) subset $H\subset \mb{R}^n$ is a subspace of $\mb{R}^n$ if
+\begin{enumerate}
+	\item $\vzero \in H$
+	\item $\forall \vu,\vv\in H(\vu+\vv\in H)$.
+	\item $(\forall c\in \mb{R}) (\forall \vu\in H) (c\vu\in H)$.
+\end{enumerate}
+\end{definition}
+
+\begin{example}$\mathbb{R}^n$ is a subspace of $\mathbb{R}^n$.\end{example}
+
+\begin{example}
+$\{\vec{0}\}$ is a subspace of $\mathbb{R}^n$.
+\end{example}
+
+\begin{example}
+Let $\vv_1$ and $\vv_2$ be vectors in $\mb{R}^3$. Then $\spn{\vv_1,\vv_2}$ is a subspace of $\mb{R}^3$.
+\begin{recall}
+$H=\spn{\vv_1,\vv_2}=\{a\vv_1+b\vv_2\mid a,b\in \mb{R}\}$ is a subspace of $\mb{R}^3$.
+\end{recall}
+\begin{proof}
+Since $\vzero=0\vv_1+0\vv_2 \ra \vzero\in H$. Let $\vu$ and $\vv$ be vectors in $H$. Then there exists $a,b\in \mb{R}$ such that $a\vv_1+b\vv_2=\vu$ and there exists $c,d\in\mb{R}$ such that $c\vv_1 + d\vv_2 = \vv$. $\vu+\vv = (a\vv_1+b\vv_2) + (c\vv_1+d\vv_2) = (a+c)\vv_1 + (b+d)\vv_2$. $a+c,b+d\in\mb{R}$, so $\vu+\vv\in H$.\end{proof}
+\end{example}
+
+\begin{definition}
+	Let $A = \mat{\va_1 &\va_2 &\cdots &\va_n }$ be an $m\times n$ matrix. The \underline{column space} of $A$, denoted $\col{A}$, is the set of all linear combinations of the columns of $A$. i.e., $\col{A} = \spn{\va_1,\va_2,\cdots,\va_n}$.
+\end{definition}
+\begin{remark}The $\col{A}$ is a subspace of $\mb{R}^m$.\end{remark}
+
+\begin{definition}
+	The \underline{nullspace} of a matrix $A$ is the set of solutions of the equation $A\vx=\vzero$, it is denoted as $\nul{A}$.
+\end{definition}
+\begin{note}
+	If $A$ is an $m\times n$ matrix, then multiplication by $A$ defines a map $\mb{R}^n \subset \nul{A} \ra \mb{R}^m\subset \col{A}$.
+\end{note}
+
+\begin{theorem}
+	Let $A$ be an $m\times n$ matrix. Then $\nul{A}$ is a subspace of $\mb{R}^n$.
+\end{theorem}
+\begin{proof}
+	Recall that $\nul{A} = \{\vx\mid A\vx=\vzero\}$. (i) $A\vzero = \vzero$ so $\vzero\in \nul{A}$. (ii) let $\vu,\vv\in\nul{A}$. $A(\vu+\vv) = A\vu+A\vv = \vzero + \vzero$ since $\vu,\vv\in \nul{A}$. Thus $\vu+\vv\in\nul{A}$. (iii) try at home. From (i) - (iii) $\nul{A}$ is a subspace of $\mb{R}^n$.
+\end{proof}
+
+\begin{definition}
+	A \underline{basis} for a subspace $H \subseteq \mb{R}^n$ is a linearly independent set in $H$ that also generates $H$ (or spans). i.e., a basis for $H$ is a set $\mc S\subseteq H$ such that (i) $\mc S$ is linearly independent (ii) $\spn{\mc S} = H$.
+\end{definition}
+
+\begin{example}
+	$\{\ve_1,\ve_2,\cdots,\ve_n\}$ is a basis for $\mb{R}^n$.
+\end{example}
+\begin{example}
+	If $A$ is an invertible $n\times n$ matrix, the columns of $A$ form a basis for $\mb{R}^n$.
+\end{example}
+
+How can we find a basis for $\col{A}$ if $A$ is an $m\times n$ matrix, where $A= \mat{ \va_1 & \cdots & \va_n }$?
+\begin{note}
+	$\{\va_1,\cdots,\va_n\}$ generate $\col{A}$ but might not be linearly independent. The columns of $A$ for the basis of the column space of the original matrix (based on the row reduced pivot columns). In general, to find a basis for $\col{A}$, row-reduce to find pivot positions. Then the \underline{pivot columns} of $A$ form a basis for $\col{A}$. What about $\nul{A}$? Find the parametric vector equation of the homogeneous row reduced matrix of $A$. A basis for $\nul{A}$ are the vectors from the vector equation.
+\end{note}
+
+$\mb{R}^1$ cannot be a subspace of $\mb{R}^2$ because it is not even a subset of it.
+
+\subsection{Dimension and Rank}
+
+\begin{definition}[Coordinate system]
+	%\underline{Coordinate system}: 
+	Let $H$ be a subspace of $\mb{R}^n$ with basis $\mc{B}=\{\vb_1,\vb_2,\cdots,\vb_p\}$. For each $\vx\in H$, the coordinates of $\vx$ relative to $\mc{B}$ are the weights $c_1,c_2,\cdots,c_p$ such that $\vx = c_1 \vb_1+c_2 \vb_2 + \cdots + c_p \vb_p$. The vector $[\vx]_\mc B = \mat{c_1 &c_2 &\cdots &c_3}^T$ is the coordinate vector of $\vx$ relative to $\mc B$.
+\end{definition}
+\begin{remark}Think of this as the "address" of $\vec{x}$.\end{remark}
+
+\begin{definition}[Dimension of a subspace]
+	%\underline{Dimension of a subspace} of $\mb{R}^n$: 
+	Let $H$ be a non-zero subspace of $\mb{R}^n$. The \underline{dimension} of $H$, denoted $\dim(H)$, is the number of vectors in any basis for $H$. The dimension of the zero subspace is 0.
+\end{definition}
+\begin{remark}We will see the number of elements in any basis is the same.\end{remark}
+\begin{example}
+	$\mb{R}^2$ is 2-dimensional since $\{\ve_1,\ve_2\}$ is a basis.
+\end{example}
+More generally, $\mathbb{R}^n$ is $n$-dimensional since $\{\vec{e}_1,\vec{e}_2,\cdots,\vec{e}_n\}$ is a basis.
+
+\begin{definition}
+	Let $A$ be an $m\times n$ matrix. The \underline{rank} of $A$, denoted $\rnk{A}$, is the $\dim(\col{A})$. The \underline{nullity} of $A$, defined by $\nullity{A}$, is $\dim(\nul{A})$.
+\end{definition}
+\begin{note}
+	The (number of pivots of $A) = \dim(\col{A}) = \rnk{A}$. The number of non-pivot columns of $A = \dim(\nul{A}) = \nullity{A}$. 
+\end{note}
+
+\begin{theorem}[Rank Theorem]
+	For a matrix $A$, the (number of columns of $A) = \rnk{A}+\nullity{A}$.
+\end{theorem}
+
+\begin{theorem}[Basis Theorem]
+	Let $H$ be a $p$-dimensional subspace of $\mb{R}^n$. 
+	\begin{enumerate}
+	\item[(i)] Then any linearly independent set of exactly $p$ vectors in $H$ is a basis for $H$. 
+	\item[(ii)] Any set of $p$ vectors in $H$ that span $H$ is a basis for $H$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Invertible Matrix Theorem]
+	%\underline{Invertible matrix theorem} (continued): 
+	Let $A$ be an $n\times n$ matrix. The following are equivalent.
+	\begin{enumerate}
+		\item[(i)]- (xii) continued from before.
+		\item[(xiii)] The columns of $A$ form a basis for $\mb{R}^n$. 
+		\item[(xiv)] $\col{A} = \mb{R}^n$. 
+		\item[(xv)] $\dim(\col{A}) = n$. 
+		\item[(xvi)] $\rnk{A} = n$. 
+		\item[(xvii)] $\nul{A} = \{\vzero\}$. 
+		\item[(xviii)] $\nullity{A} = 0$.
+	\end{enumerate}
+\end{theorem}
+
+\section{Introduction to Determinants}
+
+\begin{definition}
+	For an $n\times n$ matrix and $n\geq 2$: The determinant of $n\times n$ matrix $A = (a_{ij})$ is $|A| = \det(A) = \sum_{j=1}^n (-1)^{1+j} a_{1j} \det(A_{1j})$, where $A_{1j}$ is the $(n-1)\times (n-1)$ matrix obtained by deleting row 1 and column $j$ of $A$.
+	For a $1\times 1$ matrix $A=\mat{a}$, $\text{det}(A) = a$.
+\end{definition}
+
+\begin{recall}[Determinants]
+	$A$ is an $n\times n$ matrix. $A = (a_{ij})$. if $n=1$, then $\det(\mat{a}) = a$. if $n\geq 2$, then $|A| = \det(A) = \sum_{j=1}^n (-1)^{1+j} a_{1j} \det(A_{1j})$, where $A_{1j}$ is the $(n-1)\times (n-1)$ matrix obtained by removing 1st row, $j$-th column of $A$.
+\end{recall}
+
+\begin{definition}[Cofactor]
+	The $(i,j)$-\underline{cofactor} of $A$ is $C_{ij} = (-1)^{i+j} \det(A_{ij})$, where $A_{ij}$ is the $(n-1)\times (n-1)$ matrix obtained by deleting the $i$-th row and $j$-th column from $A$.
+\end{definition}
+\begin{note}
+$\det(A) = a_{11} C_{11} + \cdots + a_{1n} C_{1n}$.
+\end{note}
+
+\begin{theorem}
+	The determinant of an $n\times n$ matrix $A$ can be computed by a cofactor expansion along any row or any column. i.e. cofactor expansion along $i$-th row: $\det(A) = a_{i1} C_{i1} + \cdots + a_{in} C_{in}$. 
+	Along the $j$-th column: $\det(A) = a_{1j} C_{1j} + \cdots + a_{nj} C_{nj}$.
+\end{theorem}
+\begin{remark}[on signs]
+	The top left corner is a +, and the rest of the signs are like a checkerboard.
+\end{remark}
+
+\subsection{Properties of Determinants}
+
+\begin{theorem}
+	Let $A$ be a square matrix. 
+	\begin{enumerate}
+		\item[(i)] If $B$ is obtained from $A$ by replacing a row with the sum of itself with another row, then the $\det(B) = \det(A)$.
+		\item[(ii)] If $B$ is obtained by swapping 2 rows of $A$, then $\det(B) = - \det(A)$.
+		\item[(iii)] If $B$ is obtained by scaling a row by $k$, then $\det(B) = k \det(A)$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+	If $A$ is a triangular matrix, then $\det(A)$ is the product of the diagonal entries.
+\end{theorem}
+
+\begin{theorem}
+	Let $A$ be an $n\times n$ matrix. $A$ is invertible if and only if $\det(A) \neq 0$.
+\end{theorem}
+\begin{remark}
+	The IMT now gives many shortcuts to determine if $\det(A) = 0$ or $\neq 0$. If the columns are linearly dependent, IMT implies that $A$ is not invertible, thus $\det(A) = 0$.
+\end{remark}
+
+\begin{theorem}
+	Let $A$ be $n\times n$ matrix. Then $\det(A) = \det(A^T)$.
+\end{theorem}
+
+\begin{theorem}
+	Let $A,B$ be $n\times n$ matrices. Then $\det(AB) = \det(A) \det(B)$.
+\end{theorem}
+\begin{proof}
+	later.
+\end{proof}
+\begin{example}
+	If $\det(A) = n$, then $\det(A^2) = n^2$.
+\end{example}
+\begin{example}
+	If $A$ is invertible, then $AA^{-1} = I$ and $\det(AA^{-1}) = \det(I) = 1$.
+\end{example}
+
+\begin{remark}
+	$\text{det}(A+B) \neq \text{det}(A) + \text{det}(B)$.
+\end{remark}
+
+\begin{theorem}
+	The determinant is "multilinear." View $\det()$ as a map $T: \mb{R}_1^n \times \mb{R}_2^n \times \cdots \times \mb{R}_n^n \ra \mb{R}$. $$T(\va_1,\cdots,\va_n) = \det(\mat{\va_1 &\cdots &\va_n}).$$ Fix vectors $\va_1,\cdots,\va_{j-1},\va_{j+1},\cdots,\va_n \in \mb{R}^n$, let $F: \mb{R}^n \ra \mb{R}$, be $$F(\vx) = T(\va_1,\cdots,\va_{j-1},\vx,\va_{j+1},\cdots,\va_n).$$
+	$F$ is linear and $T$ is multilinear.
+\end{theorem}
+
+\subsection{Cramer's Rule, Volume, and Linear Transformation}
+\begin{theorem}
+	If $A$ is a $2\times 2$ matrix, the area of the parallelogram determined by the column vectors of $A$ is $|\det(A)|$. If $A$ is a $3\times 3$ matrix, the volume of the parallelepiped determined by the column vectors of $A$ is $|\det(A)|$.
+\end{theorem}
+\begin{theorem}
+	Let $T: \mb{R}^2 \ra \mb{R}^2$ be a linear transformation. $T(\vx) = A\vx$. If $S$ is a parallelogram in $\mb{R}^2$, then $\area{T(S)} = |\det(A)| \area{S}$. 
+\end{theorem}
+
+If $T(\vx) = A\vx$, then $\area{T(P)} = |\det(A)|\area{P}$.
+
+\begin{example}
+	Fix $a,b,r>0$. Consider an ellipse $E$: $$\frac{x^2}{a^2}+\frac{y^2}{b^2} \leq r^2$$ Goal: compute the area of $E$. Let $s=x/a$ and $t=y/b$. Then $s^2+t^2\leq r^2$. Let $T:\mb{R}^2 \ra \mb{R}^2$. $$\area{T(E)} = |\det(\mat{a & 0 \\ 0 & b})|\area{E}.$$ So the area of a disk of radius $r$ divided by the determinant of the transformation from the ellipse equals the area of the ellipse.
+\end{example}
+
+\section{Vector Spaces and Subspaces}
+\begin{definition}
+	A \underline{vector space} $V$ (over $\mb{R}$) is a non-empty set of objects called \underline{vectors} on which are defined 2 operations: addition and scalar multiplication, subject to the following axioms: %$\forall\vu,\vv,\vw\in V$ and $\forall c,d\in\mb{R}$, 
+	\begin{enumerate}
+		\item[(i)] $\forall\vu,\vv\in V(\vu + \vv \in V)$
+		\item[(ii)] $\forall\vu,\vv\in V(\vu + \vv = \vv + \vu)$
+		\item[(iii)] $\forall\vu,\vv,\vw\in V((\vu + \vv) + \vw = \vu + (\vv+\vw))$
+	%\end{enumerate}
+		%Propositions (i)-(iii) say addition defines a commutative, associative binary operation on $V$.
+	%\begin{enumerate}
+		\item[(iv)] $\forall \vv\in V (\exists \vz \in V )(\vz+\vv = \vv+\vz = \vv)$.
+		\item[(v)] $\forall \vu\in V (\exists (-\vu)\in V)(\vu+(-\vu) = \vzero)$.
+		\item[(vi)] $\forall \vv\in V(\forall c\in\mb{R})(c\vv\in V)$.
+		\item[(vii)] $\forall\vu,\vv\in V (\forall c\in\mb{R})(c(\vu+\vv) = c\vu + c\vv)$.
+		\item[(viii)] $\forall\vu\in V(\forall c,d\in\mb{R})((c+d)\vu = c\vu + d\vu)$.
+		\item[(ix)] $\forall\vu\in V(\forall c,d\in\mb{R})(c(d\vu) = (cd)\vu)$.
+		\item[(x)] $\forall\vu\in V(1\vu = \vu)$.
+	\end{enumerate}
+\end{definition}
+\begin{remark}
+Using (i)-(x), we can prove: 
+\begin{enumerate}
+	\item $\forall\vu\in V (0\vu = \vzero)$. 
+	\item $\forall c\in\mb{R} (c\vzero = \vzero)$. 
+	\item $\forall \vu\in V(-\vu = (-1)\vu)$.
+\end{enumerate}
+\end{remark}
+
+\begin{example}
+	$\mb{R}^n$ is a vector space, with usual vector addition and scalar multiplication.
+\end{example}
+\begin{example}
+	Let $H\subseteq \mb{R}^n$ be a subspace, then $H$ is a vector space.
+\end{example}
+\begin{example}
+	Fix positive integer $n$. Let $\mb{P}_n$ be the set of polynomials of degree at most $n$. i.e., 
+	$$\mb{P}_n = \left\{\sum_{i=0}^n a_i x^i \mid a_1,a_2,\cdots,a_n \in \mb{R} \right\}.$$ 
+	Thus $\mb{P}_2 = \{ax^2 + bx +c \mid a,b,c\in\mb{R}\}$. $\mb{P}_n$ is a vector space with addition defined by $\sum a_i x^i + \sum b_i x^i = \sum_{i=0}^n (a_i +b_i)x^i$. Scalar multiplication $c(\sum_{i=0}^n a_i x^i) = \sum_{i=0}^n (ca_i)x^i$. What is the zero vector in $\mb{P}_n$? $z(x) = 0 + 0x + 0x^2 + \cdots + 0x^n$.
+\end{example}
+\begin{example}
+	$C^0(\mb{R}) = $ set of continuous functions from $\mb{R}$ to $\mb{R}$. Define addition: for $f,g\in C^0(\mb{R})$ it is $(f+g)(x) = f(x) + g(x)$. Define scalar multiplication: for $f\in C^0(\mb{R})$ and $c\in\mb{R}$ it is $(cf)(x) = c f(x)$. $C^0(\mb{R})$ is a vector space.
+\end{example}
+
+\begin{definition}
+	Let $V$ be a vector space. A subset $H$ of $V$ is a \underline{subspace} if 
+	\begin{enumerate}
+		\item [(i)] $\vzero\in H$
+		\item[(ii)] $\forall\vu,\vv\in H(\vu+\vv \in H)$.
+		\item[(iii)] $\forall\vu\in H(\forall c\in \mb{R})(c\vu \in H)$.
+	\end{enumerate}
+\end{definition}
+	Try at home: write out vector space versions of all our definitions so far.
+\begin{remark}
+	(i)-(iii) above guarantee $H$ is a vector space in its own right. 
+\end{remark}
+
+Useful tip: to show that a set $H$ is a vector space, show that $H$ is inside the vector space and prove $H$ is a subspace of $V$.
+
+\begin{example}
+	Let $C^\infty(\mb{R})$ be the set of infinitely differentiable functions $\mb{R} \ra \mb{R}$, then $C^\infty(\mb{R})$ is a subspace of $C^0(\mb{R})$.
+\end{example}
+
+\subsection{Null Spaces, Column Spaces, and Linear Transformations}
+%\subsection{4.2}
+\begin{definition}
+	A map $T$ from a vector space $V$ to a vector space $W$ is a \underline{linear transformation} if 
+	\begin{enumerate}
+		\item[(i)] $\forall \vu,\vv\in V (T(\vu)+T(\vv) = T(\vu+ \vv))$.
+		\item[(ii)] $\forall \vu \in V (\forall c\in\mb{R})(T(c\vu) = cT(\vu))$.
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+	Verify the evaluation at 0 map is a linear transformation $T:C^\infty(\mb{R}) \ra \mb{R}$. $T(f) = f(0)$. At home check (i) and (ii) from def.
+\end{example}
+
+\begin{definition}
+	Let $T:V \ra W$ be a linear transformation. The \underline{image} or \underline{range} of $T$, denoted $\im{T}$ is $T(V) = \im{T} = \{T(\vu) \mid \vu\in V\}$. The \underline{kernel} of $T$, denoted $\ker(T)$ is $\ker(T) = \{\vx\in V \mid T(\vx) = \vzero \}$.
+\end{definition}
+
+\begin{example}
+	Let $A$ be an $m\times n$ matrix. Let $T:\mb{R}^n \ra \mb{R}^m$ be $T(\vx) = A\vx$. Then $$(\im{T} = \col{A}) \land (\ker(T) = \nul{A}).$$
+\end{example}
+
+\begin{example}
+	Let $D:\mb{P}_2 \ra \mb{P}_1$ be differentiation. So $D(ax^2+bx+c) = 2ax+b$. At home: verify $D$ is a linear transformation. Compute $\ker(D)$: $\ker(D) = \{p(x)\in\mb{P}_2 \mid D(p(x)) = z(x) \}=$ $$\{ax^2+bx+c \mid 2ax+b = 0 \} = \{ ax^2+bx+c \mid a=0,b=0\} = \{c\mid c\in \mb{R}\}.$$
+\end{example}
+
+\begin{example}
+	Let $T:\mb{P}_2 \ra \mb{R}^2$ such that $T(p(x)) = \mat{p(0)&p(1)}^T$. Verify $T$ is linear: let $p(x),q(x)\in\mb{P}_2$. $T(p(x)+q(x)) = \cdots$ verify property. At home check condition (ii) for scalar multiplication. Compute $\ker(T)$: let $p(x) = ax^2 + bx+c\in\mb{P}_2$. If $p(x) \in \ker(T)$, then $T(p(x)) = \vzero$. $\ker(T) = \{-tx^2 + tx \mid t\in\mb{R}\}$.
+\end{example}
+
+\subsection{Linearly Independent Sets; Bases}
+\begin{definition}
+	Let $S = \{\vv_1,\cdots,\vv_p\}$ be vectors in a vector space $V$. Then $S$ is linearly independent if the equation $x_1\vv_1 + \cdots + x_p \vv_p = \vzero$ has only the trivial solution. $S$ is linearly dependent if it is not linearly independent.
+\end{definition}
+
+\begin{example}
+	Claim $S=\{\sin{t},\cos{t} \} \subseteq C^\infty (\mathbb{R})$ is linearly independent.
+	Check: $x_1 \sin{t} + x_2\cos{t} = z(t)$, where $z(t) = 0$. Plug in some values of $t$ to see relations between $x_1,x_2$. At $t=0$: $z(0) = x_1 \cdot 0 + x_2 \cdot 1$, and $ x_2 = 0$. At $t=\pi/2$: $z(\pi/2) = 1 \cdot x_1 + 0\cdot x_2,x_1 = 0$. Therefore, $z(t)$ only has the trivial solution and $S$ is linearly independent.
+\end{example}
+
+\begin{definition}
+	Let $V$ be a vector space. An indexed set $\mc B = \{\vb_1\cdots,\vb_p\}\subseteq V$ is a \underline{basis} for $V$ if
+	\begin{enumerate}
+		\item[(i)] $\mc B$ is linearly independent.
+		\item[(ii)] $\spn{\mc B} = V$.
+	\end{enumerate}
+\end{definition}
+\begin{remark}
+	Book defines basis for subspaces only (but subspaces are vector spaces) as indexed set so we can talk about the 1st basis vector, 2nd basis vector, $\dots$.
+\end{remark}
+
+\begin{example}
+	Let $H = \spn{\cos{t},\sin{t}} \subseteq C^\infty (\mb{R}) = \{c_1 \cos{t}+c_2 \sin{t}\}$. (Basis for $H) = \mc B = \{\cos{t},\sin{t}\}$.
+\end{example}
+\begin{example}
+	Let $P$ be the plane in $\mb{R}^3$: $x-3y+2z = 0$. $P$ is $\nul{A}$, where $A = [1,-3,2]$. Therefore $P$ is a subspace of $\mb{R}^3$. $P$ is a vector space. Find a basis for $P$. (row reduce, parametric form, free variable columns)
+\end{example}
+
+\begin{example}
+	$\mc B = \{1,t,t^2,\cdots,t^n\}$ is a basis for $\mb{P}_n$. This is called the standard basis for $\mb{P}_n$. As soon as you think, it is clear $\spn{\mc B} = \mb{P}_n$. Why is $\mc B$ linearly independent? Verify that the linear combinations of elements of $\mc B$ has only the trivial solution. Can by proven by the fundamental theorem of algebra.
+\end{example}
+
+\begin{theorem}[Spanning Set Theorem]
+	Let $S = \{\vv_1,\cdots,\vv_2\}$ be a set in a vector space $V$ and let $H = \spn{S}$.
+	\begin{enumerate}
+		\item[(i)] If one of the $\vv_k\in S$ is a linear combination of the other vectors in $S$, then $H = \spn{S - \{\vv_k\}}$.
+		\item[(ii)] If $H\neq \{\vzero\}$, some subset of $S$ is a basis for $H$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	(i) By rearranging / renaming the vectors, assume $\vv_p$ is a linear combination of $\vv_1,\cdots,\vv_{p-1}$. Then there exists scalars $c_1,\cdots,c_{p-1}$ such that $\vv_p = c_1\vv_1 + \cdots + c_{p-1} \vv_{p-1}$. Let $\vx\in H$. We need to show $\vx\in \spn{S - \{\vv_p\}}$. Then $\vx = a_1 \vv_1 + \cdots + a_p \vv_p$ for some scalars $a_1,\cdots,a_p$, 
+	$$\vx = a_1\vv_1 + \cdots + a_{p-1} \vv_{p-1} + a_p (c_1 \vv_1 + \cdots + c_{p-1} \vv_{p-1}) = (a_1 + a_p c_1) \vv_1 + \cdots + (a_{p-1} + a_p c_{p-1})\vv_{p-1}.$$
+	Therefore $\vx \in \spn{S - \{\vv_p\}}$ and $H = \spn{S-\{\vv_p\}}$.
+	(ii) If $S$ is already linearly independent, $S$ is a basis for $H$. Otherwise, some vector in $S$ is a linear combination of the others. By (i) we can remove it. (Repeat as necessary). Since $H\neq\{\vzero\}$, this process must terminate before $|S| = 0$.
+\end{proof}
+\begin{remark}
+	A basis is a "small" generating set and also a "large" linearly independent set.
+\end{remark}
+
+\begin{example}
+	Let $T:V\ra W$ be an injective linear transformation. Let $\{\vv_1,\cdots,\vv_p\} \subseteq V$ such that $U = \{T(\vv_1),\cdots,T(\vv_p)\}$ is linearly dependent in $W$. Prove that $\{\vv_1,\cdots,\vv_p\}$ is linearly dependent.
+\end{example}
+\begin{proof}
+	Suppose $U$ is linearly dependent. Then there exists scalars $c_1,\cdots,c_p$, not all 0, such that there is a nontrivial solution to $c_1 T(\vv_1) + \cdots + c_p T(\vv_p) = \vzero_W$. Since $T$ is linear, $T(c_1 \vv_1 + \cdots + c_p \vv_p) = \vzero_W$.
+	%\begin{note}
+		Since $T$ is linear, $T(\vzero_V) = \vzero_W$.
+	%\end{note}
+	Since $T$ is injective, $c_1\vv_1 + \cdots + c_p \vv_p = \vzero_V$, where $c_i$ are not all 0. Therefore $\{\vv_1,\cdots,\vv_p\}$ is linearly dependent.
+\end{proof}
+\begin{remark}
+	This result shows if $T$ is injective and $\{\vv_1,\cdots,\vv_p\}$ is independent, then $\{T(\vv_1),\cdots,T(\vv_p)\}$ is linearly independent.
+\end{remark}
+
+\begin{example}
+	Is $S=\{\cos{t},\cos{2t},\cos^2{t} - \sin^2{t}\}$ linearly dependent or independent?
+	The key idea is $e^{i t} = \cos{t} + i \sin{t}$. Square both sides and you will find that the set $S$ is dependent and $e^{i \pi} = -1$ :)
+\end{example}
+
+\subsection{Coordinate Systems}
+\begin{theorem}[Unique Representation Theorem]
+	Let $\mc B = \{\vb_1,\cdots,\vb_n\}$ be a basis for a vector space $V$. Then for each $\vx\in V$, there exists a unique collection of scalars $c_1,\cdots,c_n$, such that $\vx = c_1 \vb_1 + \cdots + c_n \vb_n$.
+\end{theorem}
+\begin{note}
+	This is an existence and uniqueness theorem.
+\end{note}
+\begin{proof}
+	Existence: Since $\mc B$ is a basis, the vectors $\vb_1, \cdots,\vb_n$ generate $V$. Thus any $\vx\in V$ can be expressed as a linear combination of $\vb_1,\cdots,\vb_n$.
+	Uniqueness: Suppose $\vx = c_1 \vb_1 + \cdots + c_n \vb_n$ and $\vx = d_1 \vb_1 + \cdots + d_n \vb_n$. Then $\vx - \vx = \vzero = (c_1 \vb_1 + \cdots + c_n \vb_n) - (d_1 \vb_1 + \cdots + d_n \vb_n)$ and $\vzero = (c_1 - d_1) \vb_1 + \cdots + (c_n - d_n) \vb_n$. Since $\mc B$ is linearly independent, $c_1 - d_1 = c_n - d_n = 0$. Therefore, $c_1 = d_1, c_n = d_n$.
+\end{proof}
+
+\begin{definition}
+	Let $\mc B = \{\vb_1,\cdots,\vb_n\}$ be a basis for $V$. Let $\vx \in V$. The \underline{coordinates} of $\vx$ relative to $\mc B$ or \underline{$\mc B$-coordinates} of $\vx$ are the weights $c_1,\cdots,c_n$ such that $\vx = c_1 \vb_1 + \cdots + c_n \vb_n$. The \underline{$\mc B$-coordinate vector} of $\vx$ is $\mat{\vx}_\mc B = \mat{c_1&\cdots&c_n}^T$.
+\end{definition}
+
+\begin{example}
+	Let $V = \mb{P}_2$ and $\mc B = \{1,t,t^2\}$, then compute the $\mc B$-coordinate vector for $1+2t^2$. $\mat{1+2t^2}_\mc B = \mat{1&0&2}^T$. Let $\mc \zeta = \{t^2,t,1\}$, then $\mat{1+2t^2}_\mc \zeta = \mat{2&0&1}^T$.
+\end{example}
+
+\begin{definition}[Coordinate Mapping]
+	Let $\mc B,V$ be defined as before. $\mat{\cdot}_\mc B : V \ra \mb{R}^n$. The coordinate mapping is injective and surjective (bijective in HW). The coordinate mapping is a linear transformation. The coordinate mapping is an example of an \underline{isomorphism} of vector spaces.
+\end{definition}
+
+\begin{example}
+	$V = \text{Mat}_{2\times 3} ( \mb{R}) = \{\mat{a&b&c\\d&e&f} \mid a,b,c,d,e,f\in\mb{R}\}$.
+\end{example}
+\begin{note}
+	$\mc B$ generates $V$ and is linearly independent. %Turns $V$ into a vector, 
+	$\mat{\cdot}_\mc B : \text{Mat}_{2\times 3} (\mb{R}) \ra \mb{R}^6 = \mat{a&b&c&d&e&f}^T$.
+\end{note}
+\begin{example}
+	Suppose $\mb{P}_2$ and $ \mc B = \{1,t,t^2\}$. $\mat{p(t)}_\mc B = \mat{5&7&-1}^T$, then $p(t) = 5+7t-t^2$.
+\end{example}
+\begin{example}
+	Let $\vb_1 = \mat{1&2}^T,\vb_2 = \mat{3&4}^T$ and $\mc B = \{\vb_1,\vb_2\}$ is a basis for $\mb{R}^2$. Let $\vx = \mat{4&6}^T$, then compute $\mat{\vx}_\mc B$.
+	%\begin{note}
+		$\mat{\vx}_\mc B = \mat{c_1&c_2}^T$, such that $c_1 \vb_1 + c_2 \vb_2 = \vx$. Then $\mat{4&6}^T = 1 \mat{1&2}^T + 1 \mat{3&4}^T$, thus $\mat{\vx}_\mc B = \mat{1&1}^T$.
+	%\end{note}
+\end{example}
+\begin{note}
+	This is like a matrix multiplication of a change of coordinates matrix from $\mc B$ to $\mc E$ and multiplies it by a vector in $\mc B$ coordinates and outputs a vector in the standard basis $\mc E$ coordinates, where $\mc E = \{\ve_1,\ve_2\}$.
+\end{note}
+
+More generally, let $\mc B = \{\vb_1,\cdots,\vb_n\}$ be a basis for $\mb{R}^n$. Let $P_\mc B = \mat{\vb_1&\cdots&\vb_n}$. Then $P_\mc B$ is the change of coordinates matrix from $\mc B$ to $\mc E$. 
+$$\forall \vx\in \mb{R}^n\left(P_\mc B \mat{\vx}_\mc B = \mat{\vx}_\mc E\right).$$
+
+\begin{example}
+	Let $S = \{1+2t^2,4-t+5t^2,3+2t\}\subseteq \mb{P}_2$. Q: Is $S$ linearly independent or dependent? Fix $\mc B = \{1,t,t^2\}$. Then $\mat{p_1}_\mc B = \mat{1&0&2}^T,\mat{p_2}_\mc B = \mat{4&-1&5}^T,\mat{p_3}_\mc B = \mat{3&2&0}^T$. Q has same answer as "is $\{\mat{p_1}_\mc B,\mat{p_2}_\mc B,\mat{p_3}_\mc B\}$ linearly independent or dependent?" Row reduce and discover $S$ is linearly dependent. Find a basis for $\spn{S}$: $\text{basis} = \{1+2t^2,4-t+5t^2\}$. Also, $\dim(\spn{S}) = 2$.
+\end{example}
+\begin{example}
+	Let $H\subseteq \mb{P}_3$ be the set of polynomials of degree at most 3 that are tangent to the $x$-axis at $x=2$. Compute $\dim(H)$. If $f\in H$, then $f(2) = 0$ and $f'(2) = 0$. When $f(x) = a + bx + cx^2 + dx^3$, $f(2) = a + 2b + 4c + 8d$ and $f'(x) = b + 2cx + 3dx^2$ and $f'(2) = b + 4c + 12d$. If $f\in H$, then $\{a+2b+4c+8d = 0,b+4c+12d = 0\}$. Let $A$ be the coefficient matrix of the linear system, then $f\in H$ if and only if $\mat{a&b&c&d}^T\in \nul{A}$ and $\dim(H) = \dim(\nul{A})$. $\rnk{A} = 2$ so $\dim(\nul{A}) = 2$, therefore $\dim(H) = 2$. Find a basis for $H$ using the basis for the nullspace of $A$ by the parametric solution vector, finally convert it to a polynomial to get the basis for $H$.
+\end{example}
+\begin{remark}
+	Since $\dim(H) = 2$, to find a basis for $H$, it's enough to produce 2 linearly independent polynomials in $H$.
+\end{remark}
+
+\begin{definition}
+	If $V$ is spanned by a finite set, then $V$ is \underline{finite-dimensional}. The \underline{dimension} of $V$, denoted $\dim(V)$, is the number of vectors in a basis for $V$.
+\end{definition}
+
+%\subsection{4.6, compare with 2.9}
+\subsection{Rank}
+\begin{recall}[Theorem]
+	If $A$ is row-equivalent to $B$, then the rowspace of $A$ is equal to the row-space of $B$. If $B$ is in echelon form, then the non-zero rows of $B$ form a basis for the rowspace. The pivot columns of $A$ form a basis for the column space of $A$.
+\end{recall}
+\begin{example}
+	Let $$ A = \mat{-2 & -5 & 8 & 0 & -17 \\ 1 & 3 & -5 & 1 & 5 \\ 3 & 11 & -19 & 7 & 1 \\ 1 & 7 & -13 & 5 & 3}$$
+	and suppose the reduced echelon form of $A$ is $$ B = \mat{1 & 0 & 1 & 0 & 1 \\ 0 & 1 & -2 & 0 & 3 \\ 0 & 0 & 0 & 1 & -5 \\ 0 & 0 & 0 & 0 & 0}.$$
+	Find the basis for $\col{A},\row{A},\nul{A}$.
+	(Basis for $\row{A}) = $ (basis for $\row{B}) = $ $$ \{\mat{1&0&1&0&1},\mat{0&1&-2&0&3},\mat{0&0&0&1&-5}\}.$$	
+	\begin{recall}
+		The rank of a matrix $A$ is the dimension of the column space of $A$.
+	\end{recall}
+	If $A$ is an $m\times n$ matrix and the linear transformation $T:\mb{R}^n \ra \mb{R}^m$ is defined by $T(\vx) = A\vx$, then $\col{A} = \im{T} = \range{T}$. Therefore $\rnk{A} = \dim(\im{T})$, which we call $\rnk{T}$.
+\end{example}
+
+\begin{definition}
+	Let $T:V\ra W$ be a linear transformation. Then the \underline{rank} of $T$ is the dimension of the image of $T$.
+\end{definition}
+\begin{recall}
+	If $A$ is an $m\times n$ matrix, the Rank-Nullity theorem says $\rnk{A}+\nullity{A} = $ \# of columns of $A$, where $\rnk{A} = \dim(\col{A})$ and $\nullity{A} = \dim(\nul{A})$.
+\end{recall}
+\begin{theorem}[Rank-Nullity Theorem]
+	Let $T:V\ra W$ be a linear transformation between finite-dimensional vector spaces. Then $\rnk{T}+\dim(\ker(T)) = \dim(\domain{T})$.
+\end{theorem}
+\begin{example}
+	Scientists find 2 solutions to a homogeneous linear system of 40 equations in 42 variables. They check that the solutions are non-zero, not multiples of each other, and all other solutions are linear combinations.
+	Q: Will every linear system with the same coefficient matrix have a solution?
+	
+	Let $A$ be the coefficient matrix of the system. Then $A$ is $40\times42$ matrix. We know $A\vx = \vzero$ has 2 solutions $\vv_1,\vv_2$. Solutions to $A\vx = \vzero$ is the $\nul{A}$. We know $\nul{A} = \spn{\vv_1,\vv_2}$. $\{\vv_1,\vv_2\}$ is linearly independent. Hence $\{\vv_1,\vv_2\}$ is a basis for $\nul{A}$. Therefore, $\dim(\nul{A}) = 2$. By Rank-Nullity then, $\rnk{A} + 2 = 42$, so $\rnk{A} = 40$. Therefore $A$ has a pivot in every row.
+	
+	Q: For every $\vb\in\mb{R}$, are we guaranteed that $A\vx = \vb$ has a solution? If you have 40 pivots and 40 rows, the augmented matrix cannot have a pivot in the right most column. Thus $A\vx = \vb$ is consistent.
+\end{example}
+
+\subsection{Change of Basis}
+\begin{example}
+	Let $\mc{B} = \{\vb_1,\vb_2\}$ and $\mc{C} = \{\vc_1,\vc_2\}$ be two bases for $\mb{R}^2$. Let $\vx \in \mb{R}^2$. Suppose $\vx = 3 \vb_1 + \vb_2$. $$\mat{\vx}_\mc{B} = \mat{3 \\ 1}.$$ Suppose $\vb_1 = 4\vc_1 + \vc_2$ and $\vb_2 = - 6 \vc_1 + \vc_2$.
+	Then $$\left(\mat{\vb_1}_\mc{C} = \mat{4 \\ 1}\right)\land \left(\mat{\vb_2}_\mc{C} = \mat{-6 \\ 1}\right)$$ and $\mat{\vx}_\mc{C} = \mat{3\vb_1 + \vb_2}_\mc{C} = 3 \mat{\vb_1}_\mc{C} + \mat{\vb_2}_\mc{C}$. Therefore $\mat{\vx}_\mc{C} = \mat{\mat{\vb_1}_\mc{C}& \mat{\vb_2}_\mc C} \mat{\vx}_\mc{B}$.
+	%\begin{note}
+		If $$P = \mat{4 & -6 \\ 1 & 1},$$ then $\forall \vx\in \mb{R}^2(\mat{\vx}_\mc{C} = P \mat{\vx}_\mc{B})$. This matrix $P$ is called the \underline{change of coordinates matrix} from $\mc{B}$ to $\mc{C}$, notated as $$\mat{\vx}_\mc{C} = \underset{\mc{C} \la \mc{B}}{P} \mat{\vx}_\mc{B}.$$
+	%\end{note}
+\end{example}
+\begin{theorem}
+	Let $\mc{B} = \{\vb_1,\cdots,\vb_n\}$ and $\mc C = \{\vc_1,\cdots,\vc_n\}$ be bases for a vector space $V$. There is a unique $n\times n$ matrix $\underset{\mc C\la \mc B}{P}$ such that $$\mat{\vx}_\mc C = \underset{\mc C \la \mc B}{P} \mat{\vx}_\mc B$$ for all $\vx\in V$. Furthermore, the columns of $\underset{\mc C\la \mc B}{P}$ are $\mat{\vb_1}_\mc C,\cdots,\mat{\vb_n}_\mc C$, where
+	$\underset{\mc C\la \mc B}{P}$ is the change of coordinates matrix from $\mc B$ to $\mc C$.
+\end{theorem}
+\begin{note}
+	$\underset{\mc C\la \mc B}P$ is invertible and $\left(\underset{\mc C\la \mc B}P \right)^{-1} = \underset{\mc B\la \mc C}P$. If $\mc E$ is the standard basis for $\mb{R}^n$, then $\underset{\mc E\la \mc B}P$ is $P_\mc B$.
+\end{note}
+
+How can we compute $\underset{\mc C\la \mc B}P$? $\mat{\vb_1}_\mc C = $ ? For simplicity, suppose $V = \mb{R}^n$. $\vb_1 = x_1\vc_1 + \cdots + x_n\vc_n$, so $\mat{\vc_1 & \cdots & \vc_n \mid \vb_1}$ is row reduced to $\mat{I \mid  \mat{\vb_1}_\mc C}$ and repeat for $\vb_2,\cdots,\vb_n$. 
+
+Time saver: $\mat{\vc_1 & \cdots & \vc_n \mid \vb_1 & \cdots & \vb_n}$ is row reduced to $\mat{I \mid \underset{\mc C\la \mc B}P}$.
+\begin{remark}
+	If $V = \mb{R}^n$ and $\mc E$ is the standard basis, then $$\underset{\mc C\la \mc B}P = P^{-1}_\mc C P_\mc{B} = \underset{\mc C\la \mc E}P \underset{\mc E\la \mc B}P.$$
+\end{remark}
+% $\underset{\mc{C}\la \mc{B}}P = P^{-1} P_\mc{B}$ (check this line in book)
+ 
+\begin{example}
+	Let $\mc{B} = \{1 + 2t + t^2,3-5t+4t^2,2t+3t^2\}$ be a basis for $\mb{P}_2$. Let $\mc{E} = \{1,t,t^2\}$. Compute $\underset{\mc{E} \la \mc B}{P}$ and $\underset{\mc B\la \mc E}{P}$.
+	$\underset{\mc E \la \mc B}{P} = \mat{\mat{\vb_1}_\mc E &\mat{\vb_2}_\mc E & \mat{\vb_3}_\mc E}$. Then, $\underset{\mc B \la \mc E}{P} = \left( \underset{\mc E \la \mc B}{P} \right)^{-1}$.
+	Use this to compute $\mat{-1 + 2t}_\mc B$.
+	
+\end{example}
+
+\newpage
+
+\section{Eigenvalues, Eigenvectors, and Characteristic Equation}
+
+\begin{definition}
+	An eigenvector of an $n\times n$ matrix $A$, is a nonzero vector $\vv$ such that $\exists ! \lambda (A\vv = \lambda \vv)$.
+\end{definition}
+\begin{definition}
+	A scalar $\lambda$ is an eigenvalue of $A$ if there is a nontrivial solution to the equation $A\vx = \lambda \vx$. i.e. a nontrivial solution to $(A-\lambda I)\vx = 0$.
+\end{definition}
+
+\begin{example}
+	$$A = \mat{1&2&0\\2&1&0\\0&0&0}, \vu = \mat{1\\1\\0},\vv=\mat{0\\0\\1},\vw=\mat{1\\-1\\0}$$
+	$\vu$ is an eigenvector of $A$ since $\vu\neq0=\vzero$. Then $A\vu = 3\vu$, so the corresponding eigenvalue is 3. $\vu$ is an eigenvector for $A$ since $\vv\neq\vzero$ and $A\vv = 0\vv$, so $\vv$ is an eigenvector with eigenvalue 0. At home: check $\vw$.
+\end{example}
+\begin{example}
+	Is 2 an eigenvalue of $A = \mat{3&3\\3&8}$? $A-2I = \mat{1&2\\3&6}$. Does $(A-2I)\vx=\vzero$ have a nontrivial solution? The augmented matrix of $A$ has 1 pivot but 2 columns, so system has non-trivial solutions. Therefore, 2 is an eigenvalue of $A$.
+	
+	We can even compute an eigenvector. $x_1=-2t,x_2=t,t\in\mb R$. You can choose any non-zero value for $t$ to get an eigenvector.
+\end{example}
+\begin{definition}
+	If $\lambda$ is an eigenvalue of $A$, then the nullspace of $A-\lambda I$ is called the \underline{eigenspace} or ($\lambda$-eigenspace) of $A$ corresponding to $\lambda$.
+\end{definition}
+\begin{example}[Continued]
+	The eigenspace corresponding to 2 or 2-eigenspace is $\spn{\mat{-2 &1}^T}$.
+\end{example}
+\begin{theorem}
+	Eigenvalues of a triangular matrix are the entries on the main diagonal.
+\end{theorem}
+\begin{proof}
+	exercise.
+\end{proof}
+\begin{example}
+	In upper triangular $A = \mat{3&6&5\\0&4&2\\0&0&0}$, the eigenvalues are $\{3,4,0\}$.
+	
+	In lower triangular $B = \mat{1&0&0\\0&1&0\\2&3&5}$, the eigenvalues are $\{1,5\}$ with multiplicities $\{2,1\}$.
+	
+	*WARNING* This only works for triangular matrices! *
+\end{example}
+\begin{theorem}
+	The eigenvectors $\vv_1,\vv_2,\dots,\vv_r$ corresponding to distinct eigenvalues $\lambda_1,\lambda_2,\dots,\lambda_r$ are linearly independent.
+\end{theorem}
+\begin{proof}
+	Suppose not (proof by contradiction). Take the shortest linear dependence relation. Relabel the vectors so that the equation looks like $c_1\vv_1 + c_2\vv_2+\cdots+c_p\vv_p = \vv_{p+1}$. Now multiply by $A$, $A(c_1\vv_1 + c_2\vv_2+\cdots+c_p\vv_p) = A\vv_{p+1}$. Then $$c_1\lambda_1\vv_1 + c_2\lambda_2\vv_2+\cdots+c_p\lambda_p\vv_p = \lambda_{p+1}\vv_{p+1} = c_1\lambda_{p+1}\vv_1 + c_2\lambda_{p+1}\vv_2+\cdots+c_p\lambda_{p+1}\vv_p$$.
+	As a result, $0 = c_1(\lambda_1-\lambda_{p+1})\vv_1 + c_2(\lambda_2-\lambda_{p+1})\vv_2+\cdots+c_p(\lambda_p-\lambda_{p+1})\vv_p$. The $\lambda_i$ are distinct, so $\lambda_i - \lambda_{p+1}\neq 0$. But $c_1(\lambda_1-\lambda_{p+1}) + c_2(\lambda_2-\lambda_{p+1})+\cdots+c_p(\lambda_p-\lambda_{p+1}) = 0$. Thus $c_1=c_2=\cdots=c_p=0$. Then $\vv_{p+1}=\vzero$. Contradiction.
+\end{proof}
+How can we find eigenvalues? 
+$\lambda$ is an eigenvalue of $A$ if and only if $\nul{A-\lambda I}$ is nontrivial. $\nul{A-\lambda I}$ is nontrivial if and only if $A-\lambda I$ has less than $n$ pivots. So this is true if and only if $A-\lambda I$ is not invertible. This is if and only if $\det(A-\lambda I) = 0$.
+\begin{theorem}
+	$\lambda$ is an eigenvalue of $A$ if and only if $\det(A-\lambda I) = 0$.
+\end{theorem}
+\begin{definition}
+	$\det(A-\lambda I)$ is called the \underline{characteristic polynomial} of $A$.
+\end{definition}
+\begin{definition}
+	The \underline{characteristic equation} is $\det(A-\lambda I) = 0$.
+\end{definition}
+\begin{example}
+	Compute characteristic polynomial of $A = \mat{1&2\\3&4}$. Compute $\det\left(\mat{1-\lambda & 2 \\ 3&4-\lambda}\right) = (1-\lambda)(4-\lambda)-2(3) = 4-5\lambda+\lambda^2-6 = \lambda^2-5\lambda-2$. So the characteristic equation is $\lambda^2-5\lambda-2=0$. Therefore the eigenvalues are $\lambda_1 = (5+\sqrt{33})/2, \lambda_2=(5-\sqrt{33})/2$.
+\end{example}
+\begin{definition}
+	Multiplicity of an eigenvalue $c$ is the multiplicity of $c$ as a root of the characteristic polynomial.
+\end{definition}
+\begin{example}
+	Suppose the characteristic polynomial of $A$ is $(\lambda-2)^2(\lambda+1)(\lambda-3)$ with eigenvalues $\lambda=2$ with multiplicity 2, $\lambda=-1$ with multiplicity 1, and $\lambda=3$ with multiplicity 1.
+\end{example}
+\begin{definition}
+	If $A$ and $B$ are $n\times n$ matrices, then $A$ is \underline{similar} to $B$ if there exists an invertible matrix $P$ such that $A = PBP^{-1}$, denoted $A\sim B$.
+\end{definition}
+\begin{note}
+	Similarity is an equivalence relation (prove at home).
+	\begin{enumerate}
+		\item[(i)] \underline{reflexive}: $\forall A(A\sim A)$
+		\item[(ii)] \underline{symmetric}: $(A\sim B)\ra(B\sim A)$.
+		\item[(iii)] \underline{transitive}: $[(A\sim B)\land(B\sim C)]\ra(A\sim C)$.
+	\end{enumerate}
+\end{note}
+\begin{theorem}
+	If $A\sim B$, then $A$ has the same characteristic polynomial as $B$.
+\end{theorem}
+\begin{proof}
+	try at home.
+\end{proof}
+\underline{Warning}: the same characteristic polynomial does \underline{not} imply similarity.
+
+\subsection{Diagonalization}
+$$D=\mat{\lambda_1 & 0 & 0 \\ 0 & \ddots & 0 \\ 0 & 0 & \lambda_n}, D\mat{x_1 \\ \vdots \\ x_n} = \mat{\lambda_1 x_1 \\ \vdots \\ \lambda_n x_n}, D^k = \mat{\lambda_1^k & 0 & 0 \\ 0 & \ddots & 0 \\ 0 & 0 & \lambda_n^k}.$$
+We're interested in writing a matrix $A$ as $A= PDP^{-1}$, where P is invertible and D is diagonal. Then $A^k = PDP^{-1}PDP^{-1}\cdots PDP^{-1} = PD^kP^{-1}$.
+\begin{definition}
+	A square matrix is diagonalizable if $A = PDP^{-1}$, where $P$ and $D$ are square and $P^{-1}$ exists and $D$ is diagonal.
+\end{definition}
+\begin{theorem}[Diagonalization Theorem]
+	An $n\times n$ matrix $A$ is diagonalizable if and only if $\mb{R}^n$ has a basis consisting of eigenvectors of $A$. This kind of basis is called an eigenbasis.
+\end{theorem}
+\begin{proof}
+	Let's say $A=PDP^{-1}$, where $P$ is invertible and $D$ is as defined above. We want to find this eigenbasis. It's going to be the columns of $P = \mat{\vv_1 & \vv_2 & \cdots & \vv_n}$. Then $AP = PDP^{-1}P = PD$. So $\mat{A\vv_1 & A\vv_2 & \cdots & A\vv_n} = \mat{\lambda_1\vv_1 & \lambda_2\vv_2 &\cdots & \lambda_n\vv_n}$. You set $A\vv_1 = \lambda_1\vv_1, \dots, A\vv_n = \lambda_n\vv_n$. $\vv_1,\dots,\vv_n$ are eigenvectors and since $P$ is invertible they are linearly independent so they form a basis.
+	
+	Suppose $\vv_1,\dots,\vv_n$ is a basis and $A\vv_1=\lambda_1\vv_1,\dots,A\vv_n=\lambda_n\vv_n$, now I want to write $A=PDP^{-1}$, so I have to find $P$ and $D$.
+\end{proof}
+Why do we care? $ \mc B = \{\vv_1,\dots,\vv_n\} $ is an eigenbasis, so $ \vv=c_1\vv_1 + \cdots + c_n\vv_n $. Therefore $ A\vv = \lambda_1 c_1 \vv_1 + \cdots + \lambda_n c_n \vv_n $. Then we have 
+$ \mat{\vv}_{\mc{B}} = \mat{ c_1 & \cdots & c_n}^T $ 
+and $ \mat{A\vv}_\mc B = \mat{ \lambda_1 c_1 & \cdots & \lambda_n c_n}^T $.
+\begin{example}
+	To find the eigenvectors corresponding to $\lambda=2$ you have to solve $A\vx = 2\vx$ for $\vx \neq \vzero$. So to find $P$ and $D$ so that $A = PDP^{-1}$ we have $$P=\mat{\vv_1&\vv_2&\vv3},D = \mat{\lambda_1&0&0\\0&\lambda_2&0\\0&0&\lambda_3}$$.
+\end{example}
+\begin{example}
+	$$A=\mat{1&1\\0&1}$$
+	$\det(A-\lambda I) = 0 = (1-\lambda)^2$, so $\lambda=1$ with multiplicity 2. So we have to solve $A\vx = 1\vx$ for $\vx\neq\vzero$. You can only find one eigenvector not two. $A$ is not diagonalizable if you can't find enough eigenvectors.
+\end{example}
+\begin{theorem}
+	Let $A$ be an $n\times n$ matrix. Find the eigenvalues $\lambda_1,\dots,\lambda_s$ by solving $\det(A-\lambda I)=0$ for $\lambda$. Each eigenvalue occurs with some multiplicity $m_i$. To find the eigenvectors corresponding to $\lambda_1$ you have to solve $A\vx=\lambda_1 \vx$ or $(A-\lambda_1 I)\vx=0$ for $\vx$. You have to find a basis for $\nul{A-\lambda_1 I}$, which is the eigenspace for $\lambda_1$. Then do the same for $\lambda_2,\dots,\lambda_s$. (i) $\dim(\nul{A-\lambda_1 I})\leq m_1$. (ii) $A$ is diagonalizable if and only if the dimensions add up to $n$. If you find $m_1$ eigenvectors for $\lambda_1$. (iii) To get an eigenbasis for $A$ just string together the bases you found for all the eigenspaces.
+\end{theorem}
+
+\begin{example}
+	$$A=\mat{5&0&0&0\\0&5&0&0\\1&4&-3&0\\-1&-2&0&-3}$$
+	$\det(A-\lambda I) = 0 = (5-\lambda)^2(-3-\lambda)^2$, so $\lambda_1 = 5, m_1=2,\lambda_2=-3,m_2=2$. $\dim(\nul{A-5I}) = 2$. $\dim(\nul{A+3I}) = 2$. Therefore, we can find enough eigenvectors for an eigenbasis.
+\end{example}
+
+\subsection{5.4}
+Consider the linear transformation $S:\mb{R}^n \ra \mb{R}^n$.
+$$\vx = x_1 e_1 + x_2 e_2 + \cdots + x_n e_n$$
+$$S(\vx) = x_1 S(e_1) + x_2 S(e_2) + \cdots + x_n S(e_n)$$
+If $S$ and $T$ are linear, then $S\circ T$ is linear.
+$S(\vx) = \mat{\mat{T(\vb_1)}_\mc C & \cdots & \mat{T(\vb_n)}_\mc C} \vx$.
+$\mat{T\vv}_\mc B = S([\vv])_\mc B$.
+$V$ has basis $\mc B = \{\vb_1,\dots,\vb_n\}$ and $W$ has basis $\mc C = \{\vc_1,\dots,\vc_n\}$. $T:W \ra \mb{R}^m$ or $T(\vv) \ra \mat{T\vv}_\mc C$. $V \ra \mb{R}^n$. $T:V\ra W$. $S:\mat{\vv}_\mc B \ra \mat{T\vv}_\mc C$.
+\begin{example}
+	$\mb{P}_2 = \{a_0+a_1 t + a_2 t^2:a_0,a_1,a_2 \in \mb{R}\}$.
+	$\mc B = \{1,t,t^2\}$ is a basis for $\mb{P}_2$.
+	Linear transformation $T:\mb{P}_2 \ra \mb{P}_2$, such that $T(a_0 + a_1 t + a_2 t^2) = 3a_0 + (5a_0 - 2a_1)t + (4a_1 + a_2)t^2$.
+	$S:\mat{\vp}_\mc B \ra \mat{T(\vp)}_\mc B$, where $\mat{\vp}_\mc B,\mat{T(\vp)}_\mc B \in \mb{R}^3$
+	$$\mat{T(\vp)}_\mc B = \mat{\mat{T(1)}_\mc B & \mat{T(t)}_\mc B & \mat{T(t^2)}_\mc B}\mat{\vp}_\mc B$$
+	
+	$T(1) = T(1\times 1 + 0\times t + 0\times t^2) = 3\times 1 + (5\times 1 - 2\times 0)t + (4\times 0 + 0)t^2 = 3+5t+0t^2$. So, $\mat{T(1)}_\mc B = \mat{3 & 5 & 0}^T$.
+	
+	$T(t) = 0\times 1 + -2 \times t + 4 \times t^2$, so $\mat{T(t)}_\mc B = \mat{0&-2&4}^T$.
+	
+	$T(t^2) = 0\times $
+	
+	$$\mat{T(\vp)}_\mc B = \mat{3 & 0 & 0 \\ 5 & -2 & 0 \\ 0 & 4 & 1}\mat{\vp}_\mc B$$
+	
+	Diagonalizable matrix $A = PDP\inv$. Then $A\mat{\vv_1 & \cdots & \vv_n} = \mat{\vv_1 & \cdots & \vv_n}D$. Also $\mat{A\vv_1 & \cdots & A\vv_n} = \mat{\lambda_1 \vv_1 & \cdots & \lambda_n \vv_n}$ and $A\vv_i = \lambda_i \vv_i$. Since $\exists P\inv \leftrightarrow \vv_1, \dots, \vv_n$ forms a basis for $\mb{R}^n$, which is an eigenbasis.
+	$\mat{A\vv}_\mc B = D \mat{\vv}_\mc B$, so when using the eigenbasis $\mc B = \{\vv_1,\dots,\vv_n\}$, then the transformation matrix is the diagonal eigenvalue matrix.
+	
+	So in general, $A\sim C$, $A=PCP\inv$, you can let $\mc B$ be the basis for $\mb{R}^n$ given by columns of $P$. $A:\mb{R}^n \ra \mb{R}^n$.
+\end{example}
+
+\begin{example}
+	$$A =\mat{4 & -9 \\ 4 & -8} = PCP\inv = \mat{3&2\\2&1}\mat{-2&1\\0&-2}P\inv$$.
+	$\mc B = \{\mat{3\\2},\mat{2\\1}\}$.
+\end{example}
+
+\begin{recall}
+	An $n\times n$ matrix $A$ with real entries is diagonalizable if and only if
+	\begin{enumerate}
+		\item The characteristic polynomial splits into linear factors.
+		\item The dimension of each eigenspace is equal to the multiplicity of each eigenvalue.
+	\end{enumerate}
+\end{recall}
+\begin{example}
+	$x^2 + 1$ does not factor over $\mb R$. This factors over $\mb C$ as $(x+i)(x-i)$.
+\end{example}
+\begin{definition}
+	$\mb C = \{a+ib \mid a,b\in \mb R\}$ with arithmetic defined as $(a+ib)+(\hat a + i \hat b) = (a + \hat a) + i(b + \hat b)$. $(a+ib)\cdot (\hat a + i \hat b) = a \hat a + i b \hat a - b \hat b + i a \hat b = (a\hat a - b \hat b) + i (b\hat a + a \hat b)$
+	$\mb R \subset \mb C$
+	$a |\ra a + i0$
+	
+	For $\alpha = a + ib \in \mb C$, the conjugate of $\alpha$ is $\bar \alpha = a - ib$. We extend this bar to vectors as well.
+	$$\vv = \mat{\alpha \\ \beta} \in \mb{C}^2 \ra \bar{\vv} = \mat{\bar \alpha \\ \bar \beta}$$
+	Real part $\Re(\alpha) = a$
+	Imaginary part $\Im(\alpha) = b$
+	Extend to vectors:
+	$$\vv \mat{\alpha \\ \beta}, \Re(\vv) = \mat{\Re(\alpha) \\ \Re(\beta)}, \Im(\vv) = \mat{\Im(\alpha)\\\Im(\beta)}$$
+\end{definition}
+$\mb C$ is a real vector space with $\dim(\mb C) = 2$ since $\mc B = \{1,i\}$ form a basis of $\mb C$.
+
+Fix $\alpha = a + ib\in \mb C$. Multiplication by $\alpha$ defines a map $\mb C \ra \mb C$. This map lis linear. (check at home!). Let's compute the matrix of this transformation.
+
+(square pic of transformation)
+
+Compute $[T]_\mc B = \mat{\mat{T(1)}_\mc B & \mat{T(i)}_\mc B}$.
+$T(1) = \alpha \cdot 1 = \alpha = a + ib, \mat{T(1)}_\mc B = \mat{a \\ b}$.
+$T(i) = \alpha \cdot i = (a + ib)i = ai + i^2 b = -b + ia, \mat{T(i)}_\mc B = \mat{-b\\a}$.
+$$\mat{T}_\mc B = \mat{a & -b \\ b & a} = A$$ What can we say about such matrices?
+$\det(A) = a^2 + b^2 = \alpha \bar \alpha$. Call this $r^2$. So $r = \sqrt{a^2 + b^2}$.
+$$\mat{a & -b \\ b & a} = \mat{r & 0 \\ 0 & r} \mat{a/r & -b/r \\ b/r & a/r}$$
+$\det= (r^2), \det = (r^2), \det = 1$
+$\mat{a/r & -b/r \\ b/r & a/r} = \mat{\cos(\phi) & -\sin(\phi) \\ \sin(\phi) & \cos(\phi)}$ for some angle $\phi$. This is a rotation counterclockwise around origin by angle $\phi$.
+Therefore multiplication by $\alpha\in \mb C$ is scaling by $r$ and rotating by $\phi$.
+\begin{remark}
+	Identify $\mb C$ with $\mb{R}^2$.
+\end{remark}
+
+\underline{Facts}:
+\begin{enumerate}
+	\item[i] Let $A$ be a $2\times 2$ matrix with real entries and complex eigenvalue $\lambda = a-ib,b\neq 0$ with corresponding complex eigenvector $\vv =\mat{\alpha & \beta}^T \in \mb{C}^2$. Then $\bar \lambda = a + ib$ is also an eigenvalue with corresponding eigenvector is $\bar \vv = \mat{\bar \alpha & \bar \beta}^T$. Prove at home. (Use quadratic formula to show if $\lambda$ is an eigenvalue, $\bar \lambda$ is an eigenvalue).
+\end{enumerate}
+\begin{theorem}
+	Let $A$ be a $2\times 2$ real matrix with complex eigenvalue $\lambda = a-ib,b\neq 0$, and associated eigenvector $\vv \in \mb{C}^2$.
+	Then $A = PCP\inv$, where $C = \mat{a & -b \\ b & a}$ and $P = \mat{\Re(\vv) & \Im(\vv)}$.
+\end{theorem}
+\begin{example}
+	$A = \mat{1 & -2 \\ 1 & 3}$. Find eigenvalues: $\det(A - \lambda I) = (1-\lambda)(3-\lambda) - 1(-2) = \lambda^2 - 4 \lambda + 5$. The roots are $\lambda = 2 \pm i$, there are no real eigenvalues and it is not diagonalizable over $\mb R$ (cannot split into linear factors over $\mb R$), but you do have complex eigenvalues.
+	
+	Find complex basis for complex eigenspace $E_{2-i} \subseteq \mb{C}^2$. We know that $\dim(E_{2-i}) = 1$ because of the multiplicity.
+	Compute $\nul{A-(2-i)I}$.
+	To solve this, we solve $x_1 + (1+i)x_2 = 0$ (the other equation is a multiple of this because the $\rnk{A-(2-i)I} = 1$. Take $x_2 = -1, x_1 = 1+i$. Then $\vv = \mat{1+i \\ -1}$ is an eigenvector corresponding to $2-i$. Basis for $E_{2-i} = \{\vv\}$. Therefore the basis for $E_{2+i} = \{\bar \vv \}$, the complex conjugate.
+	
+	Write $A$ as $PCP\inv$, with $C = \mat{a & -b \\ b & a}$. $C = \mat{2 & -1 \\ 1 & 2}$. $P = \mat{1 & 1 \\ -1 & 0}$. Check your work: $A = PCP\inv$, so $AP = PC$.
+	
+	What is the scaling and rotation for $C$? $r^2 = \det(C) = 5$, so $r = \sqrt{5}$. $\mat{2/\sqrt{5} & -1/\sqrt{5} \\ 1/\sqrt{5} & 2/\sqrt{5}} = \mat{\cos\phi & -\sin\phi \\ \sin\phi & \cos\phi}$, so $\phi = \sin\inv 1/\sqrt{5}$.
+\end{example}
+\begin{recall}
+	The $\sin$ function inverses are only defined over an interval $[-\pi/2,\pi/2]$.
+\end{recall}
+
+\subsection{Discrete Dynamical Systems}
+
+$\vx_0 = $ initial condition vector.
+Suppose there exists a matrix $A$ such that $\vx_1 = A \vx_0, \vx_2 = A\vx_1$%, \vx_3 = A\vx_2,\dots$
+. We want to understand such systems. What we get is $\vx_k = A^k \vx_0$. Suppose $A$ is diagonalizable. There exists a diagonal matrix $D$ with $$D = \mat{\lambda_1 & 0 & 0 \\ 0 &\ddots & 0 \\ 0 & 0 & \lambda_n}$$ and invertible matrix $P = \mat{\vv_1&\vv_2&\cdots&\vv_n}$, where $\vv_i$ is an eigenvector of $A$ with eigenvalue $\lambda_i$, and $A = PDP\inv$.
+
+Two maps to understand $\vx_k$:
+\begin{enumerate}
+	\item $\{\vv_1,\dots,\vv_n\}$ is a basis for $\mb{R}^n$. There exist scalars $c_1,\dots,c_n$ such that $\vx_0 = c_1 \vv_1 + c_2 + \vv_2 + \cdots + c_n \vv_n$.
+	\begin{remark}
+		If $\vv$ is an eigenvector of $A$ with eigenvalue $\lambda$, then $A\vv = \lambda \vv, A^k \vv = \lambda^k \vv$.
+	\end{remark} 
+	$\vx_k = A^k \vx_0 = A^k (c_1 \vv_1 +\cdots + c_n \vv_n) = c_1\lambda_1^k \vv_1 + c_2\lambda_2^k \vv_2 + \cdots + c_n \lambda_n^k \vv_n$.
+	\item $A^k = (PDP\inv)(PDP\inv)\cdots(PDP\inv) = PD^kP\inv$ (k times) \begin{note}
+		$$D^k = \mat{\lambda_1^k & 0 & 0 \\ 0 &\ddots & 0 \\ 0 & 0 & \lambda_n^k}$$
+	\end{note}
+\end{enumerate}
+
+\begin{example}
+	[Predator-Prey]
+	Owl and wood rats population at time $k$ months $$\vx_k = \mat{O_k \\ R_k}$$ 
+	Suppose with no rats for food, $50\%$ owls survive each month. With no owls as predators, $10\%$ increase in rat population each month. Suppose $O_{k+1} = 0.5 O_k + 0.4 R_k,R_{k+1} = -0.104 O_k + 1.1 R_k$.
+	$\vx_0 = $ initial condition. $\vx_k = A^k \vx_0$, where $A = \mat{0.5 & 0.4 \\ -0.104 & 1.1}$. $\det(A-\lambda I) = (0.5 - \lambda)(1.1-\lambda) - (0.4)(-0.104)$. The eigenvalues are $\lambda_1=1.02,\lambda_2 = 0.58$ both with multiplicity 1.
+	$(A-\lambda I)\vx = \vzero, \vv_1=\mat{10\\13}$ and $\vv_2 = \mat{5\\1}$.
+	Initial population $\vx_0 = c_1 \vv_1 + c_2 \vv_2$. Then $\vx_k = c_1 (1.02)^k \vv_1 + c_2 (0.58)^k \vv_2$.
+	\begin{note}
+		For large $k$, 2nd term is negligible and $\vx_k$ is approximately the 1st term.
+	\end{note}
+	\underline{Graphically}: draw on paper.
+\end{example}
+
+\begin{example} In this case the origin is a \underline{repeller} since both eigenvalues are greater than 1. (plot).
+	$$A = \mat{1.44 & 0 \\ 0 & 1.2}$$
+\end{example}
+\begin{example} This is called a \underline{saddle point}, with 1 eigenvalue $> 1$ and an eigenvalue between 0 and 1.
+	$$A = \mat{2.0 & 0 \\ 0 & 0.5}$$
+\end{example}
+\begin{example} Sink.
+	$$A = \mat{0.8 & 0 \\ 0 & 0.64}$$
+\end{example}
+When you change coordinates to diagonalize the coefficient matrix fo a dynamical system it is called \underline{decoupling}.
+
+What about complex eigenvalues? This produces a spiral graph. $$A = \mat{0.8 & 0.5 \\ -0.1 & 1.0}$$
+The complex eigenvalues are $\lambda_1 = 0.9 + 0.2i, \lambda_2 = 0.9 - 0.2i$ with $\vv_1 = \mat{1-2i\\1}, \vv_2 = \mat{1+2i\\1}$. The $\det(A) = r^2 = 0.9^2 + 0.2^2 = 0.85 \ra r = \sqrt{0.85} < 1$.
+
+\section{Inner Product, Length, and Orthogonality}
+
+Let $\vu,\vv\in\mb{R}^n$. View as $n\times 1$ matrices. Then $\vu^T\vv$ is a $(1\times n)\times(n\times1) = 1\times1$ matrix. We grab this as a scalar. This is the \underline{dot product} of $\vu$ and $\vv$. It is an example of a more general notion of an \underline{inner product}. We denote the dot product as $\vu\cdot \vv$.
+\begin{example}
+	$\vu = \mat{1\\2\\3},\vv=\mat{-1\\0\\2}$. Then $\vu\cdot\vv = \vu^T\vv = \mat{1&2&3}\mat{-1\\0\\2} = -1(1)+0(2)+2(3) = 5$.
+\end{example}
+\begin{theorem}
+	Let $\vu,\vv,\vw\in\mb{R}^n$ and let $c\in\mb R$.
+	\begin{enumerate}
+		\item[i] $\vu\cdot\vv = \vv\cdot\vu$
+		\item[ii] $(\vu+\vv)\cdot\vw = \vu\cdot\vw + \vv\cdot\vw$
+		\item[iii] $(c\vu)\cdot\vv = c(\vu\cdot\vv) = \vu\cdot(c\vv)$
+		\item[iv] $\vu\cdot\vu \geq 0$ and $\vu\cdot\vu=\vzero$ if and only if $\vu=\vzero$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Try at home. Uses def, properties of transpose and matrix multiplication.
+\end{proof}
+\begin{definition}
+	The \underline{length} or \underline{norm} of $\vv$, denoted $\lvert\lvert \vv \rvert\rvert$, is $||\vv|| = \sqrt{\vv\cdot\vv}$.
+\end{definition}
+\begin{definition}
+	A vector of length 1 is called a \underline{unit vector}.
+\end{definition}
+\begin{example}
+	$\vv=\mat{1\\2\\3}$. Then $||\vv||=\sqrt{\vv\cdot\vv} = \sqrt{1^2+2^2+3^2} = \sqrt{14}$. We can "normalize" $\vv$ to get a unit vector in the direction of $\vv$ by dividing $\vv$ by $||\vv||$. $\vu = \frac{1}{\sqrt{14}}\mat{1\\2\\3} = \mat{1/\sqrt{14}\\2/\sqrt{14}\\3/\sqrt{14}}$ is a unit vector.
+\end{example}
+\begin{definition}
+	For $\vu,\vv\in\mb{R}^n$, the \underline{distance} between $\vu$ and $\vv$, denoted $\dist{\vu,\vv}$, is $\dist{\vu,\vv}=||\vu-\vv||$.
+\end{definition}
+\begin{example}
+	$\dist{\vu,\vv}^2 = ||\vu-\vv||^2 = (\vu-\vv)\cdot(\vu-\vv) = \vu\cdot(\vu-\vv)-\vv\cdot(\vu-vv) = \vu\cdot\vu-\vu\cdot\vv-\vv\cdot\vu+\vv\cdot\vv=||\vu||^2-2\vu\cdot\vv+||\vv||^2$.
+	Similarly, $\dist{\vu,-\vv} = ||\vu||^2 + 2\vu\cdot\vv+||\vv||^2$.
+	Then $\dist{\vu,\vv}=\dist{\vu,-\vv}$ if and only if $2\vu-\cdot\vv = -2\vu\cdot\vv \ra 4\vu\cdot\vv = 0$, i.e $\vu\cdot\vv = 0$.
+\end{example}
+\begin{definition}
+	$\vu$ and $\vv$ are \underline{orthogonal} to each other, denoted $\vu \perp \vv$ if and only if $\vu\cdot\vv = 0$.
+\end{definition}
+\begin{note}
+	This gives Pythagorean theorem. Read and prove at home.
+\end{note}
+\begin{definition}
+	Let $W\subseteq\mb{R}^n$ be a subspace. The \underline{orthogonal complement} of $W$, denoted $W^\perp$ (read "$W$ perp"), is $W^\perp=\{\vv\in\mb{R}^n\mid \forall \vw\in W(\vv\cdot\vw=0)\}$.
+\end{definition}
+\underline{Exercise}: Prove $W^\perp$ is a subspace of $\mb{R}^n$.
+\underline{Exercise}: Prove $\dim(W)+\dim(W^\perp) = n$.
+\begin{theorem}
+	Let $A$ be $m\times n$ matrix. Then
+	\begin{enumerate}
+		\item[i] $(\row{A})^\perp = \nul{A}$.
+		\item[ii] $\col{A}^\perp = \nul{A^T}$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Try at home. Details in book.
+	$A = \mat{\vr_1\\ \vr_2 \\ \cdots \\ \vr_m}$ if $\vv\in\nul{A}$, then $A\vv=\vzero$. Interpret $A\vv$ in terms of dot product of $\vr_i$ and $\vv$. This shows $\nul{A} \subseteq (\row{A})^\perp$.
+\end{proof}
+
+\subsection{Orthogonal Sets}
+\begin{definition}
+	A set $\{\vu_1,\dots,\vu_p\}$ in $\mb{R}^n$ is an \underline{orthogonal set} if $\vu_i\cdot\vu_j = 0$ for all $i\neq j$. (Vectors are pairwise orthogonal to each other.)
+\end{definition}
+\begin{example}
+	To show $\{\vu,\vv,\vw\}$ is an orthogonal set, verify $\vu\cdot\vv=0,\vu\cdot\vw=0$ and $\vv\cdot\vw=0$.
+\end{example}
+\underline{Fact}: an orthogonal set of \underline{non-zero} vectors is linearly independent.
+\begin{proof}
+	Let $\{\vu_1,\dots,\vu_p\}$ be an orthogonal set of non-zero vectors. Suppose $\vzero = c_1 \vu_1 + \cdots + c_p\vu_p$ for some scalars $c_1,\dots,c_p$. We need to show $c_1=0,c_2=0,\dots,c_p=0$. Dot both sides with $\vu_1$: $\vzero\cdot\vu_1 = 0 = (c_1\vu_1 + \cdots + c_p \vu_p)\cdot\vu_1 = c_1\vu_1\cdot\vu_1 + 0 + \cdots + 0$. $\therefore c_1||\vu_1||^2 = 0$, since $\vu_1\neq\vzero$, $||\vu_1||^2\neq0$. $\therefore c_1 = 0$. Repeat to show $c_2=0,c_3=0,\dots,c_p=0$.
+\end{proof}
+\begin{definition}
+	An \underline{orthogonal basis} is a basis that is an orthogonal set.
+\end{definition}
+\begin{theorem}
+	Let $\{\vu_1,\dots,\vu_p\}$ be an orthogonal basis for $W\subseteq\mb{R}^n$. For each $\vy\in W$, we can write $\vy$ as $\vy=c_1\vu_1 + c_2\vu_2 + \cdots + c_p\vu_p$, where $c_j = \frac{\vy\cdot\vu_j}{\vu_j\cdot\vu_j}$, for $j=1,2,\dots,p$.
+\end{theorem}
+\begin{proof}
+	Finish at home. Write $\vy=c_1 \vu_1 + \cdots + c_p \vu_p$. Compute $\vy\cdot\vu_1$, solve for $c_1$. Compute $\vy\cdot\vu_2$, solve for $c_2$. $\dots$ .
+\end{proof}
+\begin{example}
+	Let $\vu_1 = \mat{3\\1\\1},\vu_2=\mat{-1\\2\\1},\vu_3 = \mat{-1/2\\-2\\7/2},\vy=\mat{6\\1\\-8}$. At home verify $\{\vu_1,\vu_2,\vu_3\}$ is an orthogonal basis for $\mb{R}^n$.
+	
+	Write $\vy$ as a linear combination of $\{\vu_1,\vu_2,\vu_3\}$. $\vy = c_1 \vu_1 + c_2\vu_2 + c_3 \vu_3$. $\vy\cdot\vu_1 = 18+1-8=11$, $\vu_1\cdot\vu_1 = 9+1+1 = 11$, $c_1 = 11/11 = 1$. Try $c_2,c_3$ at home. $c_2 = c_3 = -2$.
+\end{example}
+
+\begin{example}
+	Suppose $\vu\in\mb{R}^n$ is a non-zero vector and $L=\spn{\vu}$. We want to express $\vy\in\mb{R}^n$ as $\vy=\hat{\vy} + \vz$, where $\hat{\vy}\in L$ and $\vz\perp L$. $\hat{\vy}$ is called the \underline{orthogonal projection} of $\vy$ onto $L$, denoted $\proj{L}{\vy}$.
+	
+	$L = \spn{\vu}$, $\proj{L}{\vy} = \left( \frac{\vy\cdot\vu}{\vu\cdot\vu} \right) \vu$.
+\end{example}
+\begin{example}
+	Consider $\vv = \mat{3\\7}$ and $L = \{(x,y)\mid y=x/2\}$. Compute $\proj{L}{\vv}$. Take $\vu = \mat{2\\1}$, then $\mat{3\\7}\cdot\mat{2\\1} = 6 + 7 = 13$ and $\mat{2\\1}\cdot{2\\1} = 4 + 1 = 5$.
+	$\proj{L}{\mat{3\\7}} = \frac{13}{5}\mat{2\\1} = \mat{26/5\\13/5}$.
+	$\vv=\hat{\vv} + \vz$, where $\vz\perp L$. $\mat{3\\7} = \mat{26/5\\13/5} + \vz$. Why compute $\vz$? Q: How close is $\mat{3\\7}$ to the line $L$? Answer $||\vz||$.
+\end{example}
+
+\begin{definition}
+	An \underline{orthonormal set} is an orthogonal set of unit vectors. An \underline{orthonormal basis} is a basis that is an orthonormal set.
+\end{definition}
+\begin{remark}
+	Last time: we showed that any orthogonal set of non-zero vectors is linearly independent.
+\end{remark}
+\underline{Fact}: Every orthonormal set is linearly independent.
+\begin{theorem}
+	Let $U$ be an $m\times n$ matrix. $U$ has orthonormal columns if and only if $U^TU=I$.
+\end{theorem}
+\begin{proof}
+	Idea: Write $U = \mat{\vu_1&\cdots& \vu_n}$. Compute $U^TU$.
+\end{proof}
+\begin{theorem}
+	Let $U$ have orthonormal columns. Then
+	\begin{enumerate}
+		\item[i] $||U\vv||=||\vv||$ for all $\vv\in\mb{R}^n$ (multiplication by $U$ preserves length).
+		\item[ii] $(U\vv)\cdot(U\vw)=\vv\cdot\vw$ for all $\vv,\vw\in\mb{R}^n$ (multiplication by $U$ preserves angles and lengths).
+		\item[iii] $(U\vv)\cdot(U\vw)=0$ if and only if $\vv\cdot\vw=0$.
+	\end{enumerate}
+\end{theorem}
+\begin{note}
+	$U$ is $m\times n$, so multiplication by $U$ is $\mb{R}^n \ra \mb{R}^m$ or $\vv \mapsto U\vv$.
+\end{note}
+
+\subsection{Orthogonal Projection}
+Picture of what we want: $W$ is a subspace of $\mb{R}^n$ and $\vy\in\mb{R}^n$. Write $\vy=\hat{\vy}+\vz$, where $\hat{\vy}\in W$ and $\vs\in W^\perp$. $\hat{\vy}$ is going to be $\proj{W}{\vy}$ "orthogonal projection of $\vy$ onto $W$."
+\begin{theorem}
+	[Orthogonal Decomposition Theorem]
+	Let $W$ be a subspace of $\mb{R}^n$. Let $\vy\in\mb{R}^n$. Then $\vy$ can be written uniquely as $\vy = \hat{\vy}+\vz$, where $\hat{\vy}\in W$ and $\vz\in W^\perp$. Furthermore, if $\{\vu_1,\vu_2,\dots,\vu_p\}$ is an orthogonal basis for $W$, then $\hat{\vy} = \frac{\vy\cdot\vy_1}{\vu_1\cdot\vu_1}\vu_1 + \frac{\vy\cdot\vu_2}{\vu_2\cdot\vu_2}\vu_2 + \cdots + \frac{\vy\cdot\vu_p}{\vu_p\cdot\vu_p}$. $\hat{\vy}$ is called the \underline{orthogonal projection} of $\vy$ onto $W$, denoted $\proj{W}{\vy}$.
+	\label{thm:odt}
+\end{theorem}
+\begin{recall}
+	Let $L_i = \spn{\vu_i},i=1,\dots,p$. Then $\proj{W}{\vy} = \proj{L_1}{\vy} + \proj{L_2}{\vy} + \cdots + \proj{L_p}{\vy}$.
+\end{recall}
+\begin{proof}
+	Let  $\{\vu_1,\vu_2,\dots,\vu_p\}$ be an orthogonal basis for $W$. Let  $\hat{\vy}$ be defined as in Theorem \ref{thm:odt}. Let $\vz = \vy-\hat{\vy}$. We need to show 1) $\vy\in W$, 2) $\vz\in W^\perp$, 3) $\vy=\hat{\vy}+\vz$.
+	
+	1) Holds since $\hat{\vy}$ is a linear combination of vectors in $W$. Show 2): $\vz=\vy-\hat{\vy}$. Show $\vz\cdot\vu_j=0$ for $j=1,2,\dots,p$. Try at home. Just compute $(\vy-\hat{\vy})\cdot\vu_j$ and show it is 0 for $j=1,2,\dots,p$.
+	
+	Uniqueness: (later).
+\end{proof}
+\begin{theorem}
+	[Best Approximation Theorem]
+	Let $W$ be a subspace of $\mb{R}^n$ and let $\vy\in\mb{R}^n$. Let $\vy_W = \proj{W}{\vy}$. Then $\vy_W$ is the closes point in $W$ to $\vy$, in the sense that $||\vy-\vy_W||<||\vy-\vv||$ for all $\vv\in W,\vv\neq\vy$.
+\end{theorem}
+\begin{example}
+	Let $\vu_1 = \mat{3\\1\\-1\\1},\vu_2=\mat{1,-1,1,-1}$. Let $W = \spn{\vu_1,\vu_2}$. Let $\vy=\mat{3\\1\\5\\1}$. 1) Show $\vu_1 \perp \vu_2$. $\vu_1\cdot\vu_2 = 3-1-1-1 = 0$. 2) Compute $\proj{W}{\vy}$. $\vy\cdot\vu_1 = 9+1-5+1=6$. $\vu_1\cdot\vu_1 = 9+1+1+1 = 12$. $\frac{\vy\cdot\vu_1}{\vu_1\cdot\vu_1} = \frac{6}{12} = \frac{1}{2}$. $\vy\cdot\vu_2 = 3-1+5-1=6$. $\vu_2\cdot\vu_2 = 1+1+1+1=4$. $\frac{\vy\cdot\vu_2}{\vu_2\cdot\vu_2} = \frac{6}{4} = \frac{3}{2}$. $\proj{W}{\vy} = \frac{1}{2}\vu_1 + \frac{3}{2}\vu_2 = \frac{1}{2}\mat{3\\1\\-1\\1} + \frac{3}{2}\mat{1\\-1\\1\\-1} = \mat{3\\-1\\1\\-1}$. 3) Decompose $\vy$ as $\vy=\hat{\vy} + \vz$, with $\vz\in W^\perp$. $\hat{\vy} = \mat{3\\-1\\1\\-1}$. $\vz=\vy-\hat{\vy} = \mat{3\\1\\5\\1} - \mat{3\\-1\\1\\-1} = \mat{0\\2\\4\\2}$. Check: $\vz\perp\vu_1$ and $\vz\perp\vu_2$. 4) What is the closes point in $W$ to $\vy$? $\hat{\vy}$. 5) How close is $\vy$ to $W$? $\dist{\vy,\hat{\vy}} = ||\vy-\hat{\vy}|| = ||\vz|| = \sqrt{0+4+16+4} = \sqrt{24} = 2\sqrt{6}$.
+\end{example}
+
+\underline{Review Terms}:
+Eigenvalue, eigenvector, eigenspace, diagonalizable, similar, eigenbasis, characteristic polynomial, characteristic equation, dot product, orthogonal, unit vector, orthonormal
+
+\underline{Tasks}: Verify $\lambda$ is an eigenvalue, $\vv$ is an eigenvector. 
+Compute eigenvalues, eigenvectors, eigenspaces. 
+Diagonalize a matrix or explain why it is not diagonalizable. 
+Complex eigenvalues (when does it have complex eigenvalue, compute rotation and scaling).
+Discrete dynamical systems, compute closed formulas for $\vx_k$ in terms of $k$ and eigenvalues; repeller (source), attractor (sink), saddle point, spiral rotation.
+Dot product. orthogonal, unit vectors, distance, projection onto line.
+
+\underline{Proofs}: 
+
+\underline{Points}: Distributed like test 2. $\sim$ 16 points definition. $\sim$ 24 points T/F. $\sim$ 20-30 points proofs. $\sim$ 30-40 points compute,
+
+\subsection{Least Square Problems}
+
+When we have $A\vx=\vb$, we either have one solution, infinite solutions, or no solutions. So what do we do when there is no solution? We confine $\vx$ as $\hat \vx$, which makes $A\vx$ as close as $\vb$. $||A\hat{\vx}-\vb|| = \sqrt{(\vv_1-\vb_1)^2 + (\vv_2-\vb_2)^2 + \cdots + (\vv_n - \vb_n)^2}$.
+\begin{definition}
+	[Least Squares Approximation]
+	If $A$ is $m\times n$ matrix and $b$ is in $\mb{R}^m$ "on least square approximation" of $A\vx = \vb$, there is an $\hat{\vx}$ in $\mb{R}^n$ such that $||\vb-A\hat{\vx}||\leq ||\vb-A\vx||$ for all $\vx$ in $\mb{R}^n$.
+\end{definition}
+When there is no solution $A\vx=\vb$ is an inconsistent system. We are taking a linear combination of $\mat{\va_1 & \va_2 & \va_3 & \cdots & \va_n}\vx$. If $A\vx = \vb$ has no solution, there is no linear combination of the column vectors of $A$ into $\vb$, such that $\vb\notin\col{A}$.
+%We want to find a vector $\vx\in\col{A}$ such that $A\vx$ is as close as possible to $\vb\notin\col{A}$. The closest vector to do this is the projection.
+$A\hat{\vx}$ is the closest point in $\col{A}$ to $\vb$. $A\hat{\vx}$ is the projection of $\vb$ on $\col{A}$. 
+So $A\hat\vx\in\col{A} \la A\hat{\vx}=\vb$ has a solution. We get $A\hat{\vx} = \proj{\col{A}}{\vb}$ and $\vz = \vb-A\hat{\vx}$. Therefore, $A\hat{\vx}(\vb-A\hat{\vx}) = \vzero$. We know $(\vb-A\hat{\vx})\in\col{A}^\perp$, where $\col{A}^\perp = \nul{A^T}$, and $A\hat{\vx}\in\col{A}$ are orthogonal.
+Then $A^T(\vb-A\hat{\vx}) = \vzero$ or $A^T\vb - A^T A\hat{\vx} = \vzero$.
+\begin{definition}
+	[Normal Equation]
+	The equation 
+	Each least square solution of $A\vx = \vb$ satisfies the equation $A^T\vb = A^TA\hat{\vx}$ . The system of equations is called the normal equations for $A\vx = \vb$.
+\end{definition}
+\begin{theorem}
+	The set of least square solutions of $A\vx=\vb$ coincides with the nonempty set of solutions of the normal equations $A^T\vb = A^TA\hat{\vx}$.
+\end{theorem}
+\begin{proof}
+	The set of the least square solutions is nonempty, we can find $\hat{\vx}$ as close as possible to $\vb$. All $\hat{\vx}$ satisfy $A\vx = \vb$.
+	Conversely, suppose $\hat{\vx}$ satisfy $A^T\vb = A^TA\hat{\vx}$,  $A^T(\vb-A\hat{\vx}) = \vzero$, or $A^T\vb - A^T A\hat{\vx} = \vzero$. $A^T$ and $(A\hat{\vx})-\vb)$ are orthogonal. We know $A\hat{\vx}\in\col{A}$ and $(\vb-A\hat{\vx})\in\col{A}^\perp$ and $\vb = A\hat{\vx}+(\vb-A\hat{\vx})$ is unique and is the decomposition of $\vb$. $\hat{\vx}$ is in the set of least square solutions.
+\end{proof}
+\begin{example}
+	Find a least square solution of the inconsistent system $A\vx = \vb$ for
+	$$A = \mat{1&1\\2&4\\-1&1},\vb = \mat{1\\5\\-2}.$$
+	We are looking for $\hat{\vx}$ such that $A^TA\hat{\vx} = A^T\vb$.
+	$$A^TA = \mat{1&2&-1\\1&4&1}\mat{1&1\\2&4\\-1&1} = \mat{6&8\\8&18}.$$
+	$$A^T\vb = \mat{1&2&-1\\1&4&1}\mat{1\\5\\-2} = \mat{13\\19}.$$
+	$$\mat{6&8\\8&18}\hat{\vx} = \mat{13\\19}.$$
+	$$\mat{6&8&13\\8&18&19} \sim \mat{1 & 4/3 & 13/6\\8&18&19} \sim \mat{1&4/3&13/6\\0&22/3&5/3}\sim \mat{1 & 4/3 & 13/6\\0& 1 & -5//22}\sim\mat{1&0& 11/2\\0&1& -5/2}.$$
+	Therefore,  $\hat{\vx} =  \mat{11/2\\-5/2}$.
+	
+	Consider $(A^TA)\hat{\vx} = A^T\vb$, we can get solve it using $(A^TA)\inv(A^TA)\hat{\vx} = (A^TA)\inv A^T\vb = \hat{\vx}$.
+\end{example}
+\begin{theorem}
+	Let $A$ be an $m\times n$ matrix. The following statements are logically equivalent:
+	\begin{enumerate}
+		\item[a)] The equation $A\vx=\vb$ has a unique least square solution for each $\vb$ in $\mb{R}^m$.
+		\item[b)] The columns of $A$ are linearly independent.
+		\item[c)] The matrix $A^T A $ is invertible.
+	\end{enumerate}
+	When these statements are true, the least square solution $\hat{\vx}$ is given by $\hat{\vx} = (A^T A)\inv A^T\vb$.
+\end{theorem}
+When a least square solution $\hat{\vx}$ is used to produce $A\hat{\vx}$ as an approximation to $\vb$, the distance from $\vb$ to $A\hat{\vx}$ is called the \underline{least square error} of this approximation.
+\begin{example}
+	From the previous example,
+	$$\vb = \mat{1\\5\\-2},A\hat{\vx} = \mat{1&1\\2&4\\-1&1}\mat{11/2\\-5/2} = \mat{3\\1\\-8}.$$
+	$$||\vb-A\hat{\vx}||^2 = ||\mat{1\\5\\-2} - \mat{3\\1\\-8}||^2 = (4-3)^2+(5-1)^2 + (-2+8)^2 = 56.$$
+	The error is $\sqrt{56}$.
+\end{example}
+\begin{example}
+	Find the intersection point of the lines $2x-y=2,x+2y=1,x+y=4$.
+	$$\mat{2&-1\\1&2\\1&1}\mat{x\\y} = \mat{2\\1\\4}.$$
+	$A\vx=\vb$ has no solution. We can find a least square solution which makes $A\vx$ as close as possible to $\vb$.
+	$$A^TA = \mat{2&1&1\\-1&2&1}\mat{2&-1\\1&2\\1&1} = \mat{6&1\\1&6}$$
+	$$A^T\vb = \mat{2&1&1\\-1&2&1}\mat{2&1&4} = \mat{9\\4}.$$
+	$$\mat{6&1\\1&6}\hat{\vx} = \mat{9\\4}.$$
+	$$\mat{6&1&9\\1&6&4} \sim \mat{1&6&4\\6&1&9} \sim \mat{1&6&4\\0&-35&-27} \sim \mat{1&6&4\\0&1&27/35} \sim \mat{1&0&10/7\\0&1&3/7}.$$
+	Therefore, $\hat{\vx} = \mat{10/7\\3/7}$.
+	$||\vb-A\hat{\vx}|| = $ error.
+	$$A\hat{\vx} = \mat{2&-1\\1&2\\1&1}\mat{10/7\\3/7} = \mat{17/7\\16/7\\13/7}, ||\vb-A\hat{\vx}||^2 = ||\mat{2\\1\\4} - \mat{17/7\\16/7\\13/7}||^2 = \frac{315}{49}.$$
+	So the error $ = \sqrt{35}/7$.
+	The new coordinate $\hat{\vx}$ gives the closest point to intersection of the three lines, so that the shortest distances to the lines are perpendicular to the respective lines.
+	The coordinate of $\hat{\vx}$ minimizes the sum of the distance from this point to the lines.
+\end{example}
+
+\subsection{Applications to Linear Models}
+
+\begin{definition}
+	[Least-Squares Lines]
+	Idea: Given data $(x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)$.
+	Goal: Find a model $y=\beta_0+\beta_1x,\beta_0,\beta_1\in\mb R$ that "describes" the data.
+\end{definition}
+The residual is the norm of $(x_j,y_j)-(x_j,\beta_0+\beta_1x_j)$.
+
+We want to solve a linear system in unknowns $\beta_0,\beta_1$ with $x_i,y_i\in\mb R$ such that
+$$\mat{y_1\\y_2\\ \vdots\\y_n} = \mat{1 & x_1\\1&x_2\\\vdots&\vdots\\1&x_n}\mat{\beta_0\\\beta_1},$$
+which we can also write as $\vy=X\myvec{\beta}$.
+This system is usually inconsistent. So, find the least-squares solution; i.e. solve normal equations $X^T X\myvec{\beta}=X\vy$. The least-squares solution gives rise to the least-squares line $y=\beta_0+\beta_1x$.
+
+\begin{example}
+	Find least-squares  line for $(0,1),(1,1),(2,2),(3,2)$.
+	This corresponds to the system
+	$$\mat{1\\1\\2\\2}=\mat{1&0\\1&1\\1&2\\1&3}\mat{\beta_0\\\beta_1}.$$
+	$$X^TX = \mat{1&1&1&1\\0&1&2&3}\mat{1&0\\1&1\\1&2\\1&3} = \mat{4&6\\6&14}.$$
+	$$X^T\vy = \mat{1&1&1&1\\0&1&2&3}\mat{1\\1\\2\\2} = \mat{6\\11}$$
+	Solve the normal equations $X^TX\myvec{\beta} = X^T\vy$:
+	$$\mat{4&6&6\\6&14&11}\sim\mat{1&0&9/10\\0&1&2/5},$$
+	so $\beta_0 = 9/10,\beta_1=2/5$ and the least-squares line is $y = (9/10)+(2/5)x$.
+\end{example}
+\begin{example}
+	Suppose we have 1000 data points. Then $X$ is $1000\times 2$, $X^T$ is $2\times 1000$ and $X^TX$ is $2\times 2$.
+\end{example}
+What we get is $\vy=X\myvec{\beta} + \myvec{\epsilon}$, where we want to minimize $\myvec{\epsilon}$.
+\begin{definition}
+	[The General Linear Model]
+	$\vy=X\myvec{\beta}+\myvec{\epsilon}$, $X$ is the \underline{design matrix}, $\vy$ is the \underline{observation vector}, $\myvec{\beta}$ is the \underline{parameter vector}, $\myvec{\epsilon}$ is the \underline{residual vector}. Find $\myvec{\beta}$ that minimizes $||\myvec{\epsilon}||$. This is the same as finding least-squares solution to $\vy=X\myvec{\beta}$.
+\end{definition}
+\begin{example}
+	Find the best quadratic fit ($y=\beta_0+\beta_1x+\beta_2x^2$) for $(0,1),(1,1),(2,2),(3,2)$.
+	Find least squares solution to 
+	$$\mat{1\\1\\2\\2} = \mat{1&0&0\\1&1&1\\1&2&4\\1&3&9}\mat{\beta_0\\\beta_1\\\beta_2} + \mat{\epsilon_1\\\epsilon_2\\\epsilon_3\\\epsilon_4},$$
+	corresponding to the equations $y_i = \beta_0+\beta_1x_i+\beta_2x_i^2+\epsilon_i$ or $\vy=X\myvec{\beta}+\myvec{\epsilon}$.
+	$$X^TX = \mat{1&1&1&1\\0&1&2&3\\0&1&4&9}\mat{1&0&0\\1&1&1\\1&2&4\\1&3&9} = \mat{4&6&14\\6&14&36\\14&36&98},$$
+	$$X^T\vy = \mat{1&1&1&1\\0&1&2&3\\0&1&4&9}\mat{1\\1\\2\\2} = \mat{6\\11\\27},$$
+	$$\mat{4&6&14&6\\6&14&36&11\\14&36&98&27} \sim \mat{1&0&0&\beta_0\\0&1&0&\beta_1\\0&0&1&\beta_2}. $$
+	This gives the "best" fit, $y=\beta_0+\beta_1x+\beta_2x^2$.
+\end{example}
+\begin{example}
+	Find "best" $y=\beta_0\sin x + \beta_1\cos x$ fit for $(0,1),(1,1),(2,2),(3,2)$.
+	We get the equations $y_i = \beta_0\sin(x_i) + \beta_1\cos(x_i) + \epsilon_i$ or $\vy=X\myvec{\beta} + \myvec{\epsilon}$ as
+	$$\vy=\mat{1\\1\\2\\2}, X = \mat{0&1\\\sin(1)&\cos(1)\\\sin(2)&\cos(2)\\\sin(3)&\cos(3)}.$$
+	Compute and solve $X^TX\myvec{\beta} = X^T\vy$.
+\end{example}
+
+Having additional dependent variables doesn't change the problem setup much, having multiple predicted values fattens up the system with additional equations.
+
+\section{Final Review}
+
+\underline{Chapter 1}: linear equations, (arithmetic), row reduction, echelon form, linear independence, matrix of a linear transformation.
+
+\underline{Chapter 2}: Matrix algebra, multiplication, addition, inverse, subspaces of $\mb{R}^n$, dimension, rank.
+
+\underline{Chapter 3}: Determinants.
+
+\underline{Chapter 4}: vector spaces, null space, columns space, kernel, linear transformations, dimension, rank, change of basis.
+
+\underline{Chapter 5}: Eigenvalues/eigenvectors, diagonalization, discrete dynamical systems.
+
+\underline{Chapter 6}: Orthogonality and least squares, projections.
+
+Proofs, not tricky, can you use the definitions. Computations, eigenvalues, eigenvectors, complex eigenvalues, stretch, discrete dynamical systems, least squares. Definitions (green boxes).
+
+\end{document}
