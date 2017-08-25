@@ -145,10 +145,10 @@ A \ul{mapping} (or a \ul{function}) $f$ from $A$ to $B$ is a relation from $A$ t
 	$f:\mb R \ra (0,\infty)$ is bijective.
 \end{example}
 \begin{example}
-	$f:\mb Z\ra Z$, $f(n) = n^2$. $f(-1) = 1 = f(1)$, not injective. $2\notin f(\mb Z)$, not surjective and not bijective.
+	$f:\mb Z\ra\mb Z$, $f(n) = n^2$. $f(-1) = 1 = f(1)$, not injective. $2\notin f(\mb Z)$, not surjective and not bijective.
 \end{example}
 \begin{example}
-	$f:\mb R\ra \mb R$, $f(x) = 2x+1$. $2x_1 + 1 = 2x_2 + 1 \implies x_1 = x_2$, injective. Given any $y\in \mb R$ find $x\in \mb R$ such that $2x+1 = y$: $x = (y-1)/2$, surjective and bijective.
+	$f:\mb{R}\ra \mb R$, $f(x) = 2x+1$. $2x_1 + 1 = 2x_2 + 1 \implies x_1 = x_2$, injective. Given any $y\in \mb R$ find $x\in \mb R$ such that $2x+1 = y$: $x = (y-1)/2$, surjective and bijective.
 \end{example}
 
 A \ul{composition} of mappings $f:A\ra B$ and $g:B\ra C$ is a mapping $g\circ f: A\ra C$ defined by $(g\circ f)(a) = g(f(a))$. $A \overset{f}{\lra} B \overset{g}{\lra} C$ or $a \rightsquigarrow f(a) \rightsquigarrow g(f(a))$.
@@ -176,5 +176,39 @@ A \ul{composition} of mappings $f:A\ra B$ and $g:B\ra C$ is a mapping $g\circ f:
 	An \ul{inverse} mapping of a mapping $f:A\ra B$ is a mapping $g:B\ra A$ such that $g\circ f = \text{id}_A \ra g(f(a)) = a$, $f\circ g = \text{id}_B \ra f(g(b)) = b$.
 	A mapping is \ul{invertible} if it has an inverse mapping. \ul{Notation}: $f\inv$ inverse of $f$.k
 \end{definition}
+
+\begin{theorem}
+	A mapping is invertible $\Leftrightarrow$ it is bijective.
+\end{theorem}
+
+\subsection*{Equivalence relations}
+
+\begin{definition}
+	An \ul{equivalence relation} on a set $X$ is a relation $R\subset X\times X$ which is
+	\begin{enumerate}
+		\item \ul{Reflexive}: $(x,x)\in R$ for all $x\in X$
+		\item \ul{Symmetric}: $(x,y)\in R \implies (y,x)\in R$
+		\item \ul{Transitive}: $(x,y)\in R,(y,z)\in R\implies (x,z)\in R$
+	\end{enumerate}
+	\ul{Notation}: $x\sim y$ for $(x,y)\in R$.
+\end{definition}
+\begin{example}
+	$X=\mb R$, $a\sim b$ if $a<b$. Reflexive: $0\nless 0$. Symmetric: $0<1$ but $1\nless 0$. Transitive: $a<b$ and $b<c\implies a<c$. However, for $a\neq b$ either $a<b$ or $b<a$ (antisymmetric).
+\end{example}
+\begin{example}
+	$X = \mb R$, $a\sim b$ if $ab\geq 0$. \ul{Reflexive}: $a\sim a \Leftrightarrow a^2 \geq0$. \ul{Symmetric}: $a\sim b \implies b\sim a$ or $ab\geq 0\implies ba\geq 0$. \ul{Transitive}: $a\sim b,b\sim c\implies a\sim c$ or $ab\geq 0,bc\geq 0 \implies ac\geq 0$. Counterexample: $a=-1,b=0,c=1$.
+\end{example}
+\begin{example}
+	$X$ any set, $x\sim y$ if $x=y$. \ul{Reflexive}: $x\sim x \Leftrightarrow x=x$. \ul{Symmetric}: $x\sim y\implies y\sim x$ or $x=y\implies y=x$. \ul{Transitive}: $x\sim y,y\sim z\implies x\sim z$ or $x=y,y=z\implies x=z$.
+\end{example}
+\begin{example}
+	$X = $ all differentiable functions $\mb R\ra\mb R$. $f\sim g$ if $f' = g'$. \ul{Reflexive}: $f\sim f \Leftrightarrow f' = f'$. \ul{Symmetric}: $f\sim g \implies g\sim f$ or $f' = g' \implies g' = f'$. \ul{Transitive}: $f\sim g,g\sim h\implies f\sim h$ or $f' = g',g'=h'\implies f'=h'$.
+\end{example}
+\begin{example}
+	$X = \mb R^2$, $(x_1,y_1)\sim (x_2,y_2)$ if $x_1^2 + y_1^2 = x_2^2 + y_2^2$.
+\end{example}
+\begin{example}
+	$X = M_n(\mb R)$ all $n\times n$ matrices. $A\sim B$ if $\exists$ a nonsingular P such that $B = PAP\inv$. \ul{Reflexive}: $A = IAI\inv$ let $P = I$. \ul{Symmetric}: $A\sim B \implies B\sim A \lra A = *B*\inv$, then $B = PAP\inv \implies P\inv B = AP\inv \implies P\inv BP = A$, so let $* = P\inv$. \ul{Transitive}: $A\sim B,B\sim C\implies A\sim C$. $B = PAP\inv, C = SBS\inv \implies C = *A*\inv$. $C = SBS\inv = S(PAP\inv)S\inv = (SP)A(P\inv S\inv) = (SP)A(SP)\inv$, so $*= SP$.
+\end{example}
 
 \end{document}
