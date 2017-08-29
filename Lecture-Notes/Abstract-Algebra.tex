@@ -211,4 +211,38 @@ A \ul{composition} of mappings $f:A\ra B$ and $g:B\ra C$ is a mapping $g\circ f:
 	$X = M_n(\mb R)$ all $n\times n$ matrices. $A\sim B$ if $\exists$ a nonsingular P such that $B = PAP\inv$. \ul{Reflexive}: $A = IAI\inv$ let $P = I$. \ul{Symmetric}: $A\sim B \implies B\sim A \lra A = *B*\inv$, then $B = PAP\inv \implies P\inv B = AP\inv \implies P\inv BP = A$, so let $* = P\inv$. \ul{Transitive}: $A\sim B,B\sim C\implies A\sim C$. $B = PAP\inv, C = SBS\inv \implies C = *A*\inv$. $C = SBS\inv = S(PAP\inv)S\inv = (SP)A(P\inv S\inv) = (SP)A(SP)\inv$, so $*= SP$.
 \end{example}
 
+\newpage
+
+\begin{definition}
+	Let $\sim$ be an equivalence relation on a set $X$, and let $x\in X$. Then the set $$[x] = \{y\in x \mid y\sim x\}$$ is the \ul{equivalence class} of $x$.
+\end{definition}
+\begin{example}
+	$X$ is any set. $x\sim y$ if $x=y$. Then $[x] = \{y\in X\mid y=x\} = \{x\}$.
+\end{example}
+\begin{example}
+	$X$ is the set of all differentiable functions from $\mb R\ra\mb R$. $f\sim g$ if $f' = g'$. $[f] = \{g\in X\mid g' = f'\} = \{f + c\mid c\in\mb R\}$.
+\end{example}
+\begin{example}
+	$X = \mb R^2$. $(x_1,y_1)\sim (x_2,y_2)$ if $x_1^2 + y_1^2 = x_2^2 + y_2^2$. The equivalence class is a circle.
+\end{example}
+
+\begin{definition}
+	A \ul{partition} of a set $X$ is a collection of disjoint nonempty subsets of $X$ which cover $X$.
+	$$\mc P = \{X_\alpha\}_{\alpha\in \Lambda}, \quad X\alpha\subseteq X\, \forall \alpha,$$
+	$X_\alpha \cap X_\beta = \emptyset \text{ if } \alpha \neq \beta$, disjoint, and $X = \bigcup_{\alpha\in\Lambda} X_\alpha$ cover $X$.
+\end{definition}
+\begin{theorem}
+	Let $\sim $ be an equivalence relation on a set $X$. Then the equivalence classes of $\sim$ partition $X$. Conversely, given a partition $\mc P = \{X_\alpha\}_{\alpha\in\Lambda}$ of $X$, there exists an equivalence relation $\sim$ on $X$ such that $\{X_\alpha\}$ are the equivalence classes of $\sim$.
+\end{theorem}
+\begin{proof}
+	Let $\sim$ be an equivalence relation on $X$. Then for every $x\in X$, $x\sim x$, so $x\in [x]$. Hence, $[x]\neq \emptyset$ for all $x\in X$. Also $\bigcup_{x\in X}[x] = X$. By definition $\bigcup_{x\in X}[x] \subseteq X$ and  every $x$ is in one of equivalence classes so $\bigcup_{x\in X}[x] \supseteq X$. It's left to prove that if $x,y\in X$ then $[x]\cap [y] = \emptyset$ or $[x]=[y]$.
+	\ul{Case 1}: $[x]\cap[y] = \emptyset$ done. \ul{Case 2}: $[x]\cap[y]\neq \emptyset$ (WTS: $[x]=[y]$). There is $z\in[x]\cap[y]$. Then $z\in[x]$ and $z\in[y]$, so $z\sim x$ and $z\sim y$. By symmetric property $x\sim z$ and by transitive property $x\sim y$. Take any $a\in [x]$. Then $a\sim x$ and also $x\sim y$, so $a\sim y$ and thus $a\in [y]$. So $[x]\subseteq [y]$. If $x\sim y$ then $y\sim x \implies [y]\subseteq [x]$. Thus $[x]=[y]$.
+	
+	Conversely, let $\mc P = \{X_\alpha\}_{\alpha\in\Lambda}$ be a partition of $X$. Define a relation $\sim$ on $X$ by $x\sim y$ if $x$ and $y$ belong to the same $X_\alpha$ for some $\alpha\in\Lambda$. Show:
+	\begin{enumerate}
+		\item $\sim$ is an equivalence relation on $X$,
+		\item the equivalence classes of $\sim$ are $X_\alpha$'s
+	\end{enumerate}
+\end{proof}
+
 \end{document}
