@@ -245,4 +245,45 @@ A \ul{composition} of mappings $f:A\ra B$ and $g:B\ra C$ is a mapping $g\circ f:
 	\end{enumerate}
 \end{proof}
 
+\section*{Mathematical induction}
+
+$$P(1),P(2),P(3),\dots,P(n),P(n+1),\dots$$
+
+Mathematical induction: prove that $P(n)$ is true for all $n\geq 1$.
+
+\begin{definition}
+	[Well-Ordering Principle] Every nonempty subset of $\mb N$ contains a smallest element.
+\end{definition}
+\begin{theorem}
+	[First principle of mathematical induction] Suppose $P(n)$ is a statement involving a positive integer $n$, and
+	\begin{enumerate}
+		\item \textit{Base}: $P(n_0)$ is true for some $n_0\in\mb N$
+		\item \textit{Induction hypothesis}: $P(k)$ implies $P(k+1)$ for all $k\geq n_0$.
+	\end{enumerate}
+	$P(n)$ is true for all $n\geq n_0$.
+\end{theorem}
+\begin{remark}
+	This is nothing but a \say{domino} effect. $P(k) = $ \say{domino $k$ falls}.
+\end{remark}
+\begin{proof}
+	Assume on the contrary that not all $P(n)$ are true for $n\geq n_0$. Then $S = \{n\geq n_0\mid P(n) \text{ is false}\}\subseteq \mb N$ is a nonempty subset of $\mb N$. By the Well-Ordering Principle, the set $S$ contains a least element $m$. Then $P(m)$ is false and $m\neq n_0$ by assumption (1). This means that $m>n_0 \implies m-1\geq n_0$. So $P(m-1)$ is true since $m-1\notin S$. By assumption (2), if $P(m-1)$ is true, then $P(m)$ is true, which is a contradiction.
+\end{proof}
+\begin{example}
+	$1+2+\dots+n = \frac{n(n+1)}{2}$ for all $n\geq 1$. $P(n) = $ \say{$1+2+\dots+n = \frac{n(n+1)}{2}$.}
+	\ul{Base}: $P(1)$ is true since $1 = \frac{1\cdot(1+1)}{2}$.
+	\ul{Inductive step}: Assume $P(k)$ is true for some fixed arbitrary $k \geq 1$. Want to show: $P(k+1)$ is true. Have: $1+2+\cdots+k = \frac{k(k+1)}{2}$. Want: $1+2+\dots+k + (k+1) = \frac{(k+1)(k+2)}{2}$.
+	\begin{align*}
+		1+2+\dots + k + (k+1) &= \frac{k(k+1)}{2} + (k+1) = \frac{k(k+1)}{2} + \frac{2(k+1)}{2} \\
+		&= \frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(k+2)}{2}
+	\end{align*}
+	Therefore, $P(n)$ is true for all $n\geq 1$.
+\end{example}
+\begin{example}
+	All cars are the same color. $P(n) = $ \say{in any collection of $n$ cars, all cars are the same color.} Will prove by induction that $P(n)$ is true for all $n\geq 1$. \ul{Base}: $P(1)$ is true. \ul{Inductive step}: $P(k)$ is true for some $k\geq 1$. WTS: $P(k+1)$ is true. Cars $c_1,\dots,c_k$ are same color. However $P(1)\nrightarrow P(2)$.
+\end{example}
+
+\begin{example}
+	The UNCG poker club plays with \$5 and \$8 chips. What is the largest bet that cannot be made using these num?
+\end{example}
+
 \end{document}
