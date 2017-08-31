@@ -285,6 +285,7 @@ Field, Ordered set $\}\implies$ Ordered field.
 \end{proof}
 
 \begin{theorem}
+	\label{thm1.21}
 	\begin{enumerate}
 		\item For every positive real number $x$ and every $n\in\mb N\backslash \{0\}$, there exists a unique $y\in\mb R$, $y>0$ so that $y^n = x$ ($y$ is called $n^\text{th}$ root of $x$). $y = ^n\sqrt{x}$ or $y = x^{1/n}$.
 		\item For every $n\in\mb N\backslash \{0\}$, there exists a unique $y\in\mb R$, namely \ul{$y=0$}, such that $0^n = 0$ (or $0^{1/n} = 0$).
@@ -300,5 +301,65 @@ Field, Ordered set $\}\implies$ Ordered field.
 	
 	\ul{Existence of $n^\text{th}$ root}: If $x=0$ then $0^n = 0$ and therefore it follows from the uniqueness that $y=0$. Let $x>0$. If $n=1$, then $y^n = y^1 = x$. Assume $n\geq 2$. Define $S = \{t\in\mb R: t^n < x\}$. $S\neq \emptyset$ because $0\in S$. $S$ is bounded above: find an upper bound of $S$. Let $\alpha := 1+x$. Want to show that $\alpha$ is an upper bound of $S$, i.e. $\alpha \geq t$ for all $t\in S$. Equivalently, we show that $\alpha < t$ then $t\notin S \implies t^n > (1+x)^n = (1+x)(1+x)^{n-1} > (1+x)\cdot 1 \underset{1>0}{>} x \implies t\notin S \implies \alpha$ is an upper bound of $S$ or $S$ is bounded above $\implies \sup S\in \mb R$.
 \end{proof}
+
+\newpage
+
+\begin{recall}
+	\begin{enumerate}
+		\item[(i)] If $x\in \mb R$, $x>0$, then $\exists! y\in\mb R$, $y>0$ such that $y^n = x$.
+		\item[(ii)] If $x=0$, then $y=0$ is the only real number such that $0^n = 0$.
+		\item[(iii)] $0<a<b\implies 0<a^{1/n}<b^{1/n}$.
+	\end{enumerate}
+\end{recall}
+\begin{proof}
+	In last class, $S := \{t\in \mb R: t^n < x\}$ and $y = \sup S\in\mb R$. We need to show $y^n = x$. We will show $y^n \nless x$ and $y^n \ngtr x$. \ul{So $y^n = x$}.
+	Useful inequality: Let $0<a<b$. Then $$b^n - a^n = (b-a)(b^{n-1}+b^{n-2}a + b^{n-3}a^2 + \dots + ba^{n-2} + a^{n-1}) < (b-a)\cdot nb^{n-1}.$$
+	\ul{Case I}: Suppose $y^n < x$. (Find $y_1>y$, $y_1\in S$ such that $y_1^n > x$). Let $0<h<1$, $h\in\mb R$ such that $h< \frac{x-y^n}{n(y+1)^{n-1}}$. Taking $a = y$ and $b= y+h$ in the inequality, we get $$(y+h)^n - y^n < h\cdot n\cdot (y+h)^{n-1} < h\cdot n(y+1)^{n-1} < x-y^n$$ implies $(y+h)^n < x$ implies $y+h\in S$. But $y+h>y$ and $y=\sup S$, a contradiction.
+	\ul{Case II}: Assume $y^n > n$. (Find $y_2 < y$ so that $y_2$ is an upper bound of $S$). Define $k = \frac{y^n - x^{>0}}{ny^{n-1}} < \frac{y^n}{n\cdot y^{n-1}} = \frac{y}{n} \underset{n\geq 2}{<} y$. \ul{Claim}: $y - k > 0$ is an upper bound of $S$. $y^n - (y-k)^n < k\cdot n y^{n-1} \underset{\text{choice of }k}{=} y^n - x$ implies $-(y-k)^n < -x$ implies $(y-k)^n > x$ implies $y-k\notin S$ implies $y-k$ is an upper bound of $S$. But $y-k<y = \sup S$, a contradiction. Therefore, $y^n = x$.
+	
+	(iii) Suppose $0<a<b$ but $a^{1/n}\geq b^{1/n}$. Then $b = (b^{1/n})^n \us{\text{power are monotone}}{\leq} (a^{1/n})^n = a$, a contraction to $a<b$. This completes the proof of Theorem \ref{thm1.21}.
+\end{proof}
+\begin{corollary}
+	Let $a,b\in\mb R$ and $a\geq 0,b\geq 0$. Then $(ab)^{1/n} = a^{1/n}\cdot b^{1/n}$.
+\end{corollary}
+\begin{proof}
+	By the uniqueness of the $n^\text{th}$ root, it is enough to show $(a^{1/n}\cdot b^{1/n})^n = ab$. Now, $ab = (a^{1/n})^n (b^{1/n})^n = a^{1/n}\cdots a^{1/n}\cdot b^{1/n}\cdots b^{1/n} = (a^{1/n}b^{1/n})$ respectively $n$ times and using commutativity and associativity.
+\end{proof}
+
+\subsection*{Decimal expansion of real numbers}
+
+Let $x\in\mb R$ and $x>0$. By the decimal expansion of $x$, we mean a number of the form $n_0. n_2 n_2 n_3\cdots$ where $n_i$ are defined inductively as follows:
+Let $n_0$ be the largest integer such that $n_0\leq x$, i.e., $n_0 = \max\{k\in\mb N: k\geq x\}$. Let $n_1$ be the largest integer such that $n_0 + \frac{n_1}{10} \leq x$, i.e., $n_1 = \max\{k\in\mb N : n_0 + \frac{k}{10} \leq x\}$. Once $n_0,\dots,n_{k-1}$ are chosen, $n_k$ is chosen as follows: $n_k = \max\{j\in\mb N: n_0 + \frac{n_1}{10} + \frac{n_2}{10^2} + \cdots + \frac{n_{k-1}}{10^{k-1}} + \frac{j}{10^k} \leq x\}$.
+\begin{note}
+	By construction, $n_k\in\{0,1,2\dots,8,9\}$.
+\end{note}
+\begin{remark}
+	Let $x\in\mb R$ and $x>0$. Let $n_0.n_1n_2\dots n_k\dots$ be a decimal expansion of some real number. Define $E:=\{n_0 + \frac{n_1}{10} + \frac{n_2}{10^2} + \dots + \frac{n_k}{10^k} : k\in\mb N\}$. Then $x\sup E$ if and only if $x = n_0.n_1n_2n_3\dots$.
+\end{remark}
+
+\subsection*{Extended real number system}
+
+$\mb R^\# := \mb R\cup\{-\infty,\infty\}$. Order on the set $\mb R^\#$: $-\infty < x<\infty$ for all $x\in\mb R$. $\mb R^\#$ is not a field (Not closed under \say{usual} addition, i.e. $-\infty + \infty \os{?}{\in}\mb R^\#$. Use these conventions: $x+\infty = \infty$, $x-\infty = -\infty$, $\frac{1}{\infty} = 0$, $\frac{1}{-\infty} = 0$. For $x\in\mb R^\#$, $x>0$: $x\cdot(+\infty) = \infty$, $x\cdot (-\infty) = -\infty$. For $x\in\mb R^\#$, $x<0$: $x\cdot(+\infty) = -\infty$, $x\cdot(-\infty) = \infty$.
+
+For any $A\subset \mb R^\#$, $\sup A\in\mb R^\#$, $\inf A\in\mb R^\#$. In particular, if $A$ is not bounded above, then $\sup A = \infty$. If $A$ is not bounded below, then $\inf A = -\infty$. Also, $\sup \emptyset = -\infty$ and $\inf \emptyset = \infty$ because every element real number is an upper bound for empty set and every real number is a lower bound for empty set.
+
+\subsection*{Complex Field}
+
+Dictionary order: $(a,b) < (c,d)$ if $\begin{cases} a<c , \\ a=c, & b<d\end{cases}$.
+
+\begin{definition}
+	Set of all complex numbers $\mb C :=\{(a,b):a,b\in\mb R\}$, where $(a,b)$ is an ordered pair, i.e. $(a,b)\neq (b,a)$ if $a\neq b$.
+	If $z = (a,b)\in\mb C$, $a = \Re(z)$, $b=\Im(z)$.
+\end{definition}
+
+Addition \say{$+_\mb C$}: $z_1= (a,b)\in\mb C$ and $z_2 = (c,d)\in\mb C$. Then $z_1+z_2 = (a +_\mb R c, b+_\mb R d)$.
+
+Multiplication \say{$\cdot_\mb C$}: $z_1\cdot z_2 = (ac-bd, bc+ad)$.
+
+Additive identity: $0_\mb C = (0,0)$.
+
+Multiplicative identity: $1_\mb C = (1,0)$.
+
+Then $(\mb C,+_\mb C,\cdot_\mb C)$ is a field.
 
 \end{document}
