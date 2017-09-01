@@ -283,7 +283,38 @@ Mathematical induction: prove that $P(n)$ is true for all $n\geq 1$.
 \end{example}
 
 \begin{example}
-	The UNCG poker club plays with \$5 and \$8 chips. What is the largest bet that cannot be made using these num?
+	The UNCG poker club plays with \$5 and \$8 chips. What is the largest bet that cannot be made using these num? Largest bet that cannot be made is \$27.
+	
+	We need to show
+	\begin{enumerate}
+		\item A bet of \$27 cannot be made.
+		\item Any bet $\geq \$28$ can be made.
+	\end{enumerate}
+	A bet of $\$n$ can be made if $n=5a+8b$, where $a$ and $b$ are nonnegative integers. Take this modulo 5, then $2\equiv 3b\pmod5$. Let $b=0$, then $2\not\equiv 0\pmod5$. Let $b=1$, then $2\not\equiv 3\pmod 5$. Let $b=2$, then $2\not\equiv 6\pmod5$. Let $b = 3$, then $2\not\equiv 9\pmod5$. Let $b=4$, then $2\equiv 12\pmod 12$. So $b\geq 4$ and $27 = 5a + 8b\geq 5a+32$ implies $5a\leq -5\implies a\leq -1$. $P(n) = $ \say{A bet of $\$n$ can be made} = \say{$n = 5a+8b$ for some nonnegative integers $a$ and $b$.} WTS: $P(n)$ is true for all $n\geq 28$.
+	\ul{Base}: $P(28)$ is true since $28 = 5\cdot 4 + 8\cdot 1$.
+	\ul{Inductive step}: Assume $P(k)$ is true for some arbitrary fixed $k\geq 28$. WTS: $P(k+1)$ is true. Assume: $k=5a+8b$. Want: $k+1 = 5\tilde a + 8\tilde b$. If $k = 5a+8b$ then $k+1 = 5a+8b+1$. Then $1 = 5\cdot(-3) + 8\cdot(2) = 5\cdot(5) + 8\cdot(-3)$. Then $5a+8b +1 = 5\cdot(a-3) + 8\cdot(b+2) = 5\cdot(a+5) + 8\cdot(b-3)$.
+	\ul{Claim}: $a \geq 3$ or $b\geq 3$. Assume on the contrary $a<3$ and $b<3$. Then $k = 5a+8b \leq 5\cdot 2 + 8\cdot 2 = 26$. This is a contradiction.
+	\ul{Case 1}: Let $a\geq 3$, then $k+1 = 5\cdot(a-3) + 8\cdot(b+2)$ is a valid bet.
+	\ul{Case 2}: Let $b\geq 3$, then $k+1 = 5\cdot (a+5) + 8\cdot(b-3)$ is a valid bet.
 \end{example}
+
+\begin{theorem}
+	[Second form of mathematical induction] Suppose $P(n)$ is a statement involving a positive integer $n$, and
+	\begin{enumerate}
+		\item $P(n)$ is true for some $n_0\in\mb N$.
+		\item $P(n_0),P(n_0+1),\dots,P(k)\implies P(k+1)$ for all $k\geq n_0$.
+	\end{enumerate}
+	Then $P(n)$ is true for all $n\geq n_0$.
+\end{theorem}
+\begin{proof}
+	Let $Q(n) = $ \say{$P(n_0),P(n_0+1),\dots,P(n)$ are true.} Apply the first principle of mathematical induction to the statements $Q(n)$. Let $Q(n_0) = $ \say{$P(n_0)$ is true}, then $Q(k) \implies Q(k+1)$.
+\end{proof}
+\begin{example}
+	Every natural number $\geq 2$ is a product of primes.
+	
+	\ul{Base}: Let $n=2$, which is a prime.
+	\ul{Inductive step}: Assume that all $2,3,\dots,k$ are products of primes. Look at $k+1$. \ul{Case 1}: $k+1$ is prime, then done. \ul{Case 2}: $k+1$ is composite, then $k+1 = uv$ with $u,v\geq 2$. Then $2\leq u,v\leq k$. Let $u = p_1p_2\cdots p_s$ and $v = q_1q_2\cdots q_r$, where $p_i,q_j$ are primes. Then $k+1 = p_1p_2\cdots p_sq_1q_2\cdots q_r$. m
+\end{example}
+
 
 \end{document}
