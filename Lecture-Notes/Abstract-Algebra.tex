@@ -316,5 +316,60 @@ Mathematical induction: prove that $P(n)$ is true for all $n\geq 1$.
 	\ul{Inductive step}: Assume that all $2,3,\dots,k$ are products of primes. Look at $k+1$. \ul{Case 1}: $k+1$ is prime, then done. \ul{Case 2}: $k+1$ is composite, then $k+1 = uv$ with $u,v\geq 2$. Then $2\leq u,v\leq k$. Let $u = p_1p_2\cdots p_s$ and $v = q_1q_2\cdots q_r$, where $p_i,q_j$ are primes. Then $k+1 = p_1p_2\cdots p_sq_1q_2\cdots q_r$. m
 \end{example}
 
+\subsection{The division algorithm}
+\begin{theorem}
+	[The division algorithm] Let $a$ and $b>0$ be integers. Then there exist unique integers $q$ and $r$ such that $a = qb +r$, where $0\leq r < b$.
+\end{theorem}
+From now on: $a,b\in\mb Z$. If $a =kb$ for some $k\in\mb Z$ we say $b$ divides $a$ or $b\mid a$. An integer $d$ is a \ul{common divisor} of $a$ and $b$ if $d\mid a$ and $d\mid b$.
+\begin{definition}
+	The \ul{greatest common divisor} of integers $a$ and $b$ is a \ul{positive} integer $d$ such that
+	\begin{enumerate}
+		\item $d$ is a common divisor of $a$ and $b$
+		\item any common divisor $d'$ of $a$ and $b$ divides $d$.
+	\end{enumerate}
+	\ul{Notation}: $d = \gcd(a,b) = (a,b)$
+\end{definition}
+$a$ and $b$ are \ul{relatively prime} if $\gcd(a,b) = 1$.
+\begin{theorem}
+	Let $a$ and $b$ be two integers ($\neq 0$).
+	\begin{enumerate}
+		\item $\gcd(a,b)$ is unique
+		\item $\exists r,s\in\mb Z$ such that $\gcd(a,b) = ar+bs$.
+	\end{enumerate}
+	In particular, $\gcd$ exists.
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item Assume $d_1 = \gcd(a,b)$ and $d_2 = \gcd(a,b)$. WTS: $d_1 = d_2$.
+		\begin{enumerate}
+			\item[(a)] Assume $d_1$ is $\gcd$ and $d_2$ is common divisor, so $d_2\mid d_1 \implies d_2 \leq d_1$.
+			\item[(b)] Assume $d_2$ is $\gcd$ and $d_1$ is common divisor, so $d_1\mid d_2 \implies d_1 \leq d_2$.
+		\end{enumerate}
+		So $d_1 = d_2$.
+		
+		\item $S = \{ am + bn \mid m,n\in\mb Z;\ am+bn>0\}\subseteq \mb N$. So $S$ is a nonempty subset of $\mb N$. Let $d$ be the least element of $S$ (Well-Ordering Principle). \ul{Claim}: $d = \gcd(a,b)$. Say $d = ar+bs$, for some $r,s\in\mb Z$. WTS: $d\mid a$ and $d\mid b$. By the division algorithm, $a = dq + \tilde{r}$, $0\leq \tilde{r}<d$. Solve for $\tilde{r} = a-dq = a-(ar+bs)q = a - arq - bsq = a(1-rq)+b(-sq) \geq 0$. Assum $\tilde r >0$. Then $\tilde r \in S$, but $\tilde r<d$, contradiction $\implies \tilde r = 0 \implies d\mid a$. For $d\mid b \ra$ similar to $d\mid a$.
+		
+		WTS: any common divisor $d'$ of $a$ and $b$ divides $d$. So $a = d' u$ and $b = d' v$ for some $u,v\in\mb Z$. Then $d = ar+bs = (d'u)r + (d'v)s = d'(ur + vs)$, where $ur+rs\in\mb Z$. So $d'\mid d$.
+	\end{enumerate}
+\end{proof}
+
+\subsection{Euclidean algorithm}
+Given: $a$ and $b$, $a>b$.
+Find: $d = \gcd(a,b)$ and $d = ar+bs$.
+
+\begin{align*}
+	a &= bq_1 + r_1 \\
+	b &= r_1q_2 + r_2 \\
+	r_1 &= r_2q_3 + r_3 \\
+	&\ \,\vdots \\
+	r_{n-2} &= r_{n-1}q_n + r_n \\
+	r_{n-1} &= r_n q_n
+\end{align*}
+\ul{Claim}: $r_n = \gcd(a,b)$.
+\begin{enumerate}
+	\item WTS: $r_n\mid a$ and $r_n\mid b$. Last equation tells $r_n\mid r_{n-1} \implies r_n\mid r_{n-2} \implies \dots \implies r_n\mid b \implies r_n\mid a$.
+	\item Assume $d'\mid a$ and $d'\mid b$. First equation tells $d'\mid r_1 \implies d'\mid r_2 \implies d'\mid r_3 \implies \dots \implies d'\mid r_n$.
+\end{enumerate}
+It stops: (assume $a,b>0$), so $b>r_1 > r_2 > \dots > r_n$.
 
 \end{document}
