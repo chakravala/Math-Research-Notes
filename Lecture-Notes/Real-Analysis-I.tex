@@ -362,4 +362,109 @@ Multiplicative identity: $1_\mb C = (1,0)$.
 
 Then $(\mb C,+_\mb C,\cdot_\mb C)$ is a field.
 
+\begin{recall}
+	$(\mb C,+_\mb C,\cdot_\mb C)$ is a field.
+\end{recall}
+\begin{note}
+	$\mb R$ is a subfield of $\mb C$, let $f:\mb R\ra \mb C$ by defining $f(a) = (a,0)$. It allows us to identify $a\in\mb R$ as $a\in\mb C$.
+\end{note}
+\begin{definition}
+	[\say{$i$}] We define the imaginary unit $i$ as $(0,1)\in\mb C$.
+\end{definition}
+\begin{theorem}
+	$i^2 = -1$.
+\end{theorem}
+\begin{proof}
+	$i^2 = i\cdot i = (0,1)\cdot_\mb C(0,1) = (0-1,0) = (-1,0)\in\mb C = -1\in\mb R$.
+\end{proof}
+Given $z=(a,b)\in\mb C$, we can write $z = a+bi$. Indeed, $a+bi = (a,0) +_\mb C (b,0)(0,1) = (a,0)+_\mb C(0,b) = (a,b)$.
+\begin{definition}
+	[Conjugate] For $z = a+bi = (a,b)\in\mb C$, the conjugate of $z$ is $\conj z\in\mb C$, where $\conj z = a-bi = (a,-b)$.
+\end{definition}
+\begin{theorem}
+	[Conjugate] Let $z,w\in\mb C$, $z = a+ib$, $w = c+id$; where $a,b,c,d\in\mb R$. Then
+	\begin{enumerate}
+		\item[(a)] $\conj{z+w} = \conj z+\conj w$
+		\begin{proof}
+			$\conj{z+w} = \conj{(a+ib)+(c+id)} = \conj{(a+c)+i(b+d)} = (a+c)-i(b+d) = a+c-ib-id = (a-ib)+(c-id) = \conj{a+ib} + \conj{c+id} = \conj z + \conj w$.
+		\end{proof}
+		\item[(b)] $\conj{z\cdot w} = \conj z\cdot \conj w$
+		\begin{proof}
+			skip!
+		\end{proof}
+		\item[(c)] $z+\conj z = 2\Re(z)$ and $z-\conj z = 2i\Im(z)$
+		\begin{proof}
+			skip!
+		\end{proof}
+		\item[(d)] $z\cdot \conj z\in\mb R$, $z\cdot \conj z \geq 0$ and $z\cdot\conj z = 0 \Lr z = 0$
+		\begin{proof}
+			$z\cdot \conj z = (a+ib)(a-ib) = a^2+b^2\in\mb R$. If $a\in\mb R$ and $b\in\mb R$ then $a^2\geq 0$ and $b^2\geq 0 \implies z\cdot \conj z \geq 0$. Now suppose $z = 0$. Then $z\cdot \conj z = 0\cdot \conj z = 0$. Suppose $z\cdot \conj z = 0$. Then $a^2+b^2 = 0$, which implies $a=0$ and $b=0$. So $z = 0+0i = 0$.
+		\end{proof}
+		\item[(e)] $\conj z = z$
+		\begin{proof}
+			skip!
+		\end{proof}
+		\item[(f)] $z\in\mb R \implies \conj z = z$.
+		\begin{proof}
+			skip!
+		\end{proof}
+	\end{enumerate}
+\end{theorem}
+\begin{remark}
+	$f:\mb C\ra \mb C$ by $f(z) = \conj z$. By Theorem, $f(z+w) = f(z)+f(w)$ for all $z,w\in\mb C$ and $f(z\cdot w) = f(z)\cdot f(w)$ for all $z,w\in\mb C$ and $f(0) = 0$ and $f(1) = 1$. This implies conjugate preserves field properties of $\mb C$. However, $f$ is not an identity mapping since $f(i) = -i$.
+\end{remark}
+\begin{definition}
+	[Absoulute value, modulus] Given $z\in\mb C$, modulus or absolute value of $z$ is: $|z|:=(z\cdot \conj z)^\frac{1}{2}$ - well defined by $n^\text{th}$ root theorem since $0\leq z\cdot \conj z\in \mb R$.
+\end{definition}
+\begin{note}
+	If $x\in\mb R$, then $|x| = x\cdot x^{1/2} = (x^2)^\frac{1}{2} \us{x\in\mb R}{=} ((-x)^2)^\frac{1}{2} \implies |x| = \begin{cases} x & \text{if } x\geq 0\\ -x & \text{if } x<0\end{cases}$.
+\end{note}
+\begin{observe}
+	$|x|^2 = x^2 = (-x)^2$ for all $x\in\mb R$. But the identity is not true in $\mb C$. Take $z = i$, so $|z|^2 = |i|^2 = i\cdot\conj i = i(-i) = 1$. But $z^2 = i\cdot i = i^2 = -1$.
+\end{observe}
+\begin{theorem}
+	Let $z,w\in\mb C$. Then
+	\begin{enumerate}
+		\item[(a)] $|z|\geq 0$ and $|z|= 0 \Lr z= 0$.
+		\begin{proof}
+			Since $z\cdot \conj z \geq 0$ and $|z| = (z\cdot\conj z)^{1/2}$, $|z|\geq 0$ follows by $n^\text{th}$ root theorem. By previous theorem, $z\cdot \conj z = 0\Lr z = 0$. So $|z|=0\Lr z = 0$.
+		\end{proof}
+		\item[(b)] $|z\cdot w| = |z|\cdot |w|$
+		\begin{proof}
+			$|z| = (\conj z\cdot \conj{\conj z})^\frac{1}{2} = (\conj z\cdot z)^\frac{1}{2} = |z|$.
+		\end{proof}
+		\item[(c)] $|z\cdot w| = |z|\cdot|w|$
+		\begin{proof}
+			$|z\cdot w|^2 = (z\cdot w)\conj{(z\cdot w)} = (z\cdot w)(\conj z\cdot \conj w) = (z\cdot \conj z)\cdot(w\cdot\conj w) = |z|^2\cdot |w|^2 = (|z|\cdot|w|)^2$. By uniqueness of the square root, $|z\cdot w| = |z|\cdot |w|$. 
+		\end{proof}
+		\item[(d)] $|\Re (z)| \leq |z|$ and $|\Re(z)|=|z|\Lr z\in\mb R$.
+		\begin{proof}
+			$|\Re(z)|^2 = \Re(z)\cdot \conj{(\Re(z))} = (\Re(z))^2 \leq (\Re(z))^2 + (\Im(z))^2 = |z|^2$. By monotonicity of square root, $|\Re(z)|\leq |z|$.
+		\end{proof}
+		\item[(e)] $|z+w|\leq |z|+|w|$ and equality holds $\Lr z = \alpha w$ or $w = \alpha z$ for some $\alpha\in\mb R$.
+		\begin{proof}
+			$|z+w|^2 = (z+w)\conj{(z+w)} = (z+w)(\conj z+\conj w) = z\cdot \conj z + w\cdot \conj z + z\cdot \conj w + w\cdot\conj w = |z|^2 + w\cdot\conj z + \conj{\conj z \cdot w} + |w|^2 = |z|^2 + 2\Re(w\cdot \conj z) + |w|^2 \leq |z|^2 + 2|\Re(w\cdot \conj z)| + |w|^2$ since $x\leq |x| \os{(d)}{\leq} |z|^2 + 2|z\cdot\conj w| + |w|^2 \os{(b)+(c)}{=} |z|^2 + 2|z|\cdot|w| + |w|^2 = (|z|+|w|)^2$ for all $x\in\mb R$. By monotonicity of roots, $|z+w| \leq |z| + |w|$.
+		\end{proof}
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+	[Schwartz inequality] Let $z_1,z_2,\dots,z_n,w_1,\dots,w_n\in\mb C$. Then $$ \left| \sum_{i=1}^n z_i\cdot \conj{w_i} \right|^2 \leq \left(\sum_{i=1}^n |z_i|^2 \right) \left( \sum_{i=1}^n |w_i|^2\right).$$
+\end{theorem}
+\begin{proof}
+	Let $Z:= \sum_{i=1}^n |z_i|^2 \in\mb R$ and $W: = \sum_{i=1}^n |w_i|^2\in\mb R$ and $P:=\sum_{i=1}^n z_i\cdot \conj{w_i}\in\mb C$. \ul{Claim}: $zw \geq |p|^2$. Note that $W \geq 0$. Then $W = 0 \Lr |w_i| = 0 \Lr w_i = 0$. Then $P = \sum_{i=1}^n z_i\cdot 0 = 0$, we're done.
+	
+	\ul{Take $W>0$}: Then 
+	\begin{align*}
+		0\leq \sum_{i=1}^n |Wz_i - Pw_i|^2 &\os{?}{\geq} W(WZ-|P|^2) \\
+		&= \sum_{i=1}^n(Wz_i-Pw_i)\conj{(Wz_i-Pw_i)} \\
+		&= \sum_{i=1}^n(Wz_i-Pw_i)(W\conj{z_i}-\conj P\conj{w_i}) \\
+		& = \sum_{i=1}^n \left[ W^2 z_i\cdot \conj{z_i} - W\conj P z_i \conj{w_i} - PW w_i \conj{z_i} + P\conj P w_i \cdot \conj{w_i} \right] \\
+		&= \sum_{i=1}^n \left[ W^2|z_i|^2 - W\conj P z_i \conj{w_i} - PW w_i \conj{z_i} + |P|^2 \cdot |w_i|^2 \right] \\
+		&= W^2 \sum_{i=1}^n |z_i|^2 - W\conj P\sum_{i=1}^n z_i \cdot \conj{w_i} - PW \sum_{i=1}^n w_i \conj{z_i} + |P|^2 \sum_{i=1}^n |w_i|^2 \\
+		&= W^2 Z  - W\conj P P - P W \conj P + |P|^2 W = W^2Z - W|P|^2 \\
+		&= W(WZ-|P|^2) \geq 0 \os{W>0}{\implies} WZ-|P|^2 \geq 0
+	\end{align*}
+\end{proof}
+
 \end{document}
