@@ -467,4 +467,102 @@ Given $z=(a,b)\in\mb C$, we can write $z = a+bi$. Indeed, $a+bi = (a,0) +_\mb C 
 	\end{align*}
 \end{proof}
 
+\ul{Test 1, Sep 19, 2017}: Problems to ignore \#7, \# 11, \#16, \#20, Expect:
+\begin{itemize}
+	\item Definitions (always give example)
+	\item Statement of named theorems
+	\item HW like problems, exercises,
+	\item Proofs of theorems/propositions
+\end{itemize}
+
+\subsection{Euclidean spaces}
+\begin{definition}
+	[Vector space over a field] Let $(F,+_F,\cdot_F)$ be a field. A vector space $V$ over a field $F$ is a nonempty set $V$ with two operations -- vector addition + and scalar multiplication $\cdot$ with following:
+	\begin{enumerate}
+		\item $V$ satisfies (A1)-(A5) of field axioms with `+'.
+		\item \begin{itemize}
+			\item $a\vv\in V\ \forall a\in F,\ \forall \vv\in V$.
+			\item $a(\vu + \vv) = a\vu + a\vv\ \forall a\in F,\ \forall \vu,\vv\in V$.
+			\item $(a+_Fb)\vu = a\vu + b\vu\ \forall a,b\in F,\ \forall \vu \in V$.
+			\item $(a\cdot_Fb)\vu = a(b\vu)\ \forall a,b\in F,\ \forall \vu\in V$.
+			\item $1_F\vu = \vu\ \forall \vu\in V$.
+		\end{itemize}
+	\end{enumerate}
+\end{definition}
+
+Define $\mb R^k = \us{k\text{ times}}{\mb R\times \mb R\times \dots \times \mb R}$ for $k\geq 1$.
+
+For $\vx = (x_1,\dots,x_k), \vy = (y_1,\dots,y_k)\in\mb R$, define addition + and scalar multiplication $\cdot$ as follows:
+$$ \vx + \vy = (x_1+y_1,x_2+y_2,\dots,x_k+y_k)$$
+$$ a\vx = (ax_1,ax_2,\dots,ax_k) \quad \text{for }a\in\mb R.$$
+$$ \vzero = (0,0,\dots,0).$$
+
+\begin{theorem}
+	$(\mb R^k,+,\cdot)$ is a vector space over the field of $\mb R$.
+\end{theorem}
+\begin{proof}
+	Skip.
+\end{proof}
+\begin{definition}
+	For $\vx,\vy\in\mb R^k$, inner product or scalar product is defined as:
+	$$ \vx\cdot\vy = x_1y_1+x_2y_2+\dots+x_ky_k = \sum_{i=1}^k x_iy_i\ul{\ul{\in\mb R}}$$
+\end{definition}
+\begin{definition}
+	[Norm or modulus or absolute value]
+	$$ |\vx| = \left( \sum_{i=1}^k x_i^2 \right)^\frac{1}{2}$$
+	Other notation $||\vx|| = \left( \sum_{i=1}^k x_i^2 \right)^{1/2}$.
+\end{definition}
+\begin{theorem}
+	Let $\vx,\vy,\vz\in\mb R^k$ and $a\in\mb R$. Then
+	\begin{enumerate}
+		\item[(a)] $|\vx|\geq 0$ and $|\vx| = 0 \Lr \vx = \vzero$.
+		\begin{proof}
+			$|\vx|^2 = \sum_{i=1}^k x_i^2 \geq 0$, since $x_i^2 \geq 0$ for $x_i\in\mb R$. $\implies |\vx| \geq 0$ using the monotonicity of root. Suppose that $|\vx| = 0$ and suppose by contradiction that $x_i\neq 0$ for some $i\in\{1,\dots,k\}$. $\implies x_i^2 >0$ and $\sum_{j=1}^k x_j^2 > 0$, a contradiction. If $\vx = \vzero$, then $x_i = 0$ for all $i = 1,\dots,k$. So $|\vx| = \left( \sum_{i=1}^k 0^2 \right)^{1/2} = 0$.
+		\end{proof}
+		\item[(b)] $|a\vx| = |a|\cdot|\vx|$
+		\begin{proof}
+			$|a\vx|^2 = \sum_{i=1}^k (a x_i)^2 = a^2 \sum_{i=1}^k x_i^2 = a^2(|\vx|)^2 \implies |a\vx| = \sqrt{a^2}\sqrt{|\vx|^2} = |a||\vx|$.
+		\end{proof}
+		\item[*(c)] $|\vx\cdot\vy| \leq |\vx|\cdot |\vy|$
+		\begin{proof}
+			WTS: $|\vx|^2|\vy|^2$. Recall, Schwartz inequality $$\left| \sum_{i=1}^n z_i \cdot \conj{w_i} \right|^2 \leq \sum_{i=1}^n |z_i|^2 \sum_{i=1}^n |w_i|^2.$$
+			\begin{align*}
+				|\vx\cdot \vy|^2 &= \left| \sum_{i=1}^k x_iy_i \right|^2
+				\os{\text{Schwartz}}{\leq} \left(\sum_{i=1}^n |x_i|^2 \right) \left( \sum_{i=1}^n |y_i|^2 \right) \os{x_i,y_i\in\mb R}{=} \left(\sum_{i=1}^k x_i^2 \right) \left( \sum_{i=1}^k y_i^2 \right) = |\vx|^2 |\vy|^2.
+			\end{align*}
+			By monotonicity of root $|\vx\cdot \vy| \leq |\vx||\vy|$.
+		\end{proof}
+		\item[(d)] $|\vx+\vy| \leq |\vx|+|\vy|$
+		\begin{proof}
+			Want to show: $|\vx + \vy|^2 \leq (|\vx| + |\vy|)^2 = |\vx|^2 + 2|\vx|\cdot|\vy| + |\vy|^2$.
+			\begin{align*}
+				|\vx + \vy|^2 &= \sum_{i=1}^k (x_i+y_i)^2 = \sum_{i=1}^k (x_i^2 + 2x_i y_i + y_i)^2
+				= \sum_{i=1}^k x_i^2 + 2 \sum_{i=1}^k x_i y_i + \sum_{i=1}^k y_i^2 \\
+				&\leq |\vx|^2 + 2|\vx \cdot \vy| + |\vy|^2 \os{(c)}{\leq} |\vx|^2 + 2|\vx|\cdot |\vy| + |\vy|^2 = (|\vx| + |\vy|)^2
+			\end{align*}
+			since $\vx\cdot\vy\in\mb R$ and $a\leq |a|$ for all $a\in\mb R$. This implies $|\vx + \vy| \leq |\vx| + |\vy|$ by monotonicity of root.
+		\end{proof}
+		\item[(e)] $|\vx - \vz| \leq |\vx - \vy| + |\vy-\vz|$
+		\begin{proof}
+			$|\vx - \vz| = |\vx + \vzero - \vz| = |\vx - \vy + \vy - \vz| \os{(d)}{\leq} |\vx-\vy| + |\vy-\vz|$.
+		\end{proof}
+	\end{enumerate}
+\end{theorem}
+\begin{observe}
+	Observe that $|\vx\cdot \vy| = |\vx|\cdot |\vy|$ if $x,y\in\mb R$ \ul{\ul{or}} if $x,y\in\mb C$. \ul{Not true in $\mb R^2$}:
+	
+	Compare the result of (c) in $\mb C$ versus in $\mb R^2$.
+	Take $z = a + ib,w = c+id\in\mb C$. Then
+	\begin{align*}
+		|z\cdot w|^2 &= |(a+ib)\cdot(c+id)|^2 = |(ac-bd) + i(ad+bc)|^2 = (ac-bd)^2 + (ad+bc)^2 \\
+		&= (ac)^2 + (bd)^2 + (ad)^2 + (bc)^2 = (a^2 + b^2)(c^2+d^2) = |z|^2 \cdot |w|^2 \implies |z\cdot w| = |z|\cdot |w|.
+	\end{align*}
+	Take $\vx = (a,b)$, $\vy = (c,d)$ in $\mb R^2$.
+	\begin{align*}
+		|\vx\cdot \vy|^2 &= (ac+bd)^2 = (ac)^2 + 2abcd + (bd)^2 \\
+		&\cdots\ ?\ \cdots\\
+		&\leq |(a^2+b^2) \cdot (c^2+d^2) = |\vx|\cdot |\vy|
+	\end{align*}
+\end{observe}
+
 \end{document}
