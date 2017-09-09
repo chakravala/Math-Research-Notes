@@ -372,4 +372,42 @@ Find: $d = \gcd(a,b)$ and $d = ar+bs$.
 \end{enumerate}
 It stops: (assume $a,b>0$), so $b>r_1 > r_2 > \dots > r_n$.
 
+\begin{example}
+	1001 and 357.
+	\begin{align*}
+		1001 &= 357\cdot 2 + 287\\
+		357 &= 287\cdot 1 + 70\\
+		287 &= 70\cdot 4 + 7\\
+		70 &= 7\cdot 10 
+	\end{align*}
+	So $7 = \gcd(1001,357)$. Then $7 = 287 - 70\cdot 4 = 287 - (357 - 287)\cdot 4 = 287 \cdot 5 - 357 \cdot 4 = (1001-357\cdot 2)\cdot 5 - 357\cdot 4 = 1001 \cdot 5 + 357 \cdot (-14)$.
+\end{example}
+\begin{corollary}
+	If $a$ and $b$ are relatively prime, then there exist integers $r$ and $s$ such that $ar+bs = 1$.
+\end{corollary}
+If $d = \gcd(a,b)\implies d = ar+bs$.
+
+An integer $p>1$ is \ul{prime} if the only divisors of $p$ are 1 and $p$. Not prime $\lra$ composite.
+
+\begin{lemma}
+	[Euclid] Let $a,b\in\mb Z$ and $p$ a prime number. If $p\mid ab$ then $p\mid a$ or $p\mid b$.
+\end{lemma}
+\begin{proof}
+	\ul{Case 1}: $p\mid a$, done.
+	\ul{Case 2}: $p\nmid a$. WTS $p\mid b$. If $p\nmid a$ then $\gcd(a,p) = 1 \implies \exists r,s\in\mb Z$ such that $ar+ps = 1$. Then $b = b\cdot 1 = b (ar+ps) = abr + pbs$. Since $p\mid ab$ and $p\mid pbs$, then $p\mid b$.
+\end{proof}
+\begin{theorem}
+	[Euclid] There are infinitely many primes.
+\end{theorem}
+\begin{proof}
+	Assume there are finitely many primes: $p_1,p_2,\dots,p_n$. Let $p = p_1p_2\dots p_n + 1$. So $p$ is a product of primes. However, $p_i\nmid p,\ 1\leq i\leq n \implies p$ is a prime number, a new prime (contradiction).
+\end{proof}
+\begin{theorem}
+	[Fundamental Theorem of arithmetic] Let $n\geq 2$ be an integer. Then there exist primes $p_1,\dots p_s$ (not necessarily distinct) such that $n = p_1p_2\dots p_s$.
+	Moreover, this factorization is unique.
+\end{theorem}
+\begin{proof}
+	Assume $n = p_1 p_2\dots p_s = q_1 q_2\dots q_r$, primes. Notice that $p_1\mid n = q_1 q_2\dots q_r$. Recall Euclid's lemma: $p_1 \mid$ one of $q_i$'s $\implies p_1 = q_1$.
+\end{proof}
+
 \end{document}
