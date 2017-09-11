@@ -1,6 +1,8 @@
 \documentclass[]{article}
 \input{../mathdoc}
 \input{../mathsym}
+%\input{../preview}
+
 
 \author{Book: Thomas Judson 2017, Presenter: Igor Erovenko, Notes by Michael Reed}
 \title{Abstract Algebra}
@@ -409,5 +411,67 @@ An integer $p>1$ is \ul{prime} if the only divisors of $p$ are 1 and $p$. Not pr
 \begin{proof}
 	Assume $n = p_1 p_2\dots p_s = q_1 q_2\dots q_r$, primes. Notice that $p_1\mid n = q_1 q_2\dots q_r$. Recall Euclid's lemma: $p_1 \mid$ one of $q_i$'s $\implies p_1 = q_1$.
 \end{proof}
+
+\subsection*{Modular arithmetic}
+Fix $n\in\mb N$. For $a,b\in\mb Z$, $a \equiv b\pmod{n}$ if $a-b$ is divisible by $n$.
+Define a relation on $\mb Z$ by $a\sim b$ if $a\equiv b\pmod{n}$.
+\ul{Claim}: This is an equivalence relation on $\mb Z$.
+\begin{enumerate}
+	\item Reflexive: $a\equiv a \pmod{n}$ since $n\mid 0 = a-a$ for all $a\in\mb Z$.
+	\item Symmetric: $a\equiv b\pmod{n}\implies b\equiv a\pmod{n}$, since $n\mid(a-b) \lra a-b=nk \lra b-a = n(-k)$.
+	\item Transitive: $a\equiv b\pmod{n}$ and $b\equiv c\pmod{n} \implies a\equiv c\pmod{n}$, since $a-b=nk$ and $b-c=nl$ and $a-c = (a-b)+(b-c) = nk+nl = n(k+l)$.
+	Let $a = nq_1+r_1$ and $b=nq_2+r_2$, then $a-b = n(q_1-q_2) + (r_1-r_2)$ with $r_1-r_2 = 0$.
+\end{enumerate}
+
+\begin{example}
+	\ul{$n=3$} Equivalence class:
+
+	$[0] = \{ \dots,-6,-3,0,3,6,9,12,\dots \} \lra $ remainder 0.
+
+	$[1] = \{ \dots,-5,-2,1,4,7,10,13,\dots \} \lra $ remainder 1.
+
+	$[2] = \{ \dots, -4,-1,2,5,8,11,14,\dots \} \lra $ remainder 2.
+\end{example}
+In general, $\{[0],[1],[2],\dots,[n-1]\} = \mb Z_n$.
+Define two operations:
+\begin{enumerate}
+	\item Addition: $[a]+[b] = [a+b]$.
+	\item Multiplication: $[a]\cdot[b] = [ab]$.
+	
+\end{enumerate}
+\begin{example}
+	$\mb Z_6 = \{[0],[1],[2],[3],[4],[5]\}$. Take $[3]+[4] = [7]=[1]$, or $[0]+[3] = [0+3] = [3]$. Take $[2]\cdot[4] = [2\cdot 4] = [8] = [2]$, or $[2]\cdot[3] = [2\cdot 3] = [6] = [0]$. Now take $[1]+[2] = [3]$ and $[7]+[14]=[21]$, they are equal.
+\end{example}
+\begin{lemma}
+	Let $a\equiv a'\pmod n$ and $b\equiv b'\pmod n$. Then
+	\begin{enumerate}
+		\item $a+b \equiv a'+b'\pmod n$,
+		\item $ab \equiv a'b'\pmod n$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	$a\equiv a'\pmod n \lra n\mid (a-a')$ and $b\equiv b'\pmod n \lra n\mid(b-b')$.
+	\begin{enumerate}
+		\item $(a+b) - (a'+b') = (a-a') + (b-b')$
+		\item $ab-a'b' = ab-a'b+a'b-a'b' = (a-a')b + a'(b-b')$
+	\end{enumerate}
+	Thus property 1 and 2 are true.
+\end{proof}
+\begin{proposition}
+	Let $n\in\mb Z$.
+	\begin{enumerate}
+		\item $[a]+[b] = [b] + [a]$ and $[a][b] = [b][a]$.
+		\item $([a]+[b])+[c] = [a] + ([b]+[c])$ and $([a][b])[c] = [a]([b][c])$.
+		\item $[a]+[0] = [a]$ and $[a]\cdot [1] =[a]$.
+		\item $[a]([b]+[c]) = [a][b] + [a][c]$.
+		\item $[a]+[-a] = [0]$.
+		\item Let $a\neq 0$. Then $[a]$ has a multiplicative inverse in $\mb Z_n \Llr \gcd(a,n) = 1$.
+		\begin{proof}
+			\ul{$\La$}: Assume $\gcd(a,n) = 1$. Then $\exists r,s\in\mb Z$ such that $ar+ns = 1$ implies $ar+ns \equiv 1\pmod n$ or $ar\equiv 1\pmod n$. Thus $[a][r] = [ar] = [1]$ and $[a]\inv = [r]$.
+
+			\ul{$\Ra$}: Assume $[a]$ has a multiplicative inverse in $\mb Z_n$: $\exists r\in\mb Z$ such that $[a][r] = [1]$ or $[ar] = [1]$, implying $ar\equiv 1\pmod n$. Thus $ar-1 = ns$ for some $s\in\mb Z$. Rewrite as $ar+n(-s) = 1 \implies \gcd(a,n) = 1$.
+		\end{proof}
+	\end{enumerate}
+\end{proposition}
 
 \end{document}
