@@ -1,6 +1,7 @@
 \documentclass[]{article}
 \input{../mathdoc}
 \input{../mathsym}
+\input{../preview}
 
 \author{Book: Walter Rudin 3rd, Presenter: Maya Chhetri, Notes by Michael Reed}
 \title{Real Analysis I}
@@ -429,9 +430,9 @@ Given $z=(a,b)\in\mb C$, we can write $z = a+bi$. Indeed, $a+bi = (a,0) +_\mb C 
 		\begin{proof}
 			Since $z\cdot \conj z \geq 0$ and $|z| = (z\cdot\conj z)^{1/2}$, $|z|\geq 0$ follows by $n^\text{th}$ root theorem. By previous theorem, $z\cdot \conj z = 0\Lr z = 0$. So $|z|=0\Lr z = 0$.
 		\end{proof}
-		\item[(b)] $|z\cdot w| = |z|\cdot |w|$
+		\item[(b)] $|\conj z| = |z|$
 		\begin{proof}
-			$|z| = (\conj z\cdot \conj{\conj z})^\frac{1}{2} = (\conj z\cdot z)^\frac{1}{2} = |z|$.
+			$|\conj z| = (\conj z\cdot \conj{\conj z})^\frac{1}{2} = (\conj z\cdot z)^\frac{1}{2} = |z|$.
 		\end{proof}
 		\item[(c)] $|z\cdot w| = |z|\cdot|w|$
 		\begin{proof}
@@ -564,5 +565,118 @@ $$ \vzero = (0,0,\dots,0).$$
 		&\leq |(a^2+b^2) \cdot (c^2+d^2) = |\vx|\cdot |\vy|
 	\end{align*}
 \end{observe}
+
+If $(a,b),(c,d)\in\mb C$, then $|(a,b)\cdot(c,d)| = |(a,b)|\cdot|(c,d)|$.
+If $(a,b),(c,d)\in\mb R^2$, then $|(a,b)\cdot(c,d)| \leq |(a,b)||(c,d)|$.
+\begin{proof}
+	$0\leq p^2+q^2 - 2pq = (p-q)^2 \implies 2pq \leq p^2 + q^2$.
+	\begin{align*}
+		|(a,b)\cdot(c,d)|^2 &= |ac+bd|^2 = (ac+bd)^2\\
+				    &= (ac)^2 + 2abcd + (bd)^2 \\
+		&\leq a^2c^2 + b^2c^2 + a^2d^2 + b^2d^2 \\
+		&= (a^2+b^2)(c^2+d^2) = |(a,b)|^2 |(c,d)|^2 \implies |(a,b)\cdot (c,d)| \leq |(a,b)||(c,d)|
+	\end{align*}
+	monotonicity of roots.
+\end{proof}
+
+\section{Topology}
+
+\begin{definition}
+	[Function] $A,B$ are sets. $f:A\ra B$ is a function or a mapping if for each $x\in A$, $\exists!f(x)\in B$.
+	\begin{itemize}
+		\item $A = $ domain of $f$.
+		\item $B = $ target set of $f$.
+		\item $f(A) = $ Image of $A$ under $f = \{y\in B: \exists x\in A \text{ such that } f(x)=y \}$.
+	\end{itemize}
+\end{definition}
+\begin{definition}
+	[one-to-one and onto] $f:A\ra B$ is 1-1 iff $f(a_1) = f(a_2) \implies a_1=a_2$ (or iff $\forall a_1,a_2\in A$, $a_1\neq a_2 \implies f(a_1)\neq f(a_2)$.
+	$f:A\ra B$ is onto iff $\forall b\in B$, $\exists a\in A$ such that $f(a)=b$ \ul{\ul{OR}} $f(A)=B$.
+\end{definition}
+\begin{definition}
+	[Preimage or inverse image] Suppose $E_1\subset B$. Then the preimage of $E_1$: $f\inv(E_1) = \{a\in A: f(a)\in E_1\}$.
+	If $b\in B$, then $f\inv(b) = \{a\in A : f(a)=b\} \subset A$.
+\end{definition}
+\begin{remark}
+	One-to-one correspondence means both one-to-one and onto.
+\end{remark}
+
+\begin{definition}
+	[Cardinality] We say that a set $A$ has \ul{no more} elements than a set $B$ if $\exists$ a 1-1 map $f:A\ra B$.
+	In this case, we write $|A|\leq |B|$, where $|\cdot|$ denotes the cardinality of $A$ (\say{number of elements}).
+\end{definition}
+
+\begin{theorem}
+	[Cantor-Shroder-Bernstein]
+	If $\exists$ two 1-1 functions $f:A\ra B$ and $g:B\ra A$, then $\exists$ a \ul{1-1 and onto} function $h:A\ra B$.
+	i.e., $|A|\leq |B|$ and $|B|\leq |A| \implies |A|=|B|$.
+\end{theorem}
+\begin{proof}
+	Skip.
+\end{proof}
+\begin{definition}
+	[Equivalence relation via cardinality]
+	$A$ and $B$ have same cardinality if $\exists$ a 1-1 and onto function $f:A\ra B$. We write $|A| = |B|$. This is an equivalence relation.
+	\begin{enumerate}
+		\item[(i)] $|A| = |A|$ since $id:A\ra A$ is 1-1 and onto.
+		\item[(ii)] $|A|=|B|$ then $|B|=|A|$. If $f:A\ra B$ is 1-1 and onto, then $f\inv:B\ra A$ is 1-1 and onto.
+		\item[(iii)] If $|A|=|B|$ and $|B|=|C|$, then $|A|=|C|$. There exist $f:A\ra B$ and $g:B\ra C$ both 1-1 and onto. Then $g\circ f: A\ra C$ is 1-1 and onto.
+	\end{enumerate}
+\end{definition}
+
+\ul{Notation} $J:= \mb N\backslash \{0\}$ and $J_n := \{1,2,\dots,n\}$.
+\begin{definition}
+	Let $A$ be any set. We say
+	\begin{enumerate}
+		\item[(a)] $A$ is finite if $A\sim J_n$ or $|A|=|J_n|$ for some $n\in\mb N$.
+		\item[(b)] $A$ is infinite if $A$ is not finite.
+		\item[(c)] $A$ is countable if $|A| = |J|$ i.e., there exists a 1-1 and onto mapping $f:A\ra J$.
+		\item[(d)] $A$ is uncountable if $A$ is neither finite nor countable.
+		\item[(e)] $A$ is at most countable if $A$ is finite or countable.
+	\end{enumerate}
+\end{definition}
+\begin{example}
+$|\mb Z| = |\mb N|$. Let $f:\mb Z\ra\mb N$ by $f(z) = \begin{cases} 2z-1 & \text{if } z\in\mb Z_+ \\ -2z & \text{if } z\in\mb Z_- \end{cases}$:
+	$\begin{array}{ccccccccc}
+			\mb {Z} & 0 & 1 & -1 & 2 & -2 & 3 & -3 & \cdots \\
+			\, & \updownarrow & \updownarrow & \updownarrow & \updownarrow & \updownarrow & \updownarrow & \updownarrow  & \, \\
+			\mb{N} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & \cdots
+	\end{array}$
+Let $f:J \os{1-1}{\us{\text{onto}}{\lra}} \mb Z$ by $f(n) = \begin{cases} \frac{n}{2} & \text{if } n \text{ even}\\ -\frac{n-1}{2} & \text{if } n \text{ odd} \end{cases}$.
+\end{example}
+
+\begin{note}
+	\begin{itemize}
+		\item A finite set has \ul{more} elements than its proper subsets.
+		\item Empty set is a finite set.
+		\item A set and its proper subsets can have same cardinality.
+		\begin{example}
+			\begin{itemize}
+				\item[(i)] $|\mb N|\os{f?}{=} |2n:n\in\mb N| = |2n-1:n\in\mb N|$
+				\item[(ii)] $|(-\frac{\pi}{2},\frac{\pi}{2}| = |\mb R|$. Let $f:(-\frac{\pi}{2},\frac{\pi}{2}) \ra \mb R$ by $f(x) = \tan x$ is 1-1 and onto.
+			\end{itemize}
+		\end{example}
+	\end{itemize}
+\end{note}
+
+\begin{proposition}
+	$S$ is infinite $\Llr \exists f:\mb N \ra S$ that is 1-1.
+\end{proposition}
+\begin{proof}
+	\say{$\implies$} Suppose $S$ is infinite. We need to construct $f:\mb N\ra S$ that is 1-1. Since $S$ is not finite, $\exists s_0\in S$.
+	Define $f_0:\{0\}\ra S$ by $f_0(0) = s_0$. By construction $f_0$ is 1-1.
+	$S$ is infinite, so $\exists s_1\in S (s_1\neq s_0)$.
+	Define $f_1:\{0,1\} \ra S$ by $f_1(0) = s_0$ and $f_1(1) = s_1$.
+	Then $f_1$ is 1-1. Since $S$ is infinite, $\exists s_2\in S$, $s_2\neq s_0$, $s_2\neq s_1$. Deefine $f:\{0,1,2\} \ra S$ by $f_2(0) = s_0$, $f_2(1) = s_1$, $f_2(2) = s_3$.
+	Inductively, $\exists s_n\in S$ such that $s_n\neq s_j$ for $j=0,\dots,n-1$ and $f_n : \{0,1,\dots,n\}\ra S$ by
+	\begin{align*}
+		f_n(0) &= s_0 \\
+		f_n(1) &= s_1 \\
+		       &\vdots \\
+		f_n(n) &= s_n.
+	\end{align*}
+	Then $f:\mb N\ra S$ defined by $f(n) = f_n(n) = s_n$ is 1-1 (by construction).
+\end{proof}
+
 
 \end{document}
