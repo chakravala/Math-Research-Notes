@@ -678,5 +678,83 @@ Let $f:J \os{1-1}{\us{\text{onto}}{\lra}} \mb Z$ by $f(n) = \begin{cases} \frac{
 	Then $f:\mb N\ra S$ defined by $f(n) = f_n(n) = s_n$ is 1-1 (by construction).
 \end{proof}
 
+\begin{example}
+	[HW2.1] Let $A$ and $B$ be nonempty bounded subsets of $\mb R$ such that $A\subset B$. Prove: $\inf B \leq \inf A \leq \sup A \leq \sup B$.
+	\begin{proof}
+		Given that $A\neq \emptyset,B\neq\emptyset$, $A$ bounded, $B$ bounded, and $A,B\subset \mb R$, by LUB property of $\mb R$, $\sup A,\inf A, \sup B, \inf B$ exist in $\mb R$.
+		Let $a:= \inf A$, $\alpha := \sup A$, $b:=\inf B$, $\beta:=\sup B$.
+		By definition of $\sup A,\inf A$, we have:
+		\begin{align*}
+			\forall x\in A,\, a\leq x \\
+			\forall x\in A,\, x\leq \alpha \\
+			\text{then for some } x_0\in A \\
+			a\leq x_0 \leq \alpha \\
+			\text{So } a\leq \alpha \text{ by transitivity}.
+		\end{align*}
+		To show $\sup A\leq \sup B$, where $A\subset B$, suppose by contradiction that $\beta \leq \alpha$. Since $A\subset B$, for all $x\in A$, $x\in B$ and any $y\in B$, then, $b\leq y \leq B$.
+		Then $\beta < \alpha \implies \exists x_1\in A$ such that $\beta<x_1\leq \alpha \implies x_1\notin B$. Contradiction. $A\subset B$.
+	\end{proof}
+	\begin{proof}
+		We show $\inf B\leq \inf A$: By definition of $\inf$, $\gamma \leq \inf B$ for all $\gamma$ lower bounds of $B$.
+		Since $x\in A \implies x\in B$, $\gamma$ is a lower bound of $A$. Choose $\gamma = \inf B$, $\inf B$ is a lower bound of $A$. Therefore $\inf B\leq \inf A$.
+	\end{proof}
+	We know by definition of infimum, $b\leq \inf B$ for all $b\in B$. But $A\subset B$, so $a\leq\inf B$ for all $a\in A$. $\implies \inf B$ is a loewr bound of $A$. By definition of $\inf A$, $\inf B\leq \inf A$.
+\end{example}
+\begin{example}
+	[HW2.2] $S:=\{a+b:a\in A,b\in B\}$. $\sup S = \sup A + \sup B$.
+	\begin{proof}
+		Since $A\neq\emptyset,B\neq\emptyset$ and $A,B\subset \mb R$ are bounded and $\mb R$ has the least upper bound property, $\sup A,\sup B\in\mb R$.
+		First, $S\neq\emptyset$ since $A\neq\emptyset$ and $B\neq\emptyset$. Now, $a\leq \sup A$ for all $a\in A$ and $b\leq \sup B$ for all $b\in B$.
+		Then $a+b\leq\sup A+b$ and $a+b\leq \sup A + \sup B$ for $b\in B$ fixed and $\forall a\in A$. $\implies \sup A+\sup B$ is an upper bound of $S \implies \sup S\in\mb R$.
+		Want to show:
+		\begin{enumerate}
+			\item[(i)] $\sup A+\sup B$ is an upper bound of $S$. check.
+			\item[(ii)] If $\gamma$ is an upper bound of $S$ then $\gamma\geq\sup A + \sup B$.
+		\end{enumerate}
+		Let $\gamma$ be an upper bound of $S$. Then $\gamma\geq s$ for all $s\in S$. Then $s = a+b$ for some $a\in A$ and $b\in B$.
+		So $\gamma \geq a+b \implies b\leq \gamma-a \implies \gamma-a$ is an upper bound for $B$.
+		Then $\gamma-a\geq \sup B$ (by definition of $\sup$) $\implies \gamma-\sup B \geq a \implies \gamma-\sup B$ is an upper bound for $A$. $\implies \gamma-\sup B \geq \sup A$ (by definition of $\sup$) $\implies \gamma\geq \sup A + \sup B$.
+		Therefore $\sup S = \sup A+\sup B$.
+	\end{proof}
+\end{example}
+\begin{example}
+	[HW2.3]
+	$A\subset \mb R$ nonempty and bounded below. $-A:=\{-a\in \mb R:a\in A\}$.
+	Prove $-\inf A = \sup (-A)$.
+	\begin{proof}
+		$A\subset\mb R$ nonempty + bounded below $\implies \inf A\in\mb R$.
+		By definition of infimum, $a\geq \inf A$ for all $a\in A$.
+		$\implies -a\leq -\inf A$ for all $-a\in -A$ - $(*)$.
+		$\implies -A$ is bounded above. So $\sup (-A)\in\mb R$ since $-A\neq\emptyset$.
+		Want to show: $\sup(-A) = -\inf A$.
+		\begin{enumerate}
+			\item[(i)] $-\inf A$ is an upper bound of $-A$ by $(*)$.
+			\item[(ii)] If $\gamma$ is an upper bound of $-A$, then $\gamma\geq -\inf A$.
+		\end{enumerate}
+		Let $\gamma$ be an upper bound of $-A$. Then $\gamma\geq -a$ for all $-a\in -A \implies -\gamma\leq a$ for all $a\in A \implies -\gamma$ is a lower bound of $A$. But $\inf A$ is the greatest lower bound of $A$, so $\inf A\geq -\gamma \implies -\inf A\leq \gamma$. Therefore $-\inf A = \sup (-A)$.
+	\end{proof}
+\end{example}
+\begin{example}
+	[HW3.4] $\left| |z|-|w|\right| \leq |z-w|$ for all $z,w\in\mb C$.
+	\begin{proof}
+		$|x|\leq c \Lr -c\leq x \leq c$.
+		\ul{Want to show}: (1) $|z|-|w| \leq |z-w|$ and (2) $-|z-w|\leq |z|-|w|$.
+
+		(1): 
+		\begin{align*}
+			|z| &\os{\mb C\text{ field}}{=} |z-w+w| \\
+				&\os{\Delta}{\leq} |z-w| + |w|		
+		\end{align*}
+		$\implies |z|-|w|\leq |z-w|$.
+
+		(2):
+		\begin{align*}
+			|w| &= |w-z+z| \\
+				&\os{\Delta}{=} |w-z|+|z|
+		\end{align*}
+		$\implies |w|-|z|\leq |z-w| \implies -(|w|-|z|) \geq -|z-w| \implies |z|-|w| \leq -|z-w|$.
+		Combining (1)+(2) $\left||z|-|w|\right| \leq |z-w|$.
+	\end{proof}
+\end{example}
 
 \end{document}
