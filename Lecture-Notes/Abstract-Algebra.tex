@@ -587,4 +587,61 @@ Define two operations:
 	$S = M_n(\mb R)$ $n\times n$ matrices. $A\circ B = AB$. Then $AB\neq BA$, not commutative in general. However, $(AB)C = A(BC)$, associative $\checkmark$.
 \end{example}
 
+\begin{example}
+	[HW Review] $ar+bs = 1 \implies \gcd(a,b) = 1$ since $d\mid a$ and $d\mid b$ and $d\mid 1 \implies \gcd(a,b) = 1$. However, $3\cdot 1 + 2\cdot(-1) = 1 \implies 3\cdot d + 2\cdot(-d) = d$.
+\end{example}
+
+\subsection{Grous: definition and examples}
+
+\begin{definition}
+	A nonempty set $G$ with a binary operation $\circ$ is a \ul{group} if
+	\begin{enumerate}
+		\item $\circ$ is associative
+		\item there exists an element $e\in G$ such that $a\circ e = e\circ a = a$ for all $a\in G$ (identity element)
+		\item for every $a\in G$ there exists $b\in G$ such that $a\circ b = b\circ a = e$ (inverse of $a$)
+	\end{enumerate}
+	\ul{Notation}: $(G,\circ)$ or $G$.
+\end{definition}
+\begin{definition}
+	A group $(G,\circ)$ is \ul{abelian} if $\circ$ is commutative.
+\end{definition}
+\begin{remark}
+	An operation can be commutative, a group can be abelian.
+\end{remark}
+\begin{example}
+	$(\mb Z,+)$: associative $\checkmark$. $e=0 \checkmark$. inverse of $n$ is $-n$, $\checkmark$. commutative $\checkmark$. \ul{abelian group}.
+	$(\mb Q, +)$, abelian group. So is $(\mb R,+)$, $(\mb C,+)$. For $(\mb R,\cdot)$ it is associative $\checkmark$, $e=1$, inverse of $x$ is $\frac{1}{x}$, no inverse for 0, \ul{not a group}. However, $(\mb R\backslash \{0\},\cdot)$ is an abelian group. $\mb R^\times$ is the multiplicative group of a field.
+\end{example}
+\begin{example}
+	$(\mb Z_n,+)$: $[a]+[b] = [a+b]$ associative $\checkmark$. $e=[0]$. inverse of $[a]$ is $[-a]$. \ul{abelian group}.
+\end{example}
+\begin{example}
+	$G = \{e\}$ is the trivial group, $e\circ e = e$, $e\inv = e$.
+\end{example}
+\begin{example}
+	Symmetries of a regular $n$-gon. operation: composition. \ul{Claim}: non-abelian group. Notation can be $D_n$ or $D_{2n}$, they are called dihedral group.
+\end{example}
+\begin{example}
+	$(M_n(\mb R),+)$, associative $\checkmark$, $e=0$ zero matrix, inverse of $A$ is $-A$, abelian group.
+\end{example}
+\begin{example}
+	$(M_n(\mb R),\cdot)$: associative $\checkmark$, $e= I_n$, inverse of $A$ is $A\inv$ if $A$ is nonsingular. \ul{not a group}.
+\end{example}
+\begin{example}
+	$GL_n(\mb R) = \{A\in M_n(\mb R) \mid \det A \neq 0\}$ nonsingular matrices. operation: multiplication. nonsingular $\cdot$ nonsingular $=$ nonsingular. associative $\checkmark$, $e = I_n$, inverse of $A$ is $A\inv$. \ul{nonabelian group} called \ul{general linear group}.
+\end{example}
+\begin{example}
+	$(\mb Q^+,*)$, where $a*b = \frac{ab}{2}$.
+	\begin{itemize}
+		\item associative: $(a*b)*c = \frac{ab}{2} * c = \frac{ab/2\cdot c}{2} = \frac{abc}{4}$ and $a*(b*c) = a*\frac{bc}{2} = \frac{a\cdot bc/2}{2} = \frac{abc}{4}$.
+		\item identity: $a*e = e*a = a$ or $\frac{ae}{2} = \frac{ea}{2} = a \implies e = 2$.
+		\item inverses: $a*b = b*a = e$ or $\frac{ab}{2} = \frac{ba}{2} = 2 \implies b = \frac{4}{a}$ is inverse of $a$.
+	\end{itemize}
+	This is a \ul{group}.
+\end{example}
+
+\begin{definition}
+	The \ul{order} of a group $(G,\circ)$ is the size of the set $G$: $|G|$. There are finite groups with $|G|<\infty$ and infinite groups with $|G|=\infty$.
+\end{definition}
+
 \end{document}
