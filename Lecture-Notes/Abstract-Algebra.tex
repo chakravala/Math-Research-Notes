@@ -98,7 +98,7 @@ $\mb H$ Hamiltonian quaternions $\{a+bi+cj+dk \mid a,b,c,d\in\mb R\}$.
 	[Union] $A\cup B = \{ x\mid x\in A \text{ or } x\in B\}$.
 \end{definition}
 \begin{definition}
-	[Intersection] $A\cap B = \{x \mid A \text{ and } x\in B\}$.
+	[Intersection] $A\cap B = \{x \mid x\in A\text{ and } x\in B\}$.
 \end{definition}
 \begin{definition}
 	[Difference] $A-B = A\backslash B = \{x \mid x\in A \text{ and } x\notin B\}$.
@@ -175,7 +175,7 @@ A \ul{composition} of mappings $f:A\ra B$ and $g:B\ra C$ is a mapping $g\circ f:
 \begin{definition}
 	The \ul{identity} mapping on a set $A$ is $\text{id}_A: A\ra A$, $\text{id}_A(a) = a$.
 	An \ul{inverse} mapping of a mapping $f:A\ra B$ is a mapping $g:B\ra A$ such that $g\circ f = \text{id}_A \ra g(f(a)) = a$, $f\circ g = \text{id}_B \ra f(g(b)) = b$.
-	A mapping is \ul{invertible} if it has an inverse mapping. \ul{Notation}: $f\inv$ inverse of $f$.k
+	A mapping is \ul{invertible} if it has an inverse mapping. \ul{Notation}: $f\inv$ inverse of $f$.
 \end{definition}
 
 \begin{theorem}
@@ -229,7 +229,7 @@ A \ul{composition} of mappings $f:A\ra B$ and $g:B\ra C$ is a mapping $g\circ f:
 
 \begin{definition}
 	A \ul{partition} of a set $X$ is a collection of disjoint nonempty subsets of $X$ which cover $X$.
-	$$\mc P = \{X_\alpha\}_{\alpha\in \Lambda}, \quad X\alpha\subseteq X\, \forall \alpha,$$
+	$$\mc P = \{X_\alpha\}_{\alpha\in \Lambda}, \quad X_\alpha\subseteq X,\ \forall \alpha,$$
 	$X_\alpha \cap X_\beta = \emptyset \text{ if } \alpha \neq \beta$, disjoint, and $X = \bigcup_{\alpha\in\Lambda} X_\alpha$ cover $X$.
 \end{definition}
 \begin{theorem}

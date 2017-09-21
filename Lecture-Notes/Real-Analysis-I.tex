@@ -757,4 +757,103 @@ Let $f:J \os{1-1}{\us{\text{onto}}{\lra}} \mb Z$ by $f(n) = \begin{cases} \frac{
 	\end{proof}
 \end{example}
 
+\ul{From last class}:
+\begin{proposition}
+	$S$ is infinite $\Lr \exists f:\mb N \ra S$ that is 1-1.
+\end{proposition}
+\begin{proof}
+	\say{$\implies$} Last class.
+
+	\say{$\Lla$} Suppose there exists $f:\mb N \ra S$ 1-1.
+	Assume to the contrary that $S$ is finite i.e., $|S| = |J_n|$ for some $n\in\mb N$ so $\exists j:S\os{1-1}{\us{\text{onto}}{\lra}} J_n$.
+	Now, $J_{n+1} \os{i}{\us{1-1}{\lra}} \mb N \os{f}{\us{1-1}{\lra}} S \os{1-1}{\us{\text{onto}}{\lra}} J_n$.
+	$A\subset B$ then the includsion map $i:A\ra B$ defined by $i(x) = x$ is a 1-1 map.
+	Then $\exists h = j(f(i)): J_{n+1} \ra J_n$ is 1-1, a contradiction since $|J_{n+1}| = n+1$, $|J_n| = n$.
+\end{proof}
+\begin{proposition}
+	A set $S$ is infinite $\Lr \exists S'\subsetneq S$ such that $|S'| = |S|$.
+\end{proposition}
+\begin{proof}
+	Skip.
+\end{proof}
+
+\begin{theorem}
+	Ever infinite subset of a countable set is countable.
+\end{theorem}
+\begin{proof}
+	Let $A$ be a countable set and $E\subset A$ is \ul{infinite}.
+	\ul{Want to show}: $E$ is countable i.e., $\exists j:\mb N\ra E$ that is 1-1 and onto.
+	A countable $\implies \exists s:\mb N\ra A$ such that $s$ is 1-1 and onto.
+	
+	Let $n_1:=\min\{n\in \mb N: s(n) = s_n\in \}$ - set is well defined since $E$ is infinite.
+	
+	$n_2:=\min\{n\in\mb N: n>n_1 \text{ and } s(n) = s_n\}$. clearly $n_1>n_1$.
+
+	Suppose $n_1<n_2 <\dots < n_{k-1}$, then $n_k:= \min\{n\in\mb N: n>n_{k-1} \text{ and } s(n) = s_n\in E\}$.
+
+	$n_1<n_2<\dots<n_{k-1}<n_k$ and $\{s_{n_1}, s_{n_2}, s_{n_3},\dots,s_{n_{k-1}},s_{n_k} \} \neq E$.
+	Now define $f:\mb N \ra E$ by $f(k) = s_{n_k}$. Then $f$ is 1-1. So, $|\mb N| \os{f\text{ 1-1}}{\leq} |E| \os{E\subset A}{\leq} |A| \os{\text{countable}}{=} |\mb N|$. Therefore, $|\mb N| = |E|$, so $E$ is countable.
+\end{proof}
+
+Unions and intersections. Let $A,B$ be any subsets of $\Omega$.
+$$A\cup B = \{ x\in \Omega : x\in A \text{ \ul{or} } x\in B\}.$$
+$$A\cap B = \{x\in \Omega : x\in A \text{ \ul{and} } x\in B\}.$$
+Let $A$ be any set - index set.
+Let $\{E_\alpha\}_{\alpha\in A}$ be any collection of subsets of $\Omega$.
+Then $$\bigcup_{\alpha\in A} E_\alpha = \{ x\in \Omega: x\in E_{\alpha_0} \text{ \ul{for some} } \alpha_0\in A\}.$$
+$$ \bigcap_{\alpha\in A} E_\alpha = \{x\in \Omega: x\in E_\alpha \text{ \ul{for all} } \alpha\in A\}.$$
+\begin{remark}
+	$A,B$ subsets of $\Omega$.
+	\begin{itemize}
+		\item $A\cup B = B\cup A$, $A\cap B = B\cap A$.
+		\item $(A\cup B)\cup C = A\cup(B\cup C)$.
+		\item $(*)$ $A\cap (B\cup C) = (A\cap B)\cup (A\cap C)$.
+		\item $A,B\subset A\cup B$, $A\cap B\subset A,B$.
+		\item $A\subset B \implies A\cup B = B$ and $A\cap B = A$.
+		\item $\emptyset$ acts as neutral element, that is $A\cup \emptyset = A$ and $A\cap \emptyset = \emptyset$.
+		\item $*$ $\emptyset$ is a subset of every set.
+	\end{itemize}
+\end{remark}
+\begin{example}
+	$\bigcup_{x\in\mb R} (-\infty,x] = \mb R$.
+	\begin{proof}
+		\say{$\subset$} Let $a\in\bigcup_{x\in\mb R}(-\infty,x]$.
+		Then $a\in(-\infty,x_0]\subset\mb R$ for some $x_0\in\mb R$.
+		$\implies a\in\mb R\implies \bigcup_{x\in\mb R}(-\infty,x]\subset \mb R$.
+
+		\say{$\supset$} Let $a\in\mb R$. Then $a\in(-\infty,a]$. So $a\in\bigcup_{x\in\mb R}(-\infty,a]$. Therefore $\mb R\subset_{x\in\mb R} (-\infty,x]$. Hence $\bigcup_{x\in\mb R} (-\infty,x] = \mb R$.
+	\end{proof}
+\end{example}
+\begin{example}
+	$\bigcap_{x\in(0,1)}(0,x) = \emptyset$. $\nexists a\in\mb R$ such that $\bigcap_{x\in(0,1)}(0,x) = a$.
+	If $a\leq 0$, then $a\notin(0,x)$ for any $x\in(0,1)$, so $a\notin\bigcap_{x\in(0,1)}(0,x)$.
+	Let $a>0$. Then $a\notin (0,x)$ for any $x\in(0,1)$. So $a\notin \bigcap_{x\in(0,1)}(0,x)$.
+	Let $0<a<1$. Then $a\notin(0,\frac{a}{2})$. So $a\notin \bigcap_{x\in(0,1)}(0,x)$. Therefore $\bigcap_{x\in(0,1)}(0,x) = \emptyset$.
+\end{example}
+\begin{example}
+	[*] $A:=\{x\in\mb R: 0<x\leq 1\} = (0,1]$. For $x\in A$, define $E_x\{y\in\mb R: 0<y<x\}$.
+	Then $E_x\subset E_z \Lr 0<x\leq z \leq 1$.
+\end{example}
+
+\begin{theorem}
+	Let $\{E_n\}_{n\in\mb N}$ be a sequence of countable sets.
+	Then $S:=\bigcup_{n\in\mb N} E_n$ is countable. (Countable union of countable sets is countable).
+\end{theorem}
+\begin{example}
+	$\mb N^2 = \mb N\times \mb N = \bigcup_{n\in\mb N} \mb N\times \{n\}$.
+\end{example}
+\begin{proof}
+	We need to show: $\exists f:\bigcup_{n\in\mb N} E_n \ra \mb N$ that is 1-1.
+	For each $n\in\mb N$, $E_n$ is countable, so $\exists g_n: \mb N\ra E_n$ that is 1-1 and onto.
+	This allows us to write: $$g_1: x_{1,1}, x_{1,2}, x_{1,3},\dots,x_{1,k},\dots = E_1.$$
+	$$g_2: x_{2,1}, x_{2,2}, x_{2,3},\dots,x_{2,k},\dots = E_2.$$
+	$$g_3: x_{3,1}, x_{3,2}, x_{3,3},\dots,x_{3,k},\dots = E_3.$$
+	$$ \vdots$$
+	$$g_m: x_{m,1}, x_{m,2}, x_{m,3},\dots,x_{m,k},\dots = E_m.$$
+	This array contains all elements of $S$.
+	We can rewrite $S = \bigcup_{n\in\mb N} E_n$ as follows: $S = \bigcup_{n\in\mb N} \bigcup_{m\in\mb N} g_n(m)$.
+	Define $f:\bigcup_{n\in\mb N} E_n \ra \mb N$ by
+	$ f(g_n(m)) = 10^{m+n} + m \implies f$ is 1-1 $\implies \bigcup E_n$ is countable.
+\end{proof}
+
 \end{document}
