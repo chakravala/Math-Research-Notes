@@ -591,7 +591,7 @@ Define two operations:
 	[HW Review] $ar+bs = 1 \implies \gcd(a,b) = 1$ since $d\mid a$ and $d\mid b$ and $d\mid 1 \implies \gcd(a,b) = 1$. However, $3\cdot 1 + 2\cdot(-1) = 1 \implies 3\cdot d + 2\cdot(-d) = d$.
 \end{example}
 
-\subsection{Grous: definition and examples}
+\subsection{Groups: definition and examples}
 
 \begin{definition}
 	A nonempty set $G$ with a binary operation $\circ$ is a \ul{group} if
@@ -643,5 +643,57 @@ Define two operations:
 \begin{definition}
 	The \ul{order} of a group $(G,\circ)$ is the size of the set $G$: $|G|$. There are finite groups with $|G|<\infty$ and infinite groups with $|G|=\infty$.
 \end{definition}
+
+\subsection{Basic properties of groups}
+
+\begin{proposition}
+	[Uniqueness of identity]
+	Each group has only one identity element.
+\end{proposition}
+\begin{proof}
+	Let $(G,\circ)$ be a group and suppose $e_1,e_2\in G$ both satisfy the identity axiom.
+	WTS: $e_1 = e_2$.
+	Consider $$e_1 = e_1\circ e_2 = e_2.$$
+\end{proof}
+\begin{proposition}
+	[Uniqueness of inverses]
+	Every element of a group has only one inverse.
+\end{proposition}
+\begin{proof}
+	Let $(G,\circ)$ be a group, $x\in G$ and $y_1,y_2\in G$ are inverses of $x$.
+	WTS: $y_1 = y_2$.
+	$$y_1= y_1\circ e =y_1\circ (x\circ y_2) = (y_1\circ x)\circ y_2 = e\circ y_2 = y_2.$$
+	\ul{Notation}: $x\inv$ is \ul{the} inverse of $x$.
+\end{proof}
+\begin{proposition}
+	Let $(G,\circ)$ be a group and $x\in G$. Then $(x\inv)\inv = x$.
+\end{proposition}
+\begin{proof}
+	We have $x\circ x\inv = x\inv \circ x = e$. So $x\circ a = a\circ x = e \implies x = a\inv = (x\inv)\inv$.
+\end{proof}
+\begin{proposition}
+	Let $(G,\circ)$ be a group and $x,y\in G$. Then $(x\circ y)\inv = y\inv \circ x\inv$.
+\end{proposition}
+\begin{remark}
+	If you put your socks on and then your shows, you do not take your socks off first but you have to reverse the order in which you undo.
+\end{remark}
+\begin{proof}
+	$(y\inv\circ x\inv)\circ(x\circ y) = y\inv\circ(x\inv\circ x)\circ y = y\inv\circ e\circ y = y\inv\circ y = e$.
+	
+	$(x\circ y)\circ(y\inv\circ x\inv) = x\circ(y\circ y\inv)\circ x\inv = x\circ e\circ x\inv = x\circ x\inv = e$.
+
+	So $y\inv\circ x\inv$ is the inverse of $x\circ y$.
+\end{proof}
+\begin{proposition}
+	[Cancellation laws]
+	Let $(G,\circ)$ be a group and $x,y,z\in G$. Then
+	\begin{enumerate}
+		\item $x\circ z = y\circ z \implies y = x$ (right cancellation)
+		\item $z\circ x = z\circ y \implies x = y$ (left cancellation)
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	(1): $x\circ z = y\circ z$. So $(x\circ z)\circ z\inv = (y\circ z)\circ z\inv$ and $x\circ(z\circ z\inv) = y\circ(z\circ z\inv)$ implies $x\circ e = y\circ e$. Thus $x = y$.
+\end{proof}
 
 \end{document}
