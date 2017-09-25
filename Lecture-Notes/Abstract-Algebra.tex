@@ -696,4 +696,58 @@ Define two operations:
 	(1): $x\circ z = y\circ z$. So $(x\circ z)\circ z\inv = (y\circ z)\circ z\inv$ and $x\circ(z\circ z\inv) = y\circ(z\circ z\inv)$ implies $x\circ e = y\circ e$. Thus $x = y$.
 \end{proof}
 
+\subsection{Powers of elements in a group}
+
+$$x\circ y \sim xy$$
+
+$G$ is a group, $x\in G$.
+Define the \ul{powers} of $x$ as follows:
+$x^0 = e$, for $n\in\mb N$: $x^n=\us{n}{xx\cdots x}$ and $x^{-n} = (x\inv)^n = \us{n}{x\inv x\inv\cdots x\inv}$.
+
+\begin{theorem}
+	Let $G$ be a group, $x,y\in G$, and $m,n\in\mb Z$.
+	\begin{enumerate}
+		\item $x^mx^n = x^{m+n}$
+			\begin{proof}
+				\ul{Case 1}: $m\geq 0$ and $n\geq 0$. $x^mx^n = \us{m}{xx\cdots x} \us{n}{xx\cdots x} = \us{m+n}{xx\cdots x} = x^{m+n}$.
+				
+				\ul{Case 2}: $m<0$ and $n<0$. Write $m = -m_0$ and $n=-n_0$ for $m_0,n_0\in\mb N$. Then $x^mx^n = x^{-m_0}x^{-n_0} = (x\inv)^{m_0} (x\inv)^{n_0} \os{\text{Case 1}}{=} (x\inv)^{m_0+n_0} = x^{-(m_0+n_0)} = x^{m+n}$.
+				
+				\ul{Case 3}: $m\geq 0$ and $n<0$. Write $n=-n_0$ for $n_0\in\mb N$.
+				$x^mx^n = x^mx^{-n_0} = \us{m}{x\cdots x}\us{n_0}{x\inv\cdots x\inv} = \otimes$.
+				\ul{Subcase A}: $m\geq n_0$. $\otimes = \us{m-n_0}{xx\cdots x} = x^{m-n_0} = x^{m+n}$.
+				\ul{Subcase B}: $m<n_0$. $\otimes = \us{n_0-m}{x\inv x\inv \cdots x\inv} = (x\inv)^{n_0-m} = x^{-(n_0-m)} = x^{m+n}$.
+
+				\ul{Case 4}: $m<0$ and $n\geq 0$. Similar to Case 3.
+			\end{proof}
+		\item $(x^n)\inv = (x\inv)^n$
+			\begin{proof}
+				\ul{Case 1}: $n\geq 0$. $(x^n)\inv = (\us{n}{xx\cdots x})\inv = \us{n}{x\inv x\inv \cdots x\inv} = (x\inv)^n$.
+
+				\ul{Case 2}: $n<0$. Write $n=-n_0$ for $n_0\in\mb N$. $(x^n)\inv = (x^{-n_0})\inv = (\us{n_0}{x\inv x\inv \cdots x\inv})\inv = \us{n_0}{(x\inv)\inv (x\inv)\inv\cdots(x\inv)\inv} = (x\inv)^{-n_0} = (x\inv)^n$.
+			\end{proof}
+		\item $(x^m)^n = x^{mn}$
+			\begin{proof}
+				\ul{Case 1}: $m\geq 0$ and $n\geq 0$. $(x^m)^n = \us{n}{\us{m}{xx\cdots x}\us{m}{xx\cdots x}\cdots\us{m}{xx\cdots x}} = \us{mn}{xx\cdots x} = x^{mn}$.
+				
+				\ul{Case 2}: $m<0$ and $n<0$. Write $m=-m_0$ and $n = -n_0$ for $m_0,n_0\in\mb N$. $(x^m)^n = (x^{-m_0})^{-n_0} = [(x\inv)^{m_0}]^{-n_0} = \{[(x\inv)^{m_0}]\inv\}^{n_0} = \{[(x\inv)\inv]^{m_0}\}^{n_0} = (x^{m_0})^{n_0} \os{\text{Case 1}}{=} x^{m_0n_0} = x^{mn}$.
+
+				\ul{Case 3}: $m<0$ and $n\geq 0$. Write $m=-m_0$ for $m_0\in\mb N$. $(x^m)^n = (x^{-m_0})^n = [(x\inv)^{m_0}]^n \os{\text{Case 1}}{=} (x\inv)^{m_0n} = x^{-m_0n} = x^{mn}$.
+
+				\ul{Case 4}: $m\geq 0$ and $n<0$. Write $n = -n_0$ for $n_0\in\mb N$. $(x^m)^n = (x^m)^{-n_0} = [(x^m)\inv]^{n_0} = [(x\inv)^m]^{n_0} = (x\inv)^{mn_0} = x^{-mn_0} = x^{mn}$.
+			\end{proof}
+		\item if $G$ is abelian, then $(xy)^n = x^ny^n$
+			\begin{proof}
+				\ul{Case 1}: $n=0$. $(xy)^n = (xy)^0 = e$ and $x^ny^n = x^0 y^0 = ee = e$.
+
+				\ul{case 2}: $n\geq 1$. Induction on $n$: \ul{Base}: $n=1$. $(xy)^1 = x^1 y^1$ and $xy = xy$. \ul{Induction step}: Assume $(xy)^n = x^n y^n$. WTS: $(xy)^{n+1} = x^{n+1} y^{n+1}$. So $(xy)^{n+1} \os{(1)}{=} (xy)^n(xy)^1 \os{\text{I.H.}}{=} x^n y^n xy \os{\text{abelian}}{=} x^n x y^n y \os{(1)}{=} x^{n+1}y^{n+1}$.
+
+				\ul{Case 3}: $n<0$. Write $n=-n_0$ for $n_0\in\mb N$. $(xy)^n = (xy)^{-n_0} = [(xy)\inv]^{n_0} = (y\inv x\inv)^{n_0} \os{\text{Case 2}}{=} (y\inv)^{n_0}(x\inv)^{n_0} = y^{-n_0} x^{-n_0} = y^nx^n \os{\text{abelian}}{=} x^ny^n$.
+			\end{proof}
+			\begin{example}
+				$(xy)^2 = x^2 y^2$ and $xyxy = xxyy$ and $yx = xy$.
+			\end{example}
+	\end{enumerate}
+\end{theorem}
+
 \end{document}
