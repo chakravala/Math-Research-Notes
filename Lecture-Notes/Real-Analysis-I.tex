@@ -856,4 +856,114 @@ $$ \bigcap_{\alpha\in A} E_\alpha = \{x\in \Omega: x\in E_\alpha \text{ \ul{for 
 	$ f(g_n(m)) = 10^{m+n} + m \implies f$ is 1-1 $\implies \bigcup E_n$ is countable.
 \end{proof}
 
+\begin{theorem}
+	Let $A$ be a countable set. Let $B_n:= \{(x_1,\dots,x_n):x_i\in A\}$.
+	Then $B_n$ is countable.
+\end{theorem}
+\begin{proof}
+	By induction. Since $A$ is countable, $B_1:= \{ x: x\in A\} = A$.
+	Suppose that $B_{k-1}$ is countable for $k \geq 2$. Then $B_k = B_{k-1}\times A = \{(x_1,\dots,x_{k-1},a): a\in A \text{ and } (x_1,\dots,x_{k-1})\in B_{k-1}\} = \bigcup_{a\in A} B_{k-1}\times \{a\}$ implies $B_k$ is countable as countable union of countable sets.
+	Therefore, $B_n$ is countable for any $n\in\mb N$.
+\end{proof}
+\begin{corollary}
+	$\mb Q$ is countable.
+\end{corollary}
+\begin{proof}
+	We will show: $\mb Q$ is a countable union of countable sets.
+	For fixed $n\in\mb N$, write $S_n:=\{\frac{m}{n}:m\in\mb Z\}$. Then $S_n$ is countable since $\mb Z$ is countable.
+	\ul{Claim}: $\mb Q = \bigcup_{n\in\mb N} S_n$.
+	
+	\ul{Proof of claim}: \say{$\subset$} Let $x\in\mb Q$. Then $x = \frac{m}{n}$ with $m,n\in\mb Z$ and $n\neq 0$.
+	If $n\in\mb N$, then $x = \frac{m}{n}\in S_n$, we're done.
+	If $-n\in\mb N$, then $x = \frac{m}{n} = \frac{-m}{-n} \implies x\in S_{-n\in\mb N} \implies x\in\bigcup_{n\in\mb N} S_n \implies \mb Q\subset\bigcup_{n\in\mb N} S_n$.
+
+	\say{$\supset$} Let $x\in\bigcup_{n\in\mb N} S_n$. Then $\exists n_0\in\mb N$ such that $x\in S_{n_0}$ i.e., $x=\frac{m}{n_0}$ for some $m\in\mb Z$. $\implies x\in\mb Q \implies \bigcup_{n\in\mb N}S_n\subset \mb Q$.	
+	So $\mb Q = \bigcup_{n\in\mb N} S_n$ - a \ul{countable union} of countable sets.
+	So $\mb Q$ is countable.
+\end{proof}
+
+\begin{theorem}
+	Let $A:=\{0,1\}^\mb N = \{f:\mb N\ra\{0,1\}\}$ set of all sequences of 0's and 1's.
+	Then $A$ is \ul{uncountable}.
+\end{theorem}
+\begin{proof}
+	We will use: If every countable subset of $A$ is a proper subset of $A$, then $A$ is uncountable.
+	(Otherwise, $A\subsetneq A$ - a contradiciton).
+	Let $E\subset A$ be a countable set. This means we can enumerate elements of $E$:
+	\begin{align*}
+		s_1&: 0,1,0,1,0,0,0,0,1,0,\dots \\
+		s_2&: 0,0,0,0,0,0,0,0,1,\dots \\
+		s_3&: 0,1,1,1,1,0,0,1,0,0,\dots \\
+			&\qquad\vdots \\
+		s_k&: 0,0,1,0,1,0,0,0,1,\dots
+	\end{align*}
+	- these are all elements of $E$.
+	We will construct an element $s^*\in A$ but $s^*\notin E$.
+	Define $$s^*(k) = 1-s_k(k) = \begin{cases} 1 & \text{if } s_k(k) = 0 \\ 0 & \text{if } s_k(k) = 1 \end{cases}.$$
+	Then $s^*$ is a sequence of 0's and 1's and hence $s^*\in A$.
+	By construction $s^*\notin s_k$ for all $k\in\mb N$ for at least in one place. $\implies s^*\in A$ but $s^*\notin E \implies E$ is a proper subset of $A$ since $E$ is arbitrary, $A$ must be uncountable. This is Cantor's diagonalization method.
+\end{proof}
+\begin{corollary}
+	$\mb R$ is uncountable.
+\end{corollary}
+\begin{proof}
+	Later in chapter using topology.
+\end{proof}
+
+\begin{theorem}
+	$(0,1)\subset \mb R$ is uncountable.
+\end{theorem}
+\begin{proof}
+	Let $E\subset (0,1)$ be countable. We will show $E\subsetneq (0,1)$.
+	Since $E$ is countable, elements of \ul{$E$ can be enumerated}. Also, elements of $E$ can be written as decimal expansion: Then
+	$$s_1: 0.a_{11}a_{12}a_{13}a_{14}\dots$$
+	$$s_2: 0.a_{21}a_{22}a_{23}a_{24}\dots$$
+	$$s_3: 0.a_{31}a_{32}a_{33}a_{34}\dots$$
+	$$ \vdots$$
+	$$s_k: 0.a_{k1}a_{k2}a_{k3}a_{k4}\dots$$
+	$$ \vdots $$
+	Construct $s^*\in(0,1)$ as follows: $s^* := 0.s_1^*s_2^*s_3^*\dots$ with $s_1^*\neq a_{11}, s_2^*\neq a_{22}, s_3^*\neq a_{33}, \dots, s_k^* \neq a_{kk}$ and $s_i^*\neq 9$ for all $i\in\mb N$.
+	Then $s^*\in(0,1)$ and $s^*\notin E$. So $E\subsetneq (0,1)$. Therefore $(0,1)$ is uncountable.
+\end{proof}
+
+\subsection{Metric spaces}
+
+\begin{definition}
+	[Metric] Let $X$ be any set. Then $\rho:X\times X\ra \mb R$ is a metric if it satisfies the following:
+	\begin{enumerate}
+		\item[(i)] $\rho(a,b)>0$ for all $a,b\in X$ and $\rho(a,b) = 0 \Llr a= b$.
+		\item[(ii)] $\rho(a,b) = \rho(b,a)$ - symmetric.
+		\item[(iii)] $\rho(a,b)\leq \rho(a,c) + \rho(c,b)$ - triangle inequality.
+	\end{enumerate}
+\end{definition}
+\begin{example}
+	$X = \mb R$ and $\rho(a,b) = |a-b|_\mb R$.
+\end{example}
+\begin{example}
+	$X = \mb C$ and $\rho(z,w) = |z-w|_\mb c = [(z-w)\conj{(z-w)}]^{\frac{1}{2}}$.
+\end{example}
+\begin{example}
+	$X = \mb R^k$ with $\vx = (x_1,\dots,x_k),\vy = (y_1,\dots,y_k)$ and $\rho(\vx,\vy) = |\vx - \vy|_{\mb R^k} = \left( \sum_{i=1}^k (x_i-y_i)^2 \right)^{\frac{1}{2}}$.
+\end{example}
+\begin{example}
+	$X$ be any set and define $\rho(x,y) = \begin{cases} 1 & \text{if } x\neq y \\ 0 & \text{if } x = y \end{cases}$ - discrete metric. Verify $\rho$ is a metric.
+\end{example}
+\begin{definition}
+	[Convex set] Let $E\subset\mb R^k$. Then $E$ convex if $\lambda\vx + (1-\lambda)\vy \in E,\ \forall\vx,\vy\in E$ and $\forall \lambda\in[0,1]$.
+\end{definition}
+\begin{example}
+	Open ball in $\mb R^k$: $B_r(\vx) := \{ \vy\in\mb R^k : |\vx-\vy|<r \}$ - ball centered at $\vx$ with radius $r>0$.
+	
+	\ul{Claim}: $B_r(\vx)$ is convex.
+	\begin{proof}
+		Let $\vy,\vz\in B_r(\vx)$ and $\lambda\in[0,1]$.
+		Want to show: $\lambda\vy + (1-\lambda)\vx\in B_r(\vx)$.
+		\begin{align*}
+			|\lambda\vy + (1-\lambda)\vz - \vx|_{\mb R^k} &\os{?}{<} r \\
+														  &= | \lambda\vy + \vz - \lambda\vz - \vx| \\
+						&= |\lambda\vy -\lambda\vx +\lambda\vx +\vz -\lambda\vz -\vx|
+		\end{align*}
+	\end{proof}
+\end{example}
+
 \end{document}
