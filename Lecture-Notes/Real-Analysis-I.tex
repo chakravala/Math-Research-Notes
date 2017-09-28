@@ -952,18 +952,95 @@ $$ \bigcap_{\alpha\in A} E_\alpha = \{x\in \Omega: x\in E_\alpha \text{ \ul{for 
 	[Convex set] Let $E\subset\mb R^k$. Then $E$ convex if $\lambda\vx + (1-\lambda)\vy \in E,\ \forall\vx,\vy\in E$ and $\forall \lambda\in[0,1]$.
 \end{definition}
 \begin{example}
-	Open ball in $\mb R^k$: $B_r(\vx) := \{ \vy\in\mb R^k : |\vx-\vy|<r \}$ - ball centered at $\vx$ with radius $r>0$.
+	Open ball in $\mb R^k$: $B_r(\vx) := \{ \vy\in\mb R^k : |\vx-\vy|<r \}\subset \mb R^k$ - ball centered at $\vx$ with radius $r>0$.
 	
-	\ul{Claim}: $B_r(\vx)$ is convex.
+	\ul{Claim}: $B_r(\vx)$ is convex so that $\lambda\vy + (1-\lambda)\vz\in B_r(\vx)$ for all $\vy,\vz\in B_r(\vx)$ and $0\leq \lambda\leq 1$.
 	\begin{proof}
-		Let $\vy,\vz\in B_r(\vx)$ and $\lambda\in[0,1]$.
-		Want to show: $\lambda\vy + (1-\lambda)\vx\in B_r(\vx)$.
+		Let $\vy,\vz\in B_r(\vx)$ and $\lambda\in[0,1]$. Then
 		\begin{align*}
-			|\lambda\vy + (1-\lambda)\vz - \vx|_{\mb R^k} &\os{?}{<} r \\
-														  &= | \lambda\vy + \vz - \lambda\vz - \vx| \\
-						&= |\lambda\vy -\lambda\vx +\lambda\vx +\vz -\lambda\vz -\vx|
+			|\vx -(\lambda\vy + (1-\lambda)\vz)|_{\mb R^k} &\os{?}{<} r \\
+			&= | \vx - \lambda\vy - \vz + \lambda\vz +\lambda\vx - \lambda\vx| \\
+		 	&= |(\vx - \vz) + \lambda(\vx -\lambda\vy) +\lambda(\vx +\vz)| \\
+			&= |(1-\lambda)(\vx-\vz) + \lambda(\vx-\vy)| \\
+			&\os{\Delta}{\leq} (1-\lambda)|\vx-\vz|_{\mb R^k} + \lambda|\vx-\vy|_{\mb R^k} \\
+			&\leq (1-\lambda)r + \lambda r = r \implies \lambda\vy + (1-\lambda)\vz\in B_r(\vx)
 		\end{align*}
+		Thus $B_r(\vx)$ is convex.
 	\end{proof}
 \end{example}
+
+\begin{definition}
+	[Neighborhood] $N_r(x) = \{y\in X: \rho(x,y)<r\}$.
+\end{definition}
+\begin{definition}
+	[Limit point] $p$ is a limit point of $E$ if $\forall r>0$, there exists $q\in E\subset X$ such that $q\in N_r(p)\backslash\{p\}$.
+\end{definition}
+\begin{example}
+	$X = (\mb R,\us{\rho}{|\cdot|})$ and $E:= \{\frac{1}{n}:n\in\mb N\}\subset\mb R$.
+	If $e\in E$, then $e = \frac{1}{n}$ for some $n\in\mb N$.
+	Take $r:= \min\{\frac{1}{n}-\frac{1}{n+1},\frac{1}{n-1}-\frac{1}{n}\}$.
+	Then $N_r(e)$ does not contain any point of $E$. $\implies E$ does not contain any limit point of $E$.
+	But $x=0$ is a limit point of $E$. Indeed, let $r\in(0,1)$. Then $N_r(0)i$ contains points of $E$.
+\end{example}
+\begin{remark}
+	Limit points of a set do not necessarily belong to $E$.
+\end{remark}
+\ul{Notation}: $E':=$ set of all limit points of $E$.
+\begin{definition}
+	[Closed set] $E$ is closed if $E'\subset E$.
+\end{definition}
+\begin{definition}
+	[Interior point] A point $p\in E$ is interior if $\exists r$ such that $N_r(p)\subset E$.
+\end{definition}
+\ul{Notation}: $E^\circ := $ set of all interior points of $E$.
+\begin{definition}
+	[Open set] If every point is an interior point. i.e., $E^\circ = E$.
+\end{definition}
+
+$(X,\rho)$ is a metric space.
+
+\begin{theorem}
+	Every neighborhood in $X$ is an open set.
+\end{theorem}
+\begin{proof}
+	Let $p\in X$ and let $N_r(p)$ be a neighborhood of $p$ in $X$.
+	\ul{Want to show}: Every point of $N_r(p)$ is an interior point of $N_r(p)$.
+	Let $q\in N_r(p)\backslash\{p\}$. Then $\rho(p,q)<r$. So let $h = r-\rho(p,q)$.
+	Then $N_h(q)\subset N_r(p)$. Indeed, if $s\in N_h(q)$, then $\rho(q,s)<h$, so $\rho(s,p) \os{\Delta}{\leq} \rho(s,q)+\rho(q,p) < h+ \rho(q,p) = r-\rho(p,q)+\rho(p,q) = r \implies \rho(s,p) < r \implies s\in N_r(p) \implies N_h(q) \subset N_r(p)$.
+	So $N_r(p)$ is open.
+\end{proof}
+
+\begin{theorem}
+	If $p$ is a limit point of $E\subset (X,\rho)$, then every neighborhood of $p$ contains infinitely many points of $E$.
+\end{theorem}
+\begin{proof}
+	By construction via induction. Since $p\in E'$, for any $r>0$ (fixed), $\exists e_1\in E$ and $e_1\in N_r(p)\backslash\{p\}$.
+	Take $r_1 := \rho(p,e_1)$. Then $\exists e_2\in E$ and $\rho_2\in N_{r_1}(p)\backslash\{p\}$ and $e_1\neq e_2$.
+	If $e_1,\dots,e_n$ are chosen, take $r_n:=\rho(p,e_n)$. Then $\exists e_{n+1}\in E$ and $e_{n+1}\in N_{r_n}(p)\backslash\{p\}$ and $e_{n+1}\neq e_i$ for all $i=1,\dots, n$.
+	By induction, $\exists \{e_n\}_{n=1}^\infty\in E$ such that $\{e_n\}_{n=1}^\infty \subset N_r(p)\backslash\{p\}$.
+\end{proof}
+\begin{proof}
+	\ul{Book}: By contradiction.
+	Suppose $\exists r>0$ such that $N_r(p)$ contains finitely many points, say $q_1,\dots,q_n\in E$ such that $q_i\neq p$.
+	Take $r_0 = \us{1\leq i \leq n}{\min} \rho(p,q_i) > 0$, since $p\neq q_i$.
+	Then $N_{r_0}(p) = \{p\}$ - a contradiction that $p$ is a limit point of $E$. This proves the theorem.
+\end{proof}
+
+\begin{theorem}
+	A set $E$ is open $\Llr E^c$ is closed.
+\end{theorem}
+\begin{proof}
+	\say{$\Lla$} Suppose $E^c$ is closed. Let $x\in E$.
+	\ul{Want to show}: $\exists r>0$ such that $N_r(x)\subset E$.
+	Clearly $x\notin E^c$. So $x$ is not a limit point of $E^c$.
+	Hence $\exists r>0$ such that $N_r(x)\cap E^c = \emptyset$.
+	$\implies N_r(x) \subset E \implies E$ is open.
+
+	\say{$\implies$} Suppose $E$ is open. We want to show $F=E^c$ is closed i.e., $F'\subset F$.
+	Let $x\in F'$. Then $\forall r>0$, there exists $y\in F$ such that $y\in N_r(x)\backslash\{x\}$.
+	$\implies y\in N_r(x)$ but $y\notin E$ because $y\in E^c$.
+	$\implies N_r(x)\not\subset E \implies x$ is not an interior point of $E$ (open).
+	$\implies x\notin E \implies x\in E^c$
+\end{proof}
 
 \end{document}
