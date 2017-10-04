@@ -1043,4 +1043,96 @@ $(X,\rho)$ is a metric space.
 	$\implies x\notin E \implies x\in E^c$
 \end{proof}
 
+\ul{HW 5 due on 10/17/2017} Test 2, Saturday 10/28/2017. 11am - 1pm. Not meeting 10/10 and 10/12.
+
+\begin{theorem}
+	[de Morgan's law]
+	Let $\{E_\alpha\}_{\alpha\in A}$ be a collection of subsets of $X$ and $A$ be any set.
+	Then $\left( \bigcup_{\alpha\in A} E_\alpha\right)^c = \bigcap_{\alpha\in A} E_\alpha^c$. \ul{Eg}: $(A\cup B)^c = A^c\cap B^c$.
+\end{theorem}
+\begin{proof}
+	\say{$\subset$} Let $x\in\left(\bigcup_{\alpha\in A} E_\alpha\right)^c$. Then $x\notin \bigcup_{\alpha\in A} E_\alpha \implies x \notin E_\alpha$  \ul{for all $\alpha\in A$}.
+	$\implies x\in E_\alpha^c$ for all $\alpha\in A$. $\implies x\in \bigcap_{\alpha\in A} E_\alpha^c \implies \left(\bigcup_{\alpha\in A} E_\alpha\right)^c \subset \bigcap_{\alpha\in A} E_\alpha^c$.
+	\say{$\supset$} Let $x\in \bigcap_{\alpha\in A} E_\alpha^c$. $\implies \in E_\alpha^c$ for all $\alpha \in A \implies x\notin E_\alpha$ for all $\alpha \in A \implies x\notin \bigcup_{\alpha\in A} E_\alpha \implies x\in\left( \bigcup E_\alpha \right)^c \implies \bigcap_{\alpha\in A} E_\alpha^c \subset(\bigcup E_\alpha )^c$.
+	$\implies \left(\bigcup_{\alpha\in A}E_\alpha\right)^c = \bigcap_{\alpha\in A} E_\alpha^c$.
+\end{proof}
+
+\begin{theorem}
+	Let $(X,\rho)$ be a metric space and $A$ be a set of indices. Then
+	\begin{enumerate}
+		\item[(i)] $\{G_\alpha\}_{\alpha\in A}$ open $\implies \bigcup_{\alpha\in A} G_\alpha$ is open.
+			\begin{proof}
+				Let $x\in \bigcup_{\alpha\in A} G_\alpha$ be arbitrary.
+				\ul{WTS}: $x$ is an interior point of $\bigcup_{\alpha\in A} G_\alpha$ i.e., $\exists r>0$ such that $N_r(x)\subset \bigcup_{\alpha\in A} G_\alpha$.
+				$x\in\bigcup_{\alpha\in A}G_\alpha \implies \exists \alpha_0\in A$ such that $x\in G_{\alpha_0}$.
+				$G_{\alpha_0}$ open $\implies \exists r_{\alpha_0}>0$ such that $N_{r_{\alpha_0}}(x)\subset G_{\alpha_0} \subset \bigcup_{\alpha\in A} G_\alpha$.
+				$\implies x$ an interior point of $\bigcup_{\alpha\in A} G_\alpha$ and hence $\bigcup_{\alpha\in A} G_\alpha$ is open.
+			\end{proof}
+		\item[(ii)] $\{F_\alpha\}_{\alpha\in A}$ closed $\implies \bigcap_{\alpha\in A} F_\alpha$ is closed.
+			\begin{proof}
+				Note that $\bigcap_{\alpha\in A} F_\alpha = \left(\bigcup F_\alpha^c)\right)^c$ is closed, since $F_\alpha^c$ open and $\bigcup F_\alpha^c$ is open by (i).
+			\end{proof}
+		\item[(iii)] If $G_1,\dots,G_n$ is open then $\bigcap_{i=1}^n G_i$ is open.
+			\begin{proof}
+				Let $G_1,\dots,G_n$ be open.
+				\ul{Want to show}: $\bigcap_{i=1}^n G_i$ is open i.e., every point of $\bigcap_{i=1}^n G_i$ is an interior point.
+				Let $x\in\bigcap_{i=1}^n G_i$ be arbitrary. $G_i$ open $\implies\exists r_i>0$ such that $N_{r_i}(x)\subset G_i$ for all $i=1,\dots,n$.
+				Take $r=\us{1\leq i\leq n}{\min} r_i>0$ since $r_i>0$ and $i=1,\dots,n$.
+				Then $N_r(x) = \bigcap_{i=1}^n N_{r_i}(x)\subset G_i$ for every $i=1,\dots n \implies N_r(x)\subset\bigcap_{i=1}^n G_i \implies x$ is an interior point of $\bigcap_{i=1}^n G_i \implies \bigcap_{i=1}^n G_i$ is open.
+			\end{proof}
+		\item[(iv)] If $F_1\dots,F_n$ is closed then $\bigcup_{i=1}^n F_i$ is closed.
+	\end{enumerate}
+\end{theorem}
+\begin{remark} Counter examples:
+	\begin{enumerate}
+		\item Intersection of infinitely many open sets need not be open.
+			\begin{example}
+				Take $X = \mb R$ with $\rho(x,y) = |x-y|$.
+				Take $G_n := (-\frac{1}{n},\frac{1}{n})$ - open for all $n\in\mb N$.
+				But $\bigcap_{i=1}^\infty G_i \os{?}{=} \{0\}$ - closed (a set with finitely many elements is closed).
+				Clearly $\{0\}\subset \bigcap_{i=1}^\infty G_i \checkmark$.
+				\say{$\subset$} Let $x\in\bigcap{i=1}^\infty G_i$.
+				$x\in\mb R$ (an ordered field), so we need to show $x\neq 0$.
+				Let $x>0$. Then by Archimedean principle, $\exists n_0\in\mb N$ such that $n_0 x>1$ i.e., $x>\frac{1}{n_0}$, a contradiction to $x<\frac{1}{n}$ for every $n\in\mb N$. So $x\ngtr 0$.
+				Let $x<0$. Then $-x>0$. By Archimedean principle, $\exists n_1\in\mb N$ such that $n_1(-x) >1$ i.e., $x<-\frac{1}{n_1}$, a contradiction to $x>-\frac{1}{n}$ for every $n\in\mb N$.
+				So $x = 0 \implies \bigcap_{i=1}^\infty G_i = \{0\}$.
+			\end{example}
+		\item Union of infinitely many closed sets may not be closed.
+			\begin{example}
+				$\bigcup_{n\in\mb N}[-1+\frac{1}{n},1-\frac{1}{n}] = (-1,1)\subset\mb R$ open, and $[-1+\frac{1}{n},1-\frac{1}{n}]$ is closed $\forall n\in\mb N$.
+			\end{example}
+	\end{enumerate}
+\end{remark}
+
+\begin{recall}
+	$E' = $ set of limit points of $E$. (Eg: $E = \{\frac{1}{n}\}_{n\in\mb N}$, $E' = \{0\}$.). $\conj{E} = E\cup E'$ = closure of $E$.
+\end{recall}
+\begin{theorem}
+	Let $E\subset(X,\rho)$. Then
+	\begin{enumerate}
+		\item[(a)] $\conj E$ is closed.
+			\begin{proof}
+				We will show $(\conj E)^c$ is open. Let $x\in (\conj E)^c$ be arbitrary. $\implies x\notin \conj E = E\cup E' \implies x\notin E$ and $x\notin E'$, $x$ not a limit point of $E$.
+				$\implies \exists r>0$ such that $N_r(x)\cap (E\cup E') = \{x\}$ but $x\notin E$ and $x\notin E'$, so $N_r(x)\cap \conj E = \emptyset$.
+				$\implies N_r(x)\subset (\conj E)^c \implies x$ is an interior point of $E$. $\implies (\conj E)^c$ is open $\implies \conj E$ is closed.
+			\end{proof}
+		\item[(b)] $E = \conj E \Llr E$ is closed.
+			\begin{proof}
+				\say{$\implies$} by (a).
+				\say{$\Lla$} Suppose $E$ is closed.
+				\ul{Want to show}: $E\subset \conj E\checkmark$ and $\conj E\subset E$.
+				Since $E$ is closed, $E'\subset E$. Then $\conj E = E\cup E'\subset E\cup E = E$. Therefore $\conj E = E$.
+			\end{proof}
+		\item[(c)] $\conj E\subset F$ for every closed set $F\subset X$ containing $E$ or $E\subset F$ ($\conj E$ is the smallest \ul{closed} set containing $E$).
+			\begin{proof}
+				Let $F\subset X$ be closed and $E\subset F$.
+				\ul{WTS}: $\conj E \subset F$.
+				$F\subset X$ closed $\implies F'\subset F = \conj F$. Since $E\subset F$, we just need to show that $E'\subset F$.
+				Let $x\in E'$. Then $\exists r>0$ such that $N_r(x)\cap (E\backslash\{x\})\neq \emptyset$.
+				That implies that $N_r(x)\cap(F\backslash\{x\}(\neq \emptyset$ (since $E\subset F$).
+				That means that $x$ is a limit point of $F$ i.e., $x\in F' \implies x\in F'\cup F = F \implies \conj E \subset F$.
+			\end{proof}
+	\end{enumerate}
+\end{theorem}
+
 \end{document}
