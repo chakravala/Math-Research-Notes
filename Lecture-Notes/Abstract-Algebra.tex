@@ -900,5 +900,56 @@ Group is cyclic $\implies$ every (proper) subgroup is cyclic, but the converse i
 	$G = \mb Z_6$. Then $o([0]) = 1$, $o([1]) = 6$ since $<[1]> = \mb Z_6$, $o([2]) = 3$ since $<[2]> = \{[0],[2],[4]\}$, $o([3]) = 2$ since $<[3]> = \{[0],[3]\}$, $o([4]) = 3$ since $<[4]> = \{[0],[4],[2]\} = <[2]>$, $o([5]) = 6$ since $<[5]> = \{[0],[5],[4],[3],[2],[1]\}$.
 \end{example}
 
+\section{Permutation groups}
+
+\begin{definition}
+	A \ul{permutation} of a set $X$ is a bijective mapping $\pi: X\ra X$.
+\end{definition}
+\begin{example}
+	$X = \{A,B,C\}$. $\text{id}_X = \left(\mat{A&B&C\\A&B&C}\right)$, then $\rho_1 = \left(\mat{A&B&C \\ B&C&A}\right)$, then $\rho_2 = \left(\mat{A&B&C\\C&A&B} \right)$, then $\mu_1 = \left(\mat{A&B&C\\A&C&B}\right)$, then $\mu_2 = \left( \mat{A&B&C\\C&B&A}\right)$, and $\mu_3 = \left(\mat{A&B&C\\B&A&C}\right)$.
+\end{example}
+\ul{Notation}: $S_X$ is the set of all permutations of $X$.
+
+\begin{theorem}
+	The set $S_X$ is a group (\ul{symmetric group}) with respect to the operatoin of composition of permutation mappings.
+\end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item We have a binary operation on $S_X$. Permutation $\circ$ permutation = permutation because bijective $\circ$ bijective = bijective.
+		\item Operation is associative: Composition of mappings is associative.
+		\item $e = \text{id}_X$: $\text{id}_X \circ \pi = \pi\circ \text{id}_X = \pi$.
+		\item Let $\pi\in S_X \implies \exists$ inverse mapping $\pi\inv: X\ra X$ bijective $\implies \pi\inv\in S_X$. So $\pi\circ\pi\inv = \pi\inv\circ\pi = \text{id}_x = e$. So $\pi\inv$ is the group inverse.
+	\end{enumerate}
+\end{proof}
+
+If $|X|<\infty$, write $X = \{1,2,\dots,n\}$ and $S_X\ra S_n \ra$ symmetric group on $n$ letters, then $|S_n| = n!$.
+
+\begin{definition}
+	A \ul{permutation group} is a subgroup of a symmetric group.
+\end{definition}
+\begin{example}
+	Look at $S_4$. $\sigma = \left(\mat{1&2&3&4\\4&1&2&3}\right)$, $\tau = \left( \mat{1&2&3&4 \\ 2&1&4&3}\right)$. Compute composition of mappings goes from right to left: $\sigma \tau  = \left(\mat{1&2&3&4\\1&4&3&2}\right)$, $\tau\sigma = \left( \mat{1&2&3&4\\3&2&1&4}\right)$. So $\sigma\tau \neq \tau\sigma$.
+\end{example}
+
+\begin{definition}
+	A permutation $\sigma\in S_X$ is a \ul{cycle of length $k$} (or \ul{$k$-cycle}) if:
+	\begin{enumerate}
+		\item there exist distinct elements $a_1,a_2,\dots,a_k\in X$ such that 
+			$$\sigma(a_1) = a_2, \sigma(a_2) = a_3,\dots,\sigma(a_k) = a_1$$
+		\item $\sigma(x) = x$ for all $x\in X\backslash\{a_1,a_2,\dots,a_k\}$.
+	\end{enumerate}
+	\ul{Notation}: $\sigma = (a_1\,a_2\,\cdots\,a_k)$.
+\end{definition}
+\begin{example}
+	Consider $S_6$.
+
+	$\sigma = \left(\mat{1&2&3&4&5&6\\5&6&2&4&3&1}\right) = (1\,5\,3\,2\,6)$ is a 5-cycle. 
+	
+	$\tau = \left(\mat{1&2&3&4&5&6\\1&5&3&2&4&6}\right) = (2\,5\,4)$ is a 3-cycle.
+
+	$\pi = \left(\mat{1&2&3&4&5&6\\2&1&4&3&5&6}\right) = (1\,2)(3\,4)$ not a cycle.
+\end{example}
+
 \end{document}
 

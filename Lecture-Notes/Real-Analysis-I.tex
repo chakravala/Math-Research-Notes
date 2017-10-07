@@ -1135,4 +1135,81 @@ $(X,\rho)$ is a metric space.
 	\end{enumerate}
 \end{theorem}
 
+\ul{Exam question groups}
+\begin{enumerate}
+	\item \ul{Allan}, Maribeth, Uyeong, Stephen
+	\item \ul{Keri}, Daniel, Michael, Nathan
+	\item \ul{Cole}, Philip, Anurag, Ellie
+\end{enumerate}
+\ul{From each group}:
+\begin{itemize}
+	\item 6 Easy - Definitions, statements, examples, and 2-3 liners
+	\item 5 Medium - Important short results (proof), problems from exercises
+	\item 4 Difficult - Involved problems (from exercises or other wise)
+\end{itemize}
+Due on \ul{\ul{17$^\text{th}$}}.
+Free to use up to Thm 2.42, up to \#16 (Exercises).
+
+\ul{Relative open sets}
+Let $X$ be a metric space, $E\subset X$ open if for each $e\in E$, $\exists r_e>0$ such that $N_r(e) = \{x\in X:\rho(x,e)<r_e\} \subset E$.
+If $E\subset Y\subset X$, then we say \ul{$E$ is open in} $Y$ if for each $e\in E$, $\exists r_e>0$ such that $N_{r_e}^Y(e) := \{y\in \ul{\ul{Y}}:\rho(y,e)< r_e\} \subset E$.
+
+\begin{theorem}
+	Let $Y\subset X$, where $X$ is a metric space. Then $E\subset Y$ is open relative to $Y \Llr E = Y\cap G$ for some open set $G$ in $X$.
+\end{theorem}
+\begin{example}
+	$X = \mb R$ and $Y = [0,1]$. Then $(\frac{1}{2},1] = [0,1]\cap(\frac{1,2},2)$ is open in $[0,1]$ but not open in $\mb R$.
+\end{example}
+\begin{proof}
+	\say{$\implies$} Suppose $E\subset Y$ is open relative to $Y$.
+	\ul{\ul{NTS}}: $\exists$ an open set $G$ of $X$ such that $E = Y\cap G$.
+	Since $E$ is open relative to $Y$, for each $e\in E$, $\exists r_e>0$ such that $N_{r_e}^Y(e) \subset E$.
+	Set $G: = \bigcup_{e\in E} V_e$, where $V_e = N_r(e)$ open neighborhood of $e$ in $X$.
+	$\implies G$ is open in $X$.
+	\ul{We need to show}: $E = Y\cap G$.
+	\say{$\subset$}: $E\subset Y$ (given). We only need to show $E\subset G$.
+	Let $e\in E$. Then $e\in V_e$ and so $e\in \bigcup_{e\in E} V_e = G$.
+	So $E\subset Y\cap G$.
+	\say{$\supset$} $Y\cap G = Y\cap\left(\bigcup_{e\in E} V_e\right) = \bigcup_{e\in E} (V_e \cap Y) \subset E$ by definition of relative open sets, since $V_e$ is neighborhood of $X$ and $V_d\cap Y$ is neighborhood of $e$ in $Y$.
+	$\implies Y\cap G = E$.
+
+	\say{$\Lla$} Suppose $\exists G$ open in $X$ such that $E = Y\cap G$. We will show $E$ is open in $Y$.
+	Let $e\in E$, NTS: $e$ is an interior point of $E$ of $E$).
+	Then $e\in Y\cap G$. But $G$ is open in $X$, so $\exists r>0$ such that $N_r(e) \subset G$.
+	$\implies N_r(e)\cap Y\subset G\cap Y = E$.
+	Therefore $e$ is an interior point of $E$ and $E$ is open in $Y$.
+\end{proof}
+
+\subsection{Compact sets}
+$(X,\rho)$ metric space is $X^{m.s.}$.
+\begin{definition}
+	[Open cover] Let $\{G_\alpha\}$ be collection of open sets of $X$ and $E\subset X$.
+	We say that $\{G_\alpha\}$ is an open covering of $E$ if $E\subset\bigcup_\alpha G_\alpha$.
+\end{definition}
+\begin{remark}
+	Fitting people under umbrellas in the rain (umbrella neighborhood).
+\end{remark}
+\begin{definition}
+	[Compact set] $E\subset X$ is a compact set if \ul{every} open cover of $E$ has a \ul{finite} subcover of $E$ i.e., if $\{G_\alpha\}$ is an open cover of $X$, $\exists \alpha_1,\dots,\alpha_n$ such that $E\subset \bigcup_{i=1}^n G_{\alpha_i}$.
+\end{definition}
+
+\begin{theorem}
+	Suppose $K\subset Y\subset X$. Then $K$ is compact relative to $X \Llr K$ is compact relative to $Y$.
+\end{theorem}
+\begin{proof}
+	\say{$\implies$} Suppose $K$ is compact relative to $X$.
+	\ul{\ul{NTS}}: $K$ is compact relative to $Y$. Suppose $\{V_\alpha\}_\alpha$ be an open cover of $K$ with \ul{$V_\alpha$ open in $Y$}.
+	This means $V_\alpha = Y\cap G_\alpha$ for some open set $G_\alpha$ in $X$, for each $\alpha$.
+	We have $K\subset\bigcup_\alpha V_\alpha = \bigcup_\alpha (Y\cap G_\alpha) = Y\cap \left(\bigcup_\alpha G_\alpha\right) \subset \bigcup_\alpha G_\alpha \implies \{G_\alpha\}$ is an open cover of $K$ in $X$. But $K$ is compact in $X$, $\exists \alpha_1,\dots,\alpha_n$ such that $K\subset \bigcup_{i=1}^n G_{\alpha_i}$.
+	Since $K\subset Y$, $K\subset \left( \bigcup_{i=1}^n G_{\alpha_i} \right) \cap Y = \bigcup_{i=1}^n (G_{\alpha_i} \cap Y) = \bigcup_{i=1}^n V_{\alpha_i} \implies K$ has a finite subcover in $Y$.
+	So $K$ is compact in $Y$.
+
+	\say{$\Lla$} Suppose $K$ is compact in $Y$.
+	\ul{\ul{NTS}}: $K$ is compact in $X$.
+	Let $\{G_\alpha\}$ be an open cover of $K$ in $X$, so $G_\alpha$ open in $X$ i.e., $K\subset \bigcup G_\alpha$.
+	Take $V_\alpha = Y\cap G_\alpha$ - open in $Y$.
+	Then $\bigcup V_\alpha = \bigcup (Y\cap G_\alpha) = Y\cap\left( \bigcup_\alpha G_\alpha\right) = Y\cap \left( \bigcup_\alpha G_\alpha \right) \supset K$ and $K\subset Y \implies \{V_\alpha\}$ an open cover of $K$ in $Y$.
+	But $K$ compact in $Y$, so $\exists \alpha_1,\dots,\alpha_n$ such that $K\subset \bigcup_{i=1}^n V_{\alpha_i} = \bigcup_{i=1}^n (Y\cap G_{\alpha_i}) = Y\cap \left( \bigcup_{i=1}^n G_{\alpha_i} \right) \subset \bigcup_{i=1}^n G_{\alpha_i} \implies K$ is compact in $X$.
+\end{proof}
+
 \end{document}
