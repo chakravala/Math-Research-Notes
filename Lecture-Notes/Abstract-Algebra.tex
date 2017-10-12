@@ -951,5 +951,55 @@ If $|X|<\infty$, write $X = \{1,2,\dots,n\}$ and $S_X\ra S_n \ra$ symmetric grou
 	$\pi = \left(\mat{1&2&3&4&5&6\\2&1&4&3&5&6}\right) = (1\,2)(3\,4)$ not a cycle.
 \end{example}
 
+\begin{definition}
+	Two cycles $\sigma = (a_1\, a_2\,\cdots\, a_k)$ and $\tau = (b_1\,b_2\,\cdots\,b_m)$ are \ul{disjoin} if $\{a_1,a_2,\dots,a_k\}\cap \{b_1,b_2,\dots,b_m\} = \emptyset$.
+\end{definition}
+
+\begin{proposition}
+	Disjoint cycles commute.
+\end{proposition}
+\begin{proof}
+	Let $\sigma = (a_1\,a_2\,\dots\,a_k)\in S_X$ and $\tau = (b_1\,b_2\,\dots\,b_k)\in S_X$ be such that $A\cap B = \{a_1,a_2,\dots,a_k\}\cap \{b_1,b_2,\dots,b_m\} = \emptyset$.
+	WTS: $\sigma\tau = \tau\sigma \ra$ need to show: $\sigma\tau(x) = \tau\sigma(x)$ for all $x\in X$.
+
+	\ul{Case 1}: $x\notin A$ and $x\notin B$. Then $\sigma(x) = x$ and $\tau(x) = x$ so $\sigma\tau(x) = \sigma(\tau(x)) = \sigma(x) = x$. Conversely, $\tau\sigma(x) = \tau(\sigma(x)) = \tau(x) = x$.
+
+	\ul{Case 2}: $x\in A$ and $x\notin B$. Then $x = a_i$ for some $1\leq i\leq k$, and $\sigma(x) = \sigma(a_i) = a_{i+1\pmod k}\in A$ and $\tau(x) = x$. So $\sigma\tau(x) = \sigma(\tau(x)) = \sigma(x) = a_{i+1\pmod k}$. Conversely, $\tau\sigma(x) = \tau(\sigma(x)) = \tau(a_{i+1\pmod k}) = a_{i+1\pmod k}\in A$ and not in $B$.
+
+	\ul{Case 3}: $x\in A$ and $x\notin B$. Similar to Case 2.
+
+	\ul{Case 4}: $x\in A$ and $x\in B$. Impossible.
+\end{proof}
+
+\begin{theorem}
+	Every permutation in $S_n$ can be expressed \ul{uniquely} as a product of disjoint cycles.
+\end{theorem}
+\begin{example}
+	$\left(\mat{1&2&3&4&5&6&7&8\\3&5&7&4&2&8&1&6}\right) = (1\,3\,7)(2\,5)(6\,8) = (6\,8)(1\,3\,7)(2\,5)$
+\end{example}
+\begin{definition}
+	A \ul{transposition} is a cycle of length 2.
+\end{definition}
+\begin{proposition}
+	Every permutation in $S_n$ is a product of transpositions.
+\end{proposition}
+\begin{proof}
+	Let $\sigma\in S_n$, then $\sigma = \prod$ cycles $\os{\text{WTS}}{\lla} \prod$ transpositions.
+	
+	Consider $(a_1\,a_2\,\dots\,a_k) = (a_1\,a_k)(a_1\,a_{k-1})\cdots(a_1\,a_3)(a_1\,a_2)$, not unique.
+\end{proof}
+\begin{example}
+	$\left(\mat{1&2&3&4&5&6\\6&5&2&4&3&1}\right) = (1\,6)(2\,5\,3) = (1\,6)(2\,3)(2\,5)$
+\end{example}
+
+$\sigma\in S_n$, $\sigma = \tau_1\,\tau_2\,\dots,\tau_k$ product of transpositions.
+So $\sigma$ is $\begin{cases} \text{\ul{even}} & \text{if $k$ is even} \\ \text{\ul{odd}} & \text{if $k$ is odd} \end{cases}$ is false, instead parity remains the same in \ul{every} presentation of $G$ as a product of transpositions. Efficient proof is using the group action concept.
+
+Let $A_n$ be the set of all \ul{even} permutations in $S_n$.
+\begin{proposition}
+	$A_n\leq S_n$ ($A_n$ is the alternating group)
+\end{proposition}
+Try proof, check properties.
+
 \end{document}
 
