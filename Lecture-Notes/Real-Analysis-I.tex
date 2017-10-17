@@ -1212,4 +1212,87 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 	But $K$ compact in $Y$, so $\exists \alpha_1,\dots,\alpha_n$ such that $K\subset \bigcup_{i=1}^n V_{\alpha_i} = \bigcup_{i=1}^n (Y\cap G_{\alpha_i}) = Y\cap \left( \bigcup_{i=1}^n G_{\alpha_i} \right) \subset \bigcup_{i=1}^n G_{\alpha_i} \implies K$ is compact in $X$.
 \end{proof}
 
+\begin{theorem}
+	If $K\subset X^{m.s.}$ is compact, then $K$ is closed. (If $K$ is noot closed, $K$ is compact.).
+\end{theorem}
+\begin{proof}
+	Let $K\subset X$ be compact. We will show $K^c$ is open.
+	Let $x\in K^c$. For $y\in K$, let $V_y = N_{\frac{1}{2}\rho(x,y)}(y)$ - neighborhood of $y$ with radius $\frac{1}{2}\rho(x,y)$.
+	Then $K\subset \bigcup_{y\in K}V_y$ i.e., $\{V_y\}_{y\in K}$ is an open cover of $K$.
+	$K$ compact $\implies \exists y_1,y_2,\dots,y_n\in K$ such that $K\subset \bigcup_{1\leq i\leq n} V_{y_i} = V$.
+	Let $W_{y_i} := N_{\frac{1}{2}\rho(x,y_i)}(x)$ - neighborhood of $x$ with radius $\frac{1}{2}\rho(x,y_i)$ for $i = 1,\dots n$ and set $W:=\bigcap_{i=1}^n W_{y_i} \ra$ open.
+	Also, $V\cap W = \emptyset$ and $K\subset V$, so $x\in W\subset K^c \implies K^c$ is open.
+	Therefore, $K$ is closed.
+\end{proof}
+
+\begin{theorem}
+	Let $F\subset K\subset X^{m.s.}$.
+	If $F$ is closed and $K$ is compact, then $F$ is compact.
+\end{theorem}
+\begin{proof}
+	Let $\{V_\alpha\}$ be an open cover of $F$ i.e., $F\subset \bigcup V_\alpha$.
+	Since $F$ is closed, $F^c$ is open. So $K\subset (\bigcup V_\alpha) \cup F^c$ - an open cover of $K$.
+	$K$ compact $\implies \exists \alpha_1,\dots,\alpha_n$ such that $K\subset V_\alpha \cup\dots\cup V_{\alpha_n}\cup F^c$. $\implies F\subset V_{\alpha_1}\cup\dots\cup V_{\alpha_n}\cup F^c$ and $F\cap F^c = \emptyset \implies F\subset V_\alpha\cup\dots\cup V_{\alpha_n} \implies F$ is compact.
+\end{proof}
+\begin{corollary}
+	$F\subset X^{m.s.}$ closed and $K\subset X^{m.s.}$ compact, then $F\cap K$ is compact.
+\end{corollary}
+\begin{proof}
+	$K$ compact $\implies K$ closed. $F$ and $K$ closed $\implies F \cap K$ is closed.
+	$F\cap K\subset K$ and $K$ compact $\implies F\cap K$ is compact.
+\end{proof}
+
+\begin{theorem}
+	Let $\{K_\alpha\}$ be a collection of nonempty compact sets of $X$.
+	If every finite intersection of this collection is nonempty, then $\bigcap K_\alpha \neq \emptyset$.
+\end{theorem}
+\begin{proof}
+	By contradiction suppose $\bigcap K_\alpha = \emptyset$.
+	Let $K_1\subset \{K_\alpha\}$ be fixed. Suppose if $x\in K_1$ then $x\notin K_\alpha$ for some $\alpha$.
+	That is, if $x\in K_1$ then $x\in K_\alpha^c$ for some $\alpha$.
+	So, $K_1\subset \bigcup K_\alpha^c$ - an open cover of $K_1$ but $K_1$ is compact, so $\exists \alpha_1,\dots,\alpha_n$ such that $K_1\subset \bigcup_{i=1}^n K_{\alpha_i}^c = (\bigcap_{i=1}^n K_{\alpha_i})^c \implies K_1 \cap (\bigcap_{i=1}^n K_{\alpha_i}) = \emptyset \implies K_1\cap K_{\alpha_1}\cap \dots\cap K_{\alpha_n} = \emptyset$, a contradiction to finite interaction being nonempty.
+	So $\bigcap K_\alpha \neq \emptyset$.
+\end{proof}
+
+\begin{theorem}
+	Let $K\subset^{m.s.}$ be compact and $E\subset K$ be infinite.
+	Then $E$ has a limit point in $K$.
+\end{theorem}
+\begin{proof}
+	Suppose by contradiction that $K$ does not have limit point of $E$.
+	Then for each $q\in K$, there exists a neighborhood $V_q$ of $q$ which contains \ul{at most} one point $q$ of $E$ (if $q\in E$).
+	Then $E\subset \bigcup_{q\in E} V_q$ and $K\subset \bigcup_{q\in K} V_q$.
+	Since $E$ is infinite and $V_q$ contains at most one pointof $E$, so there is no finite subcover of $E$, and hence of $K$. This is a contradicts $K$ being compact.
+	So $E$ has a limit point in $K$.
+\end{proof}
+
+\begin{theorem}
+	If $\{I_n\}$ is a sequence of closed intervals \ul{in $\mb R$}, such that $I_n\supset I_{n+1}$ (for $n = 1,2,3\dots$), then it follows $\bigcap_n I_n\neq \emptyset$.
+\end{theorem}
+\begin{proof}
+	Let $I_n := [a_n,b_n]$ for $n=1,\dots$ and $E:= \{a_n: n = 1,2,\dots\}$.
+	Then $E$ is nonempty and bounded above. So $\sup E\in \mb R$, call it $x:= \sup E$.
+	Then $x\geq a_n$ for all $n\in \mb N$.
+	Want to show: $x\leq b_m$ for all $m\in \mb N$. Clearly, $a_n\leq b_m$ for all $n,m$.
+	Then $\sup \{a_n\} \leq b_m$ for all $m$ i.e., $x\leq b_m$ for all $m$.
+	Hence $x\in[a_n,b_n]$ for all $n\in\mb N \implies x\in \bigcap [a_n,b_n]$.
+\end{proof}
+
+\begin{definition}
+	[$k$-cell] $\{\vx = (x_1,\dots,x_k) : a_i\leq x_i\leq b_i\, (i = 1,\dots,k)\}$. So 1-cell is interval $[a_1,b_1]$, 2-cell is rectanlge with corners $(a_1,a_2)$ and $(b_1,b_2)$, 3-cell is box, etc.
+\end{definition}
+\begin{theorem}
+	If $\{I_n\}$ a sequence of $k$-cells such that $I_n\supset I_{n+1}$ for $n=1,\dots$ then $\bigcap I_n\neq\emptyset$.
+\end{theorem}
+\begin{proof}
+	Read ahead.
+\end{proof}
+
+\begin{theorem}
+	Every $k$-cell is compact.
+\end{theorem}
+\begin{proof}
+	Read ahead.
+\end{proof}
+
 \end{document}
