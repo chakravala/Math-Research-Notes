@@ -1245,6 +1245,7 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 \begin{theorem}
 	Let $\{K_\alpha\}$ be a collection of nonempty compact sets of $X$.
 	If every finite intersection of this collection is nonempty, then $\bigcap K_\alpha \neq \emptyset$.
+	\label{thm2-36}
 \end{theorem}
 \begin{proof}
 	By contradiction suppose $\bigcap K_\alpha = \emptyset$.
@@ -1257,6 +1258,7 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 \begin{theorem}
 	Let $K\subset^{m.s.}$ be compact and $E\subset K$ be infinite.
 	Then $E$ has a limit point in $K$.
+	\label{thm2-37}
 \end{theorem}
 \begin{proof}
 	Suppose by contradiction that $K$ does not have limit point of $E$.
@@ -1268,6 +1270,7 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 
 \begin{theorem}
 	If $\{I_n\}$ is a sequence of closed intervals \ul{in $\mb R$}, such that $I_n\supset I_{n+1}$ (for $n = 1,2,3\dots$), then it follows $\bigcap_n I_n\neq \emptyset$.
+	\label{thm2-38}
 \end{theorem}
 \begin{proof}
 	Let $I_n := [a_n,b_n]$ for $n=1,\dots$ and $E:= \{a_n: n = 1,2,\dots\}$.
@@ -1282,17 +1285,117 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 	[$k$-cell] $\{\vx = (x_1,\dots,x_k) : a_i\leq x_i\leq b_i\, (i = 1,\dots,k)\}$. So 1-cell is interval $[a_1,b_1]$, 2-cell is rectanlge with corners $(a_1,a_2)$ and $(b_1,b_2)$, 3-cell is box, etc.
 \end{definition}
 \begin{theorem}
-	If $\{I_n\}$ a sequence of $k$-cells such that $I_n\supset I_{n+1}$ for $n=1,\dots$ then $\bigcap I_n\neq\emptyset$.
+	If $\{I_n\}$ a sequence of $k$-cells (in $\mb R^k$) such that $I_n\supset I_{n+1}$ for $n=1,2,\dots$, then $\bigcap_n I_n\neq\emptyset$.
 \end{theorem}
 \begin{proof}
-	Read ahead.
+	Let $I_n:=\{\vx = (x_1,\dots,x_k): a_{n,j} \leq x_j \leq b_{n,j} \, (j = 1,\dots,k)\}$ for $n = 1,2,\dots$ and set $I_{n,j} = [a_{n,j},b_{n,j}] \subset \mb R$ for fixed $j$.
+	For each fixed \ul{$j$}, $\{I_{n,j}\}_n$ satisfies $I_{n,j} \supset I_{n+1,j}$ for $n = 1,2,\dots$.
+	By Theorem \ref{thm2-38}, $\bigcap_n I_{n,j} \neq \emptyset$ implies $\exists x_j^*\in I_{n,j}$ for all $n=1,2,\dots$.
+	Take $x^* = (x_1^*,\dots,x_k^*)$. Then $x^*\in I_n$ for all $n=1,\dots$, so $\bigcap_n I_n\neq \emptyset$.
 \end{proof}
 
 \begin{theorem}
 	Every $k$-cell is compact.
 \end{theorem}
 \begin{proof}
-	Read ahead.
+	Skip.
+\end{proof}
+\begin{example}
+	1-cell or $[a,b]\subset \mb R$ is compact.
+\end{example}
+
+\begin{theorem}
+	Let \ul{$E\subset\mb R^k$}. Then the following statements are equivalent.
+	\begin{enumerate}
+		\item[(i)] $E$ is closed and bounded.
+		\item[(ii)] $E$ is compact.
+		\item[(iii)] Every infinite subset of $E$ has a limit point in $E$.
+	\end{enumerate}
+\end{theorem}
+\begin{remark}
+	Some remarks:
+	\begin{enumerate}
+		\item[(I)] (i) $\Llr$ (ii) in $\mb R^k$ - Heine-Borel Theorem.
+		\item[(II)] (ii) $\Llr$ (iii) holds in general metric space.
+		\item[(III)] (i) $\not\Lr$ (ii) or (iii) in metric space.
+	\end{enumerate}
+\end{remark}
+\begin{example}
+	Take $X = \mb Q$ and set $E:=\{q\in\mb Q: 2<q^2<3\}$.
+	Then $E$ is closed and bounded but not compact in $\mb Q$.
+\end{example}
+\begin{example}
+	Take $X = \mb R$ with discrete metric.
+	$E := \{x\in\mb R : 0\leq x\leq 1\}$. Then $E$ is closed and bounded but not compact.
+\end{example}
+\begin{proof}
+	We will show: (i) $\implies$ (ii), (ii) $\implies$ (iii) and (iii) $\implies$ (i).
+
+	(i) $\implies$ (ii): Suppose $E\subset\mb R^k$ is closed and \ul{bounded}.
+	$E$ bounded $\implies \exists$ a $k$-cell $K$ such that $E\subset K$.
+	But $E$ is closed and $K$ is compact, so $E$ is compact.
+
+	(ii) $\implies$ (iii) follows by Theorem \ref{thm2-37}.
+
+	(iii) $\implies$ (i): We will prove by contradiction.
+	Suppose $E$ is not bounded.
+	Then for each $n = 1,2,\dots$ there exists $\vx_n\in E$ such that $|\vx_n|_{\mb R^k}>n$.
+	Let $S := \{\vx_n\in E : |\vx_n|_{\mb R^k} > n\}\subset E$.
+	Then $S$ is infinite and does not have a limit point in $E$, a contradiction.
+	Now suppose $E$ is not closed. Then $\exists \vx_0\in\mb R^k\backslash E$ such that $\vx_0$ is a limit point of $E$.
+	Then for each $n = 1,2,\dots$ there exists $\vx_n\in E$ such that $|\vx_n-\vx_0|_{\mb R^k} < \frac{1}{n}$ (neighborhood of $\vx_0$).
+	Let $S := \{\vx_n\in E : |\vx_n - \vx_0|<\frac{1}{n}\}$. Then $S$ is infinite and $\vx_0$ is a limit point of $S$. But $\vx_0\notin E$.
+	We're done if there are no other limit points of $S$.
+	Suppose $\vy\in\mb R^k$ and $\vx_0\neq\vy$. Then $|\vx_0 - \vy_0|_{\mb R_k} = |\vx_0 - \vx_n + \vx_n - \vy_0|_{\mb R^k} \os{\Delta}{\leq} |\vx_0 - \vx_n|_{\mb R^k} + |\vx_n - \vy|_{\mb R^k} < \frac{1}{n} + |\vx_n - \vy|_{\mb R^k} \implies |\vx_n - \vy|_{\mb R^k} > |\vx_0 - \vy|_{\mb R^k} - \frac{1}{n} > \frac{1}{2} |\vx_0-\vy|_{\mb R^k}$ for some \ul{$n$ large} $\implies \vy$ is not a limit point of $E$, a contradiction.
+\end{proof}
+
+\begin{theorem}
+	[Weierstrass] Every \ul{bounded} \ul{infinite} subset of $\mb R^k$ has a limit point in $\mb R^k$.
+\end{theorem}
+\begin{proof}
+	Let $E\subset\mb R^k$ be a bounded infinite subset.
+	$E$ bounded $\implies E\subset K$ - a compact $k$-cell.
+	Theorem \ref{thm2-37} $\implies E$ has a limit point in $K\subset\mb R^k$.
+\end{proof}
+
+\begin{definition}
+	[Perfect set] $E\subset X$ is perfect if
+	\begin{enumerate}
+		\item[(a)] $E$ is closed (i.e., $E'\subset E$), and
+		\item[(b)] every point of $E$ is a limit point of $E$ (i.e., $E\subset E'$).
+	\end{enumerate}
+	i.e., $E = E'$.
+\end{definition}
+\begin{example}
+	$[a,b]\subset\mb R$ is perfect.
+\end{example}
+\begin{theorem}
+	Let $P\subset\mb R^k$ nonempty and perfect. Then $P$ is uncountable.
+\end{theorem}
+\begin{proof}
+	Suppose by contradiction that $P$ \ul{is countable}. Then we can enumerate elements of $P$ as $\vx_1,\vx_2,\vx_3,\dots$.
+	Hence we used the fact that since $P$ is perfect, $P$ has infinite elements.
+	We will construct neighborhoods: Let $V_1 := N_r(\vx_1)$. $\vx_1\in P$ and $P$ is perfect $\implies \vx_1$ is a limit point of $P$.
+	This implies $\exists \vx\in V_1$ such that $\vx\in V_1\cap P$. Since $\vx\in V_1$ and $V_1$ is open, $\exists r'>0$ such that $N_{r'}(\vx)\subset V_1$.
+	Define $r_1 := \min\{\frac{r'}{2}, \frac{|\vx-\vx_1|}{2}\}$.
+	Let $V_2 := N_{r_1}(\vx)$. Then
+	\begin{itemize}
+		\item $\conj{V_2} \subset V_1$,
+		\item $\vx_1\notin \conj V_2$,
+		\item $V_2\cap P\neq \emptyset$.
+	\end{itemize}
+	Inductively, we construct $\{V_n\}$:
+	\begin{enumerate}
+		\item[(i)] $\conj{V_{n+1}}\subset V_n$,
+		\item[(ii)] $\vx_n\notin V_{n+1}$,
+		\item[(iii)] $V_{n+1}\cap P\neq \emptyset$.
+	\end{enumerate}
+	Now, let $K_n:= \conj{V_n}\cap P$, where $\conj{V_n}$ closed and $P$ closed.
+	Then $K_n$ is closed and hence compact (since $\conj{V_n}$ is bounded).
+	Also, by construction $K_n\supset K_{n+1}$ for $n=1,2,\dots$.
+	This implies \ul{$\bigcap K_n\neq \emptyset$} (Theorem \ref{thm2-36} Corollary).
+	We know $\vx_n\notin \conj{V_{n+1}}$. So $\vx_n\notin K_{n+1}$ and so $\vx_n\notin \bigcap_n K_n\subset P$ and $\vx_n\in P$.
+	Therefore $\bigcap K_n=\emptyset$, a contradiction. So $P$ is uncountable.
 \end{proof}
 
 \end{document}

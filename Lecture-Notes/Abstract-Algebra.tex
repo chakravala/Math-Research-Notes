@@ -1112,5 +1112,144 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 	So $AH\neq HA$, but they are equal when $eH = He$.
 \end{example}
 
+\begin{lemma}
+	[Key lemma] Let $H\leq G$ and $a,b\in G$. Then the following are equivalent:
+	\begin{enumerate}
+		\item $aH = bH$
+		\item $Ha\inv = Hb\inv$
+		\item $aH\subseteq bH$
+		\item $a\in bH$
+		\item $b\inv a\in H$
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	$(1)\implies(2)$ Assume $aH = bH$. WTS: $Ha\inv = Hb\inv$.
+	Let $x\in Ha\inv$ (want: $x\in Hb\inv$), then $x = ha\inv$ for some $h\in H$.
+	So $x\inv = (ha\inv)\inv = ah\inv \in aH=bH\implies x\inv \in bH\implies x\inv = b\tilde{h}$ for some $\tilde{h}\in H$ (since $h\inv\in H$) $\implies x = (b\tilde{h})\inv = \tilde{h}\inv b\inv \in Hb\inv$ (since $\tilde{h}\in H$).
+	Thus $Ha\inv\subseteq Hb\inv$. Similarly, $Hb\inv \subseteq Ha\inv$.
+	Then $(2)\implies(1)$ is similar to $(1)\implies(2)$.
+
+	$(1)\implies(3)$ is clear from above.
+
+	$(3)\implies(4)$ Assume $aH\subseteq bH$. WTS: $a\in bH$. By assumption, $a = ae \in aH\subseteq bH \implies a\in bH$.
+	
+	$(4)\implies(5)$ Assume $a\in bH$. WTS: $b\inv a\in H$.
+	$a\in bH\implies a = bh$ for some $h\in H \implies b\inv a = h\in H$.
+
+	$(5)\implies(1)$ Assume $b\inv a\in H$. WTS: $aH = bH$.
+	Let $x\in aH$, then $x = ah$ for some $h\in H$. So $x = ah = b(b\inv ah)\in bH$ since $b\inv a\in H$ and $h\in H$, $b\inv ah\in H$.
+	So $aH\subseteq bH$.
+
+	Let $y\in bH$, then $y = b\tilde{h}$ for some $\tilde{h}\in H$. So $y= b\tilde{h} = a(a\inv b\tilde{h}) = a((b\inv a)\inv \tilde{h})\in aH$ since $a\inv b = (b\inv a)\inv\in H$ and $\tilde{h}\in H$. Thus $bH\subseteq aH$.
+\end{proof}
+
+\begin{theorem}
+	Let $H\leq G$. The left (right) cosets of $H$ partition $G$.
+\end{theorem}
+\begin{proof}
+	First, $G = \bigcup_{g\in G} gH$ since $g = ge\in gH$.
+	Second, we will prove that for $x,y\in G$ we have $xH = yH$ or $xH\cap yH = \emptyset$.
+	
+	\ul{Case 1}: $xH\cap yH = \emptyset$ done.
+
+	\ul{Case 2}: $xH\cap yH \neq \emptyset$. WTS: $xH = yH$.
+	Let $g\in xH\cap yH$. Then $xh_1 = yh_2$, where $h_1,h_2\in H$.
+	This implies $x = y h_2 h_1\inv\in yH$ with $h_2 h_1\in H$, so $x\in yH \us{\text{K.L}}{\implies} xH = yH$.
+\end{proof}
+
+\begin{theorem}
+	Let $H\leq G$. The number of distinct left cosets of $H$ in $G$ is the same as number of distinct right cosets of $H$ in $G$.
+\end{theorem}
+\begin{proof}
+	Let $L_H$ be the set of left cosets of $H$ in $G$ and $R_H$ be the set of right cosets of $H$ in $G$.
+	WTS: $|L_H| = |R_H|$.
+	Let $f: L_H\ra R_H$ be defined by $f(aH) = Ha\inv$.
+	\begin{enumerate}
+		\item $f$ is injective: $f(aH) = f(bH) \os{?}{\implies} aH = bH$. So $f(aH) = f(bH) \rightsquigarrow Ha\inv = Hb\inv \us{\text{K.L}}{\rightsquigarrow} aH = bH$.
+		\item $f$ is surjective: Let $Hg\in R_H$ then $f(g\inv H) = Hg$.
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Let $H\leq G$. The \ul{index} of $H$ in $G$ is the number of distinct left (or right) cosets of $H$ in $G$.
+\end{definition}
+\ul{Notation}: $[G:H]$.
+\begin{example}
+	$G = \mb Z_9$, $H = <[3]>$, $[G:H] = 3$.
+\end{example}
+\begin{example}
+	$G = \mb Z$, $H = n\mb Z$, $[G:H] = n$.
+\end{example}
+\begin{example}
+	$G = GL_n(\mb R)$, $H = SL_n(\mb R)$, $[G:H] = \infty$.
+\end{example}
+
+\subsection{Lagrange's Theorem}
+
+\begin{proposition}
+	Let $H\leq G$ and $a\in G$. The map $f: H\ra aH$ defined by $f(h) = ah$ is bijective.
+	In particular, any two left cosets of $H$ in $G$ contains the same number of elements.
+\end{proposition}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item $f(h_1) = f(h_2)$ implies $ah_1 = ah_2\implies h_1 = h_2$.
+		\item $f$ is surjective: Let $x\in aH$, then $x = ah$ for some $h\in H$. So $x = f(h)$.
+	\end{enumerate}
+	So $|H| = |aH| = |bH|$.
+\end{proof}
+\begin{theorem}
+	[Lagrange's Theorem]
+	Let $G$ be a \ul{finite} group, and let $H\leq G$. Then $|G| = |H|\cdot|[G:H]|$.
+	In particular, $|H|$ divides $|G|$.
+\end{theorem}
+\begin{proof}
+	Given $G$.
+	\begin{enumerate}
+		\item Left cosets of $H$ partition $G$, $|G| = \sum |\text{cosets}| = \sum_{[G:H]} |H| = |H|\cdot[G:H]$.
+	\end{enumerate}
+\end{proof}
+\begin{corollary}
+	Let $G$ be a finite group and $a\in G$. Then $o(a)$ divides $|G|$.
+\end{corollary}
+\begin{proof}
+	$o(a) = |<a>|$ divides $|G|$.
+\end{proof}
+\begin{corollary}
+	Let $|G| = p$ a prime number. Then $G$ is a cyclic and any non-identity element is a generator for $G$.
+\end{corollary}
+\begin{proof}
+	Let $a\in G$, $a\neq e$. Then $|<a>|\geq 2$ divides $p = |G|$. So $|<a>| = p \implies <a> = G$.
+\end{proof}
+\begin{proposition}
+	Let $G$ be a finite group, $H\leq G$, and $K\leq H$. Then $[G:K]=[G:H][H:K]$.
+	%$K\subseteq H\subseteq G$.
+\end{proposition}
+\begin{remark}
+	It is possible to prove this for the infinite case too, but it is more involved than Lagrange's Theorem.
+\end{remark}
+\begin{proof}
+	$[G:K] = \frac{|G|}{|K|} = \frac{|G|}{|H|}\cdot\frac{|H|}{|K|} = [G:H][H:K]$.
+\end{proof}
+\begin{remark}
+	Lagrange's Theorem says the following: subgroup of $G \rightsquigarrow$ divisor of $|G|$. Does the converse hold? No, it is possible to have divisors for which there are no subgroups.
+\end{remark}
+\begin{example}
+	$|A_4| = 12$ has no subgroup of order 6.
+\end{example}
+
+\begin{proposition}
+	Every group of order $\leq 5$ is abelian.
+	\begin{align*}
+		\text{Order} & \text{Group}\\
+		1 & \{e\} \\
+		2 & \{e,a\} \text{ cyclic} \\
+		3 & \text{cyclic} \ra \text{abelian} \\
+		4 & \text{below} \\
+		5 & \text{cyclic} \ra \text{abelian}
+	\end{align*}
+	Order 4 can have subgroups of order 1,2,4 $\ra \exists$ an element $a$ of order 4, so $|<a>|\ = 4 \implies <a>\ = G$ cyclic $\ra$ abelian. or $\ra$ every $\neq e$ has order 2 $\implies a^2 = e$ for all $a\in G \implies G$ is abelian, since $aa = e \implies a = a\inv$ so $xy = (xy)\inv = y\inv x\inv = yx$. This one is called Klein 4-group.
+\end{proposition}
+
 \end{document}
 
