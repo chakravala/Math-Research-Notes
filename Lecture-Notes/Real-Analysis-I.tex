@@ -1398,4 +1398,101 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 	Therefore $\bigcap K_n=\emptyset$, a contradiction. So $P$ is uncountable.
 \end{proof}
 
+\begin{definition}
+	[Cantor set] Example of a perfect set in $\mb R$ that contains no \ul{segment}.
+	\begin{align*}
+		E_0 &: [0,1] \\
+		E_1 &: [0,\frac{1}{3}]\cup[\frac{2}{3},1] \\
+		E_2 &: [0,\frac{1}{9}]\cup[\frac{2}{9},\frac{1}{3}]\cup[\frac{6}{9}, \frac{7}{9}]\cup [\frac{8}{9},1]
+	\end{align*}
+	\begin{note}
+		Some notes:
+		\begin{itemize}
+			\item No end points are removed,
+			\item $E_{n+1}$ contains only points of $E_n$ i.e., $E_n\supset E_{n+1}$,
+			\item $P = \bigcap_n E_n\neq\emptyset$ - $P$ is the Cantor set.
+		\end{itemize}
+	\end{note}
+	Properties of $E_n$ and $P$:
+	\begin{enumerate}
+		\item $E_n$ is the union of $2^n$ intervals of length $\frac{1}{3^n}$.
+		\item $P$ is compact.
+		\item $P$ contains no segment.
+		\item $P$ is a perfect set - hence uncountable.
+	\end{enumerate}
+\end{definition}
+
+\subsection{Connected set}
+
+\begin{definition}
+	[Separated sets] $A,B\subset X^{m.s.}$ are separated if $A\cap\conj B=\emptyset$ and $B\cap\conj A = \emptyset$.
+\end{definition}
+\begin{example}
+	$X = \mb R$ with usual metric. $A = (0,1)$ and $B = (1,2)$. Then $A\cap\conj B = (0,1)\cap\conj{(1,2)} = (0,1)\cap[1,2] = \emptyset$ and $\conj A\cap B = \conj{(0,1)}\cap(1,2) = [0,1]\cap(1,2) = \emptyset$. $A,B$ separated.
+	
+	However, $A = (0,1]$ and $B = (1,2)$ are \ul{not separated} since $A\cap\conj B = (0,1]\cap[1,2] = \{1\} \neq \emptyset$.
+\end{example}
+\begin{definition}
+	[Connected set] $E\subset X$ is connected if $E$ is \ul{not} a union of two nonempty separated sets.
+\end{definition}
+
+\begin{theorem}
+	$E\subset\mb R$ is connected $\Llr$ if $x,y\in E$ and $x<z<y$ then $z\in E$.
+\end{theorem}
+\begin{proof}
+	\say{$\implies$} Suppose $x,y\in E$ and $\exists z\in (x,y)$ but $z\notin E$.
+	We will show: $E$ is not connected. We will construct two nonempty separated sets.
+	Let $A:= E\cap (-\infty,z)$ and $B:= E\cap(z,\infty)$.
+	Then $A\neq\emptyset$ since $x\in E$ and $x\in(-\infty,z)$, and $B\neq\emptyset$ since $y\in E$ and $y\in(z,\infty)$.
+	Now, $\conj A \subset (-\infty,z]$ and $\conj B\subset[z,\infty)$.
+	So, $\conj A\cap B=\emptyset$ and $\conj B\cap A = \emptyset$.
+	Also, $E = A\cup B$.
+	Therefore $E$ is a union of two nonempty separated sets and hence not connected.
+
+	\say{$\Lla$} Suppose $E$ is not connected. We will show: if $x,y\in E$, $\ul{\exists z}\in(x,y)$ such that $z\notin E$.
+	Since $E$ is not connected, there exist nonempty sets $A$ and $B$ such that $E = A\cup B$, $A\cap\conj B=\emptyset$ and $\conj A\cap B = \emptyset$.
+	Let $x\in A$, $y\in B$ and WLOG $x<y$.
+	Define $z:= \sup(A\cap [x,y])$.
+	Then $z$ is well defined since $x\in A\cap[x,y]$ and $A\cap[x,y]$ is bounded by $y$.
+	By Theorem 2.28 (book) $z\in \conj{A\cap[x,y]}\os{?}{=} \conj A\cap\conj{[x,y]} = \conj A\cap [x,y] \implies \ul{z\in \conj A} \implies z\notin B$ since $\conj A\cap B = \emptyset$. This implies $z\neq y$ (since $y\in b$), but least upper bound $z\leq y$ upper bound, \ul{so $z<y$}.
+	If $z\notin A$ then $z\neq x$ ($x\in A$). This means \ul{$z>x$}. Combining $x<z<y$.
+	Since $z\notin A$ and $z\notin B$, $z\notin E = A\cup B$. We're done.
+
+	If \ul{$z\in A$}, then we repeat the argument with $z$ instead of $x$ and $y\in B$ to find $z_1\in (z,y)$ such that $z_1\notin E$.
+\end{proof}
+
+\section{Numerical sequences and seris}
+
+\begin{definition}
+	[Convergent sequences] $(X,\rho)$ - metric space.
+	$\{p_n\}\subset X$ is said to be convergent to $p\in X$ if $\forall \epsilon >0$, $\exists N\in\mb N$ such that $\rho(p_n,p)<\epsilon$ for all $n\geq N$.
+\end{definition}
+\begin{note}
+	$N = N(\epsilon,p)$ - depends on $\epsilon$ and $p$.
+\end{note}
+\ul{Notation}: If $\{p_n\}$ converges to $p\in X$, we write $p_n\us{n\ra\infty}{\lra}p$ \ul{\ul{or}} $\lim_{n\ra\infty} p_n = p$.
+\begin{example}
+	$\{\frac{1}{n}:n=1,2,\dots\}\subset\mb R$, $\frac{1}{n}\us{n\ra\infty}{\lra}0$.
+\end{example}
+\begin{proof}
+	Let $\epsilon>0$ be given. Want to show: $\exists N\in\mb N$ such that $|frac{1}{n} - 0|<\epsilon$ for all $n\geq N$.
+	Take $N>\frac{1}{\epsilon}$. Then for $\ul{n\geq N}$, $|\frac{1}{n}-0| = \frac{1}{n} < \epsilon$. So $\frac{1}{n} \us{n\ra\infty}{\lra}0$.
+\end{proof}
+\begin{example}
+	$\{\frac{1}{n}\}_n$ does not converge \ul{in $(0,1)$}. - space matters.
+\end{example}
+\begin{example}
+	$\{\frac{1}{n}\}_n$ does not converge in $\mb R$ with \ul{discrete metric}.
+\end{example}
+
+\begin{theorem}
+	Let $\{p_n\}\subset(X,\rho)^{m.s.}$. Then
+	\begin{enumerate}
+		\item[(a)] $p_n\ra p$ in $X \Llr$ every neighborhood of $p$ contains all but finitely many points of $\{p_n\}$.
+		\item[(b)] If $p_n\ra p$ and $p_n\ra p'$ then $p'=p$ (uniqueness of limit).
+		\item[(c)] If $\{p_n\}$ converges, then $\{p_n\}$ is bounded.
+		\item[(d)] If $E\subset X$ and $p\in E'$ then there exists a sequence $\{p_n\}\subset E$ such that $p_n\ra p$.
+	\end{enumerate}
+\end{theorem}
+
 \end{document}

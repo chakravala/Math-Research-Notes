@@ -1251,5 +1251,68 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 	Order 4 can have subgroups of order 1,2,4 $\ra \exists$ an element $a$ of order 4, so $|<a>|\ = 4 \implies <a>\ = G$ cyclic $\ra$ abelian. or $\ra$ every $\neq e$ has order 2 $\implies a^2 = e$ for all $a\in G \implies G$ is abelian, since $aa = e \implies a = a\inv$ so $xy = (xy)\inv = y\inv x\inv = yx$. This one is called Klein 4-group.
 \end{proposition}
 
+\section{Normal subgroups}
+
+\begin{definition}
+	A subgroup $H$ of a group $G$ is \ul{normal} if for every $h\in H$ and every $g\in G$, $ghg\inv\in H$.
+\end{definition}
+\ul{Notation}: $H\triangleleft G$
+
+For $g\in G$, let $gHg\inv = \{ghg\inv \mid h\in H\}$.
+A subgroup $H$ is normal in $G$ if $gHg\inv\subseteq H$ for all $g\in G$.
+
+\begin{remark}
+	$ghg\inv$ is the conjugate of $h$, we will see can also be written $g\inv hg$.
+\end{remark}
+\begin{note}
+	$ghg\inv\in H$ but $ghg\inv \neq h$ in general, although $ghg\inv = h$ when $g = e$ or $h = e$ or if abelian.
+\end{note}
+
+\begin{theorem}
+	Let $H\leq G$. The following are equivalent:
+	\begin{enumerate}
+		\item $H$ is normal in $G$
+		\item $gHg\inv = H$ for all $g\in G$
+		\item $gH = Hg$ for all $g\in G$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	(2) $\implies$ (1) Clear.
+
+	(1) $\implies$ (2) WTS: $H \subseteq gHg\inv$ for all $g\in G$. Fix $g\in G$ and take any $h\in H$.
+	Consider $g\inv hg = g\inv h(g\inv)\inv \in g\inv H(g\inv)\inv \us{(1)}{\subseteq} H$. So $g\inv hg \in H \implies g\inv hg = \tilde h$ for some $\tilde h\in H \implies h = g\tilde h g\inv\in gHg\inv$.
+	What we've essentially done is $g\inv Hg \subseteq H$, so $Hg \subset gH$ implies $H\subseteq gHg\inv$.
+
+	(2) $\iff$ (3) Clear.
+\end{proof}
+\begin{example}
+	$G$ any group. Then $\{e\} \triangleleft G$ and $G\triangleleft G$.
+\end{example}
+\begin{example}
+	$SL_n(\mb R) \triangleleft GL_n(\mb R)$ since right cosets = left cosets.
+	Take $A\in SL_n(\mb R)$ and $X\in GL_n(\mb R)$. Is $XAX\inv \os{?}{\in} SL_n(\mb R)$. $\det(XAX\inv) = \det X\cdot \det A\cdot \det(X\inv) = \det X\cdot \det A \cdot \frac{1}{\det X} = \det A = 1$.
+\end{example}
+\begin{example}
+	Any subgroup of an abelian group is normal. Abelian group $G$ and $H\leq G$. Let $h\in H,g\in G$: $ghg\inv = hgg\inv = h\in H$.
+\end{example}
+\begin{example}
+	$<(1\,2)>\not\triangleleft S_3$ but $<(1\,2\,3)>\triangleleft S_3$.
+\end{example}
+
+\begin{theorem}
+	Every subgroup of index 2 is normal.
+\end{theorem}
+\begin{proof}
+	Let $H\leq G$ and $[G:H] = 2$. We will prove that $gH = Hg$ for all $g\in G$.
+
+	\ul{Case 1}: Let $g\in H$, then $gH = H = Hg$.
+
+	\ul{Case 2}: Let $g\notin H$. Then $G = H\cup gH$ disjoint and $G = H\cup Hg$ disjoint. So $gH = G\backslash H = Hg$.
+\end{proof}
+\begin{example}
+	$A_n \triangleleft S_n$, so $[S_n:A_n] = \frac{|S_n|}{|A_n|} = \frac{n!}{n!/2} = 2$.
+\end{example}
+Abelian $\implies$ All subgroups are normal $\os{?}{\implies}$ Abelian (false). $Q_8 = \{\pm 1,\pm i,\pm j, \pm k\}$, $ij = k$, $ji = -k$.
+
 \end{document}
 
