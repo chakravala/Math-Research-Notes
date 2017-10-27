@@ -594,7 +594,7 @@ If $(a,b),(c,d)\in\mb R^2$, then $|(a,b)\cdot(c,d)| \leq |(a,b)||(c,d)|$.
 	$f:A\ra B$ is onto iff $\forall b\in B$, $\exists a\in A$ such that $f(a)=b$ \ul{\ul{OR}} $f(A)=B$.
 \end{definition}
 \begin{definition}
-	[Preimage or inverse image] Suppose $E_1\subset B$. Then the preimage of $E_1$: $f\inv(E_1) = \{a\in A: f(a)\in E_1\}$.
+	[Preimage or inverse image] Suppose $E_1\subset B$. Then the preimage of $E_1$: $$f\inv(E_1) = \{a\in A: f(a)\in E_1\}.$$
 	If $b\in B$, then $f\inv(b) = \{a\in A : f(a)=b\} \subset A$.
 \end{definition}
 \begin{remark}
@@ -645,19 +645,20 @@ $|\mb Z| = |\mb N|$. Let $f:\mb Z\ra\mb N$ by $f(z) = \begin{cases} 2z-1 & \text
 Let $f:J \os{1-1}{\us{\text{onto}}{\lra}} \mb Z$ by $f(n) = \begin{cases} \frac{n}{2} & \text{if } n \text{ even}\\ -\frac{n-1}{2} & \text{if } n \text{ odd} \end{cases}$.
 \end{example}
 
-\begin{note}
+\begin{note} some notes:
 	\begin{itemize}
 		\item A finite set has \ul{more} elements than its proper subsets.
 		\item Empty set is a finite set.
 		\item A set and its proper subsets can have same cardinality.
-		\begin{example}
-			\begin{itemize}
-				\item[(i)] $|\mb N|\os{f?}{=} |2n:n\in\mb N| = |2n-1:n\in\mb N|$
-				\item[(ii)] $|(-\frac{\pi}{2},\frac{\pi}{2}| = |\mb R|$. Let $f:(-\frac{\pi}{2},\frac{\pi}{2}) \ra \mb R$ by $f(x) = \tan x$ is 1-1 and onto.
-			\end{itemize}
-		\end{example}
 	\end{itemize}
 \end{note}
+\begin{example}
+	$|\mb N|\os{f?}{=} |2n:n\in\mb N| = |2n-1:n\in\mb N|$
+\end{example}
+\begin{example}
+	$|(-\frac{\pi}{2},\frac{\pi}{2}| = |\mb R|$. Let $f:(-\frac{\pi}{2},\frac{\pi}{2}) \ra \mb R$ by $f(x) = \tan x$ is 1-1 and onto.
+\end{example}
+
 
 \begin{proposition}
 	$S$ is infinite $\Llr \exists f:\mb N \ra S$ that is 1-1.
@@ -679,7 +680,7 @@ Let $f:J \os{1-1}{\us{\text{onto}}{\lra}} \mb Z$ by $f(n) = \begin{cases} \frac{
 \end{proof}
 
 \begin{example}
-	[HW2.1] Let $A$ and $B$ be nonempty bounded subsets of $\mb R$ such that $A\subset B$. Prove: $\inf B \leq \inf A \leq \sup A \leq \sup B$.
+	[HW2.1] Let $A$ and $B$ be nonempty bounded subsets of $\mb R$ such that $A\subset B$. Prove: $$\inf B \leq \inf A \leq \sup A \leq \sup B.$$
 	\begin{proof}
 		Given that $A\neq \emptyset,B\neq\emptyset$, $A$ bounded, $B$ bounded, and $A,B\subset \mb R$, by LUB property of $\mb R$, $\sup A,\inf A, \sup B, \inf B$ exist in $\mb R$.
 		Let $a:= \inf A$, $\alpha := \sup A$, $b:=\inf B$, $\beta:=\sup B$.
@@ -698,14 +699,16 @@ Let $f:J \os{1-1}{\us{\text{onto}}{\lra}} \mb Z$ by $f(n) = \begin{cases} \frac{
 		We show $\inf B\leq \inf A$: By definition of $\inf$, $\gamma \leq \inf B$ for all $\gamma$ lower bounds of $B$.
 		Since $x\in A \implies x\in B$, $\gamma$ is a lower bound of $A$. Choose $\gamma = \inf B$, $\inf B$ is a lower bound of $A$. Therefore $\inf B\leq \inf A$.
 	\end{proof}
-	We know by definition of infimum, $b\leq \inf B$ for all $b\in B$. But $A\subset B$, so $a\leq\inf B$ for all $a\in A$. $\implies \inf B$ is a loewr bound of $A$. By definition of $\inf A$, $\inf B\leq \inf A$.
+	We know by definition of infimum, $b\leq \inf B$ for all $b\in B$. But $A\subset B$, so $a\leq\inf B$ for all $a\in A$. 
+	This implies $\inf B$ is a lower bound of $A$. By definition of $\inf A$, $\inf B\leq \inf A$.
 \end{example}
 \begin{example}
 	[HW2.2] $S:=\{a+b:a\in A,b\in B\}$. $\sup S = \sup A + \sup B$.
 	\begin{proof}
 		Since $A\neq\emptyset,B\neq\emptyset$ and $A,B\subset \mb R$ are bounded and $\mb R$ has the least upper bound property, $\sup A,\sup B\in\mb R$.
 		First, $S\neq\emptyset$ since $A\neq\emptyset$ and $B\neq\emptyset$. Now, $a\leq \sup A$ for all $a\in A$ and $b\leq \sup B$ for all $b\in B$.
-		Then $a+b\leq\sup A+b$ and $a+b\leq \sup A + \sup B$ for $b\in B$ fixed and $\forall a\in A$. $\implies \sup A+\sup B$ is an upper bound of $S \implies \sup S\in\mb R$.
+		Then $a+b\leq\sup A+b$ and $a+b\leq \sup A + \sup B$ for $b\in B$ fixed and $\forall a\in A$. 
+		This implies $\sup A+\sup B$ is an upper bound of $S \implies \sup S\in\mb R$.
 		Want to show:
 		\begin{enumerate}
 			\item[(i)] $\sup A+\sup B$ is an upper bound of $S$. check.
@@ -713,19 +716,19 @@ Let $f:J \os{1-1}{\us{\text{onto}}{\lra}} \mb Z$ by $f(n) = \begin{cases} \frac{
 		\end{enumerate}
 		Let $\gamma$ be an upper bound of $S$. Then $\gamma\geq s$ for all $s\in S$. Then $s = a+b$ for some $a\in A$ and $b\in B$.
 		So $\gamma \geq a+b \implies b\leq \gamma-a \implies \gamma-a$ is an upper bound for $B$.
-		Then $\gamma-a\geq \sup B$ (by definition of $\sup$) $\implies \gamma-\sup B \geq a \implies \gamma-\sup B$ is an upper bound for $A$. $\implies \gamma-\sup B \geq \sup A$ (by definition of $\sup$) $\implies \gamma\geq \sup A + \sup B$.
+		Then $\gamma-a\geq \sup B$ (by definition of $\sup$) implies $\gamma-\sup B \geq a \implies \gamma-\sup B$ is an upper bound for $A$. This implies $\gamma-\sup B \geq \sup A$ (by definition of $\sup$) $\implies \gamma\geq \sup A + \sup B$.
 		Therefore $\sup S = \sup A+\sup B$.
 	\end{proof}
 \end{example}
 \begin{example}
 	[HW2.3]
 	$A\subset \mb R$ nonempty and bounded below. $-A:=\{-a\in \mb R:a\in A\}$.
-	Prove $-\inf A = \sup (-A)$.
+	Prove that $-\inf A = \sup (-A)$.
 	\begin{proof}
 		$A\subset\mb R$ nonempty + bounded below $\implies \inf A\in\mb R$.
 		By definition of infimum, $a\geq \inf A$ for all $a\in A$.
 		$\implies -a\leq -\inf A$ for all $-a\in -A$ - $(*)$.
-		$\implies -A$ is bounded above. So $\sup (-A)\in\mb R$ since $-A\neq\emptyset$.
+		This implies $-A$ is bounded above. So $\sup (-A)\in\mb R$ since $-A\neq\emptyset$.
 		Want to show: $\sup(-A) = -\inf A$.
 		\begin{enumerate}
 			\item[(i)] $-\inf A$ is an upper bound of $-A$ by $(*)$.
@@ -745,14 +748,15 @@ Let $f:J \os{1-1}{\us{\text{onto}}{\lra}} \mb Z$ by $f(n) = \begin{cases} \frac{
 			|z| &\os{\mb C\text{ field}}{=} |z-w+w| \\
 				&\os{\Delta}{\leq} |z-w| + |w|		
 		\end{align*}
-		$\implies |z|-|w|\leq |z-w|$.
+		This implies $|z|-|w|\leq |z-w|$.
 
 		(2):
 		\begin{align*}
 			|w| &= |w-z+z| \\
 				&\os{\Delta}{=} |w-z|+|z|
 		\end{align*}
-		$\implies |w|-|z|\leq |z-w| \implies -(|w|-|z|) \geq -|z-w| \implies |z|-|w| \leq -|z-w|$.
+		This implies $|w|-|z|\leq |z-w| \implies -(|w|-|z|) \geq -|z-w| \implies |z|-|w| \leq -|z-w|$.
+		
 		Combining (1)+(2) $\left||z|-|w|\right| \leq |z-w|$.
 	\end{proof}
 \end{example}
@@ -819,9 +823,9 @@ $$ \bigcap_{\alpha\in A} E_\alpha = \{x\in \Omega: x\in E_\alpha \text{ \ul{for 
 	\begin{proof}
 		\say{$\subset$} Let $a\in\bigcup_{x\in\mb R}(-\infty,x]$.
 		Then $a\in(-\infty,x_0]\subset\mb R$ for some $x_0\in\mb R$.
-		$\implies a\in\mb R\implies \bigcup_{x\in\mb R}(-\infty,x]\subset \mb R$.
+		This implies $a\in\mb R\implies \bigcup_{x\in\mb R}(-\infty,x]\subset \mb R$.
 
-		\say{$\supset$} Let $a\in\mb R$. Then $a\in(-\infty,a]$. So $a\in\bigcup_{x\in\mb R}(-\infty,a]$. Therefore $\mb R\subset_{x\in\mb R} (-\infty,x]$. Hence $\bigcup_{x\in\mb R} (-\infty,x] = \mb R$.
+		\say{$\supset$} Let $a\in\mb R$. Then $a\in(-\infty,a]$. So $a\in\bigcup_{x\in\mb R}(-\infty,a]$. Therefore $\mb R\subset_{x\in\mb R} (-\infty,x]$. Hence $\bigcup_{x\in\mb R} (-\infty,x] =~\mb R$.
 	\end{proof}
 \end{example}
 \begin{example}
@@ -901,7 +905,8 @@ $$ \bigcap_{\alpha\in A} E_\alpha = \{x\in \Omega: x\in E_\alpha \text{ \ul{for 
 	We will construct an element $s^*\in A$ but $s^*\notin E$.
 	Define $$s^*(k) = 1-s_k(k) = \begin{cases} 1 & \text{if } s_k(k) = 0 \\ 0 & \text{if } s_k(k) = 1 \end{cases}.$$
 	Then $s^*$ is a sequence of 0's and 1's and hence $s^*\in A$.
-	By construction $s^*\notin s_k$ for all $k\in\mb N$ for at least in one place. $\implies s^*\in A$ but $s^*\notin E \implies E$ is a proper subset of $A$ since $E$ is arbitrary, $A$ must be uncountable. This is Cantor's diagonalization method.
+	By construction $s^*\notin s_k$ for all $k\in\mb N$ for at least in one place. 
+	This implies $s^*\in A$ but $s^*\notin E \implies E$ is a proper subset of $A$ since $E$ is arbitrary, $A$ must be uncountable. This is Cantor's diagonalization method.
 \end{proof}
 \begin{corollary}
 	$\mb R$ is uncountable.
@@ -973,7 +978,7 @@ $$ \bigcap_{\alpha\in A} E_\alpha = \{x\in \Omega: x\in E_\alpha \text{ \ul{for 
 	[Neighborhood] $N_r(x) = \{y\in X: \rho(x,y)<r\}$.
 \end{definition}
 \begin{definition}
-	[Limit point] $p$ is a limit point of $E$ if $\forall r>0$, there exists $q\in E\subset X$ such that $q\in N_r(p)\backslash\{p\}$.
+	[Limit point] $p$ is a limit point of $E$ if $\forall r>0$, there exists $q\in E\subset X$ such that $q\in~N_r(p)\backslash\{p\}$.
 \end{definition}
 \begin{example}
 	$X = (\mb R,\us{\rho}{|\cdot|})$ and $E:= \{\frac{1}{n}:n\in\mb N\}\subset\mb R$.
@@ -1006,7 +1011,7 @@ $(X,\rho)$ is a metric space.
 	Let $p\in X$ and let $N_r(p)$ be a neighborhood of $p$ in $X$.
 	\ul{Want to show}: Every point of $N_r(p)$ is an interior point of $N_r(p)$.
 	Let $q\in N_r(p)\backslash\{p\}$. Then $\rho(p,q)<r$. So let $h = r-\rho(p,q)$.
-	Then $N_h(q)\subset N_r(p)$. Indeed, if $s\in N_h(q)$, then $\rho(q,s)<h$, so $\rho(s,p) \os{\Delta}{\leq} \rho(s,q)+\rho(q,p) < h+ \rho(q,p) = r-\rho(p,q)+\rho(p,q) = r \implies \rho(s,p) < r \implies s\in N_r(p) \implies N_h(q) \subset N_r(p)$.
+	Then $N_h(q)\subset N_r(p)$. Indeed, if $s\in N_h(q)$, then $\rho(q,s)<h$, so $\rho(s,p) \os{\Delta}{\leq} \rho(s,q)+\rho(q,p) < h+ \rho(q,p) = r-\rho(p,q)+\rho(p,q) =~r \implies \rho(s,p) < r \implies s\in N_r(p) \implies N_h(q) \subset N_r(p)$.
 	So $N_r(p)$ is open.
 \end{proof}
 
@@ -1052,9 +1057,9 @@ $(X,\rho)$ is a metric space.
 \end{theorem}
 \begin{proof}
 	\say{$\subset$} Let $x\in\left(\bigcup_{\alpha\in A} E_\alpha\right)^c$. Then $x\notin \bigcup_{\alpha\in A} E_\alpha \implies x \notin E_\alpha$  \ul{for all $\alpha\in A$}.
-	$\implies x\in E_\alpha^c$ for all $\alpha\in A$. $\implies x\in \bigcap_{\alpha\in A} E_\alpha^c \implies \left(\bigcup_{\alpha\in A} E_\alpha\right)^c \subset \bigcap_{\alpha\in A} E_\alpha^c$.
-	\say{$\supset$} Let $x\in \bigcap_{\alpha\in A} E_\alpha^c$. $\implies \in E_\alpha^c$ for all $\alpha \in A \implies x\notin E_\alpha$ for all $\alpha \in A \implies x\notin \bigcup_{\alpha\in A} E_\alpha \implies x\in\left( \bigcup E_\alpha \right)^c \implies \bigcap_{\alpha\in A} E_\alpha^c \subset(\bigcup E_\alpha )^c$.
-	$\implies \left(\bigcup_{\alpha\in A}E_\alpha\right)^c = \bigcap_{\alpha\in A} E_\alpha^c$.
+	This implies $x\in E_\alpha^c$ for all $\alpha\in A$. $\implies x\in \bigcap_{\alpha\in A} E_\alpha^c \implies \left(\bigcup_{\alpha\in A} E_\alpha\right)^c \subset \bigcap_{\alpha\in A} E_\alpha^c$.
+	\say{$\supset$} Let $x\in \bigcap_{\alpha\in A} E_\alpha^c$. This implies $x\in E_\alpha^c$ for all $\alpha \in A \implies x\notin E_\alpha$ for all $\alpha \in A \implies x\notin \bigcup_{\alpha\in A} E_\alpha \implies x\in\left( \bigcup E_\alpha \right)^c \implies \bigcap_{\alpha\in A} E_\alpha^c \subset(\bigcup E_\alpha )^c$.
+	Therefore  $\left(\bigcup_{\alpha\in A}E_\alpha\right)^c = \bigcap_{\alpha\in A} E_\alpha^c$.
 \end{proof}
 
 \begin{theorem}
@@ -1066,7 +1071,7 @@ $(X,\rho)$ is a metric space.
 				\ul{WTS}: $x$ is an interior point of $\bigcup_{\alpha\in A} G_\alpha$ i.e., $\exists r>0$ such that $N_r(x)\subset \bigcup_{\alpha\in A} G_\alpha$.
 				$x\in\bigcup_{\alpha\in A}G_\alpha \implies \exists \alpha_0\in A$ such that $x\in G_{\alpha_0}$.
 				$G_{\alpha_0}$ open $\implies \exists r_{\alpha_0}>0$ such that $N_{r_{\alpha_0}}(x)\subset G_{\alpha_0} \subset \bigcup_{\alpha\in A} G_\alpha$.
-				$\implies x$ an interior point of $\bigcup_{\alpha\in A} G_\alpha$ and hence $\bigcup_{\alpha\in A} G_\alpha$ is open.
+				Thus $x$ an interior point of $\bigcup_{\alpha\in A} G_\alpha$ and hence $\bigcup_{\alpha\in A} G_\alpha$ open.
 			\end{proof}
 		\item[(ii)] $\{F_\alpha\}_{\alpha\in A}$ closed $\implies \bigcap_{\alpha\in A} F_\alpha$ is closed.
 			\begin{proof}
@@ -1078,7 +1083,7 @@ $(X,\rho)$ is a metric space.
 				\ul{Want to show}: $\bigcap_{i=1}^n G_i$ is open i.e., every point of $\bigcap_{i=1}^n G_i$ is an interior point.
 				Let $x\in\bigcap_{i=1}^n G_i$ be arbitrary. $G_i$ open $\implies\exists r_i>0$ such that $N_{r_i}(x)\subset G_i$ for all $i=1,\dots,n$.
 				Take $r=\us{1\leq i\leq n}{\min} r_i>0$ since $r_i>0$ and $i=1,\dots,n$.
-				Then $N_r(x) = \bigcap_{i=1}^n N_{r_i}(x)\subset G_i$ for every $i=1,\dots n \implies N_r(x)\subset\bigcap_{i=1}^n G_i \implies x$ is an interior point of $\bigcap_{i=1}^n G_i \implies \bigcap_{i=1}^n G_i$ is open.
+				Then $N_r(x) = \bigcap_{i=1}^n N_{r_i}(x)\subset G_i$ for every $i=1,\dots n \implies N_r(x)\subset\bigcap_{i=1}^n G_i \implies x$ is an interior point of $\bigcap_{i=1}^n G_i \implies \bigcap_{i=1}^n G_i$ open.
 			\end{proof}
 		\item[(iv)] If $F_1\dots,F_n$ is closed then $\bigcup_{i=1}^n F_i$ is closed.
 	\end{enumerate}
@@ -1112,9 +1117,10 @@ $(X,\rho)$ is a metric space.
 	\begin{enumerate}
 		\item[(a)] $\conj E$ is closed.
 			\begin{proof}
-				We will show $(\conj E)^c$ is open. Let $x\in (\conj E)^c$ be arbitrary. $\implies x\notin \conj E = E\cup E' \implies x\notin E$ and $x\notin E'$, $x$ not a limit point of $E$.
-				$\implies \exists r>0$ such that $N_r(x)\cap (E\cup E') = \{x\}$ but $x\notin E$ and $x\notin E'$, so $N_r(x)\cap \conj E = \emptyset$.
-				$\implies N_r(x)\subset (\conj E)^c \implies x$ is an interior point of $E$. $\implies (\conj E)^c$ is open $\implies \conj E$ is closed.
+				We will show $(\conj E)^c$ is open. Let $x\in (\conj E)^c$ be arbitrary. 
+				This implies $x\notin \conj E = E\cup E' \implies x\notin E$ and $x\notin E'$, $x$ not a limit point of $E$.
+				This implies $\exists r>0$ such that $N_r(x)\cap (E\cup E') = \{x\}$ but $x\notin E$ and $x\notin E'$, so $N_r(x)\cap \conj E = \emptyset$.
+				This implies $N_r(x)\subset (\conj E)^c \implies x$ is an interior point of $E$. This implies $(\conj E)^c$ is open $\implies \conj E$ is closed.
 			\end{proof}
 		\item[(b)] $E = \conj E \Llr E$ is closed.
 			\begin{proof}
@@ -1151,8 +1157,8 @@ Due on \ul{\ul{17$^\text{th}$}}.
 Free to use up to Thm 2.42, up to \#16 (Exercises).
 
 \ul{Relative open sets}
-Let $X$ be a metric space, $E\subset X$ open if for each $e\in E$, $\exists r_e>0$ such that $N_r(e) = \{x\in X:\rho(x,e)<r_e\} \subset E$.
-If $E\subset Y\subset X$, then we say \ul{$E$ is open in} $Y$ if for each $e\in E$, $\exists r_e>0$ such that $N_{r_e}^Y(e) := \{y\in \ul{\ul{Y}}:\rho(y,e)< r_e\} \subset E$.
+Let $X$ be a metric space, $E\subset X$ open if for each $e\in E$, $\exists r_e>0$ such that $$N_r(e) = \{x\in X:\rho(x,e)<r_e\} \subset E.$$
+If $E\subset Y\subset X$, then we say \ul{$E$ is open in} $Y$ if for each $e\in E$, $\exists r_e>0$ such that $$N_{r_e}^Y(e) := \{y\in \ul{\ul{Y}}:\rho(y,e)< r_e\} \subset E.$$
 
 \begin{theorem}
 	Let $Y\subset X$, where $X$ is a metric space. Then $E\subset Y$ is open relative to $Y \Llr E = Y\cap G$ for some open set $G$ in $X$.
@@ -1165,7 +1171,7 @@ If $E\subset Y\subset X$, then we say \ul{$E$ is open in} $Y$ if for each $e\in 
 	\ul{\ul{NTS}}: $\exists$ an open set $G$ of $X$ such that $E = Y\cap G$.
 	Since $E$ is open relative to $Y$, for each $e\in E$, $\exists r_e>0$ such that $N_{r_e}^Y(e) \subset E$.
 	Set $G: = \bigcup_{e\in E} V_e$, where $V_e = N_r(e)$ open neighborhood of $e$ in $X$.
-	$\implies G$ is open in $X$.
+	This implies $G$ is open in $X$.
 	\ul{We need to show}: $E = Y\cap G$.
 	\say{$\subset$}: $E\subset Y$ (given). We only need to show $E\subset G$.
 	Let $e\in E$. Then $e\in V_e$ and so $e\in \bigcup_{e\in E} V_e = G$.
@@ -1176,7 +1182,7 @@ If $E\subset Y\subset X$, then we say \ul{$E$ is open in} $Y$ if for each $e\in 
 	\say{$\Lla$} Suppose $\exists G$ open in $X$ such that $E = Y\cap G$. We will show $E$ is open in $Y$.
 	Let $e\in E$, NTS: $e$ is an interior point of $E$ of $E$).
 	Then $e\in Y\cap G$. But $G$ is open in $X$, so $\exists r>0$ such that $N_r(e) \subset G$.
-	$\implies N_r(e)\cap Y\subset G\cap Y = E$.
+	This implies $N_r(e)\cap Y\subset G\cap Y = E$.
 	Therefore $e$ is an interior point of $E$ and $E$ is open in $Y$.
 \end{proof}
 
@@ -1213,7 +1219,7 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 \end{proof}
 
 \begin{theorem}
-	If $K\subset X^{m.s.}$ is compact, then $K$ is closed. (If $K$ is noot closed, $K$ is compact.).
+	If $K\subset X^{m.s.}$ is compact, then $K$ is closed. %(If $K$ is not closed, $K$ is compact.).
 \end{theorem}
 \begin{proof}
 	Let $K\subset X$ be compact. We will show $K^c$ is open.
@@ -1232,7 +1238,7 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 \begin{proof}
 	Let $\{V_\alpha\}$ be an open cover of $F$ i.e., $F\subset \bigcup V_\alpha$.
 	Since $F$ is closed, $F^c$ is open. So $K\subset (\bigcup V_\alpha) \cup F^c$ - an open cover of $K$.
-	$K$ compact $\implies \exists \alpha_1,\dots,\alpha_n$ such that $K\subset V_\alpha \cup\dots\cup V_{\alpha_n}\cup F^c$. $\implies F\subset V_{\alpha_1}\cup\dots\cup V_{\alpha_n}\cup F^c$ and $F\cap F^c = \emptyset \implies F\subset V_\alpha\cup\dots\cup V_{\alpha_n} \implies F$ is compact.
+	$K$ compact $\implies \exists \alpha_1,\dots,\alpha_n$ such that $K\subset V_\alpha \cup\dots\cup V_{\alpha_n}\cup F^c$. This implies $F\subset V_{\alpha_1}\cup\dots\cup V_{\alpha_n}\cup F^c$ and $F\cap F^c = \emptyset \implies F\subset V_\alpha\cup\dots\cup V_{\alpha_n} \implies F$ is compact.
 \end{proof}
 \begin{corollary}
 	$F\subset X^{m.s.}$ closed and $K\subset X^{m.s.}$ compact, then $F\cap K$ is compact.
@@ -1494,5 +1500,95 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 		\item[(d)] If $E\subset X$ and $p\in E'$ then there exists a sequence $\{p_n\}\subset E$ such that $p_n\ra p$.
 	\end{enumerate}
 \end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] $p_n \ra p \iff$ every neighborhood of $p$ contains all but finitely many points of $\{p_n\}$.
+			
+			\say{$\implies$} Suppose \ul{$p_n\ra p$}. Let $N_r(p) = \{x\in X: \rho(x,p) < r\}$ be any neighborhood of $p$.
+			Since $p_n \ra p$, for \ul{$\epsilon = r$}, $\exists N\in\mb N$ such that $\rho(p_n,p) < \epsilon = r$ for all $n\geq N$.
+			This implies $N_r(p)$ contains all except possibly $N-1$ elements of $\{p_n\}$.
+			
+			\say{$\Lla$} Let $\epsilon > 0$. \ul{NTF}: $N\in\mb N$ such that $\rho(p_n,p)<\epsilon$ for all $n\geq N$.
+			By assumption, $\epsilon$-neighborhood $N_\epsilon(p)$ contains all but finitely many points of $\{p_n\}$ i.e., $\exists N\in\mb N$ such that $\rho(p_n,p)<\epsilon$ for all $n\geq N$. This implies $p_n\ra p$.
+
+		\item[(b)] $p_n\ra p$ and $p_n\ra p' \implies p' = p$.
+			
+			\ul{Claim}: $\rho(p,p') = 0 \implies p' = p)$.
+			\ul{We will show}: $\rho(p,p)<\epsilon$ \ul{for any $\epsilon>0$}.
+			Let $\epsilon > 0$. Since $p_n\ra p \implies \exists N_1\in\mb N$ such that $\rho(p_n,p) < \frac{\epsilon}{2}$ for all $n\geq N_1$.
+			Also $p_n \ra p' \implies \exists N_2\in\mb N$ such that $\rho(p_n,p') \frac{\epsilon}{2} < $ for all $n\geq N_2$.
+			Then $\rho(p,p') \leq \rho(p,p_n) + \rho(p_n,p') < \frac{\epsilon}{2} + \frac{\epsilon}{2}$ for all $n\geq N = \max\{N_1,N_2\}$.
+			That implies $\rho(p,p')<\epsilon$. Since $\epsilon>0$ is arbitrary, $\rho(p,p') = 0$ and hence $p = p'$.
+
+		\item[(c)] If $\{p_n\}$ converges, then $\{p_n\}$ is \ul{bounded} ($\exists N_r(p) \supset \{ p_n\}$).
+
+			$\{p_n\}$ converges $\implies \exists p\in X$ such that $p_n\ra p$.
+			$p_n\ra p \implies$ for $\epsilon = 1$, $\exists N\in\mb N$ such that $\rho(p_n,p) < 1$ for all $n\geq N$.
+			Set $r:= \max\{1,\rho(p_1,p),\rho(p_2,p),\dots,\rho(p_{n-1},p)\}$.
+			Then $p_n\in\mb N$ for all $n\in\mb N$ implies that $ \{p_n\}$ is bounded.
+
+		\item[(d)] $E\subset X$ and $p\in E' \implies \exists \{p_n\}\subset E$ such that $p_n\ra p$.
+			
+			$p$ is a limit point of $E \implies$ \ul{every neighborhood} of $p$ contains \ul{at least one point of $p$}.
+			That implies for each $n = 1,2,\dots$, $\exists p_n\in E$ such that $\rho(p_n,p) < \frac{1}{n}$. Now we will show: $p_n\ra p$.
+			Let $\epsilon > 0$. Then for $N > \frac{1}{\epsilon}$, $\rho(p_n,p) < \frac{1}{n} \leq \frac{1}{N} < \epsilon$ for all $n\geq N$, which implies $p_n\ra p$.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	Let $\{s_n\},\{t_n\}\subset\mb C$. Then if $s_n\ra s$ and $t_n\ra t$:
+	\begin{enumerate}
+		\item[(a)] $s_n + t_n\ra s+t$
+		\item[(b)] $c\cdot s_n \ra c\cdot s$ for any $c\in\mb C$
+		\item[(c)] $s_n\cdot t_n\ra s\cdot t$
+		\item[(d)] $\frac{1}{s_n} \ra \frac{1}{2}$ whenever $s_n\neq 0$ for all $n$ and $s\neq 0$ ($\implies \frac{t_n}{s_n} \ra \frac{t}{s}$ by (c)).
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] Let \ul{$\epsilon > 0$} be given. \ul{NTF}: $\exists N\in\mb N$ such that $|(s_n+t_n) - (s+t)|_{\mb C} < \epsilon$ for all $n\geq N$.i
+
+			Then $s_n\ra s \implies \exists N_1\in\mb N$ such that $|s_n-s|_{\mb C} < \frac{\epsilon}{2}$ for all $n\geq N_1$.
+			Also $t_n\ra t \implies \exists N_2\in\mb N$ such that $|t_n-t|_{\mb C} < \frac{\epsilon}{2}$ for all $n\geq N_2$.
+			For $n\geq \max\{N_1,N_2\} = N$
+			\begin{align*}
+				| s_n + t_n - s - t|_{\mb C} \os{\Delta}{\leq} |s_n-s|_\mb C + |t_n-t|_\mb C < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon
+			\end{align*}
+
+		\item[(b)] For you.
+
+		\item[(c)] Let $\epsilon > 0$. \ul{NTS}: $\exists N\in\mb N$ such that $|s_n t_n - st|<\epsilon$ for all $n\geq N$.
+
+			Then $s_n\ra s\implies \exists N_1\in\mb N$ such that $|s_n-s|_\mb C< \frac{\epsilon}{2M}$ for all $n\geq N_1$
+			and $t_n\ra t \implies \exists N_2\in\mb N$ such that $|t_n-t|_\mb C< \frac{\epsilon}{2(|s|+1)}$ for all $n\geq N_2$.
+			For $n\geq \max\{N_1,N_2\} = N$
+			\begin{align*}
+				|s_nt_n-st|_\mb C = |s_nt_n-st_n + st_n - st| \os{\Delta}{\leq} |s_n - s|_\mb C\cdot |tn|_\mb C + |s|_\mb C \cdot |t_n-t|_\mb C
+			\end{align*}
+			$\{t_n\}$ converges $\implies \{t_n\}$ bounded in $\mb C \implies \exists M>0$ such that $|t_n|_\mb C \leq M$ for all $n$.
+			Then for $n\geq N$,
+			\begin{align*}
+				|s_nt_n-st|_\mb C &\leq |s_n-s|_\mb C \cdot |tn|_\mb C + |t_n-t|_\mb C \cdot |s|_\mb C \\
+								  &\leq M|s_n-s|_\mb C + |s|\cdot|t_n-t| \\
+				&< M\cdot\frac{\epsilon}{2M} + |s|\cdot\frac{\epsilon}{2(|s|+1)} < 1 \\
+				&< \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon,
+			\end{align*}
+			which implies that $s_nt_n\ra st$.
+
+		\item[(d)] Let $\epsilon>0$. \ul{NTS}: $\exists N\in\mb N$ such that $|\frac{1}{s_n} - \frac{1}{2}|_\mb C <\epsilon$ for all $n\geq N$. 
+			$$ \left| \frac{1}{s_n} - \frac{1}{s} \right|_\mb C = \frac{|s_n-s|_\mb C}{|s|_\mb C\cdot |s_n|_\mb C} $$ 
+			\ul{Need to control} $|s_n|$.
+			Then $s_n\ra s\implies \exists N_1\in\mb N$ such that $|s_n-s|_\mb C < \frac{|s|}{2}$ for all $n\geq N_1$.
+			\ul{Claim}: For $n\geq N_1$, $|s_n|_\mb C > \frac{|s|_\mb C}{2}$.
+			Suppose not: ($|s_n|\leq |s|/2$)
+			$$ |s|_\mb C = |s-s_n + s_n|_\mb C \leq |s-s_n|\mb C + |s_n|_\mb C < \frac{|s|_\mb C}{2} + \frac{|s|_\mb C}{2} = |s|_\mb C$$ - a contradiction.
+			Now, $\exists N_2\in\mb N$ such that $|s_n - s|\leq \epsilon\cdot \frac{|s|^2}{2}$ for all $n\geq N_2$.
+			Take $N = \max\{N_1,N_2\}$. Then for $n\geq N$,
+			$$ \left| \frac{1}{s_n} = \frac{1}{s} \right| = \frac{|s_n-s|}{|s|\cdot |s_n|} < \frac{\epsilon\cdot |s|^2\cdot 2}{2\cdot|s|\cdot |s|} = \epsilon,$$
+			which implies $\frac{1}{s_n} \ra \frac{1}{s}$.
+	\end{enumerate}
+\end{proof}
 
 \end{document}

@@ -1314,5 +1314,74 @@ A subgroup $H$ is normal in $G$ if $gHg\inv\subseteq H$ for all $g\in G$.
 \end{example}
 Abelian $\implies$ All subgroups are normal $\os{?}{\implies}$ Abelian (false). $Q_8 = \{\pm 1,\pm i,\pm j, \pm k\}$, $ij = k$, $ji = -k$.
 
+\subsection{Quotient groups}
+
+Let $H\leq G$ and $G / H =$ the set of left cosets of $H$ in $G$. Note that $|G/H|=[G:H]$.
+
+\begin{theorem}
+	If $N\triangleleft G$ then $G/N$ is a group with respect to the operation $aN\cdot bN = abN$.
+\end{theorem}
+\begin{definition}
+	$G/N$ is called the \ul{quotient group} (or \ul{factor group}).
+\end{definition}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item The operation is well-defined. If $aN = \tilde aN$ and $bN = \tilde bN$ then $abN = \tilde a\tilde bN$.
+
+			Assume $aN = \tilde aN$ and $bN = \tilde bN$. Then $\tilde a\in aN$ and $\tilde b\in bN$. Thus $\tilde a = ah_1$ and $\tilde b = bh_2$ for some $h_1,h_2\in N$.
+			Look at $\tilde a\tilde bN = (ah_1)(bh_2)N = (ah_1 b)h_2 N = ah_1bN$ since $h_2N = N$. Then $ah_1bN = ah_1Nb = aNb = abN$ since $bN = Nb$ due to $N\triangleleft G$.
+
+		\item The operation is associative: $(aN\cdot bN)\cdot cN = aN\cdot(bN\cdot cN)$.
+
+			$(aN\cdot bN)\cdot cN) = abN\cdot cN = (ab)cN$ and $aN\cdot(bN\cdot cN) = aN\cdot bcN = a(bc)N$. Since $(ab)c\in G$ and $a(bc)\in G$, they are abelian and thus equal.
+
+		\item Identity: $e_{G/N} = eN = N$.
+
+			$eN\cdot aN = eaN = aN$ and $aN\cdot eN = aeN = aN$.
+
+		\item Inverses: $(aN)\inv = a\inv N$.
+
+			$aN\cdot a\inv N = aa\inv N = eN = e_{G/N}$ and $a\inv N\cdot aN = a\inv aN = eN = e_{G/N}$.
+	\end{enumerate}
+\end{proof}
+\begin{example}
+	$G = \mb Z$, $N = 3\mb Z$. $3\mb Z \triangleleft \mb Z$. $|\mb Z/3\mb Z| = [\mb Z:3\mb Z] = 3$. Then $\mb Z/3\mb Z = \{3\mb Z, 1+3\mb Z,2+\mb Z\}$.
+
+	%\begin{table}{c|ccc}
+	%$\mb Z/3\mb Z$ & $3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ \\
+	%\hline \\
+	%$3\mb Z$ & $3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ \\
+	%$1+3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ & $3\mb Z$ \\
+	%$2+3\mb Z$ & $2+3\mb Z$ & $3\mb Z$ & $1+3\mb Z$
+	%\end{table} 
+
+	% table for $\mb Z_3$. [0], etc
+
+	$\mb Z/*\mb Z \llr \mb Z_*$ and $? + *\mb Z \llr [?]$.
+\end{example}
+
+\begin{example}
+	Let $G$ abelian group and $H = $ elements of $G$ of finite order.
+
+	\ul{Claim 1}: $H\leq G$
+	\begin{enumerate}
+		\item $e\in H$ since $o(e) = 1$
+		\item closure under products $a,b\in H \os{?}{\implies} ab\in H$.
+
+			Let $o(a) = n$ and $o(b) = m$, then $(ab)^{nm} = a^{nm}b^{nm} = (a^n)^m (b^m)^n = e^m e^n = e$ since $G$ is abelian. Thus $o(ab) \mid nm \implies o(ab) < \infty$.
+
+		\item closure under inverses: $a\in H \os{?}\implies a\inv\in H$.
+
+			$o(a) = n \implies o(a\inv) = n \implies a\inv\in H$.
+	\end{enumerate}
+	$G$ is abelian $\implies H\triangleleft G$, so $G/H$ quotient group.
+
+	\ul{Claim 2}: $G/H$ is torsion-free (i.e. there are no elements of finite order).
+
+	Assume $o(aH)<\infty$ then $\exists n\in\mb N$ such that $(aH)^n = e_{G/H} = H$. Then $a^n H = H \implies a^n\in H \implies o(a^n)<\infty$ say $o(a^n) = m$.
+	Then $o(a^n)^m = e$, so $a^{nm} = e \implies o(a)\mid nm \implies o(a) < \infty \implies aH = H = e_{G/H}$.
+\end{example}
+
 \end{document}
 
