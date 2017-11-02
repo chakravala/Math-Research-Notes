@@ -1,7 +1,7 @@
 \documentclass[]{article}
 \input{../mathdoc}
 \input{../mathsym}
-\input{../preview}
+%\input{../preview}
 
 \author{Book: Walter Rudin 3rd, Presenter: Maya Chhetri, Notes by Michael Reed}
 \title{Real Analysis I}
@@ -1607,12 +1607,12 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 \end{theorem}
 \begin{proof}
 	Let
-	%\begin{align*}
-	%	\vx_1 &: (x_{1,1},x_{2,1},\dots,x_{k,1}) \\
-	%	\vx_2 &: (x_{1,2},x_{2,2},\dots,x_{k,2}) \\
-	%	\vdots \\
-	%	\vx_n &: (x_{1,n},x_{2,n},\dots,x_{k,n})
-	%\end{align*}
+	\begin{align*}
+		\vx_1 &: (x_{1,1},x_{2,1},\dots,x_{k,1}) \\ 
+		\vx_2 &: (x_{1,2},x_{2,2},\dots,x_{k,2}) \\
+		\vdots \\
+		\vx_n &: (x_{1,n},x_{2,n},x_{k,n})
+	\end{align*}
 	with $\vx_n \os{\mb R^k}{\lra} \vx$ and $x_{j,n}\os{\mb R}{\lra} x_j$ as $n\ra\infty$ for $j=1,\dots,k$.
 
 	\say{$\implies$} Suppose $\vx_n \ra \vx$. \ul{Let $\epsilon>0$ be fixed}.
@@ -1624,14 +1624,14 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 	Let $\epsilon>0$ be fixed. Need to find $N\in\mb N$ such that $|\vx_n-\vx|_{\mb R^k} < \epsilon$ for all $n\geq N$.
 	i.e., $\sqrt{(x_{1,n} - x_1)^2 + \dots + (x_{k,n} - x_k)^2} < \epsilon$.
 	Since $x_{j,n} \ra x_j$ as $n\ra\infty$ for all $j = 1,\dots, k$, $\exists N = \max\{ N_1,\dots, N_k\}$ such that $|x_{j,n} - x_j| < \frac{\epsilon}{\sqrt{k}}$ for all $n\geq N$.
-	%Then $|\vx_n - \vx| < \sqrt{k\left(\frac{\epsilon}{\sqrt{k}}\right)^2} = \epsilon$ for $n\geq N$. This implies $\vx_n\ra \vx$.
+	Then $|\vx_n - \vx| < \sqrt{k\left(\frac{\epsilon}{\sqrt{k}}\right)^2} = \epsilon$ for $n\geq N$. This implies $\vx_n\ra \vx$.
 	(b) follows easily.
 \end{proof}
 
 \subsection{Subsequences}
-\iffalse
+
 \begin{definition}
-	[Sequence] %$s_n$: $s_1, s_2, s_4, s_5, s_6, s_7, \dots, s_n, \dots$, then $s_{n_k}$: $s_{n_1}, s_{n_2}, s_{n_3}, s_{n_4}, \dots$ is a subsequence.
+	[Sequence] $s_n$: $s_1, s_2, s_4, s_5, s_6, s_7, \dots, s_n, \dots$, then $s_{n_k}$: $s_{n_1}, s_{n_2}, s_{n_3}, s_{n_4}, \dots$ is a subsequence.
 	\begin{note}
 		Note:
 		\begin{enumerate}
@@ -1640,13 +1640,13 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 		\end{enumerate}
 	\end{note}
 \end{definition}
-\fi
+
 \begin{lemma}
-	%$\{p_n\}$ converges to $p$ in $X^{m.s.} \iff$ every subsequence $\{p_{n_k}\}$ of $\{p_n\}$ converges to the same limit $p$.
+	$\{p_n\}$ converges to $p$ in $X^{m.s.} \iff$ every subsequence $\{p_{n_k}\}$ of $\{p_n\}$ converges to the same limit $p$.
 \end{lemma}
 \begin{proof}
-	\say{$\implies$} %Suppose $p_n\us{n\ra\infty}{\lra}p$. and let $\{p_{n_k}\}$ be a subsequence.
-	%\ul{Want to show}: $p_{n_\ul{k}}\us{k\ra\infty}{\lra}p$.
+	\say{$\implies$} Suppose $p_n\us{n\ra\infty}{\lra}p$. and let $\{p_{n_k}\}$ be a subsequence.
+	\ul{Want to show}: $p_{n_{\ul{k}}}\us{k\ra\infty}{\lra}p$.
 	Let $\ul{\epsilon}>0$. \ul{NTS}: $\exists K\in\mb N$ such that $\rho(p_{n_k},p) < \epsilon$ for all $k\geq K$.
 	Then $p_n\ra p\implies \forall\epsilon>0$, $\exists N\in\mb N$ such that $\rho(p_n,p) < \epsilon$ for all $n\geq N$.
 	We know $n_k \geq K$ for all $K$, so $n_k \geq K \geq N \implies \rho(p_{n_k},p) < \epsilon$ for all $k\geq N$ (implies $n_k\geq k \geq N$).
@@ -1667,17 +1667,18 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 \begin{definition}
 	[Range of a sequence] $\{p_n\} := \{p_n:n\in\mb N\}$. \ul{Eg}: (1) $p_n = (-1)^n \implies$ Range $ = \{-1,1\}$ - finite $\implies$ closed. (2) $p_n = \frac{1}{n} \implies $ Range $ = \{\frac{1}{n}\}$.
 \end{definition}
+
 \begin{proof}
 	\ul{Case 1}: Suppose range of $\{p_n\}$, say $E$ is finite.
 	Then $\exists p\in\{p_n\}$ such that $p_{n_1} = p_{n_2} = \dots = p_{n_k} = p \implies \exists \{p_{n_k}\}$ of $\{p_n\}$ such that $p_{n_k}\ra p$.
 
 	\ul{Case 2}: $E$ is infinite.
 	Since $E\subset X^{\text{compact}}$ is infinite, $E$ has a limit $p$ in $X$.
-	\begin{Note}
+	\begin{note}
 		While every neighborhood of $p$ contains infinitely many points of $E$, this may not be a subsequence.
-	\end{Note}
+	\end{note}
 	$p\in E'$ and $E$ is infinite, so $\exists p_{n_1}\in E$ such that $\rho(p,p_{n_1}) < 1$.
-	Next, $\exist p_{n_2}\n E$ with $n_1 < n_2$ such that $\rho(p,p_{n_2}) < \frac{1}{2}$.
+	Next, $\exists p_{n_2}\in E$ with $n_1 < n_2$ such that $\rho(p,p_{n_2}) < \frac{1}{2}$.
 	Inductively, $\exists p_{n_k}$ with $n_1 < n_2 < \dots < n_k$ such that $\rho(p,p_{n_k}) < \frac{1}{2^{k-1}} \os{?}{\implies} p_{n_k} \ra p$ as $k\ra\infty$.
 
 	\ul{Notation}: $E^* = $ set of all subsequential limits $ = \{p\in X : \exists\{ p_{n_k} \}\text{ such that }p_{n_k} \ra p\}$.
@@ -1698,5 +1699,107 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 	This implies $p_{n_k}\ra q$ as $k\ra\infty \implies q\in E^* \implies E^*$ is closed.
 \end{proof}
 
+\subsection{Cauchy sequence}
+
+\begin{definition}
+	$(X,\rho)$ - metric space. A sequence $\{p_n\}_n\subset X$ is Cauchy if $\forall \epsilon>0$, $\exists N = N(\epsilon)>0$ such that $\rho(p_n,p_m)<\epsilon$ for all $n,m\geq \ul{N}$.
+\end{definition}
+
+\begin{example}
+	$X = \mb R$ with usual metric, then $\{\frac{1}{n}\}_a$ is Cauchy sequence.
+\end{example}
+\begin{proof}
+	Let $\epsilon > 0$ be fixed. NTF $N\in\mb N$ such that $\left|\frac{1}{n}-\frac{1}{m}\right| < \epsilon$ for all $n,m\geq N$.
+	Using $\Delta$ inequality, $|\frac{1}{n}-\frac{1}{m}| \leq |\frac{1}{n}| + |\frac{-1}{m}| = \frac{1}{n} + \frac{1}{m} < \frac{\epsilon}{2} + \frac{\epsilon}{2}$ for $n,m>\frac{2}{\epsilon} = N \implies \{\frac{1}{n}\}_n$ is Cauchy.
+	Examples of Cauchy sequence that do not converge.
+	\begin{enumerate}
+		\item $s_n = (1+\frac{1}{n})^n\in\mb Q$ and $s_n\ra e\notin\mb Q \implies s_n$ does not converge in $\mb Q$.
+		\item $\{\frac{1}{n}\}_{n\geq 2}\subset(0,1)$ Cauchy that does not converge in $(0,1)$.
+	\end{enumerate}
+\end{proof}
+\begin{definition}
+	$E\subset X^{m.s.}$, then $\text{diam}\, E = \sup\rho(p,q)$ for $p,q\in E$.
+\end{definition}
+\begin{example}
+	$X = \mb R$, $E = (0,1) \implies \text{diam}\, E = 1$. $X = \mb R^2$ and $E = [0,1]\times [0,1] \implies \text{diam}\, E = \sqrt{2}$.
+\end{example}
+
+Given $\{p_n\}\subset X^{m.s.}$, let $E_n := \{p_n,p_{n+1},\dots,\}$. Then \ul{$\{p_n\}$ is Cauchy $\iff \us{n\ra\infty}{\text{diam}}\, E_n = 0$}.
+
+\begin{theorem}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] Let $E\subset(X,\rho)$. Then $\diam{E} = \diam\conj E$
+		\item[(b)] If $\{K_n\}_n\subset X$ a sequence of compact sets such that
+			\begin{itemize}
+				\item $K_n\supset K_{n+1}$, and
+				\item $\us{n\ra\infty}{\text{diam}}\, K_n = 0$
+			\end{itemize}
+			then $\bigcap K_n$ contains exactly one point.
+	\end{enumerate}
+	\label{thm-3-10}
+\end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] \say{$\geq$}
+			Note that if $A\subset B$ then $\diam A\leq \diam B$.
+			Then since $E\subset\conj E$, we have \ul{$\diam E\leq \diam \conj E$}.
+
+			\say{$\leq$} We will show: $\diam\conj E\leq \diam E + \epsilon$ for all $\epsilon >0$.
+			Let $\conj p, \conj q\in \conj E$. 
+			\begin{enumerate}
+				\item[(i)] If $\conj p, \conj q\in E$, then $$\us{\conj p,\conj q\in \conj E}{\sup}\rho(\conj p,\conj q) = \us{p,q\in E}{\sup}\rho(p,q).$$
+				\item[(ii)] Suppose $\conj p, \conj q\in E'$. Then $\exists p,q\in E$ such that $\rho(\conj p,p)\leq \frac{\epsilon}{2}$ and $\rho(\conj q,q)\leq \frac{\epsilon}{2}$.
+					Then $$\rho(\conj p,\conj q)\leq \rho(\conj p,p) + \rho(p,q) + \rho(q,\conj q) \leq \epsilon + \rho(p,q).$$
+				\item[(iii)] Suppose $\conj p\in E'$ and $\conj q\in E$. Then $\exists p\in E$ such that $\rho(\conj p, p) < \frac{\epsilon}{2}$.
+					Then $$\rho(\conj p,\conj q) \leq \rho(\conj p,p) + \rho(p,\conj q) \leq \frac{\epsilon}{2} + \diam E \leq \epsilon + \diam E.$$
+			\end{enumerate}
+			Then $\us{\conj p,\conj q\in \conj E}{\sup}\rho(\conj p,\conj q) \leq \epsilon + \us{p,q\in E}{\sup}\rho(p,q) \implies \diam \conj E \leq \epsilon + \diam E$.
+			Since $\epsilon > 0$ is arbitrary, \ul{$\diam \conj E\leq \diam E$}.
+			Hence $\diam\conj E = \diam E$.
+
+		\item[(b)] We have $\bigcap_n K_n \neq \emptyset$.
+			Suppose by contradiction that $\exists$ at least two points in $K = \bigcap_n K_n$.
+			Then $\diam K> 0$ and $K\subset K_n$ for all $n \implies 0 < \diam K \leq \diam K_n \ra 0$ for all $n$ - a contradiction since $\us{n\ra\infty}{\text{diam}}\,K_n = 0$.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] Let $(X,\rho)$ a metric space. Then every convergent sequence is Cauchy.
+		\item[(b)] Let $(x,\rho)$ a \ul{compact} metric space. Then a Cauchy sequence converges.
+		\item[(c)] In $\mb R^k$, every Cauchy sequence converges.
+	\end{enumerate}
+\end{theorem}
+\begin{definition}
+	Let $(X,\rho)$ be a metric space. If every Cauchy sequence in $X$ converges, then $X$ is called a complete metric space.
+\end{definition}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] Let $\{p_n\}\subset X$ be such that \ul{$p_n\ra p$} in $X$.
+			\ul{WTS}: Let $\epsilon > 0$. We'll find $N\in\mb N$ such that $\rho(p_n,p_n) < \epsilon$ for all $n,m\geq N$.
+			Then $p_n\ra p \implies \exists N\in\mb N$ such that $\rho(p_n,p) < \frac{\epsilon}{2}$ for all $n\geq N$.
+			Then $\rho(p_n,p_m) \leq \rho(p_n,p) + \rho(p,p_m) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$ for all $n,m\geq N$.
+			This implie $\{p_n\}$ is Cauchy.
+		\item[(b)] Let $\{p_n\}\subset X^{\text{compact }m.s.}$ be Cauchy.
+			\ul{NTS}: $\exists p\in X$ such that $p_n\ra p$.
+			Let $E_n:=\{p_n,p_{n+1},\dots\}$.
+			Then $\lim_{n\ra\infty} \diam{E_n} = \lim_{n\ra\infty}\conj E_n = 0$.
+			Also $E_n\supset E_{n+1}$ and hence $\conj E_n\supset \conj E_{n+1}$ for al $n$.
+			Since $\conj{E}_n\subset X^{\text{compact}}$, $\conj{E}_n$ is compact.
+			Then $\bigcap \conj E_n = \{p\}$ (with $p$ unique) by Theorem \ref{thm-3-10}(b).
+			\ul{Claim}: $p_n\ra p$.
+			Let $\epsilon > 0$. Since $\us{n\ra\infty}{\text{diam}}\,E_n = 0$, $\exists N\in\mb N$ such that $\diam E_n < \epsilon$ for all $n\geq N$.
+			Now $p\in\conj E_n$ for \ul{$n\geq N$} $\implies \rho(p,q) < \epsilon$ for all $q\in\conj E_n$ ($\subset E_n$) $\implies \rho(p,p_n)<\epsilon$ for all $n\geq N \implies p_n\ra p$.
+		\item[(c)] Let $\{\vx_n\}\subset R^k$ be Cauchy. Let $E_n:=\{\vx_n,\vx_{n+1},\dots\}$.
+			Then $\{\vx_n\}\subset \mb R^k$ Cauchy $\implies \lim_{n\ra\infty}\diam E_n = 0 \implies \exists N\in\mb N$ such that $\diam E_n < 1$ for all $n\geq N$.
+			Define $R := \max\{|\vx_1|,\dots,|\vx_{N-1}|,1\}+1$.
+			Then $\{\vx_n\}_n\subset B_r(\vzero)$. This implies $\{\vx_n\}$ is bounded $\implies \exists$ a compact $k$-cell $K$ such that $\{\vx_n\}\subset K$.
+			By part (b) $\{x_n\}$ converges in $K$, hence in $X$.
+	\end{enumerate}
+\end{proof}
 
 \end{document}
