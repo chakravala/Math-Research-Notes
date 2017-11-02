@@ -1164,7 +1164,7 @@ If $E\subset Y\subset X$, then we say \ul{$E$ is open in} $Y$ if for each $e\in 
 	Let $Y\subset X$, where $X$ is a metric space. Then $E\subset Y$ is open relative to $Y \Llr E = Y\cap G$ for some open set $G$ in $X$.
 \end{theorem}
 \begin{example}
-	$X = \mb R$ and $Y = [0,1]$. Then $(\frac{1}{2},1] = [0,1]\cap(\frac{1,2},2)$ is open in $[0,1]$ but not open in $\mb R$.
+	$X = \mb R$ and $Y = [0,1]$. Then $(\frac{1}{2},1] = [0,1]\cap(\frac{1}{2},2)$ is open in $[0,1]$ but not open in $\mb R$.
 \end{example}
 \begin{proof}
 	\say{$\implies$} Suppose $E\subset Y$ is open relative to $Y$.
@@ -1590,5 +1590,113 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 			which implies $\frac{1}{s_n} \ra \frac{1}{s}$.
 	\end{enumerate}
 \end{proof}
+
+\begin{theorem}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] Supose $\{\vx_n\} \subset \mb R^k$ and $\vx_n = (x_{1,n},x_{2,n},\dots, x_{k,n})$.
+			Then $\vx_n\us{n\ra\infty}{\lra}\vx$ in $\mb R^k \iff x_{j,n} \us{n\ra\infty}{\lra} x_j$ for all $j = 1,2,\dots,k$.
+		\item[(b)] Suppose $\{\vx_n\},\{\vy_n\} \subset \mb R^k$ and $\{\beta_n\}\subset\mb R$. 
+			If $\vx_n\us{\mb R^k}{\ra}\vx,\vy_n\us{\mb R^k}{\ra}\vy$ and $\beta_n\us{\mb R^k}{\ra}\beta$ as $n\ra\infty$, then
+			\begin{itemize}
+				\item $\vx_n + \vy_n \ra \vx + \vy$
+				\item $\beta_n\vx_n\ra\beta\vx$
+				\item $\vx_n\cdot\vy_n\ra\vx\cdot\vy$, where \say{$\cdot$} is innter produce in $\mb R^k$.
+			\end{itemize}
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Let
+	%\begin{align*}
+	%	\vx_1 &: (x_{1,1},x_{2,1},\dots,x_{k,1}) \\
+	%	\vx_2 &: (x_{1,2},x_{2,2},\dots,x_{k,2}) \\
+	%	\vdots \\
+	%	\vx_n &: (x_{1,n},x_{2,n},\dots,x_{k,n})
+	%\end{align*}
+	with $\vx_n \os{\mb R^k}{\lra} \vx$ and $x_{j,n}\os{\mb R}{\lra} x_j$ as $n\ra\infty$ for $j=1,\dots,k$.
+
+	\say{$\implies$} Suppose $\vx_n \ra \vx$. \ul{Let $\epsilon>0$ be fixed}.
+	\ul{Want to show}: For each fixed $j\in\{1,\dots,k\}$, $\exists N\in\mb N$ such that $|x_{j,n}-x_j|_{\mb R} <\epsilon$ for all $n\geq N$.
+	Then $\vx_n\ra\vx \implies \exists N\in\mb N$ such that $|\vx_n - \vx|_{\mb R^k} < \epsilon$ for all $n\geq N$.
+	i.e., $\sqrt{(x_{1,n} - x_1)^2 + (x_{2,n} - x_2)^2 + \dots + (x_{k,n}-x_k)^2} < \epsilon$ for all $n\geq N$ implies that we have $|x_{j,n}-x_j|\leq \sqrt{(x_{1,n}-x_1)^2 + \dots + (x_{k,n} - x_k)^2} < \epsilon \implies x_{j,n} \ra x_j$ as $n\ra\infty$.
+
+	\say{$\Lra$} Suppose $x_{j,n}\ra x_j$ for all $j = 1,\dots,k$. \ul{Want to show}: $\vx_n\ra\vx$.
+	Let $\epsilon>0$ be fixed. Need to find $N\in\mb N$ such that $|\vx_n-\vx|_{\mb R^k} < \epsilon$ for all $n\geq N$.
+	i.e., $\sqrt{(x_{1,n} - x_1)^2 + \dots + (x_{k,n} - x_k)^2} < \epsilon$.
+	Since $x_{j,n} \ra x_j$ as $n\ra\infty$ for all $j = 1,\dots, k$, $\exists N = \max\{ N_1,\dots, N_k\}$ such that $|x_{j,n} - x_j| < \frac{\epsilon}{\sqrt{k}}$ for all $n\geq N$.
+	%Then $|\vx_n - \vx| < \sqrt{k\left(\frac{\epsilon}{\sqrt{k}}\right)^2} = \epsilon$ for $n\geq N$. This implies $\vx_n\ra \vx$.
+	(b) follows easily.
+\end{proof}
+
+\subsection{Subsequences}
+\iffalse
+\begin{definition}
+	[Sequence] %$s_n$: $s_1, s_2, s_4, s_5, s_6, s_7, \dots, s_n, \dots$, then $s_{n_k}$: $s_{n_1}, s_{n_2}, s_{n_3}, s_{n_4}, \dots$ is a subsequence.
+	\begin{note}
+		Note:
+		\begin{enumerate}
+			\item $n_k \geq k$ for all $k$.
+			\item $n_1 \leq n_2 \leq n_3 \leq \dots$.
+		\end{enumerate}
+	\end{note}
+\end{definition}
+\fi
+\begin{lemma}
+	%$\{p_n\}$ converges to $p$ in $X^{m.s.} \iff$ every subsequence $\{p_{n_k}\}$ of $\{p_n\}$ converges to the same limit $p$.
+\end{lemma}
+\begin{proof}
+	\say{$\implies$} %Suppose $p_n\us{n\ra\infty}{\lra}p$. and let $\{p_{n_k}\}$ be a subsequence.
+	%\ul{Want to show}: $p_{n_\ul{k}}\us{k\ra\infty}{\lra}p$.
+	Let $\ul{\epsilon}>0$. \ul{NTS}: $\exists K\in\mb N$ such that $\rho(p_{n_k},p) < \epsilon$ for all $k\geq K$.
+	Then $p_n\ra p\implies \forall\epsilon>0$, $\exists N\in\mb N$ such that $\rho(p_n,p) < \epsilon$ for all $n\geq N$.
+	We know $n_k \geq K$ for all $K$, so $n_k \geq K \geq N \implies \rho(p_{n_k},p) < \epsilon$ for all $k\geq N$ (implies $n_k\geq k \geq N$).
+	This implies $p_{n_k}\ra p$ as $k\ra\infty$.
+
+	\say{$\Lra$} Since $\{p_n\}$ is a subsequence of itself, $p_n\ra p$.
+\end{proof}
+
+\begin{theorem}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] Let $(X,\rho)$ be a compact metric space.
+			If $\{p_n\}\subset X$, then $\exists$ a subsequence $\{p_{n_k}\}$ of $\{p_n\}$ such that $\{p_{n_k}\}$ converges.
+		\item[(b)] Every \ul{bounded sequence in $\mb R^k$} has a convergent subsequence.
+			($\{p_n\}$ bounded in $\mb R^k \implies \exists$ a compact $k$-cell $K$ such that $\{p_n\}\subset K \os{(a)}{\implies} \exists$ a convergent subsequence.)
+	\end{enumerate}
+\end{theorem}
+\begin{definition}
+	[Range of a sequence] $\{p_n\} := \{p_n:n\in\mb N\}$. \ul{Eg}: (1) $p_n = (-1)^n \implies$ Range $ = \{-1,1\}$ - finite $\implies$ closed. (2) $p_n = \frac{1}{n} \implies $ Range $ = \{\frac{1}{n}\}$.
+\end{definition}
+\begin{proof}
+	\ul{Case 1}: Suppose range of $\{p_n\}$, say $E$ is finite.
+	Then $\exists p\in\{p_n\}$ such that $p_{n_1} = p_{n_2} = \dots = p_{n_k} = p \implies \exists \{p_{n_k}\}$ of $\{p_n\}$ such that $p_{n_k}\ra p$.
+
+	\ul{Case 2}: $E$ is infinite.
+	Since $E\subset X^{\text{compact}}$ is infinite, $E$ has a limit $p$ in $X$.
+	\begin{Note}
+		While every neighborhood of $p$ contains infinitely many points of $E$, this may not be a subsequence.
+	\end{Note}
+	$p\in E'$ and $E$ is infinite, so $\exists p_{n_1}\in E$ such that $\rho(p,p_{n_1}) < 1$.
+	Next, $\exist p_{n_2}\n E$ with $n_1 < n_2$ such that $\rho(p,p_{n_2}) < \frac{1}{2}$.
+	Inductively, $\exists p_{n_k}$ with $n_1 < n_2 < \dots < n_k$ such that $\rho(p,p_{n_k}) < \frac{1}{2^{k-1}} \os{?}{\implies} p_{n_k} \ra p$ as $k\ra\infty$.
+
+	\ul{Notation}: $E^* = $ set of all subsequential limits $ = \{p\in X : \exists\{ p_{n_k} \}\text{ such that }p_{n_k} \ra p\}$.
+	
+	\ul{Eg}: $\{(-1)^n\} \implies E^* = \{-1,1\}$.
+\end{proof}
+\begin{theorem}
+	Let $\{p_n\}\subset X$ and $E^* = \{p\in X: \exists \{ p_{n_k}\} \text{ such that } p_{n_k}\ra p\}$.
+\end{theorem}
+\begin{proof}
+	We will show $(E^*)' \subset E^*$.
+	Let $q\in (E^*)'$ i.e, $q$ is a limit point of $E^*$.
+	We will construct a subsequence $\{p_{n_k}\}$ such that $p_{n_k} \ra q$.
+	Let $n_1\in\mb N$ be such that $p_{n_1}\neq q$ (if no such index exists then $E^* = \{q\}$ - closed.
+	Set $\delta := \rho(q,p_{n_1}) > 0$ because $p_{n_1}\neq q$.
+	Let $n_2 > n_1$ such that $\rho(p_{n_2},q) < \frac{\delta}{2}$.
+	Inductively, let $n_1 < n_2 < \dots < n_k$ such that $\rho(p_{n_k},q) < \frac{\delta}{2^{k-1}}$.
+	This implies $p_{n_k}\ra q$ as $k\ra\infty \implies q\in E^* \implies E^*$ is closed.
+\end{proof}
+
 
 \end{document}

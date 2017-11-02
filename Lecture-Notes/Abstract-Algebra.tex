@@ -906,7 +906,7 @@ Group is cyclic $\implies$ every (proper) subgroup is cyclic, but the converse i
 	A \ul{permutation} of a set $X$ is a bijective mapping $\pi: X\ra X$.
 \end{definition}
 \begin{example}
-	$X = \{A,B,C\}$. $\text{id}_X = \left(\mat{A&B&C\\A&B&C}\right)$, then $\rho_1 = \left(\mat{A&B&C \\ B&C&A}\right)$, then $\rho_2 = \left(\mat{A&B&C\\C&A&B} \right)$, then $\mu_1 = \left(\mat{A&B&C\\A&C&B}\right)$, then $\mu_2 = \left( \mat{A&B&C\\C&B&A}\right)$, and $\mu_3 = \left(\mat{A&B&C\\B&A&C}\right)$.
+	$X = \{A,B,C\}$. $\text{id}_X = \pmat{A&B&C\\A&B&C}$, then $\rho_1 = \pmat{A&B&C \\ B&C&A}$, then $\rho_2 = \pmat{A&B&C\\C&A&B}$, then $\mu_1 = \pmat{A&B&C\\A&C&B}$, then $\mu_2 = \pmat{A&B&C\\C&B&A}$, and $\mu_3 = \pmat{A&B&C\\B&A&C}$.
 \end{example}
 \ul{Notation}: $S_X$ is the set of all permutations of $X$.
 
@@ -929,7 +929,7 @@ If $|X|<\infty$, write $X = \{1,2,\dots,n\}$ and $S_X\ra S_n \ra$ symmetric grou
 	A \ul{permutation group} is a subgroup of a symmetric group.
 \end{definition}
 \begin{example}
-	Look at $S_4$. $\sigma = \left(\mat{1&2&3&4\\4&1&2&3}\right)$, $\tau = \left( \mat{1&2&3&4 \\ 2&1&4&3}\right)$. Compute composition of mappings goes from right to left: $\sigma \tau  = \left(\mat{1&2&3&4\\1&4&3&2}\right)$, $\tau\sigma = \left( \mat{1&2&3&4\\3&2&1&4}\right)$. So $\sigma\tau \neq \tau\sigma$.
+	Look at $S_4$. $\sigma = \pmat{1&2&3&4\\4&1&2&3}$, $\tau = \pmat{1&2&3&4 \\ 2&1&4&3}$. Compute composition of mappings goes from right to left: $\sigma \tau  = \pmat{1&2&3&4\\1&4&3&2}$, $\tau\sigma = \pmat{1&2&3&4\\3&2&1&4}$. So $\sigma\tau \neq \tau\sigma$.
 \end{example}
 
 \begin{definition}
@@ -944,11 +944,11 @@ If $|X|<\infty$, write $X = \{1,2,\dots,n\}$ and $S_X\ra S_n \ra$ symmetric grou
 \begin{example}
 	Consider $S_6$.
 
-	$\sigma = \left(\mat{1&2&3&4&5&6\\5&6&2&4&3&1}\right) = (1\,5\,3\,2\,6)$ is a 5-cycle. 
+	$\sigma = \pmat{1&2&3&4&5&6\\5&6&2&4&3&1} = (1\,5\,3\,2\,6)$ is a 5-cycle. 
 	
-	$\tau = \left(\mat{1&2&3&4&5&6\\1&5&3&2&4&6}\right) = (2\,5\,4)$ is a 3-cycle.
+	$\tau = \pmat{1&2&3&4&5&6\\1&5&3&2&4&6} = (2\,5\,4)$ is a 3-cycle.
 
-	$\pi = \left(\mat{1&2&3&4&5&6\\2&1&4&3&5&6}\right) = (1\,2)(3\,4)$ not a cycle.
+	$\pi = \pmat{1&2&3&4&5&6\\2&1&4&3&5&6} = (1\,2)(3\,4)$ not a cycle.
 \end{example}
 
 \begin{definition}
@@ -975,7 +975,7 @@ If $|X|<\infty$, write $X = \{1,2,\dots,n\}$ and $S_X\ra S_n \ra$ symmetric grou
 	Every permutation in $S_n$ can be expressed \ul{uniquely} as a product of disjoint cycles.
 \end{theorem}
 \begin{example}
-	$\left(\mat{1&2&3&4&5&6&7&8\\3&5&7&4&2&8&1&6}\right) = (1\,3\,7)(2\,5)(6\,8) = (6\,8)(1\,3\,7)(2\,5)$
+	$\pmat{1&2&3&4&5&6&7&8\\3&5&7&4&2&8&1&6} = (1\,3\,7)(2\,5)(6\,8) = (6\,8)(1\,3\,7)(2\,5)$
 \end{example}
 \begin{definition}
 	A \ul{transposition} is a cycle of length 2.
@@ -989,7 +989,7 @@ If $|X|<\infty$, write $X = \{1,2,\dots,n\}$ and $S_X\ra S_n \ra$ symmetric grou
 	Consider $(a_1\,a_2\,\dots\,a_k) = (a_1\,a_k)(a_1\,a_{k-1})\cdots(a_1\,a_3)(a_1\,a_2)$, not unique.
 \end{proof}
 \begin{example}
-	$\left(\mat{1&2&3&4&5&6\\6&5&2&4&3&1}\right) = (1\,6)(2\,5\,3) = (1\,6)(2\,3)(2\,5)$
+	$\pmat{1&2&3&4&5&6\\6&5&2&4&3&1} = (1\,6)(2\,5\,3) = (1\,6)(2\,3)(2\,5)$
 \end{example}
 
 $\sigma\in S_n$, $\sigma = \tau_1\,\tau_2\,\dots,\tau_k$ product of transpositions.
@@ -1240,14 +1240,18 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 
 \begin{proposition}
 	Every group of order $\leq 5$ is abelian.
-	\begin{align*}
-		\text{Order} & \text{Group}\\
-		1 & \{e\} \\
-		2 & \{e,a\} \text{ cyclic} \\
-		3 & \text{cyclic} \ra \text{abelian} \\
-		4 & \text{below} \\
-		5 & \text{cyclic} \ra \text{abelian}
-	\end{align*}
+	\begin{center}
+	\begin{array}{c|cc}
+			 & Order & Group  \\
+		\hline
+	1 & $\{e\}$ &  identity \\
+	2 & $\{e,a\}$  & cyclic \\
+	3 & & cyclic \ra abelian \\
+	4 & & \text{explained below} \\
+	5 & & cyclic \ra abelian
+	\end{array}
+	\end{center}
+	  
 	Order 4 can have subgroups of order 1,2,4 $\ra \exists$ an element $a$ of order 4, so $|<a>|\ = 4 \implies <a>\ = G$ cyclic $\ra$ abelian. or $\ra$ every $\neq e$ has order 2 $\implies a^2 = e$ for all $a\in G \implies G$ is abelian, since $aa = e \implies a = a\inv$ so $xy = (xy)\inv = y\inv x\inv = yx$. This one is called Klein 4-group.
 \end{proposition}
 
@@ -1348,15 +1352,26 @@ Let $H\leq G$ and $G / H =$ the set of left cosets of $H$ in $G$. Note that $|G/
 \begin{example}
 	$G = \mb Z$, $N = 3\mb Z$. $3\mb Z \triangleleft \mb Z$. $|\mb Z/3\mb Z| = [\mb Z:3\mb Z] = 3$. Then $\mb Z/3\mb Z = \{3\mb Z, 1+3\mb Z,2+\mb Z\}$.
 
-	%\begin{table}{c|ccc}
-	%$\mb Z/3\mb Z$ & $3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ \\
-	%\hline \\
-	%$3\mb Z$ & $3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ \\
-	%$1+3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ & $3\mb Z$ \\
-	%$2+3\mb Z$ & $2+3\mb Z$ & $3\mb Z$ & $1+3\mb Z$
-	%\end{table} 
+	\begin{center}
+	\begin{array}{c|ccc}
+	$\mb Z/3\mb Z$ & $3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ \\
+	\hline 
+	$3\mb Z$ & $3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ \\
+	$1+3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ & $3\mb Z$ \\
+	$2+3\mb Z$ & $2+3\mb Z$ & $3\mb Z$ & $1+3\mb Z$
+	\end{array} 
+	\end{center}
 
-	% table for $\mb Z_3$. [0], etc
+	
+	\begin{center}
+	\begin{array}{c|ccc}
+		$\mb Z_3$ & $[0]$ & $[1]$ & $[2]$ \\
+	\hline 
+	$[0]$ & $[0]$ & $[1]$ & $[2]$ \\
+	$[1]$ & $[1]$ & $[2]$ & $[3]$ \\
+	$[2]$ & $[2]$ & $[3]$ & $[1]$
+	\end{array} 
+	\end{center}
 
 	$\mb Z/*\mb Z \llr \mb Z_*$ and $? + *\mb Z \llr [?]$.
 \end{example}
@@ -1382,6 +1397,57 @@ Let $H\leq G$ and $G / H =$ the set of left cosets of $H$ in $G$. Note that $|G/
 	Assume $o(aH)<\infty$ then $\exists n\in\mb N$ such that $(aH)^n = e_{G/H} = H$. Then $a^n H = H \implies a^n\in H \implies o(a^n)<\infty$ say $o(a^n) = m$.
 	Then $o(a^n)^m = e$, so $a^{nm} = e \implies o(a)\mid nm \implies o(a) < \infty \implies aH = H = e_{G/H}$.
 \end{example}
+
+\section{Homomorphism}
+
+\begin{definition}
+	A \ul{homomorphism} from group $G$ to group $H$ is a mapping $\phi:G\ra H$ such that $\phi(xy) = \phi(x)\phi(y)$ for all $x,y\in G$.
+\end{definition}
+\begin{remark}
+	Given $(G,*)$ and $(H,\circ)$, then $\phi(x*y) = \phi(x)\circ\phi(y)$.
+\end{remark}
+\begin{definition}
+	[Monomorphism] injective homomorphism.
+\end{definition}
+\begin{definition}
+	[Epimorphism] surjective homomorphism.
+\end{definition}
+\begin{definition}
+	[Isomorphism] bijective homomorphism.
+\end{definition}
+If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
+
+\ul{Notation}: $G \cong H$.
+
+\begin{example}
+	$G$ any group. $\phi: G\ra G$. $\phi = \text{id}_G$. Then $\phi(xy) = xy$ and $\phi(x)\phi(y) = xy$, so it is bijective homomorphism and isomorphism (every group is isomorphic to itself).
+\end{example}
+\begin{example}
+	$G$ any group. $\phi:G\ra G$, $\phi(x) = e$. Then $\phi(xy) = e$ and $\phi(x)\phi(y) = ee$. It is a trivial homomorphism.
+\end{example}
+\begin{example}
+	$\phi:\mb Z\ra\mb Z$, $\phi(v) = 3x$. Then $\phi(x+y) = 3(x+y)$ and $\phi(x)+\phi(y) = 3x+3y$. It is surjective, but not injective, so monomorphism.
+\end{example}
+\begin{example}
+	$\phi:\mb Z\ra\mb Z$, $\phi(x) = -x$. Then $\phi(x+y) = -(x+y)$ and $\phi(x)+\phi(y) = (-x)+(-y)$. It is bijective, so an isomorphism.
+\end{example}
+\begin{example}
+	$G$ any group. $\phi:G\ra G$, $\phi(x) = x\inv$. Then $\phi(xy) = (xy)\inv = y\inv x\inv$ and $\phi(x)\phi(y) = x\inv y\inv$. So $\phi$ is an isomorphism if and only if $G$ is abelian. ($\phi(xy) = \phi(y)\phi(x)$ example of an antiautomorphism).
+\end{example}
+\begin{definition}
+	$\phi: G\ra G$ isomorphism is an \ul{automorphism}.
+\end{definition}
+\begin{example}
+	$\phi: GL_n(\mb R)\ra(\mb R\backslash\{0\},\cdot)$, $\phi(A) = \det A$. Then $\phi(AB) = \det(AB)$ and $\phi(A)\phi(B) = \det A \cdot \det B$. Since $\mat{1/2 & 0 \\ 0 & 2} \neq \mat{1&0\\0&1}$ not injective. But for $\alpha\neq 0$, $\mat{\alpha &0 \\ 0 & 1} \os{\det}{\lra} \alpha$ surjective, so it is an epimorphism.
+\end{example}
+\begin{example}
+	$\phi: (\mb R,+)\ra (\mb R^+,\cdot)$, $\phi(x) = e^x$ exponential function, $e = \lim_{h\ra 0}(1+\frac{1}{h})^h$.
+	Then $\phi(x+y) = e^{x+y}$ and $\phi(x)+\phi(y) = e^xe^y$. It is bijective: inverse is $\ln x$. $\psi:(\mb R^+,\cdot)\ra(\mb R,+)$, $\psi(x) = \ln x$.
+	Then $\psi(xy) = \ln(xy)$ and $\psi(x)+\psi(y) = \ln x + \ln y$. Isomorphism.
+\end{example}
+\begin{remark}
+	Analagously, in Lie algebra, the matrix exponential serves this role.
+\end{remark}
 
 \end{document}
 
