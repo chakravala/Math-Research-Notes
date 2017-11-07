@@ -1467,7 +1467,7 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 	If \ul{$z\in A$}, then we repeat the argument with $z$ instead of $x$ and $y\in B$ to find $z_1\in (z,y)$ such that $z_1\notin E$.
 \end{proof}
 
-\section{Numerical sequences and seris}
+\section{Numerical sequences and series}
 
 \begin{definition}
 	[Convergent sequences] $(X,\rho)$ - metric space.
@@ -1481,7 +1481,7 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 	$\{\frac{1}{n}:n=1,2,\dots\}\subset\mb R$, $\frac{1}{n}\us{n\ra\infty}{\lra}0$.
 \end{example}
 \begin{proof}
-	Let $\epsilon>0$ be given. Want to show: $\exists N\in\mb N$ such that $|frac{1}{n} - 0|<\epsilon$ for all $n\geq N$.
+	Let $\epsilon>0$ be given. Want to show: $\exists N\in\mb N$ such that $|\frac{1}{n} - 0|<\epsilon$ for all $n\geq N$.
 	Take $N>\frac{1}{\epsilon}$. Then for $\ul{n\geq N}$, $|\frac{1}{n}-0| = \frac{1}{n} < \epsilon$. So $\frac{1}{n} \us{n\ra\infty}{\lra}0$.
 \end{proof}
 \begin{example}
@@ -1499,6 +1499,7 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 		\item[(c)] If $\{p_n\}$ converges, then $\{p_n\}$ is bounded.
 		\item[(d)] If $E\subset X$ and $p\in E'$ then there exists a sequence $\{p_n\}\subset E$ such that $p_n\ra p$.
 	\end{enumerate}
+	\label{thm-3-2}
 \end{theorem}
 \begin{proof}
 	Cases:
@@ -1800,6 +1801,96 @@ Given $\{p_n\}\subset X^{m.s.}$, let $E_n := \{p_n,p_{n+1},\dots,\}$. Then \ul{$
 			Then $\{\vx_n\}_n\subset B_r(\vzero)$. This implies $\{\vx_n\}$ is bounded $\implies \exists$ a compact $k$-cell $K$ such that $\{\vx_n\}\subset K$.
 			By part (b) $\{x_n\}$ converges in $K$, hence in $X$.
 	\end{enumerate}
+\end{proof}
+
+Test 3 - Tuesday, Nov. 28.
+
+No class - Tuesday, Nov. 21.
+
+Meet this Saturday at 11am.
+
+\ul{CH3}: 1-5, 7, 8, 9 (UG), 10, 11 (G), 13, 14(a)-(b) (G), 20-21, 22 (G), 23.
+
+\begin{definition}
+	A sequence $\{s_n\}$ is
+	\begin{enumerate}
+		\item monotonically increasing if $s_n\leq s_{n+1}$ for all $n$.
+		\item monotonically decreasing if $s_n\geq s_{n+1}$ for all $n$.
+	\end{enumerate}
+	Sequence is monotonic if it is monotonically increasing or decreasing.
+\end{definition}
+\begin{theorem}
+	Suppose $\{s_n\}\subset\mb R$ is monotonic. Then $\{s_n\}$ converges $\iff \{s_n\}$ is bounded.
+\end{theorem}
+\begin{proof}
+	\say{$\implies$} $\{s_n\}$ converges $\os{\text{Thm \ref{thm-3-2}}}{\implies} \{s_n\}$ bounded.
+
+	\say{$\Lla$} Suppose $\{s_n\}$ is bounded and assume $\{s_n\}$ is monotonically increasing.
+	Let $E = \text{range}\{s_n:n\in\mb N\}$. Then $E$ is nonempty and $\{s_n\}$ bounded implies that $E$ is bounded.
+	So $s:=\sup E\in\mb R$. We will show: $s_n\ra s$.
+	Let $\epsilon>0$ be fixed. Then $\exists N\in\mb N$ such that $s-\epsilon< s_N< s$.
+	$\{s_n\}$ monotonically increasing means $s-\epsilon< s_N\leq s_n < s$ for all $n\geq N$.
+	This implies $s_n\ra s$.
+\end{proof}
+
+\begin{definition}
+	[Upper and Lower \ul{limits} ($\liminf$ and $\limsup$)]
+	Let $E$ be the set of all subsequential limits of $\{s_n\}\subset\mb R$.
+	i.e., $E:=\{s\in\mb R:\exists\{s_{s_k}\}\subset\{s_n\} \text{ such that } s_{n_k}\ra s\}$.
+	\ul{Define}: $s^*:= \sup E$ and $s_*:=\inf E$. Here $s^*,s_*\in\mb R\cup\{+\infty\}\cup\{-\infty\}$.
+\end{definition}
+\begin{example}
+	$s_n: 3-\frac{1}{2},5+\frac{1}{3},3-\frac{1}{4},5+\frac{1}{5},3-\frac{1}{6},5+\frac{1}{7},3-\frac{1}{8},5+\frac{1}{9},\dots$.
+	$E = \{3,5\}$ and $s^* = 5, s_* = 3$.
+
+	$\inf\{s_n:n\geq 1\} = 3 - \frac{1}{2} = y_1$, and 
+	$\inf\{s_n:n\geq 2,3\} = 3-\frac{1}{4} = y_2=y_3$, and
+	$\inf\{s_n:n\geq 4,5\} = 3-\frac{1}{6} = y_4=y_5$, and 
+	$\dots$, and
+	$\inf\{s_n:n\geq k\} = y_k$
+	\begin{note}
+		$\{y_k\}$ is a monotonically increasing sequence bounded above by 5.
+		This implies $\{y_k\}$ converges.
+		Thus $s_* = \us{k=1,2,3,\dots}{\sup}(\inf\{s_n:n\geq k\})$.
+	\end{note}
+\end{example}
+\begin{recall}
+	Let $A\subset B$, then $\inf A\geq \inf B$ and $\sup A\leq \sup B$.
+\end{recall}
+
+\newpage
+
+\ul{In general}, $s_* = \us{k=1,\dots}{\sup}(\inf\{s_n:n\geq k\}) = \lim_{k\ra\infty}(\inf\{s_n:n\geq k\})$ and $s^* = \us{k=1,2,\dots}{\inf}(\sup\{s_n:n\geq k\}) = \lim_{k\ra\infty}(\sup\{s_n:n\geq k\})$.
+\ul{Book}: $s^*,s_*\in E$.
+
+\ul{Notation}: $s^* = \sup E = \limsup_{n\ra\infty} s_n$ and $s_* = \inf E = \liminf_{n\ra\infty} s_n$.
+
+\begin{note}
+	$\displaystyle s_* = \inf E\leq \sup E = s^* \implies \ul{\liminf_{n\ra\infty} s_n\leq \limsup_{n\ra\infty} s_n}$.
+\end{note}
+
+\begin{theorem}
+	Let $\{s_n\}\subset\mb R$. Then $\lim_{n\ra\infty} s_n = s\in\mb R \iff \liminf_{n\ra\infty} s_n = \limsup_{n\ra\infty} s_n = s\in\mb R$. (Holds also when $s = \pm\infty)$.
+\end{theorem}
+\begin{proof}
+	\say{$\implies$} Suppose $s_n\ra s$. \ul{We will show}: 
+	$$ \liminf_{n\ra\infty} \os{\checkmark}{\leq} \limsup_{n\ra\infty} s_n \os{(1)}{\leq} \lim_{n\ra\infty} s_n \os{(2)}{\leq} \liminf_{n\ra\infty} s_n \os{\checkmark}{\leq} \limsup_{n\ra\infty} s_n$$
+	\begin{enumerate}
+		\item \ul{We will show (1)}: Idea: show $\limsup_{n\ra\infty} s_n \leq \lim_{n\ra\infty} s_n + \epsilon$, for $\epsilon > 0$ arbitrary.
+			Let $\epsilon > 0$ be fixed. $s_n\ra s\implies \exists N\in\mb N$ such that $|s_n-s|<\epsilon$ for all $n\geq N \implies -\epsilon < s_n-s < \epsilon$ for all $n\geq N \implies s_n < s+\epsilon$ for all $n\geq N \implies \sup\{s_n:n\geq N\}\leq s+\epsilon$.
+			If $m>N$, then $\sup\{s_n:n\geq m\} \leq \sup\{s_n:n\geq N\}$.
+			This means $\sup\{s_n:n\geq m\}\leq s+\epsilon \implies \lim_{n\ra\infty}(\sup\{s_n:n\geq m\})\leq s+\epsilon \implies \limsup_{m\ra\infty} s_m \leq s+\epsilon \implies \limsup_{m\ra\infty} s_m \leq s = \lim_{m\ra\infty} s_m$.
+		\item Repeat the argument for (2).
+			Then $\liminf_{n\ra\infty} s_n = \limsup_{n\ra\infty} s_n = \lim_{n\ra\infty} s_n$ -- ($*$).
+	\end{enumerate}
+	\say{$\Lra$} Suppose $(*)$ holds. We need to show $\lim_{n\ra\infty} s_n = \ul{\ul s}$.
+	
+	Let $\epsilon>0$ be given. $\limsup_{n\ra\infty}s_n = s \implies \lim_{k\ra\infty}(\sup\{s_n:n\geq k\}) = s \implies \exists K_1\in\mb N $ such that $|y_k-s|<\epsilon$ for all $k\geq K_1$.
+	This implies $-\epsilon < y_k-s<\epsilon$ for all $k\geq K_1$, which implies $y_k < s+\epsilon$ for all $k\geq K_1 \implies \sup\{s_n:n\geq K\} < s+\epsilon$ for all $k\geq K_1 \implies s_n<s+\epsilon$ for all $n\geq K_1$ -- (3).
+
+	Again, $\liminf_{n\ra\infty} s_n = s \implies \lim_{k\ra\infty}(\inf\{s_n:n\geq k\}) = s \implies \exists K_2\in\mb N$ such that $|z_k -s|<\epsilon$ for all $k\geq K_2$.
+	This implies $-\epsilon < z_k - s< \epsilon$ for all $k\geq K_2 \implies z_k-s>-\epsilon$ or $s_k > s-\epsilon$ for all $k\geq K_2 \implies \inf\{s_n:n\geq k\} > s-\epsilon$ for all $k\geq K_2 \implies$ \ul{$s_n>s-\epsilon$ for all $n\geq K_2$} -- (4).
+	For $K\geq \max\{K_1,K_2\}$, $s-\epsilon <s_n < s+\epsilon$ or $-\epsilon < s_n-s < \epsilon \implies s_n\ra s$.
 \end{proof}
 
 \end{document}

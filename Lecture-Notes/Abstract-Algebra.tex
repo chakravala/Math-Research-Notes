@@ -1,7 +1,7 @@
 \documentclass[]{article}
 \input{../mathdoc}
 \input{../mathsym}
-%\input{../preview}
+\input{../preview}
 
 \author{Book: Thomas Judson 2017, Presenter: Igor Erovenko, Notes by Michael Reed}
 \title{Abstract Algebra}
@@ -1240,6 +1240,7 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 
 \begin{proposition}
 	Every group of order $\leq 5$ is abelian.
+\iffalse
 	\begin{center}
 	\begin{array}{c|cc}
 			 & Order & Group  \\
@@ -1251,7 +1252,7 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 	5 & & cyclic \ra abelian
 	\end{array}
 	\end{center}
-	  
+	  \fi
 	Order 4 can have subgroups of order 1,2,4 $\ra \exists$ an element $a$ of order 4, so $|<a>|\ = 4 \implies <a>\ = G$ cyclic $\ra$ abelian. or $\ra$ every $\neq e$ has order 2 $\implies a^2 = e$ for all $a\in G \implies G$ is abelian, since $aa = e \implies a = a\inv$ so $xy = (xy)\inv = y\inv x\inv = yx$. This one is called Klein 4-group.
 \end{proposition}
 
@@ -1351,7 +1352,7 @@ Let $H\leq G$ and $G / H =$ the set of left cosets of $H$ in $G$. Note that $|G/
 \end{proof}
 \begin{example}
 	$G = \mb Z$, $N = 3\mb Z$. $3\mb Z \triangleleft \mb Z$. $|\mb Z/3\mb Z| = [\mb Z:3\mb Z] = 3$. Then $\mb Z/3\mb Z = \{3\mb Z, 1+3\mb Z,2+\mb Z\}$.
-
+\iffalse
 	\begin{center}
 	\begin{array}{c|ccc}
 	$\mb Z/3\mb Z$ & $3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ \\
@@ -1372,7 +1373,7 @@ Let $H\leq G$ and $G / H =$ the set of left cosets of $H$ in $G$. Note that $|G/
 	$[2]$ & $[2]$ & $[3]$ & $[1]$
 	\end{array} 
 	\end{center}
-
+\fi
 	$\mb Z/*\mb Z \llr \mb Z_*$ and $? + *\mb Z \llr [?]$.
 \end{example}
 
@@ -1448,6 +1449,133 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 \begin{remark}
 	Analagously, in Lie algebra, the matrix exponential serves this role.
 \end{remark}
+
+\begin{theorem}
+	Let $G,H$ and $K$ be groups.
+	\begin{enumerate}
+		\item If $\phi:G\ra H$ and $\psi:H\ra K$ are homomorphisms, then so is $\psi\circ\phi:G\ra K$.
+		\item If $\phi$ and $\psi$ are isomorphisms, then so is $\psi\circ\phi$.
+		\item If $\phi:G\ra H$ is an isomorphism, then so is $\phi\inv:H\ra G$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item WTS: $\psi\circ\phi:G\ra K$ is a homomorphism.
+			Let $a,b\in G$, then $\psi\circ\phi(ab) = \psi(\phi(ab)) = \psi(\phi(a)\phi(b)) = \psi(\phi(a))\psi(\phi(b)) = (\psi\circ\phi)(a)(\psi\circ\phi)(b)$.
+		\item WTS: $\psi\circ\phi$ is bijective.
+			Since it's a homomorphism by property 1, it's bijective as a composition of bijective maps.
+		\item WTS: $\phi\inv:H\ra G$ is an isomorphism.
+			$\phi\inv$ is bijective as an inverse of a bijective map.
+			\ul{Left to show}: $\phi\inv(xy) = \phi\inv(x)\phi\inv(y)$ for all $x,y\in H$.
+			We have $\phi(\phi\inv(xy)) = xy$ and $\phi(\phi\inv(x)\phi\inv(y)) = \phi(\phi\inv(x))\phi(\phi\inv(y)) = xy$.
+			So, $\phi(\phi\inv(xy)) = \phi(\phi\inv(x)\phi\inv(y))$.
+			Then $\phi\inv(xy) = \phi\inv(x)\phi\inv(y)$ since $\phi$ is injective.
+	\end{enumerate}
+\end{proof}
+
+
+\begin{theorem}
+	Isomorphism is an equivalence relation from the set of all groups.
+	$G\sim H$ if $G\cong H$.
+\end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item Reflexive: $G\cong G$ via $\text{id}_G:G\ra G$
+		\item Symmetric: $G\cong H\implies H\cong G$, since $G\cong H\ra \exists$ iso. $\phi:G\ra H \ra \phi\inv:H\ra G \ra H\cong G$.
+		\item Transitive: $G\cong H$ and $H\cong K \implies G\cong K$, since $G\cong H \ra \exists$ iso. $\phi:G\ra H$ and $H\cong K\ra \exists$ iso. $\psi:H\ra K$ and $\psi\circ\phi:G\ra K$ iso. imply $G\cong K$.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	Every infinite cyclic group is isomorphic to $\mb Z$.
+\end{theorem}
+\begin{proof}
+	Let $G =\ <a>$ be infinite. Define $\phi:\mb Z\ra G$ by $\phi(n) = a^n$.
+	\begin{enumerate}
+		\item $\phi$ is a homomorphism: $\phi(n+m) = a^{n+m}$ and $\phi(n)\phi(m) = a^na^m = a^{n+m}$.
+		\item $\phi$ is injective: $\phi(n) = \phi(m) \implies n = m$, since $G$ is infinite.
+		\item $\phi$ is surjective: $\forall x\in G$, $\exists n\in\mb Z$ such that $\phi(n) = x$, since $x = a^n$ for some $n\in\mb Z$ because $G$ is cyclic.
+	\end{enumerate}
+	$\phi$ is an isomorphism.
+\end{proof}
+\begin{remark}
+	$\mb Z =\ <1>$ with $n = n$th power of 1 and $G =\ <a>$ with $x = n$th power of $a$.
+\end{remark}
+
+\begin{theorem}
+	Every cyclic group of order $n$ is isomorphic to $\mb Z_n$.
+\end{theorem}
+\begin{proof}
+	Let $G =\ <a>$, where $|G| = n$, so $G = \{e=a^0,a^1,a^2,\dots,a^{n-1}\}$.
+	Let $\phi:\mb Z_n\ra G$ be defined by $\phi([k]) = a^k$.
+	\begin{enumerate}
+		\item $\phi$ is well-defined: $[k] = [m] \implies \phi([k]) = \phi([m]) \ra k = m+nq$. So $\phi([k]) = a^k = a^{m+nq} = a^ma^nq = a^m(a^n)^q = a^me^q = a^m = \phi([m])$.
+		\item $\phi$ is bijective - obvious.
+		\item $\phi$ is a homomorphism: $\phi([k]+[m]) = \phi([k+m]) = a^{k+m}$ and $\phi([k])\phi([m]) = a^ka^m = a^{k+m}$.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	Let $\phi :G\ra H$ be a group homomorphism.
+	\begin{enumerate}
+		\item $\phi(e_G) = e_H$
+		\item For any $x\in G$ and any $n\in\mb Z$, $\phi(x^n) = \phi(x)^n$.
+		\item If $x\in GG$ and $o(x) = n$, then $o(\phi(x))$ divides $n$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item $e_G e_G = e_G$ and $\phi(e_G e_G) = \phi(e_G)$, then $\phi(e_G)\phi(e_G) = \phi(e_G) e_H$ implies $\phi(e_G) = e_H$.
+		\item \ul{Case 1} $n=0$: $\phi(x^n) = \phi(x^0) = \phi(e_G)$ and $\phi(x)^n = \phi(x)^0 = e_H$.
+
+			\ul{Case 2} $n>0$: WTS: $\phi(x^n) = \phi(x)^n$ for all $n\geq 1$.
+			Proof by induction: \ul{Base} $n=1$. $\phi(x^1) = \phi(x)^1 \iff \phi(x) = \phi(x)$ true.
+			\ul{Inductive step}: $\phi(x^n) = \phi(xx^{n-1}) = \phi(x)\phi(x^{n-1}) = \phi(x)\phi(x)^{n-1} = \phi(x)^n$
+
+			\ul{Case 3} $n<0$: say $n=-n_0$ for some $n_0\in\mb N$. Then $x^n x^{-n} = e_G = x^n x^{n_0}$, so $\phi(x^nx^{n_0}) = \phi(e_G)$ and $\phi(x^n)\phi(x^{n_0}) = e_H$ imply $\phi(x^n) = \phi(x^{n_0})\inv = (\phi(x)^{n_0})\inv = \phi(x)^{-n_0} = \phi(x)^n$.
+		\item $o(x) = n \implies x^n = e_G \implies \phi(x^n) = \phi(e_G) \implies \phi(x)^n = e_H \implies o(\phi(x))\mid n$.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	Let $\phi:G_1\ra G_2$ be a group homomorphism.
+	\begin{enumerate}
+		\item If $H_1\leq G_1$ then $\phi(H_1) \leq G_2$.
+		\item If $H_2\leq G_2$ then $\phi\inv(H_2)\leq G_1$.
+		\item If $H_2\triangleleft G_2$ then $\phi\inv(G_2)\triangleleft G_1$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item - identity: $e_2 = \phi(e_1)\in\phi(H_1)$.
+
+			- closure under products: Let $x,y\in\phi(H_1)$. (WTS: $xy\in\phi(H_1)$).
+			So $x = \phi(a)$ and $y = \phi(b)$ for some $a,b\in H_1$. Then $xy = \phi(a)\phi(b) = \phi(ab)\in\phi(H_1)$ since $ab\in H_1$.
+
+			- closure under inverses: $x\in \phi(H_1)\implies x = \phi(a)$ for $a\in H_1 \implies x\inv = \phi(a)\inv = \phi(a\inv)\in\phi(H_1)$ since $a\inv\in H_1$.
+		\item - identity: $\phi(e_1) = e_2 \implies e_1\in\phi\inv(e_2) \subseteq \phi\inv(H_2) \implies e_1\in\phi\inv(H_2)$ since $\phi(e_1) = e_2\in H_2$.
+
+			- closure under products: Let $a,b\in\phi\inv(H_2)$, then $\phi(a),\phi(b)\in H_2$. So $\phi(a)\phi(b) = \phi(ab)\in H_2$ implies $ab\in\phi\inv(H_2)$.
+
+			- closure under inverses: Let $a\in\phi\inv(H_2)$, so $\phi(a)\in H_2$ and $\phi(a)\inv = \phi(a\inv)\in H_2$ imply $a\inv\in\phi\inv(H_2)$.
+		\item By (2), $\phi\inv(H_2)\leq G_1$. WTS: $gag\inv\in\phi\inv(H_2)$ for all $a\in\phi\inv(H_2)$ and all $g\in G_1$.
+			Then $\phi(gag\inv) = \phi(g)\phi(a)\phi(g)\inv$, where $\phi(a)\in H_2$, $\phi(g)\in G_2$, and $\phi(g)\inv\in G_2$. Thus $gag\inv\in\phi\inv(H_2)$.
+	\end{enumerate}
+\end{proof}
+\begin{example}
+	\ul{Try to prove}: If $H_1\triangleleft G_1$ then $\phi(H_1)\triangleleft G_2$. (it is false unless $\phi$ is surjective epimorphism)
+\end{example}
+\begin{proof}
+	WTS: $gxg\inv\in\phi(H_1)$ for all $x\in\phi(H_1)$ and all $g\in G_2$.
+	Then $x = \phi(a)$ for some $a\in H_1$.
+	\ul{Assume}: $\phi$ is surjective, $g = \phi(b)$ for some $b\in G_1$.
+	So $g\phi(a)g\inv \ra \phi(b)\phi(a)\phi(b)\inv = \phi(bab\inv)\in\phi(H_1)$ since $bab\inv\in H_1$.
+	Thus $gxg\inv\in\phi(H_1)$.
+\end{proof}
 
 \end{document}
 
