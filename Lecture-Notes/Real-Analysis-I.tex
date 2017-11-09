@@ -15,10 +15,16 @@
 
 \section{The Real and Complex Number System}
 
-\ul{Notation}: $\mb{N} = \{0,1,2,3,\dots\}$ - set of natural numbers.
+\ul{Notation}: 
+
+$\mb{N} = \{0,1,2,3,\dots\}$ - set of natural numbers.
+
 $\mb Z = \{0,\pm 1, \pm 2,\dots\}$ - set of integers.
+
 $\mb Q = \{\frac{m}{n}:m,n\in\mb Z,\, n\neq 0\}$ - set of rationals $\ra$ we know $\mb Q$.
+
 $\mb R$ - set of all real numbers.
+
 $\mb C = \{a+ib: a,b\in\mb R \text{ and } i^2 = -1\}$.
 
 \ul{Sets} - collection of objects. Empty set - $\emptyset$ - a set which contains no objects.
@@ -76,14 +82,13 @@ Rational numbers $\mb Q$ has holes.
 	Then $m = 2l$ for some $l\in \mb Z$. Then $(2l)^2 = 2n^2 \implies 4l^2 = 2n^2 \implies 2l^2 = n^2$. So $n^2$ is even and hence $n$ is even. This is a contradiction to $\frac{m}{n}$ being in least terms. So $\sqrt{2} \notin \mb Q$.
 \end{proof}
 
-Prove that $\sup E = 1$ if $E = \{x \in \mb Q : 0 \leq x < 1\}$.
-
-\begin{proof}
+\begin{example}
+	Prove that $\sup E = 1$ if $E = \{x \in \mb Q : 0 \leq x < 1\}$.
 	\begin{enumerate}
 		\item[(i)] Clearly $x<1$ for all $x\in E$. So $1$ is an upper bound of $E$.
 		\item[(ii)] If $\gamma < 1$ then $\gamma$ is not an upper bound of $E$. If $\gamma \leq 0$, then clearly $\gamma$ is not an upper bound of $E$. If $0<\gamma < 1$, then $x = \frac{\gamma + 1}{2}$. But $\gamma < x\in E$ by construction, so $\gamma$ is not an upper bound. Therefore \ul{$ \sup E = 1$}.
 	\end{enumerate}
-\end{proof}
+\end{example}
 
 \begin{theorem}
 	[Uniqueness of supremum] Let $(S,<)$ be an ordered set. If $E\subset S$ has supremum (or infimum) in $S$, then it is unique.
@@ -125,6 +130,7 @@ Prove that $\sup E = 1$ if $E = \{x \in \mb Q : 0 \leq x < 1\}$.
 \begin{theorem}
 	Let $(S,<)$ with the least upper bound property. Let $B\subset S$ with $B\neq \emptyset$ and $B$ is bounded below.
 	Set $L = $ set of all lower bounds of $B$. Then $\alpha = \sup L$ exists in $S$, and $\alpha = \inf B$.
+\end{theorem}
 	\begin{proof}
 		First, we want to show:
 		\begin{enumerate}
@@ -144,9 +150,7 @@ Prove that $\sup E = 1$ if $E = \{x \in \mb Q : 0 \leq x < 1\}$.
 			\end{proof}
 		\end{enumerate}
 		(a), (b) $\implies \alpha = \inf B$.
-		
 	\end{proof}
-\end{theorem}
 
 \begin{definition}
 	[Field] A field $F$ is a set with two operations
@@ -167,20 +171,20 @@ Prove that $\sup E = 1$ if $E = \{x \in \mb Q : 0 \leq x < 1\}$.
 	Let $(F,+\cdot)$ be a field. Then for $x,y,z\in F$,
 	\begin{enumerate}
 		\item[(a)] If $x+y = x+z$, then $y = z$. (Cancellation law)
-		\begin{proof}
-			$y \os{A4}{=} 0+y \os{A5}{=} (-x+x) + y \os{A3}{=} -x+(x+y) \os{A3}{=} -x+(x+z)\equiv (-x+x)+z \os{A5}{=} 0+z \os{A4}{=} z$
-		\end{proof}
 		\item[(b)] If $x+y = x$, then $y = 0$.
-		\begin{proof}
-			Taking $z=0$ in (a), we get $x+y = x+0 \implies y=0$.
-		\end{proof}
 		\item[(c)] If $x+y = 0$, then $y = -x$.
 		\item[(d)] $-(-x)=x$.
-		\begin{proof}
-			Let $x\in F$. Then $-x\in F$ such that $x+(-x)=0$. Since $-x\in F$, $\exists -(-x)\in F$ such that $-(-x)+(-x)=0$. So $x$ and $-(-x)$ are additive inverse of $-x$, by (c) $x=-(-x)$.
-		\end{proof}
 	\end{enumerate}
 \end{proposition}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] $y \os{A4}{=} 0+y \os{A5}{=} (-x+x) + y \os{A3}{=} -x+(x+y) \os{A3}{=} -x+(x+z)\equiv (-x+x)+z \os{A5}{=} 0+z \os{A4}{=} z$
+		\item[(b)] Taking $z=0$ in (a), we get $x+y = x+0 \implies y=0$.
+		\item[(d)] Let $x\in F$. Then $-x\in F$ such that $x+(-x)=0$. Since $-x\in F$, $\exists -(-x)\in F$ such that $-(-x)+(-x)=0$. So $x$ and $-(-x)$ are additive inverse of $-x$, by (c) $x=-(-x)$.
+	\end{enumerate}
+Done.
+\end{proof}
 
 \begin{proposition}
 	Let $(F,+,\cdot)$ a field with $x,y,z\in F$. Then
@@ -200,23 +204,21 @@ Prove that $\sup E = 1$ if $E = \{x \in \mb Q : 0 \leq x < 1\}$.
 	Let $x,y,z\in (F,+,\cdot)$ field. Then
 	\begin{enumerate}
 		\item[(a)] $0\cdot x = 0$
-		\begin{proof}
-			$0\cdot x = (0+0)\cdot x \os{D}{=} 0\cdot x + 0\cdot x$. Then $0\cdot x = 0$ (Proposition \ref{prop1.14}(b)).
-		\end{proof}
 		\item[(b)] If $x\neq 0$ and $y\neq 0$ then $xy\neq 0$.
-		\begin{proof}
-			We'll prove by contradiction. Let $x\neq 0$, $y\neq 0$ but $xy=0$. Then $1 \os{M4}{=} 1\cdot 1 = (x\cdot \frac{1}{x})(y\cdot \frac{1}{y})$ because $\exists \frac{1}{x},\frac{1}{y}\in F$ such that $x\cdot \frac{1}{x} = 1$ and $y\cdot \frac{1}{y} = 1$. Then $(x\cdot \frac{1}{x})(y\cdot \frac{1}{y}) \os{M2-M3}{=} (xy)(\frac{1}{x}\cdot\frac{1}{y}) \equiv 0(\frac{1}{x}\cdot\frac{1}{y}) \os{(a)}{=} 0 \implies 1 =0$, a contradiction to the assumption that $1\neq 0$ (M4). So $xy\neq 0$.
-		\end{proof}
 		\item[(c)] $(-x)y = -(xy) = x(-y)$.
-		\begin{proof}
-			Need to show $(-x)y$ is an additive inverse of $xy$. $(-x)y + xy \os{D}{=} (-x+x)y \os{A5}{=} 0\cdot y \os{(a)}{=} 0 \implies (-x)y = -(xy)$ by Proposition \ref{prop1.14}(c). Similarly, $-(xy) = x(-y)$.
-		\end{proof}
 		\item[(d)] $(-x)(-y) = xy$.
-		\begin{proof}
-			$(-x)(-y) \os{(c)}{=} -(x(-y)) \os{(c)}{=} -[-(xy)] \os{\text{Prop \ref{prop1.14}(d)}}{=} xy$
-		\end{proof}
 	\end{enumerate}
 \end{proposition}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] $0\cdot x = (0+0)\cdot x \os{D}{=} 0\cdot x + 0\cdot x$. Then $0\cdot x = 0$ (Proposition \ref{prop1.14}(b)).
+		\item[(b)] We'll prove by contradiction. Let $x\neq 0$, $y\neq 0$ but $xy=0$. Then $1 \os{M4}{=} 1\cdot 1 = (x\cdot \frac{1}{x})(y\cdot \frac{1}{y})$ because $\exists \frac{1}{x},\frac{1}{y}\in F$ such that $x\cdot \frac{1}{x} = 1$ and $y\cdot \frac{1}{y} = 1$. Then $(x\cdot \frac{1}{x})(y\cdot \frac{1}{y}) \os{M2-M3}{=} (xy)(\frac{1}{x}\cdot\frac{1}{y}) \equiv 0(\frac{1}{x}\cdot\frac{1}{y}) \os{(a)}{=} 0 \implies 1 =0$, a contradiction to the assumption that $1\neq 0$ (M4). So $xy\neq 0$.
+		\item[(c)] Need to show $(-x)y$ is an additive inverse of $xy$. $(-x)y + xy \os{D}{=} (-x+x)y \os{A5}{=} 0\cdot y \os{(a)}{=} 0 \implies (-x)y = -(xy)$ by Proposition \ref{prop1.14}(c). Similarly, $-(xy) = x(-y)$.
+		\item[(d)] $(-x)(-y) \os{(c)}{=} -(x(-y)) \os{(c)}{=} -[-(xy)] \os{\text{Prop \ref{prop1.14}(d)}}{=} xy$
+	\end{enumerate}
+	Done.
+\end{proof}
 
 Field, Ordered set $\}\implies$ Ordered field.
 
@@ -241,28 +243,24 @@ Field, Ordered set $\}\implies$ Ordered field.
 	Let $(F,+,\cdot,<)$ an ordered field. Then
 	\begin{enumerate}
 		\item[(a)] If $x>0$ then $-x<0$. (If $x<0$ then $-x>0$).
-		\begin{proof}
-			Let $x>0$. Then $0 \os{A5}{=} -x + x \os{\text{(i)OF}}{>} -x+0 \os{A4}= -x \implies 0>-x$. Similarly, $\dots$
-		\end{proof}
 		\item[(b)] If $x>0$ and $y<z$ then $xy<xz$.
-		\begin{proof}
-			Let $x>0$ and $y<z$. Since $y<z\implies z-y >y-y = 0$. Then $x(z-y) \os{(a)}{>} 0$. Then $xz = xz + 0 = xz - xy + xy = x(z-y) + xy \os{(i)}{>} 0 + xy = xy \implies xy <xz$.
-		\end{proof}
 		\item[(c)] If $x<0$ and $y<z$ then $xy>xz$.
-		\begin{proof}
-			Try it.
-		\end{proof}
 		\item[(d)] If $x\neq 0$ then $x^2 = x\cdot x >0$. In particular $1>0$.
-		\begin{proof}
-			Let $x\neq 0$. Then $x>0$ or $x<0$ (ordered set). If $x>0$ then $x^2 = x\cdot x \os{\text{OF}(ii)}{>}0$. Let $x<0$. Then $-x>0 \implies 0<(-x)(-x) \os{\text{Prop \ref{prop1.16}(d)}}{=} x\cdot x = x^2$. In particular, $1\neq 0$, so $1^2 = 1 >0$.
-		\end{proof}
 		\item[(e)] If $x> 0$ then $\frac{1}{x}>0$.
-		\begin{proof}
-			Let $x>0$. Suppose that $\frac{1}{x}\geq 0$. Then $-\frac{1}{x}\geq 0$. Then $0 = 0\cdot x \leq (-\frac{1}{x})\cdot x = -1 \implies 0\leq -1$ ($1\leq 0$), a contradiction to $0<1$.
-		\end{proof}
 		\item[(f)] If $0<x<y$ then $\frac{1}{x}>\frac{1}{y}$.
 	\end{enumerate}
 \end{proposition}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] Let $x>0$. Then $0 \os{A5}{=} -x + x \os{\text{(i)OF}}{>} -x+0 \os{A4}= -x \implies 0>-x$. Similarly, $\dots$
+		\item[(b)] Let $x>0$ and $y<z$. Since $y<z\implies z-y >y-y = 0$. Then $x(z-y) \os{(a)}{>} 0$. Then $xz = xz + 0 = xz - xy + xy = x(z-y) + xy \os{(i)}{>} 0 + xy = xy \implies xy <xz$.
+		\item[(c)] Try it.
+		\item[(d)] Let $x\neq 0$. Then $x>0$ or $x<0$ (ordered set). If $x>0$ then $x^2 = x\cdot x \os{\text{OF}(ii)}{>}0$. Let $x<0$. Then $-x>0 \implies 0<(-x)(-x) \os{\text{Prop \ref{prop1.16}(d)}}{=} x\cdot x = x^2$. In particular, $1\neq 0$, so $1^2 = 1 >0$.
+		\item[(e)] Let $x>0$. Suppose that $\frac{1}{x}\geq 0$. Then $-\frac{1}{x}\geq 0$. Then $0 = 0\cdot x \leq (-\frac{1}{x})\cdot x = -1 \implies 0\leq -1$ ($1\leq 0$), a contradiction to $0<1$.
+	\end{enumerate}
+	Done.
+\end{proof}
 
 \begin{theorem}
 	[Real field] There exists an ordered field, say $(\mb R,+,\cdot,<)$, which has the least upper bound property. Moreover, $\mb R$ contains $\mb Q$ as a subfield.
@@ -272,8 +270,9 @@ Field, Ordered set $\}\implies$ Ordered field.
 \end{note}
 
 \begin{theorem}
+	Cases:
 	\begin{enumerate}
-		\item[(a)] Let $x,y\in\mb R$ with $x>0$. Then there exists $n\in\mb N\backslash\{0\}$ such that $n\cdot x>y$. (Archimedean property of $\mb R$).
+		\item[(a)] Let $x,y\in\mb R$ with $x>0$. Then there exists $n\in\mb N\backslash\{0\}$ such that $nx>y$. (Archimedean property of $\mb R$).
 		\item[(b)] Let $x,y\in\mb R$ with $x<y$. Then $\exists q\in\mb Q$ such that $x<q<y$. (Denseness of $\mb Q$ in $\mb R$).
 	\end{enumerate}
 	\ul{Special case}: For each $y\in\mb R$, $\exists n\in\mb N\backslash \{0\}$ such that $n>y$. (Taking $x=1>0$).
@@ -283,9 +282,11 @@ Field, Ordered set $\}\implies$ Ordered field.
 		\item[(a)] Let $x,y\in\mb R$ with $x>0$. Suppose by contradiction that $n\cdot x \geq y$ for all $n\in\mb N\backslash\{0\}$. Set $A:=\{nx:n\in\mb N\backslash\{0\}\}$. $A$ is nonempty since $x = 1\cdot x\in A$. $A$ is bounded above by $y$ since $nx\leq y$ for all $n\in\mb N$. Since $\mb R$ has the least upper bound property, $\sup A\in\mb R$. $\alpha:= \sup A\in\mb R$. Now, $x>0$, so $-x<0$. $\alpha-x < x+0 = \alpha = \sup A \implies \alpha - x$ is not an upper bound of $A$ $\implies \exists m\in\mb N$ such that $m\cdot x\in A$ and $\alpha-x<mx<\alpha$. $\implies \alpha= \alpha - x + x < mx + x = (m+1)x\in A$, a contradiction that $\alpha = \sup A$. Therefore $\exists n\in\mb N\backslash \{0\}$ such that $nx>y$.
 		\item[(b)] Want to construct $q = \frac{m}{n}$, $m,n\in\mb Z$ and $n\neq 0$ such that $x<\frac{m}{n}<y$. Since $x<y$, $y-x>0$. By part (a), $\exists n\in\mb N\backslash \{0\}$ such that $n(y-x)>1$. Next, we find $m$. Since $1>0$ by (a), $\exists k_1,k_2\in\mb N\backslash \{0\}$ such that $k_1>ny$ and $k_2>-nx$ ($\implies -k_2<nx$). Combining $-k_2<nx<ny<k_1$. We're done if $\exists m\in\mb Z$ such that $nx<m<ny$. Define $S:=\{j\in\mb Z:-k_2\leq j\leq k_1 \text{ and } j>nx\}$. Then $S$ is finite, $S\neq \emptyset$ since $k_1\in S$, $S$ is bounded below by $-k_2$. So $\inf S = \min S$ exists, say $m = \min S$. $\implies m>nx$ by construction. Since $m=\min S$, $m-1 \leq nx$. Then $m = (m-1)+1 \leq nx+1 < nx+n(y-x) = ny$. So $nx<m<ny$ and hence $x<\frac{m}{n}<y$, where $q = \frac{m}{n}\in\mb Q$.
 	\end{enumerate}
+	Done.
 \end{proof}
 
 \begin{theorem}
+	Cases:
 	\label{thm1.21}
 	\begin{enumerate}
 		\item For every positive real number $x$ and every $n\in\mb N\backslash \{0\}$, there exists a unique $y\in\mb R$, $y>0$ so that $y^n = x$ ($y$ is called $n^\text{th}$ root of $x$). $y = ^n\sqrt{x}$ or $y = x^{1/n}$.
@@ -294,8 +295,7 @@ Field, Ordered set $\}\implies$ Ordered field.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	Uniqueness of $n^\text{th}$ root.
-	
+	Uniqueness of $n^\text{th}$ root.	
 	\ul{Case}: When $x=0$. Suppose $y^n = 0$ given fixed $n$ but $y\neq 0$. Then $y^2 \neq 0$, and by induction $y^k \neq 0$ for all $k\in \mb N\backslash\{0\}$, a contradiction to the fact that $y^n = 0$ for some fixed $n\in\mb N$. So $y=0$ is the only $n^\text{th}$ root for $x=0$.
 	
 	\ul{Case}: When $x>0$. Suppose $\exists y_1,y_2\in\mb R$ with $y_1,y_2>0$ and $y_1\neq y_2$ such that $y_1^n = x = y_2^n$. WLOG assume $y_1<y_2$. If $0<a<b$ then $0<a^k<b^k$ for any $k\in\mb N\backslash \{0\}$ and $a,b\in\mb R$. By induction: Base case: $a<b$. Suppose $a^{k-1} < b^{k-1}$. Then $a^k = a\cdot a^{k-1} < a\cdot b^{k-1} \underset{a<b}{<} b\cdot b^{k-1} = b^k$. By induction $0<a^k<b^k$ for all $k\in\mb N\backslash \{0\}$. Then $y_1^n<y)2^n$, a contradiction to $y_1^n = y_2^n$.
@@ -303,9 +303,10 @@ Field, Ordered set $\}\implies$ Ordered field.
 	\ul{Existence of $n^\text{th}$ root}: If $x=0$ then $0^n = 0$ and therefore it follows from the uniqueness that $y=0$. Let $x>0$. If $n=1$, then $y^n = y^1 = x$. Assume $n\geq 2$. Define $S = \{t\in\mb R: t^n < x\}$. $S\neq \emptyset$ because $0\in S$. $S$ is bounded above: find an upper bound of $S$. Let $\alpha := 1+x$. Want to show that $\alpha$ is an upper bound of $S$, i.e. $\alpha \geq t$ for all $t\in S$. Equivalently, we show that $\alpha < t$ then $t\notin S \implies t^n > (1+x)^n = (1+x)(1+x)^{n-1} > (1+x)\cdot 1 \underset{1>0}{>} x \implies t\notin S \implies \alpha$ is an upper bound of $S$ or $S$ is bounded above $\implies \sup S\in \mb R$.
 \end{proof}
 
-\newpage
+%\newpage
 
 \begin{recall}
+	Cases:
 	\begin{enumerate}
 		\item[(i)] If $x\in \mb R$, $x>0$, then $\exists! y\in\mb R$, $y>0$ such that $y^n = x$.
 		\item[(ii)] If $x=0$, then $y=0$ is the only real number such that $0^n = 0$.
@@ -315,8 +316,12 @@ Field, Ordered set $\}\implies$ Ordered field.
 \begin{proof}
 	In last class, $S := \{t\in \mb R: t^n < x\}$ and $y = \sup S\in\mb R$. We need to show $y^n = x$. We will show $y^n \nless x$ and $y^n \ngtr x$. \ul{So $y^n = x$}.
 	Useful inequality: Let $0<a<b$. Then $$b^n - a^n = (b-a)(b^{n-1}+b^{n-2}a + b^{n-3}a^2 + \dots + ba^{n-2} + a^{n-1}) < (b-a)\cdot nb^{n-1}.$$
+	
 	\ul{Case I}: Suppose $y^n < x$. (Find $y_1>y$, $y_1\in S$ such that $y_1^n > x$). Let $0<h<1$, $h\in\mb R$ such that $h< \frac{x-y^n}{n(y+1)^{n-1}}$. Taking $a = y$ and $b= y+h$ in the inequality, we get $$(y+h)^n - y^n < h\cdot n\cdot (y+h)^{n-1} < h\cdot n(y+1)^{n-1} < x-y^n$$ implies $(y+h)^n < x$ implies $y+h\in S$. But $y+h>y$ and $y=\sup S$, a contradiction.
-	\ul{Case II}: Assume $y^n > n$. (Find $y_2 < y$ so that $y_2$ is an upper bound of $S$). Define $k = \frac{y^n - x^{>0}}{ny^{n-1}} < \frac{y^n}{n\cdot y^{n-1}} = \frac{y}{n} \underset{n\geq 2}{<} y$. \ul{Claim}: $y - k > 0$ is an upper bound of $S$. $y^n - (y-k)^n < k\cdot n y^{n-1} \underset{\text{choice of }k}{=} y^n - x$ implies $-(y-k)^n < -x$ implies $(y-k)^n > x$ implies $y-k\notin S$ implies $y-k$ is an upper bound of $S$. But $y-k<y = \sup S$, a contradiction. Therefore, $y^n = x$.
+	
+	\ul{Case II}: Assume $y^n > n$. (Find $y_2 < y$ so that $y_2$ is an upper bound of $S$). Define $k = \frac{y^n - x^{>0}}{ny^{n-1}} < \frac{y^n}{n\cdot y^{n-1}} = \frac{y}{n} \underset{n\geq 2}{<} y$. 
+	\ul{Claim}: $y - k > 0$ is an upper bound of $S$. 
+	Then $y^n - (y-k)^n < k\cdot n y^{n-1} \underset{\text{choice of }k}{=} y^n - x$ implies $-(y-k)^n < -x \implies (y-k)^n > x \implies y-k\notin S \implies y-k$ is an upper bound of $S$. But $y-k<y = \sup S$, a contradiction. Therefore, $y^n = x$.
 	
 	(iii) Suppose $0<a<b$ but $a^{1/n}\geq b^{1/n}$. Then $b = (b^{1/n})^n \us{\text{power are monotone}}{\leq} (a^{1/n})^n = a$, a contraction to $a<b$. This completes the proof of Theorem \ref{thm1.21}.
 \end{proof}
@@ -370,7 +375,7 @@ Then $(\mb C,+_\mb C,\cdot_\mb C)$ is a field.
 	$\mb R$ is a subfield of $\mb C$, let $f:\mb R\ra \mb C$ by defining $f(a) = (a,0)$. It allows us to identify $a\in\mb R$ as $a\in\mb C$.
 \end{note}
 \begin{definition}
-	[\say{$i$}] We define the imaginary unit $i$ as $(0,1)\in\mb C$.
+	[$i$] We define the imaginary unit $i$ as $(0,1)\in\mb C$.
 \end{definition}
 \begin{theorem}
 	$i^2 = -1$.
@@ -386,31 +391,25 @@ Given $z=(a,b)\in\mb C$, we can write $z = a+bi$. Indeed, $a+bi = (a,0) +_\mb C 
 	[Conjugate] Let $z,w\in\mb C$, $z = a+ib$, $w = c+id$; where $a,b,c,d\in\mb R$. Then
 	\begin{enumerate}
 		\item[(a)] $\conj{z+w} = \conj z+\conj w$
-		\begin{proof}
-			$\conj{z+w} = \conj{(a+ib)+(c+id)} = \conj{(a+c)+i(b+d)} = (a+c)-i(b+d) = a+c-ib-id = (a-ib)+(c-id) = \conj{a+ib} + \conj{c+id} = \conj z + \conj w$.
-		\end{proof}
 		\item[(b)] $\conj{z\cdot w} = \conj z\cdot \conj w$
-		\begin{proof}
-			skip!
-		\end{proof}
 		\item[(c)] $z+\conj z = 2\Re(z)$ and $z-\conj z = 2i\Im(z)$
-		\begin{proof}
-			skip!
-		\end{proof}
 		\item[(d)] $z\cdot \conj z\in\mb R$, $z\cdot \conj z \geq 0$ and $z\cdot\conj z = 0 \Lr z = 0$
-		\begin{proof}
-			$z\cdot \conj z = (a+ib)(a-ib) = a^2+b^2\in\mb R$. If $a\in\mb R$ and $b\in\mb R$ then $a^2\geq 0$ and $b^2\geq 0 \implies z\cdot \conj z \geq 0$. Now suppose $z = 0$. Then $z\cdot \conj z = 0\cdot \conj z = 0$. Suppose $z\cdot \conj z = 0$. Then $a^2+b^2 = 0$, which implies $a=0$ and $b=0$. So $z = 0+0i = 0$.
-		\end{proof}
 		\item[(e)] $\conj z = z$
-		\begin{proof}
-			skip!
-		\end{proof}
 		\item[(f)] $z\in\mb R \implies \conj z = z$.
-		\begin{proof}
-			skip!
-		\end{proof}
 	\end{enumerate}
 \end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] $\conj{z+w} = \conj{(a+ib)+(c+id)} = \conj{(a+c)+i(b+d)} = (a+c)-i(b+d) = a+c-ib-id = (a-ib)+(c-id) = \conj{a+ib} + \conj{c+id} = \conj z + \conj w$.
+		\item[(b)] skip!
+		\item[(c)] skip!
+		\item[(d)] $z\cdot \conj z = (a+ib)(a-ib) = a^2+b^2\in\mb R$. If $a\in\mb R$ and $b\in\mb R$ then $a^2\geq 0$ and $b^2\geq 0 \implies z\cdot \conj z \geq 0$. Now suppose $z = 0$. Then $z\cdot \conj z = 0\cdot \conj z = 0$. Suppose $z\cdot \conj z = 0$. Then $a^2+b^2 = 0$, which implies $a=0$ and $b=0$. So $z = 0+0i = 0$.
+		\item[(e)] skip!
+		\item[(f)] skip!
+	\end{enumerate}
+	Done.
+\end{proof}
 \begin{remark}
 	$f:\mb C\ra \mb C$ by $f(z) = \conj z$. By Theorem, $f(z+w) = f(z)+f(w)$ for all $z,w\in\mb C$ and $f(z\cdot w) = f(z)\cdot f(w)$ for all $z,w\in\mb C$ and $f(0) = 0$ and $f(1) = 1$. This implies conjugate preserves field properties of $\mb C$. However, $f$ is not an identity mapping since $f(i) = -i$.
 \end{remark}
@@ -427,27 +426,23 @@ Given $z=(a,b)\in\mb C$, we can write $z = a+bi$. Indeed, $a+bi = (a,0) +_\mb C 
 	Let $z,w\in\mb C$. Then
 	\begin{enumerate}
 		\item[(a)] $|z|\geq 0$ and $|z|= 0 \Lr z= 0$.
-		\begin{proof}
-			Since $z\cdot \conj z \geq 0$ and $|z| = (z\cdot\conj z)^{1/2}$, $|z|\geq 0$ follows by $n^\text{th}$ root theorem. By previous theorem, $z\cdot \conj z = 0\Lr z = 0$. So $|z|=0\Lr z = 0$.
-		\end{proof}
 		\item[(b)] $|\conj z| = |z|$
-		\begin{proof}
-			$|\conj z| = (\conj z\cdot \conj{\conj z})^\frac{1}{2} = (\conj z\cdot z)^\frac{1}{2} = |z|$.
-		\end{proof}
 		\item[(c)] $|z\cdot w| = |z|\cdot|w|$
-		\begin{proof}
-			$|z\cdot w|^2 = (z\cdot w)\conj{(z\cdot w)} = (z\cdot w)(\conj z\cdot \conj w) = (z\cdot \conj z)\cdot(w\cdot\conj w) = |z|^2\cdot |w|^2 = (|z|\cdot|w|)^2$. By uniqueness of the square root, $|z\cdot w| = |z|\cdot |w|$. 
-		\end{proof}
 		\item[(d)] $|\Re (z)| \leq |z|$ and $|\Re(z)|=|z|\Lr z\in\mb R$.
-		\begin{proof}
-			$|\Re(z)|^2 = \Re(z)\cdot \conj{(\Re(z))} = (\Re(z))^2 \leq (\Re(z))^2 + (\Im(z))^2 = |z|^2$. By monotonicity of square root, $|\Re(z)|\leq |z|$.
-		\end{proof}
 		\item[(e)] $|z+w|\leq |z|+|w|$ and equality holds $\Lr z = \alpha w$ or $w = \alpha z$ for some $\alpha\in\mb R$.
-		\begin{proof}
-			$|z+w|^2 = (z+w)\conj{(z+w)} = (z+w)(\conj z+\conj w) = z\cdot \conj z + w\cdot \conj z + z\cdot \conj w + w\cdot\conj w = |z|^2 + w\cdot\conj z + \conj{\conj z \cdot w} + |w|^2 = |z|^2 + 2\Re(w\cdot \conj z) + |w|^2 \leq |z|^2 + 2|\Re(w\cdot \conj z)| + |w|^2$ since $x\leq |x| \os{(d)}{\leq} |z|^2 + 2|z\cdot\conj w| + |w|^2 \os{(b)+(c)}{=} |z|^2 + 2|z|\cdot|w| + |w|^2 = (|z|+|w|)^2$ for all $x\in\mb R$. By monotonicity of roots, $|z+w| \leq |z| + |w|$.
-		\end{proof}
 	\end{enumerate}
 \end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] Since $z\cdot \conj z \geq 0$ and $|z| = (z\cdot\conj z)^{1/2}$, $|z|\geq 0$ follows by $n^\text{th}$ root theorem. By previous theorem, $z\cdot \conj z = 0\Lr z = 0$. So $|z|=0\Lr z = 0$.
+		\item[(b)] $|\conj z| = (\conj z\cdot \conj{\conj z})^\frac{1}{2} = (\conj z\cdot z)^\frac{1}{2} = |z|$.
+		\item[(c)] $|z\cdot w|^2 = (z\cdot w)\conj{(z\cdot w)} = (z\cdot w)(\conj z\cdot \conj w) = (z\cdot \conj z)\cdot(w\cdot\conj w) = |z|^2\cdot |w|^2 = (|z|\cdot|w|)^2$. By uniqueness of the square root, $|z\cdot w| = |z|\cdot |w|$. 
+		\item[(d)] $|\Re(z)|^2 = \Re(z)\cdot \conj{(\Re(z))} = (\Re(z))^2 \leq (\Re(z))^2 + (\Im(z))^2 = |z|^2$. By monotonicity of square root, $|\Re(z)|\leq |z|$.
+		\item[(e)] $|z+w|^2 = (z+w)\conj{(z+w)} = (z+w)(\conj z+\conj w) = z\cdot \conj z + w\cdot \conj z + z\cdot \conj w + w\cdot\conj w = |z|^2 + w\cdot\conj z + \conj{\conj z \cdot w} + |w|^2 = |z|^2 + 2\Re(w\cdot \conj z) + |w|^2 \leq |z|^2 + 2|\Re(w\cdot \conj z)| + |w|^2$ since $x\leq |x| \os{(d)}{\leq} |z|^2 + 2|z\cdot\conj w| + |w|^2 \os{(b)+(c)}{=} |z|^2 + 2|z|\cdot|w| + |w|^2 = (|z|+|w|)^2$ for all $x\in\mb R$. By monotonicity of roots, $|z+w| \leq |z| + |w|$.
+	\end{enumerate}
+	Done.
+\end{proof}
 
 \begin{theorem}
 	[Schwartz inequality] Let $z_1,z_2,\dots,z_n,w_1,\dots,w_n\in\mb C$. Then $$ \left| \sum_{i=1}^n z_i\cdot \conj{w_i} \right|^2 \leq \left(\sum_{i=1}^n |z_i|^2 \right) \left( \sum_{i=1}^n |w_i|^2\right).$$
@@ -458,8 +453,7 @@ Given $z=(a,b)\in\mb C$, we can write $z = a+bi$. Indeed, $a+bi = (a,0) +_\mb C 
 	\ul{Take $W>0$}: Then 
 	\begin{align*}
 		0\leq \sum_{i=1}^n |Wz_i - Pw_i|^2 &\os{?}{\geq} W(WZ-|P|^2) \\
-		&= \sum_{i=1}^n(Wz_i-Pw_i)\conj{(Wz_i-Pw_i)} \\
-		&= \sum_{i=1}^n(Wz_i-Pw_i)(W\conj{z_i}-\conj P\conj{w_i}) \\
+		&= \sum_{i=1}^n(Wz_i-Pw_i)\conj{(Wz_i-Pw_i)} = \sum_{i=1}^n(Wz_i-Pw_i)(W\conj{z_i}-\conj P\conj{w_i}) \\
 		& = \sum_{i=1}^n \left[ W^2 z_i\cdot \conj{z_i} - W\conj P z_i \conj{w_i} - PW w_i \conj{z_i} + P\conj P w_i \cdot \conj{w_i} \right] \\
 		&= \sum_{i=1}^n \left[ W^2|z_i|^2 - W\conj P z_i \conj{w_i} - PW w_i \conj{z_i} + |P|^2 \cdot |w_i|^2 \right] \\
 		&= W^2 \sum_{i=1}^n |z_i|^2 - W\conj P\sum_{i=1}^n z_i \cdot \conj{w_i} - PW \sum_{i=1}^n w_i \conj{z_i} + |P|^2 \sum_{i=1}^n |w_i|^2 \\
@@ -517,38 +511,34 @@ $$ \vzero = (0,0,\dots,0).$$
 	Let $\vx,\vy,\vz\in\mb R^k$ and $a\in\mb R$. Then
 	\begin{enumerate}
 		\item[(a)] $|\vx|\geq 0$ and $|\vx| = 0 \Lr \vx = \vzero$.
-		\begin{proof}
-			$|\vx|^2 = \sum_{i=1}^k x_i^2 \geq 0$, since $x_i^2 \geq 0$ for $x_i\in\mb R$. $\implies |\vx| \geq 0$ using the monotonicity of root. Suppose that $|\vx| = 0$ and suppose by contradiction that $x_i\neq 0$ for some $i\in\{1,\dots,k\}$. $\implies x_i^2 >0$ and $\sum_{j=1}^k x_j^2 > 0$, a contradiction. If $\vx = \vzero$, then $x_i = 0$ for all $i = 1,\dots,k$. So $|\vx| = \left( \sum_{i=1}^k 0^2 \right)^{1/2} = 0$.
-		\end{proof}
 		\item[(b)] $|a\vx| = |a|\cdot|\vx|$
-		\begin{proof}
-			$|a\vx|^2 = \sum_{i=1}^k (a x_i)^2 = a^2 \sum_{i=1}^k x_i^2 = a^2(|\vx|)^2 \implies |a\vx| = \sqrt{a^2}\sqrt{|\vx|^2} = |a||\vx|$.
-		\end{proof}
 		\item[*(c)] $|\vx\cdot\vy| \leq |\vx|\cdot |\vy|$
-		\begin{proof}
-			WTS: $|\vx|^2|\vy|^2$. Recall, Schwartz inequality $$\left| \sum_{i=1}^n z_i \cdot \conj{w_i} \right|^2 \leq \sum_{i=1}^n |z_i|^2 \sum_{i=1}^n |w_i|^2.$$
+		\item[(d)] $|\vx+\vy| \leq |\vx|+|\vy|$
+		\item[(e)] $|\vx - \vz| \leq |\vx - \vy| + |\vy-\vz|$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] $|\vx|^2 = \sum_{i=1}^k x_i^2 \geq 0$, since $x_i^2 \geq 0$ for $x_i\in\mb R$. $\implies |\vx| \geq 0$ using the monotonicity of root. Suppose that $|\vx| = 0$ and suppose by contradiction that $x_i\neq 0$ for some $i\in\{1,\dots,k\}$. $\implies x_i^2 >0$ and $\sum_{j=1}^k x_j^2 > 0$, a contradiction. If $\vx = \vzero$, then $x_i = 0$ for all $i = 1,\dots,k$. So $|\vx| = \left( \sum_{i=1}^k 0^2 \right)^{1/2} = 0$.
+		\item[(b)] $|a\vx|^2 = \sum_{i=1}^k (a x_i)^2 = a^2 \sum_{i=1}^k x_i^2 = a^2(|\vx|)^2 \implies |a\vx| = \sqrt{a^2}\sqrt{|\vx|^2} = |a||\vx|$.
+		\item[*(c)] WTS: $|\vx|^2|\vy|^2$. Recall, Schwartz inequality $$\left| \sum_{i=1}^n z_i \cdot \conj{w_i} \right|^2 \leq \sum_{i=1}^n |z_i|^2 \sum_{i=1}^n |w_i|^2.$$
 			\begin{align*}
 				|\vx\cdot \vy|^2 &= \left| \sum_{i=1}^k x_iy_i \right|^2
 				\os{\text{Schwartz}}{\leq} \left(\sum_{i=1}^n |x_i|^2 \right) \left( \sum_{i=1}^n |y_i|^2 \right) \os{x_i,y_i\in\mb R}{=} \left(\sum_{i=1}^k x_i^2 \right) \left( \sum_{i=1}^k y_i^2 \right) = |\vx|^2 |\vy|^2.
 			\end{align*}
 			By monotonicity of root $|\vx\cdot \vy| \leq |\vx||\vy|$.
-		\end{proof}
-		\item[(d)] $|\vx+\vy| \leq |\vx|+|\vy|$
-		\begin{proof}
-			Want to show: $|\vx + \vy|^2 \leq (|\vx| + |\vy|)^2 = |\vx|^2 + 2|\vx|\cdot|\vy| + |\vy|^2$.
+		\item[(d)] Want to show: $|\vx + \vy|^2 \leq (|\vx| + |\vy|)^2 = |\vx|^2 + 2|\vx|\cdot|\vy| + |\vy|^2$.
 			\begin{align*}
 				|\vx + \vy|^2 &= \sum_{i=1}^k (x_i+y_i)^2 = \sum_{i=1}^k (x_i^2 + 2x_i y_i + y_i)^2
 				= \sum_{i=1}^k x_i^2 + 2 \sum_{i=1}^k x_i y_i + \sum_{i=1}^k y_i^2 \\
 				&\leq |\vx|^2 + 2|\vx \cdot \vy| + |\vy|^2 \os{(c)}{\leq} |\vx|^2 + 2|\vx|\cdot |\vy| + |\vy|^2 = (|\vx| + |\vy|)^2
 			\end{align*}
 			since $\vx\cdot\vy\in\mb R$ and $a\leq |a|$ for all $a\in\mb R$. This implies $|\vx + \vy| \leq |\vx| + |\vy|$ by monotonicity of root.
-		\end{proof}
-		\item[(e)] $|\vx - \vz| \leq |\vx - \vy| + |\vy-\vz|$
-		\begin{proof}
-			$|\vx - \vz| = |\vx + \vzero - \vz| = |\vx - \vy + \vy - \vz| \os{(d)}{\leq} |\vx-\vy| + |\vy-\vz|$.
-		\end{proof}
+		\item[(e)] $|\vx - \vz| = |\vx + \vzero - \vz| = |\vx - \vy + \vy - \vz| \os{(d)}{\leq} |\vx-\vy| + |\vy-\vz|$.
 	\end{enumerate}
-\end{theorem}
+	Done.
+\end{proof}
 \begin{observe}
 	Observe that $|\vx\cdot \vy| = |\vx|\cdot |\vy|$ if $x,y\in\mb R$ \ul{\ul{or}} if $x,y\in\mb C$. \ul{Not true in $\mb R^2$}:
 	
@@ -567,6 +557,7 @@ $$ \vzero = (0,0,\dots,0).$$
 \end{observe}
 
 If $(a,b),(c,d)\in\mb C$, then $|(a,b)\cdot(c,d)| = |(a,b)|\cdot|(c,d)|$.
+
 If $(a,b),(c,d)\in\mb R^2$, then $|(a,b)\cdot(c,d)| \leq |(a,b)||(c,d)|$.
 \begin{proof}
 	$0\leq p^2+q^2 - 2pq = (p-q)^2 \implies 2pq \leq p^2 + q^2$.
@@ -761,13 +752,12 @@ Let $f:J \os{1-1}{\us{\text{onto}}{\lra}} \mb Z$ by $f(n) = \begin{cases} \frac{
 	\end{proof}
 \end{example}
 
-\ul{From last class}:
-\begin{proposition}
-	$S$ is infinite $\Lr \exists f:\mb N \ra S$ that is 1-1.
-\end{proposition}
+%\ul{From last class}:
+\begin{recall}
+	\ul{From last class}: $S$ is infinite $\Lr \exists f:\mb N \ra S$ that is 1-1.
+\end{recall}
 \begin{proof}
 	\say{$\implies$} Last class.
-
 	\say{$\Lla$} Suppose there exists $f:\mb N \ra S$ 1-1.
 	Assume to the contrary that $S$ is finite i.e., $|S| = |J_n|$ for some $n\in\mb N$ so $\exists j:S\os{1-1}{\us{\text{onto}}{\lra}} J_n$.
 	Now, $J_{n+1} \os{i}{\us{1-1}{\lra}} \mb N \os{f}{\us{1-1}{\lra}} S \os{1-1}{\us{\text{onto}}{\lra}} J_n$.
@@ -1011,7 +1001,9 @@ $(X,\rho)$ is a metric space.
 	Let $p\in X$ and let $N_r(p)$ be a neighborhood of $p$ in $X$.
 	\ul{Want to show}: Every point of $N_r(p)$ is an interior point of $N_r(p)$.
 	Let $q\in N_r(p)\backslash\{p\}$. Then $\rho(p,q)<r$. So let $h = r-\rho(p,q)$.
-	Then $N_h(q)\subset N_r(p)$. Indeed, if $s\in N_h(q)$, then $\rho(q,s)<h$, so $\rho(s,p) \os{\Delta}{\leq} \rho(s,q)+\rho(q,p) < h+ \rho(q,p) = r-\rho(p,q)+\rho(p,q) =~r \implies \rho(s,p) < r \implies s\in N_r(p) \implies N_h(q) \subset N_r(p)$.
+	Then $N_h(q)\subset N_r(p)$. Indeed, if $s\in N_h(q)$, then $\rho(q,s)<h$, so 
+	$$\rho(s,p) \os{\Delta}{\leq} \rho(s,q)+\rho(q,p) < h+ \rho(q,p) = r-\rho(p,q)+\rho(p,q) =~r$$
+	implies $\rho(s,p) < r \implies s\in N_r(p) \implies N_h(q) \subset N_r(p)$.
 	So $N_r(p)$ is open.
 \end{proof}
 
@@ -1030,6 +1022,8 @@ $(X,\rho)$ is a metric space.
 	Take $r_0 = \us{1\leq i \leq n}{\min} \rho(p,q_i) > 0$, since $p\neq q_i$.
 	Then $N_{r_0}(p) = \{p\}$ - a contradiction that $p$ is a limit point of $E$. This proves the theorem.
 \end{proof}
+
+\newpage
 
 \begin{theorem}
 	A set $E$ is open $\Llr E^c$ is closed.
@@ -1058,7 +1052,9 @@ $(X,\rho)$ is a metric space.
 \begin{proof}
 	\say{$\subset$} Let $x\in\left(\bigcup_{\alpha\in A} E_\alpha\right)^c$. Then $x\notin \bigcup_{\alpha\in A} E_\alpha \implies x \notin E_\alpha$  \ul{for all $\alpha\in A$}.
 	This implies $x\in E_\alpha^c$ for all $\alpha\in A$. $\implies x\in \bigcap_{\alpha\in A} E_\alpha^c \implies \left(\bigcup_{\alpha\in A} E_\alpha\right)^c \subset \bigcap_{\alpha\in A} E_\alpha^c$.
+	
 	\say{$\supset$} Let $x\in \bigcap_{\alpha\in A} E_\alpha^c$. This implies $x\in E_\alpha^c$ for all $\alpha \in A \implies x\notin E_\alpha$ for all $\alpha \in A \implies x\notin \bigcup_{\alpha\in A} E_\alpha \implies x\in\left( \bigcup E_\alpha \right)^c \implies \bigcap_{\alpha\in A} E_\alpha^c \subset(\bigcup E_\alpha )^c$.
+	
 	Therefore  $\left(\bigcup_{\alpha\in A}E_\alpha\right)^c = \bigcap_{\alpha\in A} E_\alpha^c$.
 \end{proof}
 
@@ -1066,28 +1062,28 @@ $(X,\rho)$ is a metric space.
 	Let $(X,\rho)$ be a metric space and $A$ be a set of indices. Then
 	\begin{enumerate}
 		\item[(i)] $\{G_\alpha\}_{\alpha\in A}$ open $\implies \bigcup_{\alpha\in A} G_\alpha$ is open.
-			\begin{proof}
-				Let $x\in \bigcup_{\alpha\in A} G_\alpha$ be arbitrary.
-				\ul{WTS}: $x$ is an interior point of $\bigcup_{\alpha\in A} G_\alpha$ i.e., $\exists r>0$ such that $N_r(x)\subset \bigcup_{\alpha\in A} G_\alpha$.
-				$x\in\bigcup_{\alpha\in A}G_\alpha \implies \exists \alpha_0\in A$ such that $x\in G_{\alpha_0}$.
-				$G_{\alpha_0}$ open $\implies \exists r_{\alpha_0}>0$ such that $N_{r_{\alpha_0}}(x)\subset G_{\alpha_0} \subset \bigcup_{\alpha\in A} G_\alpha$.
-				Thus $x$ an interior point of $\bigcup_{\alpha\in A} G_\alpha$ and hence $\bigcup_{\alpha\in A} G_\alpha$ open.
-			\end{proof}
 		\item[(ii)] $\{F_\alpha\}_{\alpha\in A}$ closed $\implies \bigcap_{\alpha\in A} F_\alpha$ is closed.
-			\begin{proof}
-				Note that $\bigcap_{\alpha\in A} F_\alpha = \left(\bigcup F_\alpha^c)\right)^c$ is closed, since $F_\alpha^c$ open and $\bigcup F_\alpha^c$ is open by (i).
-			\end{proof}
 		\item[(iii)] If $G_1,\dots,G_n$ is open then $\bigcap_{i=1}^n G_i$ is open.
-			\begin{proof}
-				Let $G_1,\dots,G_n$ be open.
-				\ul{Want to show}: $\bigcap_{i=1}^n G_i$ is open i.e., every point of $\bigcap_{i=1}^n G_i$ is an interior point.
-				Let $x\in\bigcap_{i=1}^n G_i$ be arbitrary. $G_i$ open $\implies\exists r_i>0$ such that $N_{r_i}(x)\subset G_i$ for all $i=1,\dots,n$.
-				Take $r=\us{1\leq i\leq n}{\min} r_i>0$ since $r_i>0$ and $i=1,\dots,n$.
-				Then $N_r(x) = \bigcap_{i=1}^n N_{r_i}(x)\subset G_i$ for every $i=1,\dots n \implies N_r(x)\subset\bigcap_{i=1}^n G_i \implies x$ is an interior point of $\bigcap_{i=1}^n G_i \implies \bigcap_{i=1}^n G_i$ open.
-			\end{proof}
 		\item[(iv)] If $F_1\dots,F_n$ is closed then $\bigcup_{i=1}^n F_i$ is closed.
 	\end{enumerate}
 \end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(i)] Let $x\in \bigcup_{\alpha\in A} G_\alpha$ be arbitrary.
+			\ul{WTS}: $x$ is an interior point of $\bigcup_{\alpha\in A} G_\alpha$ i.e., $\exists r>0$ such that $N_r(x)\subset \bigcup_{\alpha\in A} G_\alpha$.
+			$x\in\bigcup_{\alpha\in A}G_\alpha \implies \exists \alpha_0\in A$ such that $x\in G_{\alpha_0}$.
+			$G_{\alpha_0}$ open $\implies \exists r_{\alpha_0}>0$ such that $N_{r_{\alpha_0}}(x)\subset G_{\alpha_0} \subset \bigcup_{\alpha\in A} G_\alpha$.
+			Thus $x$ an interior point of $\bigcup_{\alpha\in A} G_\alpha$ and hence $\bigcup_{\alpha\in A} G_\alpha$ open.
+		\item[(ii)] Note that $\bigcap_{\alpha\in A} F_\alpha = \left(\bigcup F_\alpha^c)\right)^c$ is closed, since $F_\alpha^c$ open and $\bigcup F_\alpha^c$ is open by (i).
+		\item[(iii)] Let $G_1,\dots,G_n$ be open.
+			\ul{Want to show}: $\bigcap_{i=1}^n G_i$ is open i.e., every point of $\bigcap_{i=1}^n G_i$ is an interior point.
+			Let $x\in\bigcap_{i=1}^n G_i$ be arbitrary. $G_i$ open $\implies\exists r_i>0$ such that $N_{r_i}(x)\subset G_i$ for all $i=1,\dots,n$.
+			Take $r=\us{1\leq i\leq n}{\min} r_i>0$ since $r_i>0$ and $i=1,\dots,n$.
+			Then $N_r(x) = \bigcap_{i=1}^n N_{r_i}(x)\subset G_i$ for every $i=1,\dots n \implies N_r(x)\subset\bigcap_{i=1}^n G_i \implies x$ is an interior point of $\bigcap_{i=1}^n G_i \implies \bigcap_{i=1}^n G_i$ open.
+	\end{enumerate}
+	Done.
+\end{proof}
 \begin{remark} Counter examples:
 	\begin{enumerate}
 		\item Intersection of infinitely many open sets need not be open.
@@ -1891,6 +1887,101 @@ Meet this Saturday at 11am.
 	Again, $\liminf_{n\ra\infty} s_n = s \implies \lim_{k\ra\infty}(\inf\{s_n:n\geq k\}) = s \implies \exists K_2\in\mb N$ such that $|z_k -s|<\epsilon$ for all $k\geq K_2$.
 	This implies $-\epsilon < z_k - s< \epsilon$ for all $k\geq K_2 \implies z_k-s>-\epsilon$ or $s_k > s-\epsilon$ for all $k\geq K_2 \implies \inf\{s_n:n\geq k\} > s-\epsilon$ for all $k\geq K_2 \implies$ \ul{$s_n>s-\epsilon$ for all $n\geq K_2$} -- (4).
 	For $K\geq \max\{K_1,K_2\}$, $s-\epsilon <s_n < s+\epsilon$ or $-\epsilon < s_n-s < \epsilon \implies s_n\ra s$.
+\end{proof}
+
+\begin{theorem}
+	[Thm 3.20 book] Important examples - check!
+\end{theorem}
+
+\subsection{Series - of real numbers}
+
+Let $\{a_n\}\subset\mb R$ be a sequence.
+Define
+\begin{align*}
+	s_1 &:= a_1 \\
+	s_2 &:= a_1 + a_2 \\
+	s_3 &:= a_1 + a_2 + a_3 \\
+	\vdots \\
+	s_n &:= a_1 + a_2 + \dots + a_n
+\end{align*}
+- $n^\text{th}$ partial sum of ?
+Then $\{s_n\}\subset\mb R$ is well defined.
+If $s_n\ra s$ in $\mb R$, we say $\sum_{n=1}^\infty a_n = s$ and that $\sum_{n=1}^\infty a_n$ converges.
+Otherwise $\sum_{n=1}^\infty a_n$ diverges.
+
+\begin{recall}
+	$\{s_n\}\subset\mb R$ Cauchy $\iff\{s_n\}\subset\mb R$ is convergent.
+\end{recall}
+\begin{theorem}
+	$\sum_{n=1}^\infty a_n$ converges $\iff \forall\epsilon>0$, $\exists N\in\mb N$ such that $|s_n-s_{m-1}|<\epsilon$ for every $m\geq n>N$, where $s_n:=a_1+\dots+a_n$
+	i.e., $\left|\sum_{k=1}^n a_k - \sum_{k=1}^{m-1} a_k\right|< \epsilon$
+	i.e., $\left|\sum_{k=m}^n a_k\right| < \epsilon$ for all $n\geq m>N$.
+\end{theorem}
+\begin{note}
+	Taking $m=n$, we get $|a_m|<\epsilon$ for all $m>N \implies a_m\ra 0$ as $m\ra\infty$ i.e., if $\sum a_n$ converges then $\lim_{n\ra\infty}a_n=0$. ($\implies$ if $\lim_{n\ra\infty}a_n\neq0$ then $\sum a_n$ diverges.)
+\end{note}
+\begin{example}
+	$\sum\frac{1}{n}$ diverges and $\lim_{n\ra\infty}\frac{1}{n}=0$.
+\end{example}
+
+\begin{theorem}
+	Let $a_n\geq 0$ for all $n\in\mb N$.
+	Then $\sum_{n=1}^\infty a_n$ converges $\iff \{s_n\}$ is bounded.
+\end{theorem}
+\begin{proof}
+	Proof follows from monotonic bounded sequence theorem since $s_n=a_1+\dots+a_n\leq a_1+\dots+a_{n+1}$ i.e., $s_n\leq s_{n+1}$ (monotonically increasing).
+\end{proof}
+
+\begin{theorem}
+	[Comparison test] Cases:
+	\begin{enumerate}
+		\item[(a)] If $|a_n|\leq c_n$ for some $n\geq N$ for some $N\in\mb N$ and if $\sum_{n=1}^\infty c_n$ converges then $\sum_{n=1}^\infty a_n$ converges.
+		\item[(b)] If $0\leq d_n\leq a_n$ for $n\geq N$ for some $N\in\mb N$ and if $\sum_{n=1}^\infty d_n$ diverges then $\sum_{n=1}^\infty a_n$ diverges.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] Let $\epsilon>0$ be fixed.
+			\ul{NTS}: $\exists N_0\in\mb N$ such that $\left|\sum_{k=m}^n a_k\right|<\epsilon$ for all $n\geq m>N_0$.
+			Then $\sum_{n=1}^\infty c_n$ converges $\implies\exists N\in\mb N_0$ such that $\sum_{k=m}^n c_k = \left|\sum_{k=m}^n c_k\right|<\epsilon$ for all $n\geq m>N_0$.
+			Given $a_n\leq|a_n|\leq c_n$ for $n\geq N$.
+			Then $\left|\sum_{k=m}^n a_k\right|\os{\Delta}{\leq} \sum_{k=m}^n|a_k| \leq \sum_{k=m}^n c_k < \epsilon$ for $n\geq m>N_2 = \max\{N,N_0\}$.
+			This implies $\sum_{k=1}^\infty a_k$ converges.
+		\item[(b)] If $\sum a_n$ converges then by (a), since $0\leq d_n\leq a_n$, $\sum_{n=1}^\infty d_n$ converges, contradiction. Hence the proof.
+	\end{enumerate}
+	Done.
+\end{proof}
+
+\begin{theorem}
+	[Geometric series]
+	Let $0\leq x<1$. Then $\sum_{n=0}^\infty x^n = \frac{1}{1-x}$. If $x\geq 1$ then $\sum_{n=0}^\infty x^n$ diverges.
+\end{theorem}
+\begin{proof}
+	Let $x\neq 1$. Then $\sum_{k=0}^n x^k = 1+x+x^2+\dots+x^n \implies (1-x)\sum_{k=0}^n x^k = \sum_{k=0}^n x^k -\sum_{k=1}^{n+1}x^k = 1-x^{n+1}$.
+	Then $\lim_{n\ra\infty} \frac{1-x^{n+1}}{1-x} = \frac{1}{1-x}\lim_{n\ra\infty}(1-x^{n+1}) = \ul{\frac{1}{1-x} \text{ if } |x|<1 \text{ i.e., }0\leq x<1}$.
+\end{proof}
+
+\begin{theorem}
+	Suppose $a_n\geq 0$ and $a_n\geq a_{n+1}$ for all $n\in\mb N$.
+	Then $\sum_n a_n$ converges $\iff\sum_k 2^ka_{2^k}$ converges.
+\end{theorem}
+\begin{proof}
+	Let $s_n = a_1+a_2+\dots+a_n$ and $t_n = a_1 + 2a_2 + 2^2a_{2^2} + \dots + 2^ka_{2^k}$.
+	\ul{Claim}: $\{s_n\}$ is bounded $\iff \{t_k\}$ is bounded.
+
+	\ul{Case}: $n<2^k$.
+	\begin{align*}
+		s_n &\leq a_1 + a_2 + \os{\leq a_2}{a_3} + a_4 + \os{\leq a_4}{a_5} + \os{\leq a_4}{a_6} + \os{\leq a_4}{a_7} + a_8 + \os{=a_n}{\dots} + a_{2^k} + \os{\leq a_{2^k}}{\dots} + a_{2^{k+1}-1} + \dots + a_n \\
+			&\leq a_1 + 2a_2 + 2^2a_{2^2} + \dots + 2^ka_{2^k} = t_k \implies \ul{s_n\leq t_k}.
+	\end{align*}
+	
+	\ul{Case}: $n>2^k$.
+	\begin{align*}
+		s_n &= a_1 + a_2 + \os{\geq a_4}{a_3} + a_4 + \os{\geq a_8}{a_5} + \os{\geq a_8}{a_6} + \os{\geq a_8}{a_7} + \os{\geq a_8}{a_8} + \dots + a_{2^{k-1}} + \dots + a_{2^k} + \dots + a_n \\
+			&\geq \frac{1}{2}a_1 + a_2 + 2a_4 + 4a_8 + \dots + 2^{k-1}a_{2^k} \implies 2s_n \geq a_1 + 2a_2 + 2^2a_{2^2} + 2^3a_{2^3} + \dots + 2^ka_{2^k} = t_k.
+	\end{align*}
+	This implies \ul{$s_n\geq \frac{t_k}{2}$ for $n>2^k$} $\implies \{s_n\}$ is bounded $\iff\{t_k\}$ is bounded.
 \end{proof}
 
 \end{document}

@@ -1,7 +1,7 @@
 \documentclass[]{article}
 \input{../mathdoc}
 \input{../mathsym}
-\input{../preview}
+%\input{../preview}
 
 \author{Book: Thomas Judson 2017, Presenter: Igor Erovenko, Notes by Michael Reed}
 \title{Abstract Algebra}
@@ -523,7 +523,7 @@ Define two operations:
 	Generators: $\rho_1,\mu_1$.
 	Relations: $\rho_1^3 id$, $\mu_1^2 = id$, $\rho_1\mu_1 = \mu_1\rho_1^2$.
 
-	Define the gorup by generators and relations: $D_6 = <\rho_1,\mu_1 \mid \rho_1^2 = id,\ \mu_1^2 = id,\ \rho_1\mu_1 = \mu_1\rho_1^2 >$.
+	Define the gorup by generators and relations: $D_6 =\ <\rho_1,\mu_1 \mid \rho_1^2 = id,\ \mu_1^2 = id,\ \rho_1\mu_1 = \mu_1\rho_1^2 >$.
 
 	So $\mu_1\rho_1\mu_1\rho_1^2 = \mu_1\mu_1\rho_1^2\rho_1^2 = \mu_1^2\rho_1^4 = \rho_1$.
 \end{example}
@@ -708,47 +708,47 @@ $x^0 = e$, for $n\in\mb N$: $x^n=\us{n}{xx\cdots x}$ and $x^{-n} = (x\inv)^n = \
 	Let $G$ be a group, $x,y\in G$, and $m,n\in\mb Z$.
 	\begin{enumerate}
 		\item $x^mx^n = x^{m+n}$
-			\begin{proof}
-				\ul{Case 1}: $m\geq 0$ and $n\geq 0$. $x^mx^n = \us{m}{xx\cdots x} \us{n}{xx\cdots x} = \us{m+n}{xx\cdots x} = x^{m+n}$.
-				
-				\ul{Case 2}: $m<0$ and $n<0$. Write $m = -m_0$ and $n=-n_0$ for $m_0,n_0\in\mb N$. Then $x^mx^n = x^{-m_0}x^{-n_0} = (x\inv)^{m_0} (x\inv)^{n_0} \os{\text{Case 1}}{=} (x\inv)^{m_0+n_0} = x^{-(m_0+n_0)} = x^{m+n}$.
-				
-				\ul{Case 3}: $m\geq 0$ and $n<0$. Write $n=-n_0$ for $n_0\in\mb N$.
-				$x^mx^n = x^mx^{-n_0} = \us{m}{x\cdots x}\us{n_0}{x\inv\cdots x\inv} = \otimes$.
-				\ul{Subcase A}: $m\geq n_0$. $\otimes = \us{m-n_0}{xx\cdots x} = x^{m-n_0} = x^{m+n}$.
-				\ul{Subcase B}: $m<n_0$. $\otimes = \us{n_0-m}{x\inv x\inv \cdots x\inv} = (x\inv)^{n_0-m} = x^{-(n_0-m)} = x^{m+n}$.
-
-				\ul{Case 4}: $m<0$ and $n\geq 0$. Similar to Case 3.
-			\end{proof}
 		\item $(x^n)\inv = (x\inv)^n$
-			\begin{proof}
-				\ul{Case 1}: $n\geq 0$. $(x^n)\inv = (\us{n}{xx\cdots x})\inv = \us{n}{x\inv x\inv \cdots x\inv} = (x\inv)^n$.
-
-				\ul{Case 2}: $n<0$. Write $n=-n_0$ for $n_0\in\mb N$. $(x^n)\inv = (x^{-n_0})\inv = (\us{n_0}{x\inv x\inv \cdots x\inv})\inv = \us{n_0}{(x\inv)\inv (x\inv)\inv\cdots(x\inv)\inv} = (x\inv)^{-n_0} = (x\inv)^n$.
-			\end{proof}
 		\item $(x^m)^n = x^{mn}$
-			\begin{proof}
-				\ul{Case 1}: $m\geq 0$ and $n\geq 0$. $(x^m)^n = \us{n}{\us{m}{xx\cdots x}\us{m}{xx\cdots x}\cdots\us{m}{xx\cdots x}} = \us{mn}{xx\cdots x} = x^{mn}$.
-				
-				\ul{Case 2}: $m<0$ and $n<0$. Write $m=-m_0$ and $n = -n_0$ for $m_0,n_0\in\mb N$. $(x^m)^n = (x^{-m_0})^{-n_0} = [(x\inv)^{m_0}]^{-n_0} = \{[(x\inv)^{m_0}]\inv\}^{n_0} = \{[(x\inv)\inv]^{m_0}\}^{n_0} = (x^{m_0})^{n_0} \os{\text{Case 1}}{=} x^{m_0n_0} = x^{mn}$.
-
-				\ul{Case 3}: $m<0$ and $n\geq 0$. Write $m=-m_0$ for $m_0\in\mb N$. $(x^m)^n = (x^{-m_0})^n = [(x\inv)^{m_0}]^n \os{\text{Case 1}}{=} (x\inv)^{m_0n} = x^{-m_0n} = x^{mn}$.
-
-				\ul{Case 4}: $m\geq 0$ and $n<0$. Write $n = -n_0$ for $n_0\in\mb N$. $(x^m)^n = (x^m)^{-n_0} = [(x^m)\inv]^{n_0} = [(x\inv)^m]^{n_0} = (x\inv)^{mn_0} = x^{-mn_0} = x^{mn}$.
-			\end{proof}
 		\item if $G$ is abelian, then $(xy)^n = x^ny^n$
-			\begin{proof}
-				\ul{Case 1}: $n=0$. $(xy)^n = (xy)^0 = e$ and $x^ny^n = x^0 y^0 = ee = e$.
+	\end{enumerate}
+\end{theorem}
+\newpage
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item \ul{Case 1}: $m\geq 0$ and $n\geq 0$. $x^mx^n = \us{m}{xx\cdots x} \us{n}{xx\cdots x} = \us{m+n}{xx\cdots x} = x^{m+n}$.
+				
+			\ul{Case 2}: $m<0$ and $n<0$. Write $m = -m_0$ and $n=-n_0$ for $m_0,n_0\in\mb N$. Then $x^mx^n = x^{-m_0}x^{-n_0} = (x\inv)^{m_0} (x\inv)^{n_0} \os{\text{Case 1}}{=} (x\inv)^{m_0+n_0} = x^{-(m_0+n_0)} = x^{m+n}$.
+				
+			\ul{Case 3}: $m\geq 0$ and $n<0$. Write $n=-n_0$ for $n_0\in\mb N$.
+			$x^mx^n = x^mx^{-n_0} = \us{m}{x\cdots x}\us{n_0}{x\inv\cdots x\inv} = \otimes$.
+			\ul{Subcase A}: $m\geq n_0$. $\otimes = \us{m-n_0}{xx\cdots x} = x^{m-n_0} = x^{m+n}$.
+			\ul{Subcase B}: $m<n_0$. $\otimes = \us{n_0-m}{x\inv x\inv \cdots x\inv} = (x\inv)^{n_0-m} = x^{-(n_0-m)} = x^{m+n}$.
 
-				\ul{case 2}: $n\geq 1$. Induction on $n$: \ul{Base}: $n=1$. $(xy)^1 = x^1 y^1$ and $xy = xy$. \ul{Induction step}: Assume $(xy)^n = x^n y^n$. WTS: $(xy)^{n+1} = x^{n+1} y^{n+1}$. So $(xy)^{n+1} \os{(1)}{=} (xy)^n(xy)^1 \os{\text{I.H.}}{=} x^n y^n xy \os{\text{abelian}}{=} x^n x y^n y \os{(1)}{=} x^{n+1}y^{n+1}$.
+			\ul{Case 4}: $m<0$ and $n\geq 0$. Similar to Case 3.
+		\item \ul{Case 1}: $n\geq 0$. $(x^n)\inv = (\us{n}{xx\cdots x})\inv = \us{n}{x\inv x\inv \cdots x\inv} = (x\inv)^n$.
+
+			\ul{Case 2}: $n<0$. Write $n=-n_0$ for $n_0\in\mb N$. 
+			$$(x^n)\inv = (x^{-n_0})\inv = (\us{n_0}{x\inv x\inv \cdots x\inv})\inv = \us{n_0}{(x\inv)\inv (x\inv)\inv\cdots(x\inv)\inv} = (x\inv)^{-n_0} = (x\inv)^n.$$
+		\item \ul{Case 1}: $m\geq 0$ and $n\geq 0$. $(x^m)^n = \us{n}{\us{m}{xx\cdots x}\us{m}{xx\cdots x}\cdots\us{m}{xx\cdots x}} = \us{mn}{xx\cdots x} = x^{mn}$.
+				
+			\ul{Case 2}: $m<0$ and $n<0$. Write $m=-m_0$ and $n = -n_0$ for $m_0,n_0\in\mb N$. $(x^m)^n = (x^{-m_0})^{-n_0} = [(x\inv)^{m_0}]^{-n_0} = \{[(x\inv)^{m_0}]\inv\}^{n_0} = \{[(x\inv)\inv]^{m_0}\}^{n_0} = (x^{m_0})^{n_0} \os{\text{Case 1}}{=} x^{m_0n_0} = x^{mn}$.
+
+			\ul{Case 3}: $m<0$ and $n\geq 0$. Write $m=-m_0$ for $m_0\in\mb N$. $(x^m)^n = (x^{-m_0})^n = [(x\inv)^{m_0}]^n \os{\text{Case 1}}{=} (x\inv)^{m_0n} = x^{-m_0n} = x^{mn}$.
+
+			\ul{Case 4}: $m\geq 0$ and $n<0$. Write $n = -n_0$ for $n_0\in\mb N$. $(x^m)^n = (x^m)^{-n_0} = [(x^m)\inv]^{n_0} = [(x\inv)^m]^{n_0} = (x\inv)^{mn_0} = x^{-mn_0} = x^{mn}$.
+		\item \ul{Case 1}: $n=0$. $(xy)^n = (xy)^0 = e$ and $x^ny^n = x^0 y^0 = ee = e$.
+
+			\ul{case 2}: $n\geq 1$. Induction on $n$: \ul{Base}: $n=1$. $(xy)^1 = x^1 y^1$ and $xy = xy$. \ul{Induction step}: Assume $(xy)^n = x^n y^n$. WTS: $(xy)^{n+1} = x^{n+1} y^{n+1}$. So $(xy)^{n+1} \os{(1)}{=} (xy)^n(xy)^1 \os{\text{I.H.}}{=} x^n y^n xy \os{\text{abelian}}{=} x^n x y^n y \os{(1)}{=} x^{n+1}y^{n+1}$.
 
 				\ul{Case 3}: $n<0$. Write $n=-n_0$ for $n_0\in\mb N$. $(xy)^n = (xy)^{-n_0} = [(xy)\inv]^{n_0} = (y\inv x\inv)^{n_0} \os{\text{Case 2}}{=} (y\inv)^{n_0}(x\inv)^{n_0} = y^{-n_0} x^{-n_0} = y^nx^n \os{\text{abelian}}{=} x^ny^n$.
-			\end{proof}
 			\begin{example}
 				$(xy)^2 = x^2 y^2$ and $xyxy = xxyy$ and $yx = xy$.
 			\end{example}
 	\end{enumerate}
-\end{theorem}
+	Done.
+\end{proof}
 
 \subsection{Subgroups}
 
@@ -803,42 +803,43 @@ $x^0 = e$, for $n\in\mb N$: $x^n=\us{n}{xx\cdots x}$ and $x^{-n} = (x\inv)^n = \
 
 \begin{theorem}
 	[Cyclic groups]
-	Let $G$ be a group and $a\in G$. The set $<a> = \{a^k \mid k\in \mb Z\}$ is the smallest cubgroup of $G$ containing $a$.
+	Let $G$ be a group and $a\in G$. The set $<a>\ = \{a^k \mid k\in \mb Z\}$ is the smallest cubgroup of $G$ containing $a$.
 \end{theorem}
 \begin{proof}
 	(1) Subgroup.
 	\begin{itemize}
-		\item $e = a^0 \in <a>$
-		\item closure under products: let $x,y\in <a>$, then $x = a^n$ and $y=a^m$ for some $n,m\in\mb Z$, so $xy = a^na^m = a^{n+m}\in <a>$
-		\item closure under inverses: let $x\in <a>$, then $x=a^n$ for some $n\in\mb Z$, so $x\inv = (a^n)\inv = a^{-n}\in <a>$
+		\item $e = a^0 \in\ <a>$
+		\item closure under products: let $x,y\in\ <a>$, then $x = a^n$ and $y=a^m$ for some $n,m\in\mb Z$, so $xy = a^na^m = a^{n+m}\in\ <a>$
+		\item closure under inverses: let $x\in\ <a>$, then $x=a^n$ for some $n\in\mb Z$, so $x\inv = (a^n)\inv = a^{-n}\in\ <a>$
 	\end{itemize}
-	Therefore $<a>\leq G$.
+	Therefore $<a>\ \leq G$.
 
 	(2) Smallest.
-	Set $\{H\mid H\leq G \text{ and } a\in H\} = S$, then $<a> \in S$ since $a = a^1 \in <a>$. \ul{Claim}: $<a>\subseteq H$ for all $H\in S$.
-	$a\in H \implies a^2 = aa\in H \implies a^3 = a^2a\in H \implies \dots$ and $a\in H\implies a\inv\in H \implies a^{-2} = a\inv a\inv \in H \implies a^{-3} = a^{-2}a\inv \in H \implies \dots$ and $a^0 = e\in H$.
+	Set $\{H\mid H\leq G \text{ and } a\in H\} = S$, then $<a>\ \in S$ since $a = a^1 \in\ <a>$. \ul{Claim}: $<a>\ \subseteq H$ for all $H\in S$.
+	$a\in H \implies a^2 = aa\in H \implies a^3 = a^2a\in H \implies \dots$ and $a\in H\implies a\inv\in~H \implies a^{-2} = a\inv a\inv \in H \implies a^{-3} = a^{-2}a\inv \in H \implies \dots$ and $a^0 = e\in H$.
 \end{proof}
 \begin{note}
-	$(G,+) \la <a> = \{ka \mid k\in\mb Z\}$.
+	$(G,+) \la\ <a>\ = \{ka \mid k\in\mb Z\}$.
 \end{note}
 \begin{definition}
 	Let $G$ be a group and $a\in G$. The subgroup $<a>$ is called the \ul{cyclic subgroup} of $G$ \ul{generated by $a$}.
 \end{definition}
 \begin{definition}
-	A group $G$ is a \ul{cyclic group} if $\exists a\in G$ such that $<a>\in G$.
+	A group $G$ is a \ul{cyclic group} if $\exists a\in G$ such that $<a>\ \in G$.
 \end{definition}
 \begin{example}
-	$(\mb Z,+)$ infinite cyclic group, $\mb Z = <1> = <-1> = \{k1\mid k\in\mb Z\} = \{k\mid k\in\mb Z\}$. $1,-1$ are generators.
+	$(\mb Z,+)$ infinite cyclic group, $\mb Z =\ <1>\ =\ <-1>\ = \{k\mid k\in\mb Z\} = \{-k\mid k\in\mb Z\}$. $1,-1$ are generators.
 \end{example}
 \begin{example}
-	$G = <e> = \{e\}$
+	$G =\ <e>\ = \{e\}$
 \end{example}
 \begin{remark}
-	$G = <a> = <a\inv >$
+	$G =\ <a>\ =\ <a\inv >$
 \end{remark}
 \begin{example}
-	$\mb Z_n = <[1]> = <[n-1]>$ finite cyclic group, the number of generators of $\mb Z_n$ is $\phi(n)$.
+	$\mb Z_n =\ <[1]>\ =\ <[n-1]>$ finite cyclic group, the number of generators of $\mb Z_n$ is $\phi(n)$.
 \end{example}
+\newpage
 \begin{proposition}
 	Every cyclic group is abelian.
 \end{proposition}
@@ -846,7 +847,7 @@ $x^0 = e$, for $n\in\mb N$: $x^n=\us{n}{xx\cdots x}$ and $x^{-n} = (x\inv)^n = \
 	cyclic $\subset$ abelian $\subset$ groups
 \end{note}
 \begin{proof}
-	Let $G = <a>$ and $x,y\in G$. Then $x = a^n$ and $y = a^m$. So $xy = a^na^m = a^{n+m} = a^{m+n} = a^ma^n = yx$. So $G$ is abelian.
+	Let $G =\ <a>$ and $x,y\in G$. Then $x = a^n$ and $y = a^m$. So $xy = a^na^m = a^{n+m} = a^{m+n} = a^ma^n = yx$. So $G$ is abelian.
 \end{proof}
 \begin{remark}
 	cyclic $\implies$ abelian but abelian $\not\implies$ cyclic, like $(\mb Q,+),(\mb R,+), (\mb C,+)$.
@@ -856,7 +857,7 @@ $x^0 = e$, for $n\in\mb N$: $x^n=\us{n}{xx\cdots x}$ and $x^{-n} = (x\inv)^n = \
 	Every subgroup of a cyclic group is cyclic.
 \end{theorem}
 \begin{proof}
-	Let $G = <a>$ and $H\leq G$.
+	Let $G =\ <a>$ and $H\leq G$.
 	WTS: $H$ is cyclic.
 	
 	\ul{Case 1}: $H = \{e\}$. In this case $H = <e>$.
@@ -867,16 +868,16 @@ $x^0 = e$, for $n\in\mb N$: $x^n=\us{n}{xx\cdots x}$ and $x^{-n} = (x\inv)^n = \
 	If $a^k\in H$ for $k<0$, then $(a\inv)^k\in H\implies a^{-k}\in H$ and $-k\in\mb N$.
 	In any case, $P = \{k\in\mb N\mid a^k\in H\}\neq \emptyset$.
 	Let $n$ be the least element in $P$ by Well-Ordering Principle.
-	So $h = a^n\in H$. \ul{Claim}: $H = <k>$.
-	Clearly, $<h>\subseteq H$. Let $x\in H$. WTS: $x = h^m$ for some $m\in\mb Z$.
+	So $h = a^n\in H$. \ul{Claim}: $H =\ <k>$.
+	Clearly, $<h>\ \subseteq H$. Let $x\in H$. WTS: $x = h^m$ for some $m\in\mb Z$.
 	Write $x = a^l$ and $l = nq + r$ where $0\leq r<n$. Then $x = a^l = a^{nq+r} = a^{nq} a^r = (a^n)^qq^r = h^qa^r$. So $a^r = (h^q)\inv x = h^{-q}x\in H \implies a^r\in H \implies r = 0$ because $r<n$ and $n$ is the least element in $P$.
-	Then $x = h^q \in <h>$. So $H\subseteq<h> \implies H = <h>$.
+	Then $x = h^q \in\ <h>$. So $H\subseteq\ <h> \implies H =\ <h>$.
 \end{proof}
 
 Group is cyclic $\implies$ every (proper) subgroup is cyclic, but the converse is not true. For example, $D_3$ is non-abelian $\implies$ not cyclic. Subgroups: $<e>,<\rho>,<\mu_1>,<\mu_2>,<\mu_3>$.
 
 \begin{example}
-	$\mb Z = <1>$. Then $H\leq \mb Z \implies H = <n> = n\mb Z$. Subgroups: $n\mb Z$, where $n\geq 0$.
+	$\mb Z =\ <1>$. Then $H\leq \mb Z \implies H =\ <n>\ = n\mb Z$. Subgroups: $n\mb Z$, where $n\geq 0$.
 \end{example}
 
 \subsection{Order of an element of a group}
@@ -885,7 +886,7 @@ Group is cyclic $\implies$ every (proper) subgroup is cyclic, but the converse i
 	$$o(a) = \begin{cases} n & \text{for some } n\in\mb N \text{ - finite order} \\ \infty & \text{- infinite order} \end{cases}. $$
 \end{definition}
 \begin{example}
-	$G = \mb Z$. Then $o(1) = \infty$ and $<z> = \mb Z$, $o(2) = \infty$ and $<2> = 2\mb Z$, $o(3) = \infty$ and $<3> = 3\mb Z$, $o(0) = 1$ and $<0> = \{0\}$.
+	$G = \mb Z$. Then $o(1) = \infty$ and $<z>\ = \mb Z$, $o(2) = \infty$ and $<2>\ = 2\mb Z$, $o(3) = \infty$ and $<3>\ = 3\mb Z$, $o(0) = 1$ and $<0>\ = \{0\}$.
 \end{example}
 \begin{note}
 	Any $G$ has $o(e) = 1$ and $e$ is the only element of $G$ of order 1.
@@ -897,7 +898,7 @@ Group is cyclic $\implies$ every (proper) subgroup is cyclic, but the converse i
 	Infinite group where every element has finite order $\prod_{n=1}^\infty \mb Z_2$.
 \end{example}
 \begin{example}
-	$G = \mb Z_6$. Then $o([0]) = 1$, $o([1]) = 6$ since $<[1]> = \mb Z_6$, $o([2]) = 3$ since $<[2]> = \{[0],[2],[4]\}$, $o([3]) = 2$ since $<[3]> = \{[0],[3]\}$, $o([4]) = 3$ since $<[4]> = \{[0],[4],[2]\} = <[2]>$, $o([5]) = 6$ since $<[5]> = \{[0],[5],[4],[3],[2],[1]\}$.
+	$G = \mb Z_6$. Then $o([0]) = 1$, $o([1]) = 6$ since $<[1]>\ = \mb Z_6$, $o([2]) = 3$ since $<[2]>\ = \{[0],[2],[4]\}$, $o([3]) = 2$ since $<[3]>\ = \{[0],[3]\}$, $o([4]) = 3$ since $<[4]>\ = \{[0],[4],[2]\} =\ <[2]>$, $o([5]) = 6$ since $<[5]>\ = \{[0],[5],[4],[3],[2],[1]\}$.
 \end{example}
 
 \section{Permutation groups}
@@ -921,6 +922,7 @@ Group is cyclic $\implies$ every (proper) subgroup is cyclic, but the converse i
 		\item $e = \text{id}_X$: $\text{id}_X \circ \pi = \pi\circ \text{id}_X = \pi$.
 		\item Let $\pi\in S_X \implies \exists$ inverse mapping $\pi\inv: X\ra X$ bijective $\implies \pi\inv\in S_X$. So $\pi\circ\pi\inv = \pi\inv\circ\pi = \text{id}_x = e$. So $\pi\inv$ is the group inverse.
 	\end{enumerate}
+	Done.
 \end{proof}
 
 If $|X|<\infty$, write $X = \{1,2,\dots,n\}$ and $S_X\ra S_n \ra$ symmetric group on $n$ letters, then $|S_n| = n!$.
@@ -952,7 +954,7 @@ If $|X|<\infty$, write $X = \{1,2,\dots,n\}$ and $S_X\ra S_n \ra$ symmetric grou
 \end{example}
 
 \begin{definition}
-	Two cycles $\sigma = (a_1\, a_2\,\cdots\, a_k)$ and $\tau = (b_1\,b_2\,\cdots\,b_m)$ are \ul{disjoin} if $\{a_1,a_2,\dots,a_k\}\cap \{b_1,b_2,\dots,b_m\} = \emptyset$.
+	Two cycles $\sigma = (a_1\, a_2\,\cdots\, a_k)$ and $\tau = (b_1\,b_2\,\cdots\,b_m)$ are \ul{disjoint} if $\{a_1,a_2,\dots,a_k\}\cap \{b_1,b_2,\dots,b_m\} = \emptyset$.
 \end{definition}
 
 \begin{proposition}
@@ -1039,7 +1041,7 @@ $D_n =$ symmetries of a regular $n$-gon or $D_{2n}$.
 \end{proof}
 \begin{theorem}
 	The group $D_n$, $n\geq 3$, is generated by two elements $r$ and $s$ satisfying the relations: $$r^n = \text{id},\,s^2 = \text{id},\,srs = r\inv$$
-	or $$ D_n = < r,s\mid r^n = s^2 = \text{id},srs = r\inv>$$ presentation of $D_n$ with generators $r,s$ and their defining relations.
+	or $$ D_n =\ < r,s\mid r^n = s^2 = \text{id},srs = r\inv>$$ presentation of $D_n$ with generators $r,s$ and their defining relations.
 \end{theorem}
 \begin{proof}
 	We have $n$ rotations: angles $0,2\pi/n,(2)2\pi/n,\dots,(n-1)2\pi/n$. Then $2\pi/n = r$. All rotations are $\{r^0,r^1,r^2,\dots,r^{n-1}\}$ and $r^n = \text{id}$.
@@ -1066,7 +1068,7 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 	Similarly, the \ul{right coset} is $$Hg = \{hg\mid h\in H\}.$$
 \end{definition}
 \begin{example}
-	$G = \mb Z_9$, $H = <[3]> = \{[0],[3],[6]\}$.
+	$G = \mb Z_9$, $H =\ <[3]>\ = \{[0],[3],[6]\}$.
 	\begin{align*}
 		[0] + H &= \{[0],[3],[6]\} = [3] + H = \{[3],[6],[0]\} = [6] + H = \{[6],[0],[3]\} \\
 		[1] + H &= \{[1],[4],[7]\} = [4] + H = \{[4],[7],[1]\} = [7] + H = \{[7],[1],[4]\} \\
@@ -1075,21 +1077,21 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 	In this case, right cosets = left cosets.
 \end{example}
 \begin{example}
-	$G = \mb Z$, $H = <3> = 3\mb Z = \{\dots,-6,-3,0,3,6,\dots\}$.
+	$G = \mb Z$, $H =\ <3>\ = 3\mb Z = \{\dots,-6,-3,0,3,6,\dots\}$.
 	\begin{align*}
 		0 + 3\mb Z &= \{\dots,-6,-3,0,3,6,\dots\} = 3+3\mb Z \\
 		1 + 3\mb Z &= \{\dots,-5,-2,1,4,7,\dots\} = 4+3\mb Z \\
 		2 + 3\mb Z &= \{\dots,-4,-1,2,5,8,\dots\} = 5+3\mb Z
 	\end{align*}
-	$G = \mb Z$, $H = <n>$. \# of distinct cosets $=n$ and right cosets = left cosets.
+	$G = \mb Z$, $H =\ <n>$. \# of distinct cosets $=n$ and right cosets = left cosets.
 \end{example}
 \begin{example}
 	$G = GL_n(\mb R)$, $H = SL_n(\mb R)$. Fix $A\in GL_n(\mb R)$.
-	Then $A\cdot SL_n(\mb R) \os{?}{=} \{X\in GL_n(\mb R)\mid\det X = \det A\}$.
+	Then $$A\cdot SL_n(\mb R) \os{?}{=} \{X\in GL_n(\mb R)\mid\det X = \det A\}.$$
 	\begin{proof}
-		\ul{$\subseteq$} Let $X\in A\cdot SL_n(\mb R)$, then $X = AZ$ for some $Z\in SL_n(\mb R)$. So $\det X = \det A \cdot \det Z = \det A\cdot 1$.
+		\say{$\subseteq$} Let $X\in A\cdot SL_n(\mb R)$, then $X = AZ$ for some $Z\in SL_n(\mb R)$. So $\det X = \det A \cdot \det Z = \det A\cdot 1$.
 		
-		\ul{$\supseteq$} Let $X\in GL_n(\mb R)$ such that $\det X = \det A$.
+		\say{$\supseteq$} Let $X\in GL_n(\mb R)$ such that $\det X = \det A$.
 		WTS: $X = AZ$ for some $Z\in SL_n(\mb R)$, so $Z = A\inv X$.
 		Then $\det Z = \det(A\inv X) = \det(A\inv)\cdot \det X = \frac{1}{\det A}\cdot \det X = 1 \implies Z\in SL_n(\mb R)$.
 	\end{proof}
@@ -1105,10 +1107,8 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 	In the universe $GL_2(\mb R)$, let $G = \left\{\mat{x&y\\0&1}\mid x>0\right\}$ and $H = \left\{\mat{x&0\\0&1}\mid x>0\right\}$ with $G\leq H$.
 	Fix $A = \mat{x_0&y_0\\0&1}\in G$.
 	Then
-	\begin{align*}
-		AH &= \left\{ \mat{xx_0&y_0\\0&1} \mid x>0\right\} \\
-		HA &= \left\{ \mat{xx_0&xy_0\\0&1}\mid x>0\right\},
-	\end{align*}
+	$AH = \left\{ \mat{xx_0&y_0\\0&1} \mid x>0\right\}$ and $HA = \left\{ \mat{xx_0&xy_0\\0&1}\mid x>0\right\}.$
+	
 	So $AH\neq HA$, but they are equal when $eH = He$.
 \end{example}
 
@@ -1149,9 +1149,7 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 \begin{proof}
 	First, $G = \bigcup_{g\in G} gH$ since $g = ge\in gH$.
 	Second, we will prove that for $x,y\in G$ we have $xH = yH$ or $xH\cap yH = \emptyset$.
-	
 	\ul{Case 1}: $xH\cap yH = \emptyset$ done.
-
 	\ul{Case 2}: $xH\cap yH \neq \emptyset$. WTS: $xH = yH$.
 	Let $g\in xH\cap yH$. Then $xh_1 = yh_2$, where $h_1,h_2\in H$.
 	This implies $x = y h_2 h_1\inv\in yH$ with $h_2 h_1\in H$, so $x\in yH \us{\text{K.L}}{\implies} xH = yH$.
@@ -1168,6 +1166,7 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 		\item $f$ is injective: $f(aH) = f(bH) \os{?}{\implies} aH = bH$. So $f(aH) = f(bH) \rightsquigarrow Ha\inv = Hb\inv \us{\text{K.L}}{\rightsquigarrow} aH = bH$.
 		\item $f$ is surjective: Let $Hg\in R_H$ then $f(g\inv H) = Hg$.
 	\end{enumerate}
+	Done.
 \end{proof}
 
 \begin{definition}
@@ -1175,7 +1174,7 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 \end{definition}
 \ul{Notation}: $[G:H]$.
 \begin{example}
-	$G = \mb Z_9$, $H = <[3]>$, $[G:H] = 3$.
+	$G = \mb Z_9$, $H =\ <[3]>$, $[G:H] = 3$.
 \end{example}
 \begin{example}
 	$G = \mb Z$, $H = n\mb Z$, $[G:H] = n$.
@@ -1193,8 +1192,10 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 \begin{proof}
 	Cases:
 	\begin{enumerate}
-		\item $f(h_1) = f(h_2)$ implies $ah_1 = ah_2\implies h_1 = h_2$.
-		\item $f$ is surjective: Let $x\in aH$, then $x = ah$ for some $h\in H$. So $x = f(h)$.
+		\item 
+		$f(h_1) = f(h_2)$ implies $ah_1 = ah_2\implies h_1 = h_2$.
+		\item 
+		$f$ is surjective: Let $x\in aH$, then $x = ah$ for some $h\in H$. So $x = f(h)$.
 	\end{enumerate}
 	So $|H| = |aH| = |bH|$.
 \end{proof}
@@ -1205,9 +1206,7 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 \end{theorem}
 \begin{proof}
 	Given $G$.
-	\begin{enumerate}
-		\item Left cosets of $H$ partition $G$, $|G| = \sum |\text{cosets}| = \sum_{[G:H]} |H| = |H|\cdot[G:H]$.
-	\end{enumerate}
+	Left cosets of $H$ partition $G$, $|G| = \sum |\text{cosets}| = \sum_{[G:H]} |H| = |H|\cdot[G:H]$.
 \end{proof}
 \begin{corollary}
 	Let $G$ be a finite group and $a\in G$. Then $o(a)$ divides $|G|$.
@@ -1219,7 +1218,7 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 	Let $|G| = p$ a prime number. Then $G$ is a cyclic and any non-identity element is a generator for $G$.
 \end{corollary}
 \begin{proof}
-	Let $a\in G$, $a\neq e$. Then $|<a>|\geq 2$ divides $p = |G|$. So $|<a>| = p \implies <a> = G$.
+	Let $a\in G$, $a\neq e$. Then $|<a>|\geq 2$ divides $p = |G|$. So $|<a>| = p \implies <a>\ = G$.
 \end{proof}
 \begin{proposition}
 	Let $G$ be a finite group, $H\leq G$, and $K\leq H$. Then $[G:K]=[G:H][H:K]$.
@@ -1240,7 +1239,7 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 
 \begin{proposition}
 	Every group of order $\leq 5$ is abelian.
-\iffalse
+%\iffalse
 	\begin{center}
 	\begin{array}{c|cc}
 			 & Order & Group  \\
@@ -1252,7 +1251,7 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 	5 & & cyclic \ra abelian
 	\end{array}
 	\end{center}
-	  \fi
+%	  \fi
 	Order 4 can have subgroups of order 1,2,4 $\ra \exists$ an element $a$ of order 4, so $|<a>|\ = 4 \implies <a>\ = G$ cyclic $\ra$ abelian. or $\ra$ every $\neq e$ has order 2 $\implies a^2 = e$ for all $a\in G \implies G$ is abelian, since $aa = e \implies a = a\inv$ so $xy = (xy)\inv = y\inv x\inv = yx$. This one is called Klein 4-group.
 \end{proposition}
 
@@ -1273,6 +1272,8 @@ A subgroup $H$ is normal in $G$ if $gHg\inv\subseteq H$ for all $g\in G$.
 	$ghg\inv\in H$ but $ghg\inv \neq h$ in general, although $ghg\inv = h$ when $g = e$ or $h = e$ or if abelian.
 \end{note}
 
+\newpage
+
 \begin{theorem}
 	Let $H\leq G$. The following are equivalent:
 	\begin{enumerate}
@@ -1283,11 +1284,11 @@ A subgroup $H$ is normal in $G$ if $gHg\inv\subseteq H$ for all $g\in G$.
 \end{theorem}
 \begin{proof}
 	(2) $\implies$ (1) Clear.
-
 	(1) $\implies$ (2) WTS: $H \subseteq gHg\inv$ for all $g\in G$. Fix $g\in G$ and take any $h\in H$.
-	Consider $g\inv hg = g\inv h(g\inv)\inv \in g\inv H(g\inv)\inv \us{(1)}{\subseteq} H$. So $g\inv hg \in H \implies g\inv hg = \tilde h$ for some $\tilde h\in H \implies h = g\tilde h g\inv\in gHg\inv$.
+	Consider 
+	$g\inv hg = g\inv h(g\inv)\inv \in g\inv H(g\inv)\inv \us{(1)}{\subseteq} H.$
+	So $g\inv hg \in H \implies g\inv hg = \tilde h$ for some $\tilde h\in H \implies h = g\tilde h g\inv\in gHg\inv$.
 	What we've essentially done is $g\inv Hg \subseteq H$, so $Hg \subset gH$ implies $H\subseteq gHg\inv$.
-
 	(2) $\iff$ (3) Clear.
 \end{proof}
 \begin{example}
@@ -1295,13 +1296,14 @@ A subgroup $H$ is normal in $G$ if $gHg\inv\subseteq H$ for all $g\in G$.
 \end{example}
 \begin{example}
 	$SL_n(\mb R) \triangleleft GL_n(\mb R)$ since right cosets = left cosets.
-	Take $A\in SL_n(\mb R)$ and $X\in GL_n(\mb R)$. Is $XAX\inv \os{?}{\in} SL_n(\mb R)$. $\det(XAX\inv) = \det X\cdot \det A\cdot \det(X\inv) = \det X\cdot \det A \cdot \frac{1}{\det X} = \det A = 1$.
+	Take $A\in SL_n(\mb R)$ and $X\in GL_n(\mb R)$. Is $XAX\inv \os{?}{\in} SL_n(\mb R)$. 
+	Then $\det(XAX\inv) = \det X\cdot \det A\cdot \det(X\inv) = \det X\cdot \det A \cdot \frac{1}{\det X} = \det A = 1$.
 \end{example}
 \begin{example}
 	Any subgroup of an abelian group is normal. Abelian group $G$ and $H\leq G$. Let $h\in H,g\in G$: $ghg\inv = hgg\inv = h\in H$.
 \end{example}
 \begin{example}
-	$<(1\,2)>\not\triangleleft S_3$ but $<(1\,2\,3)>\triangleleft S_3$.
+	$<(1\,2)>\ \not\triangleleft\ S_3$ but $<(1\,2\,3)>\ \triangleleft\ S_3$.
 \end{example}
 
 \begin{theorem}
@@ -1349,10 +1351,11 @@ Let $H\leq G$ and $G / H =$ the set of left cosets of $H$ in $G$. Note that $|G/
 
 			$aN\cdot a\inv N = aa\inv N = eN = e_{G/N}$ and $a\inv N\cdot aN = a\inv aN = eN = e_{G/N}$.
 	\end{enumerate}
+	Done.
 \end{proof}
 \begin{example}
-	$G = \mb Z$, $N = 3\mb Z$. $3\mb Z \triangleleft \mb Z$. $|\mb Z/3\mb Z| = [\mb Z:3\mb Z] = 3$. Then $\mb Z/3\mb Z = \{3\mb Z, 1+3\mb Z,2+\mb Z\}$.
-\iffalse
+	$G = \mb Z$, $N = 3\mb Z$. $3\mb Z\ \triangleleft\ \mb Z$. $|\mb Z/3\mb Z| = [\mb Z:3\mb Z] = 3$. Then $\mb Z/3\mb Z = \{3\mb Z, 1+3\mb Z,2+3\mb Z\}$.
+%\iffalse
 	\begin{center}
 	\begin{array}{c|ccc}
 	$\mb Z/3\mb Z$ & $3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ \\
@@ -1362,7 +1365,7 @@ Let $H\leq G$ and $G / H =$ the set of left cosets of $H$ in $G$. Note that $|G/
 	$2+3\mb Z$ & $2+3\mb Z$ & $3\mb Z$ & $1+3\mb Z$
 	\end{array} 
 	\end{center}
-
+\iffalse
 	
 	\begin{center}
 	\begin{array}{c|ccc}
@@ -1395,8 +1398,9 @@ Let $H\leq G$ and $G / H =$ the set of left cosets of $H$ in $G$. Note that $|G/
 
 	\ul{Claim 2}: $G/H$ is torsion-free (i.e. there are no elements of finite order).
 
-	Assume $o(aH)<\infty$ then $\exists n\in\mb N$ such that $(aH)^n = e_{G/H} = H$. Then $a^n H = H \implies a^n\in H \implies o(a^n)<\infty$ say $o(a^n) = m$.
-	Then $o(a^n)^m = e$, so $a^{nm} = e \implies o(a)\mid nm \implies o(a) < \infty \implies aH = H = e_{G/H}$.
+	Assume $o(aH)<\infty$ then $\exists n\in\mb N$ such that $(aH)^n = e_{G/H} = H$. 
+	Then $$a^n H = H \implies a^n\in H \implies o(a^n)<\infty$$ say $o(a^n) = m$.
+	Then $o(a^n)^m = e$, so $$a^{nm} = e \implies o(a)\mid nm \implies o(a) < \infty \implies aH = H = e_{G/H}.$$
 \end{example}
 
 \section{Homomorphism}
@@ -1417,7 +1421,6 @@ Let $H\leq G$ and $G / H =$ the set of left cosets of $H$ in $G$. Note that $|G/
 	[Isomorphism] bijective homomorphism.
 \end{definition}
 If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
-
 \ul{Notation}: $G \cong H$.
 
 \begin{example}
@@ -1462,16 +1465,17 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 	Cases:
 	\begin{enumerate}
 		\item WTS: $\psi\circ\phi:G\ra K$ is a homomorphism.
-			Let $a,b\in G$, then $\psi\circ\phi(ab) = \psi(\phi(ab)) = \psi(\phi(a)\phi(b)) = \psi(\phi(a))\psi(\phi(b)) = (\psi\circ\phi)(a)(\psi\circ\phi)(b)$.
+			Let $a,b\in G$, then $$\psi\circ\phi(ab) = \psi(\phi(ab)) = \psi(\phi(a)\phi(b)) = \psi(\phi(a))\psi(\phi(b)) = (\psi\circ\phi)(a)(\psi\circ\phi)(b).$$
 		\item WTS: $\psi\circ\phi$ is bijective.
 			Since it's a homomorphism by property 1, it's bijective as a composition of bijective maps.
 		\item WTS: $\phi\inv:H\ra G$ is an isomorphism.
 			$\phi\inv$ is bijective as an inverse of a bijective map.
 			\ul{Left to show}: $\phi\inv(xy) = \phi\inv(x)\phi\inv(y)$ for all $x,y\in H$.
-			We have $\phi(\phi\inv(xy)) = xy$ and $\phi(\phi\inv(x)\phi\inv(y)) = \phi(\phi\inv(x))\phi(\phi\inv(y)) = xy$.
+			We have $\phi(\phi\inv(xy)) = xy$ and $$\phi(\phi\inv(x)\phi\inv(y)) = \phi(\phi\inv(x))\phi(\phi\inv(y)) = xy.$$
 			So, $\phi(\phi\inv(xy)) = \phi(\phi\inv(x)\phi\inv(y))$.
 			Then $\phi\inv(xy) = \phi\inv(x)\phi\inv(y)$ since $\phi$ is injective.
 	\end{enumerate}
+	Done.
 \end{proof}
 
 
@@ -1486,6 +1490,7 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 		\item Symmetric: $G\cong H\implies H\cong G$, since $G\cong H\ra \exists$ iso. $\phi:G\ra H \ra \phi\inv:H\ra G \ra H\cong G$.
 		\item Transitive: $G\cong H$ and $H\cong K \implies G\cong K$, since $G\cong H \ra \exists$ iso. $\phi:G\ra H$ and $H\cong K\ra \exists$ iso. $\psi:H\ra K$ and $\psi\circ\phi:G\ra K$ iso. imply $G\cong K$.
 	\end{enumerate}
+	Done.
 \end{proof}
 
 \begin{theorem}
@@ -1511,10 +1516,12 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 	Let $G =\ <a>$, where $|G| = n$, so $G = \{e=a^0,a^1,a^2,\dots,a^{n-1}\}$.
 	Let $\phi:\mb Z_n\ra G$ be defined by $\phi([k]) = a^k$.
 	\begin{enumerate}
-		\item $\phi$ is well-defined: $[k] = [m] \implies \phi([k]) = \phi([m]) \ra k = m+nq$. So $\phi([k]) = a^k = a^{m+nq} = a^ma^nq = a^m(a^n)^q = a^me^q = a^m = \phi([m])$.
+		\item $\phi$ is well-defined: $[k] = [m] \implies \phi([k]) = \phi([m]) \ra k = m+nq$. 
+			So $$\phi([k]) = a^k = a^{m+nq} = a^ma^nq = a^m(a^n)^q = a^me^q = a^m = \phi([m]).$$
 		\item $\phi$ is bijective - obvious.
 		\item $\phi$ is a homomorphism: $\phi([k]+[m]) = \phi([k+m]) = a^{k+m}$ and $\phi([k])\phi([m]) = a^ka^m = a^{k+m}$.
 	\end{enumerate}
+	Done.
 \end{proof}
 
 \begin{theorem}
@@ -1538,6 +1545,7 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 			\ul{Case 3} $n<0$: say $n=-n_0$ for some $n_0\in\mb N$. Then $x^n x^{-n} = e_G = x^n x^{n_0}$, so $\phi(x^nx^{n_0}) = \phi(e_G)$ and $\phi(x^n)\phi(x^{n_0}) = e_H$ imply $\phi(x^n) = \phi(x^{n_0})\inv = (\phi(x)^{n_0})\inv = \phi(x)^{-n_0} = \phi(x)^n$.
 		\item $o(x) = n \implies x^n = e_G \implies \phi(x^n) = \phi(e_G) \implies \phi(x)^n = e_H \implies o(\phi(x))\mid n$.
 	\end{enumerate}
+	Done.
 \end{proof}
 
 \begin{theorem}
@@ -1565,6 +1573,7 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 		\item By (2), $\phi\inv(H_2)\leq G_1$. WTS: $gag\inv\in\phi\inv(H_2)$ for all $a\in\phi\inv(H_2)$ and all $g\in G_1$.
 			Then $\phi(gag\inv) = \phi(g)\phi(a)\phi(g)\inv$, where $\phi(a)\in H_2$, $\phi(g)\in G_2$, and $\phi(g)\inv\in G_2$. Thus $gag\inv\in\phi\inv(H_2)$.
 	\end{enumerate}
+	Done.
 \end{proof}
 \begin{example}
 	\ul{Try to prove}: If $H_1\triangleleft G_1$ then $\phi(H_1)\triangleleft G_2$. (it is false unless $\phi$ is surjective epimorphism)
@@ -1576,6 +1585,72 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 	So $g\phi(a)g\inv \ra \phi(b)\phi(a)\phi(b)\inv = \phi(bab\inv)\in\phi(H_1)$ since $bab\inv\in H_1$.
 	Thus $gxg\inv\in\phi(H_1)$.
 \end{proof}
+
+\begin{theorem}
+	[Cayley's Theorem] 
+	Every group is isomorphic to a permutation group.
+\end{theorem}
+\begin{proof}
+	Let $G$ be a group and $y\in G$. Define $\lambda_g:G\ra G$ by $\lambda_g(x) = gx$.
+	Then $\lambda_g\in S_G$. (HW problem).
+	Define $\phi:G\ra S_G$ by $\phi(g) = \lambda_g$.
+	\ul{Claim 1}: $\phi$ is a homomorphism. WTS: $\phi(gh) = \phi(g)\phi(h)$.
+	Then $\phi(gh) = \lambda_{gh}$ and $\phi(g)\phi(h) = \lambda_g\lambda_h$.
+	Thus $\lambda_{gh}(x) = (gh)x$ and $(\lambda_g\lambda_h)(x) = \lambda_g(\lambda_h(x)) = \lambda_g(hx) = g(hx) = (gh)x$.
+	So, $\lambda_{gh} = \lambda_g\lambda_h$ and hence $\phi$ is a homomorphism.
+
+	A permutation group is a subgroup of a symmetric group.
+	\ul{Claim 2}: $G\cong\phi(G)\leq S_G$.
+	We have $\phi:G\ra\phi(G)$, a surjective homomorphism (epimorphism).
+	It suffices to show $\phi$ is injective.
+	Assume $\phi(g) = \phi(h)$, then $\lambda_g = \lambda_h \implies \lambda_g(e) = \lambda_h(e) \implies ge = he \implies g = h$.
+\end{proof}
+
+\subsection{Homomorphisms and normal subgroups}
+
+\begin{definition}
+	Let $\phi:G\ra H$ be a group homomorphism. The \ul{kernel} of $\phi$ is $$\ker\phi = \phi\inv(\{e_H\}) = \{x\in G\mid\phi(x)=e_H\}.$$
+	Homomorphism from $G\lra $ Normal subgroup of $G$, $\phi:G\ra H\rightsquigarrow \ker\phi\triangleleft G$.
+\end{definition}
+\begin{theorem}
+	$\ker\phi\triangleleft G$
+\end{theorem}
+\begin{proof}
+	$\{e_H\}\triangleleft H\implies \phi\inv(\{e_H\})\triangleleft G$.
+\end{proof}
+\begin{proof}
+	[Long proof] Cases:
+	\begin{enumerate}
+		\item $\ker\phi$ is a subgroup of $G$.
+
+			- identity: 
+			$e_G\in\ker\phi$ since $\phi(e_G)=e_H$.
+
+			- closure under products:
+			$x,y\in\ker\phi\os{?}{\lra}xy\in\ker\phi$.
+			So $\phi(xy)=\phi(x)\phi(y)=e_He_H=e_H$.
+
+			- closure under inverses:
+			$x\in\ker\phi\os{?}{\implies}x\inv\in\ker\phi$.
+			So $$\phi(x)=e_H\implies \phi(x)\inv = e_H\inv \implies \phi(x\inv) = e_H.$$
+		
+		\item $\ker\phi$ is normal:
+			$gxg\inv\in\ker\phi$ for all $x\in\ker\phi$, for all $g\in G$.
+			So \[\phi(gxg\inv) = \phi(g)\phi(x)\phi(g\inv) = \phi(g)e_H\phi(g)\inv = \phi(g)\phi(g)\inv = e_H.\]
+			Done.
+	\end{enumerate}
+\end{proof}
+
+\begin{example}
+	$\phi:GL_n(\mb R)\ra(\mb R\backslash\{0\},\cdot)$.
+	Let $\phi(A) = \det A$, then $\ker\phi = SL_n(\mb R) \triangleleft GL_n(\mb R)$.
+\end{example}
+\begin{example}
+	Find all homomorphisms $\phi:\mb Z_5\ra\mb Z_{12}$.
+	We know $\ker\phi\triangleleft\mb Z_5\implies |\ker\phi| = 1$ or 5.
+	If $|\ker\phi| = 1 \implies \ker\phi = \{[0]\}$. If $|\ker\phi| = 5\implies \ker\phi = \mb Z_5$, then $\phi$ is the trivial homomorphism.
+	Note that $\ker\phi = \{[0]\}\iff\phi$ is injective (will be HW). Then $|\phi(\mb Z_5)| = 5$ and $\phi(\mb Z_5)\leq\mb Z_{12}$, but $5\nmid 12$ impossible by Lagrange's theorem.
+\end{example}
 
 \end{document}
 
