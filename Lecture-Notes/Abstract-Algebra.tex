@@ -70,14 +70,14 @@ Equivalences: $p$ if and only if $q$. $p\Longleftrightarrow q$, needs proofs for
 
 A \ul{set} is a well-defined collection of objects. Requires a criterion for determining set membership. $a\in A$ means $a$ is a \ul{member} or an \ul{element} of a set $A$.
 
-$$X = \{ x_1,x_2,\dots,x_n\}, \, X = \{ x: x \text{ satisfies } P\} = \{x \mid x \text{ satisfies } P\}.$$
+$$X = \set{ x_1,x_2,\dots,x_n}, \, X = \setc{x}{x \text{ satisfies } P} = \setm{x}{x \text{ satisfies } P}.$$
 
-$\mb N$ natural numbers $\{1,2,3,4,\dots\}$.
-$\mb Z$ integers $\{\dots,-3,-2,-1,0,1,2,3,\dots\}$.
-$\mb Q$ rational numbers $\{\frac{m}{n} \mid m,n\in \mb Z, n\neq 0\}/\sim$.
-$\mb R$ real numbers.
-$\mb C$ complex numbers $\{a+bi \mid a,b\in\mb R\}$.
-$\mb H$ Hamiltonian quaternions $\{a+bi+cj+dk \mid a,b,c,d\in\mb R\}$.
+$\mb N$ naturals $\set{1,2,3,\dots}$.
+$\mb Z$ integers $\set{\dots,-3,-2,-1,0,1,2,3,\dots}$.
+$\mb Q$ rationals $\setm{\frac{m}{n}}{m,n\in \mb Z, n\neq 0}/\sim$.
+$\mb R$ reals.
+$\mb C$ complex numbers $\setm{a+bi}{a,b\in\mb R}$.
+$\mb H$ Hamiltonian quaternions $\setm{a+bi+cj+dk}{a,b,c,d\in\mb R}$.
 
 \begin{definition}
 	[Subset] $A\subset B$ or $A\subseteq B$, $a\in A \implies a\in B$.
@@ -95,13 +95,13 @@ $\mb H$ Hamiltonian quaternions $\{a+bi+cj+dk \mid a,b,c,d\in\mb R\}$.
 \end{definition}
 
 \begin{definition}
-	[Union] $A\cup B = \{ x\mid x\in A \text{ or } x\in B\}$.
+	[Union] $A\cup B = \setm{x}{x\in A \text{ or } x\in B}$.
 \end{definition}
 \begin{definition}
-	[Intersection] $A\cap B = \{x \mid x\in A\text{ and } x\in B\}$.
+	[Intersection] $A\cap B = \setm{x}{x\in A\text{ and } x\in B}$.
 \end{definition}
 \begin{definition}
-	[Difference] $A-B = A\backslash B = \{x \mid x\in A \text{ and } x\notin B\}$.
+	[Difference] $A-B = A\backslash B = \setm{x}{x\in A \text{ and } x\notin B}$.
 \end{definition}
 
 \begin{proposition}
@@ -122,8 +122,8 @@ $\mb H$ Hamiltonian quaternions $\{a+bi+cj+dk \mid a,b,c,d\in\mb R\}$.
 
 \subsection*{Cartesian products and mappings}
 
-Cartesian product of $A$ and $B$ is $A\times B = \{(a,b)\mid a\in A \text{ and } b\in B\}$.
-In general, $A_1\times A_2\times\dots\times A_n = \{(a_1,a_2,\dots,a_n)\mid a_i\in A_i \text{ for } 1\leq i \leq n\}$.
+Cartesian product of $A$ and $B$ is $A\times B = \setm{(a,b)}{a\in A \text{ and } b\in B}$.
+In general, $A_1\times A_2\times\dots\times A_n = \setm{(a_1,a_2,\dots,a_n)}{a_i\in A_i \text{ for } 1\leq i \leq n}$.
 \ul{Notation}: $A\times A\times \dots\times A = A^n$.
 
 \begin{example}
@@ -146,7 +146,7 @@ A \ul{mapping} (or a \ul{function}) $f$ from $A$ to $B$ is a relation from $A$ t
 	$f:\mb R \ra (0,\infty)$ is bijective.
 \end{example}
 \begin{example}
-	$f:\mb Z\ra\mb Z$, $f(n) = n^2$. $f(-1) = 1 = f(1)$, not injective. $2\notin f(\mb Z)$, not surjective and not bijective.
+	$f:\mb Z\ra\mb Z$, $f(n) = n^2$. $f(-1) = 1 = f(1)$, not injective. $2\notin f(\mb Z)$, not surjective.% and not bijective.
 \end{example}
 \begin{example}
 	$f:\mb{R}\ra \mb R$, $f(x) = 2x+1$. $2x_1 + 1 = 2x_2 + 1 \implies x_1 = x_2$, injective. Given any $y\in \mb R$ find $x\in \mb R$ such that $2x+1 = y$: $x = (y-1)/2$, surjective and bijective.
@@ -157,20 +157,20 @@ A \ul{composition} of mappings $f:A\ra B$ and $g:B\ra C$ is a mapping $g\circ f:
 	Let $f:A\ra B$, $g:B\ra C$, and $h:C\ra D$ be mappings.
 	\begin{enumerate}
 		\item The composition of mappings is associative: $(h\circ g) \circ f = h\circ(g\circ f)$.
-		\begin{proof}
-			Let $a\in A$. Then $((h\circ g)\circ f)(a) = (h\circ g)(f(a)) = h(g(f(a))) \equiv h((g\circ f)(a)) = (h\circ(g\circ f))(a)$.
-		\end{proof}
 		\item If $f$ and $g$ are injective, then so is $g\circ f$.
-		\begin{proof}
-			$(g\circ f)(a_1) = (g\circ f)(a_2) \implies g(f(a_1)) = g(f(a_2)) \implies f(a_1) = f(a_2) \implies a_1 = a_2$.
-		\end{proof}
 		\item If $f$ and $g$ are surjective, then so is $g\circ f$.
-		\begin{proof}
-			$A\os{f}{\lra} B \os{g}{\lra} C$ or $A\os{g\circ f}{\lra} C$. $g(b) = c$, $f(a) = b$.
-		\end{proof}
 		\item If $f$ and $g$ are bijective, then so is $g\circ f$.
 	\end{enumerate}
 \end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item Let $a\in A$. Then $((h\circ g)\circ f)(a) = (h\circ g)(f(a)) = h(g(f(a))) \equiv h((g\circ f)(a)) = (h\circ(g\circ f))(a)$.
+		\item $(g\circ f)(a_1) = (g\circ f)(a_2) \implies g(f(a_1)) = g(f(a_2)) \implies f(a_1) = f(a_2) \implies a_1 = a_2$.
+		\item $A\os{f}{\lra} B \os{g}{\lra} C$ or $A\os{g\circ f}{\lra} C$. $g(b) = c$, $f(a) = b$.
+	\end{enumerate}
+	Done.
+\end{proof}
 
 \begin{definition}
 	The \ul{identity} mapping on a set $A$ is $\text{id}_A: A\ra A$, $\text{id}_A(a) = a$.
@@ -218,10 +218,10 @@ A \ul{composition} of mappings $f:A\ra B$ and $g:B\ra C$ is a mapping $g\circ f:
 	Let $\sim$ be an equivalence relation on a set $X$, and let $x\in X$. Then the set $$[x] = \{y\in x \mid y\sim x\}$$ is the \ul{equivalence class} of $x$.
 \end{definition}
 \begin{example}
-	$X$ is any set. $x\sim y$ if $x=y$. Then $[x] = \{y\in X\mid y=x\} = \{x\}$.
+	$X$ is any set. $x\sim y$ if $x=y$. Then $[x] = \setm{y\in X}{y=x} = \set{x}$.
 \end{example}
 \begin{example}
-	$X$ is the set of all differentiable functions from $\mb R\ra\mb R$. $f\sim g$ if $f' = g'$. $[f] = \{g\in X\mid g' = f'\} = \{f + c\mid c\in\mb R\}$.
+	$X$ is the set of all differentiable functions from $\mb R\ra\mb R$. $f\sim g$ if $f' = g'$. $$[f] = \setm{g\in X}{g' = f'} = \setm{f + c}{c\in\mb R}.$$
 \end{example}
 \begin{example}
 	$X = \mb R^2$. $(x_1,y_1)\sim (x_2,y_2)$ if $x_1^2 + y_1^2 = x_2^2 + y_2^2$. The equivalence class is a circle.
@@ -229,11 +229,11 @@ A \ul{composition} of mappings $f:A\ra B$ and $g:B\ra C$ is a mapping $g\circ f:
 
 \begin{definition}
 	A \ul{partition} of a set $X$ is a collection of disjoint nonempty subsets of $X$ which cover $X$.
-	$$\mc P = \{X_\alpha\}_{\alpha\in \Lambda}, \quad X_\alpha\subseteq X,\ \forall \alpha,$$
+	$$\mc P = \set{X_\alpha}_{\alpha\in \Lambda}, \quad X_\alpha\subseteq X,\ \forall \alpha,$$
 	$X_\alpha \cap X_\beta = \emptyset \text{ if } \alpha \neq \beta$, disjoint, and $X = \bigcup_{\alpha\in\Lambda} X_\alpha$ cover $X$.
 \end{definition}
 \begin{theorem}
-	Let $\sim $ be an equivalence relation on a set $X$. Then the equivalence classes of $\sim$ partition $X$. Conversely, given a partition $\mc P = \{X_\alpha\}_{\alpha\in\Lambda}$ of $X$, there exists an equivalence relation $\sim$ on $X$ such that $\{X_\alpha\}$ are the equivalence classes of $\sim$.
+	Let $\sim $ be an equivalence relation on a set $X$. Then the equivalence classes of $\sim$ partition $X$. Conversely, given a partition $\mc P = \set{X_\alpha}_{\alpha\in\Lambda}$ of $X$, there exists an equivalence relation $\sim$ on $X$ such that $\set{X_\alpha}$ are the equivalence classes of $\sim$.
 \end{theorem}
 \begin{proof}
 	Let $\sim$ be an equivalence relation on $X$. Then for every $x\in X$, $x\sim x$, so $x\in [x]$. Hence, $[x]\neq \emptyset$ for all $x\in X$. Also $\bigcup_{x\in X}[x] = X$. By definition $\bigcup_{x\in X}[x] \subseteq X$ and  every $x$ is in one of equivalence classes so $\bigcup_{x\in X}[x] \supseteq X$. It's left to prove that if $x,y\in X$ then $[x]\cap [y] = \emptyset$ or $[x]=[y]$.
@@ -244,6 +244,7 @@ A \ul{composition} of mappings $f:A\ra B$ and $g:B\ra C$ is a mapping $g\circ f:
 		\item $\sim$ is an equivalence relation on $X$,
 		\item the equivalence classes of $\sim$ are $X_\alpha$'s
 	\end{enumerate}
+	Done.
 \end{proof}
 
 \section*{Mathematical induction}
@@ -328,9 +329,9 @@ From now on: $a,b\in\mb Z$. If $a =kb$ for some $k\in\mb Z$ we say $b$ divides $
 		\item $d$ is a common divisor of $a$ and $b$
 		\item any common divisor $d'$ of $a$ and $b$ divides $d$.
 	\end{enumerate}
-	\ul{Notation}: $d = \gcd(a,b) = (a,b)$
+	\ul{Notation}: $d = \gcd(a,b) = (a,b)$.
+	$a$ and $b$ are \ul{relatively prime} if $\gcd(a,b) = 1$.
 \end{definition}
-$a$ and $b$ are \ul{relatively prime} if $\gcd(a,b) = 1$.
 \begin{theorem}
 	Let $a$ and $b$ be two integers ($\neq 0$).
 	\begin{enumerate}
@@ -340,6 +341,7 @@ $a$ and $b$ are \ul{relatively prime} if $\gcd(a,b) = 1$.
 	In particular, $\gcd$ exists.
 \end{theorem}
 \begin{proof}
+	Cases:
 	\begin{enumerate}
 		\item Assume $d_1 = \gcd(a,b)$ and $d_2 = \gcd(a,b)$. WTS: $d_1 = d_2$.
 		\begin{enumerate}
@@ -348,10 +350,11 @@ $a$ and $b$ are \ul{relatively prime} if $\gcd(a,b) = 1$.
 		\end{enumerate}
 		So $d_1 = d_2$.
 		
-		\item $S = \{ am + bn \mid m,n\in\mb Z;\ am+bn>0\}\subseteq \mb N$. So $S$ is a nonempty subset of $\mb N$. Let $d$ be the least element of $S$ (Well-Ordering Principle). \ul{Claim}: $d = \gcd(a,b)$. Say $d = ar+bs$, for some $r,s\in\mb Z$. WTS: $d\mid a$ and $d\mid b$. By the division algorithm, $a = dq + \tilde{r}$, $0\leq \tilde{r}<d$. Solve for $\tilde{r} = a-dq = a-(ar+bs)q = a - arq - bsq = a(1-rq)+b(-sq) \geq 0$. Assum $\tilde r >0$. Then $\tilde r \in S$, but $\tilde r<d$, contradiction $\implies \tilde r = 0 \implies d\mid a$. For $d\mid b \ra$ similar to $d\mid a$.
+	\item $S = \setm{ am + bn}{m,n\in\mb Z;\ am+bn>0}\subseteq \mb N$. So $S$ is a nonempty subset of $\mb N$. Let $d$ be the least element of $S$ (Well-Ordering Principle). \ul{Claim}: $d = \gcd(a,b)$. Say $d = ar+bs$, for some $r,s\in\mb Z$. WTS: $d\mid a$ and $d\mid b$. By the division algorithm, $a = dq + \tilde{r}$, $0\leq \tilde{r}<d$. Solve for $\tilde{r} = a-dq = a-(ar+bs)q = a - arq - bsq = a(1-rq)+b(-sq) \geq 0$. Assum $\tilde r >0$. Then $\tilde r \in S$, but $\tilde r<d$, contradiction $\implies \tilde r = 0 \implies d\mid a$. For $d\mid b \ra$ similar to $d\mid a$.
 		
 		WTS: any common divisor $d'$ of $a$ and $b$ divides $d$. So $a = d' u$ and $b = d' v$ for some $u,v\in\mb Z$. Then $d = ar+bs = (d'u)r + (d'v)s = d'(ur + vs)$, where $ur+rs\in\mb Z$. So $d'\mid d$.
 	\end{enumerate}
+	Done.
 \end{proof}
 
 \subsection{Euclidean algorithm}
@@ -425,11 +428,11 @@ Define a relation on $\mb Z$ by $a\sim b$ if $a\equiv b\pmod{n}$.
 \begin{example}
 	\ul{$n=3$} Equivalence class:
 
-	$[0] = \{ \dots,-6,-3,0,3,6,9,12,\dots \} \lra $ remainder 0.
+	$[0] = \set{ \dots,-6,-3,0,3,6,9,12,\dots } \lra $ remainder 0.
 
-	$[1] = \{ \dots,-5,-2,1,4,7,10,13,\dots \} \lra $ remainder 1.
+	$[1] = \set{ \dots,-5,-2,1,4,7,10,13,\dots } \lra $ remainder 1.
 
-	$[2] = \{ \dots, -4,-1,2,5,8,11,14,\dots \} \lra $ remainder 2.
+	$[2] = \set{ \dots, -4,-1,2,5,8,11,14,\dots } \lra $ remainder 2.
 \end{example}
 In general, $\{[0],[1],[2],\dots,[n-1]\} = \mb Z_n$.
 Define two operations:
@@ -441,6 +444,9 @@ Define two operations:
 \begin{example}
 	$\mb Z_6 = \{[0],[1],[2],[3],[4],[5]\}$. Take $[3]+[4] = [7]=[1]$, or $[0]+[3] = [0+3] = [3]$. Take $[2]\cdot[4] = [2\cdot 4] = [8] = [2]$, or $[2]\cdot[3] = [2\cdot 3] = [6] = [0]$. Now take $[1]+[2] = [3]$ and $[7]+[14]=[21]$, they are equal.
 \end{example}
+
+\newpage
+
 \begin{lemma}
 	Let $a\equiv a'\pmod n$ and $b\equiv b'\pmod n$. Then
 	\begin{enumerate}
@@ -523,7 +529,7 @@ Define two operations:
 	Generators: $\rho_1,\mu_1$.
 	Relations: $\rho_1^3 id$, $\mu_1^2 = id$, $\rho_1\mu_1 = \mu_1\rho_1^2$.
 
-	Define the gorup by generators and relations: $D_6 =\ <\rho_1,\mu_1 \mid \rho_1^2 = id,\ \mu_1^2 = id,\ \rho_1\mu_1 = \mu_1\rho_1^2 >$.
+	Define the gorup by generators and relations: $D_6 =\gen{\rho_1,\mu_1 \mid \rho_1^2 = id,\ \mu_1^2 = id,\ \rho_1\mu_1 = \mu_1\rho_1^2}$.
 
 	So $\mu_1\rho_1\mu_1\rho_1^2 = \mu_1\mu_1\rho_1^2\rho_1^2 = \mu_1^2\rho_1^4 = \rho_1$.
 \end{example}
@@ -552,7 +558,7 @@ Define two operations:
 	$S = \mb N$, $a\circ b = a+b$, $\checkmark$. It is a binary operation since it is closed.
 \end{example}
 \begin{example}
-	$X$ any set, $S = \mc P(x) = \{A\mid A\subseteq X\}$. Consider $X = \{\Box,\Delta\}$, then $\mc P(x) = \{\emptyset,\{\Box\},\{\Delta\},X\}$.
+	$X$ any set, $S = \mc P(x) = \setm{A}{A\subseteq X}$. Consider $X = \set{\Box,\Delta}$, then $\mc P(x) = \set{\emptyset,\set{\Box},\set{\Delta},X}$.
 \end{example}
 \begin{example}
 	$A\circ B = A\cup B$, $\checkmark$. Since $A,B\subseteq X \implies A\cup B \subseteq X$.
@@ -610,7 +616,7 @@ Define two operations:
 \end{remark}
 \begin{example}
 	$(\mb Z,+)$: associative $\checkmark$. $e=0 \checkmark$. inverse of $n$ is $-n$, $\checkmark$. commutative $\checkmark$. \ul{abelian group}.
-	$(\mb Q, +)$, abelian group. So is $(\mb R,+)$, $(\mb C,+)$. For $(\mb R,\cdot)$ it is associative $\checkmark$, $e=1$, inverse of $x$ is $\frac{1}{x}$, no inverse for 0, \ul{not a group}. However, $(\mb R\backslash \{0\},\cdot)$ is an abelian group. $\mb R^\times$ is the multiplicative group of a field.
+	$(\mb Q, +)$, abelian group. So is $(\mb R,+)$, $(\mb C,+)$. For $(\mb R,\cdot)$ it is associative $\checkmark$, $e=1$, inverse of $x$ is $\frac{1}{x}$, no inverse for 0, \ul{not a group}. However, $(\mb R\backslash \set0,\cdot)$ is an abelian group. $\mb R^\times$ is the multiplicative group of a field.
 \end{example}
 \begin{example}
 	$(\mb Z_n,+)$: $[a]+[b] = [a+b]$ associative $\checkmark$. $e=[0]$. inverse of $[a]$ is $[-a]$. \ul{abelian group}.
@@ -628,7 +634,7 @@ Define two operations:
 	$(M_n(\mb R),\cdot)$: associative $\checkmark$, $e= I_n$, inverse of $A$ is $A\inv$ if $A$ is nonsingular. \ul{not a group}.
 \end{example}
 \begin{example}
-	$GL_n(\mb R) = \{A\in M_n(\mb R) \mid \det A \neq 0\}$ nonsingular matrices. operation: multiplication. nonsingular $\cdot$ nonsingular $=$ nonsingular. associative $\checkmark$, $e = I_n$, inverse of $A$ is $A\inv$. \ul{nonabelian group} called \ul{general linear group}.
+	$GL_n(\mb R) = \setm{A\in M_n(\mb R)}{\det A \neq 0}$ nonsingular matrices. operation: multiplication. nonsingular $\cdot$ nonsingular $=$ nonsingular. associative $\checkmark$, $e = I_n$, inverse of $A$ is $A\inv$. \ul{nonabelian group} called \ul{general linear group}.
 \end{example}
 \begin{example}
 	$(\mb Q^+,*)$, where $a*b = \frac{ab}{2}$.
@@ -759,7 +765,7 @@ $x^0 = e$, for $n\in\mb N$: $x^n=\us{n}{xx\cdots x}$ and $x^{-n} = (x\inv)^n = \
 	A subset $H$ of a group $(G,\circ)$ is a \ul{subgroup} if $H$ is a group under $\circ$.
 \end{definition}
 \begin{example}
-	$(\mb R\backslash\{0\},\cdot)$ not a subgroup of $(\mb R,+)$ but $\mb R\backslash\{0\}\subseteq\mb R$.
+	$(\mb R\backslash\set0,\cdot)$ not a subgroup of $(\mb R,+)$ but $\mb R\backslash\set0\subseteq\mb R$.
 \end{example}
 \begin{proposition}
 	A subset $H$ of a group $G$ is a subgroup of $G \Llr$
@@ -796,48 +802,48 @@ $x^0 = e$, for $n\in\mb N$: $x^n=\us{n}{xx\cdots x}$ and $x^{-n} = (x\inv)^n = \
 \end{example}
 \begin{example}
 	$G$ is any group and $S\subseteq G$ any subset.
-	Let $\displaystyle < S >\ = \bigcap_{\us{S\subseteq H}{H\leq G}} H$ subgroup of $G$ \ul{generated by $S$}. For example, $S = \{a\}$, then subgroup is $\{a^0=e,a,a\inv,a^2,a^3,\dots\}$.
+	Let $\displaystyle \gen S = \bigcap_{\us{S\subseteq H}{H\leq G}} H$ subgroup of $G$ \ul{generated by $S$}. For example, $S = \set a$, then subgroup is $\set{a^0=e,a,a\inv,a^2,a^3,\dots}$.
 \end{example}
 
 \section{Cyclic Groups}
 
 \begin{theorem}
 	[Cyclic groups]
-	Let $G$ be a group and $a\in G$. The set $<a>\ = \{a^k \mid k\in \mb Z\}$ is the smallest cubgroup of $G$ containing $a$.
+	Let $G$ be a group and $a\in G$. The set $\gen a = \setm{a^k}{k\in \mb Z}$ is the smallest subgroup of $G$ containing $a$.
 \end{theorem}
 \begin{proof}
 	(1) Subgroup.
 	\begin{itemize}
-		\item $e = a^0 \in\ <a>$
-		\item closure under products: let $x,y\in\ <a>$, then $x = a^n$ and $y=a^m$ for some $n,m\in\mb Z$, so $xy = a^na^m = a^{n+m}\in\ <a>$
-		\item closure under inverses: let $x\in\ <a>$, then $x=a^n$ for some $n\in\mb Z$, so $x\inv = (a^n)\inv = a^{-n}\in\ <a>$
+		\item $e = a^0 \in\gen a$
+		\item closure under products: let $x,y\in\gen a$, then $x = a^n$ and $y=a^m$ for some $n,m\in\mb Z$, so $xy = a^na^m = a^{n+m}\in\gen a$
+		\item closure under inverses: let $x\in\ <a>$, then $x=a^n$ for some $n\in\mb Z$, so $x\inv = (a^n)\inv = a^{-n}\in\gen a$
 	\end{itemize}
-	Therefore $<a>\ \leq G$.
+	Therefore $\gen a\leq G$.
 
 	(2) Smallest.
-	Set $\{H\mid H\leq G \text{ and } a\in H\} = S$, then $<a>\ \in S$ since $a = a^1 \in\ <a>$. \ul{Claim}: $<a>\ \subseteq H$ for all $H\in S$.
+	Set $\{H\mid H\leq G \text{ and } a\in H\} = S$, then $<a>\ \in S$ since $a = a^1 \in\gen a$. \ul{Claim}: $\gen a \subseteq H$ for all $H\in S$.
 	$a\in H \implies a^2 = aa\in H \implies a^3 = a^2a\in H \implies \dots$ and $a\in H\implies a\inv\in~H \implies a^{-2} = a\inv a\inv \in H \implies a^{-3} = a^{-2}a\inv \in H \implies \dots$ and $a^0 = e\in H$.
 \end{proof}
 \begin{note}
-	$(G,+) \la\ <a>\ = \{ka \mid k\in\mb Z\}$.
+	$(G,+) \la\gen a = \setm{ka}{k\in\mb Z}$.
 \end{note}
 \begin{definition}
-	Let $G$ be a group and $a\in G$. The subgroup $<a>$ is called the \ul{cyclic subgroup} of $G$ \ul{generated by $a$}.
+	Let $G$ be a group and $a\in G$. The subgroup $\gen a$ is called the \ul{cyclic subgroup} of $G$ \ul{generated by $a$}.
 \end{definition}
 \begin{definition}
-	A group $G$ is a \ul{cyclic group} if $\exists a\in G$ such that $<a>\ \in G$.
+	A group $G$ is a \ul{cyclic group} if $\exists a\in G$ such that $\gen a \in G$.
 \end{definition}
 \begin{example}
-	$(\mb Z,+)$ infinite cyclic group, $\mb Z =\ <1>\ =\ <-1>\ = \{k\mid k\in\mb Z\} = \{-k\mid k\in\mb Z\}$. $1,-1$ are generators.
+	$(\mb Z,+)$ infinite cyclic group, $\mb Z =\gen 1 =\gen{-1} = \setm{k}{k\in\mb Z} = \setm{-k}{k\in\mb Z}$. $1,-1$ are generators.
 \end{example}
 \begin{example}
-	$G =\ <e>\ = \{e\}$
+	$G =\gen e = \set e$
 \end{example}
 \begin{remark}
-	$G =\ <a>\ =\ <a\inv >$
+	$G =\gen a = \gen{a\inv}$
 \end{remark}
 \begin{example}
-	$\mb Z_n =\ <[1]>\ =\ <[n-1]>$ finite cyclic group, the number of generators of $\mb Z_n$ is $\phi(n)$.
+	$\mb Z_n =\ \gen{[1]} =\gen{[n-1]}$ finite cyclic group, the number of generators of $\mb Z_n$ is $\phi(n)$.
 \end{example}
 \newpage
 \begin{proposition}
@@ -847,7 +853,7 @@ $x^0 = e$, for $n\in\mb N$: $x^n=\us{n}{xx\cdots x}$ and $x^{-n} = (x\inv)^n = \
 	cyclic $\subset$ abelian $\subset$ groups
 \end{note}
 \begin{proof}
-	Let $G =\ <a>$ and $x,y\in G$. Then $x = a^n$ and $y = a^m$. So $xy = a^na^m = a^{n+m} = a^{m+n} = a^ma^n = yx$. So $G$ is abelian.
+	Let $G =\gen a$ and $x,y\in G$. Then $x = a^n$ and $y = a^m$. So $xy = a^na^m = a^{n+m} = a^{m+n} = a^ma^n = yx$. So $G$ is abelian.
 \end{proof}
 \begin{remark}
 	cyclic $\implies$ abelian but abelian $\not\implies$ cyclic, like $(\mb Q,+),(\mb R,+), (\mb C,+)$.
@@ -857,36 +863,36 @@ $x^0 = e$, for $n\in\mb N$: $x^n=\us{n}{xx\cdots x}$ and $x^{-n} = (x\inv)^n = \
 	Every subgroup of a cyclic group is cyclic.
 \end{theorem}
 \begin{proof}
-	Let $G =\ <a>$ and $H\leq G$.
+	Let $G =\gen a$ and $H\leq G$.
 	WTS: $H$ is cyclic.
 	
-	\ul{Case 1}: $H = \{e\}$. In this case $H = <e>$.
+	\ul{Case 1}: $H = \set e$. In this case $H = \gen e$.
 
-	\ul{Case 2}: $H\neq \{e\}$.
-	Then $S = \{k\in \mb Z\mid k \neq 0 \text{ and } a^k\in H\}\neq \emptyset$.
-	If $a^k\in H$ for some $k\in\mb N$, then $P = \{k\in\mb N\mid a^k\in H\}\neq\emptyset$.
+	\ul{Case 2}: $H\neq \set e$.
+	Then $S = \setm{k\in \mb Z}{k \neq 0 \text{ and } a^k\in H}\neq \emptyset$.
+	If $a^k\in H$ for some $k\in\mb N$, then $P = \setm{k\in\mb N}{a^k\in H}\neq\emptyset$.
 	If $a^k\in H$ for $k<0$, then $(a\inv)^k\in H\implies a^{-k}\in H$ and $-k\in\mb N$.
-	In any case, $P = \{k\in\mb N\mid a^k\in H\}\neq \emptyset$.
+	In any case, $P = \setm{k\in\mb N}{a^k\in H}\neq \emptyset$.
 	Let $n$ be the least element in $P$ by Well-Ordering Principle.
-	So $h = a^n\in H$. \ul{Claim}: $H =\ <k>$.
-	Clearly, $<h>\ \subseteq H$. Let $x\in H$. WTS: $x = h^m$ for some $m\in\mb Z$.
+	So $h = a^n\in H$. \ul{Claim}: $H =\gen k$.
+	Clearly, $\gen h \subseteq H$. Let $x\in H$. WTS: $x = h^m$ for some $m\in\mb Z$.
 	Write $x = a^l$ and $l = nq + r$ where $0\leq r<n$. Then $x = a^l = a^{nq+r} = a^{nq} a^r = (a^n)^qq^r = h^qa^r$. So $a^r = (h^q)\inv x = h^{-q}x\in H \implies a^r\in H \implies r = 0$ because $r<n$ and $n$ is the least element in $P$.
-	Then $x = h^q \in\ <h>$. So $H\subseteq\ <h> \implies H =\ <h>$.
+	Then $x = h^q \in\gen h$. So $H\subseteq\gen h \implies H =\gen h$.
 \end{proof}
 
-Group is cyclic $\implies$ every (proper) subgroup is cyclic, but the converse is not true. For example, $D_3$ is non-abelian $\implies$ not cyclic. Subgroups: $<e>,<\rho>,<\mu_1>,<\mu_2>,<\mu_3>$.
+Group is cyclic $\implies$ every (proper) subgroup is cyclic, but the converse is not true. For example, $D_3$ is non-abelian $\implies$ not cyclic. Subgroups: $\gen e,\gen\rho,\gen{\mu_1},\gen{\mu_2},\gen{\mu_3}$.
 
 \begin{example}
-	$\mb Z =\ <1>$. Then $H\leq \mb Z \implies H =\ <n>\ = n\mb Z$. Subgroups: $n\mb Z$, where $n\geq 0$.
+	$\mb Z =\gen 1$. Then $H\leq \mb Z \implies H =\gen n = n\mb Z$. Subgroups: $n\mb Z$, where $n\geq 0$.
 \end{example}
 
 \subsection{Order of an element of a group}
 \begin{definition}
-	Let $a$ be an element of a group $G$. The \ul{order of $a$}, denoted $o(a)$ or $|a|$, is the order of $<a>$, that is, $o(a) = |<a>|$.
+	Let $a$ be an element of a group $G$. The \ul{order of $a$}, denoted $o(a)$ or $|a|$, is the order of $\gen a$, that is, $o(a) = |\gen a|$.
 	$$o(a) = \begin{cases} n & \text{for some } n\in\mb N \text{ - finite order} \\ \infty & \text{- infinite order} \end{cases}. $$
 \end{definition}
 \begin{example}
-	$G = \mb Z$. Then $o(1) = \infty$ and $<z>\ = \mb Z$, $o(2) = \infty$ and $<2>\ = 2\mb Z$, $o(3) = \infty$ and $<3>\ = 3\mb Z$, $o(0) = 1$ and $<0>\ = \{0\}$.
+	$G = \mb Z$. Then $o(1) = \infty$ and $\gen z\ = \mb Z$, $o(2) = \infty$ and $\gen 2 = 2\mb Z$, $o(3) = \infty$ and $\gen 3 = 3\mb Z$, $o(0) = 1$ and $\gen 0 = \set0$.
 \end{example}
 \begin{note}
 	Any $G$ has $o(e) = 1$ and $e$ is the only element of $G$ of order 1.
@@ -898,7 +904,7 @@ Group is cyclic $\implies$ every (proper) subgroup is cyclic, but the converse i
 	Infinite group where every element has finite order $\prod_{n=1}^\infty \mb Z_2$.
 \end{example}
 \begin{example}
-	$G = \mb Z_6$. Then $o([0]) = 1$, $o([1]) = 6$ since $<[1]>\ = \mb Z_6$, $o([2]) = 3$ since $<[2]>\ = \{[0],[2],[4]\}$, $o([3]) = 2$ since $<[3]>\ = \{[0],[3]\}$, $o([4]) = 3$ since $<[4]>\ = \{[0],[4],[2]\} =\ <[2]>$, $o([5]) = 6$ since $<[5]>\ = \{[0],[5],[4],[3],[2],[1]\}$.
+	$G = \mb Z_6$. Then $o([0]) = 1$, $o([1]) = 6$ since $\gen{[1]} = \mb Z_6$, $o([2]) = 3$ since $\gen{[2]} = \set{[0],[2],[4]}$, $o([3]) = 2$ since $\gen{[3]} = \set{[0],[3]}$, $o([4]) = 3$ since $\gen{[4]} = \set{[0],[4],[2]} =\gen{[2]}$, $o([5]) = 6$ since $\gen{[5]} = \set{[0],[5],[4],[3],[2],[1]}$.
 \end{example}
 
 \section{Permutation groups}
@@ -939,7 +945,7 @@ If $|X|<\infty$, write $X = \{1,2,\dots,n\}$ and $S_X\ra S_n \ra$ symmetric grou
 	\begin{enumerate}
 		\item there exist distinct elements $a_1,a_2,\dots,a_k\in X$ such that 
 			$$\sigma(a_1) = a_2, \sigma(a_2) = a_3,\dots,\sigma(a_k) = a_1$$
-		\item $\sigma(x) = x$ for all $x\in X\backslash\{a_1,a_2,\dots,a_k\}$.
+		\item $\sigma(x) = x$ for all $x\in X\backslash\set{a_1,a_2,\dots,a_k}$.
 	\end{enumerate}
 	\ul{Notation}: $\sigma = (a_1\,a_2\,\cdots\,a_k)$.
 \end{definition}
@@ -954,14 +960,14 @@ If $|X|<\infty$, write $X = \{1,2,\dots,n\}$ and $S_X\ra S_n \ra$ symmetric grou
 \end{example}
 
 \begin{definition}
-	Two cycles $\sigma = (a_1\, a_2\,\cdots\, a_k)$ and $\tau = (b_1\,b_2\,\cdots\,b_m)$ are \ul{disjoint} if $\{a_1,a_2,\dots,a_k\}\cap \{b_1,b_2,\dots,b_m\} = \emptyset$.
+	Two cycles $\sigma = (a_1\, a_2\,\cdots\, a_k)$ and $\tau = (b_1\,b_2\,\cdots\,b_m)$ are \ul{disjoint} if $$\set{a_1,a_2,\dots,a_k}\cap \set{b_1,b_2,\dots,b_m} = \emptyset.$$
 \end{definition}
 
 \begin{proposition}
 	Disjoint cycles commute.
 \end{proposition}
 \begin{proof}
-	Let $\sigma = (a_1\,a_2\,\dots\,a_k)\in S_X$ and $\tau = (b_1\,b_2\,\dots\,b_k)\in S_X$ be such that $A\cap B = \{a_1,a_2,\dots,a_k\}\cap \{b_1,b_2,\dots,b_m\} = \emptyset$.
+	Let $\sigma = (a_1\,a_2\,\dots\,a_k)\in S_X$ and $\tau = (b_1\,b_2\,\dots\,b_k)\in S_X$ be such that $A\cap B = \set{a_1,a_2,\dots,a_k}\cap \set{b_1,b_2,\dots,b_m} = \emptyset$.
 	WTS: $\sigma\tau = \tau\sigma \ra$ need to show: $\sigma\tau(x) = \tau\sigma(x)$ for all $x\in X$.
 
 	\ul{Case 1}: $x\notin A$ and $x\notin B$. Then $\sigma(x) = x$ and $\tau(x) = x$ so $\sigma\tau(x) = \sigma(\tau(x)) = \sigma(x) = x$. Conversely, $\tau\sigma(x) = \tau(\sigma(x)) = \tau(x) = x$.
@@ -972,6 +978,8 @@ If $|X|<\infty$, write $X = \{1,2,\dots,n\}$ and $S_X\ra S_n \ra$ symmetric grou
 
 	\ul{Case 4}: $x\in A$ and $x\in B$. Impossible.
 \end{proof}
+
+\newpage
 
 \begin{theorem}
 	Every permutation in $S_n$ can be expressed \ul{uniquely} as a product of disjoint cycles.
@@ -1014,6 +1022,7 @@ Try proof, check properties.
 			
 			Then $\sigma\inv = (t_1\,t_2\,\cdots\,t_{2k})\inv = t_{2k}\inv\,t_{2k-1}\inv\cdots\, t_2\inv\,t_1\inv = t_{2k}\,t_{2k-1}\,\cdots\,t_2\,t_1$ has $2k$ even.
 	\end{enumerate}
+	Done.
 \end{proof}
 
 \begin{proposition}
@@ -1041,53 +1050,56 @@ $D_n =$ symmetries of a regular $n$-gon or $D_{2n}$.
 \end{proof}
 \begin{theorem}
 	The group $D_n$, $n\geq 3$, is generated by two elements $r$ and $s$ satisfying the relations: $$r^n = \text{id},\,s^2 = \text{id},\,srs = r\inv$$
-	or $$ D_n =\ < r,s\mid r^n = s^2 = \text{id},srs = r\inv>$$ presentation of $D_n$ with generators $r,s$ and their defining relations.
+	or $$ D_n =\gen{r,s\mid r^n = s^2 = \text{id},srs = r\inv}$$ presentation of $D_n$ with generators $r,s$ and their defining relations.
 \end{theorem}
 \begin{proof}
-	We have $n$ rotations: angles $0,2\pi/n,(2)2\pi/n,\dots,(n-1)2\pi/n$. Then $2\pi/n = r$. All rotations are $\{r^0,r^1,r^2,\dots,r^{n-1}\}$ and $r^n = \text{id}$.
+	We have $n$ rotations: angles $0,2\pi/n,(2)2\pi/n,\dots,(n-1)2\pi/n$. Then $2\pi/n = r$. All rotations are $\set{r^0,r^1,r^2,\dots,r^{n-1}}$ and $r^n = \text{id}$.
 	Let $s$ be the reflection which fixes vertex 1.
 	It is clear that $s^2 = \text{id}$.
-	\begin{enumerate}
-		\item $r$ and $s$ generate $D_n$. Let $\sigma\in D_n$, say $\sigma(1) = k$.
+	%\begin{enumerate}
+		%\item 
+			
+			$r$ and $s$ generate $D_n$. Let $\sigma\in D_n$, say $\sigma(1) = k$.
 			
 			\ul{Case 1}: $\sigma(2) = k+1 \implies \sigma = r^{k-1}$.
 			
 			\ul{Case 2}: $\sigma(2) = k-1 \implies \sigma = r^{k-1}s$.
-	\end{enumerate}
+	%\end{enumerate}
+	
 	It remains to prove $srs = r\inv$. It suffices to show $srs(1) = r\inv(1)$ and $srs(2) = r\inv(2)$.
 	Compute $srs(1) = sr(1) = s(2) = n$ and $r\inv(1) = n$.
 	Check $srs(2) = sr(n) = s(1) = 1$ and $r\inv(2) = 1$.
 \end{proof}
-Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
+Another group is the free group $F_2 =\gen{r,s}$ or $F_n =\gen{r_1,r_2,\dots,r_n}$.
 
 \section{Cosets}
 
 \begin{definition}
 	Let $H$ be a subgroup of a group $G$.
-	A \ul{left coset} of $H$ in $G$ \ul{with representative} $g$ is the set $$gH = \{gh\mid h\in H\}.$$
-	Similarly, the \ul{right coset} is $$Hg = \{hg\mid h\in H\}.$$
+	A \ul{left coset} of $H$ in $G$ \ul{with representative} $g$ is the set $$gH = \setm{gh}{h\in H}.$$
+	Similarly, the \ul{right coset} is $$Hg = \setm{hg}{h\in H}.$$
 \end{definition}
 \begin{example}
-	$G = \mb Z_9$, $H =\ <[3]>\ = \{[0],[3],[6]\}$.
+	$G = \mb Z_9$, $H =\gen{[3]} = \set{[0],[3],[6]}$.
 	\begin{align*}
-		[0] + H &= \{[0],[3],[6]\} = [3] + H = \{[3],[6],[0]\} = [6] + H = \{[6],[0],[3]\} \\
-		[1] + H &= \{[1],[4],[7]\} = [4] + H = \{[4],[7],[1]\} = [7] + H = \{[7],[1],[4]\} \\
-		[2] + H &= \{[2],[5],[8]\} = [5] + H = \{[5],[8],[2]\} = [8] + H = \{[8],[2],[5]\}
+		[0] + H &= \set{[0],[3],[6]} = [3] + H = \set{[3],[6],[0]} = [6] + H = \set{[6],[0],[3]} \\
+		[1] + H &= \set{[1],[4],[7]} = [4] + H = \set{[4],[7],[1]} = [7] + H = \set{[7],[1],[4]} \\
+		[2] + H &= \set{[2],[5],[8]} = [5] + H = \set{[5],[8],[2]} = [8] + H = \set{[8],[2],[5]}
 	\end{align*}
 	In this case, right cosets = left cosets.
 \end{example}
 \begin{example}
-	$G = \mb Z$, $H =\ <3>\ = 3\mb Z = \{\dots,-6,-3,0,3,6,\dots\}$.
+	$G = \mb Z$, $H =\gen 3 = 3\mb Z = \set{\dots,-6,-3,0,3,6,\dots}$.
 	\begin{align*}
-		0 + 3\mb Z &= \{\dots,-6,-3,0,3,6,\dots\} = 3+3\mb Z \\
-		1 + 3\mb Z &= \{\dots,-5,-2,1,4,7,\dots\} = 4+3\mb Z \\
-		2 + 3\mb Z &= \{\dots,-4,-1,2,5,8,\dots\} = 5+3\mb Z
+		0 + 3\mb Z &= \set{\dots,-6,-3,0,3,6,\dots} = 3+3\mb Z \\
+		1 + 3\mb Z &= \set{\dots,-5,-2,1,4,7,\dots} = 4+3\mb Z \\
+		2 + 3\mb Z &= \set{\dots,-4,-1,2,5,8,\dots} = 5+3\mb Z
 	\end{align*}
-	$G = \mb Z$, $H =\ <n>$. \# of distinct cosets $=n$ and right cosets = left cosets.
+	$G = \mb Z$, $H =\gen n$. \# of distinct cosets $=n$ and right cosets = left cosets.
 \end{example}
 \begin{example}
 	$G = GL_n(\mb R)$, $H = SL_n(\mb R)$. Fix $A\in GL_n(\mb R)$.
-	Then $$A\cdot SL_n(\mb R) \os{?}{=} \{X\in GL_n(\mb R)\mid\det X = \det A\}.$$
+	Then $$A\cdot SL_n(\mb R) \os{?}{=} \setm{X\in GL_n(\mb R)}{\det X = \det A}.$$
 	\begin{proof}
 		\say{$\subseteq$} Let $X\in A\cdot SL_n(\mb R)$, then $X = AZ$ for some $Z\in SL_n(\mb R)$. So $\det X = \det A \cdot \det Z = \det A\cdot 1$.
 		
@@ -1101,13 +1113,13 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 	Infinite groups can have either an infinite and finite number of cosets, but finite groups can only have finite number of cosets.
 \end{remark}
 \begin{example}
-	$G = S_3 = D_3$ is the smallest non-ablian group. $H = <(1\,2\,3)>$ and $K = <(1\,2)>$, write all right and left cosets.
+	$G = S_3 = D_3$ is the smallest non-ablian group. $H =\gen{(1\,2\,3)}$ and $K =\gen{(1\,2)}$, write all right and left cosets.
 \end{example}
 \begin{example}
-	In the universe $GL_2(\mb R)$, let $G = \left\{\mat{x&y\\0&1}\mid x>0\right\}$ and $H = \left\{\mat{x&0\\0&1}\mid x>0\right\}$ with $G\leq H$.
+	In the universe $GL_2(\mb R)$, let $G = \setm{\mat{x&y\\0&1}}{x>0}$ and $H = \setm{\mat{x&0\\0&1}}{x>0}$ with $G\leq H$.
 	Fix $A = \mat{x_0&y_0\\0&1}\in G$.
 	Then
-	$AH = \left\{ \mat{xx_0&y_0\\0&1} \mid x>0\right\}$ and $HA = \left\{ \mat{xx_0&xy_0\\0&1}\mid x>0\right\}.$
+	$AH = \setm{\mat{xx_0&y_0\\0&1}}{x>0}$ and $HA = \setm{\mat{xx_0&xy_0\\0&1}}{ x>0}.$
 	
 	So $AH\neq HA$, but they are equal when $eH = He$.
 \end{example}
@@ -1148,10 +1160,14 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 \end{theorem}
 \begin{proof}
 	First, $G = \bigcup_{g\in G} gH$ since $g = ge\in gH$.
+	
 	Second, we will prove that for $x,y\in G$ we have $xH = yH$ or $xH\cap yH = \emptyset$.
+	
 	\ul{Case 1}: $xH\cap yH = \emptyset$ done.
+	
 	\ul{Case 2}: $xH\cap yH \neq \emptyset$. WTS: $xH = yH$.
 	Let $g\in xH\cap yH$. Then $xh_1 = yh_2$, where $h_1,h_2\in H$.
+	
 	This implies $x = y h_2 h_1\inv\in yH$ with $h_2 h_1\in H$, so $x\in yH \us{\text{K.L}}{\implies} xH = yH$.
 \end{proof}
 
@@ -1174,7 +1190,7 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 \end{definition}
 \ul{Notation}: $[G:H]$.
 \begin{example}
-	$G = \mb Z_9$, $H =\ <[3]>$, $[G:H] = 3$.
+	$G = \mb Z_9$, $H =\gen{[3]}$, $[G:H] = 3$.
 \end{example}
 \begin{example}
 	$G = \mb Z$, $H = n\mb Z$, $[G:H] = n$.
@@ -1206,19 +1222,19 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 \end{theorem}
 \begin{proof}
 	Given $G$.
-	Left cosets of $H$ partition $G$, $|G| = \sum |\text{cosets}| = \sum_{[G:H]} |H| = |H|\cdot[G:H]$.
+	Left cosets of $H$ partition $G$, $|G| = \sum |\text{cosets}| = \sum_{[G:H]} |H| = |H|\cdot|[G:H]|$.
 \end{proof}
 \begin{corollary}
 	Let $G$ be a finite group and $a\in G$. Then $o(a)$ divides $|G|$.
 \end{corollary}
 \begin{proof}
-	$o(a) = |<a>|$ divides $|G|$.
+	$o(a) = |\gen a|$ divides $|G|$.
 \end{proof}
 \begin{corollary}
 	Let $|G| = p$ a prime number. Then $G$ is a cyclic and any non-identity element is a generator for $G$.
 \end{corollary}
 \begin{proof}
-	Let $a\in G$, $a\neq e$. Then $|<a>|\geq 2$ divides $p = |G|$. So $|<a>| = p \implies <a>\ = G$.
+	Let $a\in G$, $a\neq e$. Then $|\gen a|\geq 2$ divides $p = |G|$. So $|\gen a| = p \implies \gen a = G$.
 \end{proof}
 \begin{proposition}
 	Let $G$ be a finite group, $H\leq G$, and $K\leq H$. Then $[G:K]=[G:H][H:K]$.
@@ -1241,18 +1257,18 @@ Another group is the free group $F_2 = <r,s>$ or $F_n = < r_1,r_2,\dots,r_n>$.
 	Every group of order $\leq 5$ is abelian.
 %\iffalse
 	\begin{center}
-	\begin{array}{c|cc}
+	\begin{tabular}{c|cc}
 			 & Order & Group  \\
 		\hline
 	1 & $\{e\}$ &  identity \\
 	2 & $\{e,a\}$  & cyclic \\
-	3 & & cyclic \ra abelian \\
-	4 & & \text{explained below} \\
-	5 & & cyclic \ra abelian
-	\end{array}
+	3 & & cyclic $\ra$ abelian \\
+	4 & & explained below \\
+	5 & & cyclic $\ra$ abelian
+	\end{tabular}
 	\end{center}
 %	  \fi
-	Order 4 can have subgroups of order 1,2,4 $\ra \exists$ an element $a$ of order 4, so $|<a>|\ = 4 \implies <a>\ = G$ cyclic $\ra$ abelian. or $\ra$ every $\neq e$ has order 2 $\implies a^2 = e$ for all $a\in G \implies G$ is abelian, since $aa = e \implies a = a\inv$ so $xy = (xy)\inv = y\inv x\inv = yx$. This one is called Klein 4-group.
+	Order 4 can have subgroups of order 1,2,4 $\ra \exists$ an element $a$ of order 4, so $|\gen a|\ = 4 \implies \gen a = G$ cyclic $\ra$ abelian. or $\ra$ every $\neq e$ has order 2 $\implies a^2 = e$ for all $a\in G \implies G$ is abelian, since $aa = e \implies a = a\inv$ so $xy = (xy)\inv = y\inv x\inv = yx$. This one is called Klein 4-group.
 \end{proposition}
 
 \section{Normal subgroups}
@@ -1303,7 +1319,7 @@ A subgroup $H$ is normal in $G$ if $gHg\inv\subseteq H$ for all $g\in G$.
 	Any subgroup of an abelian group is normal. Abelian group $G$ and $H\leq G$. Let $h\in H,g\in G$: $ghg\inv = hgg\inv = h\in H$.
 \end{example}
 \begin{example}
-	$<(1\,2)>\ \not\triangleleft\ S_3$ but $<(1\,2\,3)>\ \triangleleft\ S_3$.
+	$\gen{(1\,2)} \not\triangleleft\ S_3$ but $\gen{(1\,2\,3)} \triangleleft S_3$.
 \end{example}
 
 \begin{theorem}
@@ -1314,12 +1330,12 @@ A subgroup $H$ is normal in $G$ if $gHg\inv\subseteq H$ for all $g\in G$.
 
 	\ul{Case 1}: Let $g\in H$, then $gH = H = Hg$.
 
-	\ul{Case 2}: Let $g\notin H$. Then $G = H\cup gH$ disjoint and $G = H\cup Hg$ disjoint. So $gH = G\backslash H = Hg$.
+	\ul{Case 2}: Let $g\notin H$. Then $G = H\cup gH$ disjoint and $G = H\cup Hg$ disjoint. So $gH = G\bs H = Hg$.
 \end{proof}
 \begin{example}
 	$A_n \triangleleft S_n$, so $[S_n:A_n] = \frac{|S_n|}{|A_n|} = \frac{n!}{n!/2} = 2$.
 \end{example}
-Abelian $\implies$ All subgroups are normal $\os{?}{\implies}$ Abelian (false). $Q_8 = \{\pm 1,\pm i,\pm j, \pm k\}$, $ij = k$, $ji = -k$.
+Abelian $\implies$ All subgroups are normal $\os{?}{\implies}$ Abelian (false). $Q_8 = \set{\pm 1,\pm i,\pm j, \pm k}$, $ij = k$, $ji = -k$.
 
 \subsection{Quotient groups}
 
@@ -1354,29 +1370,17 @@ Let $H\leq G$ and $G / H =$ the set of left cosets of $H$ in $G$. Note that $|G/
 	Done.
 \end{proof}
 \begin{example}
-	$G = \mb Z$, $N = 3\mb Z$. $3\mb Z\ \triangleleft\ \mb Z$. $|\mb Z/3\mb Z| = [\mb Z:3\mb Z] = 3$. Then $\mb Z/3\mb Z = \{3\mb Z, 1+3\mb Z,2+3\mb Z\}$.
+	$G = \mb Z$, $N = 3\mb Z$. $3\mb Z\ \triangleleft\ \mb Z$. $|\mb Z/3\mb Z| = [\mb Z:3\mb Z] = 3$. Then $\mb Z/3\mb Z = \set{3\mb Z, 1+3\mb Z,2+3\mb Z}$.
 %\iffalse
 	\begin{center}
-	\begin{array}{c|ccc}
-	$\mb Z/3\mb Z$ & $3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ \\
+	\begin{tabular}{c|ccc||c|ccc}
+		$\mb Z/3\mb Z$ & $3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ & $\mb Z_3$ & $[0]$ & $[1]$ & $[2]$ \\
 	\hline 
-	$3\mb Z$ & $3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ \\
-	$1+3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ & $3\mb Z$ \\
-	$2+3\mb Z$ & $2+3\mb Z$ & $3\mb Z$ & $1+3\mb Z$
-	\end{array} 
+	$3\mb Z$ & $3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ & $[0]$ & $[0]$ & $[1]$ & $[2]$ \\
+	$1+3\mb Z$ & $1+3\mb Z$ & $2+3\mb Z$ & $3\mb Z$ & $[1]$ & $[1]$ & $[2]$ & $[3]$ \\
+	$2+3\mb Z$ & $2+3\mb Z$ & $3\mb Z$ & $1+3\mb Z$ & $[2]$ & $[2]$ & $[3]$ & $[1]$
+	\end{tabular} 
 	\end{center}
-\iffalse
-	
-	\begin{center}
-	\begin{array}{c|ccc}
-		$\mb Z_3$ & $[0]$ & $[1]$ & $[2]$ \\
-	\hline 
-	$[0]$ & $[0]$ & $[1]$ & $[2]$ \\
-	$[1]$ & $[1]$ & $[2]$ & $[3]$ \\
-	$[2]$ & $[2]$ & $[3]$ & $[1]$
-	\end{array} 
-	\end{center}
-\fi
 	$\mb Z/*\mb Z \llr \mb Z_*$ and $? + *\mb Z \llr [?]$.
 \end{example}
 
@@ -1465,7 +1469,7 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 	Cases:
 	\begin{enumerate}
 		\item WTS: $\psi\circ\phi:G\ra K$ is a homomorphism.
-			Let $a,b\in G$, then $$\psi\circ\phi(ab) = \psi(\phi(ab)) = \psi(\phi(a)\phi(b)) = \psi(\phi(a))\psi(\phi(b)) = (\psi\circ\phi)(a)(\psi\circ\phi)(b).$$
+			Let $a,b\in G$, then $$(\psi\circ\phi)(ab) = \psi(\phi(ab)) = \psi(\phi(a)\phi(b)) = \psi(\phi(a))\psi(\phi(b)) = (\psi\circ\phi)(a)(\psi\circ\phi)(b).$$
 		\item WTS: $\psi\circ\phi$ is bijective.
 			Since it's a homomorphism by property 1, it's bijective as a composition of bijective maps.
 		\item WTS: $\phi\inv:H\ra G$ is an isomorphism.
@@ -1497,7 +1501,7 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 	Every infinite cyclic group is isomorphic to $\mb Z$.
 \end{theorem}
 \begin{proof}
-	Let $G =\ <a>$ be infinite. Define $\phi:\mb Z\ra G$ by $\phi(n) = a^n$.
+	Let $G =\gen a$ be infinite. Define $\phi:\mb Z\ra G$ by $\phi(n) = a^n$.
 	\begin{enumerate}
 		\item $\phi$ is a homomorphism: $\phi(n+m) = a^{n+m}$ and $\phi(n)\phi(m) = a^na^m = a^{n+m}$.
 		\item $\phi$ is injective: $\phi(n) = \phi(m) \implies n = m$, since $G$ is infinite.
@@ -1506,14 +1510,14 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 	$\phi$ is an isomorphism.
 \end{proof}
 \begin{remark}
-	$\mb Z =\ <1>$ with $n = n$th power of 1 and $G =\ <a>$ with $x = n$th power of $a$.
+	$\mb Z =\gen 1$ with $n = n$th power of 1 and $G =\gen a$ with $x = n$th power of $a$.
 \end{remark}
 
 \begin{theorem}
 	Every cyclic group of order $n$ is isomorphic to $\mb Z_n$.
 \end{theorem}
 \begin{proof}
-	Let $G =\ <a>$, where $|G| = n$, so $G = \{e=a^0,a^1,a^2,\dots,a^{n-1}\}$.
+	Let $G =\gen a$, where $|G| = n$, so $G = \set{e=a^0,a^1,a^2,\dots,a^{n-1}}$.
 	Let $\phi:\mb Z_n\ra G$ be defined by $\phi([k]) = a^k$.
 	\begin{enumerate}
 		\item $\phi$ is well-defined: $[k] = [m] \implies \phi([k]) = \phi([m]) \ra k = m+nq$. 
@@ -1609,14 +1613,14 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 \subsection{Homomorphisms and normal subgroups}
 
 \begin{definition}
-	Let $\phi:G\ra H$ be a group homomorphism. The \ul{kernel} of $\phi$ is $$\ker\phi = \phi\inv(\{e_H\}) = \{x\in G\mid\phi(x)=e_H\}.$$
+	Let $\phi:G\ra H$ be a group homomorphism. The \ul{kernel} of $\phi$ is $$\ker\phi = \phi\inv(\{e_H\}) = \setm{x\in G}{\phi(x)=e_H}.$$
 	Homomorphism from $G\lra $ Normal subgroup of $G$, $\phi:G\ra H\rightsquigarrow \ker\phi\triangleleft G$.
 \end{definition}
 \begin{theorem}
 	$\ker\phi\triangleleft G$
 \end{theorem}
 \begin{proof}
-	$\{e_H\}\triangleleft H\implies \phi\inv(\{e_H\})\triangleleft G$.
+	$\set{e_H}\triangleleft H\implies \phi\inv(\set{e_H})\triangleleft G$.
 \end{proof}
 \begin{proof}
 	[Long proof] Cases:
@@ -1648,7 +1652,7 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 \begin{example}
 	Find all homomorphisms $\phi:\mb Z_5\ra\mb Z_{12}$.
 	We know $\ker\phi\triangleleft\mb Z_5\implies |\ker\phi| = 1$ or 5.
-	If $|\ker\phi| = 1 \implies \ker\phi = \{[0]\}$. If $|\ker\phi| = 5\implies \ker\phi = \mb Z_5$, then $\phi$ is the trivial homomorphism.
+	If $|\ker\phi| = 1 \implies \ker\phi = \set{[0]}$. If $|\ker\phi| = 5\implies \ker\phi = \mb Z_5$, then $\phi$ is the trivial homomorphism.
 	Note that $\ker\phi = \{[0]\}\iff\phi$ is injective (will be HW). Then $|\phi(\mb Z_5)| = 5$ and $\phi(\mb Z_5)\leq\mb Z_{12}$, but $5\nmid 12$ impossible by Lagrange's theorem.
 \end{example}
 

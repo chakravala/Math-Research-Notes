@@ -46,7 +46,7 @@ $A\subset B$ if $a\in A \implies a\in B$ for all $a\in A$.
 	$S = \mb N$ with \say{$<$} ($x<y$ if $y-x>0$) is an ordered set.
 \end{example}
 \begin{definition}
-	[Upper bound] Let $(S,<)$ be an ordered set. Let $E\subset S$. We say that $\beta$ is an \ul{upper bound of $E$} if $s\leq\beta$ for all $s\in E$.
+	[Upper bound] Let $(S,<)$ be an ordered set, $E\subset S$. We say that $\beta$ is an \ul{upper bound of $E$} if $s\leq\beta$ for all $s\in E$.
 \end{definition}
 \begin{definition}
 	[Lower bound] $\alpha$ is a \ul{lower bound of $E$} if $\alpha \leq s$ for all $s\in E$.
@@ -910,7 +910,7 @@ $$ \bigcap_{\alpha\in A} E_\alpha = \{x\in \Omega: x\in E_\alpha \text{ \ul{for 
 \end{theorem}
 \begin{proof}
 	Let $E\subset (0,1)$ be countable. We will show $E\subsetneq (0,1)$.
-	Since $E$ is countable, elements of \ul{$E$ can be enumerated}. Also, elements of $E$ can be written as decimal expansion: Then
+	Since $E$ is countable, elements of \ul{$E$ can be} \ul{enumerated}. Also, elements of $E$ can be written as decimal expansion: Then
 	$$s_1: 0.a_{11}a_{12}a_{13}a_{14}\dots$$
 	$$s_2: 0.a_{21}a_{22}a_{23}a_{24}\dots$$
 	$$s_3: 0.a_{31}a_{32}a_{33}a_{34}\dots$$
@@ -1112,30 +1112,30 @@ $(X,\rho)$ is a metric space.
 	Let $E\subset(X,\rho)$. Then
 	\begin{enumerate}
 		\item[(a)] $\conj E$ is closed.
-			\begin{proof}
-				We will show $(\conj E)^c$ is open. Let $x\in (\conj E)^c$ be arbitrary. 
-				This implies $x\notin \conj E = E\cup E' \implies x\notin E$ and $x\notin E'$, $x$ not a limit point of $E$.
-				This implies $\exists r>0$ such that $N_r(x)\cap (E\cup E') = \{x\}$ but $x\notin E$ and $x\notin E'$, so $N_r(x)\cap \conj E = \emptyset$.
-				This implies $N_r(x)\subset (\conj E)^c \implies x$ is an interior point of $E$. This implies $(\conj E)^c$ is open $\implies \conj E$ is closed.
-			\end{proof}
 		\item[(b)] $E = \conj E \Llr E$ is closed.
-			\begin{proof}
-				\say{$\implies$} by (a).
-				\say{$\Lla$} Suppose $E$ is closed.
-				\ul{Want to show}: $E\subset \conj E\checkmark$ and $\conj E\subset E$.
-				Since $E$ is closed, $E'\subset E$. Then $\conj E = E\cup E'\subset E\cup E = E$. Therefore $\conj E = E$.
-			\end{proof}
 		\item[(c)] $\conj E\subset F$ for every closed set $F\subset X$ containing $E$ or $E\subset F$ ($\conj E$ is the smallest \ul{closed} set containing $E$).
-			\begin{proof}
-				Let $F\subset X$ be closed and $E\subset F$.
-				\ul{WTS}: $\conj E \subset F$.
-				$F\subset X$ closed $\implies F'\subset F = \conj F$. Since $E\subset F$, we just need to show that $E'\subset F$.
-				Let $x\in E'$. Then $\exists r>0$ such that $N_r(x)\cap (E\backslash\{x\})\neq \emptyset$.
-				That implies that $N_r(x)\cap(F\backslash\{x\}(\neq \emptyset$ (since $E\subset F$).
-				That means that $x$ is a limit point of $F$ i.e., $x\in F' \implies x\in F'\cup F = F \implies \conj E \subset F$.
-			\end{proof}
 	\end{enumerate}
 \end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] We will show $(\conj E)^c$ is open. Let $x\in (\conj E)^c$ be arbitrary. 
+			This implies $x\notin \conj E = E\cup E' \implies x\notin E$ and $x\notin E'$, $x$ not a limit point of $E$.
+			This implies $\exists r>0$ such that $N_r(x)\cap (E\cup E') = \{x\}$ but $x\notin E$ and $x\notin E'$, so $N_r(x)\cap \conj E = \emptyset$.
+			This implies $N_r(x)\subset (\conj E)^c \implies x$ is an interior point of $E$. This implies $(\conj E)^c$ is open $\implies \conj E$ is closed.
+		\item[(b)] \say{$\implies$} by (a).
+			\say{$\Lla$} Suppose $E$ is closed.
+			\ul{Want to show}: $E\subset \conj E\checkmark$ and $\conj E\subset E$.
+			Since $E$ is closed, $E'\subset E$. Then $\conj E = E\cup E'\subset E\cup E = E$. Therefore $\conj E = E$.
+		\item[(c)] Let $F\subset X$ be closed and $E\subset F$.
+			\ul{WTS}: $\conj E \subset F$.
+			$F\subset X$ closed $\implies F'\subset F = \conj F$. Since $E\subset F$, we just need to show that $E'\subset F$.
+			Let $x\in E'$. Then $\exists r>0$ such that $N_r(x)\cap (E\backslash\{x\})\neq \emptyset$.
+			That implies that $N_r(x)\cap(F\backslash\{x\}(\neq \emptyset$ (since $E\subset F$).
+			That means that $x$ is a limit point of $F$ i.e., $x\in F' \implies x\in F'\cup F = F \implies \conj E \subset F$.
+	\end{enumerate}
+	Done.
+\end{proof}
 
 \ul{Exam question groups}
 \begin{enumerate}
@@ -1497,6 +1497,7 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 	\end{enumerate}
 	\label{thm-3-2}
 \end{theorem}
+\newpage
 \begin{proof}
 	Cases:
 	\begin{enumerate}
@@ -1531,6 +1532,7 @@ $(X,\rho)$ metric space is $X^{m.s.}$.
 			That implies for each $n = 1,2,\dots$, $\exists p_n\in E$ such that $\rho(p_n,p) < \frac{1}{n}$. Now we will show: $p_n\ra p$.
 			Let $\epsilon > 0$. Then for $N > \frac{1}{\epsilon}$, $\rho(p_n,p) < \frac{1}{n} \leq \frac{1}{N} < \epsilon$ for all $n\geq N$, which implies $p_n\ra p$.
 	\end{enumerate}
+	Done.
 \end{proof}
 
 \begin{theorem}
@@ -1753,13 +1755,14 @@ Given $\{p_n\}\subset X^{m.s.}$, let $E_n := \{p_n,p_{n+1},\dots,\}$. Then \ul{$
 					Then $$\rho(\conj p,\conj q) \leq \rho(\conj p,p) + \rho(p,\conj q) \leq \frac{\epsilon}{2} + \diam E \leq \epsilon + \diam E.$$
 			\end{enumerate}
 			Then $\us{\conj p,\conj q\in \conj E}{\sup}\rho(\conj p,\conj q) \leq \epsilon + \us{p,q\in E}{\sup}\rho(p,q) \implies \diam \conj E \leq \epsilon + \diam E$.
-			Since $\epsilon > 0$ is arbitrary, \ul{$\diam \conj E\leq \diam E$}.
+			Since $\epsilon > 0$ is arbitrary, therefore $\diam \conj E\leq \diam E$.
 			Hence $\diam\conj E = \diam E$.
 
 		\item[(b)] We have $\bigcap_n K_n \neq \emptyset$.
 			Suppose by contradiction that $\exists$ at least two points in $K = \bigcap_n K_n$.
 			Then $\diam K> 0$ and $K\subset K_n$ for all $n \implies 0 < \diam K \leq \diam K_n \ra 0$ for all $n$ - a contradiction since $\us{n\ra\infty}{\text{diam}}\,K_n = 0$.
 	\end{enumerate}
+	Done.
 \end{proof}
 
 \begin{theorem}
@@ -1791,12 +1794,13 @@ Given $\{p_n\}\subset X^{m.s.}$, let $E_n := \{p_n,p_{n+1},\dots,\}$. Then \ul{$
 			\ul{Claim}: $p_n\ra p$.
 			Let $\epsilon > 0$. Since $\us{n\ra\infty}{\text{diam}}\,E_n = 0$, $\exists N\in\mb N$ such that $\diam E_n < \epsilon$ for all $n\geq N$.
 			Now $p\in\conj E_n$ for \ul{$n\geq N$} $\implies \rho(p,q) < \epsilon$ for all $q\in\conj E_n$ ($\subset E_n$) $\implies \rho(p,p_n)<\epsilon$ for all $n\geq N \implies p_n\ra p$.
-		\item[(c)] Let $\{\vx_n\}\subset R^k$ be Cauchy. Let $E_n:=\{\vx_n,\vx_{n+1},\dots\}$.
+		\item[(c)] Let $\{\vx_n\}\subset R^k$ be Cauchy, $E_n:=\{\vx_n,\vx_{n+1},\dots\}$.
 			Then $\{\vx_n\}\subset \mb R^k$ Cauchy $\implies \lim_{n\ra\infty}\diam E_n = 0 \implies \exists N\in\mb N$ such that $\diam E_n < 1$ for all $n\geq N$.
 			Define $R := \max\{|\vx_1|,\dots,|\vx_{N-1}|,1\}+1$.
 			Then $\{\vx_n\}_n\subset B_r(\vzero)$. This implies $\{\vx_n\}$ is bounded $\implies \exists$ a compact $k$-cell $K$ such that $\{\vx_n\}\subset K$.
 			By part (b) $\{x_n\}$ converges in $K$, hence in $X$.
 	\end{enumerate}
+	Done.
 \end{proof}
 
 Test 3 - Tuesday, Nov. 28.
@@ -1965,6 +1969,7 @@ Otherwise $\sum_{n=1}^\infty a_n$ diverges.
 \begin{theorem}
 	Suppose $a_n\geq 0$ and $a_n\geq a_{n+1}$ for all $n\in\mb N$.
 	Then $\sum_n a_n$ converges $\iff\sum_k 2^ka_{2^k}$ converges.
+	\label{thm-3-27}
 \end{theorem}
 \begin{proof}
 	Let $s_n = a_1+a_2+\dots+a_n$ and $t_n = a_1 + 2a_2 + 2^2a_{2^2} + \dots + 2^ka_{2^k}$.
@@ -1983,5 +1988,125 @@ Otherwise $\sum_{n=1}^\infty a_n$ diverges.
 	\end{align*}
 	This implies \ul{$s_n\geq \frac{t_k}{2}$ for $n>2^k$} $\implies \{s_n\}$ is bounded $\iff\{t_k\}$ is bounded.
 \end{proof}
+
+\begin{recall}
+	Suppose $a_n\geq 0$ and $a_n\geq a_{n+1}$ for all $n$.
+	Then $\sum_n a_n$ converges $\iff \sum2^k a_{2^k}$ converges.
+\end{recall}
+\begin{theorem}
+	\ul{$p$-series} $\sum_{n=1}^\infty\frac{1}{n^p}$ converges if $p>1$, and diverges if $p\leq 1$.
+	\label{thm-3-28}
+\end{theorem}
+\begin{proof}
+	If $p\leq 0$, then $\lim_{n\ra\infty}\frac{1}{n^p}\neq 0$, $\sum \frac{1}{n^p}$ diverges.
+	If $p>0$, then $\frac{1}{n}\geq\frac{1}{n+1} \implies \frac{1}{n^p}\geq\frac{1}{(n+1)^p}$ by monotonicity of power $p \implies \set{\frac{1}{n^p}}$ is monotonically decreasing, and $\frac{1}{n^p}\geq 0$ for all $n$ (Theorem \ref{thm-3-27} can be applied).
+	Note that $\sum_k 2^k\frac{1}{(2^k)^p} = \sum_k 2^{k(1-p)} = \sum_k [2^{(1-p)}]^k$.
+	This series converges (geometric) if $1-p<0$ i.e., $p>1$, and diverges if $1-p\geq0$.
+\end{proof}
+
+\begin{theorem}
+	[$\log$ $p$-series] $\sum_{n=1}^\infty\frac{1}{n(\log n)^p}$ converges if $p>1$ and diverges if $p\leq 1$.
+\end{theorem}
+\begin{proof}
+	We will use Theorem \ref{thm-3-27}. Clearly $n(\log n)^p\geq 0$ for $n\geq 2$.
+	Assume $\log n$ is monotonically increasing.
+	Then using the monotonicity of power $p$, $\frac{1}{\log n}\geq\frac{1}{(\log{(n+1)})^p\cdot(n+1)}$ for all $n\geq 2$.
+	We can apply Therem \ref{thm-3-27}.
+	Then $\sum_k 2^k\cdot\frac{1}{2^k(\log{2^k})^p} = \sum_k \frac{1}{(k\log2)^p} = \frac{1}{(\log 2)^p}\sum_k\frac{1}{k^p}$ is $p$-series that converges if $p>1$ and diverges if $p\leq 1$ by Theorem \ref{thm-3-28}.
+\end{proof}
+
+\newpage
+\begin{definition}
+	[$e$] $e:=\sum_{n=0}^\infty\frac{1}{n!}$ ($0! = 1$)
+\end{definition}
+We will justify that the series converges.
+We will show: $\set{s_n}$ is monotonically increasing and bounded above.
+$s_n:= 1+1+\frac{1}{2!} + \frac{1}{3!} + \dots + \frac{1}{n!} \implies s_n\leq s_{n+1}$ for all $n$.
+\begin{align*}
+	s_n &= 1+1+\frac{1}{2!}+\frac{1}{3!}+\frac{1}{4!}+\dots+\frac{1}{n!} \\
+		&= 1+1+\frac{1}{2}+\ub{<\frac{1}{2^2}}{\frac{1}{2\cdot3}}+\ub{<\frac{1}{2^3}}{\frac{1}{2\cdot3\cdot4}}+\dots+\ub{<\frac{1}{2^{n-1}}}{\frac{1}{2\cdot3\cdot\dots\cdot(n-1)\cdot n}} \\
+		&< 1+1+\frac{1}{2}+\frac{1}{2^2}+\frac{1}{2^3}+\dots+\frac{1}{2^{n-1}} \\
+		&= 1+\sum_{k=0}^{n-1}\frac{1}{2^k} < 1 + \sum_{k=1}^\infty\frac{1}{2^k} = 1 + \frac{1}{1-\frac{1}{2}} = 3
+\end{align*}
+implies $\set{s_n}$ is bounded above by 3 for all $n$ or $s_n<3$ for all $n$.
+Therefore $\sum_{n=0}^\infty\frac{1}{n!}$ converges.
+
+\begin{theorem}
+	$\lim_{n\ra\infty}(1+\frac{1}{n})^n = e$.
+\end{theorem}
+\begin{proof}
+	Skip.
+\end{proof}
+
+\begin{theorem}
+	$e\in\mb R\bs\mb Q$, where $e = \sum_{n=0}^\infty\frac{1}{n!}$.
+\end{theorem}
+\begin{proof}
+	Suppose by contradiction that $e\in\mb Q$. Then $e = \frac{p}{q}$, where $p,q\in\mb N$ (since $e>0$).
+	Consider 
+	\begin{align*}
+		e-s_n &= \sum_{k=0}^\infty\frac{1}{k!}-\sum_{k=0}^n\frac{1}{k!} 
+			  = \sum_{k=n+1}^\infty\frac{1}{k!} \\
+			  &= \frac{1}{(n+1)!}+\frac{1}{(n+2)!}+\frac{1}{(n+3)!} + \dots \\
+			  &= \frac{1}{(n+1)!}\left[1+\frac{1}{n+2}+\frac{1}{(n+2)(n+3)}+\dots\right] \\
+			  &< \frac{1}{(n+1)!}\left[1+\frac{1}{n+1}+\frac{1}{(n+1)^2}+\dots\right] \\
+			  &= \frac{1}{(n+1)!}\sum_{k=0}^\infty\frac{1}{(n+1)^k} = \frac{1}{(n+1)!}\sum_{k=0}^\infty\left(\frac{1}{n+1}\right)^k \\
+			  &= \frac{1}{(n+1)!}\cdot\frac{1}{1-\frac{1}{n+1}} = \frac{1}{(n+1)n!}\cdot\frac{n+1}{n} = \frac{1}{n!n}
+	\end{align*}
+	i.e., $e-s_n<\frac{1}{n!n}$ for all $n\geq 1$.
+	Therefore $0<e-s_q<\frac{1}{q!q}$. This implies $0<q!(e-s_q)<\frac{1}{q} \leq 1$ (since $q\geq 1$).
+	Since $e = \frac pq$, $p=eq\in\mb N$, so $q!e\in\mb N$.
+	Now $q!s_q = q!(1+1+\frac{1}{2\cdot1}+\frac{1}{3\cdot2\cdot1}+\dots+\frac{1}{q!})\in\mb N$.
+	Therefore, $q!(e-s_q)\in\mb N$, which is a contradiction since $0<q!(e-s_q)<\frac{1}{q}\leq 1$.
+	Therefore $e\in\mb R\bs\mb Q$.
+\end{proof}
+
+\subsection{The Root and Ratio test for Series}
+
+\begin{theorem}
+	[Root test] Consider $\sum_n a_n$ and define $\alpha = \limsup_{n\ra\infty} \nrt{n}{|a_n|}$.
+	Then
+	\begin{enumerate}
+		\item[(a)] $\sum_n a_n$ converges if $\alpha<1$.
+		\item[(b)] $\sum_n a_n$ diverges if $\alpha>1$.
+		\item[(c)] Test is inconclusive if $\alpha = 1$.
+	\end{enumerate}
+\end{theorem}
+\newpage
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] Suppose 
+			\begin{align*}
+				\alpha &= \limsup_{n\ra\infty} \nrt{n}{|a_n|}<1 \\
+					   &= \lim_{m\ra\infty}\left(\sup\setc{\nrt{n}{|a_n|}}{n\geq m} \right) < 1
+			\end{align*}
+			Let $\epsilon>0$ such that $\alpha < \alpha +\epsilon < 1$.
+			Then $\exists N\in\mb N$ such that $\sup\setc{\nrt{n}{|a_n|}}{m\geq N} < \alpha+\epsilon \implies \nrt{n}{|a_n|}<\alpha+\epsilon$ for all $n\geq N$.
+			This implies $|a_n|<(\alpha+\epsilon)^n$ for all $n\geq N$.
+			Since $0<\alpha+\epsilon<1$, $\sum_{n\geq N}(\alpha+\epsilon)^n$ converges as a geometric series.
+			By comparison test, $\sum_n a_n$ converges.
+		\item[(b)] Suppose $\alpha = \limsup_{n\ra\infty} \nrt{n}{|a_n|} >1$.
+			Then $\alpha = \sup\setc{s\in\mb R}{\exists \nrt{n_k}{|a_{n_k}|}\ra s}$.
+			This implies $\exists$ a subsequence $\set{\nrt{n_k}{|a_{n_k}|}}$ such that $\nrt{n_k}{|a_{n_k}|}\ra \alpha > 1$.
+			Infinitely many terms of the subsequence, and hence of sequence $\set{\nrt{n}{|a_n|}}$ is greater than 1.
+			So $\lim_{n\ra\infty}\nrt{n}{|a_n|}\neq 0$ and hence $\lim_{n\ra\infty} a_n\neq 0$.
+			So $\sum_na_n$ diverges.
+		\item[(c)] Consider (i) $\sum\frac1n$ (diverges) and (ii) $\sum\frac1{n^2}$ (converges).
+			\begin{enumerate}
+				\item[(i)] $\lim_{n\ra\infty}n^\frac{1}{n} = 1\implies \lim_{n\ra\infty} \frac{1}{n^\frac{1}{n}} = 1$.
+				\item[(ii)] $\lim_{n\ra\infty}\frac{1}{n^\frac{2}{n}} = \lim_{n\ra\infty} \frac{1}{(n^\frac{1}{n})^2} = 1$.
+			\end{enumerate}
+	\end{enumerate}
+\end{proof}
+
+\begin{example}
+	Consider $0,0,\frac{1}{2},\frac{1}{4},\frac{3}{4},\frac{3}{8},\frac{7}{8},\frac{7}{16},\frac{15}{16},\frac{15}{32},\frac{31}{32},\dots$.
+	Then $\sup\setc{a_n}{n\geq 1} = 1$, $\inf\setc{a_n}{n\geq 1}=\frac{1}{4}$.
+\end{example}
+
+\begin{example}
+	Look at Example 3.34 in book: $\liminf |a_n|^\frac{1}{n}$ and $\limsup |a_n|^\frac{1}{n}$.
+\end{example}
 
 \end{document}
