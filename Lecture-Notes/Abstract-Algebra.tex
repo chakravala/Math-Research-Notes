@@ -1656,5 +1656,65 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 	Note that $\ker\phi = \{[0]\}\iff\phi$ is injective (will be HW). Then $|\phi(\mb Z_5)| = 5$ and $\phi(\mb Z_5)\leq\mb Z_{12}$, but $5\nmid 12$ impossible by Lagrange's theorem.
 \end{example}
 
-\end{document}
+\section{Isomorphism Theorems}
 
+$$\us{\phi\, :\, G\ra H}{\text{Homomorphisms}} \us{\os{?}{\lla}}{\lra} \us{\ker\phi\, \triangleleft\, G}{\text{Normal subgroups}}$$
+
+Does every normal subgroup arise as a kernel of a homomorphism? Yes.
+
+Let $N\triangleleft G$. Consider $\rho:G\ra G/N$ given by $\rho(a) = aN$.
+\ul{Claim}: $\rho$ is a homomorphism.
+Then $\rho(ab) = abN$ and $\rho(a)\rho(b) = aN\cdot bN$.
+So $\rho$ is surjective. Take any $xN\in G/N$, then $\rho(x) = xN$.
+Then $\ker\rho = \setm{a\in G}{\rho(a)=e_{G/N}} = \setm{a\in G}{\rho(a)=N} = \setm{a\in G}{aN=N} = N$ since $aN=eN$ implies $e\inv a\in N$.
+We say $\rho$ is a \ul{canonical} homomorphism.
+
+\begin{theorem}
+	[First Isomorphism Theorem] Let $\phi:G\ra H$ be a surjective homomorphism. Then $$H\cong G/\ker\phi.$$
+\end{theorem}
+\begin{proof}
+	Let $N = \ker\phi\triangleleft G$.
+	%Draw commutative diagram.
+	\begin{tikzcd}
+		G \arrow{rr}{\phi} \arrow{dr}{\rho} & & H \\
+											  %& A \arrow[ur,"\psi?",dashrightarrow] &
+											& A \arrow{ur}{\psi?} &
+	\end{tikzcd}
+	Define: $\psi: G/N\ra H$ by $\psi(aN)=\phi(a)$.
+	\begin{enumerate}
+		\item $\psi$ is well-defined:
+			$aN=bN\implies\psi(aN)=\psi(bN)$.
+
+			Indeed, $aN=bN \os{\text{K.L.}}{\implies}b\inv a\in N \implies b\inv a\in \ker\phi \implies \phi(b\inv a)=e_H \implies \phi(b)\inv\phi(a)=e_H \implies \phi(a)=\phi(b) \implies \psi(aN)=\psi(bN)$.
+		
+		\item $\psi$ is a homomorphism:
+
+			$\psi(aN\cdot bN) = \psi(abN) = \phi(ab)$ and $\psi(aN)\psi(bN) = \phi(a)\phi(b)$.
+
+		\item $\psi$ is injective:
+			$\psi(aN)=\psi(bN) \implies aN=bN$.
+
+			Indeed, $\psi(aN) = \psi(bN) \implies \phi(a)=\phi(b) \implies \phi(b)\inv\phi(a) = e_H \implies \phi(b\inv a) = e_H \implies b\inv a\in\ker\phi \implies b\inv a\in N \os{\text{K.L.}}{\implies} aN=bN$.
+
+		\item $\psi$ is surjective:
+
+			Let $x\in H$. WTS: $\exists aN\in G/N$ such that $\psi(aN) = x$.
+			Because $\phi$ is sujrective, $\exists a\in G$ such that $\phi(a) = x$.
+			Then $\psi(aN)=\phi(a)=x$.
+	\end{enumerate}
+\end{proof}
+\begin{corollary}
+	Let $\phi:G\ra H$ be a homomorphism. Then $\phi(G)\cong G/\ker\phi$, i.e., $\ul{\phi:G\ra\phi(G)}\leq H$.
+\end{corollary}
+\begin{example}
+	$\phi:GL_n(\mb R)\ra (\mb R\bs\set0,\cdot)$.
+	Then $\phi(A) = \det A$ homomorphism, surjective; and $\ker\phi=SL_n(\mb R)$.
+	$$GL_n(\mb R)/SL_n(\mb R)\cong(\mb R\bs\set0,\cdot).$$
+\end{example}
+\begin{example}
+	$\phi:\mb Z\ra\mb Z_n$.
+	Then $\phi(x)=[x]$ surjective homomorphism; and $\ker\phi=n\mb Z$.
+	So $\mb Z/n\mb Z\cong\mb Z_n$.
+\end{example}
+
+\end{document}
