@@ -2093,8 +2093,8 @@ Therefore $\sum_{n=0}^\infty\frac{1}{n!}$ converges.
 			So $\sum_na_n$ diverges.
 		\item[(c)] Consider (i) $\sum\frac1n$ (diverges) and (ii) $\sum\frac1{n^2}$ (converges).
 			\begin{enumerate}
-				\item[(i)] $\lim_{n\ra\infty}n^\frac{1}{n} = 1\implies \lim_{n\ra\infty} \frac{1}{n^\frac{1}{n}} = 1$.
-				\item[(ii)] $\lim_{n\ra\infty}\frac{1}{n^\frac{2}{n}} = \lim_{n\ra\infty} \frac{1}{(n^\frac{1}{n})^2} = 1$.
+				\item[(i)] $\displaystyle\lim_{n\ra\infty}n^\frac{1}{n} = 1\implies \lim_{n\ra\infty} \frac{1}{n^\frac{1}{n}} = 1$.
+				\item[(ii)] $\displaystyle\lim_{n\ra\infty}\frac{1}{n^\frac{2}{n}} = \lim_{n\ra\infty} \frac{1}{(n^\frac{1}{n})^2} = 1$.
 			\end{enumerate}
 	\end{enumerate}
 	Done.
@@ -2108,5 +2108,95 @@ Therefore $\sum_{n=0}^\infty\frac{1}{n!}$ converges.
 \begin{example}
 	Look at Example 3.34 in book: $\liminf |a_n|^\frac{1}{n}$ and $\limsup |a_n|^\frac{1}{n}$.
 \end{example}
+
+\begin{theorem}
+	[Ratio test] Consider $\sum_n a_n$ with $a_n\neq 0$ for all $n$ (enough for sufficiently large $n$). Then
+	\begin{enumerate}
+		\item[(a)] $\sum a_n$ converges if $\displaystyle\limsup_{n\ra\infty} \left|\frac{a_{n+1}}{a_n}\right|<1$.
+		\item[(b)] $\sum a_n$ diverges if $\displaystyle\left| \frac{a_{n+1}}{a_n}\right| \geq 1$ for $n\geq N \la$ fixed $N\in\mb N$.
+		\item[(*)] If $\displaystyle\liminf_{n\ra\infty}\left|\frac{a_{n+1}}{a_n}\right| \leq 1 \leq \limsup_{n\ra\infty}\left|\frac{a_{n+1}}{a_n}\right|$, the test gives no information.
+	\end{enumerate}
+	\label{thm-3-34}
+\end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item[(a)] Let $\displaystyle a^*:=\limsup_{n\ra\infty}\left|\frac{a_{n+1}}{a_n}\right|<1$.
+			Let $\epsilon>0$ be such that $a^*<a^*+\epsilon<1$.
+			\ul{NTS}: $\exists$ a convergent series $\sum_n b_n$ such that $|a_n|\leq b_n$ for $n$ large.
+			Since $a^*<a^S+\epsilon<1$, $\exists N\in\mb N$ such that $\left|\frac{a_{n+1}}{a_n}\right|<a^*+\epsilon$ for $n\geq N$.
+			In particular, $|a_{N+1}|<|a_N|(a^*+\epsilon) \implies |a_{N+2}|<|a_{N+1}|(a^*+\epsilon) < |a_N|(a^*+\epsilon)^2$ and further $$|a_{N+k}|<|a_N|(a^*+\epsilon)^k \implies |a_n|<|a_N|(a^*+\epsilon)^{n-N} = \ob{\text{fixed}}{|a_N|(a^*+\epsilon)^{-N}}(a^*+\epsilon)^n.$$
+			But $\sum(a^*+\epsilon)^n$ is a convergent geometric series since \ul{$a^*+\epsilon<1$}, so by comparison test $\sum a_n$ converges.
+		\item[(b)] $\left|\frac{a_{n+1}}{a_n}\right|\geq 1$ for $n\geq N$ implies that $|a_{N+k}|\geq |a_N|\neq 0$ for all $\displaystyle k \implies \lim_{k\ra\infty} |a_{N+k}|\neq 0 \implies \lim_{n\ra\infty}a_n\neq~0 \implies \sum a_n$ diverges.
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	$\sum c_n$ with $c_n\geq 0$ for all $n$ and $c_n\neq 0$ for large $n$. Then
+	$$\liminf_{n\ra\infty}\frac{c_{n+1}}{c_n}\leq \liminf_{n\ra\infty}\nrt{n}{c_n}\leq \limsup_{n\ra\infty}\nrt{n}{c_n},$$
+	$$\text{and}\qquad\limsup_{n\ra\infty}\nrt{n}{c_n}\leq\limsup_{n\ra\infty}\frac{c_{n+1}}{c_n}.$$
+	%\label{thm-3-37}
+\end{theorem}
+\begin{remark}
+	Root test is more powerful than ratio test:
+	$$1+1+\frac{1}{2}+\frac{1}{2}+\frac{1}{4}+\frac{1}{4}+\frac{1}{8}+\frac{1}{8}+\dots$$
+	So $\limsup_{n}\nrt{n}{a_n} = \frac{1}{2} < 1 \implies$ converges.
+	Then $\limsup_{n\ra\infty}\frac{a_{n+1}}{a_n}=1$ (Test is inconclusive).
+\end{remark}
+
+\subsection{Power series}
+
+\begin{definition}
+	$\displaystyle\sum_{n=0}^\infty c_nz^n;\ c_n\in\mb R, z\in\mb C.$
+\end{definition}
+
+\ul{\ul{Q}}: Under what assumptions on $c_n$ and \say{$z$ itself} the series converges/diverges?
+
+\begin{theorem}
+	Consider $\sum c_nz^n$. Define $\alpha:=\limsup_{n\ra\infty}\nrt{n}{|c_n|}$ and $R:=\frac{1}{\alpha}$.
+	Then $\sum c_nz^n$ converges if $|z|<R$ and diverges if $|z|>R$.
+\end{theorem}
+\begin{proof}
+	Let $a_n:=c_nz^n$. Then $\displaystyle\limsup_{n\ra\infty}\nrt{n}{|a_n|} = \limsup_{n\ra\infty}\nrt{n}{|c_n|\cdot|z|^n} = |z|\ub{\alpha}{\limsup_{n\ra\infty} \nrt{n}{|c_n|}} = |z|\cdot\alpha$.
+	By root test, $\sum c_nz^n$ converges if $|z|\cdot\alpha<1$ or $|z|<\frac{1}{]\alpha} = R$ and diverges if $|z|>\frac{1}{\alpha} = R$.
+\end{proof}
+\begin{example}
+	Consider $\sum_n 1\cdot x^n$ with $1\ra c_n$. Then $\alpha = \lim_{n\ra\infty}(1) = 1$.
+	Converges if $|x|<\frac{1}{\alpha} = 1 = R$, diverges if $|x|>\frac{1}{\alpha}=1=R$.
+\end{example}
+\begin{recall}
+	$\lim_{n\ra\infty} \nrt{n}{n} = 1$.
+\end{recall}
+\begin{example}
+	Consider $\displaystyle\sum\frac{2^n}{n^2}\cdot x^n$. Then $\displaystyle\alpha = \lim_{n\ra\infty} \nrt{n}{\frac{2^n}{n^2}} = \lim_{n\ra\infty}\frac{2}{n^{\frac{2}{n}}} = 2 \implies \ul{R = \frac{1}{2}}$.
+\end{example}
+
+\subsection{Series with product}
+
+\begin{theorem}
+	Let $A_n:=\sum_{k=0}^n a_k$ and define $A_{-1}=0$. Suppose
+	\begin{enumerate}
+		\item[(a)] $\set{A_n}$ is bounded
+		\item[(b)] $b_0\geq b_1\geq b_2\geq \dots$
+		\item[(c)] $\lim_{n\ra\infty} b_n = 0$.
+	\end{enumerate}
+	Then $\sum a_nb_m$ converges.
+\end{theorem}
+
+\begin{proof}
+	Let $\epsilon>0$ be given. NTS: $\exists N\in\mb N$ such that $|\sum_{k=m}^n a_kb_k|<\epsilon$ for $n\geq m>N$.
+	\ul{We claim}: For $0\leq p\leq q$, $\sum_{k=p}^q a_kb_k = \sum_{k=p}^{q-1} A_k(b_k-b_{k+1}) + A_qb_q - A_{p-1}b_p$ --- (1).
+	By (a), $\exists M>0$ such that $|A_n|\leq M$ for all $n\in\mb N$.
+	By (c), $\exists N\in\mb N$ such that $|b_n|<\dots$ for $n\geq N$.
+	Then using (1), 
+	\begin{align*}
+		\left|\sum_{p=m}^n a_kb_k\right| &= \left|\sum_{k=m}^{n-1} A_k(b_k-b_{k-1}) + A_nb_n - A_{m-1}b_m\right| \\
+										 &\os{\Delta}{\leq} \left|\sum_{k=m}^{n-1} A_k(\ob{\geq0}{b_k-b_{k+1}})\right| + |A_n|\cdot|b_n| + |A_{m-1}|\cdot|b_m| \\
+										 &\leq M\sum_{k=m}^{n-1} (b_k-b_{k+1}) + M|b_n| + M|b_m|.
+	\end{align*}
+	Note that (b) and (c) imply $b_n\geq 0$ for all $n\in\mb N$. For $n\geq m\geq N$,
+	$$M\Bigg(\ub{b_m-b_{m+1}+b_{m+1}+\dots+b_{n-1}-b_n+b_n + b_m}{\sum_{k=m}^{n-1}(b_k-b_{k+1})}+b_n+b_m\Bigg) = 2Mb_m <\epsilon$$ 
+	This implies $\sum a_k b_k$ converges.
+\end{proof}
 
 \end{document}
