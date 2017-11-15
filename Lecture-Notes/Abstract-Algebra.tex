@@ -1717,4 +1717,63 @@ We say $\rho$ is a \ul{canonical} homomorphism.
 	So $\mb Z/n\mb Z\cong\mb Z_n$.
 \end{example}
 
+\begin{theorem}
+	[Second Isomorphism Theorem]
+	Let $H\leq G$ and $N\triangleleft G$. Then
+	\begin{enumerate}
+		\item $HN\leq G$
+		\item $H\cap N\triangleleft H$
+		\item $H/H\cap N\cong HN/N$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item $HN = \setm{hn}{h\in H,n\in N}$.
+			\begin{itemize}
+				\item identity: $e=ee\in HN$
+				\item closure under products:
+					let $x,y\in HN$. WTS: $xy\in HN$. We have $x=h_1n_1$ and $y=h_2n_2$ for some $h_1,h_2\in H$ and $n_1,n_2\in N$.
+					So $xy=(h_1n_1)(h_2n_2) = h_1h_2h_2\inv n_1h_2n_2 = (h_1h_2)(h_2\inv n_1h_2n_2)$, where $h_1h_2\in H$ and $h_2\inv n_1h_2\in N$, so $xy\in HN$.
+				\item closure under inverses:
+					let $x\in HN$. WTS: $x\inv\in HN$. Then $x=hn$ for some $h\in H$ and $n\in N$. So $x\inv = (hn)\inv = n\inv h\inv = h\inv hn\inv h\inv = h\inv(hn\inv h\inv)$, where $h\inv\in H$ and $n\inv,hn\inv h\inv\in N$, so $x\inv\in HN$.
+			\end{itemize}
+			Thus $HN\leq G$.
+		\item Clearly $H\cap N\subseteq H$ and $H\cap N$ is a subgroup as intersection of two subgroups.
+			Need to show $H\cap N$ is normal in $H$.
+			Let $x\in H\cap N$ and $h\in H$. WTS: $hxh\inv\in H\cap N$.
+			Then $hxh\inv\in H$ since $h$ and $x$ are in $H$.
+			Also $hxh\inv\in N$ since $x\in N$ and $N$ is normal.
+		\item Define $\phi:H\ra \ul{HN/N}$ (makes sense: $HN\leq G$ group, $N\leq HN \ra N\triangleleft HN$) by $\phi(h)=hN$.
+			\ul{Claim 1}: $\phi$ is a homomorphism.
+			Then $\phi(h_1h_2) = h_1h_2N$ and $\phi(h_1)\phi(h_2) = h_1N\cdot h_2N$.
+			\ul{Claim 2}: $\phi$ is surjective.
+			Let $xN\in HN/N$. Then $x\in HN$ and $x=hn$ for some $h\in H$ and $n\in N$.
+			Then $xN = (hn)N = hnN = hN = \phi(h)$.
+			By the 1st Isomorphism Theorem, $H/\ker\phi\cong HN/N$.
+			Then $\ker\phi = \setm{h\in H}{\phi(h) = e_{HN/N}} = \setm{h\in H}{N} = \setm{h\in H}{hN=N}$.
+			Using the Key Lemma, $hN=N \iff hN=eN \iff e\inv h\in N \iff h\in N$.
+			So $\ker\phi = \setm{h\in H}{h\in N} = H\cap N$.
+	\end{enumerate}
+	Done.
+\end{proof}
+
+\begin{theorem}
+	[Correspondence Theorem]
+	Let $N\triangleleft G$. Then there is a bijective correspondence between the set of subgroups of $G$ containing $N$ and the set of subsets of $G/N$.
+	Normal subgroups of $G$ containing $N$ correspond to normal subgroups of $G/N$.
+\end{theorem}
+\begin{remark}
+	What does this look like? $N\triangleleft H\leq G$, we are looking for $H \lr H/N\leq G/N$.
+\end{remark}
+\begin{note}
+	If $H\triangleleft G$, then $H/N\triangleleft G/N$.
+\end{note}
+\begin{theorem}
+	[Third Isomorphism Theorem]
+	Let $N\triangleleft G$ and $H\triangleleft G$ with $N\subseteq H$. Then
+	$$ G/H \cong \nicefrac{G/N}{H/N}.$$
+\end{theorem}
+Define $\phi: G/N\ra G/H$ by $\phi(gN)=gH$. Then $\ker\phi = H/N$, apply 1st Isomorphism Theorem.
+
 \end{document}
