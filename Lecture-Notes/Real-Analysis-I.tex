@@ -2181,6 +2181,7 @@ Therefore $\sum_{n=0}^\infty\frac{1}{n!}$ converges.
 		\item[(c)] $\lim_{n\ra\infty} b_n = 0$.
 	\end{enumerate}
 	Then $\sum a_nb_m$ converges.
+	\label{thm-3-42}
 \end{theorem}
 
 \begin{proof}
@@ -2198,5 +2199,133 @@ Therefore $\sum_{n=0}^\infty\frac{1}{n!}$ converges.
 	$$M\Bigg(\ub{b_m-b_{m+1}+b_{m+1}+\dots+b_{n-1}-b_n}{\sum_{k=m}^{n-1}(b_k-b_{k+1})}+b_n+b_m\Bigg) = 2Mb_m <\epsilon$$ 
 	This implies $\sum a_k b_k$ converges.
 \end{proof}
+
+\ul{Test 3}: Tuesday, Nov. 28
+Ch 2: - connected sets 19-21.
+\ul{Ch 3}: 1-10, 11 (graduate students), 20-22, 23 (graduate students).
+
+\begin{recall}
+	-- proof is complete if we show $\sum_{k=m}^n a_kb_k = \sum_{k=m}^{n-1} A_k(b_k-b_{k+1}) + A_n b_n - A_{m-1}b_m$ --- (1), where $A_k = a_0+a_1+\dots+a_k$, $A_{k-1} = a_0+\dots+a_{k-1}$.
+\end{recall}
+\begin{proof}
+	Observe that $a_k=A_k-A_{k-1}$. Then left hand side of (1) as:
+	\begin{align*}
+		\sum_{k=m}^n(A_k - A_{k-1})b_k &= \sum_{k=m}^n A_kb_k - \sum_{k=m}^n A_{k-1} b_k
+		= \sum_{k=m}^n A_kb_k - \sum_{k=m-1}^{n-1} A_k b_{k+1} \\
+									   &= \sum_{k=m}^{n-1} A_kb_k - \sum_{k=m}^{n-1} A_k b_{k+1} + A_n b_n - A_{m-1}b_m \\
+									   &= \sum_{k=m}^{n-1} A_k(b_k-b_{k+1})+A_nb_n - A_{m-1} b_m = RHS
+	\end{align*}
+	Done.
+\end{proof}
+
+\begin{theorem}
+	[Alternating series test]
+	Consider $\sum_n c_n$. Suppose
+	\begin{enumerate}
+		\item[(a)] $|c_1|\geq |c_2|\geq |c_3| \geq \dots$.
+		\item[(b)] $c_{2m-1}\geq 0$, $c_{2m}\leq 0$ for all $m\in\mb N$.
+		\item[(c)] $\lim_{n\ra\infty} c_n = 0$.
+	\end{enumerate}
+	Then $\sum c_n$ converges.
+	\label{thm-3-43}
+\end{theorem}
+\begin{note}
+	$\sum_{n=1}^\infty c_n = c_1+c_2+c_3+c_4+\dots = |c_1|+(-1)|c_2|+|c_3|+(-1)|c_4| + \dots = \sum_{n=1}^\infty (-1)^n |c_n|$.
+\end{note}
+\begin{proof}
+	We will use Theorem \ref{thm-3-42}.
+	Let $A_n = \sum_{k=0}^n (-1)^{k+1}$. Then $|A_n|\leq 1$ for all $n$.
+	Let $b_n = |c_n|$. Then (a) and (c) satisfy assumptions (b) and (c) of Theorem \ref{thm-3-42}.
+	Hence $\sum(-1)^{n+1}|c_n| = \sum c_n$ converges.
+\end{proof}
+\begin{example}
+	$\sum_{n=1}^\infty (-1)^{n+1}\frac{1}{n}$ -- converges.
+\end{example}
+\begin{example}
+	$\sum_{n=1}^\infty (-1)^{n+1} \frac{1}{n^p}$, where $\ul{o>0}$, converges.
+\end{example}
+
+\begin{theorem}
+	Suppose $z\in\mb C$ and
+	\begin{enumerate}
+		\item[(a)] $R=1$ for $\sum c_n z^n$.
+		\item[(b)] $c_0\geq c_1\geq c_2\geq\dots$.
+		\item[(c)] $\lim_{n\ra\infty} c_n = 0$.
+	\end{enumerate}
+	Then $\sum c_n z^n$ converges at every point on $|z|=1$ except possibly at $z=1$.
+\end{theorem}
+\begin{remark}
+	Converges in $|z|<1$, diverges on $|z|>1$, \ul{$|z|=1$}.
+\end{remark}
+\begin{proof}
+	We will use Theorem \ref{thm-3-42}. Hypotheses (b) and (c) satisfy hypotheses (b) and (c) of Theorem \ref{thm-3-42}.
+	We only need to check that $A_n:=\sum_{k=0}^n z^k$ is bounded for all $n$.
+	\begin{align*}
+		|A_n| &= \left| \sum_{k=0}^n z^k\right| = \left| \frac{1-z^{n+1}}{1-z}\right| \leq \frac{|1-z^{n+1}|}{|1-z|} \\
+			  &\os{\Delta}{\leq} \frac{1+|z|^{n+1}}{|1-z|} = \frac{2}{|1-z|},
+	\end{align*}
+	which implies $\set{A_m}$ is bounded for all $n$ on $|z|=1$ except at $z=1$.
+	Therefore $\sum c_n z^n$ converges on $|z|=1$ (except at $z=1$, \ul{essential singularity}).
+\end{proof}
+
+\begin{definition}
+	[Absolute convergence]
+	$\sum a_n$ converges absolutely if $\sum |a_n|$ converges.
+\end{definition}
+\begin{example}
+	$\sum (-1)^{n+1}\frac 1n$ does not converge absolutely, since $\sum |(-1)^{n+1}\frac{1}{n}| = \sum \frac 1n$ diverges.
+	\label{example-convergence}
+\end{example}
+\begin{example}
+	$\sum (-1)^{n+1}\frac{1}{n^p}$ ($p>1$) converges absolutely since $\sum \frac{1}{n^p}$ converges for $p>1$.
+\end{example}
+\begin{definition}
+	[non-absolutely convergent or conditionally convergent]
+	$\sum a_n$ converges conditionally if $\sum a_n$ converges, but $\sum |a_n|$ diverges.
+\end{definition}
+See example \ref{example-convergence}.
+\begin{theorem}
+	If $\sum a_n$ converges absolutely, then $\sum a_n$ converges.
+\end{theorem}
+\begin{proof}
+	[Proof. (Assume $a_n\in\mb R$)]
+	Then $a_n\leq |a_n|$ and $\sum |a_n|$ converges $\implies \sum a_n$ converges.
+\end{proof}
+\begin{proof}
+	[Proof. (Assume $a_n\notin\mb R$ but $a_n\in\mb C$)]
+	Let $\epsilon>0$ be given.
+	\ul{NTS}: $\exists N\in\mb N$ such that $m\geq n>N$ implies $\left|\sum_{k=n}^m a_k \right| <\epsilon$.
+	Then $\sum |a_n|$ converges $\implies \exists N_1\in\mb N$ such that $m\geq n>N_1$ implies $\left| \sum_{k=n}^m |a_k| \right| <\epsilon$.
+	Then for $m\geq n>N_1$, $\left|\sum_{k=n}^m a_k\right| \os{\Delta}{\leq} \sum_{k=n}^m |a_k| < \epsilon$.
+	Therefore $\sum a_k$ converges.
+\end{proof}
+
+\begin{theorem}
+	[Sum and constant multiple]
+	Suppose $\sum a_n = A$, $\sum b_n = B$. Then $\sum(a_n+b_n) = A+B$ and $\sum c\cdot a_n = cA$ for some fixed $c \la$ \ul{constant}.
+\end{theorem}
+\begin{proof}
+	Let $\set{A_n}$ and $\set{B_n}$ be sequence of partial sums $\sum a_n$ and $\sum b_n$.
+	Then $A_n\ra A$ and $B_n\ra B$. Then (using sequence results) $A_n+B_n\ra A+B$ and $c\cdot A_n = cA$.
+\end{proof}
+\begin{recall}
+	[Cauchy product] $\sum a_n$ and $\sum b_n$.
+	Let $c_n = \sum_{k=0}^n a_k b_{n-k} = a_0 b_n + a_1 b_{n-1} + a_2 b_{n-2}+ \dots + a_n b_0$.
+\end{recall}
+\begin{theorem}
+	Suppose
+	\begin{enumerate}
+		\item[(a)] $\sum a_n$ converges absolutely
+		\item[(b)] $\sum a_n = A$
+		\item[(c)] $\sum b_n = B$
+	\end{enumerate}
+	Then $\sum_{n=0}^\infty c_n = AB$, $c_n = \sum_{k=0}^n a_k b_{n-k}$.
+\end{theorem}
+
+\begin{example}
+	[Ch 3, \#7] $\sum a_n$ with $a_n\geq 0$ converges $\implies \sum \frac{\sqrt{a_n}}{n}$ converges.
+	\ul{Hint}: Use Cauchy-Schwartz inequality $\left| \sum_{n=1}^m a_n\conj b_n \right| \leq \left( \sum |a_n|^2\right)^\frac{1}{2} \left(\sum |b_n|^2 \right)^\frac{1}{2}$.
+	Other techniques can also work.
+\end{example}
 
 \end{document}
