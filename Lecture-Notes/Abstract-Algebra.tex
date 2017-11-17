@@ -1776,4 +1776,62 @@ We say $\rho$ is a \ul{canonical} homomorphism.
 \end{theorem}
 Define $\phi: G/N\ra G/H$ by $\phi(gN)=gH$. Then $\ker\phi = H/N$, apply 1st Isomorphism Theorem.
 
+\section{Rings}
+
+\begin{definition}
+	A \ul{ring} $R$ is a non-empty set with two binary operations: \say{addition} and \say{multiplication} such that:
+	\begin{enumerate}
+		\item $(R,+)$ is an abelian group
+		\item $\cdot$ is associative
+		\item $\cdot$ is distributive over addition
+	\end{enumerate}
+\end{definition}
+\begin{enumerate}
+	\item $(a+b)+c = a+(b+c)$
+	
+		$\exists 0\in R$ (identity for addition) such that $a+0=0+a=a$
+	
+		$\forall a\in R$ $\exists -a\in R$ (inverse of $a$ under addition) such that $a+(-a)=(-a)+a = 0$
+
+		$a+b=b+a$
+	\item $a(bc) = (ab)c$
+	\item $a(b+c) = ab+ac$
+		
+		$(b+c)a = ba+ca$
+\end{enumerate}
+
+\begin{definition}
+	A ring is \ul{commutative} if $\cdot$ is commutative.
+\end{definition}
+\begin{definition}
+	A ring such that $\exists 1\neq 0$ (identity for multiplication) with $a1=1a$ for all $a\in R$ is a ring with \ul{unity} or \ul{identity}.
+\end{definition}
+\begin{definition}
+	In a ring $R$ with unity, an element $a\in R$ is a \ul{unit} if it has a multiplicative inverse: $\exists a\inv\in R$ (inverse for $a$ under multiplication) such that $aa\inv=a\inv a = 1$.
+	$\mb R^\times = $ the set of all units in $R$.
+\end{definition}
+\begin{definition}
+	A \ul{division ring} is a ring $R$ with unity such that $R^\times = R\bs\set0$.
+\end{definition}
+\begin{definition}
+	A \ul{field} is a commutative division ring.
+\end{definition}
+
+\begin{example}
+	$(\mb Z,+,\cdot)$: ring, commutative, with unity, $\mb Z^\times=\set{-1,1}$.
+\end{example}
+\begin{example}
+	$(\mb Q,+,\cdot)$: ring, commutative, with unity, $\mb Q^\times=\mb Q\bs\set0$, division ring, field.
+\end{example}
+\begin{example}
+	$(\mb Z_n,+,\cdot)$: ring, commutative, with unity, $\mb Z_n^\times=\setm{[a]\in \mb Z_n}{\gcd(a,n)=1}$, $\ra$ division ring if $n$ is prime, $\ra$ not a division ring if $n$ is composite ($n=km$, $k,m>1$, $\ra[k],[m]\notin\mb Z_n^\times$).
+	Vector space: $\mb Z_n^p$ has $p^n$ elements.
+\end{example}
+\begin{example}
+	$(M_n(\mb R),+,\cdot)$: ring, noncommutative, with unity, $M_n(\mb R)^\times = GL_n(\mb R)$.
+\end{example}
+\begin{example}
+	Ring without unity: $2\mb Z$.
+\end{example}
+
 \end{document}
