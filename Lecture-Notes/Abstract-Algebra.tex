@@ -1834,4 +1834,73 @@ Define $\phi: G/N\ra G/H$ by $\phi(gN)=gH$. Then $\ker\phi = H/N$, apply 1st Iso
 	Ring without unity: $2\mb Z$.
 \end{example}
 
+\ul{Exam 2 Bonus}: $G = S_3$, $N = \gen{(1\,2\,3)} \ra$ abelian. Then $[G:N] = 2$ so $|G/N|=2 \ra $ cyclic $\ra$ abelian.
+
+\begin{definition}
+	A nonzero element $r$ of a ring $R$ is
+	\begin{enumerate}
+		\item a \ul{left zero divisor} if $\exists s\in R$, $s\neq 0$, such that $rs=0$,
+		\item a \ul{right zero divisor} if $\exists s\in R$, $s\neq0$, such that $sr=0$,
+		\item a \ul{zero divisor} if it's both left and right zero divisor.
+	\end{enumerate}
+\end{definition}
+\begin{example}
+	$\mb Z$ no zero divisors.
+\end{example}
+\begin{example}
+	$\mb Z_n \ra n$ prime: no zero divisors, $n \ra$ composite: there are zero divisors. If $n=km$, $1<k,m<n$, then $[k][m]=[0]$.
+\end{example}
+\begin{example}
+	$M_n(\mb R)$, let $A = \mat{0&1\\0&0}$, then $AA=0$.
+\end{example}
+\begin{example}
+	idempotent element $\neq 0,1$ is a zero divisor. $a^2=a \la$ idempotent i.e., $0^2=0,1^2=1$. In $M_n(\mb R)$: $\mat{1&0\\0&0}^2 = \mat{1&-\\0&0}$. $a^2=a \ra a(a-1)=0$, where $a$ zero divisor.
+\end{example}
+\begin{example}
+	units $\neq$ zero divisors. exercise.
+\end{example}
+\begin{definition}
+	An \ul{integral domain} is commutative ring with unity which has no zero divisors.
+\end{definition}
+\begin{example}
+	$\mb Z$
+\end{example}
+\begin{example}
+	$\mb Z_p$
+\end{example}
+
+\begin{theorem}
+	A finite integral domain is a field.
+\end{theorem}
+\begin{proof}
+	Let $D$ be a finite integral domain. WTS: $D^\times = D\bs\set0$.
+	Let $a\in D\bs\set0$. Define $\lambda_a:D\bs\set0\ra D\bs\set0$ by $\lambda_a = ax$.
+	\ul{Claim}: $\lambda_a(D\bs\set0) \subseteq D\bs\set0$.
+	Let $x\neq 0$, then $\lambda_a(x) = ax$ because integral domain has no zero divisors.
+	\ul{Claim}: $\lambda_a$ is injective.
+	Assume $\lambda_a(x) = \lambda_a(y)$, then $ax=ay \implies a(x-y)=0 \implies x=y$.
+	Since $D$ is finite, $\lambda_a$ must be surjective.
+	Then $\exists x\in D\bs\set0$ such that $$\lambda_a(x)=1 \implies ax=1 \implies xa = ax = 1 \implies x = a\inv \implies a\in D^\times.$$
+	Done.
+\end{proof}
+
+\newpage
+\begin{theorem}
+	Let $R$ be a ring and $a,b\in R$.
+	\begin{enumerate}
+		\item $a0=0a=0$
+		\item $a(-b)=(-a)b = -ab$
+		\item $(-a)(-b)=ab$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Cases:
+	\begin{enumerate}
+		\item $0a = (0+0)a = 0a + 0a \implies 0+0a = 0a + 0a \implies 0 = 0a$.
+		\item WTS: $a(-b) = -ab$ i.e., $a(-b)$ is an additive inverse of $ab$.
+			Then $a(-b)+ab = a((-b)+b) = a0 = 0$, so $a(-b)$ is inverse of $ab$.
+		\item $(-a)(-b) \os{(2)}{=} -(-a)b = -(-ab) = ab$.
+	\end{enumerate}
+\end{proof}
+
 \end{document}
