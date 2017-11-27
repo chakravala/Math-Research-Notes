@@ -2,12 +2,16 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/wiki/chakravala/Fatou.jl/dendriform/lec-notes.png" alt="lec-notes.png"/>
 </p>
+<p align="center">
+<i>Figure:</i> Paul Gunnels presenting Modular Symbols
+</p>
 
 # Math/Research Notes
 *Theorems, Definitions, Papers, Research*
 
 [![Build Status](https://travis-ci.org/chakravala/Math-Research-Notes.svg?branch=master)](https://travis-ci.org/chakravala/Math-Research-Notes)
 [![DropBox](https://img.shields.io/badge/download_PDF-DropBox-blue.svg)](https://www.dropbox.com/sh/tphh6anw0qwija4/AADeLFJZZrm2jwCQzVebd93ba)
+[![Join the chat at gitter](https://badges.gitter.im/Math-Research-Notes/Lobby.svg)](https://gitter.im/Math-Research-Notes/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Repository of chakravala/Michael's public notes ~
 

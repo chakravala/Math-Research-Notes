@@ -1533,7 +1533,7 @@ If $\phi:G\ra H$ is an isomorphism, then $G$ and $H$ are \ul{isomorphic}.
 	\begin{enumerate}
 		\item $\phi(e_G) = e_H$
 		\item For any $x\in G$ and any $n\in\mb Z$, $\phi(x^n) = \phi(x)^n$.
-		\item If $x\in GG$ and $o(x) = n$, then $o(\phi(x))$ divides $n$.
+		\item If $x\in G$ and $o(x) = n$, then $o(\phi(x))$ divides $n$.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -1901,6 +1901,53 @@ Define $\phi: G/N\ra G/H$ by $\phi(gN)=gH$. Then $\ker\phi = H/N$, apply 1st Iso
 			Then $a(-b)+ab = a((-b)+b) = a0 = 0$, so $a(-b)$ is inverse of $ab$.
 		\item $(-a)(-b) \os{(2)}{=} -(-a)b = -(-ab) = ab$.
 	\end{enumerate}
+	Done.
 \end{proof}
+
+\begin{proposition}
+$\set{\text{units}}\cap\set{\text{zero divisors}}\neq\emptyset$.
+\end{proposition}
+\begin{proof}
+	Consider for $u$ \ul{unit} $\ra\exists u\inv$ and for a \ul{zero divisor} $\ra \exists v\neq 0$ such that $uv=0$. 
+	So $u\inv uv = u\inv 0$ implies $v=0$, which is a contradiction.
+\end{proof}
+
+\section{Hamiltonian quaternions}
+
+Consider $\mb R$. 
+Then $\mb C = \setm{a+bi}{a,b\in\mb R,\, i^2=-1}$.
+Let $\mb H = \setm{a+bi+cj+dk}{a,b,c,d\in\mb R}$.
+
+Addition: $(a_1+b_1i+c_1j+d_1k)+(a_2+b_2i+c_2j+d_2k) = (a_1+a_2)+(b_1+b_2)i+(c_1+c_2)j+(d_1+d_2)k$, abelian group.
+
+Multiplication: $i^2=j^2=k^2 = -1$. Consider $i \ra j \ra k$ in a circle in alphabetical order. If you are moving clockwise the sign is positive, counterclockwise is negative.
+So
+\begin{align*}
+	ij &= k, &\qquad ik &=-j, &\qquad jk &= i, \\
+	ji &=-k, &\qquad ki &= j, &\qquad kj &=-i.
+\end{align*}
+Then
+\begin{align*}
+	(a_1+b_1i+c_1j+d_1k)(a_2+b_2i+c_2j+d_2k)
+	&= a_1a_2+a_1b_2i+a_1c_2j+a_1d_2k \\
+	&+ b_1a_2i-b_1b_2+b_1c_2k-b_1d_2j \\
+	&+ c_1a_2j-c_1b_2k-c_1c_2+c_1d_2i \\
+	&+ d_1a_2k+d_1b_2j-d_1c_2i-d_1d_2 \\
+	&= (a_1a_2-b_1b_2-c_1c_2-d_1d_2) \\
+	&+ (a_2b_2+b_1a_2+c_1d_2-d_1c_2)i \\
+	&+ (a_1c_2-b_1d_2+c_1a_2+d_1b_2)j \\
+	&+ (a_1d_2+b_1c_2-c_1b_2+d_1a_1)k
+\end{align*}
+is associative and $\cdot$ distributes over +.
+Identity: $1+0i+0j+0k = 1$.
+
+$M_2(\mb C)$: $1 = \mat{1&0\\0&1}$, $i = \mat{0&1\\-1&0}$, $j = \mat{0&i\\i&0}$, $k = \mat{i&0\\0&-i}$.
+
+WTS: $\mb H^\times = \mb H\bs\set0$.
+Let $z = a+bi+cj+dk$.
+\ul{Conjugate}: $\conj z = a-bi-cj-dk \ra$ $a_2=a_1$, $b_2=-b_1$, $c_2=-c_1$, $d_2=-d_1$.
+\ul{Norm}: $||z|| = z\conj z = a^2+b^2+c^2+d^2$.
+So $z\neq0\iff ||z||>0$.
+If $z\neq0$ then $z\inv=\frac{\conj z}{||z||}$, so $zz\inv = \frac{z\conj z}{||z||} = \frac{||z||}{||z||} = 1$ since $z\inv = \frac{a}{a^2+b^2+c^2+d^2} - \frac{b}{a^2+b^2+c^2+d^2}i - \frac{c}{a^2+b^2+c^2+d^2}j - \frac{d}{a^2+b^2+c^2+d^2}k$.
 
 \end{document}
