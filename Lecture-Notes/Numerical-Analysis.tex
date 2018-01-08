@@ -1,0 +1,84 @@
+\documentclass[]{article}
+\input{../mathdoc}
+\input{../mathsym}
+%\input{../preview}
+
+\author{Book: Epperson 2nd, Presenter: Thomas Lewis, Notes by Michael Reed}
+\title{Numerical Methods and Analysis}
+%date{}
+
+\begin{document}
+\maketitle
+
+%\begin{abstract}
+%\end{abstract}
+
+\subsection*{Introduction}
+
+Two sources of error:
+\begin{enumerate}
+	\item Going from a continuous/infinite problem to a discrete/finite problem.
+		\begin{example}
+			$f'(a) = \lim_{h\ra0} \frac{f(a+h)-f(a)}{h}$, Approximation: fix $h=0.01$, $f'(a)\approx \frac{f(a+0.01)-f(a)}{0.01}$. This is called \ul{truncation error}.
+		\end{example}
+	\item Rounding. Computers only represent finitely many numbers. (all rational)
+		\begin{example}
+			Area of a circle $ = \pi r^2 \approx 3.14159r^2$.
+		\end{example}
+\end{enumerate}
+
+\ul{Focus in this class}
+\begin{enumerate}
+	\item Root finding: solve $f(x)=0$ for $x$.
+	\item Interpolation. Given several function values, estimate others.
+	\item Integration: $\int_a^b f(x)\,dx =\ ?$
+	\item Applications: Differential Equations.
+\end{enumerate}
+
+\subsection*{Basic tools of Calculus}
+
+\begin{theorem}
+	[Mean Value Theorem (MVT)]
+	Let $f$ be continuous on $[a,b]$ and differentiable on $(a,b)$. Then there exists $\xi$ in $(a,b)$ such that $f'(\xi)=\frac{f(b)-f(a)}{b-a}$.
+\end{theorem}
+
+\begin{example}
+	Estimate $\cos(0.01)$.
+	Know $\cos(0)=1$ and $\frac{d}{dx}[\cos x] = -\sin(x)$ with $-1\leq \sin(x) \leq 1$.
+	MVT: $\exists \xi\in(0,0.01)$ such that $\frac{\cos(0.01)-\cos(0)}{0.01-0} = \cos'(\xi)=-\sin(\xi)$. This implies $\cos(0.01) = \cos(0)-0.01\sin(\xi)$.
+	So $\cos(0)-0.01\leq \cos(0.01)\leq \cos(0)+0.01$ and $0.99\leq \cos(0.01)\leq 1\leq 1.01$. Thus $\cos(0.01)\approx 0.995$ with $|\text{Error}|\leq 0.005$.
+\end{example}
+
+\begin{theorem}
+	[Taylor's Remainder Theorem]
+	Let $f(x)$ have $n+1$ continuous derivatives on $[a,b]$ for some $n\geq 0$, and let $x,x_0\in[a,b]$.
+	Then, $f(x)=P_n(x)+R_n(x)$ for $P_n(x) = \sum_{k=0}^n \frac{(x-x_0)^k}{k!}f^{(k)}(x_0)$ and $R_n(x) = \frac{(x-x_0)^{n+1}}{(n+1)!} f^{(n+1)}(\xi_x)$ for some $\xi_x$ between $x$ and $x_0$, where $P_n(x)$ is an $n$th degree polynomial in $x$ and $R_n(x)$ is a remainder/error.
+\end{theorem}
+
+\begin{example}
+	For $x_0=0$, 
+	\begin{align*}
+		e^x &= \sum_{k=0}^n \frac{x^k}{k!}\frac{d}{dx}[e^x]\bigg|_{x=0} + R_n(x) 
+		= \sum_{k=0}^n \frac{x^k}{k!} e^x \bigg|_{x=0} + R_n(x) 
+		= \sum_{k=0}^n \frac{x^k}{k!} + R_n(x) \\
+		e^x &= 1+x+\frac{1}{2!}x^2 + \dots + \frac{1}{n!}x^n + R_n(x)
+	\end{align*}
+	where $R_n(x) = \frac{(n+1)!}x^{n+1}\cdot e^x$ for $\xi_x$ in $(0,x)$ or $(x,0)$.
+\end{example}
+
+\begin{example}
+	Calculate $\cos(0.01)$ with an error less than $10^{-6}$.
+	$\cos(x) = P_n(x)+R_n(x)$ with $P_n(x) = \sum_{k=0}^n \frac{(-1)^k}{(2k)!}x^{2k}$, $x_0=0$.
+	So $\cos(x)-P_n(x) = R_n(x)$ and $|\cos(x)-P_n(x)|\leq |R_n(x)|$.
+	If $|R_n(x)|\leq 10^{-6}$, then absolute error is also.
+	\begin{align*}
+		|R_n|&=\bigg|\frac{(-1)^{n+1}}{(2n+2)!}x^{2n+2}\cos(\xi_x)\bigg| &\qquad \text{ for } x=0.01 \\
+			 &\leq \frac{|(-1)^{n+1}|}{(2n+2)!}(0.01)^{2n+2}|\cos(\xi_x)| \\
+			 &\leq \frac{1}{(2n+2)!}(0.01)^{2n+2}\cdot 1.
+	\end{align*}
+For $n=0$: $|R_0(0.01)|\leq 5\cdot 10^{-5}$.
+For $n=1$: $|R_1(0.01)|\leq 4.2\times 10^{-10}$.
+Use $n=1$, $$\cos(0.01)\approx P_1(0.01) = 1-\frac{1}{2!}(0.01)^2 = 0.99995.$$
+\end{example}
+
+\end{document}
