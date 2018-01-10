@@ -81,4 +81,67 @@ For $n=1$: $|R_1(0.01)|\leq 4.2\times 10^{-10}$.
 Use $n=1$, $$\cos(0.01)\approx P_1(0.01) = 1-\frac{1}{2!}(0.01)^2 = 0.99995.$$
 \end{example}
 
+$$f(x) = \sum_{k=0}^n \us{P_n(x)}{\frac{(x-x_0)^k}{k!} f^{(k)}(x_0)} + \us{R_n(x)}{\frac{(x-x_0)^{n+1}}{(n+1)!} f^{(n+1)}(\xi_x)}$$
+$\xi_x$ is between $x_0$ and $x$.
+
+\begin{example}
+	Bound the error when using $P_3(x)$ to approximate $f(x) = \frac{1}{1-x}$ over the interval $[-\frac12,0]$.
+\end{example}
+\begin{fact}
+	$\frac{1}{1-x} = \sum_{k=0}^\infty x^k$ (geometric series), $P_3(x) = 1+x+x^2+x^3$ and $R_3(x) = \frac1{4!} x^4 f^{(4)}(\xi_x)$ with $\xi_x$ between 0 and $x$, know $x$ is in $[-\frac12,0] \implies \xi_x$ is in $[-\frac12,0]$.
+	So $f^{(4)}(x) = -\frac{24}{(x-1)^5}$.
+\end{fact}
+Then (absolute error at $\displaystyle x) = |f(x)-P_3(x)| = |R_3(x)| = \left|\frac1{4!} x^4 f^{(4)}(\xi_x)\right| = \frac1{24}|x^4|\cdot\left|-\frac{24}{(x-1)^5}\right|$.
+	It follows ($x$ in $[-\frac12,0]$) $\displaystyle \implies |x^4|\leq \left|-\frac12\right|^4 = \left(\frac12\right)^4$.
+	$\displaystyle\left|-\frac{24}{(\xi_x-1)^5}\right| = \frac{24}{|\xi_x-1|^5} \leq \frac{24}{\min|\xi_x-1|^5} = \frac{24}{|-\frac12-1|^5} = \frac{24}{(3/2)^5} = 24\cdot\left(\frac12\right)^5\cdot\left(\frac13\right)^5$.
+	Therefore $\displaystyle|f(x)-P_3(x)| \leq \frac1{24}\cdot\left(\frac14\right)^4\cdot 24\cdot 2^5\cdot\left(\frac13\right)^5 = \frac2{3^5}\approx 0.008$.
+
+\begin{theorem}
+	[Intermediate Value Theorem]
+	Let $f$ be continuous on $[a,b]$ and $w$ such that $f(a)\leq w\leq f(b)$ \ul{or} $f(b)\leq w\leq f(a)$.
+	Then there exists $c$ in $[a,b]$ such that $f(c)=w$.
+\end{theorem}
+\begin{example}
+	Show $f(x) = 2x+\cos(x)$ has only 1 zero.
+
+	$f^{(n)}$ is continuous on $(-\infty,\infty)$ for all $n\geq 0$.
+	\say{solve} $f(x)=0 \implies w=0$.
+	$\lim_{x\ra-\infty} f(x) = -\infty$ and $\lim_{x\ra\infty} f(x) = +\infty$ $\implies$ there exist (at least 1) number $c$ such that $f(c) = 0$.
+	Assume there are two numbers $c_1<c_2$ such that $f(c_1)=f(c_2)=0$.
+	MVT: there exists $\xi$ in the interval $[c_1,c_2]$ such that $f'(\xi) = \frac{f(c_2)-f(c_1)}{c_2-c_1}$. 
+	Thus $f'(\xi) = 2-\sin(x) \geq 2-1 = 1>0$ (contradiction) $\implies c_1=c_2$ (unique solution).
+\end{example}
+
+\subsection*{Error, Big Oh}
+
+Exact Value: $A$.
+Approximation: $A_n$ ($h$ is a param. fixed in the approx. method. $h\approx 0$, $n$ param. $n\ra\infty$)
+
+\begin{example}
+	$A = f'(x)$.
+	$A_n = \frac{f(x+h)-f(x)}{h}$, $h$ small.
+\end{example}
+\begin{example}
+	$A = \sum_{k=0}^\infty a_k$.
+	$A_n = \sum_{k=0}^n a_k$.
+\end{example}
+
+\begin{itemize}
+	\item Error $ = A-A_n$
+	\item Absolute Error $= |A-A_n|$
+	\item Relative Error $= \frac{|A-A_n|}{|A|}$.
+\end{itemize}
+
+\begin{example}
+	$A = 10^6$. $A_n = 10^6+1$.
+	Error $=-1$.
+	Absolute Error $=1$.
+	Relative Error $=\frac1{10^6} = 10^{-6}$.
+\end{example}
+\begin{example}
+	$A = 10^{-6}$. $A_n = 10^{-7}$.
+	Absolute Error $=\frac9{10^7}$.
+	Relative Error $=\frac9{10}$.
+\end{example}
+
 \end{document}
