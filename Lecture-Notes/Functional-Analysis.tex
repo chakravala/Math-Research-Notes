@@ -1,0 +1,87 @@
+\documentclass[]{article}
+\input{../mathdoc}
+\input{../mathsym}
+%\input{../preview}
+
+\author{Book: Erwin Kreyszig, Presenter: Richard Fabiano, Notes by Michael Reed}
+\title{Functional Analysis}
+%date{}
+
+\begin{document}
+\maketitle
+
+%\begin{abstract}
+%\end{abstract}
+
+Chapter 1 - Metric spaces:
+skip but will refer back to some examples.
+
+\ul{Chapter 2}
+
+\begin{definition}
+	A vector space over a field $K$ is nonempty set $X$ of elements (called vectors) together with algebraic operations of vector addition and scalar multiplication which satisfy axioms (p. 50-51).
+\end{definition}
+\begin{note}
+	In this course, $K$ is always either $\mb R$ or $\mb C$.
+\end{note}
+\begin{example}
+	[$\mb R^2$ and $\mb R^3$] These we can \say{visualize} vectors as directed line segments and we have some \say{intuition.}
+\end{example}
+\begin{example}
+	[$X = \mb R^n$] $x = (\xi_1,\dots,\xi_n)$, $\xi_i\in\mb R$.
+\end{example}
+\begin{example}
+	[$X=\mb C^n$] $x = (\xi_1,\dots,\xi_n)$, $\xi_i\in\mb C$.
+\end{example}
+\begin{example}
+	[$X=\ell^\infty$] , vectors are sequences $x=(\xi_1,\xi_2,\dots)$ satisfying $\sup\setc{|\xi_i|}{i=1,2,\dots}<\infty$.
+\end{example}
+\begin{example}
+	$X = C[a,b]$ vectors $x=x(t)$ are continuous functions on interval $[a,b]$.
+\end{example}
+
+\begin{definition}
+	A \ul{subspace} of a vector space $X$ is a nonempty subset $Y$ such that $\forall x,y\in Y$ and $\forall \alpha,\beta\in K$, then $\alpha x+\beta y\in Y$.
+\end{definition}
+\begin{note}
+	A subspace $Y$ is itself a vector space.
+\end{note}
+\begin{definition}
+	A \ul{linear combination} of vectors $x_1,\dots,x_n$ in $X$ is a vector of the form $\alpha_1x_1+\dots+\alpha_nx_n$, with $\alpha_n\in K$.
+\end{definition}
+\begin{definition}
+	If $M\subset X$ is a subset of $X$, the set of all linear combinations of vectors of vectors in $M$ is called span of $M$, denoted $\spn M$.
+\end{definition}
+\begin{note}
+	$\spn M$ is a subspace.
+\end{note}
+\begin{definition}
+	Consider a finite set $M = \set{x_1,\dots,x_n}$ and the equation $\alpha_1x_1 + \dots + \alpha_nx_n = 0$ $(*)$.
+	If $(*)$ holds only for $\alpha_1=\alpha_2=\dots=\alpha_n = 0$, then $M$ is linearly independent. otherwise dependent.
+\end{definition}
+
+An infinite set $M$ is linearly independent if every finite subset is linearly independent.
+
+\begin{definition}
+	If $X$ is a vector space and $\mc B$ is a linear independent subset such that $\spn \mc B = X$, then $\mc B$ is a basis for $X$ (Hamel basis).
+\end{definition}
+
+\begin{definition}
+	A vector space $X$ is \ul{finite dimensional} if there is a natural number $n$ such that $X$ contains a set of $n$ linearly independent vectors, whereas any set of $n+1$ vectors is linearly dependent.
+	In this case, $n$ is the \ul{dimension} of $X$.
+	If $X$ is not finite dimensional, it is \ul{infinite dimensional}.
+\end{definition}
+\begin{note}
+	$X = \set0$ has dimension 0.
+\end{note}
+\begin{corollary}
+	Every finite dimensional vector space has a basis.
+\end{corollary}
+
+\begin{theorem}
+	Every vector space has a basis (requires axiom of choice).
+\end{theorem}
+
+\ul{HW} 2.1: 3,4,6,7,10.
+
+\end{document}

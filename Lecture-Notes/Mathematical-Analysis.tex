@@ -1,0 +1,126 @@
+\documentclass[]{article}
+\input{../mathdoc}
+\input{../mathsym}
+%\input{../preview}
+
+\author{Book: Walter Rudin 3rd, Presenter: Maya Chhetri, Notes by Michael Reed}
+\title{Mathematical Analysis}
+%date{}
+
+\begin{document}
+\maketitle
+
+%\begin{abstract}
+%\end{abstract}
+
+%\ul{Chapter 3 continued}: 
+
+\begin{recall}
+	[Cauchy product] $\sum_{n=0}^\infty a_n$, $\sum_{n=0}^\infty b_n$, then Cauchy product series is:
+	$\sum_{n=0}^\infty c_n$, 
+	$$c_n = \sum_{k=0}^n a_kb_{n-k} = a_0b_n + a_1b_{n-1} + \dots + a_nb_0.$$
+\end{recall}
+
+\begin{theorem}
+	\label{thm-3-50}
+	Suppose
+	\begin{enumerate}
+		\item[(a)] $\sum_{n=0}^\infty a_n$ converges absolutely;
+		\item[(b)] $\sum_{n=0}^\infty a_n = A$
+		\item[(c)] $\sum_{n=0}^\infty b_n = B$
+		\item[(d)] $c_n: = \sum_{k=0}^n a_kb_{n-k}$.
+	\end{enumerate}
+	Then $\sum_{n=0}^\infty c_n$ converges to $AB$.
+\end{theorem}
+\begin{proof}
+	Define sequence of partial sums $A_n:= \sum_{k=0}^n a_k$, $B_n:=\sum_{k=0}^nb_k$, $C_n:=\sum_{k=0}^n c_k$.
+	By assumption: $A_n\lra A$ and $B_n\lra B$.
+	\ul{Want to show}: $C_n\lra AB$.
+	Then 
+	\begin{align*}
+		C_n&:=\sum_{k=0}^nc_k = c_0+c_1+c_2+\dots+c_n \\
+		   &= a_0b_0+(a_0b_1+a_1b_0) + (a_0b_2+a_1b_1+a_2b_0) + \dots + (a_0b_n + a_1b_{n-1}+\dots+a_nb_0) \\
+		   &= a_0(\ob{B_n}{b_0 + b_1+\dots+b_n}) + a_1(\ob{B_{n-1}}{b_0+\dots+b_{n-1}}) + a_2(\ob{B_{n-2}}{b_0+\dots+b_{n-2}}) + \dots + a_n\ob{B_0}{b_0} \\
+		   &= a_0B_n + a_1b_{n-1} + a_2B_{n-2} + \dots + a_nB_0 
+		   = a_0(\beta_n+B) + a_1(\beta_{n-1}+B) + \dots + a_n(\beta_0 + B) \\
+		   &= (\ub{A_n}{a_0+a_1+\dots+a_n})B + a_0\beta_n + a_1\beta_{n-1} + \dots + a_n\beta_0 \lra AB
+	\end{align*}
+	if $a_0\beta_n+a_1\beta_{n-1}+\dots+a_n\beta_0\ra 0$ as $n\ra\infty$, where $\beta_n = B_n-B$ and $B_n=\beta_n+B$.
+	
+	Let $\gamma_n:= \alpha_0\beta_n + \alpha_1\beta_{n-1} + \dots + a_n\beta_0$.
+	\ul{Fix $\epsilon>0$}. \ul{\ul{NTS}}: $\exists N\in\mb N$ such that $|\gamma_n|<\epsilon$ for all $n\geq N$.
+	Since $\sum a_n$ converges absolutely, $\alpha:= \sum_{n=0}^\infty |a_n|\in\mb R$.
+	Then $|\gamma_n|=|a_0\beta_n + a_1\beta_{n-1} + \dots + a_n\beta_0|$.
+	Since $\beta_n\lra 0$ as $n\ra\infty$, $\exists N_1\in\mb N$ such that $|\beta_n|<\epsilon$ for all $n\geq N_1$.
+	For $n\geq N_1$,
+	\begin{align*}
+		|\gamma_n|&=|a_0\beta_n+\dots+a_{n-N_1-1}\beta_{N_1+1} + a_{n-N_1}\beta_{N_1} + \dots + a_n\beta_0| \\
+				  &\os{\Delta}{\leq} |a_0\beta_n + \dots + a_{n-N_1-1}\beta_{N_1+1}| + |a_{n-N_1}\beta_{N_1} + \dots + a_n\beta_0| \\
+				  &\os{\Delta}{\leq} |a_0|\os{<\epsilon}{|\beta_n|}+|a_1|\os{<\epsilon}{|\beta_{n-1}|}+\dots + |a_{n-N_1-1}|\os{<\epsilon}{|\beta_{N_1+1}|} + |a_{n-N_1}\beta_{N_1} + \dots + a_n\beta_0| \\
+				  &< \epsilon \ub{<\alpha}{\sum_{k=0}^{n-N_1-1} |a_k|} + |a_{n-N_1}\beta_{N_1} + \dots + a_n\beta_0| 
+				  < \epsilon\alpha + |a_{n-N_1}\beta_{N_1} + \dots + a_n\beta_0|
+	\end{align*}
+	Keep $N_1$ fixed.
+	Letting $n\ra\infty$ and noting that $a_i\ra0$ as $i\ra\infty$, we get $\lim_{n\ra\infty} |\gamma_n|\leq\epsilon\alpha$.
+	Since $\alpha>0$ is fixed and $\epsilon>0$ is arbitrary, $\lim_{n\ra\infty} |\gamma_n| = 0$.
+\end{proof}
+
+\begin{theorem}
+	\label{thm-3-51}
+	If $\sum a_n = A$, $\sum b_n = B$, $\sum c_n=C$, where $c_n=\sum_{k=0}^n a_kb_{n-k}$.
+	Then $C=AB$.
+\end{theorem}
+\begin{proof}
+	-- In Chapter 8.
+\end{proof}
+
+\subsection*{Rearrangement of an infinite series}
+
+$\sum a_n$ is $\sum a_n'$, where $a_n'=a$ where $k_n$ is a bijection from $\mb N$ to $\mb N$.
+\begin{example}
+	$a_1\ a_2\ a_3\ a_4\ a_5\ a_6\ a_7\ \cdots$, 
+	
+	$a_1\ a_3\ a_2\ a_5\ a_7\ a_4\ \cdots$ (rearrangement),
+	
+	$a_1\ a_3\ a_5\ a_7\ \cdots\ a_{2n+1}\ \cdots\ a_2\ a_4\ a_6\ a_8\ \cdots$ (not a rearrangement).
+\end{example}
+\begin{example}
+	Alternating harmonic series: $\sum_{n=1}^\infty (-1)^{n-1}\frac1n = 1-\frac12+\frac13-\frac14+\frac15-\dots = \ln 2$.
+	
+	Rearrange: 2 odd terms followed by even term $1+\frac13-\frac12+\frac15+\frac17-\frac14+\frac19+\frac1{11}-\frac16+\dots$.
+	
+	\ul{\ul{Show}}: Sum of rearranged series is $\frac32\ln2$.
+	$$\ln 2 = 1-\frac12+\frac13-\frac14+\frac15-\frac16+\frac17-\frac18+\dots.$$
+	Multiply by $\frac12$:
+	$$\frac{\ln2}{2} = 0+\frac12+0-\frac14+0+\frac16+0+\dots.$$
+	Add the two above:
+	$$ \frac32\ln2 = 1+0+\frac13-\frac12 + \frac15 + \frac17-\frac14+\dots,$$
+	so rearranged series sum is $\frac32\ln 2$.
+\end{example}
+
+\begin{theorem}
+	Suppose $\sum a_n$ converge absolutely.
+	Then \ul{every} rearrangement $\sum a_n'$ of $\sum a_n$ converges, and they all converge to the same sum.
+\end{theorem}
+\begin{proof}
+	Let $\sum a_n'$ be a rearrangement of $\sum a_n$.
+	Let $s_n$ and $s_n'$ be sequences of partial sums of $\sum a_n$ and $\sum a_n'$ respectively.
+	Also $s_n\lra s$ (say). \ul{\ul{NTS}}: $s_n'\ra s$.
+	Let $\epsilon>0$ be fixed.
+	\ul{NTS}: $\exists N\in\mb N$ such that $|s_n'-s|<\epsilon$ for all $n\geq N$.
+	Now, 
+	\begin{align*}
+		|s_n'-s|&=|s_n'-s_n+s_n-s| \\
+				&\leq |s_n'-s_n|+|s_n-s|
+	\end{align*}
+	Since $\sum a_n$ converges absolutely, $\exists N_2\in\mb N$ such that $m\geq n>N_2$
+	$$\sum_{i=n}^m |a_i| < \frac\epsilon2.$$
+	Choose $p\in\mb N$ such that $\set{1,2,\dots,N_2}\subset\set{k_1,\dots,k_p}$.
+	Then for $n>p$
+	\begin{align*}
+		s_n'-s_n| &= |(a_1'+a_2'+\dots+a_n')-(a_1+a_2+\dots+a_n)| &\qquad \text{-- \ul{cancel terms}} \\
+				  &\leq \sum_{i>n+1}^{k_p} |a_i| < \frac\epsilon2
+	\end{align*}
+\end{proof}
+
+\end{document}
