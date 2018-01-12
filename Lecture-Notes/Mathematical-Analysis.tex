@@ -118,9 +118,78 @@ $\sum a_n$ is $\sum a_n'$, where $a_n'=a$ where $k_n$ is a bijection from $\mb N
 	Choose $p\in\mb N$ such that $\set{1,2,\dots,N_2}\subset\set{k_1,\dots,k_p}$.
 	Then for $n>p$
 	\begin{align*}
-		s_n'-s_n| &= |(a_1'+a_2'+\dots+a_n')-(a_1+a_2+\dots+a_n)| &\qquad \text{-- \ul{cancel terms}} \\
-				  &\leq \sum_{i>n+1}^{k_p} |a_i| < \frac\epsilon2
+		|s_n'-s_n| &= |(a_1'+a_2'+\dots+a_n')-(a_1+a_2+\dots+a_n)| &\qquad \text{-- \ul{cancel terms}} \\
+				  &\leq \sum_{i=n}^{m} |a_i| < \frac\epsilon2
 	\end{align*}
+\end{proof}
+
+\section*{Continuity}
+
+\ul{From Calculus}: let $f:\mb R\ra\mb R$ such that $f$ may not be  defined at $p$, then $$\lim_{x\ra p} f(x) = q \iff \forall\epsilon>0,\exists \delta=\delta(\epsilon,p)>0: (0<|x-p|<\delta \implies |f(x)-q|<\epsilon).$$
+$f$ is continuous at $p\in\mb R$ if $\lim_{x\ra p} f(x) = f(p)$ if and only if $\forall\epsilon>0,\exists\delta=\delta(\epsilon,p)>0$ such that $\forall x\in\mb R$ with $|x-p|<\delta$ implies $|f(x)-f(p)|<\epsilon$.
+\ul{In metric spaces}: Let $f:E\subset(X,d_X)\ra(Y,d_Y)$.
+\begin{definition}
+	[Limit] Let $p\in E'$. We say $\lim_{x\ra p} f(x) = q$ if and only if $\forall \epsilon>0,\exists\delta=\delta(\epsilon,p)>0$ such that $\forall x\in E$ with $0<d_X(x,p)<\delta$ implies $d_Y(f(x),q) < \epsilon$.
+	So $$X\supset E\supset B_\delta(p) \os{f}{\lra} f(B_\delta(p))\subset Y.$$
+\end{definition}
+
+Alternative definition of limit.
+
+\begin{theorem}
+	Let $f:E\subset(X,d_X)\ra(Y,d_Y)$ and $p\in E'$.
+	Then $\lim_{x\ra p} f(x)=q \iff \lim_{n\ra\infty} f(x_n) = q$ for every sequence $\set{x_n}\subset E$ with $x_n\neq p$ and $x_n\ra p$.
+\end{theorem}
+\begin{proof}
+	\say{$\implies$} Suppose $\lim_{x\ra p} f(x) = q$. Let $\set{x_n}\subset E$ such that $x_n\neq p$ and $x_n\ra p$.
+	\ul{\ul{NTS}}: $\lim_{n\ra\infty} f(x_n) = p$.
+	Let $\epsilon>0$ be fixed. 
+	(NTF: $N\in\mb N$ such that $d_Y(f(x_n),q)<\epsilon$ for all $n>N$).
+	Since $x_n\ra p \implies \exists N\in\mb N$ such that $d_X(x_n,p)<\delta$ for $n>N$.
+	Since $\lim_{x\ra p} f(x) = q$, $\exists\delta=\delta(\epsilon,p)>0$ such that $\forall x\in E,x\neq p$ then $0<d_X(x,p)<\delta\implies d_Y(f(x),q)<\epsilon$.
+	Therefore, for $n>N$, $d_x(x_n,p)<\delta$ which implies $d_Y(f(x_n),q)<\epsilon \implies \lim_{n\ra\infty}f(x_n)=q$.
+
+	\say{$\Lla$} Let $\lim_{n\ra\infty} f(x_n) = q$ for \ul{every} sequence $\set{x_n}\subset E$, $x_n\neq p$ and $x_n\ra p$.
+	Suppose by contradiction that: $\lim_{x\ra p} f(x)\neq q$.
+	This means, $\exists\epsilon>0$ such that \ul{$\forall\delta>0$}, $\exists x_\delta\in E$ such that $0<d_X(x_\delta,p)<\delta$ but $d_Y(f(x),q)\geq \epsilon$.
+	Taking $\delta_n = \frac1n$ and $x_n = x_{\delta_n}$, we see $x_{\delta_n}\ra p$ but $d_Y(f(x_{\delta_n}),q)\geq\epsilon$, contradicting $\lim_{n\ra\infty} f(x_n)=q$ for every sequence $\set{x_n}\subset E$ such that $x_n\ra p$.
+\end{proof}
+
+\ul{Limit properties}: Let $f,g:E\subset(X,d_X)\ra(\mb C,|\cdot|_\mb C)$.
+Then if $\lim_{x\ra p} f(x) = A$, $\lim_{x\ra p} g(x) = q$, $p\in E'$,
+\begin{enumerate}
+	\item $\lim_{x\ra p} (f+g)(x) = A+B$
+	\item $\lim_{x\ra p} (f\cdot g)(x) = A\cdot B$ (Inner product if $\mb C$ replaced by $\mb R^k$)
+	\item $\lim_{x\ra p} \left(\frac fg\right) = \frac AB$.
+\end{enumerate}
+
+\subsection*{Continuity}
+\begin{definition}
+	Suppose $f:E\subset (X,d_X) \ra (Y,d_Y)$ and $p\in E$.
+	We way $f$ is continuous at $p$ if and only if $\forall\epsilon>0,\exists\delta = \delta(\epsilon,p) > 0$ such that $\forall x\in E$ with $d_X(x,p)<\delta \implies d_Y(f(x),f(p))<\epsilon$.
+	\ul{Notes}:	
+\end{definition}
+\begin{itemize}
+	\item Continuity is a pointwise property.
+	\item $f$ is continuous \ul{on $E$} if $f$ is continuous at every $p\in E$.
+	\item $f$ is continuous at an isolated point $p\in E$.
+\end{itemize}
+\begin{example}
+	Fix $\epsilon>0$. Then $d_X(p,p)=0<\delta$ such that $N_\delta(p)\bs\set p=\emptyset \implies d_Y(f(p),f(p))= 0<\epsilon$.
+\end{example}
+
+\begin{theorem}
+	Suppose $f:(X,d_X)\ra(Y,d_Y)$ is continuous $\iff f\inv(V) = \setc{x\in X}{f(x)\in V}$ is open in $X$ for every open set $V\subset Y$.
+\end{theorem}
+\begin{proof}
+	\say{$\implies$} Suppose $f$ is continuous on $X$. Let $V\subset Y$ be open.
+	\ul{\ul{NTS}}: $f\inv(V)$ is open in $X$.
+	Let $p\in f\inv(p)$.
+	\ul{\ul{NTS}}: $\exists\delta>0$ such that $B_\delta(p)\subset f\inv(V)$.
+	Since $p\in f\inv(V)$, $f(p)\in V$.
+	So $V$ open $\implies\exists\epsilon>0$ such that $B_\epsilon(f(p))\subset V$.
+	Since $f$ is continuous, $\exists\delta=\delta(\epsilon,p)>0$ such that $f(B_\delta(p))\subset B_\epsilon(f(p))\subset V \implies B_\delta(p)\subset f\inv(V) \implies p$ is an interior point of $f\inv(V) \implies f\inv(V)$ is open.
+
+	\say{$\Lla$} next time.
 \end{proof}
 
 \end{document}

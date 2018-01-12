@@ -84,4 +84,83 @@ An infinite set $M$ is linearly independent if every finite subset is linearly i
 
 \ul{HW} 2.1: 3,4,6,7,10.
 
+Last time: vector spaces and their (algebraic) properties.
+
+To motivate definition of a norm on a vector space, consider $\mb R^2$.
+
+\begin{definition}
+	A normed vector space is a vector space $X$ with a norm $||\cdot||$ defined on it.
+	A \ul{norm} $||\cdot||$ on a vector space $X$ is a real-valued function on $X$, with values denoted by $||x||$, which satisfies:
+	\begin{itemize}
+		\item[N1)] $||x||\geq 0$
+		\item[N2)] $||x||=0$ if and only if $x=0$
+		\item[N3)] $||\alpha x|| = |\alpha|\,||x||$ for all $x\in X$, for all $\alpha\in K$
+		\item[N4)] $||x+y||\leq ||x||+||y||$ for all $x,y\in X$ (Triangle inequality).
+	\end{itemize}
+\end{definition}
+\begin{note}
+	The norm defines a metric on $X$ by $d(x,y) = ||x-y||$.
+\end{note}
+\begin{example}
+	$\mb R^3$ with Euclidean norm: for $x=(\xi_1,\xi_2,\xi_3)$, $||x||=\sqrt{\xi_1^2+\xi_2^2+\xi_3^2}$.
+\end{example}
+\begin{example}
+	$\mb R^n$ for $x=(\xi_1,\dots,\xi_n)$, define $||x||_2 = \sqrt{\sum_{i=1}^n \xi_i^2}$.
+\end{example}
+\begin{example}
+	$X = C[a,b]$ for $x=x(t)$, define $\displaystyle||x|| = \max_{a\leq t\leq b}|x(t)|$.
+	Notation: this is also denoted $||\cdot||_\infty$.
+\end{example}
+\begin{example}
+	$X = \ell^\infty$ for $x = (\xi_i)_{i=1}^\infty$, define norm $||x|| = \sup\setc{|\xi_i|}{i=1,\dots}$.
+\end{example}
+
+\begin{definition}
+	A sequence of vectors $(x_n)_{n=1}^\infty$ in a normed vector space $X$ is \ul{convergent} if there exists $x\in\mb X$ such that $\lim_{n\ra\infty}||x_n-x||=0$.
+	Notation: we write $x_n\ra x$.
+\end{definition}
+
+\begin{recall}
+	$\displaystyle\lim_{n\ra\infty} ||x_n-x||=0$ means: for every $\epsilon>0$, there exists $N>0$ such that if $n\geq N$, then $||x_n-x||<\epsilon$.
+\end{recall}
+
+\begin{definition}
+	A sequence of vectors $(x_n)_{n=1}^\infty$ is \ul{Cauchy} if for every $\epsilon>0$, there exists $N>0$ such that if $m,n>N$, then $||x_m-x_n||<\epsilon$.
+\end{definition}
+\begin{definition}
+	A normed vector space is \ul{complete} if every Cauchy sequence in $X$ is convergent in $X$.
+\end{definition}
+\begin{definition}
+	A complete normed vector space is called a \ul{Banach space}.
+\end{definition}
+
+\begin{example}
+	$X = \mb R^n$, with Euclidean norm $||\ ||_2$. For $x=(\xi_1,\dots,\xi_n)$, $||x|| = \sqrt{\sum_{i=1}^n \xi_i^2}$. $||\cdot||_2$ is a norm. N1-N3 easy.
+	For $x,y=(\eta_1,\dots,\eta_n)$.
+	To show $||x+y|| \leq ||x||+||y||$, show $||x+y||^2 \leq (||x||+||y||)^2 = ||x||^2 + ||y||^2 + 2 ||x||\,||y||$.
+	\begin{align*}
+		||x+y||^2 &= \sum_{i=1}^n (\xi_i+\eta_i)^2 
+				  = \sum_{i=1}^n (\xi_i^2 + \eta_i^2 + 2\xi_i\eta_i) \\
+				  &= \sum_{i=1}^n \xi_i + \sum_{i=1}^n \eta_i + 2\sum_{i=1}^n \xi_i\eta_i
+				  = ||x||^2 + ||y||^2 + 2\sum_{i=1}^n \xi_i\eta_i \\
+				  &\leq ||x||^2 + ||y||^2 + 2\sum_{i=1}^n |\xi_i\eta_i| \qquad \text{Cauchy-Schwarz ineqaulity}\\
+				  &\leq ||x||^2 + ||y||2 + 2\sqrt{\sum_{i=1}^n|\xi_i|^2} \sqrt{\sum_{i=1}^n|\eta_i|^2} \\
+				  &= ||x||^2 + ||y||^2 + 2||x||\cdot||y|| = (||x||+||y||)^2
+	\end{align*}
+	To show $\mb R^n$ is complete with this norm:
+	Let $(x_m)_{m=1}^\infty$ be a Cauchy sequence in $\mb R^n$.
+	Notation: $x_m = (\xi_1^m,\dots,\xi_n^m)$.
+	Let $\epsilon>0$. There $\exists N>0$ such that if $m,r>N$, then $||x_m-r_r||<\epsilon$.
+	So $||x_m-x_r||^2 < \epsilon^2$.
+	So $\sum_{i=1}^n (\xi_i^m-\xi_i^r)^2 < \epsilon^2$ $(*)$.
+	For each $i$, $(\xi_i^m-\xi_i^r)^2<\epsilon^2$, so $|\xi_i^m-\xi_i^r|<\epsilon$.
+	So $(\xi_i^m)_{m=1}^\infty$ is a Cauchy sequence of real numbers, here convergent since $\mb R$ is complete.
+	Thus $\lim_{m\ra\infty} \xi_i^m = \xi_i$ for each $i$.
+	Define $x = (\xi_1,\dots,\xi_n)$.
+	Let $r\ra\infty$ in $(*)$ to get $\sum_{i=1}^n(\xi_i^m-\xi_i)^2\leq\epsilon^2$ and $||x^m-x||^2 \leq \epsilon^2$ and $||x^m-x||\leq \epsilon$.
+	Thus $x_m\ra x$.
+\end{example}
+
+\ul{HW} 2.2: 6,10
+
 \end{document}
