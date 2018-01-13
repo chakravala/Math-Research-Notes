@@ -144,4 +144,54 @@ Approximation: $A_n$ ($h$ is a param. fixed in the approx. method. $h\approx 0$,
 	Relative Error $=\frac9{10}$.
 \end{example}
 
+\newpage
+
+Last time:
+Given $A$ and approximations $A_h$ or $A_n$, defined error and absolute and relative error.
+Convergence means $\lim_{h\ra0} A_n=A$ (implies $\lim_{h\ra0}\text{error}=0$) and $\lim_{n\ra\infty} A_n = A$ (implies $\lim_{n\ra\infty}\text{error}=0$).
+Often we have 2 methods, both convergent, and we want to compare \say{rate or order} of convergence.
+
+A good example to keep in mind: 
+Approximate $A = \int_1^3 e^{x^2}\,dx$.
+\ul{Method 1}: Use rectangles of width $h = \frac{3-1}{n} = \frac2n$ to get Riemann sums $A_h^1$ or $A_n^1$.
+\ul{Method 2}: Use trapezoids of width $h$ to get sums $A_h^2$ or $A_n^2$.
+
+\begin{definition}
+	$A = A_h + \mc O(\beta(h))$ if there exists $C>0$, independent of $h$ such that $|A-A_h|\leq C\beta(h)$.
+\end{definition}
+\begin{note}
+	If $\lim_{h\ra0}\beta(h)=0$, then $A_h\ra A$.
+\end{note}
+\begin{definition}
+	$A = A_n + \mc O(\beta(n))$ if there exists $C>0$, independent of $n$, such that $|A-A_n|\leq C\beta(n)$.
+\end{definition}
+Sometimes consider $a_n$ which is \# flops or amount of memory.
+
+\subsection*{Comparison of methods}
+
+Suppose method 1 has $A^1\sim\mc O(\beta_1(h))$ and method 2 has $A^2\sim\mc O(\beta_2(h))$.
+\begin{itemize}
+	\item If $\displaystyle\lim_{h\ra0} \frac{\beta_1(h)}{\beta_2(h)}=0$, then method 1 converges faster.
+	\item If $\displaystyle\lim_{h\ra0} \frac{\beta_1(h)}{\beta_2(h)}=M\in(0,\infty)$, then methods have same rate.
+	\item If $\displaystyle\lim_{h\ra0} \frac{\beta_1(h)}{\beta_2(h)}=+\infty$, then method 2 converges faster.
+\end{itemize}
+\begin{example}
+	Suppose $f$ is smooth on $[a,b]$, and fix $x\in(a,b)$.
+	Set $A=f'(x)$, and $A_h = \frac{f(x+h)-f(x)}{h}$.
+	Show $A=A_h + \mc O(h)$.
+	By Taylor's Theorem, $f(x+h) = f(x) + hf'(x) + \frac12h^2f''(\xi)$, where $\xi$ is between $x$ and $x+h$.
+	So $f'(x) = \frac{f(x+h)-f(x)}{h} -\frac12hf''(\xi)$.
+	Thus $A = A_h - \frac12hf''(\xi)$. Set $C = \frac12\displaystyle\max_{a\leq\xi\leq b} |f''(\xi)|$.
+	Then $|A-A_h|\leq Ch$.
+\end{example}
+\begin{example}
+	Suppose $f$ smooth on $[a,b]$, and fix $x\in(a,b)$.
+	$A = f'(x)$, $A_h = \frac{f(x+h)-f(x-h)}{2h}$.
+	Show $A = A_h + \mc O(h^2)$. By Taylor's Theorem: $f(x+h) = f(x) + hf'(x) + \frac12h^2f''(x) + \frac16h^2f'''(\xi_1)$, where $\xi_1$ is between $x$ and $x+h$.
+	Therefore $f(x-h) = f(x) - hf'(x) + \frac12h^2f''(x) - \frac16h^3f'''(\xi_2)$, where $\xi_2$ is between $x-h$ and $x$.
+	So $$ A_h = \frac{2hf'(x) + \frac16h^3[f'''(\xi_1)+f'''(\xi_2)]}{2h} = f'(x) + \frac1{12}h^2[f'''(\xi_1)+f'''(\xi_2)].$$
+	Let $C = \frac1{12}\displaystyle\max_{a\leq\xi\leq b}|f'''(\xi)|$.
+	So $\displaystyle|A-A_h| \leq \frac1{12}h^2(C+C) = \frac16Ch^2$.
+\end{example}
+
 \end{document}
