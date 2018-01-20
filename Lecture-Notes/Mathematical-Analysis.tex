@@ -178,7 +178,7 @@ Then if $\lim_{x\ra p} f(x) = A$, $\lim_{x\ra p} g(x) = q$, $p\in E'$,
 \end{example}
 
 \begin{theorem}
-	Suppose $f:(X,d_X)\ra(Y,d_Y)$ is continuous $\iff f\inv(V) = \setc{x\in X}{f(x)\in V}$ is open in $X$ for every open set $V\subset Y$.
+	Suppose $f:(X,d_X)\ra(Y,d_Y)$ is continuous on $X \iff f\inv(V) = \setc{x\in X}{f(x)\in V}$ is open in $X$ for every open set $V\subset Y$.
 \end{theorem}
 \begin{proof}
 	\say{$\implies$} Suppose $f$ is continuous on $X$. Let $V\subset Y$ be open.
@@ -189,7 +189,104 @@ Then if $\lim_{x\ra p} f(x) = A$, $\lim_{x\ra p} g(x) = q$, $p\in E'$,
 	So $V$ open $\implies\exists\epsilon>0$ such that $B_\epsilon(f(p))\subset V$.
 	Since $f$ is continuous, $\exists\delta=\delta(\epsilon,p)>0$ such that $f(B_\delta(p))\subset B_\epsilon(f(p))\subset V \implies B_\delta(p)\subset f\inv(V) \implies p$ is an interior point of $f\inv(V) \implies f\inv(V)$ is open.
 
-	\say{$\Lla$} next time.
+	\say{$\Lla$} Let $p\in X$ and $\epsilon>0$ be given.
+	\ul{NTS}: $\exists\delta=\delta(p,\epsilon)>0$ such that for $x\in X$ with $d_X(x,p)<\delta$ implies $d_Y(f(p),f(x))<\epsilon$.
+	Let $v:=B_\epsilon(f(p))\subset Y$. Then $V$ is open. Therefore, $f\inv(V)$ is open in $X$ and $p\in f\inv(V)$.
+	Since $f\inv(V)$ is open, $p$ is an interior point. So $\exists\delta>0$ such that $B_\delta(p)\subset f\inv(V) \implies f(B_\delta(p))\subset V = B_\epsilon(f(p)) \implies f$ continuous on $X$ since $p\in X$ is arbitrary.
+\end{proof}
+\begin{corollary}
+	$f:(X,d_X)\ra(Y,d_Y)$ is continuous $\iff f\inv(W)$ is closed in $X$ for every closed set $W$ in $Y$.
+\end{corollary}
+\begin{proof}
+	Notice that 
+	\begin{itemize}
+		\item $W$ closed $\iff V=W^c$ open.
+		\item $f$ continuous on $X\iff f\inv(V)$ is open $\iff [f\inv(V)]^c \os?= f\inv(V^c)$ is closed, with $V^c=W$.
+	\end{itemize}
+	\ul{Enough to show}: $[f\inv(V)]^c = f\inv(V^c)$ (for any $V$).
+	Let $x\in[f\inv(V)]^c$. This means $x\notin f\inv(V) \iff f(x)\notin V \iff f(x)\in V^c \iff x\in f\inv(V^c)$.
+\end{proof}
+\begin{remark}
+	Topological properties preserved under continuous mapping in one or other direction.
+	\begin{enumerate}
+		\item[(i)] $f(\text{compact})= $ compact
+		\item[(ii)] $f(\text{connected}) = $ connected
+		\item[$\checkmark$(iii)] $f\inv(\text{open}) = $ open
+		\item[$\checkmark$(iv)] $f\inv(\text{closed}) = $ closed
+	\end{enumerate}
+\end{remark}
+\begin{remark}
+	\ul{Not necessarily true}
+	\begin{enumerate}
+		\item[(i)] $f(\text{open}) \neq $ open
+		\item[(ii)] $f(\text{closed}) \neq $ closed
+		\item[(iii)] $f\inv(\text{compact}) \neq $ compact
+		\item[(iv)] $f\inv(\text{connected}) \neq $ connected
+		\item[(v)] $f(\text{bounded}) \neq $ bounded
+		\item[(vi)] $f\inv(\text{bounded}) \neq $ bounded.
+	\end{enumerate}
+\end{remark}
+\begin{example}
+	\begin{enumerate}
+		\item[(i)] $f(\text{open}) \neq $ open
+			\begin{enumerate}
+				\item[(a)] constant function.
+				\item[(b)] $f:\mb R\ra\mb R$ by $f(x) = \frac1{1+x^2}$.
+					$U = (-1,1)\subset\mb R$ open but $f(U) = (\frac12,1]$ not open.
+			\end{enumerate}
+		\item[(ii)] $W = [0,\infty)$ closed in $\mb R$ but $f(W) = (0,1]$ not closed.
+	\end{enumerate}
+\end{example}
+
+\begin{theorem}
+	\label{thm-4-7}
+	$(X,d_X),(Y,d_Y),(Z,d_Z)$ -- metric spaces.
+	If $f:X\ra Y$ is continuous at $p\in X$, and $g:f(X)\ra Z$ is continuous at $f(p)$, then $(g\circ f): X\ra Z$ is continuous at $p$.
+	$ X\ni p \os f\lra f(p)\in Y$ and $X\ni p \os{g\circ f}\lra g(f(p))\in Z \os g\lla f(p)\in Y$.
+\end{theorem}
+\begin{proof}
+	Let $p\in X$ and $\epsilon>0$ be fixed.
+	Since $g$ is continuous at $f(p)$, $\exists\eta>0$ such that $g(B_\eta(f(p)))\subset B_\epsilon(g(f(p)))$.
+	Since $f$ is continuous at $p$, $\exists\delta>0$ such that $f(B_\delta(p))\subset B_\eta(f(p))$.
+	Therefore, $g(f(B_\delta(p)))\subset B_\epsilon(g(f(p)))$.
+	Hence $g\circ f$ is continuous at $p$.
+\end{proof}
+
+\begin{theorem}
+	\label{thm-4-9}
+	$f,g:(X,d_X)\os{\text{continuous}}{\lra}\mb C$.
+	Then $f+g,f\cdot g,f/g$ (whenever well defined) are continuous.
+\end{theorem}
+\begin{proof}
+	skip.
+\end{proof}
+\begin{theorem}
+	\label{thm-4-10}
+	$\vf:(X,d_X)\ra\mb R^k$ with $k\geq 1$ defined by $\vf(x) = (f_1(x),f_2(x),\dots,f_k(x))$; $x\in X$, where $f_i:X\ra\mb R$ for $i=1,2,\dots,k$.
+	\begin{enumerate}
+		\item[(a)] $\vf$ is continuous on $X \iff$ each $f_i$ is continuous on $X$.
+		\item[(b)] if $\vf$ and $\vg$ are continuous on $X$, then $\ub{\text{vector-valued}}{\vf+\vg}$ and $\ub{\text{real-valued}}{\vf\cdot\vg} (\ra$ inner product) are continuous on~$X$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{recall}
+	[Compacat set]
+	\begin{enumerate}
+		\item[(i)] $E\subset(X,d_X)$ is compact if every open cover $\set{V_\alpha}_\alpha$ of $E$ has a finite subcover.
+		\item[(ii)] $E$ is compact if for every sequence $\set{x_n}\subset E$, $\exists$ a convergent subsequence $\set{x_{n_k}}$.
+	\end{enumerate}
+\end{recall}
+\begin{theorem}
+	\label{thm-4-14}
+	Let $(X,d_X)$ be compact and $f:(X,d_X)\ra(Y,d_Y)$ continuous.
+	Then $f(X)$ is compact.
+\end{theorem}
+\begin{proof}
+	Let $\set{y_n}\subset f(X)$ be a sequence.
+	Then for each $n\in N$, $\exists \ul{x_n\in X}$ such that $f(x_n)=y_n$.
+	Then $X$ compact and $\set{x_n}\subset X$ implies that $\exists\set{x_{n_k}}\subset\set{x_n}$ such that $x_{n_k}\lra x^*$ for some $x^*\in X$.
+	Then $f$ continuous $\implies f(x_{n_k}) \lra f(x^*)\in f(X)$ i.e., $\exists$ a convergent subsequence $\set{y_{n_k}} = \set{f(x_{n_k})}\subset f(X)$.
+	So $f(X)$ must be compact.
 \end{proof}
 
 \end{document}

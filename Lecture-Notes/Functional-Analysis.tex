@@ -163,4 +163,64 @@ To motivate definition of a norm on a vector space, consider $\mb R^2$.
 
 \ul{HW} 2.2: 6,10
 
+Last time: normed vector spaces, $\mb R^n$ is complete.
+
+Define vector space $s = $ set of all sequences (bounded or unbounded).
+$x\in s$, $x=(\xi_1,\xi_2,\dots)$ or $x=(\xi_i)_{i=1}^\infty$.
+Can define a metric by $$d(x,y) = \sum_{i=1}^\infty \frac1{2^i} \frac{|\xi_i-\eta_i|}{1+|\xi_i-\eta_i|},$$ where $x = (\xi_i)_{i=1}^\infty,y=(\eta_i)_{i=1}^\infty$.
+Is there a norm $||\cdot||$ on $S$ such that $d(x,y) = ||x-y||$ for all $x,y\in S$.
+
+\begin{theorem}
+	[Translation Invariance] On vector space $X$, a metric $d$ induced by a norm is translation invariant: $d(x+a,y+a)=d(x,y)$ and $d(\alpha x,\alpha y) = |\alpha|d(x,y)$ for all $x,y,a\in X$, and all scalar.
+\end{theorem}
+\begin{proof}
+	Let $x,y,a\in X$ and $\alpha$ scalar.
+	$d(x+a,y+a) = ||(x+a)-(y+a)|| = ||x-y|| = d(x,y)$ and
+	$d(\alpha x -\alpha y) = ||\alpha x-\alpha y|| = ||\alpha(x-y)|| = |\alpha|\ ||x-y|| = |\alpha| d(x,y)$.
+\end{proof}
+
+HW: Show metric $d$ on $s$ is not induced by any norm.
+
+\begin{recall}
+	$\displaystyle X = \ell^\infty = \setc{x=(\xi_i)_{i=1}^\infty}{\sup_{1\leq i\leq\infty}|\xi_i|<\infty}$.
+	Can define norm by $\displaystyle||x||_\infty = \sup_i|\xi_i|$.
+	$\ell^\infty$ with this norm is complete, hence a Banach space.
+\end{recall}
+\begin{example}
+	$X = C[a,b]$.
+	Define a norm on $X$ by $\displaystyle||x(t)||_\infty = \max_{a\leq t\leq b}|x(t)|$.
+	Can check this is a norm. $C[a,b]$ with $||\ ||_\infty$ is complete (HW grad).
+\end{example}
+\begin{example}
+	$X = C[a,b]$. Define a norm on $X$ by $||x||_1 = \int_a^b|x(t)|\,dt$.
+	Can check this is a norm.
+	Claim: $C[a,b]$ with $||\ ||_1$ is not complete.
+	To show this, we must demonstrate a sequence of functions $(x_n)_{n=1}^\infty$ in $C[a,b]$ which is Cauchy in $||\cdot ||_1$, but $(x_n)_{n=1}^\infty$ does not converge to any $x\in X$.
+Take $X = C[0,1]$. Define $x_n(t) \begin{cases} 0 & 0\leq t\leq 1/2 \\ nt-\frac n2 & \frac12 \leq t \leq \frac12+\frac1n \\ 1 & \frac12+\frac1n\leq t\leq 1 \end{cases}$.
+		Consider $\displaystyle||x_n-x_m||_1 = \int_0^1|x_n(t)-x_m(t)|\,dt \leq \frac12\cdot\frac1N$ for $n,m\geq N$.
+		Given $\epsilon>0$, set $N>\frac1{2\epsilon}$.
+		If $n,m\geq N$, then $||x_n-x_m||\leq\frac1{2N}<\epsilon$.
+		Clearly $(x_n)_{n=1}^\infty$ is Cauchy in $||\,||_1$.
+		Can we have $x_n\ra x$ for some $x(t)\in C[a,b]$?
+		If so, then $||x_n-x||_1\ra 0$ but $$||x_n(t)-x(t)||_1 = \int_0^\frac12 |x(t)|\, dt + \int_\frac12^{a_n} |x_n(t)-x(t)|\,dt + \int_{a_n}^1 |1-x(t)|\,dt$$ must have $\lra 0$ as $n\ra\infty$.
+		This implies $\int_0^\frac12|x(t)|\,dt=0$, so $x(t)=0$ for $0\leq t<\frac12$ and $\int_\frac12^1 |1-x(t)|\, dt = 0$, so $x(t) = 1$ for $\frac12<t\leq 1$.
+		Can't have $x(t)\in C[0,1]$.
+\end{example}
+\begin{example}
+	Similar for $X=C[a,b]$ with $||\cdot||_2,||\cdot||_p,p\geq 1$.
+	$\displaystyle ||x||_p = \plr{\int_a^b|x(t)|^p\,dt}^\frac1p$.
+\end{example}
+
+\begin{definition}
+	A subspace $Y$ of a normed vector space $X$ is \ul{closed} whenever $(x_n)_{n=1}^\infty$ is a sequence in $Y$ with $x_n\ra x$, then $x\in Y$.
+\end{definition}
+\begin{theorem}
+	Let $X$ be a Banach space.
+	A subspace $Y$ of $X$ is complete if and only if $Y$ is closed.
+\end{theorem}
+\begin{proof}
+	\ul{$\implies$}: Suppose $Y$ is complete subspace of $X$. Let $(x_n)_{n=1}^\infty$ be a sequence in $Y$, and suppose $x_n\ra x\in X$. Since $x_n\ra x$ in $X$, then $(x_n)_{n=1}^\infty$ is Cauchy in $X$. Thus $(x_n)_{n=1}^\infty$ is Cauchy in $Y$.
+	Because $Y$ is complete, $(x_n)$ converges in $Y$. Thus $x\leq y$, so $Y$ is closed.
+\end{proof}
+
 \end{document}
