@@ -135,10 +135,11 @@ To motivate definition of a norm on a vector space, consider $\mb R^2$.
 \end{definition}
 
 \begin{example}
-	$X = \mb R^n$, with Euclidean norm $||\ ||_2$. For $x=(\xi_1,\dots,\xi_n)$, $||x|| = \sqrt{\sum_{i=1}^n \xi_i^2}$. $||\cdot||_2$ is a norm. N1-N3 easy.
+	$X = \mb R^n$, with Euclidean norm $||\cdot ||_2$. For $x=(\xi_1,\dots,\xi_n)$, $||x||_2 = \sqrt{\sum_{i=1}^n \xi_i^2}$ is a norm. N1-N3 easy.
 	For $x,y=(\eta_1,\dots,\eta_n)$.
-	To show $||x+y|| \leq ||x||+||y||$, show $||x+y||^2 \leq (||x||+||y||)^2 = ||x||^2 + ||y||^2 + 2 ||x||\,||y||$.
+	To show $||x+y|| \leq ||x||+||y||$, show
 	\begin{align*}
+		||x+y||^2 &\leq (||x||+||y||)^2 = ||x||^2 + ||y||^2 + 2 ||x||\,||y||. \\
 		||x+y||^2 &= \sum_{i=1}^n (\xi_i+\eta_i)^2 
 				  = \sum_{i=1}^n (\xi_i^2 + \eta_i^2 + 2\xi_i\eta_i) \\
 				  &= \sum_{i=1}^n \xi_i + \sum_{i=1}^n \eta_i + 2\sum_{i=1}^n \xi_i\eta_i
@@ -219,8 +220,69 @@ Take $X = C[0,1]$. Define $x_n(t) \begin{cases} 0 & 0\leq t\leq 1/2 \\ nt-\frac 
 	A subspace $Y$ of $X$ is complete if and only if $Y$ is closed.
 \end{theorem}
 \begin{proof}
-	\ul{$\implies$}: Suppose $Y$ is complete subspace of $X$. Let $(x_n)_{n=1}^\infty$ be a sequence in $Y$, and suppose $x_n\ra x\in X$. Since $x_n\ra x$ in $X$, then $(x_n)_{n=1}^\infty$ is Cauchy in $X$. Thus $(x_n)_{n=1}^\infty$ is Cauchy in $Y$.
+	\ul{$\implies$}$|$ Suppose $Y$ is complete subspace of $X$. Let $(x_n)_{n=1}^\infty$ be a sequence in $Y$, and suppose $x_n\ra x\in X$. Since $x_n\ra x$ in $X$, then $(x_n)_{n=1}^\infty$ is Cauchy in $X$. Thus $(x_n)_{n=1}^\infty$ is Cauchy in $Y$.
 	Because $Y$ is complete, $(x_n)$ converges in $Y$. Thus $x\leq y$, so $Y$ is closed.
+
+	\ul{$\Lla$}$|$ Suppose $Y$ is closed. Let $(x_n)_{n=1}^\infty$ be a Cauchy sequence in $Y$. Then $(x_n)_{n=1}^\infty$ is Cauchy in $X$, hence converges in $X$, say $x_n\ra x\in X$. Since $Y$ is closed, we ahve $x\in Y$.
+	Thus $Y$ is complete.
 \end{proof}
+
+\begin{recall}
+	For $x = (x_1,x_2)\in\mb R^2$, $||x||_2 = \sqrt{x_1^2+x_2^2}$ and $||x||_\infty = \max\set{|x_1|,|x_2|}$.
+	So $$S_2 = \setc{x\in\mb R^2}{||x||_2 = 1} = \setc{(x_1,x_2)}{x_1^2+x_2^2=1}$$ 
+	and $$S_\infty = \setc{x\in\mb R^2}{||x||_\infty=1} = \setc{(x_1,x_2)}{|x_1|=1\text{ or }|x_2|=1}.$$
+\end{recall}
+
+\begin{definition}
+	Let $X$ and $Y$ be normed spaces.
+	A mapping $T:X\ra Y$ is an \ul{isometry} if it preserves length: that is, if $||Tx||_Y = ||x||_X$ for all $x\in X$.
+	If $T$ is also an isomorphism, then we say $X$ and $Y$ are \ul{isomorphically isometric} i.e., they are the \say{same.}
+\end{definition}
+
+\begin{theorem}
+	Let $X$ be a normed space.
+	Then there exists a completion of $X$.
+\end{theorem}
+
+\begin{lemma}
+	Let $\set{x_1,x_2,\dots,x_n}$ be linearly independent in a normed vector space $X$.
+	Then there exists $c>0$ such that for every set of scalars $\set{\alpha_1,\dots,\alpha_n}$ we have $(*)$ $||\alpha_1x_1+\alpha_2x_2+\dots+\alpha_nx_n|| \geq c(|\alpha_1|+\dots+|\alpha_n|)$.
+\end{lemma}
+\begin{proof}
+	Set $s = |\alpha_1|+\dots+|\alpha_n|$. If $s=0$, then $(*)$ always holds for any $c>0$.
+	So let $s>0$. Instead of $(*)$ consider $(**)$ $||\beta_1x_1+\beta_2x_2+\dots+\beta_nx_n||\geq c$ for all $\sum_{j=1}^n|\beta_j| = 1$, where $\beta_j = \frac{\alpha_j}s$.
+
+	BWOC, suppose $(**)$ not true for all scalars such that $\sum_{j=1}^n|\beta_j| = 1$.
+	Thus there is exists a sequence $(y_n)_{m=1}^\infty$, $y_m = \beta_1^m x_1 + \beta_2^m x_2 + \dots + \beta_n^m x_n$, with $\sum_{j=1}^n|\beta_j^m| = 1$, and $||y_m||\ra0$ as $m\ra 0$.
+	We have
+	\begin{align*}
+		y_1 &: \beta_1^1, \beta_2^1,\dots,\beta_n^1 \\
+		y_2 &: \beta_1^2, \beta_2^2,\dots,\beta_n^2 \\
+			&\vdots \\
+		y_m &: \beta_1^m,\beta_2^m,\dots,\beta_n^m \\
+			&\vdots
+	\end{align*}
+	Notice $|\beta_j^m|\leq 1$ for all $m,j$. The sequence $(\beta_1^m)_{m=1}^\infty$ is bounded, hence has a convergent subsequence, $(\beta_1^{m,1})$, and $\beta_1^{m,1}\ra\beta_1$.
+	There is a subsequence $(y_{1,m})$.
+	Next consider $(\beta_2^{m,1})$.
+	Similarly it has convergent subsequence $\beta_2^{m,2}$ and $\beta_2^{m,2}\ra\beta_2$.
+	Also $\beta_1^{m,2}\ra\beta_1$. (Bolzano-Weierstrass theorem) Repeat for each index, getting subsequence of the previous subsequence.
+	Get a subsequence $(y_{n,m})_{m=1}^\infty$ of $(y_m)$ such that $y_{n,m} = \gamma_1^mx_1 + \gamma_2^mx_2 + \dots + \gamma_n^mx_n$ and $\sum_{j=1}^n|\gamma_j^m|=1$ and $\lim_{m\ra\infty}\gamma_j^m = \beta_j$.
+	Define $y = \beta_1x_1+\beta_2x_2+\dots+\beta_nx_n$.
+	Thus $y_{n,m}\ra y$, where $\sum_{j=1}^n |\beta_j| = 1$.
+	But $||y_{n,m}||\ra0$, and $||y||\neq0$ contradiction.
+\end{proof}
+
+\begin{theorem}
+	Every finite dimensional subspace $Y$ of normed space $X$ is complete and closed.
+\end{theorem}
+\begin{corollary}
+	Every finite dimensional normed space is a Banach space.
+\end{corollary}
+
+There are things that happen in infinite dimensional spaces that don't happen in finite dimensional spaces. For example, every finite dimensional vector space is complete; but not all infinite dimensional ones.
+
+\ul{HW 2.3}: 1,3,10, G2;
+\ul{HW 2.4}: 1,2,8, G6.
 
 \end{document}

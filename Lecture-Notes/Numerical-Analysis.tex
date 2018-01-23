@@ -194,4 +194,79 @@ Suppose method 1 has $A^1\sim\mc O(\beta_1(h))$ and method 2 has $A^2\sim\mc O(\
 	So $\displaystyle|A-A_h| \leq \frac1{12}h^2(C+C) = \frac16Ch^2$.
 \end{example}
 
+\subsection{Computer Arithmetic}
+
+Computers can only represent a finite amount of numbers using a fixed, finite number of digits.
+
+\begin{definition}
+	[Floating point numbers]
+	$x = \sigma\times f\times\beta^{t-p}$, where $\sigma = \text{sgn}$ $(+,-)$, $f=$ fraction $ = .d_1d_2\dots d_m$, $\beta = $ base (typically $d \implies d_i\in{0,1}$ for all $i$), $t-p = $ exponent where $t$ variable, $p$ fixed (called the shift).
+	
+	\ul{Storage}: $x = \us{1\text{ bit}}{\sigma}\mid\us{N\text{ bits}}{t}\mid \us{M\text{ bits}}{f}$, so $M+N+1$ bits.
+\end{definition}
+
+\begin{example}
+	$\beta = 2$, $p = 15$, $N=5$, $M=8$. $x = \pm 0.d_1d_2\dots d_8\times 2^{t-15}$.
+	So $0\leq t\leq 11111_2 = 2^0+2^1+2^2+2^3+2^4 = 31$. So $-15\leq t-p\leq 16$ nearly equal range of positive and negative exponents.
+	\begin{enumerate}
+		\item $x = -0.25 = -[2^{-2}] = 0.01_2$. So $t-p = -1$ and $t=-1+5 = 14 = 2^3+2^2 + 2^1 = 1110_2$. Thus $x = \text{neg}\mid 01110\mid 10000000$
+		\item $x = 50 = 2^5+2^4+2^1 = 110010._2$. So $t-p=6$ implies $t=6+15=21 = 2^4 + 2^2 + 2^0 = 10101_2$. Thus $t = \text{pos}\mid 10101\mid 11001000$.
+	\end{enumerate}
+\end{example}
+
+\begin{note}
+	[Biggest Number] all 1's: $+.\ub{M}{11\dots1}\times 2^{\ob{N}{11\dots1}-p}$
+\end{note}
+\begin{note}
+	[Normailzed] $d_1 = \beta-1$.
+\end{note}
+\begin{note}
+	[Overflow] exponent too large.
+\end{note}
+\begin{note}
+	[Underflow] exponent too small.
+\end{note}
+\begin{definition}
+	[Rounding Error] rounding a real number to a corresponding floating point number.
+2 methods: rounding and chopping (round down).
+\end{definition}
+\begin{example}
+	$\frac16+\frac1{10}$ base 10 with 3 digit arithmetic.
+	\begin{enumerate}
+		\item Exact: $\frac16+\frac1{10} = \frac{10+6}{60} = \frac4{15} = 0.2\conj6$
+		\item Chopping: $\frac16 = 0.1\conj6\mapsto 0.166$, $\frac1{10} = 0.1$, add $= 0.266$, rel. error $= \frac{|0.2\conj6-0.266|}{|0.2\conj6|} = \frac{|\frac4{15} - \frac{266}{1000}|}{4/15} = 0.0025$.
+		\item Rounding: 0.666\ul{\ul{6}}, $\frac16\mapsto 0.167$, add $= 0.267$, rel error $= \frac{|0.2\conj6-0.267|}{0.2\conj6} = 0.00125$.
+	\end{enumerate}
+\end{example}
+
+\begin{note}
+	:
+	\begin{enumerate}
+		\item If changing the precision (single to double) drastically changes the output, then rounding errors are having a large effect.
+		\item The order in which operations are performed makes a difference $(a+b)+c\neq a+(b+c)$ for some $a,b,c$.
+		\item Subtraction can lead to a major loss of accuracy if the two numbers are nearly equal.
+	\end{enumerate}
+	$e^x = p(x) + R_x$ or $e^{-x} = $ alt. sign in poly or $= \frac1{e^x}$.
+\end{note}
+
+\ul{Goal}: Bound the relative error when using floating point arithmetic.
+$a\circledast b \mapsto fl[rd(e)*rd(b)]$
+
+\begin{definition}
+	Machine epsilon is defined by $$\epsilon_{mach} = \max\setm{x\in\text{Computer \#s}}{1+x = 1\text{ in computer arithmetic}}.$$
+\end{definition}
+\begin{note}
+	$\epsilon_{mach}$ is  not the smallest number in magnitude.
+\end{note}
+\begin{fact}
+	$\left|\frac{rd(x)-x}{x}\right| = \mc O(\epsilon_{mach}) \leq c\epsilon_{mach}$, $x$ is a real number, $rd(x)$ is $fl$.
+\end{fact}
+
+\begin{theorem}
+	Computer Arithmetic Error $* = +,-,\times,\div$. Then, $\frac{|x*y-fl(x*y)|}{|x*y|} = \mc O(\epsilon_{mach})$.
+	\begin{enumerate}
+		\item[*] single arithmetic calculations have bounded rel. error.
+	\end{enumerate}
+\end{theorem}
+
 \end{document}

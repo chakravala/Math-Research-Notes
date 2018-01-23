@@ -289,4 +289,101 @@ Then if $\lim_{x\ra p} f(x) = A$, $\lim_{x\ra p} g(x) = q$, $p\in E'$,
 	So $f(X)$ must be compact.
 \end{proof}
 
+\newpage
+
+\begin{recall}
+	[Theorem \ref{thm-4-14}] Let $(X,d_X),(Y,d_Y)$ be metric spaces, then $f:X\us{\text{cts}}{\os{\text{compact}}{\lra}} Y \implies f(x)$ is compact.
+\end{recall}
+\begin{theorem}
+	\label{thm-4-15}
+	$f:X^\text{compact}\us{\text{cts}}{\lra} Y \implies f(x)$ is closed + bounded.
+\end{theorem}
+\begin{proof}
+	Every compact set is closed + bounded. By Thm \ref{thm-4-14}, $f(x)$ is compact and hence closed + bounded.
+\end{proof}
+\begin{theorem}
+	[Extreme Value Theorem]
+	Let $f:X^\text{compact} \lra \mb R$ be continuous.
+	Then $f$ \ul{attains} both maximum and minimum on $X$ i.e., $\exists p,q\in X$ such that $\ds f(p)=\sup_{x\in X} f(x)$ and $\ds f(q) = \inf_{x\in X} f(x)$.
+\end{theorem}
+\begin{proof}
+	By Theorem \ref{thm-4-14} and Theorem \ref{thm-4-15}, $f(x)$ is closed and bounded.
+	Since $f(x)\subset\mb R$ is bounded and $\mb R$ has l.u.b. property, $\inf_{x\in X} f(x)\in\mb R$ and $\sup_{x\in X}f(x)\in\mb R$.
+	Now, $f(x)$ is closed in $\mb R$, so $p,q\in X$ such that $f(p) = \sup_{x\in X}f(x)$ and $f(q) = \inf_{x\in X}f(x)$.
+\end{proof}
+
+\begin{definition}
+	[Homeomorphism] $f:X\ra Y$ is a homeomorphism if the following holds:
+	\begin{enumerate}
+		\item $f$ is bijective (1-1 and onto)
+		\item $f$ is continuous on $X$
+		\item $f\inv$ is continuous on $Y$
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	If $X$ is compact and $X$ is homemorphic to $Y$, then $Y$ is compact.
+\end{theorem}
+\begin{proof}
+	$X$ homeomorphic to $Y$ means that $\exists$ a homeomorphism $f$ from $X$ to $Y$.
+	Moreover $f(X) = Y$. By Theorem \ref{thm-4-14}, $f(X)=Y$ is compact.
+\end{proof}
+
+\begin{definition}
+	[inverse mapping] Suppose $f:X\ra Y$ is bijective. Then the inverse mapping $f\inv:Y\ra X$ is defined by $f\inv(f(x)) = x$ for all $x\in X$.
+\end{definition}
+
+\begin{theorem}
+	\label{thm-4-17}
+	Let $f:X^\text{\ul{compact}}\ra Y$ is \ul{bijective} and \ul{continuous}.
+	Then $f\inv:Y\ra X$ is continuous.
+\end{theorem}
+\begin{proof}
+	We will show $f(v)$ is open in $Y$ for any open set $V$ in $X$.
+	Let $V\subset X$ be open.
+	Then $V^c\subset X$ is closed and hence compact since $X$ is compact.
+	Since $f$ is continuous, $f(V^c)$ is compact in $Y$.
+	Then $f(V) \us{\text{HW}}{\os?=} [f(V^c)]^c$ and hence open since $f(V^c)$ is closed.
+	Hence $f\inv$ is continuous on $Y$.
+\end{proof}
+
+Compactness and \ul{uniform continuity}.
+\begin{recall}
+	$f:X\ra Y$. $f$ is continuous at $\ul{\ul{p}}\in X$ if and only if $\forall\ul{\ul{\epsilon}}>0$, $\ul{\exists\delta = \delta(p,\epsilon)}>0$ such that \ul{for all $x\in X$} with $d_X(x,p)<\delta$ implies $d_Y(f(x),f(p))<\epsilon$. 
+	-- pointwise concept ($p$ dependent)
+\end{recall}
+\begin{definition}
+	[Uniform continuity]
+	$f:X\ra Y$ is uniformly continuous \ul{on $X$} if and only if $\forall\epsilon>0$, $\exists\delta=\delta(\epsilon)>0$ such that \ul{for all $x,p\in X$} with $d_X(x,p)<\delta$ implies $d_Y(f(x),f(p))<\epsilon$.
+\end{definition}
+\begin{example}
+	$f:\mb R\ra\mb R$ defined by $f(x) = x^2$ is continuous on $\mb R$.
+\end{example}
+\begin{proof}
+	Let $p\in\mb R$ and $\epsilon>0$ be fixed.
+	\ul{NTS}: $\exists\delta=\delta(p,\epsilon)>0$ such that for any $x\in R$ with $|x-p|<~\delta\implies |f(x)-f(p)|<\epsilon$.
+	\ul{Now}, $|f(x)-f(p)| = |x^2-p^2| = |x-p|\,|x+p|$.
+	Take $|x-p|< 1$ (this is not $\delta$ yet).
+	Then $\mlr{|x|-|p|}\leq|x-p|<1 \implies -1 < |x|-|p|<1 \implies |x| < 1+|p|$.
+	Therefore, $|x+p|\os\Delta\leq|x|+|p| < 1+|p|+|p| = 2|p|+1$.
+	Then $|f(x)-f(p)| = |x-p|\,|x+p|<\epsilon$ if $|x-p|<\frac\epsilon{2|p|+1}$.
+	Then $\delta(\epsilon,p) = \min\set{1,\frac\epsilon{2|p|+1}}$. 
+	%-- $\delta$ depends on $\epsilon$ and $p$.
+\end{proof}
+\begin{example}
+	$f:\mb R\ra\mb R$ defined by $f(x) = x^2$. Then $f$ is uniformly continuous on $[-7,7]$.
+\end{example}
+\begin{proof}
+	Let $\epsilon>0$ be fixed.
+	\ul{NTS}: $\exists \delta = \delta(\epsilon)>0$ such that $\forall x,p\in [-7,7]$ such that $|x-p|<\delta$ implies $|f(x)-f(p)|<\epsilon$.
+	Then $|f(x)-f(p)| = |x^2-p^2| = |x+p|\,|x-p| \leq 14|x-p|<\epsilon$ if $|x-p|<\frac\epsilon{14}=\delta$.
+\end{proof}
+\begin{example}
+	$f(x) = \frac1{x^2}$ is continuous on \ul{$(0,\infty)$}.
+	Let $p>0$ and $\epsilon>0$ fixed. Find $\delta$.
+	$f(x)-f(p) = \frac1{x^2} - \frac1{p^2} = \frac{p^2-x^2}{p^2x^2} = \frac{(p-x)(p+x)}{p^2x^2}$.
+	Take $|p-x|<\frac{p^{>0}}2$. Also $$\mlr{|p|-|x|}<|p-x|<\frac p2 \implies -\frac p2 < \us{=p}{|p|}-|x| < \frac p2 \implies -\frac p2 \os{(1)}< |x|-|p| \os{(2)}< \frac p2 \implies |x|\os{(1)}>\frac p2$$ and $|x|<\frac{3p}2$ because $p>0$.
+	Finish on your own. (Uniformly continuous on $[a,\infty)$ for any $a>0$).
+\end{example}
+
 \end{document}
