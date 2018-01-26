@@ -386,4 +386,84 @@ Compactness and \ul{uniform continuity}.
 	Finish on your own. (Uniformly continuous on $[a,\infty)$ for any $a>0$).
 \end{example}
 
+\newpage
+
+\begin{example}
+	$f(x) = \frac1{x^2}$ is uniformly continuous on $[a,\infty)$ for any $a>0$.
+\end{example}
+\begin{proof}
+	Let $a>0$ and $\epsilon>0$ be fixed.
+	\ul{\ul{NTS}}: $\exists\delta=\delta(\epsilon)>0$ such that for all $x,y\in[a,\infty)$ with $|x-y|<\delta\implies |f(x)-f(y)|<\epsilon$.
+	So $|f(x)-f(y)| = \mlr{\frac1{x^2}-\frac1{y^2}} = \frac{|y^2-x^2|}{x^2y^2} = \frac{|y-x|\,|y+x|}{x^2y^2} = |y-x|\cdot\plr{\frac 1{x^2y}+\frac1{xy^2}} \leq |y-x|\frac2{a^3}<\epsilon$ if $|x-y|<\frac{\epsilon a^3}2 \implies f$ uniformly continuous on $[a,\infty)$ (since $x,y\geq a\implies \frac1x,\frac1y\leq\frac1a$).
+\end{proof}
+
+\begin{theorem}
+	Let $f:X^\text{compact}\os{\text{cts}}{\lra}Y$.
+	Then $f$ is uniformly continuous on $X$.
+\end{theorem}
+\begin{proof}
+	Let $\epsilon>0$ be fixed.
+	\ul{\ul{NTS}}: $\exists\delta=\delta(\epsilon)>0$ such that for all $x,y\in X$ with $d_X(x,y)<\delta$ implies $d_Y(f(x),f(y))<\epsilon$.
+	$(*)$ Since $f$ is continuous on $X$, for each $p\in X$, there exists $\eta(p)>0$ such that $\forall q\in X$ with $d_X(p,q)<\ul{\ul{\eta(p)}} \implies d_Y(f(p),f(q))<\frac\epsilon2$.
+	For each $p\in X$, define $J(p):=\setc{q\in X}{d_X(p,q) < \frac{\eta(p)}2}$ -- neighborhood of $p$, hence open.
+	Then $\set{J(p)}_{p\in X}$ is an open cover of $X$.
+	Then $X$ compact $\implies \exists p_1,p_2,\dots,p_n\in X$ such that $X \subset J(p_1)\cup J(p_2)\cup\dots\cup J(p_n)$.
+	Set $\delta:=\frac12\min\set{\eta(p_1),\eta(p_2),\dots,\eta(p_n)}>0$.
+	Let $p,q\in X$ with $d_X(p,q)<\delta$.
+	Then $p\in J(p_m)$ for some $m\in\set{1,\dots,n}$.
+	This implies $$d_X(p,p_m)<\frac{\eta(p_m)}2 \leq \eta(p_m) \os{(*)}\implies d_Y(f(p),f(p_m)) < \frac\epsilon2.$$
+	Also, $d_X(q,p_m) \os\Delta\leq d_X(p,q) + d_X(p,p_m) < \delta + \frac{\eta(p_m)}2 \leq \eta(p_m)$ because $\delta \leq \frac{\eta(p_m)}2$.
+	$$\us{*}{\os{f\text{ cts}}\implies} \fbox{$\ds d_Y(f(q),f(p_m)) < \frac\epsilon2$}.$$
+	Then $d_Y(f(p),f(q)) \leq d_Y(f(p),f(p_m)) + d_Y(f(p_m),q) < \frac\epsilon2+\frac\epsilon2 = \epsilon \implies f$ is continuous on $X$.
+\end{proof}
+
+\begin{theorem}
+	[Compactness cannot be relaxed]
+	\label{thm-4-20}
+	Let $E\subseteq\mb R$ be a \ul{noncompact set}. Then
+	\begin{enumerate}
+		\item there exists a continuous function on $E$ which is not bounded.
+			
+			\ul{\ul{Eg}}: $f(x) = x^n$, $n\in\mb N$ on $E = \mb R$
+			or $f(x) = \frac1x$ on $E = (0,1]$.
+		\item there exists a \ul{continuous} \ul{and} \ul{bounded} function that does not achieve its maximum on $E$.
+			\begin{enumerate}
+				\item[(i)] $f(x) = \tan\inv x$ (assume continuity)
+				\item[(ii)] $f(x) = x$, $E = (-1,1)$
+				\item[(iii)] $f(x) = \frac{x^2}{1+x^2}$
+			\end{enumerate}
+		\item If $E$ is bounded, there exists a continuous and bounded function on $E$ which is not uniformly continuous.
+
+			\ul{\ul{HW}}: find an example -- In the book!
+	\end{enumerate}
+\end{theorem}
+
+\subsection*{Continuity and connectedness}
+
+\begin{recall}
+	$E\subset X^{m.s.}$ is a union of nonempty disjoint separated sets if $\exists A^{\neq\emptyset},B^{\neq\emptyset}\subset X$ such that $E = A\cup B$, $\conj A\cap B = \emptyset$, $A\cap\conj B = \emptyset$.
+	A set $E\subset X$ is connected if it is \ul{not} a union of nonempty separated sets.
+\end{recall}
+$$f^{\la\text{cts}}(\text{connected}) = \text{connected}$$
+
+\begin{theorem}
+	\label{thm-4-22}
+	Let $f:X\us{\text{cts}}\lra Y$ and $E\subset X$ be connected.
+	Then $f(E)\subset Y$ is connected.
+\end{theorem}
+\begin{proof}
+	Discuss in class.
+\end{proof}
+\begin{theorem}
+	[Intermediate Value property]
+	Let $f:[a,b]\us{\text{cts}}\lra\mb R$.
+	If $f(a)<f(b)$ and $\exists y_0\in(f(a),f(b))$ then $\exists x_0\in(a,b)$ such that $f(x_0)=y_0$.
+	\label{thm-4-23}
+\end{theorem}
+\begin{proof}
+	Note that $[a,b]$ is connected. Then Theorem \ref{thm-4-22} implies that \ul{$f([a,b])\subset\mb R$ is connected}.
+	Since $f(a),f(b)\in \us{\text{connected}}{f([a,b])}$ and $f(a)<y_0<f(b)$, $y_0\in f([a,b]) \implies \exists x_0\in(a,b)$ such that $f(x_0)=y_0$.
+\end{proof}
+Think about exercise 6,8,10
+
 \end{document}

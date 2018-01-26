@@ -13,13 +13,15 @@
 %\begin{abstract}
 %\end{abstract}
 
-\subsection*{Introduction}
+%\subsection*{Introduction}
 
 Two sources of error:
 \begin{enumerate}
 	\item Going from a continuous/infinite problem to a discrete/finite problem.
 		\begin{example}
-			$f'(a) = \lim_{h\ra0} \frac{f(a+h)-f(a)}{h}$, Approximation: fix $h=0.01$, $f'(a)\approx \frac{f(a+0.01)-f(a)}{0.01}$. This is called \ul{truncation error}.
+			$f'(a) = \lim_{h\ra0} \frac{f(a+h)-f(a)}{h}$, 
+			
+			Approximation: fix $h=0.01$, $f'(a)\approx \frac{f(a+0.01)-f(a)}{0.01}$. This is called \ul{truncation error}.
 		\end{example}
 	\item Rounding. Computers only represent finitely many numbers. (all rational)
 		\begin{example}
@@ -46,13 +48,17 @@ Two sources of error:
 	Estimate $\cos(0.01)$.
 	Know $\cos(0)=1$ and $\frac{d}{dx}[\cos x] = -\sin(x)$ with $-1\leq \sin(x) \leq 1$.
 	MVT: $\exists \xi\in(0,0.01)$ such that $\frac{\cos(0.01)-\cos(0)}{0.01-0} = \cos'(\xi)=-\sin(\xi)$. This implies $\cos(0.01) = \cos(0)-0.01\sin(\xi)$.
-	So $\cos(0)-0.01\leq \cos(0.01)\leq \cos(0)+0.01$ and $0.99\leq \cos(0.01)\leq 1\leq 1.01$. Thus $\cos(0.01)\approx 0.995$ with $|\text{Error}|\leq 0.005$.
+	So $\cos(0)-0.01\leq \cos(0.01)\leq \cos(0)+0.01$ and $0.99\leq \cos(0.01)\leq 1\leq 1.01$. 
+	
+	Thus $\cos(0.01)\approx 0.995$ with $|\text{Error}|\leq 0.005$.
 \end{example}
 
 \begin{theorem}
 	[Taylor's Remainder Theorem]
 	Let $f(x)$ have $n+1$ continuous derivatives on $[a,b]$ for some $n\geq 0$, and let $x,x_0\in[a,b]$.
-	Then, $f(x)=P_n(x)+R_n(x)$ for $P_n(x) = \sum_{k=0}^n \frac{(x-x_0)^k}{k!}f^{(k)}(x_0)$ and $R_n(x) = \frac{(x-x_0)^{n+1}}{(n+1)!} f^{(n+1)}(\xi_x)$ for some $\xi_x$ between $x$ and $x_0$, where $P_n(x)$ is an $n$th degree polynomial in $x$ and $R_n(x)$ is a remainder/error.
+	Then, $f(x)=p_n(x)+R_n(x)$ for $$p_n(x) = \sum_{k=0}^n \frac{(x-x_0)^k}{k!}f^{(k)}(x_0)$$ and 
+	$$R_n(x) = \frac{(x-x_0)^{n+1}}{(n+1)!} f^{(n+1)}(\xi_x)$$ 
+	for some $\xi_x$ between $x$ and $x_0$, where $p_n(x)$ is an $n$th degree polynomial in $x$ and $R_n(x)$ is a remainder/error.
 \end{theorem}
 
 \begin{example}
@@ -68,33 +74,36 @@ Two sources of error:
 
 \begin{example}
 	Calculate $\cos(0.01)$ with an error less than $10^{-6}$.
-	$\cos(x) = P_n(x)+R_n(x)$ with $P_n(x) = \sum_{k=0}^n \frac{(-1)^k}{(2k)!}x^{2k}$, $x_0=0$.
-	So $\cos(x)-P_n(x) = R_n(x)$ and $|\cos(x)-P_n(x)|\leq |R_n(x)|$.
+	Let $\cos(x) = p_n(x)+R_n(x)$ with $x_0 = 0$ and $$p_n(x) = \sum_{k=0}^n \frac{(-1)^k}{(2k)!}x^{2k}.$$ %, $x_0=0$.
+	So $\cos(x)-p_n(x) = R_n(x)$ and $|\cos(x)-p_n(x)|\leq |R_n(x)|$.
 	If $|R_n(x)|\leq 10^{-6}$, then absolute error is also.
 	\begin{align*}
-		|R_n|&=\bigg|\frac{(-1)^{n+1}}{(2n+2)!}x^{2n+2}\cos(\xi_x)\bigg| &\qquad \text{ for } x=0.01 \\
-			 &\leq \frac{|(-1)^{n+1}|}{(2n+2)!}(0.01)^{2n+2}|\cos(\xi_x)| \\
-			 &\leq \frac{1}{(2n+2)!}(0.01)^{2n+2}\cdot 1.
+		|R_n|&=\bigg|\frac{(-1)^{n+1}}{(2n+2)!}x^{2n+2}\cos(\xi_x)\bigg| \qquad \text{ for } x=0.01 \\
+			 &\leq \frac{|(-1)^{n+1}|}{(2n+2)!}(0.01)^{2n+2}|\cos(\xi_x)| 
+			 \leq \frac{1}{(2n+2)!}(0.01)^{2n+2}\cdot 1.
 	\end{align*}
 For $n=0$: $|R_0(0.01)|\leq 5\cdot 10^{-5}$.
 For $n=1$: $|R_1(0.01)|\leq 4.2\times 10^{-10}$.
-Use $n=1$, $$\cos(0.01)\approx P_1(0.01) = 1-\frac{1}{2!}(0.01)^2 = 0.99995.$$
+Use $n=1$, $$\cos(0.01)\approx p_1(0.01) = 1-\frac{1}{2!}(0.01)^2 = 0.99995.$$
 \end{example}
 
-$$f(x) = \sum_{k=0}^n \us{P_n(x)}{\frac{(x-x_0)^k}{k!} f^{(k)}(x_0)} + \us{R_n(x)}{\frac{(x-x_0)^{n+1}}{(n+1)!} f^{(n+1)}(\xi_x)}$$
+\begin{recall}
+	[Taylor's Theorem]
+$\ds f(x) = \sum_{k=0}^n \us{p_n(x)}{\frac{(x-x_0)^k}{k!} f^{(k)}(x_0)} + \us{R_n(x)}{\frac{(x-x_0)^{n+1}}{(n+1)!} f^{(n+1)}(\xi_x)}$,
 $\xi_x$ is between $x_0$ and $x$.
+\end{recall}
 
 \begin{example}
-	Bound the error when using $P_3(x)$ to approximate $f(x) = \frac{1}{1-x}$ over the interval $[-\frac12,0]$.
+	Bound the error when using $p_3(x)$ to approximate $f(x) = \frac{1}{1-x}$ over the interval $[-\frac12,0]$.
 \end{example}
 \begin{fact}
-	$\frac{1}{1-x} = \sum_{k=0}^\infty x^k$ (geometric series), $P_3(x) = 1+x+x^2+x^3$ and $R_3(x) = \frac1{4!} x^4 f^{(4)}(\xi_x)$ with $\xi_x$ between 0 and $x$, know $x$ is in $[-\frac12,0] \implies \xi_x$ is in $[-\frac12,0]$.
+	$\ds\frac{1}{1-x} = \sum_{k=0}^\infty x^k$ (geometric series), $p_3(x) = 1+x+x^2+x^3$ and $\ds R_3(x) = \frac1{4!} x^4 f^{(4)}(\xi_x)$ with $\xi_x$ between 0 and $x$, know $x$ is in $[-\frac12,0] \implies \xi_x$ is in $[-\frac12,0]$.
 	So $f^{(4)}(x) = -\frac{24}{(x-1)^5}$.
 \end{fact}
-Then (absolute error at $\displaystyle x) = |f(x)-P_3(x)| = |R_3(x)| = \left|\frac1{4!} x^4 f^{(4)}(\xi_x)\right| = \frac1{24}|x^4|\cdot\left|-\frac{24}{(x-1)^5}\right|$.
-	It follows ($x$ in $[-\frac12,0]$) $\displaystyle \implies |x^4|\leq \left|-\frac12\right|^4 = \left(\frac12\right)^4$.
-	$\displaystyle\left|-\frac{24}{(\xi_x-1)^5}\right| = \frac{24}{|\xi_x-1|^5} \leq \frac{24}{\min|\xi_x-1|^5} = \frac{24}{|-\frac12-1|^5} = \frac{24}{(3/2)^5} = 24\cdot\left(\frac12\right)^5\cdot\left(\frac13\right)^5$.
-	Therefore $\displaystyle|f(x)-P_3(x)| \leq \frac1{24}\cdot\left(\frac14\right)^4\cdot 24\cdot 2^5\cdot\left(\frac13\right)^5 = \frac2{3^5}\approx 0.008$.
+Then (absolute error at $\displaystyle x) = |f(x)-p_3(x)| = |R_3(x)| = \left|\frac1{4!} x^4 f^{(4)}(\xi_x)\right| = \frac1{24}|x^4|\cdot\left|-\frac{24}{(x-1)^5}\right|$.
+	It follows ($x$ in $[-\frac12,0]$) $\displaystyle \implies |x^4|\leq \left|-\frac12\right|^4 = \left(\frac12\right)^4$
+	and $\displaystyle\left|-\frac{24}{(\xi_x-1)^5}\right| = \frac{24}{|\xi_x-1|^5} \leq \frac{24}{\min|\xi_x-1|^5} = \frac{24}{|-\frac12-1|^5} = \frac{24}{(3/2)^5} = 24\cdot\left(\frac12\right)^5\cdot\left(\frac13\right)^5$.
+	Therefore $\displaystyle|f(x)-p_3(x)| \leq \frac1{24}\cdot\left(\frac14\right)^4\cdot 24\cdot 2^5\cdot\left(\frac13\right)^5 = \frac2{3^5}\approx 0.008$.
 
 \begin{theorem}
 	[Intermediate Value Theorem]
@@ -194,7 +203,7 @@ Suppose method 1 has $A^1\sim\mc O(\beta_1(h))$ and method 2 has $A^2\sim\mc O(\
 	So $\displaystyle|A-A_h| \leq \frac1{12}h^2(C+C) = \frac16Ch^2$.
 \end{example}
 
-\subsection{Computer Arithmetic}
+\subsection*{Computer Arithmetic}
 
 Computers can only represent a finite amount of numbers using a fixed, finite number of digits.
 
@@ -228,14 +237,18 @@ Computers can only represent a finite amount of numbers using a fixed, finite nu
 \end{note}
 \begin{definition}
 	[Rounding Error] rounding a real number to a corresponding floating point number.
-2 methods: rounding and chopping (round down).
 \end{definition}
+2 methods: rounding and chopping (round down).
 \begin{example}
 	$\frac16+\frac1{10}$ base 10 with 3 digit arithmetic.
 	\begin{enumerate}
 		\item Exact: $\frac16+\frac1{10} = \frac{10+6}{60} = \frac4{15} = 0.2\conj6$
-		\item Chopping: $\frac16 = 0.1\conj6\mapsto 0.166$, $\frac1{10} = 0.1$, add $= 0.266$, rel. error $= \frac{|0.2\conj6-0.266|}{|0.2\conj6|} = \frac{|\frac4{15} - \frac{266}{1000}|}{4/15} = 0.0025$.
-		\item Rounding: 0.666\ul{\ul{6}}, $\frac16\mapsto 0.167$, add $= 0.267$, rel error $= \frac{|0.2\conj6-0.267|}{0.2\conj6} = 0.00125$.
+		\item Chopping: $\frac16 = 0.1\conj6\mapsto 0.166$, $\frac1{10} = 0.1$, add $= 0.266$, 
+			
+			relative error $\ds= \frac{|0.2\conj6-0.266|}{|0.2\conj6|} = \frac{|\frac4{15} - \frac{266}{1000}|}{4/15} = 0.0025$.
+		\item Rounding: 0.666\ul{\ul{6}}, $\frac16\mapsto 0.167$, add $= 0.267$, 
+			
+			relative error $\ds= \frac{|0.2\conj6-0.267|}{0.2\conj6} = 0.00125$.
 	\end{enumerate}
 \end{example}
 
@@ -246,7 +259,7 @@ Computers can only represent a finite amount of numbers using a fixed, finite nu
 		\item The order in which operations are performed makes a difference $(a+b)+c\neq a+(b+c)$ for some $a,b,c$.
 		\item Subtraction can lead to a major loss of accuracy if the two numbers are nearly equal.
 	\end{enumerate}
-	$e^x = p(x) + R_x$ or $e^{-x} = $ alt. sign in poly or $= \frac1{e^x}$.
+	$e^x = p(x) + R_x$ or $e^{-x} = $ alternating sign in polynomial or $= \frac1{e^x}$.
 \end{note}
 
 \ul{Goal}: Bound the relative error when using floating point arithmetic.
@@ -259,14 +272,137 @@ $a\circledast b \mapsto fl[rd(e)*rd(b)]$
 	$\epsilon_{mach}$ is  not the smallest number in magnitude.
 \end{note}
 \begin{fact}
-	$\left|\frac{rd(x)-x}{x}\right| = \mc O(\epsilon_{mach}) \leq c\epsilon_{mach}$, $x$ is a real number, $rd(x)$ is $fl$.
+	$\ds\left|\frac{rd(x)-x}{x}\right| = \mc O(\epsilon_{mach}) \leq c\epsilon_{mach}$, $x$ is a real number, $rd(x)$ is $fl$.
 \end{fact}
 
 \begin{theorem}
-	Computer Arithmetic Error $* = +,-,\times,\div$. Then, $\frac{|x*y-fl(x*y)|}{|x*y|} = \mc O(\epsilon_{mach})$.
+	[Computer Arithmetic Error] Let $* = +,-,\times,\div$. Then, $$\ds\frac{|x*y-fl(x*y)|}{|x*y|} = \mc O(\epsilon_{mach}).$$
 	\begin{enumerate}
-		\item[*] single arithmetic calculations have bounded rel. error.
+		\item[$*$] single arithmetic calculations have bounded relative error.
 	\end{enumerate}
 \end{theorem}
+
+\subsection*{\S1.5}
+
+\ul{Goal}: Approximate $e^x$ and integrals involving $e^x$ using simple functions.
+
+\ul{Book}: $\ds f(x) = \frac2{\sqrt\pi}\int_0^x e^{-t^2}\,dt\equiv\text{erf}(x)$.
+
+\begin{example}
+	$f(x) = \int_0^x t^2e^{-t^2}\,dt$. Approximate over $(0,2)$. Bound Error.
+	
+	Strategy: $t^2e^{-t^2}\approx p(t)$. Integrate $p(t)$ exactly.
+	\begin{align*}
+		e^t &= p_k(t) + R_k(t) 
+			= 1+t+\frac12t^2+\dots+\frac1{k!}t^k \us{c_t\text{ between 0 and }t}{+ \frac{t^{k+1}}{(k+1)!}e^{c_t}} \\
+		\implies t^2e^{-t^2} &= t^2 \bigg[ 1+(-t^2) + \frac12(-t^2)^2 + \dots + \frac1{k!}(-t^2)^k + \us{c_{-t^2}\text{ between }-t^2\text{ and }0}{\frac{(-t^2)^{k+1}}{(k+1)!} e^{c_{(-t^2)}}} \bigg] \\
+			&= \ub{q_k(t)}{\sum_{i=0}^k(-1)^k\cdot\frac{t^{2k+2}}{k!}} + \ub{r_k(t)}{\frac{(-1)^{k+1}t^{2k+4}}{(k+1)!}e^c} \\
+		f(x) &= \int_0^x t^2e^{-t^2}\,dt 
+			 = \int_0^x \blr{q_k(t) + r_k(t)}\,dt 
+			 = \sum_{i=0}^k(-1)^k\cdot \frac{t^{2k+3}}{(2k+3)k!}\bigg|_0^x + \int_0^x r_k(t)\,dt \\
+			 &= \sum_{i=0}^k(-1)^k\frac{x^{2k+3}}{(2k+3)k!} + \ub{E_k(x)}{\int_0^x r_k(t) \, dt}.
+	\end{align*}
+	Bound $|E_k(x)|$: 
+	Let $x$ between 0 and 2, $t$ between 0 and $x$, $c$ between 0 and $-t^2 \implies c\in[-x^2,0]$ with
+	$$E_k(x) = \frac{(-1)^{k+1}}{(k+1)!} \int_0^x \ub{>0\text{ for all }t>0}{t^{2k+4}e^c}\, dt.$$
+	$*$ Naive bound: $\int_0^x t^{2k+4}e^c\,dt \leq \max |t^{2k+4}|\cdot\max|e^c|\cdot|x-0| = (2^{2k+4})(e^0)(2)$.
+	So $$|E_k(t)| \leq \frac{2\cdot2^{2k+4}}{(k+1)!}\ra0$$ as $k\ra\infty.$
+	\begin{recall}
+		$\int_a^b f(x)\, dx \leq \max|f(x)|\cdot(b-a)$.
+	\end{recall}
+	MVT, $\xi_x\in(-x^2,0)$, 
+	\begin{align*}
+		E_k(x) &= \frac{(-1)^{k+1}}{(k+1)!}e^{\xi_x}\int_0^x t^{2k+4}\,dt 
+			   = \frac{(-1)^{k+1}}{(k+1)!}e^{\xi_x}\cdot\frac{t^{2k+5}}{2k+5}\bigg|_0^x 
+			   = \ub{\delta_k(x)}{\frac{(-1)^{k+1}}{(2k+5)(k+1)!}x^{2k+5}}\ub{\us{\leq M}{\mid}}{e^{\xi_x}},
+	\end{align*}
+	$M$ based on original problem.
+	For $x$ fixed; $\lim_{k\ra\infty}\delta_k(x)=0$.
+	So 
+	\begin{align*}
+		|E_k(x)| &= \frac1{(k+1)!(2k+5)}\cdot|x|^{2k+5}\cdot e^{\xi_x} 
+				 \leq \frac1{(k+1)!(2k+5)}|x|^{2k+5}M
+	\end{align*}
+	where $M=e^0=1$ because $\xi_x\in(-x^2,0) \implies \xi_x\in(-4,0)$ since $x<2$.
+	For $x$ in $(0,2)$: $|x|^{2k+5} \leq 2^{2k+5}$.
+	Thus $$|E_k(x)|\leq \frac{2^{2k+5}}{\ub{\text{fairly precise}}{(k+1)!(2k+5)}} \leq \frac{2^54^k}{7(k+1)!} = \frac{32}{7}\cdot\frac{4^k}{(k+1)!}\ (\forall k\geq1).$$
+	$\therefore \forall x\in(0,2)$:
+	\begin{align*}
+		f(x) &= \int_0^xt^2e^{-t^2}\,dt = \sum_{i=0}^k\frac{(-1)^k}{k!(2k+3)}x^{2k+3} + \mc O\plr{\frac{4^k}{(k+1)!}} \\
+		k = 10 &: |E_k(x)| \leq \frac{32}{7}\cdot \frac{4^{10}}{11!}\leq 0.12009 \\
+		k = 20 &: |E_k(x)| \leq 0.84\times 10^{-8}
+	\end{align*}
+\end{example}
+
+\begin{example}
+	Find the order of accuracy when approximating $e^x$ with the rational function
+	$$r(x) = \frac{1+\frac12x}{1-\frac12x}$$ for $-1\leq x\leq 0$. So $|e^x-r(x)|\leq$ ?
+	Then
+	\begin{align*}
+		e^x-r(x) &= 1+x+\frac12x^2+\frac16x^3+\dots+\frac1{k!}x^k+\dots -\frac{1+\frac12x}{1-\frac12x} \\
+				 &= \frac1{1-\frac12x}\blr{\plr{1-\frac12x}\plr{1+x+\frac12x^2+\frac16x^3 + \mc O(x^4)} - \plr{1+\frac12x}} \\
+				 &= \frac1{1-\frac12x}\blr{1+x+\frac12x^2+\frac16x^3+\mc O(x^4) - \frac12x^2 - \frac14x^3 - 1 - \frac12x} \\
+				 &= \ub{\text{Exact Error}}{\frac1{1-\frac12x}\blr{\us{-\frac1{12}}{\plr{\frac16-\frac14}}x^3+\mc O(x^4)}}
+	\end{align*}
+	For $x\leq0$: $\frac1{1-\frac12x}\leq 1 \implies |e^x-r(x)| \leq \frac1{12}|x|^3 + \mc O(x^4) \implies \ul{e^x = r(x) + \mc O(|x|^3)}$,
+	($x^4\leq|x|^3$ for $-1\leq x\leq0)$.
+
+	\ul{? $x<-1$ ?}
+	Then $e^x = 1+x+\frac12x^2+\os{\downarrow\text{won't cancel.}}{\frac16x^3e^\xi}$ for $\xi$ between 0 and $x$.
+\end{example}
+
+\subsection*{\S2.1 Horner's Rule}
+
+\ul{Goal}: Compute polynomials efficinetly and more accurately.
+
+\begin{align*}
+	p(x) &= a_0+a_1x+a_2x^2 + \dots + a_nx^n \qquad \text{(Standard/expanded form)} \\
+		 &= a_0 + x(a_1 + a_2x+\dots + a_nx^{n-1}) \\
+		 &= a_0 + x\blr{a_1+x(a_2+\dots+a_nx^{n-2})} \\
+		 & \qquad \vdots \\
+	\text{nested form -- } &= a_0 + x(a_1 + x(a_2 + \dots + x(a_{n-1}+a_nx)\dots)).
+\end{align*}
+\begin{note}:
+	\begin{enumerate}
+		\item nested form $n+1$ multiplications, $n$ additions.
+			standard - same + cost of computing $x^2,x^3,\dots,x^n$.
+		\item typically more accurate.
+		\item Most accurate and efficient is fully factored form:
+			$p(x) = a_n(x-c_1)^{m_1}(x-c_2)^{m_2}\dots(x-c_k)^{m_k}$
+			where $m_1+m_2+\dots+m_k = n$.
+			Not known in general.
+	\end{enumerate}
+\end{note}
+
+\begin{algorithm}
+	\caption{Horner's Method}
+	\begin{algorithmic}
+		\Require $a_0,a-1,\dots,a_n$ and $x$
+		\State $px\gets a_n$
+		\For{$k=n-1$ to 0}
+		\State $px\gets a_k + px\cdot x$
+		\EndFor
+		\State\Return $px = p(x)$
+		\Comment{a slight modification outputs $p'(x)$.}
+	\end{algorithmic}
+\end{algorithm}
+%Given $a_0,a_1,\dots,a_n$ and $x$.
+%$px = a_n$
+%for $k=n-1$ to 0
+%	$px = a_k + px\cdot x$
+%end
+%output $px = p(x)$.
+%$*$ A slight modification outputs $p'(x)$.
+
+
+\begin{example}
+		$p(x) = 1-x+\frac12x^2-\frac14x^5 
+			 = 1+x(-1+\frac12x-\frac14x^4) 
+			 = 1+x(-1+x(\frac12-\frac14x^3)) $.
+\end{example}
+\begin{example}
+		$p(x) = 1+x^2 + \frac12x^4 
+			 = 1+x^2(1+\frac12x^2)$.
+\end{example}
 
 \end{document}

@@ -285,4 +285,77 @@ There are things that happen in infinite dimensional spaces that don't happen in
 \ul{HW 2.3}: 1,3,10, G2;
 \ul{HW 2.4}: 1,2,8, G6.
 
+Last time: Every finite dimensional normed space is complete.
+Use Lemma:
+If $\set{x_1,\dots,x_n}$ is linearly independent in $X$, then $\exists c>0$ such that $||\alpha_1x_1+\dots+\alpha_nx_n|| \geq c(|\alpha_1|+\dots+|\alpha_n|)$.
+
+\begin{definition}
+	Let $X$ be a vector space, and let $||\cdot||$ and $||\cdot||_0$ be two norms on $X$.
+	The norms are said to be \ul{equivalent} if there are positive numbers $a,b$ such that $\forall x\in X$ we have $a||x||_0 \leq ||x|| \leq b||x||_0$.
+\end{definition}
+\begin{remark}
+	Note that $a||x||_0 \leq ||x||\leq b||x||_0 \implies \frac1b||x||\leq ||x||_0 \leq \frac1a||x||$ and $||x_n-x||\ra0$ implies $||x_n-x||_0\ra 0$ + vice versa.
+\end{remark}
+\begin{theorem}
+	Let $X$ be a finite dimensional vector space.
+	If $||\cdot||,||\cdot||_0$ are norms on $X$, they are equivalent.
+\end{theorem}
+\begin{proof}
+	Let $X$ be finite dimensional and let $||\cdot||,||\cdot||_0$ be norms on $X$.
+	Sufficient to show $\exists$ constants $c_1,c_2>0$ such that \ul{$||x||_0\leq c_1||x||$} and $||x||\leq c_2||x||_0$ for all $x\in X$.
+	Let $\set{x_1,\dots,x_n}$ be a basis for $X$.
+	Set $k = \max\setc{||x_j||_0}{j=1,\dots,n}>0$ and let $c>0$ be given by the Lemma in $||\cdot||$.
+	Let $x\in X$. Then $x = \alpha_1x_1+\dots+\alpha_nx_n$.
+	Then 
+	\begin{align*}
+		||x||_0 &= ||\alpha_1x_1+\dots+\alpha_nx_n||_0 \leq |\alpha_1|\,||x_1||_0 + \dots + |\alpha_n|\,||x_n||_0 \leq k(|\alpha_1|+\dots+|\alpha_n|) \\
+				&\leq \frac kc||\alpha_1x_1+\dots+\alpha_nx_n|| \leq \frac kc||x|| = c_1||x||
+	\end{align*}
+	Similar argument shows that $||x||\leq c_2||x||_0$.
+\end{proof}
+\begin{example}
+	An example of normed space with two norms that are not equivalent.
+	We know it must be infinite dimensional by last result.
+	$X = C[a,b]$ with norms $||\cdot||_\infty$ and $||\cdot||_1$.
+	Not equivalent, $X$ with $||\cdot||_\infty$ is complete (Banach space) but $X$ with $||\cdot||_1$ is not complete.
+\end{example}
+
+\newpage
+
+\begin{definition}
+	A subset $M$ of a normed space (or metric space) $X$ is \ul{compact} if every sequence in $M$ has a subsequence that converges in $M$.
+\end{definition}
+\begin{lemma}
+	A compact set $M$ is closed and bounded.
+	Converse is not true in general, but it is true for compact subsets of $\mb R$ by Bolzano-Weierstrass theorem.
+\end{lemma}
+\begin{theorem}
+	Let $X$ be a finite dimensional normed space.
+	A subset $M$ is compact if and only if $M$ is closed and bounded.
+\end{theorem}
+\begin{example}
+	A subset $M$ of a normed space which is closed and bounded, but not compact.
+	Let $X = \ell^2$ with $||\cdot||_2$.
+	Set 
+	\begin{align*}
+		e_1 &= (1,0,0,\dots) = (\delta_{1j})_{j=1}^\infty \\
+		e_2 &= (0,1,0,\dots) = (\delta_{2j})_{j=1}^\infty \\
+		e_n &= (\delta_{nj})_{j=1}^\infty
+	\end{align*}
+	$M = \set{e_1,e_2,\dots}$ is bounded because $||e_n||=1$ for $n=1,\dots$.
+	Also $||e_m-e_n|| = \sqrt2$ for all $m\neq n$.
+	So $M$ is closed, but $M$ is not compact.
+	That is, $(e_n)_{n=1}^\infty$ is a sequence in $M$ with no convergent subsequence.
+\end{example}
+
+\begin{theorem}
+	[Riesz Lemma]
+	Let $Y,Z$ be subspaces of normed space $X$, and suppose $Y$ is a closed proper subspace of $Z$.
+	Then for every $\theta\in(0,1)$ there exists $z\in Z$ such that $||z||=1$ and $||z-y||\geq\theta$ for all $y\in Y$.
+\end{theorem}
+\begin{proof}
+	next time.
+\end{proof}
+\ul{HW} 2.5: 7
+
 \end{document}
