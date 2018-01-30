@@ -1,6 +1,7 @@
 \documentclass[]{article}
 \input{../mathdoc}
 \input{../mathsym}
+\input{../theorem}
 %\input{../preview}
 
 \author{Book: Erwin Kreyszig, Presenter: Richard Fabiano, Notes by Michael Reed}
@@ -348,14 +349,88 @@ If $\set{x_1,\dots,x_n}$ is linearly independent in $X$, then $\exists c>0$ such
 	That is, $(e_n)_{n=1}^\infty$ is a sequence in $M$ with no convergent subsequence.
 \end{example}
 
+Last time: compact sets,,
+\begin{itemize}
+	\item a compact set is closed + bounded
+	\item converse is true in finite dimensional noremd space
+\end{itemize}
+
 \begin{theorem}
 	[Riesz Lemma]
 	Let $Y,Z$ be subspaces of normed space $X$, and suppose $Y$ is a closed proper subspace of $Z$.
 	Then for every $\theta\in(0,1)$ there exists $z\in Z$ such that $||z||=1$ and $||z-y||\geq\theta$ for all $y\in Y$.
 \end{theorem}
 \begin{proof}
-	next time.
+	Let $\theta\in(0,1)$. Let $v\in Z\bs Y$. Let $\ds a = \inf_{y\in Y}||v-y||$.
+	We know $a>0$ because if $a=0$, there exists a sequence $(y_n)_{n=1}^\infty$ in $Y$ such that $||v-y||\ra0$. 
+	Thus $y_n\ra v$, which implies $v\in Y$ because $Y$ is closed. But $v\notin Y$, so $a\neq 0$.
+	There exists $y_0\in Y$ such that $a<||v-y_0||\leq \frac a\theta$.
+	Such a vector exists, otherwise the $\ds \inf_{y\in Y}||v-y||\geq \frac a\theta$.
+	Set $z = c(v-y_0)$, where $\ds c=\frac1{||v-y_0||}$.
+	Then $z\in Z$ and $||z||=1$.
+	For any $y\in Y$ we have 
+	\begin{align*}
+		||z-y|| &= ||c(v-y_0)-y||
+				= c||v-y_0-\frac1cy||
+				= c||v-y_1||,
+	\end{align*}
+	where $y_1 = y_0+\frac1cy\in Y$, so $y_1\in Y$.
+	So
+		$||z-y|| = c||v-y_1|| 
+				\geq c\cdot a 
+				= \frac a{||v-y_0||} 
+				\geq a\cdot\frac\theta a = \theta$.
 \end{proof}
 \ul{HW} 2.5: 7
+
+\begin{theorem}
+	Let $X$ be a normed space. Then $X$ is finite dimensional if and only if the closed unit ball $M = \setc{x\in X}{||x||\leq 1}$ is compact.
+\end{theorem}
+\begin{proof}
+	\ul{$\implies$}$\mid$ Suppose that $X$ is finite dimensional.
+	Then $M$ is closed and bounded, hence compact by previous result.
+
+	\ul{$\La$}$\mid$ Suppose $M$ is compact. BWOC, suppose $X$ is infinite dimensional.
+	Pick $x_1\in $ such that $||x_1||=1$, and set $X_1=\spn\set{x_1}$.
+	By Riesz's lemma, there exists $x_2\in X$ such that $||x_2||=1$ and $||x_2-x||\geq\frac12$ for all $x\in X_1$.
+	In particular, $||x_2-x_1||\geq\frac12$.
+	Set $X_2 = \spn\set{x_1,x_2}$.
+	By Riesz lemma again, there exists $x_3\in X\bs X_2$ such that $||x_3||=1$ and $||x_3-x_2||\geq\frac12$ for all $x\in X_2$.
+	In particular, $||x_3-x_2||\geq\frac12$ and $||x_3-x_1||\geq\frac12$.
+	Continue process by induction to get sequence $(x_n)_{n=1}^\infty$ in $M$.
+	This cannot have a convergent subsequence because $||x_m-x_n||\geq\frac12$ for all $m,n$.
+	Contradiction to $M$ being compact.
+\end{proof}
+
+\subsection*{Linear Operators}
+
+\begin{definition}
+	A \ul{linear operator} $T$ is a mapping such that
+	\begin{enumerate}
+		\item[i)] the domain $\ms D(T)$ is a vector space and the range $\ms R(T)$ lies in a vector space with same field of scalars.
+		\item[ii)] for all $x,y\in \ms D(T)$, and scalars $\alpha$, $T(x+y) = Tx+Ty$ and $T(\alpha x) = \alpha Tx$.
+	\end{enumerate}
+\end{definition}
+\begin{definition}
+	The \ul{null space} of $T$, denoted $N(T)$, is $N(T) = \setc{x\in \ms D(T)}{Tx=0}$.
+\end{definition}
+\begin{theorem}
+	Let $T:\ms D(T)\subset X\ra Y$ be a linear operator from $X$ into $Y$. Then
+	\begin{enumerate}
+		\item[a.] $\ms R(T)$ is a subspace of $Y$.
+		\item[b.] If $\dim\ms D(T)=n<\infty$, then $\dim\ms R(T)\leq n$.
+		\item[c.] $N(T)$ is a subspace of $X$.
+	\end{enumerate}
+\end{theorem}
+\begin{example}
+	For any vector space $X$, the identity operator $I$ and zero operator $T=0$ (that is, $Tx=0$ for all $x\in X$) are linear operators.
+\end{example}
+\begin{example}
+	$X=C[a,b]$: The integral operator $T:X\ra X$,
+	$$(Tx)(t) = \int_a^tx(s)\,ds.$$
+	The differential operator $T:\ms D(T)\subset X\ra X$,
+	$$ (Tx)(t) = x'(t).$$
+	But $\ms D(T) = \setc{x(t)\in C[a,b]}{x'(t)\in C[a,b]}$.
+\end{example}
 
 \end{document}

@@ -1,6 +1,7 @@
 \documentclass[]{article}
 \input{../mathdoc}
 \input{../mathsym}
+\input{../theorem}
 %\input{../preview}
 
 \author{Book: Walter Rudin 3rd, Presenter: Maya Chhetri, Notes by Michael Reed}
@@ -465,5 +466,77 @@ $$f^{\la\text{cts}}(\text{connected}) = \text{connected}$$
 	Since $f(a),f(b)\in \us{\text{connected}}{f([a,b])}$ and $f(a)<y_0<f(b)$, $y_0\in f([a,b]) \implies \exists x_0\in(a,b)$ such that $f(x_0)=y_0$.
 \end{proof}
 Think about exercise 6,8,10
+
+\ul{Test 1 on chapter 4}: $8^\text{th}$ Feb
+
+\begin{example}
+	Connectedness is important, not compactness.
+	Take $E = [-2,-1]\cup[1,2]$ -- compact subset of $\mb R$.
+	Define $f:E\ra\mb R$ by $f(x) = \begin{cases} -1; & -2 \leq x\leq -1 \\ 1; & 1\leq x\leq 2 \end{cases}$.
+		Then $f(-2)<\os{=y_0}0<f(2) = 1$.
+	But $~\exists x_0\in E$ such that $f(x_0)=0$.
+\end{example}
+\begin{example}
+	IVP may not necessarily be satisfied by a discontinuous function.
+Define $f:[-1,1]\ra\mb R$ by $f(x) = \begin{cases} -1; & -1\leq x\leq0 \\ 1; & 0<x\leq 1 \end{cases}$. $\checkmark f$ not continuous at $x=0$ and does not satisfy IVP i.e., $f(-1) < 0 < f(1)$ but $~\exists x\in(-1,1)$ such that $f(x) = 0$.
+\end{example}
+\begin{example}
+	Converse of Theorem \ref{thm-4-23} is not true. A function may not satisfy IVP but $f$ does not need to be continuous.
+	Then $f:\mb R\ra\mb R$ defined by $f(x) = \begin{cases} \sin(\frac1x); & x\neq 0 \\ 0; & x=0 \end{cases}$.
+		Prove $\sin x$ is continuous, \ul{Show}: $|x\sin x|\leq |x|$ for all $x\in \mb R$.
+	Use Trig identity to show $|\sin x-\sin y|\leq |x-y|$.
+	\begin{enumerate}
+		\item[$\checkmark$] $\sin(\frac1x)$ is continuous at $x\neq 0$.
+		\item[$\checkmark$] $\sin(\frac1x)$ \ul{not} continuous at $x=0$.
+	\end{enumerate}
+	Take $x_n = \frac1{2\pi n+\frac\pi2}\ra0$ as $n\ra\infty$.
+	But $f(x_n) = \sin\plr{1/(2\pi n+\frac\pi2)} = 1$ for all $n \implies f(x_n) = 1\ra 1\neq f(0) \implies f$ not continuous at $x=0$.
+	For any $x_1,x_2\in\mb R$ and any $f(x_1)<y_0<f(x_2)$, $\exists x_0\in(x_1,x_2)$ such that $f(x_0)=y_0$.
+\end{example}
+
+\subsection*{Discontinuities (on $\mb R$)}
+
+First goal is to classify types of discontinuities:
+\begin{itemize}
+	\item $\lim_{x\ra c} f(x) \neq f(c)$,
+	\item $\lim_{x\ra c} f(x)$ does not exist.
+\end{itemize}
+\ul{Left hand limit}: $f:(a,b)\subset\mb R\ra\mb R$ and $x\in(a,b]$. Then $f(x_-) = q$ or $\lim_{t\ra x_-} f(t) = q$ if and only if
+\begin{enumerate}
+	\item[i)] $\forall\epsilon>0,\exists\delta=\delta(x,\epsilon)>0$ such that if $x-\delta < t < x$ then $|f(t)-q|<\epsilon$.
+	\item[ii)] $\forall$ sequence $(t_n)\subset(a,x)$ such that $t_n\ra x$ implies $f(t_n)\ra q$.
+\end{enumerate}
+Similarly $f(x_+)=q$ or $\lim_{t\ra x_+}f(t) = q$.
+
+\begin{definition}
+	A function has a discontinuity of \ul{type 1} at $x$ if $f(x_+)$ aand $f(x_-)$ exist.
+	This is also called simple discontinuity.
+	Otherwise it has type 2 discontinuity.
+\end{definition}
+\begin{example}
+$f:\mb R\ra\mb R$ defined by $f(x) = \begin{cases} 1 & \text{if }x>0 \\ 0 & \text{if }x=0 \\ -1 & \text{if }x<0 \end{cases}$.
+	$f$ is continuous for $x\neq0$. $f$ not continuous at $x=0$.
+	Let $(x_n)\subset(0,\infty)$ such that $x_n\ra0$.
+	Then $f(x_n) = 1$ for all $n$, so $f(x_n)\ra1\neq f(0)=0$.
+	Simple discontinuity at $x=0$ since $f(0_-)=-1$ exists and $f(0_+)=1$. (from above)
+\end{example}
+\begin{example}
+$f:\mb R\ra\mb R$ by $f(x) = \begin{cases} \sin\plr{\frac1x}; & x\neq0 \\ 0; & x=0 \end{cases}$.
+	$\checkmark f$ not continuous at $x=0$. What type of discontinuity?
+	\ul{Claim}: $f(0_+)$ does not exist.
+	Find $(t_n),(q_n)\subset(0,\infty)$ such that $t_n\ra0$ and $q_n\ra0$ as $n\ra\infty$ but $\lim_{n\ra\infty}f(t_n)\neq\lim_{n\ra\infty}f(q_n)$.
+	Take $t_n=\frac1{2\pi n+\frac\pi2}\implies f(t_n)=1$ for all $n \implies f(t_n)\ra1$.
+	Take $q_n=\frac1{2\pi n+\frac{3\pi}2} \ra 0$ and $f(q_n) = -1$ for all $n \implies f(q_n)\ra -1$.
+	This means that $f(0_+)$ does not exist.
+\end{example}
+\begin{example}
+	$f:\mb R\ra\mb R$ by $f(x) = \begin{cases} 1 & \text{if }x\in\mb Q \\ -1 & \text{if }x\notin \mb Q \end{cases}$.
+	$f$ \ul{not} continuous on $\mb R$.
+	Fix $x^*\in\mb R$ and show $f$ not continuous at $x^*$.
+	Using the fact that $\mb Q$ and $\mb Q^c$ are dense in $\mb R$, $\exists q_\in\mb Q$ and $t_n\in\mb Q^c$ such that $q_n\ra x^*\implies f(q_n)=1\ra 1$ and $t_n\ra x^*s \implies f(t_n)=-1\ra -1$ imply that $f$ not continuous at $x^*$.
+	Discontinuity of type 2 at $x^*$.
+	Show $f(x^*_+)$ does not exist.
+\end{example}
+Read Theorem 4.22. Example $f(x) = \begin{cases} x; & x\in\mb Q \\ 0; & x\in\mb Q^c \end{cases}$ $\checkmark$ continous at $x=0$ only.
 
 \end{document}

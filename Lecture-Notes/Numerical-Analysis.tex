@@ -1,6 +1,7 @@
 \documentclass[]{article}
 \input{../mathdoc}
 \input{../mathsym}
+\input{../theorem}
 %\input{../preview}
 
 \author{Book: James Epperson 2nd, Presenter: Thomas Lewis, Notes by Michael Reed}
@@ -405,4 +406,84 @@ $a\circledast b \mapsto fl[rd(e)*rd(b)]$
 			 = 1+x^2(1+\frac12x^2)$.
 \end{example}
 
+\subsection*{\S1.6 Approximating natural log}
+
+\begin{align*}
+	x &= f\times \beta^{t-p} \\
+	\ln(x) &= \ln(f\times\beta^{t-p})
+		   = \ln(f) + (t-p)\ln(\beta)
+\end{align*}
+For $\beta=2$: $\frac12\leq f\leq 1$.
+Assume $\ln(2)$ is known to high precision.
+We only need to approximate $\ln(f)$ for $\frac12\leq f\leq 1$ to high precision for any $x\in(0,\infty)$.
+This implies only need a Taylor's series on a small interval, which implies we can bound error uniformly.
+
+\ul{Method in book}: $f_0 = \frac34$, $|R_n(z)|\leq\frac12\plr{\frac13}^n$ for all $\frac12\leq z\leq 1$.
+Set $n=33$ in $p_n(z) \implies$ Error $\leq10^{-16}$.
+
+\ul{Goal}: use $\log$ properties to improve the convergence rate. (based on problem 1.6.6)
+
+\begin{enumerate}
+	\item Find $w$ such that $\frac{1-w}{1+w}=z$ for $\frac12\leq z\leq 1$.
+		This implies $w = \frac{1-z}{1+z}$ with $0\leq w\leq\frac13$ (shrunk domain size).
+	\item $\ln(z) = \ln\plr{\frac{1-w}{1+w}} = \ln(1-w)-\ln(1+w)$.
+	\item Taylor's expansion for $\ln(1-w),\ln(1+w)$ centered at $w_0=\frac16$ (midpoint for $w$).
+\end{enumerate}
+Integral form: 
+%\begin{align*}
+	$f(x) = p_n(x)+R_n(\xi_x)$, 
+	$\ds p_n(x)	 = \sum_{k=0}^n \frac{(x-x_0)^k}{k!}f^{(k)}(x_0)$,
+	$\ds R_n(\xi_x) = \int_{x_0}^x\frac{(x-t)^n}{n!}f^{(n+1)}(t)\,dt$.
+%\end{align*}
+Then
+%\begin{align*}
+	$y = \ln(x)$, 
+	$y' = \frac1x = x\inv$, 
+	$y'' = -x^{-2}$, 
+	$y''' = 2x^{-3}$,
+	$y^{(4)} = -6x^{-4}$,
+	$\implies y^{(k)} = (-1)^{k-1}(k-1)! x^{-k}$,
+%\end{align*}
+with $k\geq 1$.
+\begin{align*}
+	\ln(1+w) &= \ln(1+w_0) + \frac{w-w_0}{1+w_0} & + \sum_{k=2}^n \frac{(w-w_0)^k}{k!} (-1)^k (k+1)! (1+w_0)^{-k} \\
+			 & & + \int_{w_0}^w (w-t)^n\cdot(-1)^n(n+1-1)!(1+t)^{-n-1}\,dt \\
+			 &= \ln(1+w_0) + \frac{w-w_0}{1+w_0} & + \sum_{k=2}^n \frac{(-1)^{k-1}(w-w_0)^k}{k(1+w_0)^k} + \int_{w_0}^w (-1)^n(w-t)^n(1-t)^{-n-1}\,dt \\
+	\ln(1-w) &= \ln(1-w_0) - \frac{w-w_0}{1-w_0} & + \sum_{k=2}^n \frac{(-1)^k}k \frac{(w-w_0)^k}{(1-w_0)^k} + \int_{w_0}^w (-1)^{n+1}(w-t)^n(1-t)^{-n-1}\,dt
+\end{align*}
+\begin{enumerate}
+	\item[4.] Bound $R_n(w)$ over $[0,\frac13]$.
+		Note that $\ds\mlr{\int_a^b f(x)\,dx} \leq |b-a|\cdot\max_{a\leq x\leq b}|f(x)|$.
+		So
+		\begin{align*}
+			\mlr{\int_{w_0}^w (-1)^n(w-t)^n(1+t)^{-n-1}\,dt}
+				&\leq |w-w_0|\cdot\max_t\mlr{(-1)^n(w-t)^n(1+t)^{-n-1}} \\
+				&\leq \frac16\cdot\max_t\mlr{\frac{(w-t)^n}{(1+t)^{n+1}}}
+				\leq \frac16\cdot\max_t\mlr{\frac1{1+t}}\cdot\us{\us{\implies\text{ max at a point}}{\text{no critical points on }[0,\frac13]}}{\max_t\mlr{\frac{w-t}{1+t}}^n} \\
+				&\leq \frac16 \cdot 1\cdot\max\set{\mlr{\frac{w-w_0}{1+w}}^n,\mlr{\frac{w-w_0}{1+w_0}}^n}
+				= \frac16\cdot\max\mlr{\frac{w-w_0}{1+w_0}}^n \\
+				&\leq \frac16\cdot\frac{(1/3)^n}{(2/6)^n} 
+				= \frac16\cdot\plr{\frac17}^n
+		\end{align*}
+		$0\leq t\leq\frac13$ (lazy)
+		\begin{align*}
+			\mlr{\int_{w_0}^w (-1)^{n+1}(w-t)^n(1-t)^{-n-1}\,dt} 
+			&\leq \frac16\cdot\max_t\mlr{\frac1{1-t}}\cdot\max_t\mlr{\frac{w-t}{1-t}}^n \\
+			&\leq \frac16\cdot\frac32\cdot\mlr{\frac{1/6}{5/6}}^n
+			= \frac14\plr{\frac15}^n.
+		\end{align*}
+		Combining:
+		Total Error $\leq \frac16\plr{\frac17}^n + \us{\text{bigger}}{\frac14\plr{\frac15}^n} \leq \frac12\plr{\frac15}^n$.
+		
+		If error $\leq 10^{-16} \implies \frac12\plr{\frac15}^n\leq 10^{-16} \implies n\geq \log_2(\frac12\cdot10^{-16}) \approx 22.46$.
+		
+		Given $z$ in $[\frac12,1]$, $n\geq 23$ will give $10^{-16}$ accuracy for
+		\begin{align*}
+			\ln(z) &= \ln(1-w)-\ln(1+w) 
+				   \approx p_n(1-w)-q_n(1+w) \qquad \text{for} \\
+			p_n(x) &= \ln\plr{\frac56} + \sum_{k=1}^n \frac{(-1)^k}k\plr{\frac{x-\frac16}{5/6}}^k \\
+			q_n(x) &= \ln\plr{\frac76} + \sum_{k=1}^n\frac{(-1)^{k-1}}k\plr{\frac{x-\frac16}{\frac76}}^k
+		\end{align*}
+		with $w = \frac{1-z}{1+z}$, need $\ln(2),\ln(\frac56),\ln(\frac76)$ to high precision.
+\end{enumerate}
 \end{document}

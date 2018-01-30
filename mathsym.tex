@@ -1,5 +1,87 @@
+\usepackage{dirtytalk}
+\usepackage[normalem]{ulem}
+\usepackage{tikz-cd}
+\usepackage{units}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{alltt}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\DeclareMathOperator\cis{cis}
 
-% Vectors (common)
+% (font shortcuts)
+\usepackage{amsfonts}
+\newcommand{\mb}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\mf}[1]{\frak{#1}}
+
+% (arrow shortcuts)
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\Lra}{\Longrightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lla}{\Longleftarrow}
+\newcommand{\lr}{\leftrightarrow}
+\newcommand{\llr}{\longleftrightarrow}
+\newcommand{\Lr}{\Leftrightarrow}
+\newcommand{\Llr}{\Longleftrightarrow}
+
+% (match parenthesis)
+\newcommand{\mlr}[1]{\left|#1\right|}
+\newcommand{\plr}[1]{\left(#1\right)}
+\newcommand{\blr}[1]{\left[#1\right]}
+
+% (exponent shortcuts)
+\newcommand{\inv}{^{-1}}
+\newcommand{\nrt}[2]{\sqrt[\leftroot{-2}\uproot{2}#1]{#2}}
+
+% (annotation shortcuts)
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\os}[2]{\overset{#1}{#2}}
+\newcommand{\us}[2]{\underset{#1}{#2}}
+\newcommand{\ob}[2]{\overbrace{#2}^{#1}}
+\newcommand{\ub}[2]{\underbrace{#2}_{#1}}
+\newcommand{\bs}{\backslash}
+\newcommand{\ds}{\displaystyle}
+
+% (set builder)
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\setc}[2]{\left\{ #1 : #2 \right\}}
+\newcommand{\setm}[2]{\left\{ #1 \, \middle| \, #2 \right\}}
+
+% (group generator)
+\newcommand{\gen}[1]{\langle #1 \rangle}
+
+% (functions)
+\newcommand{\im}[1]{\text{im}(#1)}
+\newcommand{\range}[1]{\text{range}(#1)}
+\newcommand{\domain}[1]{\text{domain}(#1)}
+\newcommand{\dist}[1]{(#1)}
+\newcommand{\sgn}{\text{sgn}}
+
+% (Linear Algebra)
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\pmat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+%\newcommand{\dim}[1]{\text{dim}(#1)}
+\newcommand{\rnk}[1]{\text{rank}(#1)}
+\newcommand{\nul}[1]{\text{nul}(#1)}
+\newcommand{\spn}[1]{\text{span}\,#1}
+\newcommand{\col}[1]{\text{col}(#1)}
+%\newcommand{\ker}[1]{\text{ker}(#1)}
+\newcommand{\row}[1]{\text{row}(#1)}
+\newcommand{\area}[1]{\text{area}(#1)}
+\newcommand{\nullity}[1]{\text{nullity}(#1)}
+\newcommand{\proj}[2]{\text{proj}_{#1}\left(#2\right)}
+\newcommand{\diam}[1]{\text{diam}\,#1}
+
+% (Vectors common)
 \newcommand{\myvec}[1]{\vec{#1}}
 \newcommand{\va}{\myvec{a}}
 \newcommand{\vb}{\myvec{b}}
@@ -28,97 +110,3 @@
 \newcommand{\vy}{\myvec{y}}
 \newcommand{\vz}{\myvec{z}}
 \newcommand{\vzero}{\myvec{0}}
-
-% Linear Algebra
-\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
-%\newcommand{\dim}[1]{\text{dim}(#1)}
-\newcommand{\rnk}[1]{\text{rank}(#1)}
-\newcommand{\nul}[1]{\text{nul}(#1)}
-%\newcommand{\spn}[1]{\text{span}\{#1\}}
-\newcommand{\spn}[1]{\text{span}\,#1}
-\newcommand{\col}[1]{\text{col}(#1)}
-%\newcommand{\ker}[1]{\text{ker}(#1)}
-\newcommand{\row}[1]{\text{row}(#1)}
-\newcommand{\area}[1]{\text{area}(#1)}
-\newcommand{\nullity}[1]{\text{nullity}(#1)}
-\newcommand{\im}[1]{\text{im}(#1)}
-\newcommand{\range}[1]{\text{range}(#1)}
-\newcommand{\domain}[1]{\text{domain}(#1)}
-\newcommand{\dist}[1]{(#1)}
-\newcommand{\proj}[2]{\text{proj}_{#1}\left(#2\right)}
-
-\newcommand{\pmat}[1]{\begin{pmatrix}#1\end{pmatrix}}
-
-\newcommand{\diam}[1]{\text{diam}\,#1}
-
-% (shortcuts)
-\newcommand{\ra}{\rightarrow}
-\newcommand{\lra}{\longrightarrow}
-\newcommand{\la}{\leftarrow}
-\newcommand{\lla}{\longleftarrow}
-\newcommand{\Ra}{\Rightarrow}
-\newcommand{\Lra}{\Longrightarrow}
-\newcommand{\La}{\Leftarrow}
-\newcommand{\Lla}{\Longleftarrow}
-\newcommand{\lr}{\leftrightarrow}
-\newcommand{\llr}{\longleftrightarrow}
-\newcommand{\Lr}{\Leftrightarrow}
-\newcommand{\Llr}{\Longleftrightarrow}
-
-\newcommand{\mlr}[1]{\left|#1\right|}
-\newcommand{\plr}[1]{\left(#1\right)}
-\newcommand{\blr}[1]{\left[#1\right]}
-
-\usepackage{amsfonts}
-\newcommand{\mb}[1]{\mathbb{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\mf}[1]{\frak{#1}}
-\newcommand{\inv}{^{-1}}
-\newcommand{\ul}[1]{\underline{#1}}
-
-\newcommand{\nrt}[2]{\sqrt[\leftroot{-2}\uproot{2}#1]{#2}}
-
-\newcommand{\os}[2]{\overset{#1}{#2}}
-\newcommand{\us}[2]{\underset{#1}{#2}}
-\newcommand{\ob}[2]{\overbrace{#2}^{#1}}
-\newcommand{\ub}[2]{\underbrace{#2}_{#1}}
-
-\newcommand{\gen}[1]{\langle #1 \rangle}
-
-\newcommand{\set}[1]{\left\{ #1 \right\}}
-\newcommand{\setc}[2]{\left\{ #1 : #2 \right\}}
-\newcommand{\setm}[2]{\left\{ #1 \, \middle| \, #2 \right\}}
-
-\newcommand{\bs}{\backslash}
-\newcommand{\ds}{\displaystyle}
-
-% Complex Analysis
-\newcommand{\conj}[1]{\overline{#1}}
-
-\usepackage{amsmath}
-\DeclareMathOperator\cis{cis}
-
-% Theorems and Propositions
-\usepackage{amsthm}
-\newtheorem{theorem}{Theorem}
-\newtheorem{proposition}{Proposition}
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-\newtheorem{example}{Example}
-\newtheorem*{recall}{Recall}
-\newtheorem*{note}{Note}
-\newtheorem*{observe}{Observe}
-\newtheorem*{question}{\underline{Question}}
-\newtheorem{fact}{Fact}
-\newtheorem{corollary}{Corollary}
-\newtheorem*{lemma}{Lemma}
-
-\usepackage{amssymb}
-\usepackage[normalem]{ulem}
-
-\usepackage{tikz-cd}
-\usepackage{units}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
