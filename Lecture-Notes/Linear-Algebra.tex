@@ -1,8 +1,9 @@
 \documentclass[10pt,a4paper]{article}
 \input{../mathdoc}
 \input{../mathsym}
+\input{../theorem}
 
-\author{Book: David Lay 4th, Presenter: Dan Yasaki, Notes by Michael Reed}
+\author{Presenter: Dan Yasaki, Notes by Michael Reed, Book: David Lay 4th}
 \title{Linear Algebra}
 \date{}
 
@@ -776,7 +777,9 @@ $V$ has basis $\mc B = \{\vb_1,\dots,\vb_n\}$ and $W$ has basis $\mc C = \{\vc_1
 	
 	$$\mat{T(\vp)}_\mc B = \mat{3 & 0 & 0 \\ 5 & -2 & 0 \\ 0 & 4 & 1}\mat{\vp}_\mc B$$
 	
-	Diagonalizable matrix $A = PDP\inv$. Then $A\mat{\vv_1 & \cdots & \vv_n} = \mat{\vv_1 & \cdots & \vv_n}D$. Also $\mat{A\vv_1 & \cdots & A\vv_n} = \mat{\lambda_1 \vv_1 & \cdots & \lambda_n \vv_n}$ and $A\vv_i = \lambda_i \vv_i$. Since $\exists P\inv \leftrightarrow \vv_1, \dots, \vv_n$ forms a basis for $\mb{R}^n$, which is an eigenbasis.
+	Diagonalizable matrix $A = PDP\inv$. Then $A\mat{\vv_1 & \cdots & \vv_n} = \mat{\vv_1 & \cdots & \vv_n}D$. 
+	
+	Also $\mat{A\vv_1 & \cdots & A\vv_n} = \mat{\lambda_1 \vv_1 & \cdots & \lambda_n \vv_n}$ and $A\vv_i = \lambda_i \vv_i$. Since $\exists P\inv \leftrightarrow \vv_1, \dots, \vv_n$ forms a basis for $\mb{R}^n$, which is an eigenbasis.
 	$\mat{A\vv}_\mc B = D \mat{\vv}_\mc B$, so when using the eigenbasis $\mc B = \{\vv_1,\dots,\vv_n\}$, then the transformation matrix is the diagonal eigenvalue matrix.
 	
 	So in general, $A\sim C$, $A=PCP\inv$, you can let $\mc B$ be the basis for $\mb{R}^n$ given by columns of $P$. $A:\mb{R}^n \ra \mb{R}^n$.
@@ -1153,7 +1156,7 @@ This system is usually inconsistent. So, find the least-squares solution; i.e. s
 What we get is $\vy=X\myvec{\beta} + \myvec{\epsilon}$, where we want to minimize $\myvec{\epsilon}$.
 \begin{definition}
 	[The General Linear Model]
-	$\vy=X\myvec{\beta}+\myvec{\epsilon}$, $X$ is the \underline{design matrix}, $\vy$ is the \underline{observation vector}, $\myvec{\beta}$ is the \underline{parameter vector}, $\myvec{\epsilon}$ is the \underline{residual vector}. Find $\myvec{\beta}$ that minimizes $||\myvec{\epsilon}||$. This is the same as finding least-squares solution to $\vy=X\myvec{\beta}$.
+	$\vy=X\myvec{\beta}+\myvec{\epsilon}$, $X$ is the \underline{design matrix}, $\vy$ is the \underline{observation} \ul{vector}, $\myvec{\beta}$ is the \underline{parameter vector}, $\myvec{\epsilon}$ is the \underline{residual vector}. Find $\myvec{\beta}$ that minimizes $||\myvec{\epsilon}||$. This is the same as finding least-squares solution to $\vy=X\myvec{\beta}$.
 \end{definition}
 \begin{example}
 	Find the best quadratic fit ($y=\beta_0+\beta_1x+\beta_2x^2$) for $(0,1),(1,1),(2,2),(3,2)$.

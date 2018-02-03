@@ -1,10 +1,11 @@
 \documentclass[]{article}
 \input{../mathdoc}
 \input{../mathsym}
+\input{../theorem}
 
-\author{Book: Brown \& Churchill 8th, Presenter: Richard Fabiano, Notes by Michael Reed}
+\author{Presenter: Richard Fabiano, Notes by Michael Reed, Book: Brown \& Churchill 8th}
 \title{Fourier Series and Boundary Value Problems}
-\date{April 27, 2017}
+\date{Spring 2017, \today}
 
 \begin{document}
 \maketitle
@@ -310,8 +311,8 @@ Other Intervals.
 Given $f(x)$ on $-c<x<c$, we use $g(s) = f\left(\frac{cs}{\pi}\right)$ using $x=\frac{cs}{\pi}$. $g$ defined on $-\pi<s<\pi$. Apply results to $g$, then translate them back to $f$.
 \begin{theorem}
 	Suppose $f$ is PWS on $(-c,c)$. Let $F(x)$ be the $2c$-periodic extension of $f(x)$. Def. Fourier series
-	$S(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \left[ a_n \cos{\left(\frac{n\pi x}{c}\right)} + b_n \sin{\left(\frac{n\pi x}{c} \right)} \right]$
-	where $a_n = \frac{1}{c} \int_{-c}^c f(x) \cos{\frac{n\pi x}{c}} \, dx$, $b_n = \frac{1}{c} \int_{-\pi}^\pi f(x) \sin{\frac{n\pi x}{c}} \, dx$. Then the Fourier series converges to $\frac{F(x+)-F(x-)}{2}$ for all $x\in (-\infty,\infty)$.
+	$\ds S(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \left[ a_n \cos{\left(\frac{n\pi x}{c}\right)} + b_n \sin{\left(\frac{n\pi x}{c} \right)} \right]$
+	with $a_n = \frac{1}{c} \int_{-c}^c f(x) \cos{\frac{n\pi x}{c}} \, dx$, $b_n = \frac{1}{c} \int_{-c}^c f(x) \sin{\frac{n\pi x}{c}} \, dx$. Then the Fourier series converges to $\frac{F(x+)-F(x-)}{2}$ for all $x\in (-\infty,\infty)$.
 \end{theorem}
 
 Next: further investigation of convergence \say{behavior}.
@@ -368,7 +369,7 @@ To show this type of convergence it is often useful to use Weierstrass M-test: I
 \end{proof}
 \begin{definition}
 	%\underline{Aside}:
-	[Cauchy-Schwarz inequality] $|\langle p,q\rangle |\leq ||p||\cdot||q||$ on $\mb R^N$ with Euclidean norm $\vp = \mat{ p_1 & \cdots & p_N}$ and $\vq = \mat{q_1 & \cdots & q_N}$. Then
+	[Cauchy-Schwarz inequality] Let $\vp = \mat{ p_1 & \cdots & p_N}$ and $\vq = \mat{q_1 & \cdots & q_N}$ be vectors, then $|\langle p,q\rangle |\leq ||p||\cdot||q||$ on $\mb R^N$ with Euclidean norm i.e.,
 	\begin{align*}
 		\left|\sum_{n=1}^N p_nq_n\right| &\leq \sqrt{\sum_{n=1}^N p_n^2}\sqrt{\sum_{n=1}^N{q_n^2}}, \qquad & \qquad
 		\left| \sum_{n=1}^N p_n q_n \right|^2 &\leq \sum_{n=1}^N p_n^2 \sum_{n=1}^N q_n^2.
@@ -491,7 +492,9 @@ Given a surface $S$ through the point $P(x,y,z)$ with unit normal $\vn$. Let $\P
 	[Sec. 20, Problem 5] $f(s) = s $ has Fourier series $f(s) \sim 2\sum_{n=1}^\infty \frac{(-1)^{n+1}}{n}\sin{ns}$. Integrate the series from 0 to $x$ + sketch graph. From the theorem, $\int_0^x s\, ds = 2 \sum_{n=1}^\infty \int_0^x \frac{(-1)^{n+1}}{n} \sin{ns} \, ds$. Then $\frac{x^2}{2} = 2\sum_{n=1}^\infty \frac{(-1)^{n+1}}{n^2}(-1)\cos{ns} \big\rvert_0^x = 2\sum_{n=1}^\infty \frac{(-1)^n}{n^2} [\cos{nx}-1] = \frac{\pi^2}{6} + 2\sum_{n=1}^\infty \frac{(-1)^n}{n^2}\cos{nx} $.
 \end{example}
 
-\underline{Last time}: Began derivation of heat equation $u(x,y,z,t) = $ temperature at $(x,y,z)$ at time $t$. $\Phi(x,y,z,t) = $ flux $\dots$.
+\underline{Last time}: Began derivation of heat equation $u(x,y,z,t) = $ temperature at $(x,y,z)$ at time $t$. 
+
+$\Phi(x,y,z,t) = $ flux $\dots$.
 Fourier's law: $\Phi(x,y,z,t) = -K \frac{du}{dn}$.
 
 \begin{definition}
@@ -682,7 +685,8 @@ HW \S39: 1, 2
 		\label{eqn16}
 	\end{equation} where $n=1,2,\dots$.
 	Also $u(x,0) = f(x)$ implies $\sum_{n=1}^\infty B_n(0) \sin{(nx)} = f(x)$, so $$B_n(0) = b_n = \frac{2}{\pi} \int_0^\pi f(x) \sin{(nx)}.$$
-	We can solve equation (\ref{eqn16}) using integrating factor $e^{n^2kt} B_n'(t) + n^2ke^{n^2kt} B_n(t) = \frac{2[1-(-1)^n]}{n\pi}e^{n^2kt} q(t)$, where the LHS is $\frac{d}{dt} \left[ e^{n^2kt} B_n(t) \right] = \frac{2[1-(-1)^n]}{n\pi} e^{n^2kt} q(t)$. Integrate 0 to $t$: $e^{n^2kt} B_n(t) - b_n = \frac{2[1-(01)^n]}{n\pi} \int_0^t e^{n^2k\tau} q(\tau) \, d\tau$. So $B_n(t) = b_n e^{-n^2kt} + \frac{2[1-(-1)^n]}{n\pi} \int_0^t e^{-n^2k(t-\tau)}q(\tau) \, d\tau$.
+	We can solve equation (\ref{eqn16}) using integrating factor $e^{n^2kt} B_n'(t) + n^2ke^{n^2kt} B_n(t) = \frac{2[1-(-1)^n]}{n\pi}e^{n^2kt} q(t)$, where LHS is $\frac{d}{dt} \left[ e^{n^2kt} B_n(t) \right] = \frac{2[1-(-1)^n]}{n\pi} e^{n^2kt} q(t)$. 
+	Integrate 0 to $t$: $e^{n^2kt} B_n(t) - b_n = \frac{2[1-(01)^n]}{n\pi} \int_0^t e^{n^2k\tau} q(\tau) \, d\tau$. So $B_n(t) = b_n e^{-n^2kt} + \frac{2[1-(-1)^n]}{n\pi} \int_0^t e^{-n^2k(t-\tau)}q(\tau) \, d\tau$.
 	So the solution
 	\begin{align*}
 		u(x,t) &= \sum_{n=1}^\infty B_n(t) \sin{nx} = \sum_{n=1}^\infty b_n e^{-n^2kt} \sin{nx} + \sum_{n=1}^\infty \frac{2[1-(-1)^n]}{n\pi} \left[ \int_0^t e^{-n^2k(t-\tau)} q(\tau) \, d\tau \right] \sin{nx} \\
@@ -822,7 +826,7 @@ Given an orthonormal set $\{\phi_n(x)\}_{n=1}^\infty$ in $C_p(a,b)$, can we repr
 
 Consider $\mb R^3$. Given vetor $\vv\in\mb R^3$, which vector in $W = \spn{\vi, \vj} = $ $xy$-plane is closest to $\vv$? $\vv=(x,y,z)$, then closest vector in $xy$-plane is $(x,y,0)$, that is $(\vv\cdot\vi)\vi + (\vv\cdot\vj)\vj$. So closest vector to $\vv$ is the Fourier sum.
 
-Let's extend to general inner product space. Let $\{\phi_n\}_{n=1}^\infty$ be an orthonormal set in $C_p(a,b)$, and let $f\in C_p(a,b)$. Which vector in $\spn{\phi_N}_{n=1}^\infty$ is closest to $f$?
+Let's extend to general inner product space. Let $\{\phi_n\}_{n=1}^\infty$ be an orthonormal set in $C_p(a,b)$, and let $f\in C_p(a,b)$. Which vector in $\spn\set{\phi_N}_{n=1}^\infty$ is closest to $f$?
 Let $\Phi_n (x) = \sum_{n=1}^N \gamma_n \phi_n(x)$. $\ra$ which choice of $\gamma_1,\dots,\gamma_N$ minimizes $||f-\Phi_N||?$ It is equivalent to minimize $E = ||f-\Phi_N||^2$.
 \begin{align*}
 E &= ||f-\Phi_n||^2 = \left(f - \sum_{n=1}^N \gamma_n \phi_n, f-\sum_{n=1}^N \gamma_n \phi_n \right) = (f,f) + \left(\sum_{n=1}^N \gamma_n \phi_n, \sum_{n=1}^N \gamma_n \phi_n \right) - 2\left( f, \sum_{n=1}^N \gamma_n \phi_n \right) \\

@@ -1,10 +1,11 @@
 \documentclass[]{article}
 \input{../mathdoc}
 \input{../mathsym}
+\input{../theorem}
 
-\author{Book: Russell Gordon 2nd, Presenter: Brett Tangedal, Notes by Michael Reed}
+\author{Presenter: Brett Tangedal, Notes by Michael Reed, Book: Russell Gordon 2nd}
 \title{Introduction to Real Analysis}
-%\date{}
+\date{Fall 2017, \today}
 
 \begin{document}
 \maketitle
@@ -282,13 +283,13 @@ Bounded above ($\forall n\geq1(x_n\leq M)$) \& bounded below ($\forall n\geq 1(m
 	From Monday: Showed there exists $N_1 \in \mb Z^+$ such that $\frac{1}{|b_n|}<\frac{2}{|M|}$ for all $n\geq N_1$. Note that
 	\begin{equation}
 		\left|\frac{1}{b_n}-\frac{1}{M}\right| = \left| \frac{M-b_n}{b_n\cdot M}\right| = \frac{|M-b_n|}{|b_n||M|} = \frac{|b_n-M|}{|b_n||M|}.
-		\label{eq1}
+		\label{equation1}
 	\end{equation}
 	Since $\frac{1}{|b_n|}<\frac{2}{|M|}$ %\leq \frac{2|b_n-M|}{|M|^2}<\epsilon$ 
 	for all $n\geq N_1$, we have %$\implies$ 
 	$\frac{1}{|b_n||M|} < \frac{2}{|M|^2}$ for all $n\geq N_1$.
 	Let an arbitrary $\epsilon>0$ be given. Since $\{b_n\}$ converges to $M$ by assumption, there exists $N_2\in \mb Z^+$ such that $|b_n-M|<\frac{|M|^2\epsilon}{2}$ for all $n\geq N_2$. 
-	Set $N=\max{\{N_1,N_2\}}$. Then we have $\frac{|b_n-M|}{|b_n||M|}<\frac{2}{|M|^2} \cdot \frac{|M|^2}{2}\cdot \epsilon = \epsilon$ for all $n\geq N$. Going back to equation~(\ref{eq1}), we have
+	Set $N=\max{\{N_1,N_2\}}$. Then we have $\frac{|b_n-M|}{|b_n||M|}<\frac{2}{|M|^2} \cdot \frac{|M|^2}{2}\cdot \epsilon = \epsilon$ for all $n\geq N$. Going back to equation~(\ref{equation1}), we have
 	%So $\left| \frac{1}{b_n}-\frac{1}{M} \right| \leq \frac{2|b_n-M|}{|M|^2}$ for all $n\geq N_1$, so $|b_n-M| < \frac{|M|^2\epsilon}{2}$. Then $\frac{2|b_n-M|}{|M|^2} < \epsilon$ for all $n\geq N_2$. Let $N=\max{\{N_1,N_2\}}$. Put together: 
 	$\left| \frac{1}{b_n}-\frac{1}{M} \right| < \epsilon$ for all $n\geq N$.
 \end{proof}
@@ -535,7 +536,7 @@ HW Prove cubic formula converges similar to square root formula.
 	Note that $|x_{p_n} - L|<\epsilon$ for all $n\geq N$.
 \end{proof}
 \begin{theorem}
-	Let $\{x_n\}$ be a sequence with two distinct subsequences $x_{p_1},x_{p_2},x_{p_3},\dots \ra L$ and $x_{q_1},x_{q_2},x_{q_3},\dots \\\ra M$ that converge to 2 \ul{different} limits $L\neq M$. Then $\{x_n\}$ does \ul{not} converge.
+	Let $\{x_n\}$ be a sequence with distinct subsequences $x_{p_1},x_{p_2},x_{p_3},\dots \ra L$ and $x_{q_1},x_{q_2},x_{q_3},\dots \\\ra M$ that converge to 2 \ul{different} limits $L\neq M$. Then $\{x_n\}$ does \ul{not} converge.
 \end{theorem}
 \begin{proof}
 	(by Contradiction): Assume $\{x_n\}$ does converge to say $K\in\mb R$. Then, by theorem \ref{thm2-17} $x_{p_1},x_{p_2},\dots$ converges to $K$ and $x_{q_1},x_{q_2},\dots$ converges to $k$. \ul{Contradiction}.
@@ -1138,14 +1139,15 @@ Theorems you should be able to prove on Exam \#4.
 $\ul{S(kf,^tP)} = \sum_{i=1}^n k\cdot f(t_i)(x_i-x_{i-1}) = k\cdot \sum_{i=1}^n f(t_i)(x_i-x_{i-1}) = \ul{k\cdot S(f,^tP)}$.
 
 \begin{proof}
-	[Proof of (a)]: If $k=0$, then $\int_a^b0 =0 = 0\cdot \int_a^b f$. Since $f\in\mc R[a,b]$, \ul{given any $\epsilon>0$} \ul{there exists $\delta>0$} such that if $^tP$ is any tagged partition with \ul{$||^tP||<\delta$}, then \ul{$|S(f,^tP)-\int_a^b f|<\frac{\epsilon}{|k|}$}. We want $\ul{|S(kf,^tP)-k\cdot \int_a^b f}| = |k\cdot S(f,^tP)-k\cdot \int_a^b f| = |k|\cdot |S(f,^tP)-\int_a^b f| < |k|\cdot \frac{\epsilon}{|k|} = \epsilon$.
+	[Proof of (a)]: If $k=0$, then $\int_a^b0 =0 = 0\cdot \int_a^b f$. Since $f\in\mc R[a,b]$, \ul{given any $\epsilon>0$} \ul{there exists $\delta>0$} such that if $^tP$ is any tagged partition with \ul{$||^tP||<\delta$}, then \ul{$|S(f,^tP)-\int_a^b f|<\frac{\epsilon}{|k|}$}.
+	Want $\ul{|S(kf,^tP)-k\cdot \int_a^b f}| = |k\cdot S(f,^tP)-k\cdot \int_a^b f| = |k|\cdot |S(f,^tP)-\int_a^b f| < |k|\cdot \frac{\epsilon}{|k|} = \epsilon$.
 \end{proof}
 
 \begin{recall}
 	[Problem \#1 HW \#5] Let $f:[a,b]\ra\mb R$ be \ul{continuous} \ul{at} \ul{$c\in[a,b]$} and suppose that \ul{$f(c)>0$}. Then there exists a positive number $m\in\mb R^+$ and an interval $[u,v] \subset [a,b]$ such that $c\in[u,v]$ and $f(x)\geq m$ for all $x\in[u,v]$.
 \end{recall}
 \begin{example}
-	[\ul{HW \# 6 \#3}] \ul{Suppose $f$ is continuous on $[a,b]$}, \ul{that $f(x)\geq 0$} \ul{for all $x\in[a,b]$}, and that $\int_a^b f = 0$. Prove \ul{that $f(x) = 0$} for all $x\in[a,b]$.
+	[\ul{HW \# 6 \#3}] \ul{Suppose $f$ is continuous on $[a,b]$}, \ul{that $f(x)\geq 0$} \ul{for all $x\in[a,b]$}, and $\int_a^b f = 0$. Prove \ul{that $f(x) = 0$} for all $x\in[a,b]$.
 		\begin{proof}
 			[Proof (by contradiction)] Assume that there exists a point \ul{$c\in[a,b]$} such that $f(c)>0$. To get a contradiction, I want to show that $\int_a^b f>0$.
 			

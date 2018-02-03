@@ -1,10 +1,11 @@
 \documentclass[]{article}
 \input{../mathdoc}
 \input{../mathsym}
+\input{../theorem}
 
-\author{Book: Bak-Newman 3rd, Presenter: Talia Fernos, Notes by Michael Reed}
+\author{Presenter: Talia Fernos, Notes by Michael Reed, Book: Bak-Newman 3rd}
 \title{Complex Analysis}
-\date{April 27, 2017}
+\date{Spring 2017, \today}
 
 \begin{document}
 \maketitle
@@ -1101,7 +1102,10 @@ $f:X\ra Y$ map or function. functions produce unique outputs, but may have $x_1,
 \end{remark}
 \begin{proof}
 	$F(z) = \int_{z_0}^z f(\zeta) \, d\zeta = \int_C f$, where $C$ is a horizontal/vertical polygonal path from $z_0$ to $z$.
-	$\frac{F(z+h)-F(z)}{h} \ra f(z)$ by continuity, worked out before. * because of rectangle condition $\frac{\int_z^{z+h} f(\zeta)\, d\zeta}{h}$. $F$ has a derivative and so is analytic in some 'hood of $z$, $F'=f$ and analytic functions are $\infty$-differentiable, $f$ is also analytic.
+
+	$\ds\frac{F(z+h)-F(z)}{h} \ra f(z)$ by continuity, worked out before. * because of rectangle condition $\ds\frac{\int_z^{z+h} f(\zeta)\, d\zeta}{h}$. 
+	
+	$F$ has a derivative and so is analytic in some 'hood of $z$, $F'=f$ and analytic functions are $\infty$-differentiable, $f$ is also analytic.
 \end{proof}
 \begin{definition}
 	$\{f_n\}$, $f$ defined on $D$, $f_n \rightrightarrows f$ \say{$f_n$ converges to $f$, \underline{uniformly on compacta}} means for every compact set in $D$, $f_n$ converges uniformly to $f$ on that compact set.
@@ -1467,7 +1471,9 @@ $$ \mat{a&b\\c&d} \iff A(z) = \frac{(z-z_2)(z_3-z_1)}{(z-z_1)(z_3-z_2)}$$
 $\hat{\mb R} \subset \hat{\mb C}$, $*$ Map Circle/lines $\ra$ Circle/lines, $*$ preserves angles. $A = \mat{a&b\\c&d}$, $ad-bc \neq 0$ and $a,b,c,d\in\mb R$. \ul{Observe}: $x\in\mb R$, then $\frac{ax+b}{cx+d} \in\hat{\mb R}$, so preserve $\hat{\mb R}\subset \hat{\mb C}$.
 
 \begin{example}
-	$\mat{0&1//1&0}(z) = \frac{0z+1}{1z+0} = \frac{1}{z}$ and $\mat{0&1//1&0}(i) = \frac{1}{i} = -i$. Now switch to $\mat{0&1//-1&0}(z) = \frac{0z+1}{-1z+0} = \frac{1}{z}$ and $\mat{0&1//-1&0}(i) = \frac{1}{-i} = i$.
+	$\ds\mat{0&1\\1&0}(z) = \frac{0z+1}{1z+0} = \frac{1}{z}$ and $\ds\mat{0&1\\1&0}(i) = \frac{1}{i} = -i$. 
+	
+	Now switch to $\ds\mat{0&1\\-1&0}(z) = \frac{0z+1}{-1z+0} = \frac{1}{z}$ and $\ds\mat{0&1\\-1&0}(i) = \frac{1}{-i} = i$.
 \end{example}
 \begin{fact}
 	If $\mat{a&b\\c&d}$ has $\det \neq 0$, then it's conformal and $\det>0$, then preserves \say{Upper half-plane} = $\mb H$ = open. Has a way of measuring distances makes it into a geometry.
