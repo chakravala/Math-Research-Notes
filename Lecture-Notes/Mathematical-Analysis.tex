@@ -539,4 +539,98 @@ $f:\mb R\ra\mb R$ by $f(x) = \begin{cases} \sin\plr{\frac1x}; & x\neq0 \\ 0; & x
 \end{example}
 Read Theorem 4.22. Example $f(x) = \begin{cases} x; & x\in\mb Q \\ 0; & x\in\mb Q^c \end{cases}$ $\checkmark$ continous at $x=0$ only.
 
+\ul{Test material}: Chapter 4.
+Definition and examples
+
+\ul{Problems to ignore}:
+\#5, \#11(b), \#13, \#23, \#24.
+Undergraduates can ignore:
+\#7, \#17, \#19, \#25.
+
+\begin{example}
+	[Example of a continuous function]
+$f(x) = \begin{cases} x\sin\plr{\frac1x}; & x\neq 0 \\ 0; & x=0 \end{cases}$ 
+	$\checkmark$ continuous for $x\neq0$ since $\frac1x$ and $\sin x$ continuous.
+	Continuous at $x=0$?
+	\ul{\ul{$\epsilon-\delta$}}: Fix $\epsilon>0$,
+	\begin{align*}
+		|f(x) - f(0)| = \mlr{x\sin\plr{\frac1x}-0} = \mlr{x\sin\plr{\frac1x}} = |x|\,\ub{\leq1}{\mlr{\sin\plr{\frac1x}}} \leq |x| < \delta = \epsilon
+	\end{align*}
+	implies $f$ continuous at $x=0$.
+\end{example}
+
+\begin{definition}
+	[Monotone functions] $f:E\subset\mb R\ra\mb R$
+\begin{enumerate}
+	\item[(i)] $f$ is monotonically increasing ($\uparrow$) on $E$ if $x,y\in E$ and $x<y$ then $f(x) \leq f(y)$.
+	\item[(ii)] $f$ is monotonically decreasing ($\downarrow$) on $E$ if $x,y\in E$ and $x<y$ then $f(x) \geq f(y)$.
+\end{enumerate}
+\end{definition}
+\begin{example}
+	$f(x) = 1$; $E = (a,b)$
+\end{example}
+\begin{example}
+	$f(x) = x$; $E=\mb R$
+\end{example}
+\begin{example}
+	$f(x) = \us{?}{e^x}$; $E=\mb R$.
+\end{example}
+
+\begin{theorem}
+	Let $f:(a,b)\ra\mb R$ be \ul{\ul{$\uparrow$}}. Then
+	\begin{enumerate}
+		\item[(i)] $f(x_-)$ and $f(x_+)$ exist $\forall x\in(a,b)$.
+			More precisely, $\ds\sup_{a<t<x} f(t) = f(x_-) \leq f(x) \leq f(x_+) = \inf_{x<t<b} f(t)$.
+		\item[(ii)] If $a<x<y<b$ then $f(x_+) \leq f(y_-)$.
+	\end{enumerate}
+	\label{thm-4-29}
+\end{theorem}
+\begin{example}
+$f(x) = \begin{cases} 1 & x\in(a,x_0) \\ 2 & x\in[x_0,b) \end{cases}$ with $f(x_-)=1$ and $f(x_+)=2$.
+\end{example}
+\begin{proof}:
+	\begin{enumerate}
+		\item[(i)] Let $x\in(a,b)$ be fixed. $f$ $\uparrow$ on $(a,x)$ implies $f(t) \leq f(x)$ for all $t\in(a,x)$ with $a<t<x$.
+			$\implies f(x)$ is an upper bound of $f$ on $(a,x)$.
+			Also, $f$ is defined on $(a,x)$ so $\sup f(t)$ exists.
+			Let $A:=\sup_{t\in(a,x)} f(t)$.
+			\ul{Claim}: $A:=f(x_-)\,(=\lim_{t\ra x_-}f(t))$.
+			Fix $\epsilon>0$. NTS $\exists\delta>0$ such that if $x-\delta<t<x$ then $|f(t)-A|<\epsilon$.
+			Note that $A:=\sup_{t\in(a,x)}f(t)$, $A-\epsilon$ is not an upper bound of $f(t)$ on $(a,x)$.
+			So, $\exists\delta>0$ such that \fbox{$a<x-\delta<x$ and $A-\epsilon< f(x-\delta)\leq A\leq f(x)$} (1).
+			Now, if $x-\delta<t<x$, then $f$ $\uparrow$ implies \fbox{$f(x-\delta)\leq f(t)\leq \ub{=\sup}A\leq f(x)$} (2).
+			Combining (1) and (2), for $x-\delta<t<x$, 
+			$$\ul{A-\delta}<f(x-\delta)\leq \ul{f(t) \leq A} \implies A-\epsilon < f(t) \leq A \implies A-\epsilon < f(t) \us{<A+\epsilon}{\leq A} \implies |f(t)-A|<\epsilon.$$
+			This implies $A:= f(x_-)$ i.e., $\ds\sup_{t\in(a,x)} f(t) = f(x_-)$.
+			Similarly, $\ds\inf_{t\in(x,b)}f(t) = f(x_+)$.
+			Clearly, $$f(x_-)\leq f(x)\leq f(x_+).$$
+		\item[(ii)] Let $a<x<y<b$. We know 
+			\begin{align*}
+				\begin{rcases}
+				f(x_+) &= \inf_{t\in(x,b)}f(t) \os{f\uparrow}= \inf_{t\in(x,y)} f(t) \\
+				f(x_-) &= \sup_{t\in(a,y)}f(t) \os{f\uparrow}= \sup_{t\in(x,y)} f(t)
+				\end{rcases}
+				\implies \inf_{t\in(x,y)}f(t) \leq \sup_{t\in(x,y)}f(t) \implies f(x_+) \leq f(y_-)
+			\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	Let $f:(a,b)\subset\mb R\ra\mb R$ be monotonic.
+	Let $E:=\setc{x\in(a,b)}{f\text{ is discontinuous at }x}$.
+	Then $E$ is at most countable.
+\end{theorem}
+\begin{proof}
+	WLOG assume $f$ $\uparrow$. If $f$ is discontinuous at finitely many points, then $E$ is finite.
+	\ul{Claim}: there is a 1-1 correspondence between $E$ and $\mb Q$ (countable).
+	Let $x\in E$. Since $f$ $\uparrow$, the discontinuity is of first kind.
+	By Theorem \ref{thm-4-29}(i) it follows that $$\us{\in\mb R}{f(x_-)} < \us{\in\mb R}{f(x_+)}.$$
+	Since $\mb Q$ is dense in $\mb R$, $\exists r(x)\in\mb Q$ such that $f(x_-)<r(x)<f(x_+)$.
+	It remains to show that this correspondence is 1-1 i.e., $x_1\neq x_2\implies r(x_1)\neq r(x_2)$ for any $x_1,x_2\in E$.
+	Assume $x_1<x_2$ (WLOG).
+	Theorem \ref{thm-4-29}(ii) implies $f(x_{1+})\leq f(x_{2-}$.
+	Now, $f$ $\uparrow$ with $x_1<x_2$ implies $$f(x_{1-})<r(x_1)<f(x_{1+}) \leq f(x_{2-}) < r(x_2) < f(x_{2+}) \implies r(x_1) < r(x_2)$$ i.e., $r(x_1)\neq r(x_2)$.
+	So $E$ is countable.
+\end{proof}
+
 \end{document}

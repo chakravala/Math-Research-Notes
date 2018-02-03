@@ -364,7 +364,7 @@ Last time: compact sets,,
 	Let $\theta\in(0,1)$. Let $v\in Z\bs Y$. Let $\ds a = \inf_{y\in Y}||v-y||$.
 	We know $a>0$ because if $a=0$, there exists a sequence $(y_n)_{n=1}^\infty$ in $Y$ such that $||v-y||\ra0$. 
 	Thus $y_n\ra v$, which implies $v\in Y$ because $Y$ is closed. But $v\notin Y$, so $a\neq 0$.
-	There exists $y_0\in Y$ such that $a<||v-y_0||\leq \frac a\theta$.
+	There exists $y_0\in Y$ such that $\ds a<||v-y_0||\leq \frac a\theta$.
 	Such a vector exists, otherwise the $\ds \inf_{y\in Y}||v-y||\geq \frac a\theta$.
 	Set $z = c(v-y_0)$, where $\ds c=\frac1{||v-y_0||}$.
 	Then $z\in Z$ and $||z||=1$.
@@ -374,12 +374,13 @@ Last time: compact sets,,
 				= c||v-y_0-\frac1cy||
 				= c||v-y_1||,
 	\end{align*}
-	where $y_1 = y_0+\frac1cy\in Y$, so $y_1\in Y$.
+	where $\ds y_1 = y_0+\frac1cy\in Y$, so $y_1\in Y$.
 	So
-		$||z-y|| = c||v-y_1|| 
+		$$||z-y|| = c||v-y_1|| 
 				\geq c\cdot a 
 				= \frac a{||v-y_0||} 
-				\geq a\cdot\frac\theta a = \theta$.
+				\geq a\cdot\frac\theta a = \theta$$
+	implies $||z-y||\geq\theta$.
 \end{proof}
 \ul{HW} 2.5: 7
 
@@ -432,5 +433,107 @@ Last time: compact sets,,
 	$$ (Tx)(t) = x'(t).$$
 	But $\ms D(T) = \setc{x(t)\in C[a,b]}{x'(t)\in C[a,b]}$.
 \end{example}
+
+\begin{recall}
+Last time: compactness + dimension.
+Introduction to linear operators.
+If $T:\ms D(T)\subset X\ra Y$, then
+\begin{enumerate}
+	\item[a.] $\ms R(t)$ is a vector space,
+	\item[b.] If $\dim\ms D(T)=n<\infty$, then $\dim\ms R(T)\leq n$,
+	\item[c.] $N(T)$ is a vector space.
+\end{enumerate}
+\end{recall}
+\begin{proof}
+	[Proof of b.]
+	Assume $\dim\ms D(T)=n<\infty$.
+	From part a., $\ms R(T)$ is a vector space.
+	To show $\dim\ms R(T)\leq n$,
+	it is sufficient to show that every set of $n+1$ vectors in $\ms R(T)$ is linearly dependent.
+	Let $\set{y_1,\dots,y_{n+1}}$ be any vectors in $\ms R(T)$.
+	Then $\exists x_1,\dots,x_{n+1}\in\ms D(T)$ such that $Tx_j = y_j$ for $j=1,\dots,n+1$.
+	Since $\dim\ms D(T) = n$, the set $\set{x_1,\dots,x_{n+1}}$ is linearly dependent.
+	Thus there exist scalars $\alpha_1,\dots,\alpha_{n+1}$, not all zero, such that $\alpha_1x_1+\dots+\alpha_{n+1}x_{n+1} = 0$.
+	So 
+	\begin{align*}
+		T(\alpha_1x_1+\dots+\alpha_{n+1}x_{n+1}) &= T0 = 0 \\
+		\alpha_1Tx_1 + \alpha_{n+1}Tx_{n+1} &= 0 \\
+		\alpha_1y_1 + \dots + \alpha_{n+1}y_{n+1} &= 0
+	\end{align*}
+	So $\set{y_1,\dots,y_{n+1}}$ is linearly dependent.
+\end{proof}
+
+\begin{example}
+	For $X=\mb R^n$ and $Y=\mb R^m$, any $m\times n$ matrix defines a linear operator from $X$ to $Y$ by matrix multiplication $Tx=Ax$.
+\end{example}
+\begin{definition}
+	Let $T:\ms D(T)\subset X\ra Y$ be 1-1.
+	Then the \ul{inverse operator} $T\inv:\ms R(T)\subset Y\ra X$ is defined by $T\inv y=x$ if $Tx=y$.
+\end{definition}
+\begin{theorem}
+	Let $X,Y$ be vector spaces, and let $T:\ms D(T)\subset X\ra Y$ be a linear operator.
+	\begin{enumerate}
+		\item[a)] $T\inv$ exists if and only if $Tx=0$ implies $x=0$.
+		\item[b)] If $T\inv$ exists, it is a linear operator.
+		\item[c)] If $\dim\ms D(T)=n<\infty$, and $T\inv$ exists, then $\dim\ms R(T)=n$.
+	\end{enumerate}
+\end{theorem}
+\begin{note}
+	If $T:X\ra Y$ and $S:Y\ra Z$ are invertible and $ST:X\ra Z$ is defined, then $(ST)\inv = T\inv S\inv$.
+	(like inverse of product of two invertible square matrices)
+\end{note}
+So far, the discussion has been algebraic.
+Next we introduce norms + linear operators.
+
+\newpage
+
+\begin{definition}
+	Let $X,Y$ be normed spaces, and let $T:\ms D(T)\subset X\ra Y$ be a linear operator.
+	$T$ is \ul{bounded} if there exists $c\geq0$ such that $||Tx|| \leq c||x||$ for all $x\in\ms D(T)$.
+\end{definition}
+\begin{definition}
+The \say{smallest $c$ that works} is called the \ul{norm} of $T$, denoted $||T||$.
+For $x\neq0$, we have $\frac{||Tx||}{||x||}\leq c$ for all $x\in\ms D(T),x\neq0$.
+So $$||T|| = \sup_{\us{x\neq0}{x\in\ms D(T)}}\frac{||Tx||}{||x||}.$$
+\end{definition}
+Alternatively, $$ ||T|| = \sup_{\us{x\neq0}{x\in\ms D(T)}}\frac{||Tx||}{||x||} = \sup_{\us{x\neq0}{x\in\ms D(T)}} \mlr{\mlr{T\plr{\frac x{||x||}}}} = \sup_{\us{||y||=1}{y\in\ms D(T)}}||Ty|| = \sup_{\us{||x||=1}{x\in\ms D(T)}}||Tx||.$$
+\begin{note}
+	It follows that if $T$ is bounded, then $||Tx|| \leq ||T||\,||x||$.
+\end{note}
+\begin{note}
+	$||T||$ satisfies properties of  norm, and is a norm on the vector space of all bounded linear operators from $X$ to $Y$.
+\end{note}
+\begin{example}
+	Identity operator $||I|| = 1$. zero operator $||0||=0$.
+\end{example}
+\begin{example}
+	$T:\mb R^n\ra\mb R^m$ by $Tx=Ax$, where $A$ is $m\times n$ matrix.
+	For any norms on $\mb R^m$ and $\mb R^n$, $T$ is a bounded linear operator.
+\end{example}
+\begin{example}
+	$X = C[0,1]$ with $||\cdot||_\infty$.
+	Let $K(t,\tau)$ be continuous on $[0,1]\times[0,1]$. So $\exists K_0\geq 0$ such that $|K(t,\tau)|\leq K_0$ for all $t,\tau\in[0,1]$.
+	Define $T:X\ra X$ by $(Tx)(t) = \int_0^t K(t,\tau)X(\tau)\,d\tau$.
+	Can show $T$ is linear. Also $T$ is bounded because 
+	\begin{align*}
+		|| Tx||_\infty = \sup_{0\leq t\leq1}\mlr{\int_0^t K(t,\tau)x(\tau)\,d\tau}
+		&\leq \sup_{0\leq t\leq 1}\int_0^t |K(t,\tau)|\,|x(\tau)|\,d\tau \\
+		&\leq \sup_{0\leq t\leq 1}\int_0^t K_0||x||\,d\tau
+					   = \sup_{0\leq t\leq 1}K_0||x||t
+					   = K_0||x||_0
+	\end{align*}
+	So $||T||\leq K_0$.
+\end{example}
+\begin{example}
+	$X = C[0,1]$ with $||\cdot||_\infty$.
+	$\ms D(T) = C^1[0,1]$.
+	$(Tx)(t) = x'(t)$.
+	Consider $x_n(t) = t^n$.
+	Then $||x_n||=1$ for $n=1,2,\dots$
+	but $||Tx_n||_\infty = ||nt^{n-1}||=n$.
+	So there is  no $c$ such that $\frac{||Tx_n||}{||x_n||}\leq c$ for all $n$.
+	So $T$ is unbounded.
+\end{example}
+\ul{HW} 2.6: 2,3,5,11; grad 14,15.
 
 \end{document}

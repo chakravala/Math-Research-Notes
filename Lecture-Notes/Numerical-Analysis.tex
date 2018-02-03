@@ -343,7 +343,7 @@ $a\circledast b \mapsto fl[rd(e)*rd(b)]$
 		e^x-r(x) &= 1+x+\frac12x^2+\frac16x^3+\dots+\frac1{k!}x^k+\dots -\frac{1+\frac12x}{1-\frac12x} \\
 				 &= \frac1{1-\frac12x}\blr{\plr{1-\frac12x}\plr{1+x+\frac12x^2+\frac16x^3 + \mc O(x^4)} - \plr{1+\frac12x}} \\
 				 &= \frac1{1-\frac12x}\blr{1+x+\frac12x^2+\frac16x^3+\mc O(x^4) - \frac12x^2 - \frac14x^3 - 1 - \frac12x} \\
-				 &= \ub{\text{Exact Error}}{\frac1{1-\frac12x}\blr{\us{-\frac1{12}}{\plr{\frac16-\frac14}}x^3+\mc O(x^4)}}
+				 &= \ub{\text{Exact Error}}{\frac1{1-\frac12x}\bigg[\us{-\frac1{12}}{\plr{\frac16-\frac14}}x^3+\mc O(x^4)\bigg]}
 	\end{align*}
 	For $x\leq0$: $\frac1{1-\frac12x}\leq 1 \implies |e^x-r(x)| \leq \frac1{12}|x|^3 + \mc O(x^4) \implies \ul{e^x = r(x) + \mc O(|x|^3)}$,
 	($x^4\leq|x|^3$ for $-1\leq x\leq0)$.
@@ -366,6 +366,7 @@ $a\circledast b \mapsto fl[rd(e)*rd(b)]$
 \begin{note}:
 	\begin{enumerate}
 		\item nested form $n+1$ multiplications, $n$ additions.
+			
 			standard - same + cost of computing $x^2,x^3,\dots,x^n$.
 		\item typically more accurate.
 		\item Most accurate and efficient is fully factored form:
@@ -446,10 +447,10 @@ Then
 %\end{align*}
 with $k\geq 1$.
 \begin{align*}
-	\ln(1+w) &= \ln(1+w_0) + \frac{w-w_0}{1+w_0} & + \sum_{k=2}^n \frac{(w-w_0)^k}{k!} (-1)^k (k+1)! (1+w_0)^{-k} \\
-			 & & + \int_{w_0}^w (w-t)^n\cdot(-1)^n(n+1-1)!(1+t)^{-n-1}\,dt \\
-			 &= \ln(1+w_0) + \frac{w-w_0}{1+w_0} & + \sum_{k=2}^n \frac{(-1)^{k-1}(w-w_0)^k}{k(1+w_0)^k} + \int_{w_0}^w (-1)^n(w-t)^n(1-t)^{-n-1}\,dt \\
-	\ln(1-w) &= \ln(1-w_0) - \frac{w-w_0}{1-w_0} & + \sum_{k=2}^n \frac{(-1)^k}k \frac{(w-w_0)^k}{(1-w_0)^k} + \int_{w_0}^w (-1)^{n+1}(w-t)^n(1-t)^{-n-1}\,dt
+	\ln(1+w) = \ln(1+w_0) + \frac{w-w_0}{1+w_0} & + \sum_{k=2}^n \frac{(w-w_0)^k}{k!} (-1)^k (k+1)! (1+w_0)^{-k} \\
+			  & + \int_{w_0}^w (w-t)^n\cdot(-1)^n(n+1-1)!(1+t)^{-n-1}\,dt \\
+			 = \ln(1+w_0) + \frac{w-w_0}{1+w_0} & + \sum_{k=2}^n \frac{(-1)^{k-1}(w-w_0)^k}{k(1+w_0)^k} + \int_{w_0}^w (-1)^n(w-t)^n(1-t)^{-n-1}\,dt \\
+	\ln(1-w) = \ln(1-w_0) - \frac{w-w_0}{1-w_0} & + \sum_{k=2}^n \frac{(-1)^k}k \frac{(w-w_0)^k}{(1-w_0)^k} + \int_{w_0}^w (-1)^{n+1}(w-t)^n(1-t)^{-n-1}\,dt
 \end{align*}
 \begin{enumerate}
 	\item[4.] Bound $R_n(w)$ over $[0,\frac13]$.
@@ -486,4 +487,115 @@ with $k\geq 1$.
 		\end{align*}
 		with $w = \frac{1-z}{1+z}$, need $\ln(2),\ln(\frac56),\ln(\frac76)$ to high precision.
 \end{enumerate}
+
+\subsection*{\S2.2 Difference Approximation of Derivatives}
+
+$$ f'(x) = \lim_{h\ra0} \frac{f(x+h)-f(x)}h.$$
+Forward difference approximation ($h\ra0^+$)
+$$ D_h^+f(x) = \frac{f(x+h)-f(x)}h = f'(x) + \mc O(h)$$
+Backward difference approximation ($h\ra0^-$)
+$$ D_h^- f(x) = \frac{f(x)-f(x-h)}h = f'(x) + \mc O(h)$$
+Central difference approximation
+$$D_hf(x) = \frac{f(x+h)-f(x-h)}{2h} = f'(x) + \mc O(h^2) = \frac12 \blr{D_h^+f(x) + D_h^-f(x)} $$
+\begin{note}:
+	\begin{enumerate}
+		\item Prone to cancellation error due to subtraction in the numerator, after threshold roundoff dominates.
+		\item Using more nodes can increase the accuracy.
+	\end{enumerate}
+\end{note}
+\begin{example}
+	$\ds f'(x) = \frac{8f(x+h)-8f(x-h)-f(x+2h) + f(x-2h)}{12h} + \mc O(h^4)$.
+\end{example}
+
+\subsubsection*{Calculating Rates of Convergence}
+
+Suppose $E = \mc (h^p)$ for some $p$. This implies $E\approx Ch^p$ for some constant $C$ when $h\ra0$.
+Pick $h_1,h_2>0$ with $h_1\neq h_2$.
+So $E_1\approx Ch_1^p$ and $E_2\approx Ch_2^p$ imply
+\begin{align*}
+	\frac{E_1}{E_2} &\approx \plr{\frac{h_1}{h_2}}^p, \\ %&\quad
+	\log\plr{\frac{E_1}{E_2}} &\approx p\log\plr{\frac{h_1}{h_2}}, \\%&\quad
+	p &\approx \frac{\log(E_1/E_2)}{\log(h_1/h_2)}.
+\end{align*}
+Approximating for several $h_i$ values lets us estimate $p$.
+\ul{Book}: $h_1=2h_2 \implies \frac{E_1}{E_2} \approx 2^p$.
+If $p=1$: $\frac{E_1}{E_2} \approx 2^1 = 2$ (error halves when $h\ra h/2$)
+$p=2$: $\frac{E_1}{E_2} \approx 2^2 = 4$ (error $\ra$ error/4 as $h\ra h/2$)
+
+\subsubsection*{Second derivatives}
+
+Centered difference approximation $$\ds f''(x) = \frac{f(x+2h)-2f(x)+f(x-h)}{h^2} + \mc O(h^2) \equiv D_h^2 f(x) = D_h^- D_h^+ f(x) = D_h^+ D_h^- f(x).$$
+
+\begin{proof}
+	Observe, 
+\begin{align*}
+	D_h^+ D_h^- f(x) &= D_h^+ \blr{ \frac{f(x)-f(x+h)}h }
+					 = \frac1h\blr{D_h^+f(x)-D_h^+f(x-h)} \\
+					 &= \frac1h\blr{\frac{f(x+h)-f(x)}h-\frac{f(x-h+h)-f(x-h)}h} \\
+					 &= \frac1{h^2}\blr{f(x+h)-f(x)-f(x)+f(x+h)}
+					 = D_h^2f(x)
+\end{align*}
+\end{proof}
+\begin{proof}
+	[Accuracy] Goal: $f''(x) \la$ everything at $x$.
+	\begin{align*}
+		D_h^2f(x) &= \frac{f(x+h)-2f(x)+f(x-h)}{h^2} \\
+				  &= \frac1{h^2} \bigg[ f(x) + hf'(x) + \frac12h^2f''(x) + \frac16h^3f''(x) + \frac1{24}h^4f^{(4)}(x) + \mc O(h^5) \\
+				  &\quad - 2f(x) + f(x) - hf'(x) + \frac12h^2f''(x)-\frac16h^3f'''(x) + \frac1{24}h^4f^{(4)}(x) \bigg] \\
+				  &= \frac1{h^2}\blr{h^2f''(x) + \frac1{12}h^4f^{(4)}(x)+\mc O(h^5)}
+				  = f''(x) + \ub{\mc O(h^2)}{\frac1{12}h^2f^{(4)}(x)} + \mc O(h^5)
+	\end{align*}
+\end{proof}
+\begin{note}:
+	\begin{align*}
+		\ds D_h D_hf(x) &= f''(x) + \mc O\plr{(2h)^2} = \frac{f(x+2h)-2f(x)+f(x-2h)}{4h^2}, \\
+		%$D_h^2 f(x)$:	
+		D_h^2f(x) &= f''(x) + \us{\uparrow f^{(4)}(x)}{\mc O(h^2)}.
+	\end{align*}
+	Error = 0 if $f(x)$ is cubic.
+\end{note}
+
+\subsection*{\S2.3 Application: Euler's Methods for Initial Value Problems}
+
+\ul{Goal}: Approximate the unknown \ul{function} $y(t)$ over the interval $[t_0,T]$ such that $\begin{cases} y'(t) = f(t,y(t)) \\ y(t_0) = y_0 \end{cases}$ for $t_0 < t\leq T$ for some given function $f$.
+\begin{example}
+$\begin{cases} y'(t) = 4t \\ y(0)=1 \end{cases}$, so $y(t) = \int 4t\,dt = 2t^2+c$. $y(0)=1\implies 2(0)^2+c=1$ so $c=1$. \fbox{$y(t)=2t^2+1$}
+\end{example}
+\begin{example}
+	$\begin{cases} y'(t) = y(t) \\ y(0)=2 \end{cases}$. $f(t,y)=y$.
+	\ul{Guess}: $y(t)=e^t$ so $y'(t)=e^t=y(t) \checkmark$ but $y(0)=e^0 = 1\neq 2$.
+	\ul{General solution}: $y(t) = ce^t = y'(t) \checkmark$ and $y(0)=2\implies \ul{2=c}$ \fbox{$y(t)=2e^t$}
+\end{example}
+\begin{example}
+	$y'(t) = 3y(t)$, general solution: $y(t) = ce^{3t}$ and $y'(t)=3ce^{3t} = 3y(t)\checkmark$.
+\end{example}
+
+\subsubsection*{Approximation} $y'(t) = \frac{y(t+h)-y(t)}h + \frac12hy''(t_n)$ where $t_n$ between $t$ and $t+h$.
+Plug into differential equation: $y'=f$
+\begin{align*}
+	\frac{y(t+h)-y(t)}h + \frac12hy''(t_n) = f(t,y(t))
+\end{align*}
+Solve for $y(t+h)$:
+$$ y(t+h) = y(t) + hf(t,y(t)) - \ub{\mc O(h^2)}{\frac12h^2y''(t_n)}$$
+\ul{Idea}: Given $y(t)$, can estimate $y(t+h)$ with $\mc O(h^2)$ accuracy,
+given $y(t+h)$, can estimate $y(t+2h)$, etc ... $$t+Nh=T$$
+\ul{Euler's Method}: $y_0 = y(t_0)$ [given], choose $h>0$, $t_j=t_0+jh$. For $n=0,1,2,\dots$ (stop at $t=T$). Then $$y_{n+1} = y_n+hf(t_n,y_n)$$
+
+\begin{fact}
+	Let $T=t_00+Nh$. Then $|y(T)-y_N|=\mc O(h)$. $h^2\mapsto h$ due to accumulation of error (without rounding).
+\end{fact}
+\begin{example}
+	$y'+4y=t$, $y(0)=1$.
+	Estimate $y(1)$ using $N=4$ steps, so $4=N=\frac{T-t_0}h = \frac1h\implies h=\frac14$.
+	\begin{itemize}
+		\item $t_0=0,t_1=\frac14,t_2=\frac12,t_3=\frac34,t_4=1=T$. code: $t_0+ih$, not $t=t+h$.
+		\item $y_0=1$. $y' = t-4y \implies f(t,y) = t-4y$.
+		\item $y_1 = y_0 + hf(t_0,y_0) = 1+\frac14[t_0+4y_0] = 1+\frac14[0-4\cdot1] = 0$.
+		\item $y_2 = y_1 + \frac14[t_1-4y_1] = \frac1{16}$.
+		\item $y_3 = \frac18$.
+		\item $y_4 = \frac3{16}$.
+	\end{itemize}
+	$y(1) \approx y_4 = \frac3{16}$.
+\end{example}
+
 \end{document}
