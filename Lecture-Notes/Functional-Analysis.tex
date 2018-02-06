@@ -413,14 +413,14 @@ Last time: compact sets,,
 	\end{enumerate}
 \end{definition}
 \begin{definition}
-	The \ul{null space} of $T$, denoted $N(T)$, is $N(T) = \setc{x\in \ms D(T)}{Tx=0}$.
+	The \ul{null space} of $T$, denoted $\ms N(T)$, is $N(T) = \setc{x\in \ms D(T)}{Tx=0}$.
 \end{definition}
 \begin{theorem}
 	Let $T:\ms D(T)\subset X\ra Y$ be a linear operator from $X$ into $Y$. Then
 	\begin{enumerate}
 		\item[a.] $\ms R(T)$ is a subspace of $Y$.
 		\item[b.] If $\dim\ms D(T)=n<\infty$, then $\dim\ms R(T)\leq n$.
-		\item[c.] $N(T)$ is a subspace of $X$.
+		\item[c.] $\ms N(T)$ is a subspace of $X$.
 	\end{enumerate}
 \end{theorem}
 \begin{example}
@@ -535,5 +535,97 @@ Alternatively, $$ ||T|| = \sup_{\us{x\neq0}{x\in\ms D(T)}}\frac{||Tx||}{||x||} =
 	So $T$ is unbounded.
 \end{example}
 \ul{HW} 2.6: 2,3,5,11; grad 14,15.
+
+Let $x=(x_1,\dots,x_n)\in\mb R^n$.
+$$\frac1{\sqrt n} ||x||_1 \leq ||x||_2 \iff \frac1{\sqrt n}(|x|_1+\dots+|x_n|)\leq\sqrt{|x_1|^2+\dots+|x_n|^2} \iff (|x_1|+\dots+|x_n|)^2 \leq n(|x_1|^2 + \dots + |x_n|^2) $$
+See problem 1.2.3.
+Case $n=2$: $(|x_1|+|x_2|)^2\leq2(|x_1|^2+|x_2|^2)$.
+Observe: $\pm 2ab\leq a^2+b^2$ for all $a,b\in\mb R$ because $0\leq (a+b)^2$ and $0\leq(a-b)^2$.
+For $n=2$, $(|x_1|+|x_2|)^2 = |x_1|^2+|x_2|^2+2|x_1|\,|x_2| \leq 2(|x_1|^2+|x_2|^2) \checkmark$.
+For general $n$, by induction.
+Assume for $n=k$:
+$$(|x_1|+\dots+|x_k|)^2\leq k(|x_1|^2+\dots+|x_k|^2)$$
+For $n=k+1$:
+\begin{align*}
+	(|x_1|+\dots+|x_k|+|x_{k+1}|)^2 &= (|x_1|+\dots+|x_k|)^2 + |x_{k+1}^2| + 2(|x_1|+\dots+|x_k|)|x_{k+1}| \\
+									&\leq k(|x_1|+\dots+|x_k|)+|x_{k+1}|^2 + 2|x_1|\,|x_{k+1}| + \dots + 2|x_k|\,|x_{k+1}| \\
+									&\leq k(|x_1|^2+\dots+|x_k|^2)+|x_{k+1}|^2+(|x_1|^2+|x_{k+1}|^2)+\dots+(|x_k|^2+|x_{k+1}|^2) \\
+									&= k(|x_1|^2+\dots+|x_k|^2)+(|x_1|^2+\dots+|x_k|^2) + (k+1)|x_{k+1}|^2 \\
+									&= (k+1)(|x_1|^2+\dots+|x_k|^2) + (k+1)|x_{k+1}|^2 \\
+									&= (k+1)(|x_1|^2+\dots+|x_{k+1}|^2)\,\checkmark
+\end{align*}
+
+Last time: Bounded linear operators examples, examples of an unbounded linear operator.
+
+\begin{example}
+	$X=\ell^\infty$ with $||\cdot||_\infty$.
+	Given $x=(\xi_1,\xi_2,\dots)\in\ell^\infty$, define $Tx = (\xi_2,\xi_3,\dots)$ \say{left shift operator.}
+	Easy to show $T$ is linear, $\ms D(T)=X$, so $T:X\ra X$.
+	Also $||Tx||_\infty = \sup\set{|\xi_i|}_{i=2}^\infty\leq||x||_\infty$.
+	This implies $T$ is bounded and $||T||\leq1$.
+	Actually $||T||=1$, since for example, for $x=(0,2,0,\dots)$
+	$$||Tx||_\infty = ||(2,0,0,\dots)||_\infty = 2 = ||x||_\infty.$$
+	Thus it can't be possible for $||T||<1$.
+\end{example}
+
+\begin{theorem}
+	Let $T:\ms D(T)\subset X\ra Y$ be a linear operator. If $X$ is finite dimensional, then $T$ is bounded.
+\end{theorem}
+\begin{recall}
+	To show $T$ is bounded, show there is a constant $C$ such that $||Tx||\leq C||x||$ for all $x\in\ms D(T)$.
+\end{recall}
+\begin{recall}
+	$\exists c>0$ such that for any scalars $\xi_1,\dots,\xi_n$, we have $||\xi_1e_1+\dots+\xi_ne_n||\geq c(|\xi_1|+\dots+|\xi_n|)$.
+\end{recall}
+\begin{proof}
+	Assume $T$ is linear, $X,Y$, are normed spaces, and $X$ is finite dimensional.
+	Let $n$ be the dimension of $X$ and $\set{e_1,\dots,e_n}$ be a basis for $X$.
+	Let $B = \max\set{||Te_1||,\dots||Te_n||}$.
+	Let $x\in\ms D(T)$. Then $x=\xi_1e_1+\dots+\xi_ne_n$ for some scalars $\xi_1,\dots,\xi_n$.
+	Then 
+	\begin{align*}
+		||Tx|| &= ||T(\xi_1e_1+\dots+\xi_ne_n)|| \\
+			   &\leq ||\xi_1Te_1+\dots+\xi_nTe_n||
+			   \leq |\xi_1|\,||Te_1||+\dots+|\xi_n|\,||Te_n|| \\
+			   &\leq B(|\xi_1+\dots+\xi_n|)
+			   \leq \frac Bc||\xi_1e_1+\dots+\xi_ne_n||
+			   = \frac Bc||x||
+	\end{align*}
+	Thus $||Tx||\leq\frac Bc||x||$ for all $x\in\ms D(T)$.
+	So $T$ is bounded.
+\end{proof}
+
+\begin{definition}
+	Let $T:\ms D(T)\subset X\ra Y$ be any operator (not necessarily linear), where $X$ and $Y$ are normed vector spaces.
+	We say $T$ is continuous at $x_0\in\ms D(T)$ if for all $\epsilon>0$, there exists $\delta>0$ such that $x\in\ms D(T)$ and $||x-x_0||<\delta$, then $||Tx-Tx_0||<\epsilon$.
+	A continuous operator is continuous at every $x\in\ms D(T)$.
+\end{definition}
+\begin{theorem}
+	Let $T:\ms D(T)\subset X\ra Y$ be linear.
+	Then
+	\begin{enumerate}
+		\item[a.] $T$ is continuous if and only if $T$ is bounded.
+		\item[b.] If $T$ is continuous at one point $x_0$, then $T$ is continuous.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	[Proof of a.]
+	When $T=0$ clearly true, so assume $T\neq0$, so $||T||\neq0$.
+
+	\ul{$\Lla$}$\mid|$ Assume $T$ is bounded, and $||T||\neq0$.
+	Let $x_0\in\ms D(T)$. Let $\epsilon>0$. Set $\delta=\frac\epsilon{||T||}$.
+	If $x\in\ms D(T)$ and $||x-x_0||<\delta$, then 
+	\begin{align*}
+		||Tx-Tx_0|| &= ||T(x-x_0)||
+					\leq ||T||\cdot||x-x_0||
+					< ||T||\cdot\delta
+					= ||T||\cdot\frac\epsilon{||T||}=\epsilon.
+	\end{align*}
+	Thus $T$ is continuous at $x_0$.
+	Since $x_0\in\ms D(T)$ is arbitrary, $T$ is continuous for every $x\in\ms D(T)$.
+	
+	\ul{$\implies$} Next time.
+\end{proof}
+\ul{HW} 2.7: 2,7,9. Grad 6 
 
 \end{document}

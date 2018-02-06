@@ -1,11 +1,11 @@
 \documentclass[]{article}
 \input{../mathdoc}
 \input{../mathsym}
-%\input{../preview}
+\input{../theorem}
 
-\author{Book: Thomas Judson 2017, Presenter: Igor Erovenko, Notes by Michael Reed}
+\author{Presenter: Igor Erovenko, Notes by Michael Reed, Book: Thomas Judson 2017,}
 \title{Abstract Algebra}
-%date{}
+\date{Fall 2017, \today}
 
 \begin{document}
 \maketitle
@@ -16,7 +16,7 @@
 \section{Proofs}
 
 Let $p$ and $q$ be statements. \say{If $p$ then $q$.} $p$ is the hypothesis and $q$ is the conclusion. \ul{Implication} is $p\implies q$, read \say{$p$ implies $q$.}
-
+\begin{center}
 \begin{tabular}{|c|c|c|}
 	\hline 
 	$p$ & $q$ & $p\implies q$ \\ 
@@ -30,6 +30,7 @@ Let $p$ and $q$ be statements. \say{If $p$ then $q$.} $p$ is the hypothesis and 
 	F & F & T \\ 
 	\hline 
 \end{tabular}
+\end{center}
 
 \subsection*{Methods of proof}
 
@@ -1949,5 +1950,62 @@ Let $z = a+bi+cj+dk$.
 \ul{Norm}: $||z|| = z\conj z = a^2+b^2+c^2+d^2$.
 So $z\neq0\iff ||z||>0$.
 If $z\neq0$ then $z\inv=\frac{\conj z}{||z||}$, so $zz\inv = \frac{z\conj z}{||z||} = \frac{||z||}{||z||} = 1$ since $z\inv = \frac{a}{a^2+b^2+c^2+d^2} - \frac{b}{a^2+b^2+c^2+d^2}i - \frac{c}{a^2+b^2+c^2+d^2}j - \frac{d}{a^2+b^2+c^2+d^2}k$.
+
+\section{Review}
+
+\begin{example}
+	$G$ if finite. WTS: $G$ is cyclic $\iff\exists a\in G$ such that $o(a)=|G|$.
+\end{example}
+\begin{proof}
+	\ul{$\implies$} Given: $G$ is cyclic, $\exists a\in G$ such that $\gen a=G$. So $o(a) = |\gen a| = |G|$.
+	\ul{$\Lla$} Given: $\exists a\in G$ such that $o(a)=|G|$. Then $\gen a\leq G$ and $|\gen a|=o(a)=|G|\ra G$ is finite $\ra\gen a=G$.
+\end{proof}
+
+Homomorphic image $f:X\ra Y$, so image of $f=f(X)=Y$. Note $\phi:G\ra\mb Z_{10}$ then $\phi(G)=\mb Z_{10}$, preimage $\phi\inv(\mb Z_{10})\subseteq G$.
+\begin{example}
+	$\sigma=\sigma_1\,\sigma_2\,\dots\,\sigma_m$ is product of disjoint cycles, $\sigma\in S_n$. 
+	WTS: $o(\sigma)=\text{lcm}\set{o(\sigma_i)}_{i=1}^m$.
+\end{example}
+\begin{proof}
+	$\text{id}\,=\sigma^k=(\sigma_1\,\sigma_2\,\dots\,\sigma_m)^k=\sigma_1^k\,\sigma_2^k\,\dots\,\sigma_m^k$.
+	Take $\sigma\tau=\,\text{id}$, then $\sigma=\tau\in=\,\text{id}$.
+
+	So $\sigma_1^k=\,\text{id},\sigma_2^k=\,\text{id},\dots,\sigma_m^k=\,\text{id}\ra o(\sigma_1)\mid k,o(\sigma_2)\mid k,\dots,o(\sigma_m)\mid k$.
+	Say $\sigma_i$ is a cycle of length $l_i$, then $l_i\mid k,l_2\mid k,\dots,l_m\mid k$.
+	If $\sigma^k=\,\text{id}$, then $k$ is divisible by $l_2,l_2,\dots,l_m$.
+	So $o(\sigma)$ is the \ul{least} such positive $k$ $\implies o(\sigma)=\text{lcm}(l_1,l_2,\dots,l_m)$.
+\end{proof}
+
+Consider $\mb Z_{30}/\ker\phi\cong G$, then $|\mb Z_{30}|/|\ker\phi|=5$, $|\mb Z_{30}/\ker\phi| = [\mb Z_{30}:\ker\phi] = |\mb Z_{30}|/|\ker\phi|$.
+So $$|G/H|=|G|/|H|.$$
+
+Consider $G$ group, and $C=\setm{xyx\inv y\inv}{x,y\in G}$ commutators.
+Then $\gen C = [G,G]$ is the commutator subgroup.
+Then $G^{\text{ab}}G/[G,G]$ abelianization of $G$.
+Trivial if $G$ is abelian: $$xyx\inv y\inv=e\iff xyx\inv = y \iff xy=yx.$$
+Then $[G,G]=\begin{cases}\set e & \text{if }G\text{ is abelian} \\ \text{in between} \\ [G,G]=G & \text{if }G\text{ is \ul{perfect}} \end{cases}$.
+
+An example of a perfect group is $SL_n$.
+For a perfect group, $G^{\text{ab}}=\set e$.
+
+Field extensions, $F/K$ means $K\subseteq F$.
+For example $\mb R/\mb Q$ or $\mb C/\mb R$.
+The degree of an extension is $$[F:K]=\dim_k F.$$
+So $\mb R/\mb Q$ has $\deg=\infty$.
+For $\mb C = \setm{a+bi}{a,b\in\mb R}$ and $\deg=2$.
+
+$\text{Aut}(F/K) = $ automorphism of $F$ which fix all elements of $K$.
+$\text{Aut}(\mb C/\mb R)=\set{\text{id},\text{conjugation}}$, the number of such automorphisms cannot exceed the degree of the extension.
+If the degree is finite, it is an algebraic extension.
+$\mb C/\mb R$, consider $p(x) = x^2+1 \ra$ root: $\mb R(i)=\mb C$.
+Automorphism permute the roots.
+$i,-i$, so conjugation permutes $i,-i$.
+
+Polynomial ring quotient: $\mb R[x]/(x^2+1)\cong\mb C$.
+Must be separable (no repeated roots) if it has one root, it has all the other roots, then it is called Galois extension and $\text{Gal}(F/K)$ is the size of the extension.
+
+In the field extension you can have fields intermediate fields $K\subseteq L\subseteq F$.
+%The extension is normal if
+An intermediate field extension is normal if and only if the corresponding subgroup of the Galois group is normal.
 
 \end{document}

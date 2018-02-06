@@ -633,4 +633,118 @@ $f(x) = \begin{cases} 1 & x\in(a,x_0) \\ 2 & x\in[x_0,b) \end{cases}$ with $f(x_
 	So $E$ is countable.
 \end{proof}
 
+\section*{Differentiability}
+
+\begin{definition}
+	Let $f:[a,b]\ra\mb R$ and $x\in[a,b]$.
+	$f$ is differentiable at $x$ if $f'(x):=\fbox{$\ds\lim_{h\ra0} \frac{f(x+h)-f(x)}h$}$ exists \ul{\ul{or}} $\ds f'(x) = \lim_{t\ra x}\frac{f(t)-f(x)}{t-x}$.
+\ul{One sided derivative}:
+\begin{align*}
+	\begin{rcases} f'(x_+) &= \lim_{h\ra0^+} \frac{f(x+h)-f(x)}h \\ &= \lim_{t\ra x_+} \frac{f(t)-f(x)}{t-x} \end{rcases} \text{if exists} \\
+	\begin{rcases} f'(x_-) &= \lim_{h\ra0^-} \frac{f(x+h)-f(x)}h \\ &= \lim_{t\ra x_-} \frac{f(t)-f(x)}{t-x} \end{rcases} \text{if exists}
+\end{align*}
+$f'(x)$ exists $\iff f'(x_-)=f'(x_+)$.
+\end{definition}
+\begin{example}
+	$f(x) = |x|$ continuous on $\mb R$, but not differentiable at $x=0$.
+	Indeed,
+	\begin{align*}
+		\lim_{h\ra0_+} \frac{f(0+h)-\os{=0}{f(0)}}h &= \lim_{h\ra0_+} \frac{\os{=h}{|h|}}h=1 \\
+		\lim_{h\ra0_-} \frac{f(0+h)-\os{=0}{f(0)}}h &= \lim_{h\ra0_-} \frac{\os{=-h}{|h|}}h=-1
+	\end{align*}
+	implies $f'(0)$ does not exist.
+\end{example}
+\begin{example}
+	$f(x) = \begin{cases} x\sin\plr{\frac1x}; & x\neq 0 \\ 0; & x=0 \end{cases}$ continuous on $\mb R$.
+	Is $f$ differentiable at $x=0$?
+	$$f'(0) = \lim_{h\ra0}\frac{f(0+h)+\os{=0}{f(0)}}h = \lim_{h\ra0} \frac{h\sin\plr{\frac1h}}h = \lim_{h\ra0}\sin\plr{\frac1h}$$
+	does not exist implies $f'(0)$ does not exist.
+	\label{ex-5-1}
+\end{example}
+\begin{example}
+	$f(x) = \begin{cases} x^2\sin\plr{\frac1x}; & x\neq0 \\ 0; & x=0 \end{cases}$.
+	Is $f$ differentiable at $x=0$?
+	$$f'(0) = \lim_{h\ra0} = \frac{f(h)-\os{=0}{f(0)}}h = \lim_{h\ra0} \frac{h^2\sin\plr{\frac1h}}h = 0$$
+	because $x\sin\plr{\frac1x}$ is continuous at $x=0$ and $=0$ at $x=0$.
+	\label{ex-5-2}
+\end{example}
+
+\begin{theorem}
+	Let $f:[a,b]\ra\mb R$ and $x\in[a,b]$.
+	If $f$ is differentiable at $x$, then $f$ is continuous at $x$.
+\end{theorem}
+\begin{recall}
+	$f$ is continuous at $x$ if $\ds\lim_{t\ra x}f(t)=f(x)$.
+\end{recall}
+\begin{proof}
+	Suppose $f$ is differentiable at $x$.
+	\ul{\ul{NTS}}: $\lim_{t\ra x}f(t)=f(x)$.
+	Consider $\ds f(t)-f(x) = \frac{f(t)-f(x)}{t-x}\cdot(t-x)$; $t\neq x$.
+	Using limit properties and $\ds f'(x)=\lim_{t\ra x}\frac{f(t)-f(x)}{t-x}$, we get 
+	$$\lim_{t\ra x} [f(t)-f(x)] = f'(x)\cdot0 \implies \lim_{t\ra x} f(t) = f(x) $$ 
+	implies $f$ continuous at $x$.
+\end{proof}
+\begin{remark}
+	The converse is not true -- see examples \ref{ex-5-1} and \ref{ex-5-2}.
+\end{remark}
+Properties of differentiable functions:
+\begin{theorem}
+	Let $f,g:[a,b]\ra\mb R$.
+	Suppose $f$ and $g$ are differentiable at $x\in[a,b]$.
+	Then $f+g$, $f\cdot g$ and $f/g$ ($g(x)\neq0$) are differentiable at $x$.
+	Moreover,
+	\begin{enumerate}
+		\item[(i)] $(f+g)'(x) = f'(x)+g'(x)$
+		\item[(ii)] $(fg)'(x) = f(x)\cdot g'(x)+g(x)\cdot f'(x)$
+		\item[(iii)] $\ds(f/g)'(x) = \frac{g(x)\cdot f'(x)+f(x)\cdot f'(x)}{[g(x)]^2}$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	(ii) Let $h(t) = f(t)g(t)$.
+	\ul{NTS}: $h'(x) = f(x)\cdot g'(x)+g(x)\cdot f'(x)$.
+	Then $f,g$ differentiable at $x$ implies $\ds f'(x) = \lim_{t\ra x} \frac{f(t)-f(x)}{t-x}$ and $\ds g'(x) = \lim_{t\ra x} \frac{g(t)-g(x)}{t-x}$ are well defined.
+	Now, for $t\neq x$
+	\begin{align*}
+		\frac{h(t)-h(x)}{t-x} &= \frac{f(t)g(t)-f(x)g(x)}{t-x} = \frac{f(t)g(t) - f(t)g(x)}{t-x} + \frac{f(t)g(x) - f(x)g(x)}{t-x} \\
+							  &= f(t)\cdot\frac{g(t)-g(x)}{t-x} + g(x)\cdot\frac{f(t)-f(x)}{t-x}.
+	\end{align*}
+	Letting $t\ra x$;
+	\begin{align*}
+		h'(x) &= \lim_{t\ra x} f(t)\cdot \lim_{t\ra x}\frac{g(t)-g(x)}{t-x} + g(x)\cdot \lim_{t\ra x}\frac{f(t)-f(x)}{t-x} \\
+			  &= f(x)\cdot g'(x)+g(x)\cdot f'(x),
+	\end{align*}
+	where $\lim_{t\ra x} f(t) = f(x)$ is used.
+\end{proof}
+
+\begin{proposition}
+	[Power rule] $f(x) = x^n \implies f'(x) = nx^{n-1}$; $n\in\mb R$.
+\end{proposition}
+\begin{itemize}
+	\item if $n\in\mb N$, $\checkmark$ use product rule and induction.
+	\item if $n\in\mb Z$, use quotient rule $\ds\frac1{x^n}$.
+	\item if $n\in\mb Q$, (assume chain rule) then $n=\frac pq$, $p,q\in\mb Z$, $q\neq 0$.
+		Let $\ds y=x^{\frac pq} \implies y^q = x^p \implies qy^{q-1}\cdot y'(x) = px^{p-1}$ (chain rule) $\ds\implies y'(x) = \frac pq \frac{x^{p-1}}{y^{q-1}} = \frac pq\cdot \frac {x^{p-1}}{x^{\frac pq(q-1)}} = \frac pq\cdot \frac{x^{p-1}}{x^{p-p/q}}x^{\frac pq-1} = \frac pqx^{\frac pq-1} = nx^{n-1}=y'(x)$.
+	\item if $n\in\mb R$, $f(x) = x^n = e^{\ln x^n} = e^{n\ln x}$ (assume differentiability of $e^x$ and $\ln x$) $\implies f'(x) = e^{n\ln x}\cdot \frac nx = x^n\cdot\frac nx = nx^{n-1} = f'(x)$; $n\neq0$.
+\end{itemize}
+
+\begin{theorem}
+	Suppose
+	\begin{itemize}
+		\item $f$ continuous on $[a,b]$,
+		\item $f'(x)$ exists at some $x\in[a,b]$,
+		\item $g$ defined on some interval $I\supset f([a,b])$,
+		\item $g$ differentiable at $f(x)$.
+	\end{itemize}
+	Then $g\circ f$ is differentiable at $x$ and $(g\circ f)'(x) = g'(f(x))\cdot f'(x)$.
+\end{theorem}
+\begin{proof}
+	First, $f$ differentiable at $x$ means $\ds f'(x) = \lim_{t\ra x} \frac{f(t)-f(x)}{t-x}$ exists.
+	This implies $$f(t)-f(x) = [f'(x) + u(t)](t-x),$$ where $u(t)\ra0$ as $t\ra x$.
+	Then $g$ differentiable at $f(x)$ implies $\ds g'(f(x)) = \lim_{s\ra f(x)} \frac{g(s)-g(f(x))}{s-f(x)}$ exists $$\implies g(s)-g(f(x)) = [g'(f(x))+v(s)](s-f(x)),$$ where \fbox{$v(s)\ra0$ as $s\ra f(x)$}.
+	\ul{\ul{NTS}}: $$\lim_{t\ra x} \frac{g(f(t))-g(f(x))}{t-x} = g'(f(x))\cdot f'(x).$$
+	Finish next time.
+\end{proof}
+\begin{remark}
+	The proof is a bit hand wavy, look for better proof.
+\end{remark}
 \end{document}

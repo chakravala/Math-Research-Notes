@@ -598,4 +598,80 @@ given $y(t+h)$, can estimate $y(t+2h)$, etc ... $$t+Nh=T$$
 	$y(1) \approx y_4 = \frac3{16}$.
 \end{example}
 
+\subsection*{\S2.4 Linear Interpolation}
+
+\ul{Goal}: Given data point $(x_k,y_k)$, where $x_i\neq x_j$ for $i\neq j$ and $y_k=f(x_k)$ for some function $f$, find a nice funciton $p$ such that
+\begin{itemize}
+	\item $p(x_k)=y_k=f(x_k)$ for all $k$
+	\item $p(x) \approx f(x)$ otherwise.
+\end{itemize}
+\begin{enumerate}
+	\item[$*$] Typically $f(x)$ unknown.
+		Consider a function $f(x)$ whose values are known at $x_0<x_1<x_2<x_3<x_4$.
+
+	\item[$*$] linear $\implies p(x)$ is piecewise linear. $p$ is linear on $[x_{k-1},x_k]$ for all $k$. $p(x) = p_k(x)$ if $x_{k-1}\leq x\leq x_k$.
+\end{enumerate}
+
+Let $x\in [x_{k-1},x_k]$. $p_k(x) = $ secant line connecting $f(x_{k-1})$ and $f(x_k)$.
+Then $\ds m = \frac{f(x_k)-f(x_{k-1})}{x_k-x_{k-1}}$ and $y-f(x_{k-1}) = m (x-x_{k-1})$, so $\ds y = f(x_{k-1}) + \frac{f(x_k)-f(x_{k-1})}{x_k-x_{k-1}}(x-x_{k-1})$
+(point slope form)
+\begin{align*}
+	\implies p_k(x) &= f(x_{k-1}) + \frac{f(x_k)-f(x_{k-1})}{x_k-x_{k-1}}(x-x_{k-1}) \\
+					&= \frac{x_k-x}{x_k-x_{k-1}}f(x_{k-1}) + \frac{x-x_{k-1}}{x_k-x_{k-1}}f(x_t)
+\end{align*}
+for all $x\in[x_{k-1},x_k]$
+(parameterized form).
+
+\begin{theorem}
+	Let $f\in C^2[a,b]$ and let $p(x)$ be the piecewise linear interpolant for the nodes $a=x_0<x_1<x_2<\dots<x_N=b$ for some $N>0$.
+	Then for all $x\in[a,b]$,
+	$$ |f(x)-p(x)| \leq \frac18(\max_k|x_k-x_{k-1}|)^2\max_{a\leq\zeta\leq b}|f''(\zeta)|. $$
+\end{theorem}
+\begin{note}:
+	\begin{enumerate}
+		\item If $f$ is linear, then $f''=0 \implies p(x)=f(x)$ for all $x$.
+		\item The error only holds over $[a,b]$ where $x_0=a,x_N=b$.
+	\end{enumerate}
+\end{note}
+\begin{theorem}
+	[Linear Interpolation with $N=1$]
+	Let $f\in C^2[x_0,x_1]$ and let $p_1(x)$ be the linear polynomial that interpolates $f$ at $x_0$ and $x_1$.
+	Then, for all $x\in[x_0,x_1]$,
+	$$|f(x)-p(x)|\leq\frac12|(x-x_0)(x-x_1)|\max_{x_0\leq\zeta\leq x_1}|f''(\zeta)|
+		\leq \frac18 (x_1-x_0)^2 \max_{x_0\leq\zeta\leq x_1}|f''(\zeta)|. $$
+\end{theorem}
+\begin{proof}
+	Let $E(x) = f(x)-p_1(x)$ (error at $x$).
+	Define
+	\begin{align*}
+		\omega(x) &= (x-x_0)(x-x_1), \\
+		G(x) &= E(x)-\frac{\omega(x)}{\omega(t)}\os{\text{aux. fun.}}{E(t)},
+	\end{align*}
+	where $x_0<t<x_1$.
+	Then
+	\begin{itemize}
+		\item $G(x_0)=E(x_0)=0$
+		\item $G(x_1)=E(x_1)=0$
+		\item $G(t) = 0$.
+	\end{itemize}
+	Rolle's Theorem (MVT) $\implies$ there exists $\eta_0$ in $(x_0,t)$ and $\eta_1$ in $(t,x_1)$ such that $G'(\eta_0)=G'(\eta_1)=0$.
+	Rolle's Theorem $\implies$ there exists $\xi_t$ in $(\eta_0,\eta_1)$ such that $G''(\xi_t)=0$.
+	\begin{note}
+		$G''(x) = f''(x) - \frac2{\omega(t)}E(t)$ and $p_1''(x)=0$ and $w''(x)=2$, $\omega$ is quadratic.
+	\end{note}
+	$G''(\xi_t)=0 \implies f''(\xi_t)-\frac2{\omega(t)}E(t)=0 \implies E(t) = \frac12\omega(t)\cdot f''(\xi_t) \implies f(t)-p(t) = \frac12(t-x_0)(t-x_1)f''(\xi_t)$.
+	$*$ exact error for any $t$ in $(x_0,x_1)$.
+	Thus $|E(x)| \leq \frac12 |\ub{\omega(x)\,\text{[quadratic]}\,x^2+\dots}{(x-x_0)(x-x_1)}|\cdot\ds\max_{x_0\leq\xi\leq x_1}|f''(\xi)|$. $\checkmark$
+	
+	Then $x_c = \frac{x_0+x_1}2$ and $|\omega(x)|$ is maximized over $[x_0,x_1]$ at the vertex $x_c$.
+	So
+	\begin{align*}
+		|\omega(x_c)| &= \mlr{\omega\plr{\frac{x_0+x_1}2}}
+					  = \mlr{\plr{\frac{x_0+x_1}2-x_0}\plr{\frac{x_0+x_1}2-x_1}} \\
+					  &= \mlr{\frac{x_1-x_0}2\cdot\frac{x_0-x_1}2}
+					  = \frac14|x_1-x_0|^2.
+	\end{align*}
+	implies $\ds |E(x)| \leq \frac12\cdot\frac14|x_1-x_0|^2\cdot\max_{x_0\leq\xi\leq x_1}|f''(\xi)|^2$.
+\end{proof}
+
 \end{document}
