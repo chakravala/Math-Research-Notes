@@ -605,7 +605,7 @@ Last time: Bounded linear operators examples, examples of an unbounded linear op
 	Then
 	\begin{enumerate}
 		\item[a.] $T$ is continuous if and only if $T$ is bounded.
-		\item[b.] If $T$ is continuous at one point $x_0$, then $T$ is continuous.
+		\item[b.] If $T$ is continuous at one point $x_0\in\ms D(T)$, then $T$ is continuous on $\ms D(T)$.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -624,8 +624,107 @@ Last time: Bounded linear operators examples, examples of an unbounded linear op
 	Thus $T$ is continuous at $x_0$.
 	Since $x_0\in\ms D(T)$ is arbitrary, $T$ is continuous for every $x\in\ms D(T)$.
 	
-	\ul{$\implies$} Next time.
+%	\ul{$\implies$}$\mid$ Next time.
+%\end{proof}
+%\begin{proof}
+%	[Proof of a.]
+%	\ul{$\Lla$}$\mid$ last time.
+	\ul{$\implies$}$\mid$ Assume $T$ is continuous.
+	Fix $x_0\in\ms D(T)$, so $T$ is continuous at $x_0$. Let $\epsilon=1$.
+	Then there exists $\delta>0$ such that if $||x-x_0||\leq\delta$ then $||Tx-Tx_0||\leq1$.
+	Let $y\in\ms D(T)$, $y\neq0$.
+	Set $x=x_0+\frac\delta{||y||}y$. Then $||x-x_0|| = \mlr{\mlr{\frac\delta{||y||}y}}=\delta$.
+	Thus $||Tx-Tx_0||\leq 1$. But observe
+	\begin{align*}
+		||Tx-Tx_0|| = ||T(x-x_0)||
+					= \mlr{\mlr{T\plr{\frac\delta{||y||}}}}
+					= \frac\delta{||y||}||Ty||
+	\end{align*}
+	So $\frac\delta{||y||}||Ty||\leq1$, so $||Ty||\leq\frac1\delta||y||$.
+\end{proof}
+\begin{recall}
+	$T$ bounded $\iff \exists C$ such that $||Tx||\leq C||x||$ for all $x\in\ms D(T)$.
+\end{recall}
+\begin{proof}
+	[Proof of b.] Suppose $T$ is continuous at $x_0$. By proof of \ul{$\implies$}$\mid$ in a., this implies $T$ is bounded.
+	By \ul{$\Lla$}$\mid$ in a., this implies $T$ is continuous on all of $\ms D(T)$.
 \end{proof}
 \ul{HW} 2.7: 2,7,9. Grad 6 
+\begin{corollary}
+	Let $T:\ms D(T)\subset X\ra Y$ be bounded linear operator.
+	\begin{enumerate}
+		\item[a.] If $x_n\ra x$ and $x_n,x\in\ms D(T)$, then $Tx_n\ra Tx$.
+		\item[b.] $\ms N(T)$ is closed.
+	\end{enumerate}
+\end{corollary}
+\begin{proof}
+	[Proof of a.] Assume $x_n\ra x$, $x_n,x\in\ms (D)T$, and $T$ bounded. Then
+	\begin{align*}
+		||Tx_n-Tx|| = ||T(x_n-x)||
+					\leq ||T||\,||x_n-x||^{\ra0}.
+	\end{align*}
+	So $||Tx_n-Tx||\ra0$, so $Tx_n\ra Tx$.
+\end{proof}
+\begin{proof}
+	[Proof of b.] Assume $T$ is bounded. Let $(x_n)_{n=1}^\infty$ be a sequence in $\ms N(T)$, and furthermore $x_n\ra x$ for $x\in X$.
+	Thus $Tx_n\ra Tx$. But all $Tx_n=0$, $n=1,\dots$, so $Tx=0$. Thus $x\in\ms N(T)$, so $\ms N(T)$ is closed.
+\end{proof}
+
+\begin{definition}
+	A \ul{linear functional} $f$ is a linear operator with domain $\ms D(f)\subset X$, where $X$ is a vector space, and with range space the field of scalars $\mb R$ or $\mb C$.
+	Notation: use $f,g,h$.
+\end{definition}
+\begin{note}
+	A linear functional is a linear operator.
+\end{note}
+\begin{definition}
+	A \ul{bounded} \ul{linear functional} is a linear funcitonal which is a bounded linear operator.
+\end{definition}
+	Thus for a bounded linear functional we have:
+\begin{itemize}
+	\item $\exists c\geq 0$ such that $|f(x)|\leq c||x||$,
+		so $\ds ||f|| = \sup_{\us{x\neq0}{x\in\ms D(f)}} \frac{|f(x)|}{||x||}
+		= \sup_{\us{||x||=1}{x\in\ms D(f)}} |f(x)|. $
+		\item $|f(x)| \leq ||f||\,||x||$.
+\end{itemize}
+\begin{example}
+	$X=\mb R^3$ with Euclidean norm. Fix $a=(\alpha_1,\alpha_2,\alpha_3)\in\mb R^3$.
+	Define $f(x)$ for $x=(\xi_1,\xi_2,\xi_3)\in\mb R^3$ by $f(x) = x\cdot a = \xi_1\alpha_1+\xi_2\alpha_2+\xi_3\alpha_3$.
+	Clearly $f$ is a linear functional.
+	By theorem we know $f$ is bounded. We have: $|f(x)|=|x\cdot a|\leq ||x||\cdot||a||$ by Cauchy-Schwarz.
+	This implies $||f||\leq||a||$. To show $||f||=||a||$, find $x$ such that $|f(x)|=||a||\,||x||$.
+	Take $x=a$: $$|f(x)|=|f(a)| = a\cdot a = ||a||^2 = ||a||\,||a|| = ||a||\,||x||.$$
+	Thus $||f||=||a||$.
+\end{example}
+\begin{example}
+	$X= C[a,b]$ with $||\cdot||_\infty$. Define $f(x)$ for $x(t)\in X$ by $f(x) = \int_a^bx(t)\,dt$.
+	Clearly $f$ is a linear functional.
+	To see if $f$ is bounded,
+	\begin{align*}
+		|f(x)| = \mlr{\int_a^bx(t)\,dt}
+			   \leq \int_a^b|x(t)|\,dt
+			   \leq \int_a^b||x||_\infty\,dt
+			   = \fbox{$(b-a)$}\,||x||_\infty.
+	\end{align*}
+	Thus $f$ is bounded, $||f||\leq b-a$.
+	To see that $||f||=b-a$, consider $x(t)\equiv 1$.
+	Then $||x||_\infty=1$, and $|f(x)| = \mlr{\int_a^b1\,dt} = b-a = (b-a)||x||$.
+	So $||f||=b-a$.
+\end{example}
+\begin{example}
+	$X = C[a,b]$ with $||\cdot||_\infty$. Fix $c\in[a,b]$.
+	Define $f(x) = x(c)$ (point evaluation), $f$ is linear. Easy to show $f$ is bounded.
+\end{example}
+\begin{example}
+	$X = C[0,1]$ with $||\cdot||_1$.
+	Then $||x||_1 = \int_0^1|x(t)|\,dt$. Recall this is a normed space, but not complete.
+	Define linear functional by $f(x) = x(0)$. We claim $f$ is not bounded.
+	(There is no constant $C$ such that $|f(x)|\leq C||x||_1$ for all $x$).
+	Consider $$x_n(t) = \begin{cases} 0 & \frac1n\leq t\leq 1 \\ -nt+1 & 0\leq t\leq\frac1n \end{cases}.$$
+	Then $|f(x_n)| = |x_n(0)| = 1$ for all $n=1,2,\dots$ and $||x_n||_1 = \int_0^1|x_n(t)|\,dt = \frac1{2n}$ for $n=1,2\dots$.
+	There is no $C$ such that $|f(x_n)|=1\leq C\frac1{2n} = C||x_n||_1$ for all $n$.
+\end{example}
+\ul{HW} 2.8: 3, G6.
+
 
 \end{document}
