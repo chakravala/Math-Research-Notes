@@ -674,4 +674,323 @@ for all $x\in[x_{k-1},x_k]$
 	implies $\ds |E(x)| \leq \frac12\cdot\frac14|x_1-x_0|^2\cdot\max_{x_0\leq\xi\leq x_1}|f''(\xi)|^2$.
 \end{proof}
 
+\subsection*{\S2.5 Application - The Trapezoidal Rule}
+
+\ul{Goal}: Approximate $\int_a^bf(x)\,dx$.
+
+Let $a=x_0<x_1<x_2<\dots<x_N=b$ (mesh), to divide $[a,b]$ into $N$ subintervals $[x_{k-1},x_k]$. Let $q_N(x)$ be the piecewise linear interpolant of $f(x)$ ($f(x_k)=q_N(x_k)$).
+
+\begin{proposition}
+	[Trapezoidal Rule ($N$-subintervals)]
+	\begin{align*}
+		\int_a^b f(x)\,dx = \sum_{k=1}^N\int_{x_{k-1}}^{x_k}f(x)\,dx 
+						  \approx \sum_{k=1}^N \int_{x_{k-1}}^{x_k} p_k(x)\,dx
+						  = \sum_{k=1}^N\frac12(x_k-x_{k-1}) [f(x_k)+f(x_{k-1})].
+	\end{align*}
+\end{proposition}
+Suppose $x_k-x_{k-1}=h$ for all $k$ (uniform mesh).
+Then 
+\begin{align*}
+	\int_a^b q_N(x)\,dx &= \frac h2\sum_{k=1}^N[f(x_{k-1})-f(x_k)] \\
+						&= \frac h2[f(x_0)+2f(x_1)+2f(x_2)+\dots+2f(x_{N-1})+f(x_N)].
+\end{align*}
+\ul{Notation}: $T_N(f) = \int_a^b q_N(x)\,dx$, $I(f) = \int_a^bf(x)\,dx$.
+\begin{example}
+	$I = \int_0^1x^3\,dx = \frac14$. $f(x)=x^3$.
+	Let $h=\frac14 \implies \frac{b-a}N=h \implies \frac1N=\frac14 \implies N=4$.
+	\begin{align*}
+		T_4 = \frac h2\blr{f(0) + 2f\plr{\frac14} + 2f\plr{\frac12} + 2f\plr{\frac34} + f(1)} 
+			= \frac{17}{64} \approx 0.265625
+	\end{align*}
+\end{example}
+\begin{proposition}
+	[Accuracy] (uniform grid) $h=\frac{b-a}N$
+	$$ I(f)-I_N(f) = -\frac{b-a}{12}\cdot h^2\cdot f''(\xi_h) $$
+	for some $\xi_h$ in $[a,b]$.
+	Thus, $\ds|I(f)-I_N(f)|\leq \frac{b-a}{12}h^2 \max_{a\leq x\leq b}|f''(x)|$.
+\end{proposition}
+\begin{proof}
+	$I(f)=I_N(f)+\mc O(h^2)$.
+	Pick $k\in\set{1,2,\dots,N}$. (pick subinterval).
+	\S2.4 $\implies \exists \xi_k$ in $[x_{k-1},x_k]$ such that $f(x)-p_k(x) = \frac12(x-x_{k-1})(x-x_k)f''(\xi_k)$ for all $x$ in $[x_{k-1},x_k]$.
+	Thus,
+	\begin{align*}
+		|I(f)-I_N(f)| &= \mlr{\int_a^b[f(x)-q_N(x)]\,dx}
+					  = \mlr{\sum_{k=1}^N\int_{x_{k-1}}^{x_k} [f(x)-p_k(x)]\,dx} \\
+					  &\leq \sum_{k=1}^N\int_{x_{k-1}}^{x_k}|f(x)-p_k(x)|\,dx
+					  = \sum_{k=1}^N\int_{x_{k-1}}^{x_k}|\frac12(x-x_{k-1})(x-x_k)f''(\xi_k)|\,dx \\
+					  &\leq \frac12\max_{a\leq x\leq b}|f''(x)|\cdot\sum_{k=1}^N\int_{x_{k-1}}^{x_k}\us{\leq h}{|x-x_{k-1}|}\cdot\us{\leq h}{|x-x_k|}\,dx \\
+					  &\leq \frac12\max_{a\leq x\leq b}|f''(x)|\cdot h^2\sum_{k=1}^N \ub{x_k-x_{k-1}=h}{\int_{x_{k-1}}^{x_k} 1\,dx}
+					  = \frac12\max_{a\leq x\leq b}|f''(x)|\cdot h^3\sum_{k=1}^N1 \\
+					  &= \frac12\max_{a\leq x\leq b}|f''(x)|\cdot h^3\cdot \ub{\frac{b-a}h}N
+					  = \frac{b-a}2\cdot h^2\cdot\max{a\leq x\leq b}|f''(x)|.
+	\end{align*}
+	$*$ book: $\frac{b-a}2\mapsto \frac{b-a}{12}$ using MVT.
+\end{proof}
+\begin{remark}
+	Globally, we have $\mc O(h^2)$ error and locally we have $\mc O(h^3)$ error.
+\end{remark}
+\begin{example}
+	$I=\int_0^1x^3\,dx$. $h=\frac{b-a}N$.
+	How small does $h$ need to be for $I_N$ to approximate $I$ with error $\leq10^{-6}$?
+	\ul{Goal}: $\frac{b-a}{12}h^2\max_{a\leq x\leq b}|f''(x)|\leq10^{-6}$.
+	\begin{align*}
+		f(x) &= x^3 \\
+		f'(x) &= 3x^2 \\
+		f''(x) &= 6x \\
+		\max_{0\leq x\leq 1}|f''(x)| &= 6\cdot1=6. \\
+		\implies \frac{1-0}{12}\cdot h^2\cdot6 &\leq10^{-6} \\
+		\fbox{$h\leq \sqrt2\cdot10^{-3}$.}
+	\end{align*}
+	More: $N = \frac{b-a}h = \frac1{\sqrt2\cdot10^{-3}} = \frac{10^3}{\sqrt2}\approx707.1$, so need $N\geq708$.
+\end{example}
+
+Exam 1: Monday 2/19, Ch. 1 and 2.
+
+\subsection*{Solution of Tridiagonal Linear Systems}
+
+\begin{example}
+	Solve the system of equations
+	\begin{align*}
+		6x_1 + x_2 + 0 + 0 &= 8 \\
+		2x_1 + 4x_2 + x_3 +0 &= 13 \\
+		0	 + x_2 + 4x_3 + 2x_4 &= 22 \\
+		0+0	 + x_3 + 6x_4 &= 27
+	\end{align*}
+	for $x_1,x_2,x_3,x_4$. In matrix form:
+	$$ \us A{\mat{6&1&0&0\\2&4&1&0\\0&1&4&2\\0&0&1&6}}\us{\vx}{\mat{x_1\\x_2\\x_3\\x_4}} = \us{\vb}{\mat{8\\13\\22\\27}} $$
+	\ul{Tridiagonal}:
+	\begin{itemize}
+		\item Equation for $x_i$ involves at most $x_{i-1}$ and $x_{i+1}$.
+		\item $A\vx=\vb$ matrix form where $a_{ij}=0$ if $j>i+1$ or $j<i-1$.
+		\item Only need to store $\vl,\vd,\vu$ for $\vl$ (length $n-1$) lower diagonal entries, $\vd$ (length $n$) diagonal entries, $\vu$ (length $n-1$) upper diagonal entries for $n$ unknowns $x_1,\dots,x_n$.
+	\end{itemize}
+	To solve we eliminate unkowns from various equations. Gaussian Elimination provides a strategic approach for matrix form.
+	\begin{itemize}
+		\item Eliminate $x_1$ from the second equation: subtract $\frac13$ of $1^\text{st}$ equation from second.
+			\begin{align*}
+				2x_1 + 4x_3 + x_3 = 13 \\
+				-\frac13(6x_1+x_2 = 8)
+			\end{align*}
+			Becomes $\frac{11}3x_2+x_3=\frac{31}3$.
+			Replace $2^\text{nd}$ equation with new equation:
+			$$\begin{aligned}
+				6x_1+x_2 &= 8 \\
+				\frac{11}3x_2+ x_3 &= \frac{31}3 \\
+				x_2 + 4x_3 + 2x_4 &= 22 \\
+				x_3 + 6x_4 &= 27
+			\end{aligned}, \qquad
+			\us{\tilde A}{\mat{6&1&0&0\\0&\frac{11}3&1&0\\0&1&4&2\\0&0&1&6}}, \qquad \us{\tilde b}{\mat{8\\\frac{31}3\\22\\27}} $$
+			$*$ same solution as $A\vx=\vb$.
+
+		\item Eliminate $x_2$ from $3^\text{rd}$ equation: subtract $\frac3{11}$ of $2^\text{nd}$ equation, replace $3^\text{rd}$ equation with this.
+			\begin{align*}
+				x_2 + 4x_3 + 2x_4 &= 22 \\
+				-\frac3{11}\bigg(\frac{11}3x_2 + x_3 &= \frac{31}3\bigg) \\
+				%\hline \\
+				\implies \frac{41}11 x_3 + 2x_4 &= \frac{211}{11}.
+			\end{align*}
+			$$\begin{aligned}
+				6x_1 + x_2 &= 8 \\
+				\frac{11}3 x_2 + x_3 &= \frac{31}3 \\
+				\frac{41}{11}x_3 + 2x_4 &= \frac{211}{11} \\
+				x_3+6x_4 &= 27
+			\end{aligned}, \qquad
+			\mat{6&1&0&0\\0&\frac{11}3&1&0\\0&0&\frac{41}{11}&2\\0&0&1&6}, \qquad \mat{8\\\frac{31}3\\\frac{211}{11}\\27} $$
+
+		\item Eliminate $x_3$ from $4^\text{th}$ equation: subtract $\frac{11}{41}$ of $3^\text{rd}$ equation:
+			\begin{align*}
+				x_3 + 6x_4 &= 27 \\
+				-\frac{11}{41}\bigg(\frac{41}{11}x_3+2x_4 &= \frac{211}{11}\bigg) \\
+				%\hline \\
+				\implies \frac{224}{41}x_4 &= \frac{896}{41}
+			\end{align*}
+			$$\begin{aligned}
+				6x_1 + x_2 &= 8 \\
+				\frac{11}3 x_2 + x_3 &= \frac{31}3 \\
+				\frac{41}3 x_3 + 2x_4 &= \frac{211}{11} \\
+				\frac{224}{41} x_4 &= \frac{896}{41}
+			\end{aligned}, \qquad
+			\us{\tilde A}{\mat{6&1&0&0\\0&\frac{11}3&1&0\\0&0&\frac{41}{11}&2\\0&0&0&\frac{224}{41}}},\qquad \us{\tilde b}{\mat{8\\\frac{31}3\\\frac{211}{11}\\\frac{896}{41}}} $$
+	\end{itemize}
+	\ul{Backward substitution}
+	Given $x_{i+1},x_{i+2},\dots,x_n$, can find $x_i$ [$\tilde A$ upper triangular]
+	\begin{align*}
+		\frac{224}{41}x_4 = \frac{896}{41}, \qquad
+		\fbox{$x_4 = 4$}
+	\end{align*}
+	\begin{align*}
+		\frac{41}{11} x_3 + 2\ul{x_4} &= \frac{211}{11} \\
+		\frac{41}{11} x_3 + 2(4) &= \frac{211}{11} \\
+		\frac{41}{11} x_3 &= \frac{123}{11}, \qquad
+		\fbox{$x_3 = 3$}
+	\end{align*}
+	\begin{align*}
+		\frac{11}3 x_2 + \ul{x_3} &= \frac{31}3 \\
+		\frac{11}3 x_2 + 3 &= \frac{31}3 \\
+		\frac{11}3 x_2 &= \frac{22}3, \qquad
+		\fbox{$x_2=2$}
+	\end{align*}
+	\begin{align*}
+		6x_1 + \ul{x_2} &= 8 \\
+		6x_1 + 2 &= 8 \\
+		6x_1 &= 6, \qquad
+		\fbox{$x_1=1$}
+	\end{align*}
+	Solution $=\vx=\mat{1&2&3&4}^T$
+\end{example}
+
+\begin{theorem}
+	[Algorithm ($n$ equations, $n$ unknowns, \ul{tridiagonal})]
+	$$ A\vx = \vf$$
+	$\vec\ell, \vd,\vu$
+
+	\# Eliminate ($A\mapsto\tilde A$ for $A= \text{tridiag}$)
+\end{theorem}
+
+fill in details from photo
+
+\begin{theorem}
+	If a tridiagonal matrix is \ul{diagonally dominant} [$d_i>|u_i|+|\ell_i|$ for all $i=1,\dots,n$] then the algorithm is guaranteed to complete.
+\end{theorem}
+\begin{note}:
+	\begin{enumerate}
+		\item diagonal dominance ensures $\tilde d_i$ (no division by zero)
+		\item diagonal dominance is sufficient, \ul{\ul{not}} necessary.
+		\item only error is due to roundoff.
+	\end{enumerate}
+\end{note}
+
+\subsection*{\S2.7 Application: Simple Two-Point Boundary Value Problems}
+
+\ul{Goal}: Approximate the unknown \ul{function} $u(x)$ over the interval $[a,b]$ such that
+$$ \begin{cases} -u''(x) + u(x) = f(x), & a<x<b \\ u(a) = g_a \\ u(b) = g_b \end{cases} $$
+for some function $f$ and $g_a,g_b)$ given.
+\begin{example}
+	$\begin{cases} -u''(x)+u(x)=2\sin(x), & 0<x<\pi \\ u(0)=u(\pi)=0 \end{cases} $
+	
+	Then $u(x) = \sin(x)$, $u'(x) = \cos(x)$, and $u''(x)=-\sin(x)$.
+	
+	So $-u''(x)+u(x) = -(-\sin(x))+\sin(x) = 2\sin(x) = f(x) \checkmark$.
+	
+	$u(0)=\sin(0)=0\checkmark$ and $u(\pi)=\sin(\pi)=0\checkmark$.
+\end{example}
+\ul{Idea} Divide $[a,b]$ into $n$ equal subintervals $[x_{k+1},x_k]$ and approximate $u(x_k)$.
+Let $h=x_k-x_{k-1}$.
+\begin{align*}
+	f(x_k) = -\os{D_h^2u(x_k)}{u''(x_k)} + u(x_k) 
+		   &= -\frac{u(x_k-h)-2u(x_k)+u(x_k+h)}{h^2} + u(x_k) + \frac1{12}h^2 u^{(4)}(\xi_k) \\
+		   &\approx -\frac1{h^2}u(x_k-h) + \plr{\frac2{h^2}+1}u(x_k) - \frac1{h^2}u(x_k+h) \\
+		   &= -\frac1{h^2}u(x_{k-1}) + \plr{\frac2{h^2}+1}u(x_k) - \frac1{h^2}u(x_{k+1}).
+\end{align*}
+Let $u_k \approx u(x_k)$ defined by (multiply by $h^2$)
+$ -1\cdot U_{k-1} + (2+h^1)U_k-1\cdot U_{k+1} = h^2f(x_k) \implies U_k$ for $k=1,2,\dots,N-1$ defined by a tridiagonal system of linear equations with $U_0=u(x_0)=u(a)=g_a$, $U_N=u(x_N)=u(b)=g_b$.
+
+$*$ we only consider $U_k$ an unknown for $k=1,2,\dots,N-1$.
+
+\ul{$k=1$}: $-U_0+(2+h^2)U_1-U_2=h^2f(x_1)$, then $-U_0=-g_a$ (move to the right because it's known) $$\fbox{$(2+h^2)U_1-U_2=h^2f(x_1)+g_a$}$$
+
+\ul{$k=2$}: \fbox{$-U_1 + (2+h^2) U_2 - U_3 = h^2 f(x_2)$}
+
+\ul{$k=N-2$}: \fbox{$-U_{N-3}+(2+h^2)U_{N-2}-U_{N-1} = h^2f(x_{N-2})$}
+
+\ul{$k=N-1$}: $-U_{N-2} + (2+h^2)U_{N-1} - U_N = h^2f(x_{N-1})$ with $U_N=g_b$.
+
+$$\fbox{$-U_{N-2}+(2+h^2)U_{N-1} = h^2f(x_{N-1}) + g_b$}$$
+
+Matrix form 
+$$\mat{2+h^2 & -1 & 0 & 0 &\dots &0 & 0 \\ 
+	-1 & 2+h^2 & -1 & 0 & \dots & 0 & 0 \\
+	0 & -1 & 2+h^2 & -1 & \dots & 0 & 0 \\
+	0 & 0 & -1 & 2+h^2 & \dots  & \vdots & \vdots \\
+	\vdots & \vdots  & \vdots & \vdots & \ddots & 2+h^2 & -1 \\
+0 & 0 & 0 & 0 & \dots & -1 & 2+h^2}\mat{U_1\\U_2\\U_3\\\vdots\\U_{N-2}\\U_{N-1}} = \mat{h^2f(x_1) + g_a \\ h^2f(x_2) \\ h^2f(x_3) \\ \vdots \\ h^2f(x_{N-2}) \\ h^2f(x_{N-1})+g_b} $$
+\begin{fact}
+	$|u(x_k)-U_k|\leq \mc O(h^2)$.
+\end{fact}
+
+\begin{recall}
+	$\begin{cases} -u''+u = f(x) \\ u(a) = g_a \\ u(b) = g_b \end{cases}$,
+	$-D_h^2u+u = f$ with $\ds D_h^2u(x) = \frac{u(x-h)-2u(x)+2u(x+h)}{h^2} \approx u''(x)+\mc O(h^2)$.
+\end{recall}
+\begin{example}
+	$-u''(x) + u(x) = 2\sin(x)+1$ on $[0,\pi]$ with $u(0)=u(\pi)=1$. [solution: $u(x)=\sin(x)+1$].
+	Using 6 intervals ($N=6$).
+	$h = \frac{b-a}N = \frac\pi6$.
+	So $x_0=0$, $x_1=\frac\pi6$, $x_2=\frac\pi3$, $x_3=\frac\pi2$, $x_4=\frac{2\pi}3$, $x_5=\frac{5\pi}6$, $x_6=\pi$. $u_0 = u(0) = 1$, $u_6=u(\pi)=1$, unknowns $u_k$ for $k=1,\dots,5$.
+	$$ \mat{
+		2+\frac{\pi^2}6 & -1 & 0 & 0 & 0 \\
+		-1 & 2+\frac{\pi^2}6 & -1 & 0 & 0 \\
+		0 & -1 & 2+\frac{\pi^2}6 & -1 & 0 \\
+		0 & 0 & -1 & 2+\frac{\pi^2}6 & -1 \\
+		0 & 0 & 0 & -1 & 2+\frac{\pi^2}6 }
+		\mat{u_1\\u_2\\u_3\\u_4\\u_5} =
+		\mat{h^2f(x_1)+g_a\\h^2f(x_2)\\h^2f(x_3)\\h^2f(x_4)\\h^2f(x_5)+g_b} =
+		\mat{\frac{\pi^2}{36}\blr{2\sin\plr{\frac\pi3}+1}+1 \\
+			\frac{\pi^2}{36}\blr{2\sin\plr{\frac\pi3}+1}+1 \\
+			\frac{\pi^2}{36}\blr{2\sin\plr{\frac\pi2}+1} \\
+			\frac{\pi^2}{36}\blr{2\sin\plr{\frac{2\pi}3}+1} \\
+			\frac{\pi^2}{36}\blr{2\sin\plr{\frac{5\pi}6}+1} +1} = 
+			\mat{\frac{\pi^2}{18}+1\\\frac{(\sqrt3+1)\pi^2}{36} \\ \frac{(\sqrt2+1)\pi^2}{36} \\ \frac{(\sqrt3+1)\pi^2}{36} \\ \frac{\pi^2}{18}+1}$$
+	Run algorithm from \S2.6
+	$$ \vu = \mat{1.4732\\1.8020\\1.8758\\1.8020\\1.4732}$$
+	Graph of points with exact curve.
+\end{example}
+
+\section*{Ch.3 Root Finding}
+
+\ul{Goal}: Given a function $f(x)$, find $\alpha$ such that $f(\alpha)=0$.
+
+\ul{Idea}: Form a sequence $\set{x_k}_{k=0}^\infty$ such that $\lim_{x\ra\infty}x_k=\alpha$.
+
+\ul{Global Method} $x_k\ra\alpha$ for any initial guess $x_0$.
+
+\ul{Local Method} $x_k\ra\alpha$ \ul{only if} $x_0$ is close to $\alpha$.
+
+\begin{itemize}
+	\item global methods are typically slow (but reliable),
+	\item local methods are fast \ul{when} they work.
+	\item to improve reliability, use a global method first for a few steps and use the output as an initial guess for a faster method.
+	\item double roots are hard to find.
+\end{itemize}
+
+$f(x) = 0$
+
+\subsection*{3.1 Bisection Method}
+
+\say{Global} method for finding zeros where $f(x)$ changes signs.
+\ul{Idea} $f$ continuous.
+Suppose $f(a)\cdot f(b)<0$ (different signs).
+IVT $\implies \exists\alpha$ in $(a,b)$ such that $f(\alpha)=0$.
+Let $c=\frac{a+b}2$.
+\begin{itemize}
+	\item If $f(c)f(a)<0$, then $\exists\tilde\alpha\in(a,b)$ such that $f(\tilde\alpha)=0$.
+	\item If $f(c)=0$, then $\tilde\alpha=c$ and $f(\tilde\alpha)=0$ (Done).
+	\item If $f(c)\cdot f(b)<0$, then $\exists\tilde\alpha\in(c,b)$ such that $f(\tilde\alpha)=0$.
+\end{itemize}
+Know $a<\alpha<b$ (width $b-a)$.
+Know $a<\tilde\alpha\leq c$ \ul{or} $c<\tilde\alpha<b$ (width $\frac{b-a}2$).
+If $f(c)\neq0$, let $\tilde a=a$, $\tilde b=c$, or $\tilde a =c$, $\tilde b=b$ and repeat.
+Eventually, the process will converge to a root $\alpha^*\in(a^*,b^*]$ with $b^*-a^*$ arbitrarily small.
+\ul{Bisection Method} Let $a_0=a,b_0=b$, where $f9a)\cdot f(b)<0$.
+For $k=0,1,2,\dots$
+$$ c_k = \frac{a_k+b_k}2 = a_k + \frac12(b_k-a_k) \qquad \text{[stable form]} $$
+If $f(c_k)=0$: $\alpha=c_k$. break. verbatim if $(|c-0|<tol)$.
+
+If $f(a_k)f(c_k)<0$, then $a_{k+1}=a_k$ and $b_{k+1}=c_k$, else $a_{k+1}=c_k,b_{k+1}=b_k$. Finally $k=k+1$, end.
+
+\begin{theorem}
+	Suppose $f$ is continuous on $[a,b]$ and $f(a)f(b)<0$.
+	Let $x_n=c_n = \frac{a_{n-1}+b_{n-1}}2$.
+	Then there exists \ul{a root} $\alpha\in[a,b]$ such that $|x_n-\alpha|\leq\plr{\frac12}^n(b-a)$.
+	Let $\epsilon>0$. Then $|x_n-\alpha|\leq\epsilon$ if $n\geq\frac{\log(b-a)-\log\epsilon}{\log2}$.
+\end{theorem}
+\begin{note}:
+	\begin{enumerate}
+		\item The zero $\alpha$ is not known beforehand. The theorem guarantees $\alpha$ exists.
+		\item This method is considered slow.
+		\item The error may not decrease on each step. $x_k$ closer to $\alpha$ than $x_{k+1}$.
+	\end{enumerate}
+\end{note}
+
 \end{document}

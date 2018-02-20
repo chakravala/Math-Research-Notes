@@ -501,7 +501,7 @@ First goal is to classify types of discontinuities:
 	\item $\lim_{x\ra c} f(x) \neq f(c)$,
 	\item $\lim_{x\ra c} f(x)$ does not exist.
 \end{itemize}
-\ul{Left hand limit}: $f:(a,b)\subset\mb R\ra\mb R$ and $x\in(a,b]$. Then $f(x_-) = q$ or $\lim_{t\ra x_-} f(t) = q$ if and only if
+\ul{Left hand limit}: $f:(a,b)\subset\mb R\ra\mb R$ and $x\in(a,b]$. Then $f(x_-) = q$ or $\ds\lim_{t\ra x_-} f(t) = q$ if and only if
 \begin{enumerate}
 	\item[i)] $\forall\epsilon>0,\exists\delta=\delta(x,\epsilon)>0$ such that if $x-\delta < t < x$ then $|f(t)-q|<\epsilon$.
 	\item[ii)] $\forall$ sequence $(t_n)\subset(a,x)$ such that $t_n\ra x$ implies $f(t_n)\ra q$.
@@ -728,6 +728,7 @@ Properties of differentiable functions:
 \end{itemize}
 
 \begin{theorem}
+	\label{thm-5-5}
 	Suppose
 	\begin{itemize}
 		\item $f$ continuous on $[a,b]$,
@@ -747,4 +748,296 @@ Properties of differentiable functions:
 \begin{remark}
 	The proof is a bit hand wavy, look for better proof.
 \end{remark}
+\begin{recall}
+	$g(f(x))' = g'(f(x))\cdot f'(x)$.
+\end{recall}
+\begin{proof}
+	Since $f$ is differentiable at $x$, $f'(x)=\lim_{t\ra x} \frac{f(t)-f(x)}{t-x}$ exists.
+	
+	So \fbox{$f(t)-f(x) = (t-x)[f'(x)+ u(t)]$, where $u(t)\ra0$ as $t\ra x$} (1).
+	$g$ differentiable at $f(x)$.
+	
+	So \fbox{$g(s)-g(f(x)) = (s-f(x))[g'(f(x))+v(s)]$, $v(s)\ra0$ as $s\ra f(x)$} (2).
+
+	\ul{Want to show}: $\ds\lim_{t\ra x}\frac{g(f(t))-g(f(x))}{t-x} = g'(f(x))\cdot f'(x)$.
+	Using (2), for $t\neq x$ with $s=f(t)$
+	$g(f(t)) - g(f(x)) = (f(t)-f(x))[g'(f(x))+v(f(t))]$, where $v(f(t))\ra0$ as $t\ra x$ since $f(t)\ra f(x)$ as $t\ra x$ by continuity of $f$.
+	missing CONTENT
+	\iffalse
+	\begin{align*}
+		g(f(t))-g(f(x))
+		&\os{(1)}= (t-x)[f'(x)+u(t)][g'(f(x))+v(f(t))] \\
+		&= \ub{\,}{f'(x)\cdot g'(f(x))}+f'(x)\cdot \ub{\ra0\text{ as }t\ra x}{v(f(t))} + \us{\ra0\text{as t\ra x}}{u(t)} g'(f(x)) + u(t)\us{\ra0}{v(f(t))} \ra g'(f(x))\cdot f'(x)
+	\end{align*}
+	\fi
+	as $t\ra x$.
+	Therefore $\lim_{t\ra x}\frac{g(f(t))-g(f(x))}{t-x} = g'(f(x))\cdot f'(x)$.
+\end{proof}
+
+\begin{remark}
+	Rolle's theorem is a special case for the MVT for the existence of a zero slope secant line.
+\end{remark}
+
+\subsection{Mean Value Theorem}
+\ul{Local max/min}: Suppose $f:X^{m.s}\ra\mb R$. We say that $f$ has a local max (min) at $x\in X$ if $\exists \delta>0$ such that $f(t)\leq (\geq) f(x)$ for all $t\in B_\delta(x)$.
+\begin{theorem}
+	\label{thm-5-8}
+	Let $f:[a,b]\ra\mb R$. If
+	\begin{itemize}
+		\item $f$ has a local max (min) at $x\in(a,b)$,
+		\item $f$ differentiable at $x$,
+	\end{itemize}
+	then $f'(x)=0$.
+\end{theorem}
+\begin{proof}
+	We will compute $f'(x_-)$ and $f'(x_+)$.
+	Since $f$ has a local maximum at $x$, $\exists\delta>0$ such that if $t\in(x-\delta,x+\delta)$ then $f(t)\leq f(x)$.
+
+	$f'(x_-)$: Let $t\in(x-\delta,x)$. Then
+	\begin{align*}
+		\frac{\fbox{$f(t)-f(x)$}^{\leq 0}}{\ub{<0}{t-x}} \implies lim_{t\ra x_-} \frac{f(t)-f(x)}{t-x}\geq 0 \qquad (f'(x_-))
+	\end{align*}
+	$f'(x_+)$: Let $t\in(x,x+\delta)$. Then $\lim_{t\ra x_+} \frac{(f(t)-f(x))^{\leq 0}}{(t-x)^{>0}}$ ($f'(x_+)$)
+	But $f'(x)$ exists, so $f'(x_+) = f'(x_-) = 0 = f'(x)$.
+\end{proof}
+
+\begin{theorem}
+	[Generalized MVT]
+	\label{thm-5-9}
+	Let $f,g:[a,b]\ra\mb R$ be
+	\begin{itemize}
+		\item continuous on $[a,b]$,
+		\item differentiable on $(a,b)$.
+	\end{itemize}
+	Then there exists $x\in(a,b)$ such that $[f(b)-f(a)]g'(x) = [g(b)-g(a)]f'(x)$.
+\end{theorem}
+\begin{remark}
+	MVT: $\frac{f(b)-f(a)}{b-a} = f'(x)$; $x\in(a,b)$, $f(b)-f(a)=(b-a)f'(x)$.
+	Standard MVT: $g(x) = x$.
+	Rolle's theorem: $g(x) = x$ and $f(b)=f(a)$.
+\end{remark}
+\begin{proof}
+	Define $h(t) = [f(b)-f(a)]g(t) - [g(b)-g(a)]f(t)$ for $t\in[a,b]$.
+	Then $h$ is continuous on $[a,b]$ and differentiable on $(a,b)$.
+	Also,
+	\begin{align*}
+		h(a) &= [f(b)-f(a)]g(a) - [g(b)-g(a)]f(a) \\
+			 &= f(b)g(a)-g(b)f(a) \\
+		h(b) &= [f(b)-f(a)]g(b) - [g(b)-g(a)]f(b) \\
+			 &= f(b)g(a) - g(b)-f(a) = h(a)
+	\end{align*}
+	Now, if $h(b)=h(a)=h(t)$ for every $t\in[a,b]$, then $h'(t)=0$ for every $t\in(a,b) \checkmark$.
+	Otherwise, $h(t)$ attains either a local maximum or a local minimum at some point $x\in(a,b)$.
+	Then $h'(x) = 0$ by Theorem \ref{thm-5-8} i.e., $[f(b)-f(a)]g'(x) = [g(b)-g(a)]f'(x)$.
+\end{proof}
+
+\begin{theorem}
+	[Derivative and monotonicity]
+	\label{thm-5-11}
+	Suppose $f:[a,b]\ra\mb R$ continuous and differentiable on $(a,b)$. Then
+	\begin{enumerate}
+		\item[(i)] if $f'(x)\geq0$ for all $x\in(a,b)$ then $f$ is monotonically increasing on $(a,b)$,
+		\item[(ii)] if $f'(x)\leq0$ for all $x\in(a,b)$ then $f$ is monotonically decreasing on $(a,b)$,
+		\item[(iii)] if $f'(x)=0$ for all $x\in(a,b)$ then $f$ is constant. 
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	(i) Suppose $x_1,x_2\in(a,b)$ with $x_1<x_2$.
+	\ul{\ul{NTS}}: $f(x_1)\leq f(x_2)$ if \ul{$f'(x)\geq0$}.
+	By applying MVT on $[x_1,x_2]$, $\exists x\in(x_1,x_2)$ such that $\us{\geq0}{f'(x)} = \frac{f(x_2)-f(x_1)}{(x_2-x_1)^{>0}} \implies f(x_2)-f(x_1)\geq0$ i.e., $f(x_1)\leq f(x_2)$.
+\end{proof}
+\begin{example}
+	Examples of functions $f$: Derivative exists but Derivative not continuous.
+\end{example}
+
+\begin{theorem}
+	[Intermediate value property for derivative]
+	\label{thm-5-12}
+	Suppose $f:[a,b]\ra\mb R$ is differentiable and $\exists\lambda$ such that $f'(a)<\lambda<f'(b)$.
+	Then $\exists x\in(a,b)$ such that $f'(x)=\lambda$.
+\end{theorem}
+\begin{note}
+	$f'$ exists $\not\implies f'$ continuous, therefore IVT for continuous function cannot be applied.
+\end{note}
+
+\ul{Homework} (1) $f(x) = \frac1x$ is continuous on $(0,\infty)$ using $\epsilon-\delta$ definition??
+
+\begin{recall}
+	[IVP for $f'$]
+	Suppose $f:[a,b]\ra\mb R$ differentiable, and $f'(a)<\lambda<f''(b)$ ($f'(a)\neq f'(b)$). Then $\exists x_0\in(a,b)$ such that $f'(x_0) = \lambda$.
+\end{recall}
+\begin{proof}
+	Define $h(x) = f(x)-\lambda x$ for $x\in[a,b]$.
+	Then $h$ is differentiable on $[a,b]$ since $f$ is. Also $h'(x) = f'(x)-\lambda$.
+	Then $h'(a) = f'(a)-\lambda<0$ and $h'(b)=f'(b) - \lambda >0$.
+	(We do not know if $f'(x)$ is continuous, so IVT for continuous functions cannot be applied.)
+	Therefore there exists a point $x\in(a,b)$ where $h$ achieves a local minimum.
+	Since $h$ is differentiable, $f'(x)=0$ or $f'(x) = \lambda$.
+\end{proof}
+\begin{corollary}
+	Suppose $f:[a,b]\ra\mb R$ is differentiable. Then $f'$ cannot have any simple discontinuity.
+\end{corollary}
+\begin{proof}
+	[Homework (proof)]
+	By contradiction. Suppose $f'$ is discontinous at $x\in(a,b)$.
+
+	\ul{Case I}: Let $f'(x_-) = f'(x_+) < f'(x)$ WLOG.
+
+	\ul{Case II}: Let $f'(x_-)<f'(x_+)$ WLOG.
+\end{proof}
+\begin{corollary}
+	Let $f:I\subset\mb R\ra\mb R$ \ul{have bounded derivative}. Then $f$ is uniformly continuous on $\mb R$.
+\end{corollary}
+\begin{proof}
+	$f$ has bounded derivative on $I$, so  $\exists M>0$ such that $|f'(x)|\leq M$ for all $x\in I$.
+	Let $\epsilon>0$. \ul{\ul{NTS}} $\exists\delta>0$ such that $\forall x,y\in I$ such that $|x-y|<\delta$ implies $|f(x)-f(y)|<\epsilon$.
+	By MVT, $\exists c\in(x,y)$ (WLOG) such that $f(x)-f(y) = f'(c)(x-y)$ implies
+	\begin{align*}
+		|f(x)-f(y)| = |f'(c)|\,|x-y|
+					\leq M|x-y|
+					< \epsilon
+	\end{align*}
+	if $|x-y|<\delta=\frac\epsilon M$.
+	Therefore $f$ is uniformly continuous on $I$.
+\end{proof}
+\begin{example}
+	$f(x) = x$ is uniformly continuous on $\mb R$ since $|f'(x)|=1$ on $\mb R$.
+\end{example}
+\begin{example}
+	$f(x) = \sin x$ or $\cos x$ uniformly continuous on $\mb R$ since $|f'(x)| = |\sin x|$ or $|\cos x|\leq1$ on $\mb R$.
+\end{example}
+\begin{example}
+	$f(x) = \sqrt x$ on $[1,\infty)$ -- calculate $|f'(x)|\os?\leq$ ?
+\end{example}
+
+\begin{example}
+	$f:I\subset\mb R\ra\mb R$ is uniformly continuous on $I$ if and only if $\forall\epsilon>0$, $\exists\delta>0$ such that $\forall x,y\in I$ with $0<|x-y|<\delta$ implies $|f(x)-f(y)|<\epsilon$.
+
+	Converse: $f$ is not uniformly continuous on $I$ if and only if $\exists \epsilon_0$ such that $\forall\delta>0$, $\exists x_0,y_0\in I$ with $|x_0-y_0|<\delta$ but $|f(x_0)-f(y_0)|\geq\epsilon$.
+\end{example}
+\begin{example}
+	$f(x) = \frac1x$ is not uniformly continuous on $(0,1)$.
+	\ul{Pick $\epsilon_0=1$}. Fix $\delta>0$ (arbitrary) such that $0<\delta<1$. Find $x_0,y_0$.
+	Take $x_0=\delta,y_0=\frac\delta2$. Then $|x_0-y_0| = \frac\delta2$ and $|f(x_0)-f(y_0)| = \mlr{\frac1\delta-\frac2\delta}=\frac1\delta > 1=\epsilon_0$.
+\end{example}
+\begin{example}
+	$f(x)=x^2$ is not uniformly continuous on $\mb R$.
+	Fix $\epsilon_0=1$ and $\delta>0$.
+	Let $x_0=\frac1\delta,y_0=\frac1\delta+\frac\delta2$, which implies $|x_0-y_0|=\frac\delta2<\delta$.
+	Then
+	\begin{align*}
+		|f(x_0)-f(y_0)| = \mlr{\frac1{\delta^2} - \plr{\frac1\delta+\frac\delta2}^2} 
+						= \mlr{\frac1{\delta^2} - \frac1{\delta^2} - 2\cdot\frac1\delta\cdot\frac\delta2 - \frac{\delta^2}4}
+		= 1 + \frac{\delta^2}4 > 1 = \epsilon_0.
+	\end{align*}
+\end{example}
+
+\subsection*{Higher order derivatives}
+
+\begin{example}
+	$f(x) = \begin{cases} \sin\plr{\frac1x}; & x\neq 0 \\ 0; & x=0 \end{cases}$.
+	\begin{itemize}
+		\item[$\checkmark$] continuous at $x\neq 0$. 	
+		\item[?] $x=0$ $\lim_{x\ra0} f(x) = $ \ul{does not} exist $\implies$ not continuous at $x=0$.
+	\end{itemize}
+	Note $\lim_{x\ra c}f(x) = L$ if and only if $\forall$ sequences $(x_n)\subset\mb R$ such that $x_n\ra c$ implies $f(x_n)\ra L$.
+
+	Then $x_n = \frac1{2\pi n}\ra 0$ and $f(x_n) =\sin(2\pi n) = 0$ for all $n$, so $\ra0$.
+	Also $y_n = \frac1{2\pi n+\frac\pi2} \ra 0$ and $f(x_n) = \sin(2\pi n+\frac\pi2)=1$ for all $n$, so $\ra1$.
+	This implies $\lim_{x\ra 0}f(x)$ does not exist.
+\end{example}
+
+\newpage
+
+\begin{theorem}
+	[Taylor's theorem (Calculus version)]
+	Suppose $f$ has $(n+1)$-continuous derivatives on an open interval containing $a\in I\subset\mb R$.
+	Then for each $x\in I$,
+	$$f(x) = \us{n^\text{th}\text{ degre polynomial}}{\sum_{k=0}^\infty \frac{f^{(k)}}{k!}(x-a)^k} + R_{n+1}(x),$$
+	where $\ds R_{n+1}(x) := \frac{f^{(n+1)}(z}{(n+1)!}(x-a)^{n+1}$ for some $z$ between $a$ and $x$.
+\end{theorem}
+\ul{Notation}: (function space) 
+\begin{align*} 
+	\set{f:[a,b]\ra\mb R\text{ continuous}} &= C([a,b]), \\
+	\set{f:[a,b]\ra\mb R\text{ such that }f'\text{ is continuous}} &= C^1([a,b]), \\
+	\vdots \\
+	\set{f:[a,b]\ra\mb R\text{ such that}f^{(k)}\text{ is continuous}} &= C^k([a,b]),
+\end{align*}
+where $C([a,b]) \subset C^1([a,b]) \subset \dots \subset C^k([a,b])$.
+
+\begin{example}
+	$\ds e^x = 1+x+\frac{x^2}{2!} + \frac{x^3}{3!} + \dots = \sum_{k=0}^\infty \frac{x^k}{k!}$ -- $\ub{\text{Mclaurin series}}{\text{Taylor series at }a=0}$
+
+	$\ds R_{n+1}(x) := \frac{f^{(n+1)}(c)}{(n+1)!} x^{n+1}$ for some $c$ between and $0$ and $x$.
+	?$R_{n+1}(x) \ra 0$ as $n\ra\infty$ (ratio test).
+
+	$\ds\sum_{k=0}^\infty \frac{x^k}{k!}$ converges by Ratio test: $\ds\lim_{k\ra\infty} \frac{|x|^{k+1}}{(k+1)!} \cdot \frac{k!}{|k|^k} = \lim_{k\ra\infty} \frac{|x|}{k+1} = 0 < 1$ for all $x\in\mb R$.
+	$\ds\lim_{n\ra\infty} \frac{x^{n+1}}{(n+1)!}=0$ and $|f^{(n+1)}(c)| = e^c$ is bounded for $c$ between $0$ and $x$: $\implies R_{n+1} \ra 0$ as $n\ra\infty$.
+\end{example}
+
+\begin{theorem}
+	[Taylor's theorem]
+	\label{thm-5-15}
+	Let $f:[a,b]\ra\mb R$. Suppose
+	\begin{itemize}
+		\item $f^{(n-1)}$ continuous on $[a,b]$,
+		\item $f^{(n)}$ exists $\forall t\in(a,b)$.
+	\end{itemize}
+	Let $\alpha,\beta\in[a,b]$ and define
+	$$P(t) := \sum_{k=0}^{n-1} \frac{f^{(k)}(\alpha)}{k!}(t-\alpha)^k.$$
+	Then $\exists x$ between $\alpha$ and $\beta$ such that $$ f(\beta) = P(\beta) + \ub{\text{Lagrange Remainder (1797)}}{\frac{f^{(n)}(x)}{n!}(\beta-\alpha)^n} .$$
+\end{theorem}
+\begin{proof}
+	WLOG assume $\alpha\neq\beta$. Define $M:= \frac{f(\beta)-P(\beta)}{(\beta-\alpha)^n}$.
+	Define $g(t) = f(t) - P(t) - M(t-\alpha)^n$; $a\leq t\leq b$.
+	$$P(t) = f(\alpha) + f'(\alpha)(t-\alpha) + \frac{f''(\alpha)}{2!}(t-\alpha)^2 + \dots + \frac{f^{(n-1)}(\alpha)}{(n-1)!}\cdot(t-\alpha)^{n-1}.$$
+	\begin{enumerate}
+		\item[$\checkmark$] $g^{(n-1)}$ continuous on $[a,b]$ and $g^{(n)}$ exists $\forall t\in[a,b]$.
+		\item[]
+	$g(\alpha) = f(\alpha)-P(\alpha)-M\cdot0 = 0$ since ($f(\alpha)=P(\alpha)$).
+\item[] 
+	$g'(\alpha) = f'(\alpha)-P'(\alpha)) - n\cdot M\cdot 0$.
+\item[] $\vdots$
+\item[] $g^{(n-1)}(\alpha) = f^{(n-1)}(\alpha)-P^{(n-1)}(\alpha) - n!M\cdot0$.
+	\end{enumerate}
+	$\implies$ \fbox{$g^{(k)}(\alpha)=0$ for $k=0,\dots,n-1$.}
+	Now, 
+	\begin{align*}
+		g(\beta) &= f(\beta)-P(\beta)-M(\beta-\alpha)^n 
+				 = f(\beta)-P(\beta)-\frac{f(\beta)-P(\beta)}{(\beta-\alpha)^n}(\beta-\alpha)^n
+	\end{align*}
+	We have: $g(x) = 0$ and $g(\beta)=0$.
+	$\os{\text{Rolle's}}\implies \exists x_1$ between $\alpha$ and $\beta$ such that $g'(x_1)=0$.
+	Again, $g'(\alpha) = 0$ and $g'(x_1) = 0 \os{\text{Rolle's}}\implies \exists x_2$ between $x_1$ and $\alpha$ such that $g''(x_2)=0$.
+	Inductively, $\exists x_n$ between $x_{n-1}$ and $\alpha$ such that $\ds g^{(n)}(x_n) = 0 \implies f^{(n)}(x_n)-\ub{=0}{P^{(n)}(x_n)} - M\cdot n!=0\implies M = \frac{f^{(n)}(x_n)}{n!} \implies \frac{f(\beta)-P(\beta)}{(\beta-\alpha)^n} = \frac{f^{(n)}(x_n)}{n!}$.	
+\end{proof}
+
+\begin{theorem}
+	[Inverse function theorem]
+	Suppose
+	\begin{itemize}
+		\item $f:(a,b)\ra(c,d)$ is differentiable
+		\item $f$ is surjective
+		\item $f'(x)\neq0$ for all $x\in(a,b)$
+	\end{itemize}
+	Then
+	\begin{enumerate}
+		\item[$*$] $f$ is a homeomorphism
+		\item[$*$] $f\inv$ is differentiable on $(c,d)$, and
+		\item[$*$] $(f\inv)'(y) = \frac1{f'(f\inv(y))}$.
+	\end{enumerate}
+\end{theorem}
+\begin{example}
+	$f(x) = \sin x$; $(-\frac\pi2,\frac\pi2)$.
+	$f'(x) = \cos x$, $f\inv(x) = \sin\inv x$.
+	$$ (f\inv)'(x) = \frac1{f'(f\inv(x))} = \frac1{\cos(\sin\inv x)} = \frac1{\sqrt{1-[\sin(\sin\inv x)]^2}} = \frac1{\sqrt{1-x^2}}.$$
+\end{example}
+\begin{example}
+	$f(x) = e^x$; $(-\infty,\infty)$.
+	$f'(x) = e^x$, $f\inv(x)=\ln x$; $(0,\infty)$.
+	$$(f\inv)'(x) = \frac1{f'(f\inv(x))} = \frac1{e(\ln x)} = \frac1x.$$
+\end{example}
+
+$C_0([a,b]) = \setc{f:[a,b]\os{\text{cts}}{\lra}\mb R}{f(a)=0,\,f(b)=0}$.
+
 \end{document}

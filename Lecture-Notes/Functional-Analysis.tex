@@ -726,5 +726,79 @@ Last time: Bounded linear operators examples, examples of an unbounded linear op
 \end{example}
 \ul{HW} 2.8: 3, G6.
 
+\newpage
+Last time: examples of linear functionals.
 
+\begin{example}
+	[$X=\ell^2$] Fix $a = (\alpha_j)\in\ell^2$.
+	So $\sum_{j=1}^\infty |\alpha_j|^2<\infty$. Define $f:X\ra\mb R$ or $\mb C$ by $f(x) = \sum_{j=1}^\infty \alpha_j\xi_j$, where $x=(\xi_j)$.
+	Clearly $f$ is linear.
+	$f$ is bounded because 
+	\begin{align*}
+		|f(x)| &= \mlr{\sum_{j=1}^\infty \alpha_j\xi_j}
+			   \leq \sum_{j=1}^\infty |\alpha_j\xi_j| \\
+		\text{Cauchy-Schwarz}	   &\leq \sqrt{\sum_{j=1}^\infty |\alpha_j|^2}\sqrt{\sum_{j=1}^\infty |\xi_j|^2} 
+			   = ||a||_2\cdot ||x||_2
+	\end{align*}
+	Thus $f$ is bounded and $||f||\leq||a||_2$.
+	Notice for $x=a$ we get $|f(a)| = ||a||_2\cdot ||a||_2$.
+	So $||f||=||a||_2$. $\checkmark$
+\end{example}
+
+\begin{definition}
+	Let $X$ be a vector space. The vector space $X^* = \setc{f}{f\text{ is a linear functional on }X}$ is called the \ul{algebraic dual space} of $X$.
+	$X^*$ is a vector space. 
+\end{definition}
+	What about $(X^*)^*$? This is called the second algebraic dual space.
+Fix $x\in X$. Define $g_x\in X^{**}$ by:
+For any $f\in X^*$, define $g_x(f) = f(x)$.
+Claim: $g_x$ is linear: for any $f_1,f_2\in X^*$, scalars $\alpha,\beta$,
+\begin{align*}
+	g_x(\alpha f_1+\beta f_2) = (\alpha f_1+\beta f_2)(x) 
+							  = \alpha f_1(x) + \beta f_2(x) 
+							  = \alpha g_x(f_1) + \beta g_x(f_2)
+\end{align*}
+This defines a mapping $C:X\ra X^{**}$ by $Cx = g_x$.
+$C$ is a linear operator, called the canonical mapping.
+Are there any elements of $X^{**}$ besides those in $\ms R(C)$?
+If $X^{**} = \ms R(C)$, we say $X$ is algebraically reflexive.
+
+Linear operators on finite dimensional vector spaces. 
+Let $X,Y$ be finite dimensional vector spaces and let $T:X\ra Y$ be a linear operator.
+Let $\mc E=\set{e_1,\dots,e_n}$ be a basis for $X$ and $\mc B = \set{b_1,\dots,b_r}$ be a basis for $Y$.
+Let $x\in X$. Then $x = \sum_{i=1}^n \xi_ie_i$
+$$ y = Tx = \sum_{j=1}^n \xi_k Te_k = \sum_{k=1}^n \xi_ky_k, $$
+where $y_k= Te_k$.
+On the other hand, $y$ and $y_k$ have unique representation in terms of basis $\mc B$
+$$ y = \sum_{j=1}^r n_jb_j, \qquad y_k = Te_k = \sum_{j=1}^r \tau_{jk}bj $$
+Thus:
+\begin{align*}
+	\sum_{j=1}^r n_jb_j = y = \sum_{k=1}^n \xi_ky_k 
+						= \sum_{k=1}^n \xi_k\plr{\sum_{j=1}^r \tau_{jk}b_j} 
+						= \sum_{j=1}^r \plr{\sum_{k=1}^n \xi_k\tau_{jk}}b_j
+\end{align*}
+Thus $n_j = \sum_{k=1}^n \xi_k\tau_{jk}$.
+Define matrix $T_{EB} = (\tau_{jk})_{r\times n}$.
+Set $\tilde x = \mat{\xi_1\\\vdots\\\xi_n}$, $\tilde y = \mat{n_1\\\vdots\\n_r}$, then $\tilde y = T_{EB}\tilde x$.
+
+\begin{example}
+	[2.3-2] Let $(x_k)$ be a sequence in $c_0$, $x_k=(\xi_j^k)_{j=1}^\infty$ where $\xi_j^k\ra0$ as $j\ra\infty$.
+	Suppose $x_k\ra x$ in $\ell^\infty$, $x=(\xi_j)_{j=1}^\infty$, that is $||x_k-x||_\infty\ra0$.
+	Show $x\in c_0$. That is, show $\xi_j\ra 0$.
+	Let $\epsilon >0$...
+\end{example}
+\begin{example}
+	[2.3-3]
+	Consider $x_n = (1,\frac12,\dots,\frac1n,0,0,0,\dots)$.
+	Clearly each $x_n\in Y$ and $x_n\ra x\in\ell^\infty$, where $x = (1\frac12,\frac13,\dots)\notin Y$ because $||x_n-x||_\infty = \frac1{n+1}$.
+\end{example}
+\begin{example}
+	[2.3-10] Let $(e_n)_{n=1}^\infty$ be a Schauder basis.
+	Set $Y = \setc{\sum_{k=1}^n q_ke_k}{q_k\in\mb Q}$. Let $x\in X$ and $\epsilon>0$.
+	Then 
+	\begin{align*}
+		\mlr{\mlr{x-\sum_{k=1}^nq_ke_k}} &\leq \mlr{\mlr{x-\sum_{k=1}^n \alpha_ke_k}} + \mlr{\mlr{\sum_{k=1}^n(\alpha_k-q_k)e_k}}
+	\end{align*}
+	$\epsilon/2$.
+\end{example}
 \end{document}
