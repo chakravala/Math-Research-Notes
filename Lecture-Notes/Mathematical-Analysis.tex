@@ -1026,6 +1026,7 @@ where $C([a,b]) \subset C^1([a,b]) \subset \dots \subset C^k([a,b])$.
 		\item[$*$] $f\inv$ is differentiable on $(c,d)$, and
 		\item[$*$] $(f\inv)'(y) = \frac1{f'(f\inv(y))}$.
 	\end{enumerate}
+	i.e., $f$ is a \ul{diffeomorphism}.
 \end{theorem}
 \begin{example}
 	$f(x) = \sin x$; $(-\frac\pi2,\frac\pi2)$.
@@ -1039,5 +1040,126 @@ where $C([a,b]) \subset C^1([a,b]) \subset \dots \subset C^k([a,b])$.
 \end{example}
 
 $C_0([a,b]) = \setc{f:[a,b]\os{\text{cts}}{\lra}\mb R}{f(a)=0,\,f(b)=0}$.
+
+\begin{recall}
+	[Inverse function theorem in $\mb R$]
+Suppose
+\begin{itemize}
+	\item $f:(a,b)\ra(c,d)$ is differentiable
+	\item $f$ is surjective
+	\item $f'(x)\neq0$ for all $x\in(a,b)$
+\end{itemize}
+Then
+\begin{enumerate}
+	\item[\#] $f$ is a homeomorphism
+	\item[\#] $f\inv$ is differentiable on $(c,d)$
+		
+		$(f\inv)'(y) = \frac1{f'(f\inv(y))}$.
+\end{enumerate}
+\end{recall}
+\begin{proof}
+	WLOG assume $f'>0$ on $(a,b)$.
+	First we will show that $f$ is injective.
+	Let $a<t<s<b$ (i.e., $t\neq s$ WLOG). By MVT, $\exists x\in(t,s)$ such that $f(s)-f(t) = \ub{>0}{f'(x)}\ub{>0}{(s-t)} \implies f(s)>f(t) \implies f$ is injective.
+	Then $f$ differentiable on $(a,b) \implies f$ continuous on $(a,b) \implies f$ is a homeomorphism ($f$~bijective, $f$~continuous $\implies f\inv$ continuous).
+	Now show $f\inv$ is differentiable and $(*)$ holds.
+	Note that $f$ differentiable on $(a,b)$, so for $t\neq x$ $$f'(x)=\lim_{t\ra x} \frac{\ob{\neq0}{f(t)-f(x)}}{\ub{\neq0}{t-x}}$$ holds.
+	This implies $$ \frac1{f'(x)} = \lim_{t\ra x} \frac{t-x}{f(t)-f(x)}; \qquad x\in(a,b). \qquad - (1) $$
+	Fix $\epsilon>0$. \ul{\ul{NTS}}: $\exists\eta>0$ such that $\forall s\in(c,d)$ with $$|s-y|<\eta \implies \mlr{\frac{f\inv(s)-f\inv(y)}{s-y} - \frac1{f'(x)}} < \epsilon,$$ where \fbox{$y=f(x)$}.
+	For fixed $\epsilon>0$, (1) implies that $\exists\delta>0$ such that $\forall t\in(a,b)$ with $|t-x|<\delta$,
+	\begin{align*}
+		\mlr{\frac{t-x}{f(t)-f(x)}-\frac1{f'(x)}} < \epsilon \qquad -(2)
+	\end{align*}
+	By using the continuity of $f\inv$, $\exists\eta>0$ such that $\forall s\in (c,d)$ with $|s-y|<\eta$, $|f\inv(s)-f\inv(y)|<\delta$.
+	For $s\in(c,d)$ with $|s-y|<\eta$, using (2)
+	\begin{align*}
+		\mlr{\frac{f\inv(s)-x}{f(f\inv(s))-f(x)}-\frac1{f'(x)}} &< \epsilon, \qquad \fbox{$y=f(x)$} \\
+		\implies \mlr{\frac{f\inv(s)-f\inv(y)}{s-y}-\frac1{f'(x)}} &<\epsilon. \\
+		\implies \lim_{s\ra y} \frac{f\inv(s)-f\inv(y)}{s-y} = \frac1{f'(x)} &= \fbox{$(f\inv)'(y)$}.
+	\end{align*}
+\end{proof}
+
+\subsection*{Vector-valued function}
+
+$\vf:[a,b]\subset\mb R\ra\mb R^k$,
+$\vf(t) = (\us{\in\mb R}{f_1(t)},\us{\in\mb R}{f_2(t)},\dots,\us{\in\mb R}{f_k(t)})\in\mb R^k$
+
+\begin{example}:
+	\begin{enumerate}
+		\item $\vf(t) = (\cos t,\sin t)$ -- unit circle
+		\item $\vf(t) = (\cos t,\sin t,t)$ -- helix
+		\item $\vf(t) = \cos t+i\sin t$
+	\end{enumerate}
+\end{example}
+Vector-valued functions enjoy similar (continuity).
+
+Differentiability: 
+\begin{enumerate}
+	\item[$\checkmark$] $\vf$ is differentiable if and only if $f_i$ is differentiable for each $i=1,\dots,k$.
+	\item[$\checkmark$] $\vf+\vg$ differentiable if $\vf+\vg$ are.
+	\item[$\checkmark\checkmark$] $\vf\cdot\vg$ (inner product) is differentiable if $\vf$ and $\vg$ are.
+\end{enumerate}
+\ul{Caution}: MVT and $\ob{\text{book! (example)}}{\text{L'Hospital's}}$ rule may not necessarily hold.
+\begin{example}
+	$f(x) = e^{ix} = \cos x+i\sin x$; $[0,2\pi]$
+	\begin{enumerate}
+		\item[$\checkmark$] $f(0) = 1 = f(2\pi)$
+		\item[$\checkmark$] $f$ differentiable
+		\item[$\checkmark$] $|f'(x)| = |ie^{ix}|=1\neq0\implies f'(x)\neq0$ for all $x\in(0,2\pi)$.
+	\end{enumerate}
+\end{example}
+
+\subsection*{Mean Value Theorem estimate}
+
+\begin{theorem}
+	\label{thm-5-19} Suppose
+	\begin{itemize}
+		\item $\vf:[a,b]\ra\mb R^k$ continuous,
+		\item $\vf$ differentiable on $(a,b)$.
+	\end{itemize}
+	Then $\exists x\in(a,b)$ such that $|\vf(b)-\vf(a)|_{\mb R^k} \leq (b-a) (\vf'(x))_{\mb R^k}$.
+\end{theorem}
+\begin{proof}
+	Define $g(t) = \ub{\in\mb R}{(\ob{\in\mb R^k}{\vf(t)-\vf(b)})\cdot\ob{\in\mb R^k}{\vf(t)}}$; $t\in[a,b]$.
+	Then
+	\begin{enumerate}
+		\item[$\checkmark$] $g$ continuous on $[a,b]$
+		\item[$\checkmark$] $g$ differentiable on $[a,b]$
+	\end{enumerate}
+	by hypothesies on $\vf$.
+	By MVT, $\exists x\in(a,b)$ such that \fbox{$(b-a)g'(x)=g(b)-g(a)$} -- (1).
+	Now, 
+	\begin{align*}
+		g(b)-g(a) &= (\vf(b)-\vf(a))\cdot\vf(b) - (\vf(b)-\vf(a))\cdot\vf(a) \\
+				  &= (\vf(b)-\vf(a))\os{\downarrow\text{IP}}\cdot(\vf(b)-\vf(a)) \\
+				  &= |\vf(b)-\vf(a)|_{\mb R^k}^2, \qquad (|\vx|^2=\vx\cdot\vx)
+	\end{align*}
+	Also, $g'(x) = (\vf(b)-\vf(a)) \cdot \vf'(x)$.
+	Plugging into (1), we get 
+	\begin{align*}
+		|\vf(b)-\vf(a)|_{\mb R^k}^2 &= |(\vf(b)-\vf(a))\cdot \vf'(x)(b-a)|_{\mb R} \\
+									&= |(\vf(b)-\vf(a))\cdot\vf(x)|(b-a) \\
+									&\os{\text{C.S.}}\leq |\vf(b)-\vf(a)|_{\mb R^k}\cdot |\vf'(x)|_{\mb R^k}(b-a),
+	\end{align*}
+	which implies $|\vf(b)-\vf(a)|\leq(b-a)|\vf(x)|_{\mb R^k}$.
+\end{proof}
+
+\iffalse
+\begin{example}
+	[HW \#4.2]
+	$f:[0,\infty)\ra\mb R$ is: $\dots$.
+	Show, $g(x) = \frac{f(x)}x$ is monotonically increasing.
+\end{example}
+\begin{proof}
+	Consider $f:[0,\infty)\ra\mb R$ is a continuous function with the given properties.
+	Since $f$ is differentiable on $(0,\infty)$, $\exists t\in(0,x)$, $x<\infty$ such that $\frac{f(x)-f(0)}x = f'(t)$ -- (I) by MVT.
+	Likewise for the interval $(x,y)$, $y<\infty$, $\exists s$ such that $f'(s) = \frac{f(y)-f(x)}{y-x}$ -- (II).
+	So, $s>t$ and by monotonicity of $f'$, $$f'(s)\geq f'(t) \implies \frac{f(y)-f(x)}{y-x} \geq \frac{f(x)}x. $$
+	$xf(y) - xf(y) \geq (y-x) f(x) \implies xf(y) \geq y(f(x)$.
+	Clai $g(x) = \frac{f(x)}x$ is differentiable: $f(x)$ is differentiable and $I_x$ is differentiable.
+	This implies $\frac{f(x)}x$ is differentiable; $x\neq0$.
+	So, use MVT on $g(x) = \frac{f(x)}x$ to see, $\exists k\in(x,y)$ such that $g'(k) = \frac{g(y)-g(x)}{y-x} = \frac{\frac{f(y)}y-\frac{f(x)}x}{y-x} = \frac{xf(y)-yf(x)}{xy(y-x)}\geq0$ implies $g(x)$ is monotonic.
+\end{proof}
+\fi
 
 \end{document}

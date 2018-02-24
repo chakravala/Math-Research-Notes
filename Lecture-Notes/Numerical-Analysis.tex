@@ -993,4 +993,141 @@ If $f(a_k)f(c_k)<0$, then $a_{k+1}=a_k$ and $b_{k+1}=c_k$, else $a_{k+1}=c_k,b_{
 	\end{enumerate}
 \end{note}
 
+Want to solve $f(x)=0$.
+
+\begin{example}
+	$f(x)=x^3-3$, $[a,b]=[0,2]$.
+	$\alpha = \nrt33 \approx 1.44225$.
+	\begin{align*}
+		x_0 = \frac{a+b}2 = 1. \\
+		f(0) = -3, \qquad \ub{\text{sign change}}{f(1)=-2, \qquad f(2)=5}  \\
+		a_1 = 1, \qquad b_1 = 2, \qquad x_1 = \frac{1+2}2 = \frac32 = 1.5. \\
+		\ub{\,}{f(1) = -2, \qquad f\plr{\frac38},} \qquad f(2)=5 \\
+		a_2 = 1, \qquad b_2=\frac32, \qquad x_2 = \frac{1+\frac32}2 = \frac54 = \us{\us{\text{estimate than }x_1}{\text{this is a worse}}}{\ul{1.25}} \\
+		f(1) = -2, \qquad \ub{\,}{f(1.25) = - \frac{67}{64}, \qquad f\plr{\frac32} = \frac38} \\
+		a_3 = 1.25, \qquad b_3 = \frac32, \qquad x_3 = \frac{11}8 = 1.375 \\
+		f(1.25) = -\frac{67}{64}, \ub{\,}{f\plr{\frac{11}3} = -\frac{205}{512}, \qquad f\plr{\frac32}} \\
+		a_4 = \frac{11}8, \qquad b_4 = \frac32, \qquad x_4 = \frac{23}{16} = 1.4375 \\
+		f\plr{\frac{11}8} = -\frac{205}{512}, \qquad \ub{\,}{f\plr{\frac{23}{16}} = -\frac{121}{4096}, \qquad f\plr{32} = \frac38} \\
+		a_5 = \frac{23}{16}, \qquad b_5 = \frac32, \qquad x_5 = \frac{47}{32} = 1.46875.
+	\end{align*}
+	After 5 iterations:
+	\begin{itemize}
+		\item $|x_5-\alpha| = 0.0265$.
+		\item $f(x_5) = \frac{5519}{32768} \approx 0.16843$ (getting closer to zero).
+	\end{itemize}
+	\begin{align*}
+		|x_N - \alpha| &\leq \epsilon = 10^{-3}. \\
+		\implies N &\geq \frac{\log(b-a)-\log(10^{-3})}{\log2} \\
+					&= \frac{\log(2) + 3\log(10)}{\log 2}
+					\approx 10.966 \qquad \text{(is sufficient)}
+	\end{align*}
+\end{example}
+\begin{note}
+	Error \ul{does not} necessarily decrease with each iteration (upper bound does).
+\end{note}
+
+\subsection*{\S3.2 Newton's methods}
+
+Derivation and Examples. 
+
+\ul{Newton's method}: Given $x_0$, $$ x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)} $$ for all $n=0,1,2,\dots$.
+\ul{Goal}: $x_n\ra\alpha$ as $n\ra\infty$, where $f(\alpha)=0$.
+\begin{note}:
+	\begin{enumerate}
+		\item \ul{local} method. Behavior/success depends upon $x_0$ and $f$.
+		\item converges fast when it works (mostly). Repeated roots slow down convergence.
+	\end{enumerate}
+\end{note}
+\subsubsection*{Derivation}
+
+\ul{Approach 1}: Taylor's Expansion. Let $x_n\approx\alpha$. Center at $x_n$.
+$$ 0 = f(\alpha) = f(x_n) + (\alpha-x_n)f'(x_n) + \mc O(|\alpha-x_n|^2) $$
+Solve for $x_n$:
+$$ \alpha - x_n \approx - \frac{f(x_n)}{f'(x_n)} \implies \alpha \approx x_n - \frac{f(x_n)}{f'(x_n)}. $$
+
+\ul{Approach 2}: Graphical. tangent line at $x_0$, tangent line at $x_1$.
+\begin{itemize}
+	\item Find the tangent line at $x_k$.
+	\item Let $x_{k+1}$ be the $x$-intercept of \ul{the tangent line} (easy root finding problem).
+	\item Repeat.
+\end{itemize}
+Tangent line:
+\begin{align*}
+	y - f(x_k) = f'(x_k)(x-x_k) \\
+	y = f(x_k) + f'(x_k)(x-x_k) \\
+	0 = f(x_k) + f'(x_k)(x-x_k) \\
+	\implies x = x_k - \frac{f(x_k)}{f'(x_k)} \equiv x_{k+1}
+\end{align*}
+\begin{example}
+	$f(x) = x^3-1$, $\alpha=1$.
+	\begin{align*}
+		x_0 &= 2. \\
+		f'(x) &= 3x^2. \\
+		x_{k+1} &= x_k - \frac{f(x_k)}{f'(x_k)} = x_k - \frac{x_k^3-1}{3x_k^2}. \\
+		x_0 &= 2. \\
+		x_1 &= 2-\frac{2^3-1}{3\cdot2^2} = \frac{17}{12} = 1.41\conj6 \\
+		x_2 &= \frac{17}{12} - \frac{\plr{\frac{17}{12}}^3-1}{3\cdot\plr{\frac{17}{12}}^2} = \frac{5777}{5202} \approx 1.11053441. \\
+		x_3 &\approx 1.0106367 \\
+		x_4 &\approx 1.00011156.
+	\end{align*}
+\end{example}
+\begin{example}
+	$f(x) = \ln(x)$. $x_0=e$.
+	\begin{align*}
+		f'(x) &= \frac1x \\
+		x_1 &= x_0 - \frac{f(x_0)}{f'(x_0)} = x_0 = \frac{\ln(x_0)}{1/x_0} = x_0 - x_0\ln(x_0) = e-e(1)=0. \\
+		x_2 &= x_1 - x_1\ln(x_1), \qquad \ln(0) \text{ undefined}
+	\end{align*}
+\end{example}
+\begin{example}
+	$f(x)=x^2$, $x_0=1$, $\alpha=0$.
+	\begin{align*}
+		f'(x) &= 2x \\
+		x - \frac{f(x)}{f'(x)} &= x-\frac{x^2}{2x} = x-\frac12x=\frac12x \qquad \text{for }x\neq0 \\
+		x_0 &= 1. \\
+		x_1 &= \frac12. \\
+		x_2 &= \frac14. \\
+		x_3 &= \frac18.
+	\end{align*}
+	$x_k = \plr{\frac12}^k\ra0$ as $k\ra\infty$.
+\end{example}
+
+Find $x$ such that $f(x)=0$, use $x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}$ for $n=0,1,2,\dots$.
+Goal: $x_n\ra\alpha$ for $f(\alpha)=0$.
+
+\begin{example}
+	Consider a function $f(x)$ with $f'(p)=0$ and $\alpha<p$ and an asymptote such that $f(x)\ra0^+$ as $x\ra\infty$. Then $x_0<p \implies x_n\ra\alpha$ and $x_0>p\implies x_n\ra\infty$ and for $x_0=p$ the method is undefined since $f'(p)=0$.
+\end{example}
+\begin{example}
+	Consider a function with graph 2. Then $|x_0|<\beta \implies x_n\ra\alpha$ and $x_0=\beta\implies x_{2n+1}=-\beta,x_{2n}=\beta$ and $|x_0|>\beta\implies$ diverges.
+\end{example}
+\begin{example}
+	Concave up function, $x_0>0\implies x_n\ra\alpha$ and $x_0<0\implies x_n\ra \alpha_{-1}$ and $x_0=0\implies x_1$ undefined.
+\end{example}
+
+\subsection*{\S3.3 How to stop Newton's Method}
+
+\ul{Goal}: Decide criteria for choosing $N$ such that $x_N\approx\alpha$ for $\set{x_n}_{n=0}^N$ by Newton's Method.
+
+\ul{Assumption} $x_n\ra\alpha$ as $n\ra\infty$. \ul{IF} the method converges, \ul{THEN} we can detect when $|\us{\text{error}}{x_N-\alpha}|<\text{TOL}$ and stop searching.
+
+\ul{Assumption} $f'(\alpha)\neq0$ and $f,f'$ are continuous on $[a,b]$ with $a<\alpha<b$.
+\begin{enumerate}
+	\item[$*$] we can choose an interval $[\tilde a,\tilde b]$ such that
+		\begin{itemize}
+			\item $\alpha\leq\tilde a<\alpha$, $\alpha<\tilde b\leq b$
+			\item $C|f'(\alpha)| = M\geq |f'(x)|\geq m = \frac{|f'(\alpha)|}C$, $C>1$, for al $\tilde a<x<\tilde b$.
+			\item $x_n\in[\tilde a,\tilde b]$ for all $n$ large enough. Convergence: $|x_n-\alpha|<\epsilon$ for all $n$ large.
+		\end{itemize}
+\end{enumerate}
+\ul{Idea}: By the MVT, $\exists \xi_n$ between $x_n$ and $\alpha$ such that $f(x_n)-f(\alpha) = f'(\xi_n)(x_n-\alpha) \implies \fbox{$(x_n-\alpha) = \frac{f(x_n)}{f'(x_n)}$}$
+
+\ul{Case 1}: $|f(x_n)|$ small
+\begin{align*}
+	|x_n-\alpha| &= \frac{|f(x_n)|}{|f'(x_n)|} \leq \frac{|f(x_n)|}{\min_{\tilde a\leq\xi\leq\tilde b}|f'(\xi)|} \\
+				 &\leq \frac{|f(x_n)|}m = \frac1m|f(x_n)|\ <\text{TOL}
+\end{align*}
+Typicall $<5\text{TOL}$. This implies STOP at $N$ if $|f(x_N)|\leq m\text{TOL}$.
+
 \end{document}

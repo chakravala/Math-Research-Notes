@@ -4,7 +4,7 @@
 \input{../theorem}
 %\input{../preview}
 
-\author{Book: Erwin Kreyszig, Presenter: Richard Fabiano, Notes by Michael Reed}
+\author{Presenter: Richard Fabiano, Notes by Michael Reed, Book: Erwin Kreyszig}
 \title{Functional Analysis}
 %date{}
 
@@ -35,10 +35,10 @@ skip but will refer back to some examples.
 	[$X=\mb C^n$] $x = (\xi_1,\dots,\xi_n)$, $\xi_i\in\mb C$.
 \end{example}
 \begin{example}
-	[$X=\ell^\infty$] , vectors are sequences $x=(\xi_1,\xi_2,\dots)$ satisfying $\sup\setc{|\xi_i|}{i=1,2,\dots}<\infty$.
+	[$X=\ell^\infty$] vectors are sequences $x=(\xi_1,\xi_2,\dots)$ satisfying $\sup\setc{|\xi_i|}{i=1,2,\dots}<\infty$.
 \end{example}
 \begin{example}
-	$X = C[a,b]$ vectors $x=x(t)$ are continuous functions on interval $[a,b]$.
+	[$X = C{[}a,b{]}$] vectors $x=x(t)$ are continuous functions on interval $[a,b]$.
 \end{example}
 
 \begin{definition}
@@ -184,17 +184,17 @@ Is there a norm $||\cdot||$ on $S$ such that $d(x,y) = ||x-y||$ for all $x,y\in 
 HW: Show metric $d$ on $s$ is not induced by any norm.
 
 \begin{recall}
-	$\displaystyle X = \ell^\infty = \setc{x=(\xi_i)_{i=1}^\infty}{\sup_{1\leq i\leq\infty}|\xi_i|<\infty}$.
+	[$\displaystyle X = \ell^\infty = \setc{x=(\xi_i)_{i=1}^\infty}{\sup_{1\leq i\leq\infty}|\xi_i|<\infty}$]
 	Can define norm by $\displaystyle||x||_\infty = \sup_i|\xi_i|$.
 	$\ell^\infty$ with this norm is complete, hence a Banach space.
 \end{recall}
 \begin{example}
-	$X = C[a,b]$.
+	[$X = C{[}a,b{]}$]
 	Define a norm on $X$ by $\displaystyle||x(t)||_\infty = \max_{a\leq t\leq b}|x(t)|$.
 	Can check this is a norm. $C[a,b]$ with $||\ ||_\infty$ is complete (HW grad).
 \end{example}
 \begin{example}
-	$X = C[a,b]$. Define a norm on $X$ by $||x||_1 = \int_a^b|x(t)|\,dt$.
+	[$X = C{[}a,b{]}$] Define a norm on $X$ by $||x||_1 = \int_a^b|x(t)|\,dt$.
 	Can check this is a norm.
 	Claim: $C[a,b]$ with $||\ ||_1$ is not complete.
 	To show this, we must demonstrate a sequence of functions $(x_n)_{n=1}^\infty$ in $C[a,b]$ which is Cauchy in $||\cdot ||_1$, but $(x_n)_{n=1}^\infty$ does not converge to any $x\in X$.
@@ -427,7 +427,7 @@ Last time: compact sets,,
 	For any vector space $X$, the identity operator $I$ and zero operator $T=0$ (that is, $Tx=0$ for all $x\in X$) are linear operators.
 \end{example}
 \begin{example}
-	$X=C[a,b]$: The integral operator $T:X\ra X$,
+	[$X=C{[}a,b{]}$] The integral operator $T:X\ra X$,
 	$$(Tx)(t) = \int_a^tx(s)\,ds.$$
 	The differential operator $T:\ms D(T)\subset X\ra X$,
 	$$ (Tx)(t) = x'(t).$$
@@ -525,7 +525,7 @@ Alternatively, $$ ||T|| = \sup_{\us{x\neq0}{x\in\ms D(T)}}\frac{||Tx||}{||x||} =
 	So $||T||\leq K_0$.
 \end{example}
 \begin{example}
-	$X = C[0,1]$ with $||\cdot||_\infty$.
+	[$X = C{[}0,1{]}$ with $||\cdot||_\infty$]
 	$\ms D(T) = C^1[0,1]$.
 	$(Tx)(t) = x'(t)$.
 	Consider $x_n(t) = t^n$.
@@ -558,7 +558,7 @@ For $n=k+1$:
 Last time: Bounded linear operators examples, examples of an unbounded linear operator.
 
 \begin{example}
-	$X=\ell^\infty$ with $||\cdot||_\infty$.
+	[$X=\ell^\infty$ with $||\cdot||_\infty$]
 	Given $x=(\xi_1,\xi_2,\dots)\in\ell^\infty$, define $Tx = (\xi_2,\xi_3,\dots)$ \say{left shift operator.}
 	Easy to show $T$ is linear, $\ms D(T)=X$, so $T:X\ra X$.
 	Also $||Tx||_\infty = \sup\set{|\xi_i|}_{i=2}^\infty\leq||x||_\infty$.
@@ -688,7 +688,7 @@ Last time: Bounded linear operators examples, examples of an unbounded linear op
 		\item $|f(x)| \leq ||f||\,||x||$.
 \end{itemize}
 \begin{example}
-	$X=\mb R^3$ with Euclidean norm. Fix $a=(\alpha_1,\alpha_2,\alpha_3)\in\mb R^3$.
+	[$X=\mb R^3$ with Euclidean norm] Fix $a=(\alpha_1,\alpha_2,\alpha_3)\in\mb R^3$.
 	Define $f(x)$ for $x=(\xi_1,\xi_2,\xi_3)\in\mb R^3$ by $f(x) = x\cdot a = \xi_1\alpha_1+\xi_2\alpha_2+\xi_3\alpha_3$.
 	Clearly $f$ is a linear functional.
 	By theorem we know $f$ is bounded. We have: $|f(x)|=|x\cdot a|\leq ||x||\cdot||a||$ by Cauchy-Schwarz.
@@ -697,7 +697,7 @@ Last time: Bounded linear operators examples, examples of an unbounded linear op
 	Thus $||f||=||a||$.
 \end{example}
 \begin{example}
-	$X= C[a,b]$ with $||\cdot||_\infty$. Define $f(x)$ for $x(t)\in X$ by $f(x) = \int_a^bx(t)\,dt$.
+	[$X= C{[}a,b{]}$ with $||\cdot||_\infty$] Define $f(x)$ for $x(t)\in X$ by $f(x) = \int_a^bx(t)\,dt$.
 	Clearly $f$ is a linear functional.
 	To see if $f$ is bounded,
 	\begin{align*}
@@ -716,7 +716,7 @@ Last time: Bounded linear operators examples, examples of an unbounded linear op
 	Define $f(x) = x(c)$ (point evaluation), $f$ is linear. Easy to show $f$ is bounded.
 \end{example}
 \begin{example}
-	$X = C[0,1]$ with $||\cdot||_1$.
+	[$X = C{[}0,1{]}$ with $||\cdot||_1$]
 	Then $||x||_1 = \int_0^1|x(t)|\,dt$. Recall this is a normed space, but not complete.
 	Define linear functional by $f(x) = x(0)$. We claim $f$ is not bounded.
 	(There is no constant $C$ such that $|f(x)|\leq C||x||_1$ for all $x$).
@@ -770,16 +770,16 @@ Let $x\in X$. Then $x = \sum_{i=1}^n \xi_ie_i$
 $$ y = Tx = \sum_{j=1}^n \xi_k Te_k = \sum_{k=1}^n \xi_ky_k, $$
 where $y_k= Te_k$.
 On the other hand, $y$ and $y_k$ have unique representation in terms of basis $\mc B$
-$$ y = \sum_{j=1}^r n_jb_j, \qquad y_k = Te_k = \sum_{j=1}^r \tau_{jk}bj $$
+$$ y = \sum_{j=1}^r \eta_jb_j, \qquad y_k = Te_k = \sum_{j=1}^r \tau_{jk}bj $$
 Thus:
 \begin{align*}
-	\sum_{j=1}^r n_jb_j = y = \sum_{k=1}^n \xi_ky_k 
+	\sum_{j=1}^r \eta_jb_j = y = \sum_{k=1}^n \xi_ky_k 
 						= \sum_{k=1}^n \xi_k\plr{\sum_{j=1}^r \tau_{jk}b_j} 
 						= \sum_{j=1}^r \plr{\sum_{k=1}^n \xi_k\tau_{jk}}b_j
 \end{align*}
-Thus $n_j = \sum_{k=1}^n \xi_k\tau_{jk}$.
+Thus $\eta_j = \sum_{k=1}^n \xi_k\tau_{jk}$.
 Define matrix $T_{EB} = (\tau_{jk})_{r\times n}$.
-Set $\tilde x = \mat{\xi_1\\\vdots\\\xi_n}$, $\tilde y = \mat{n_1\\\vdots\\n_r}$, then $\tilde y = T_{EB}\tilde x$.
+Set $\tilde x = \pmat{\xi_1\\\vdots\\\xi_n}$, $\tilde y = \pmat{\eta_1\\\vdots\\\eta_r}$, then $\tilde y = T_{EB}\tilde x$.
 
 \begin{example}
 	[2.3-2] Let $(x_k)$ be a sequence in $c_0$, $x_k=(\xi_j^k)_{j=1}^\infty$ where $\xi_j^k\ra0$ as $j\ra\infty$.
