@@ -1162,4 +1162,91 @@ Differentiability:
 \end{proof}
 \fi
 
+\section*{Chapter 6: (Riemann-Stieltjes Integral)}
+
+\begin{enumerate}
+	\item[$\checkmark$] Riemann Integral (Integral Calculus)
+	\item[$\checkmark\checkmark$] Riemann-Stieltjes integral (more general than Riemann Integral)
+	\item[$(*)$] Lebesgue integral (measure theory)
+\end{enumerate}
+\ul{Assume}: $f:[a,b]\ra\mb R$ is bounded $\implies \exists m,n\in\mb R$ such that $\ds m:=\inf_{[a,b]} f(x)$ and $\ds M:=\sup_{[a,b]}f(x) \implies m(b-a) \leq M(b-a)$.
+Partition $P$ of $[a,b]$: $a=x_0\leq \ub{\ul{\ul{n-1}}\text{ partition points}}{x_1\leq\dots\leq x_{n-1}}\leq x_n=b$ with \fbox{$\Delta x_i=x_i-x_{i-1}\geq0$}.
+$f$ bounded on $[a,b]\implies f$ bounded on $[x_{j-1},x_j]$; $j=1,\dots,n$.
+
+Define $\ds m_j := \inf_{[x_{j-1},x_j]}f(x)$ and $\ds M_j:=\sup_{[x_{j-1},x_j]}f(x)$.
+Clearly $m_j\leq M_j$ for each $j=1,\dots,n$.
+\newpage
+Then for given $P$ and $f$ on $[a,b]$,
+\begin{enumerate}
+	\item[] $L(P,f) = \sum_{i=1}^n m_i\Delta x_i$ -- lower Riemann sum,
+	\item[] $U(P,f) = \sum_{i=1}^n M_i\Delta x_i$ -- upper Riemann sum.
+\end{enumerate}
+Clearly, \fbox{$L(P,f)\leq U(P,f)$}.
+
+Uppwer and lower Riemann integrals:
+\begin{enumerate}
+	\item[] $_-\int_a^b f\,dx := \sup_{P\in\ms P} L(P,f)$ -- lower Riemann integral,
+	\item[] $^-\int_a^b f\,dx := \inf_{P\in\ms P} U(P,f)$ -- uppper Riemann integral,
+\end{enumerate}
+where $\sup$ and $\inf$ are taken over \ul{all partitions $P$} of $[a,b]$ and $\ms P := $ set of all partitions of $[a,b]$.
+
+\begin{lemma}
+	$ _-\int_a^bf\,dx\leq\, ^-\int_a^bf\,dx$.
+\end{lemma}
+\begin{proof}
+	Let $P$ and $P_1$ be any two partitions of $[a,b]$. Then $m(b-a)\os\checkmark\leq L(P_1,f) \os\checkmark\leq U(P,f) \os\checkmark\leq M(b-a)$.
+	Since $P_1$ is arbitrary, $\ds m(b-a)\leq L(P_1,f) \leq \inf_{P\in\ms P} U(P,f)$.
+	Repeating the argument, $\ds m(b-a)\leq \sup_{P\in\ms P} L(P,f) \leq \inf_{P\in\ms P} U(P,f) \leq M(b-a)$.
+	Claim follows by definition.
+\end{proof}
+
+\begin{definition}
+	[Riemann integral]
+	$f:[a,b]\ra\mb R$ bounded is Riemann integrable if $_-\int_a^bf\,dx =\, ^-\int_a^b f\,dx$.
+	\ul{Notation}: $\ms R = $ set of all Riemann integrable functions. 
+	$$L^1([a,b]) = \setm{f:[a,b]\ra\mb R}{f\in\mb R\text{ and }||f||_{L^1}:=\int_a^b|f|\,dx.}.$$
+\end{definition}
+Riemann-Stieltjes integral:
+\begin{enumerate}
+	\item[$\checkmark$] $f:[a,b]\ra\mb R$ bounded,
+	\item[] $\alpha:[a,b]\ra\mb R$ monotonically increasing ($\alpha(x)=x$ is the case for Riemann integral),
+	\item[] $P:a=x_0\leq x_1\leq\dots\leq x_n=b$ a partition of $[a,b]$.
+\end{enumerate}
+Then $\Delta \alpha_i = \alpha(x_i)-\alpha(x_{i-1})\geq 0$ for all $i=1,\dots,n$.
+Consider,
+\begin{align*}
+	\begin{rcases} U(P,f,\alpha) := \sum_{i=1}^n M_i\Delta\alpha_i \\ L(P,f,\alpha) := \sum_{i=1}^n m_i\Delta \alpha_i \end{rcases} \implies L(P,f,\alpha)\leq U(P,f,\alpha)
+\end{align*}
+since $M_i\geq m_i$, $\Delta\alpha_i\geq0$; $i=1,\dots,n$.
+Define $_-\int_a^b f\,d\alpha := \ds\sup_{P\in\ms P} L(P,f,\alpha)$ and $^-\int_a^b f\,d\alpha := \ds\inf_{P\in\ms P} U(P,f,\alpha)$.
+\begin{definition}
+	[Riemann Stieltjes integral] $f$ is Riemann-Stieltjes integral if $_-\int_a^bf\,d\alpha =\, ^-\int_a^bf\,d\alpha$, where $\ms R(\alpha) = $ set of all Riemann-Stieltjes integrable functions.
+\end{definition}
+\begin{remark}
+	For a uniform partition, $\Delta x = \frac{b-a}n$ and $x_k = a+k\cdot\Delta x$.
+\end{remark}
+
+Refinement of a partition $P:a=x_0\leq \dots\leq x_n=b$ is another partition $P^*$ such that $P^*\supset P$.
+Common refinement: $P^*$ is a common refinement of two partitions $P_1$ and $P_2$ if $P^* = P_1\cup P_2$.
+\begin{theorem}
+	If $P^*$ is a refinement of $P$, then 
+	\begin{enumerate}
+		\item[] $L(P,f,\alpha) \leq L(P^*,f,\alpha)$ --- (1)
+		\item[] $U(P,f,\alpha) \geq U(P^*,f,\alpha)$ --- (2)
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Let $P: a=x_0\leq \dots\leq x_n=b$ be a partition of $[a,b]$ and $P^*$ be a refinement of $P$ with \ul{just one more} point, say $x^*$.
+	Assume $x_{j-1}<x^*<x_j$ for some $j=1,\dots,n$.
+	Then for $x_{j-1}<x^*<x_j$ we have $\ds w_1\inf_{[x_{j-1},x^*]} f(x)$ and $\ds w_2:= \inf_{[x^*,x_j]} f(x)$ and $\ds m_j = \inf_{[x_{j-1},x_j]} f(x)$ imply $m_j\leq w_1$ and $m_j\leq w_2$, so that
+	\begin{align*}
+		L(P^*,f,\alpha) &= m_1\Delta\alpha_1 + \dots + m_{j-1}\Delta\alpha_{j-1} + \ub{j^\text{th}}{w_1\Delta\alpha^* + w_2\Delta\alpha_j} + m_{j+1}\Delta\alpha_{j+1} + \dots + m_n\Delta\alpha_n \\
+		L(P,f,\alpha) &= (m_1\Delta\alpha_1 + \dots + m_n\Delta\alpha_n) \\
+		L(P^*,f,\alpha)-L(P,f,\alpha) 
+		&= w_1(\alpha(x^*)-\alpha(x_{j-1})) + w_2(\alpha(x_j)-\alpha(x^*)) - m_j(\ob{\Delta\alpha_j}{\alpha(x_j)-\alpha(x_{j-1})}) \\
+					  &= (\ub{\geq0}{w_1-m_j})(\ub{\geq0}{\alpha(x^*)-\alpha(x_{j-1})}) + (\ub{\geq0}{w_2-m_j})(\ub{\geq0}{\alpha(x_j)-\alpha(x^*)}) \geq 0
+	\end{align*}
+	Repeating this process we get $L(P^*,f,\alpha)\geq L(P,f,\alpha)$. Similarly (2).
+\end{proof}
+
 \end{document}

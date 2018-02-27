@@ -801,4 +801,83 @@ Set $\tilde x = \pmat{\xi_1\\\vdots\\\xi_n}$, $\tilde y = \pmat{\eta_1\\\vdots\\
 	\end{align*}
 	$\epsilon/2$.
 \end{example}
+
+\begin{example}
+	[Test \#5] $X = \setc{p(x)}{p(x)\text{ is a polynomial}}$, $||p||_1 = \int_0^1 |p(x)|\,dx$ and $||p||_\infty = \max_{0\leq x\leq1}|p(x)|$.
+	Consider $f_n(x) = x^n$. Then $||f_n||_\infty=1$ for all $n$ but $||f_n||_1 = \frac1{n+1}\ra0$.
+	So there is no constant $c>0$ such that $||p||_\infty\leq c||p||_1$ for all $p\in X$.
+\end{example}
+\newpage
+\ul{Last time}: Linear operators on finite dimensional spaces, matrix representations.
+
+\begin{definition}
+	[Dual Basis] Given a vector space $X$ with basis $\set{e_1,\dots,e_n}$, there is a unique set of linear functionals $\set{f_1,\dots,f_n}$ such that $f_i(e_j) = \delta_{ij}$. % = \begin{cases} 0 & i\neq j \\ 1 & i=j \end{cases}$.
+	This is a basis for dual space $X^*$.
+\end{definition}
+Given vector spaces $X,Y$, in linear algebra we define $\ms L(X,Y) = $ vector space of all linear operators from $X$ to $Y$. 
+If $X,Y$ are normed spaces, we define $B(X,Y) = $ vector space of all bounded linear operators from $X$ to $Y$.
+$B(X,Y)$ is a normed space with norm $$||T|| = \sup_{\us{x\neq0}{x\in X}} \frac{||Tx||}{||x||} = \sup_{\us{||x||=1}{x\in X}}||Tx||.$$
+Dual space of $X = B(X,\mb R)$ or $B(X,\mb C) = X'$.
+
+\begin{theorem}
+	$B(X,Y)$ is complete (hence a Banach space) if $Y$ is complete.
+\end{theorem}
+\begin{corollary}
+	The dual space $X'$ is a Banach space.
+\end{corollary}
+
+\section{Hilbert spaces}
+
+We motivate definition of inner product by considering dot product in $\mb R^3$.
+\begin{itemize}
+	\item geometric definition of dot product $x\cdot y = ||x||\ ||y||\cos\theta$, thus $\theta = \arccos \frac{x\cdot y}{||x||\ ||y||}$.
+	\item algebraic definition of dot product of $x=(\xi_1,\xi_2,\xi_3),y = (\eta_1,\eta_2,\eta_3)$: $x\cdot y = \xi_1\eta_1 + \xi_2\eta_2 + \xi_3\eta_3$, can be easily extended to $\mb R^n$.
+	\item $||x||^2 = x\cdot x$.
+	\item parallelogram law: \fbox{$||x+y||^2 + ||x-y||^2 = 2(||x||^2+||y||^2)$}.
+\end{itemize}
+\begin{definition}
+	Let $X$ be a vector space. An \ul{inner product} on $X$ is a mapping $\gen{\cdot,\cdot}:X\times X\ra K$ ($\mb R$ or $\mb C$) such that for all $x,y,z\in X$ and scalars $\alpha\in K$,
+	\begin{enumerate}
+		\item $\gen{x+y,z} = \gen{x,z} + \gen{y,z}$
+		\item $\gen{\alpha x,y} = \alpha\gen{x,y}$.
+		\item $\gen{x,y} = \conj{\gen{y,x}}$.
+		\item $\gen{x,x}\geq0$ and $\gen{x,x}=0\iff x=0$.
+	\end{enumerate}
+	The space $X$ is then called an \ul{inner product space}.
+	A Hilbert space is a complete inner product space.
+\end{definition}
+\begin{remark}
+	$\gen{\cdot,\cdot}$ is sesquilinear. %, since $\alpha\gen{x,y} = \gen{\alpha x,y} = \gen{x,\conj\alpha y}$.
+\end{remark}
+\begin{itemize}
+	\item An inner product defines a norm by $||x||=\sqrt{\gen{x,x}}$.
+	\item If $X$ is real, then $\gen{x,y} = \gen{y,x}$.
+	\item Not every norm is defined by an inner product.
+	\item If $||\cdot||$ is defined by an inner product, then $||\cdot||$ satisfies the parallelogram law.
+	\item If a norm satisfies the parallelogram law, then it \say{comes from} an inner product (polarization identity).
+\end{itemize}
+Hilbert spaces have certain important properties not found in general normed spaces or Banach spaces.
+\begin{itemize}
+	\item Hilbert space $H$ can be represented as $H = M\oplus M^\perp$.
+	\item Hilbert spaces may have \say{orthonormal basis} (countable).
+	\item Riesz Theorem characterizes all bounded linear functionals.
+	\item Can define the \say{adjoint} of a linear operator.
+\end{itemize}
+
+\begin{example}
+	$\mb R^n,\mb C^n$ with the \say{dot product} and Euclidean norm.
+\end{example}
+\newpage
+\begin{example}
+	$\ds \ell^2 = \setc{x = (\xi_j)_{j=1}^\infty}{\sum_{j=1}^\infty |\xi_j|^2<\infty}$, 
+	$\ds ||x||_2 = \sqrt{\sum_{j=1}^\infty |\xi_j|^2}$, 
+	$\ds \gen{x,y} = \sum_{j=1}^\infty \xi_j\conj\eta_j$,
+	$x=(\xi_j),y=(\eta_j)$. %_{j=1}^\infty$.
+\end{example}
+\begin{example}
+	$C[a,b]$ with $\gen{f,g} = \int_a^b f(x)\conj{g(x)}\,dx$ is an inner product space with  norm $||f||_2 = \sqrt{\int_a^b |f(x)|^2\,dx}$. This is \ul{not} complete.
+	The \say{completion} is the Hilbert space $L^2(a,b)$.
+\end{example}
+\ul{HW} 2.9: 2,4,6,G8. 3.1: 3,4,6,7.
+
 \end{document}
