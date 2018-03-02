@@ -1206,7 +1206,153 @@ implies STOP at $N$ if $|x_N-x_{N-1}| < \frac mM\text{TOL} \leq \text{TOL}$.
 			\begin{note}
 				The method \ul{may} converge for $x_0$ further from $\alpha$. It \ul{will} converge for $|x_0-\alpha|<\frac6{10}$.
 			\end{note}
+			Let $\mlr{\frac{f''(\xi)}{2f'(x)}}\leq M$, $e_n=|x_n-\alpha|$.
+			Relate $|x_0-\alpha|=e_0$ to $M$.
+			\begin{align*}
+				e_1 &\leq Me_0^2 = M\inv(Me_0)^2 \\
+				e_2 &\leq Me_1^2 = M\cdot(M\inv)^2 \plr{(Me_0)^2}^2 = M\inv(Me_0)^4 \\
+				e_3 &\leq M\inv(Me_0)^8.
+			\end{align*}
+			In general, \fbox{$e_n\leq M\inv(Me_0)^{2^n}$} for all l$n\geq0$.
+			Then $\lim_{n\ra\infty}e_n=0$ if \fbox{$|Me_0|<1$}.
+			In the example, $M=\frac{10}6$, so $$\frac{10}6e_0<1 \implies e_0<\frac6{10}, \qquad \fbox{$|x_0-\alpha|<\frac6{10}$}$$
+			If $x_0\in(\alpha-\frac6{10},\alpha_\frac6{10})$, then $x_n\ra\alpha$ as $n\ra\infty$.
 	\end{enumerate}
 \end{example}
+%$$ (\alpha-x_{n+1}) = -\frac12 (\alpha-x_n)^2\frac{f''(\xi_n)}{f'(x_n)} $$
+%\begin{example}
+%	$|f''(x)|\leq10$, $|f'(x)|\geq2$, $|x-\alpha|\leq\frac12$.
+%\end{example}
+\begin{note}
+	The methods \ul{may} converg for $x_0$ further from $\alpha$. It \ul{will} converge for $M|x_0-\alpha|<1$.
+\end{note}
+
+\begin{definition}
+	Let $x_n\ra\alpha$ such that $$\lim_{n\ra\infty} \frac{|\alpha-x_{n+1}|}{|\alpha-x_n|^p}=C$$ for some nonzero (finite) constant $C$ and some $p$.
+	The number $p$ is the \ul{order} of the convergence for the sequence.
+\end{definition}
+\begin{example}
+	[Newton's] $\ds \frac{|\alpha-x_{n+1}|}{|\alpha-x_n|^2} = \frac12\mlr{\frac{f''(\xi_n)}{f'(x_n)}}$.
+	Suppose $f'(\alpha)\neq0$ and $f''$ is bounded. $f'$ constant $\implies f'(x_n\ra f'(\alpha)$. $|f''|$ bounded. $f''$ constant $\implies f''(\xi_n)\ra f''(\alpha)$.
+	$\xi_n$ between $x_n$ and $\alpha$. Limit holds by squeeze theorem.
+	$f''(x_n)\ra f''(\alpha) \implies f''(\xi_n)\ra f''(\alpha)$. ($\xi_n\ra\alpha$).
+	Thus, 
+	\begin{align*}
+		\lim_{n\ra\infty} \frac{|\alpha-x_{n+1}|}{|\alpha-x_n|^2} &= \frac12\mlr{\frac{f''(\alpha)}{f'(\alpha)}} = C\in(0,\infty) \\
+																  &\leq\frac12\frac{\max}{|f'(\alpha)|}.
+	\end{align*}
+	If $f''$ constant \ul{and} $f'(\alpha)\neq0,f''(\alpha)\neq0$, then \ul{$p=2$}.
+\end{example}
+\begin{example}
+	For $f(x)=x^2$, Newton's method converges for all $x_0$ with $p=1$.
+\end{example}
+
+\subsection*{\S3.6 Newton's Method: Theory and Convergence}
+
+\ul{Goal}: Develop sufficient conditions that guarantee Newton's $\ra\alpha$.
+
+\begin{theorem}
+	[Optimistic] Assume $f$ is defined and twice continuously differentiable for all $x\in(-\infty,\infty)$, with $f(\alpha)=0$ for some $\alpha$.
+	Define the ratio
+	$$ M = \frac{\ds\sup_{x\in\mb R}|f''(x)|}{2\ds\inf_{x\in\mb R}|f'(x)|}. \qquad \text{book} : \frac\max\min, \text{correcting for asymptotes} $$
+	and assume that $M<\infty$. Then for any $x_0$ such that $M|\alpha-x_0|<1$, Newton's method converges.
+	Moreover, $|\alpha-x_n|\leq M\inv(M|\alpha-x_0|)^{2^n}$.
+	\begin{enumerate}
+		\item[$*$] Need $x_0$ close enough to have $M|\alpha-x_0|<1$ (only need $M|\alpha-x_k|<1$ for some $k\geq0$).
+	\end{enumerate}
+	Optimistic $\implies$ only need local estimates for $M$, not global.
+\end{theorem}
+\begin{observe}
+	With such strong assumptions, we can find how big $n$ needs to be. Goal: $|x_N-\alpha|\leq\epsilon$. Observe
+	\begin{align*}
+		M\inv(M|\alpha-x_0|)^{2^n} &\leq \epsilon \\
+		(M|\alpha-x_0|)^{2^n} &\leq M\epsilon \\
+		2^n \ub{<0}{\log_2(\ub{<1}{M|\alpha-x_0|})} &\leq \log_2(M\epsilon) \\
+		2^n &\geq \frac{\log_2(M\epsilon)}{\log_2(M|\alpha-x_0|)}
+	\end{align*}
+	$$\fbox{$\ds n\geq \log_2\plr{\frac{\log_2(M\epsilon)}{\log_2(M|\alpha-x_0|)}}. $}$$
+\end{observe}
+
+\begin{example}
+	Consider $f$ such that
+	\begin{itemize}
+		\item $f(a)=0$ for $\alpha\in[2,3]$,
+		\item $f'(x)\geq3$ and $0\leq f''(x)\leq5$ for all $x\in\mb R$.
+	\end{itemize}
+	Show the method converges for $y_0=\frac52$.
+	How many iterations to get $10^{-4}$ accuracy.
+	$$ M = \frac{\sup|f''|}{2\inf|f'|} $$
+	$ M \leq \frac 5{2\cdot3} = \frac56$.
+	Then $|x_0-\alpha| \leq \frac12$ ($x_0$ midpoint of $[2,3]$).
+	$M|x_0-\alpha| \leq \frac56\cdot\frac12 = \frac5{12}<1$ implies convergence.
+	Need $$ n\geq\log_2\plr{\frac{\log_2(\frac56\cdot10^{-4})}{\log_2(5/12)}} \approx 3.4234 $$
+	Need $n\geq4$ iterations.
+	\begin{align*}
+		M|x_0-\alpha| &> 1 \\
+		\frac56\cdot|x_0-\alpha| &> 1 \\
+		|x_0-\alpha| &> \frac65.
+	\end{align*}
+	$\alpha$ in $[0,4]$, $x_0=2$. $|x_0-\alpha|\leq2$.
+	Run bisection with $\text{tol}=\frac65$. $\ra x_N$ with $|x_N-\alpha|<\frac56$. Use $x_N$ for Newton, this is for guaranteed convergence.
+\end{example}
+\begin{example}
+	$f$ smooth and monotone with root $x=\alpha$. Newton's method may not converge for all $x_0$.
+	Let 
+	\begin{align*}
+		f(x) &=\tan\inv(x) \\
+		f'(x) &= \frac1{1+x^2}>0 \qquad \forall t \\
+		f(0) &=0 \\
+		f''(x) &= -\frac{2x}{(1+x^2)^2} \qquad \text{(bounded)}
+	\end{align*}
+	($M=\infty$ since $\ds\inf_{x\in\mb R}|f'(x)|=0$ and $\ds0<\sup_{x\in\mb R}|f''(x)|<\infty$).
+	If $|x_0|$ is large enough, then $x_n\not\ra0$.
+\end{example}
+\begin{proof}
+	\begin{align*}
+		x_{n+1} &= x_n-\frac{f(x_n)}{f'(x_n)} \\
+				&= x_n-\frac{\tan\inv(x_n)}{1/(x^2+1)} \\
+				&= x_n-(x_n^2+1)\tan\inv(x).
+	\end{align*}
+	Suppose $\tan\inv(|x_n|)\geq1$. ($|a-b|\geq|a|-|b|$ inverse triangle inequality). Then,
+	\begin{align}
+		|x_{n+1}| &= |x_n-(x_n^2+1)\tan\inv(x_n)| \\
+				  &\geq |(x_n^2+1)\tan\inv(x_n)|-|x_n| \\
+				  &\geq |x_n|^2+1-|x_n| \\
+				  &\geq |x_n|^2-|x_n| \\
+				  &= |x_n|(|x_n|-1).
+	\end{align}
+	If $|x_{n+1}|\geq |x_n|$, the method will not converge.
+	Solving:
+	\begin{align*}
+		|x_n|\cdot(|x_n|-1) &\geq \ub{>0}{|x_n|} \\
+		|x_n|-1 &\geq 1 \\
+		|x_n| &\geq2.
+	\end{align*}
+	For $|x_n|\geq2$ and $|\tan\inv(x_n)|\geq1$, we have $|x_{n+1}|\geq|x_n|$ ($\geq\dots\geq|x_0|$).
+	Pick $x_0$ such that $|x_0|\geq2$ and $|\tan\inv(x_0)|\geq1$.
+\end{proof}
+
+\begin{theorem}
+	[Local Result]
+	Let $f\in C^2(I)$, where $\alpha\in I=[a,b]\subset\mb R$ is a root.
+	Assume $f'(\alpha)\neq0$, and let $\ds x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}$.
+	For $x_0$ sufficiently close to $\alpha$, we have $\ds\lim_{n\ra\infty}x_n=\alpha$ and $\ds\lim_{n\ra\infty} \frac{|\alpha-x_{n+1}|}{|\alpha-x_n|^2} = -\frac{f''(\alpha)}{2f'(\alpha)}$.
+\end{theorem}
+\begin{proof}
+	[Proof idea] There exists $\tilde I=[\tilde a,\tilde b]\subseteq[a,b]$ such that
+	\begin{itemize}
+		\item $\alpha\in\tilde I$,
+		\item $\ds M = \frac{\ds\max_{x\in\tilde I}|f''(x)|}{\ds\min_{x\in\tilde I}|f'(x)|} < \infty$,
+		\item $x_{n+1}$ is in $\tilde I$ for $x_n$ in $\tilde I$,
+		\item $M|\alpha-x_0|<1$ for $x_0\in\tilde I$.
+	\end{itemize}
+	$M<\infty$: $f''$ continuous on $\tilde I$ (bounded), $f'(\alpha)\neq0\implies |f'|\geq \frac{|f'(\alpha)|}2$ on $\tilde I$.
+	Error $$|\alpha-x_{n+1}|\sim M\inv(M|\alpha-x_n|)^2 \leq |x_0-\alpha|$$
+	\begin{itemize}
+		\item small enogh for $M|\alpha-x_n|<1$
+		\item small enough for $|x_{n+1}-\alpha|\leq|x_n-\alpha| \implies x_{n+1}$ in $\tilde I$.
+	\end{itemize}
+	Key: only need $M$ for $x$-values \ul{near} $\alpha$, implies need to start closer to $\alpha$. (May converge otherwise. This is for a guarantee).
+\end{proof}
 
 \end{document}

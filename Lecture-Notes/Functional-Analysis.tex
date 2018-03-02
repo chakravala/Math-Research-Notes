@@ -103,17 +103,17 @@ To motivate definition of a norm on a vector space, consider $\mb R^2$.
 	The norm defines a metric on $X$ by $d(x,y) = ||x-y||$.
 \end{note}
 \begin{example}
-	$\mb R^3$ with Euclidean norm: for $x=(\xi_1,\xi_2,\xi_3)$, $||x||=\sqrt{\xi_1^2+\xi_2^2+\xi_3^2}$.
+	[$\mb R^3$ with Euclidean norm] For $x=(\xi_1,\xi_2,\xi_3)$, $||x||=\sqrt{\xi_1^2+\xi_2^2+\xi_3^2}$.
 \end{example}
 \begin{example}
-	$\mb R^n$ for $x=(\xi_1,\dots,\xi_n)$, define $||x||_2 = \sqrt{\sum_{i=1}^n \xi_i^2}$.
+	[$\mb R^n$] For $x=(\xi_1,\dots,\xi_n)$, define $||x||_2 = \sqrt{\sum_{i=1}^n \xi_i^2}$.
 \end{example}
 \begin{example}
-	$X = C[a,b]$ for $x=x(t)$, define $\displaystyle||x|| = \max_{a\leq t\leq b}|x(t)|$.
+	[$X = C{[}a,b{]}$] For $x=x(t)$, define $\displaystyle||x|| = \max_{a\leq t\leq b}|x(t)|$.
 	Notation: this is also denoted $||\cdot||_\infty$.
 \end{example}
 \begin{example}
-	$X = \ell^\infty$ for $x = (\xi_i)_{i=1}^\infty$, define norm $||x|| = \sup\setc{|\xi_i|}{i=1,\dots}$.
+	[$X = \ell^\infty$] For $x = (\xi_i)_{i=1}^\infty$, define norm $||x|| = \sup\setc{|\xi_i|}{i=1,\dots}$.
 \end{example}
 
 \begin{definition}
@@ -136,7 +136,7 @@ To motivate definition of a norm on a vector space, consider $\mb R^2$.
 \end{definition}
 
 \begin{example}
-	$X = \mb R^n$, with Euclidean norm $||\cdot ||_2$. For $x=(\xi_1,\dots,\xi_n)$, $||x||_2 = \sqrt{\sum_{i=1}^n \xi_i^2}$ is a norm. N1-N3 easy.
+	[$X = \mb R^n$, with Euclidean norm $||\cdot ||_2$] For $x=(\xi_1,\dots,\xi_n)$, $||x||_2 = \sqrt{\sum_{i=1}^n \xi_i^2}$ is a norm. N1-N3 easy.
 	For $x,y=(\eta_1,\dots,\eta_n)$.
 	To show $||x+y|| \leq ||x||+||y||$, show
 	\begin{align*}
@@ -511,7 +511,7 @@ Alternatively, $$ ||T|| = \sup_{\us{x\neq0}{x\in\ms D(T)}}\frac{||Tx||}{||x||} =
 	For any norms on $\mb R^m$ and $\mb R^n$, $T$ is a bounded linear operator.
 \end{example}
 \begin{example}
-	$X = C[0,1]$ with $||\cdot||_\infty$.
+	[$X = C{[}0,1{]}$ with $||\cdot||_\infty$]
 	Let $K(t,\tau)$ be continuous on $[0,1]\times[0,1]$. So $\exists K_0\geq 0$ such that $|K(t,\tau)|\leq K_0$ for all $t,\tau\in[0,1]$.
 	Define $T:X\ra X$ by $(Tx)(t) = \int_0^t K(t,\tau)X(\tau)\,d\tau$.
 	Can show $T$ is linear. Also $T$ is bounded because 
@@ -712,7 +712,7 @@ Last time: Bounded linear operators examples, examples of an unbounded linear op
 	So $||f||=b-a$.
 \end{example}
 \begin{example}
-	$X = C[a,b]$ with $||\cdot||_\infty$. Fix $c\in[a,b]$.
+	[$X = C{[}a,b{]}$ with $||\cdot||_\infty$] Fix $c\in[a,b]$.
 	Define $f(x) = x(c)$ (point evaluation), $f$ is linear. Easy to show $f$ is bounded.
 \end{example}
 \begin{example}
@@ -879,5 +879,100 @@ Hilbert spaces have certain important properties not found in general normed spa
 	The \say{completion} is the Hilbert space $L^2(a,b)$.
 \end{example}
 \ul{HW} 2.9: 2,4,6,G8. 3.1: 3,4,6,7.
+
+Last time: inner product, Hilbert space. 
+We  noted in $\mb R^3$ dot product is related to Euclidean norm by $$||x||=\sqrt{\gen{x,x}}. \qquad (*)$$
+
+\begin{lemma}
+	Let $(X,\gen{\cdot,\cdot})$ be an inner product space, and define $||\cdot||$ by $(*)$.
+	Then
+	\begin{enumerate}
+		\item[a.] $|\gen{x,y}|\leq||x||\,||y||$ Schwarz inequality,
+			Equality holds only if $x$ is a scalar multiple of $y$.
+		\item[b.] $||x+y||\leq||x||+||y||$ triangle inequality
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	[Proof of a.]
+	Clearly true when $y=0$. Assume $y\neq0$. For any scalar $\alpha$,
+	\begin{align*}
+		0 &\leq ||x-\alpha y||^2 = \gen{x-\alpha y,x-\alpha y}
+		= \gen{x,x}-\conj\alpha\gen{x,y}-\alpha\blr{\gen{y,x}-\conj\alpha\gen{y,y}}
+	\end{align*}
+	Take $\ds\conj\alpha = \frac{\gen{y,x}}{\gen{y,y}}$.
+	So 
+	\begin{align*}
+		0 &\leq \gen{x,x} - \frac{\gen{y,x}\gen{x,y}}{\gen{y,y}} \\
+		0 &\leq \gen{x,x} - \frac{|\gen{x,y}|^2}{\gen{y,y}}
+	\end{align*}
+	So $
+		|\gen{x,y}|^2 \leq \os{\ra||x||^2}{\gen{x,x}}\os{\ra||y||^2}{\gen{y,y}} \implies
+		\gen{x,y} \leq ||x||\,||y|| \ \checkmark $
+\end{proof}
+\begin{proof}
+	[b.] Consider 
+	\begin{align*}
+		||x+y||^2 = \gen{x+y,x+y} 
+				  &= \gen{x,x} + \gen{x,y} + \gen{y,x} + \gen{y,y} \\ 
+				  %= ||x||^2 + ||y||^2 + \gen{x,y} + \gen{y,x} \\
+				  &\leq ||x||^2 + ||y||^2 + |\gen{x,y}| + |\gen{y,x}| \\
+				  &\leq ||x||^2 + ||y||^2 + 2||x||\,||y|| \qquad (\text{Schwarz ineq.}) \\
+				  &= (||x||+||y||)^2
+	\end{align*}
+	So $||x+y||\leq ||x||+||y||$ $\checkmark$
+\end{proof}
+
+Let $X$ be a normed space, $M$ a subset, and $x\in X$.
+The \ul{distance} $\delta$ from $x$ to $M$ is defined by $$\delta = \inf_{\tilde y\in M} ||x-\tilde y||.$$
+
+\begin{question}
+	Is there a vector $y\in M$ such that $||x-y||=\delta$? If so, is it unique?
+\end{question}
+\begin{example}
+	[In $\mb R^2$] The distance $\delta$ from a point $x$ to an open line segment $M$ is always defined, but there may be no vector $y\in M$ such that $||x-y||=\delta$.
+\end{example}
+\begin{example}
+	If the boundary of $M$ has a concave circular boundary with a center $x$, then there are infinitely many $y\in M$ such that $||x-y||=\delta$.
+\end{example}
+\begin{definition}
+	Let $x,y\in X$. The line segment from $x$ to $y$ is $\setc{z = \alpha x+(1-\alpha)y}{0\leq\alpha\leq 1}$.
+\end{definition}
+\begin{definition}
+	$M\subset X$ is \ul{convex} if whenever $x,y\in M$, then the line segment from $x$ to $y$ is in $M$.
+\end{definition}
+\begin{remark}
+	Any set can be made convex by taking it's convex hull.
+\end{remark}
+
+\begin{theorem}
+	Let $X$ be an inner product space, and let $M\neq0$ be a convex set which is complete.
+	Then for all $x\in X$, there exists unique $y\in M$ such that $\ds||x-y||=\delta = \inf_{\tilde y\in M}||x-y||$.
+\end{theorem}
+\begin{proof}
+	[a. Existence.] By definition of $\inf$, there is a sequence $(y_n)\in M$ such that $\delta_n\ra\delta$, where $\delta_n=||x-y_n||$.
+	Claim: $(y_n)$ is Cauchy. Let $v_n=x-y_n$. So $||v_n||=\delta_n$ and $y_n-y_m = v_m-v_n$.
+	We have: $$||v_n+v_m|| = ||y_n+y_m-2x|| = 2\bigg|\bigg|\bigg(\ub{\in M\text{ by convex}}{\frac12y_n+\frac12y_m}\bigg)-x\bigg|\bigg| \geq2\delta.$$
+	By parallelogram law,
+	\begin{align*}
+		||y_n-y_m||^2 = ||v_n-v_m||^2 &= -||v_n+v_m||^2 + 2(||v_n||^2+||v_m||^2) \\
+									  &\leq -(2\delta)^2 + 2(\delta_n^2+\delta_m^2) \ra0
+	\end{align*}
+	as $n,m\ra\infty$. So $(y_n)$ is Cauchy.
+	Since $M$ is complete, $y_n\ra y$, and $y\in M$. Also, $||x-y|| \geq \delta$.
+	Also, $||x-y||\leq ||x-y_n||+||y_n-y|| = \delta_n + ||y_n-y||\ra\delta$.
+	So $||x-y||\leq\delta$, so $||x-y||=\delta$ $\checkmark$
+\end{proof}
+\begin{proof}
+	[b. Uniquenes.] see text.
+\end{proof}
+
+\begin{lemma}
+	Let $X$ be an inner product space, and let $Y$ be a complete subspace.
+	(Thus $Y$ is a nonempty, complete, convex subset).
+	Fix $x\in X$ and let $y\in Y$ be the unique vector in $Y$ closest to $x$.
+	Then $z = x-y$ is orthogonal to $Y$. That is, $\gen{z,\tilde y}=0$ for all $\tilde y\in Y$.
+\end{lemma}
+
+\ul{HW} 3.2: 5,7,9,G8
 
 \end{document}

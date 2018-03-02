@@ -4,7 +4,7 @@
 \input{../theorem}
 %\input{../preview}
 
-\author{Book: Walter Rudin 3rd, Presenter: Maya Chhetri, Notes by Michael Reed}
+\author{Presenter: Maya Chhetri, Notes by Michael Reed, Book: Walter Rudin 3rd}
 \title{Mathematical Analysis}
 %date{}
 
@@ -882,7 +882,6 @@ Properties of differentiable functions:
 	By contradiction. Suppose $f'$ is discontinous at $x\in(a,b)$.
 
 	\ul{Case I}: Let $f'(x_-) = f'(x_+) < f'(x)$ WLOG.
-
 	\ul{Case II}: Let $f'(x_-)<f'(x_+)$ WLOG.
 \end{proof}
 \begin{corollary}
@@ -1178,15 +1177,15 @@ Clearly $m_j\leq M_j$ for each $j=1,\dots,n$.
 \newpage
 Then for given $P$ and $f$ on $[a,b]$,
 \begin{enumerate}
-	\item[] $L(P,f) = \sum_{i=1}^n m_i\Delta x_i$ -- lower Riemann sum,
-	\item[] $U(P,f) = \sum_{i=1}^n M_i\Delta x_i$ -- upper Riemann sum.
+	\item[] $\ds L(P,f) = \sum_{i=1}^n m_i\Delta x_i$ -- lower Riemann sum,
+	\item[] $\ds U(P,f) = \sum_{i=1}^n M_i\Delta x_i$ -- upper Riemann sum.
 \end{enumerate}
 Clearly, \fbox{$L(P,f)\leq U(P,f)$}.
 
 Uppwer and lower Riemann integrals:
 \begin{enumerate}
-	\item[] $_-\int_a^b f\,dx := \sup_{P\in\ms P} L(P,f)$ -- lower Riemann integral,
-	\item[] $^-\int_a^b f\,dx := \inf_{P\in\ms P} U(P,f)$ -- uppper Riemann integral,
+	\item[] $_-\int_a^b f\,dx := \ds\sup_{P\in\ms P} L(P,f)$ -- lower Riemann integral,
+	\item[] $^-\int_a^b f\,dx := \ds\inf_{P\in\ms P} U(P,f)$ -- uppper Riemann integral,
 \end{enumerate}
 where $\sup$ and $\inf$ are taken over \ul{all partitions $P$} of $[a,b]$ and $\ms P := $ set of all partitions of $[a,b]$.
 
@@ -1196,7 +1195,7 @@ where $\sup$ and $\inf$ are taken over \ul{all partitions $P$} of $[a,b]$ and $\
 \begin{proof}
 	Let $P$ and $P_1$ be any two partitions of $[a,b]$. Then $m(b-a)\os\checkmark\leq L(P_1,f) \os\checkmark\leq U(P,f) \os\checkmark\leq M(b-a)$.
 	Since $P_1$ is arbitrary, $\ds m(b-a)\leq L(P_1,f) \leq \inf_{P\in\ms P} U(P,f)$.
-	Repeating the argument, $\ds m(b-a)\leq \sup_{P\in\ms P} L(P,f) \leq \inf_{P\in\ms P} U(P,f) \leq M(b-a)$.
+	Repeating the argument, $$\ds m(b-a)\leq \sup_{P\in\ms P} L(P,f) \leq \inf_{P\in\ms P} U(P,f) \leq M(b-a).$$
 	Claim follows by definition.
 \end{proof}
 
@@ -1238,7 +1237,7 @@ Common refinement: $P^*$ is a common refinement of two partitions $P_1$ and $P_2
 \begin{proof}
 	Let $P: a=x_0\leq \dots\leq x_n=b$ be a partition of $[a,b]$ and $P^*$ be a refinement of $P$ with \ul{just one more} point, say $x^*$.
 	Assume $x_{j-1}<x^*<x_j$ for some $j=1,\dots,n$.
-	Then for $x_{j-1}<x^*<x_j$ we have $\ds w_1\inf_{[x_{j-1},x^*]} f(x)$ and $\ds w_2:= \inf_{[x^*,x_j]} f(x)$ and $\ds m_j = \inf_{[x_{j-1},x_j]} f(x)$ imply $m_j\leq w_1$ and $m_j\leq w_2$, so that
+	Then for $x_{j-1}<x^*<x_j$ we have $\ds w_1:=\inf_{[x_{j-1},x^*]} f(x)$ and $\ds w_2:= \inf_{[x^*,x_j]} f(x)$ and $\ds m_j = \inf_{[x_{j-1},x_j]} f(x)$ imply $m_j\leq w_1$ and $m_j\leq w_2$, so that
 	\begin{align*}
 		L(P^*,f,\alpha) &= m_1\Delta\alpha_1 + \dots + m_{j-1}\Delta\alpha_{j-1} + \ub{j^\text{th}}{w_1\Delta\alpha^* + w_2\Delta\alpha_j} + m_{j+1}\Delta\alpha_{j+1} + \dots + m_n\Delta\alpha_n \\
 		L(P,f,\alpha) &= (m_1\Delta\alpha_1 + \dots + m_n\Delta\alpha_n) \\
@@ -1247,6 +1246,100 @@ Common refinement: $P^*$ is a common refinement of two partitions $P_1$ and $P_2
 					  &= (\ub{\geq0}{w_1-m_j})(\ub{\geq0}{\alpha(x^*)-\alpha(x_{j-1})}) + (\ub{\geq0}{w_2-m_j})(\ub{\geq0}{\alpha(x_j)-\alpha(x^*)}) \geq 0
 	\end{align*}
 	Repeating this process we get $L(P^*,f,\alpha)\geq L(P,f,\alpha)$. Similarly (2).
+\end{proof}
+
+\begin{recall}
+	$\ds M_i = \sup_{[x_{i-1},x_i]} f(x)$, $\ds m_i = \inf_{[x_{i-1},x_i]} f(x)$, then 
+	$$ \begin{rcases}U(p,f,\alpha) = \sum_{i=1}^n M_i\Delta\alpha_i \\ L(P,f,\alpha) = \sum_{i=1}^n m_i \Delta\alpha_i \end{rcases} \Delta\alpha i = \alpha(x_i)-\alpha(x_{i-1}) \geq 0$$
+	With $_-\int_a^b f\,d\alpha = \ds\sup_{p\in\ms P} L(P,f,\alpha)$ and $^-\int_a^b f\,d\alpha = \ds\inf_{p\in\ms P} U(P,f,\alpha)$.
+	Then $f\in\ms R(\alpha)$ if and only if $$\fbox{$_-\int_a^bf\,d\alpha = \,^-\int_a^bf\,d\alpha$.}$$
+\end{recall}
+\begin{theorem}
+	\label{thm-6-5} $_-\int_a^bf\,d\alpha \leq\,^-\int_a^bf\,d\alpha$.
+\end{theorem}
+\begin{proof}
+	Let $P_1,P_2$ be any two partitions of $[a,b]$. Let $P^* = P_1\cup P_2$ (common refinement).
+	Then $$L(P_1,f,\alpha) \os{\text{refinement}}\leq L(P^*,f,\alpha) \leq U(P^*,f,\alpha) \os{\text{refinement}}\leq U(P_2,f,\alpha). $$
+	Fix $x\in P_2$. Then $U(P_2,f,\alpha)$ is an upper bound for $L(P,f,\alpha)$ for any $P\in\ms P$.
+	Then $$\ub{_-\int_a^bf\,d\alpha}{\sup_{P\in\ms P} L(P,f,\alpha)} \leq U(P_2,f,\alpha). $$
+	Since $_-\int_a^bf\,d\alpha \leq U(P_2,f,\alpha)$ and $P_2\in\ms P$ is arbitrary,
+	$ _-\int_a^bf\,d\alpha \leq \ds\inf_{P\in\ms P} U(P,f,\alpha)=$$\, ^-\int_a^bf\,d\alpha$
+	implies $_-\int_a^bf\,d\alpha \leq ^-\int_a^bf\,d\alpha$.
+\end{proof}
+
+\begin{theorem}
+	[Integrability criteria]
+	\label{thm-6-6}
+	$f\in\ms R(\alpha) \iff \forall\epsilon>0$, $\exists$ a partition $P=P(\epsilon)$ of $[a,b]$ such that $$U(P,f,\alpha) - L(P,f,\alpha)<\epsilon. $$
+\end{theorem}
+\begin{proof}
+	\say{$\implies$} Suppose $\ub{_-\int_a^bf\,d\alpha\, = \, ^-\int_a^bf\,d\alpha}{f\in\ms R(\alpha)}$ and let $\epsilon>0$ be fixed.
+	Since $_-\int_a^bf\,d\alpha = \ds\sup_{P\in\ms P} L(P,f,\alpha)$ and $^-\int_a^bf\,d\alpha = \ds\inf_{P\in\ms P} U(P,f,\alpha)$.
+	Then $\exists P_1,P_2\in\ms P$ such that 
+	\begin{enumerate}
+		\item[] $_-\int_a^b f\,d\alpha - L(P_1,f,\alpha) < \frac\epsilon2$ --- (1), 
+		\item[] $U(P_2,f,\alpha) -\,^-\int_a^bf\,d\alpha < \frac\epsilon2$ --- (2).
+	\end{enumerate}
+	Let $P^* = P_1\cup P_2$. Then $U(P^*,f,\alpha) \leq U(P_2,f,\alpha) \os{(7)}< \,^-\int_a^b f\,d\alpha + \frac\epsilon2 \os{f\in\ms R(\alpha)}= \,_-\int_a^bf\,d\alpha + \frac\epsilon2 \os{(1)}< L(P_1,f,\alpha) + \frac\epsilon2 + \frac\epsilon2 \leq L(P^*,f,\alpha) + \epsilon$.
+	This implies $U(P^*,f,\alpha)-L(P^*,f,\alpha)<\epsilon$ $\checkmark$
+
+	\say{$\Lla$} NTS: $_-\int_a^bf\,d\alpha = \,^-\int_a^bf\,d\alpha$.
+	It is enough to show: for any $\epsilon>0$, $0\os\checkmark\leq \,^-\int_a^bf\,d\alpha - \,_-\int_a^bf\,d\alpha<\epsilon$.
+	Let $\epsilon>0$ be fixed. Then by hypothesis, $\exists$ a partition $P$ of $[a,b]$ such that $U(P,f,\alpha)-L(P,f,\alpha)<\epsilon$.
+	But $L(P,f,\alpha) \leq _-\int_a^bfd\alpha \leq \,^-\int_a^bfd\alpha \leq U(P,f,\alpha)$ implies $^-\int_a^bfd\alpha-\,_-\int_a^bfd\alpha \leq U(P,f,\alpha) - L(P,f,\alpha) < \epsilon$.
+\end{proof}
+
+\begin{theorem}
+	\label{thm-6-7}
+	Let $\epsilon>0$ be fixed and let $P$ be such that $U(P,f,\alpha)-L(P,f,\alpha) < \epsilon$. --- (1) Then
+	\begin{enumerate}
+		\item[(a)] (1) holds true for any refinement $P^*$ of $P$.
+		\item[(b)] For any $s_i,t_i\in[x_{i-1},x_i]$,
+			$$\ds\sum_{i=1}^n|f(s_i)-f(t_i)|\Delta\alpha_i<\epsilon.$$
+		\item[(c)] For any $t_i\in[x_{i-1},x_i]$ for $i=1,\dots,n$
+			$$\ds \mlr{\int_a^bf\,d\alpha - \sum_{i=1}^nf(t_i)\Delta\alpha_i} < \epsilon.$$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item[(a)] Let $P^*$ be a refinement of $P$. Then since $L(P,f,\alpha)\leq L(P^*,f,\alpha)$ and $U(P,f,\alpha) \geq U(P^*,f,\alpha)$ and $U(P,f,\alpha)-L(P,f,\alpha)<\epsilon$, we get $U(P^*,f,\alpha)-L(P^*,f,\alpha)<\epsilon$.
+		\item[(b)] Clearly $f(s_i),f(t_i)\in[m_i,M_i]$ for $i=1,\dots,n$.
+			That means that $|f(s_i)-f(t_i)|\leq M_i-m_i$ implies
+			\begin{align*}
+				\sum_{i=1}^n |f(s_i)-f(t_i)|\Delta\alpha_i 
+				&\leq \sum_{i=1}^n (M_i-m_i)\Delta\alpha_i \\
+				&= \sum_{i=1}^n M_i\Delta\alpha_i - \sum_{i=1}^n m_i\Delta\alpha_i \\
+				&= U(P,f,\alpha) - L(P,f,\alpha) \os{(1)}<\epsilon.
+			\end{align*}
+		\item[(c)] Let $t_i\in[x_{i-1},x_i]$ for $i=1,\dots,n$. Then $m_i\leq f(t_i)\leq M_i$ for $i=1,\dots,n$ implies
+			$$ \ub{L(P,f,\alpha)}{\sum_{i=1}^n m_i \Delta\alpha_i} \leq \sum_{i=1}^n f(t_i)\Delta\alpha_i \leq \ub{U(P,f,\alpha)}{\sum_{i=1}^n M_i\Delta\alpha_i}. $$
+			Also, $\ds L(P,f,\alpha) \leq \int_a^bf\,d\alpha \leq U(P,f,\alpha) \os{(1)}\implies \mlr{\int_a^bf\,d\alpha - \sum_{i=1}^n f(t_i)\Delta\alpha_i} < \epsilon$.
+	\end{enumerate}
+\end{proof}
+
+\ul{Which $f\in\ms R(\alpha)$?}
+\begin{theorem}
+	Let $f:[a,b]\ra\mb R$ be continuous. Then $f\in\ms R(\alpha)$ on $[a,b]$.
+\end{theorem}
+\begin{proof}
+	Let $\epsilon>0$ be fixed. \ul{\ul{NTS}}: $\exists P\in\ms P$ of $[a,b]$ such that $U(P,f,\alpha)-L(P,f,\alpha)<\epsilon$.
+	\begin{note}
+		\begin{enumerate}
+			\item[(i)] $\alpha:[a,b]\ra\mb R$ monotonically increasing ($\implies\alpha$ bounded), so $\exists\eta>0$ such that $[\alpha(b)-\alpha(a)]\eta<\epsilon$.
+			\item[(ii)] $f$ continuous on $[a,b] \implies f$ uniformly continuous on $[a,b]$. So $\exists\delta>0$ such that $\forall x,t\in[a,b]$ with $|x-t|<\delta$ implies $|f(x)-f(t)|<\eta$.
+				Let $P$ be a partition such that $\Delta x_i = x_i-x_{i-1} < \delta$ for $i=1,\dots,n$.
+				Then $|f(x_i)-f(x_{i-1})| \leq M_i-m_i < \eta$ because $M_i,m_i$ are achieved on $[x_{i-1},x_i]$.
+				Then 
+				\begin{align*}
+					U(P,f,\alpha) - L(P,f,\alpha) 
+					&= \sum_{i=1}^n M_i\Delta\alpha_i - \sum_{i=1}^n m_i\Delta\alpha_i
+					= \sum_{i=1}^n (\ub{<\eta}{M_i-m_i})\Delta\alpha_i \\
+					&< \eta\sum_{i=1}^n \Delta\alpha_i = \eta [\alpha(x_1) - \os{=\alpha(a)}{\alpha(x_0)} + \dots + \os{=\alpha(b)}{\alpha(x_n)} - \alpha(x_{n-1})] \\
+					&= \eta[\alpha(b)-\alpha(a)] < \epsilon.
+				\end{align*}
+				This implies $f\in\ms R(\alpha)$ on $[a,b]$.
+		\end{enumerate}
+	\end{note}
 \end{proof}
 
 \end{document}
