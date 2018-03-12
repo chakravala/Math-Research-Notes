@@ -4,7 +4,7 @@
 \input{../theorem}
 %\input{../preview}
 
-\author{Book: James Epperson 2nd, Presenter: Thomas Lewis, Notes by Michael Reed}
+\author{Presenter: Thomas Lewis, Notes by Michael Reed, Book: James Epperson 2nd}
 \title{Numerical Methods and Analysis}
 %date{}
 
@@ -1314,13 +1314,13 @@ implies STOP at $N$ if $|x_N-x_{N-1}| < \frac mM\text{TOL} \leq \text{TOL}$.
 				&= x_n-(x_n^2+1)\tan\inv(x).
 	\end{align*}
 	Suppose $\tan\inv(|x_n|)\geq1$. ($|a-b|\geq|a|-|b|$ inverse triangle inequality). Then,
-	\begin{align}
+	\begin{align*}
 		|x_{n+1}| &= |x_n-(x_n^2+1)\tan\inv(x_n)| \\
 				  &\geq |(x_n^2+1)\tan\inv(x_n)|-|x_n| \\
 				  &\geq |x_n|^2+1-|x_n| \\
 				  &\geq |x_n|^2-|x_n| \\
 				  &= |x_n|(|x_n|-1).
-	\end{align}
+	\end{align*}
 	If $|x_{n+1}|\geq |x_n|$, the method will not converge.
 	Solving:
 	\begin{align*}
@@ -1354,5 +1354,65 @@ implies STOP at $N$ if $|x_N-x_{N-1}| < \frac mM\text{TOL} \leq \text{TOL}$.
 	\end{itemize}
 	Key: only need $M$ for $x$-values \ul{near} $\alpha$, implies need to start closer to $\alpha$. (May converge otherwise. This is for a guarantee).
 \end{proof}
+
+\subsection*{\S3.8 The Secant Method}
+
+\ul{Goal}: Approximate $f'(x_n)$ in Newton's method to avoid calculating $f'$.
+
+\ul{Idea}: For $x_n\ra\alpha$, $x_{n-1}$ is close to $x_n$.
+Let $h_n=x_{n-1}-x_n$. Then, 
+\begin{align*}
+	f'(x_n) = \lim_{h\ra0}\frac{f(x+h)-f(x)}h
+	\approx \frac{f(x_n+h_n)-f(x_n)}{h_n}
+	= \frac{f(x_{n-1})-f(x_n)}{x_{n-1}-x_n}
+\end{align*}
+\ul{Secant Method}: $\ds x_{n+1} = x_n - f(x_n)\blr{\frac{x_n-x_{n-1}}{f(x_n)-f(x_n)-f(x_{n-1})}} $ for $x_0,x_1$ given.
+\begin{note}
+	Reuses the values $f(x_n),f(x_{n-1})$ to avoid additional overhead in approximating $f'$.
+\end{note}
+\ul{Geometrically} secant method uses the secant line for $x_{n-1},x_n$ to find $x_{n+1}$ instead of tangent line at $x_n$.
+
+\ul{Stopping Criteria}
+\begin{itemize}
+	\item $|f(x_n)|$ small
+	\item $|x_n-x_{n-1}|$ small
+
+		$\alpha - x_n = c_n(x_n-x_{n-1})$ \ul{and} $c_n\ra1$ as $n\ra\infty$ \ul{if} $x_n\ra\alpha$.
+\end{itemize}
+\ul{Error Formula}
+$\ds\alpha - x_{n+1} = -\frac12(\alpha - x_n)(\alpha - x_{n-1}) \frac{f''(\xi_n)}{f'(\eta_n)}$ for some $\xi_n,\eta_n$ such that $$\min\set{\alpha,x_n,x_{n-1}} \leq \xi_n,\eta_n \leq \max\set{\alpha,x_n,x_{n-1}}.$$
+
+\ul{Rate of convergence} $p = \frac{1+\sqrt5}2 \approx 1.618$.
+
+\ul{(Optimistic) convergence} $\ds M = \frac{\ds\sup_{x\in\mb R}|f''(x)|}{\ds2\inf_{x\in\mb R}|f'(x)|}\in[0,\infty)$.
+Then $x_n\ra\alpha$ if $M(\max\set{|x_0-\alpha|,|x_1-\alpha|}) < 1$.
+\S3.11.3 proofs + local analysis.
+$*$ convergence for $f$ nice and $x_0,x_1$ are close enough to $\alpha$. Slower rate than Newton's, but less work per step.
+
+\begin{example}
+	$f(x) = 2^x-4$, ($\alpha = 2$). $x_0=0$, $x_1=1$. Find $x_3$. 
+	\begin{align*}
+		x_2 &= x_1-f(x_1)\cdot \frac{x_1-x_0}{f(x_1)-f(x_0)} \\
+			&= 1-(-2)\cdot\frac1{-2-(-3)} = 1+2(1) = 3. \\
+		x_3 &= x_2 - f(x_2) \cdot \frac{x_2-x_1}{f(x_2)-f(x_1)} \\
+			&= 3-(4)\cdot\frac{3-1}{4-(-2)} = \frac53.
+	\end{align*}
+	$|\alpha-x_7|\approx 2.091\times10^{-6}$. $|\alpha-x_8| \approx 3.422\times10^{-10}$.
+\end{example}
+\begin{example}
+	$f(x)$ such that
+	\begin{itemize}
+		\item $f(a)=0$ for $0<\alpha<8$, $f'(\alpha)\neq0$, $f(0)f(8)<0$.
+		\item $|f''(x)| \leq 6$
+		\item $|f'(x)|\geq 2$.
+	\end{itemize}
+	How many steps of the bisection method are needed to generate $x_0,x_1$ such that secant method converges?
+	$ M\leq\frac6{2\cdot2} = \frac32$. Need $\frac32|x_i-\alpha|<1$ so $|x_i-\alpha|<\frac23$ for $i=0,1$.
+	Not possible on $[0,8]$ without more information.
+	\ul{Bisection}: $|x_N-\alpha| < \frac23$ for $N\geq \frac{\log(b-a)-\log(\frac23)}{\log 2} \approx 3.58$ for $b-a=8$.
+	$\tilde x_0$ requires/based on 4 iterations of bisection.
+	$\tilde x_1$ requires 5 iterations.
+	Need 5 iterations of Bisection to generate $\tilde x_0,\tilde x_1$ for secant method.
+\end{example}
 
 \end{document}

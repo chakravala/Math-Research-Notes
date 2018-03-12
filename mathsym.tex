@@ -33,11 +33,17 @@
 \newcommand{\llr}{\longleftrightarrow}
 \newcommand{\Lr}{\Leftrightarrow}
 \newcommand{\Llr}{\Longleftrightarrow}
+\newcommand{\ua}{\uparrow}
+\newcommand{\da}{\downarrow}
+\newcommand{\Ua}{\Uparrow}
+\newcommand{\Da}{\Downarrow}
 
 % (match parenthesis)
 \newcommand{\mlr}[1]{\left|#1\right|}
 \newcommand{\plr}[1]{\left(#1\right)}
 \newcommand{\blr}[1]{\left[#1\right]}
+\newcommand{\nlr}[1]{\mlr{\mlr{#1}}}
+\newcommand{\nlrp}[2]{\nlr{#1}_{#2}}
 
 % (exponent shortcuts)
 \newcommand{\inv}{^{-1}}
@@ -58,6 +64,10 @@
 \newcommand{\set}[1]{\left\{ #1 \right\}}
 \newcommand{\setc}[2]{\left\{ #1 : #2 \right\}}
 \newcommand{\setm}[2]{\left\{ #1 \, \middle| \, #2 \right\}}
+\newcommand{\Cp}[2]{C^{#1}(#2)}
+\newcommand{\Cb}[3]{C^{#1}{[}#2,#3{]}}
+\newcommand{\Cpb}[3]{C^{#1}({[}#2,#3{]})}
+%\newcommand{\C}[3]{\Cb{#1}{#2}{#3}}
 
 % (group generator)
 \newcommand{\gen}[1]{\langle #1 \rangle}
@@ -68,6 +78,14 @@
 \newcommand{\domain}[1]{\text{domain}(#1)}
 \newcommand{\dist}[1]{(#1)}
 \newcommand{\sgn}{\text{sgn}}
+
+% (sums)
+\newcommand{\lset}[2]{#2_1,\dots,#2_{#1}}
+\newcommand{\lsum}[2]{#2_1+\dots+#2_{#1}}
+\newcommand{\norm}[3]{|#2_1|^{#1}+\dots+|#2_{#3}|^{#1}}
+\newcommand{\norms}[4]{\sum_{#2=1}^{#4}|#3_{#2}|^{#1}}
+\newcommand{\lc}[3]{#2_1#3_1+\dots+#2_{#1}#3_{#1}}
+\newcommand{\lcs}[4]{\sum_{#4=1}^{#1}#2_{#4}#3_{#4}}
 
 % (Linear Algebra)
 \newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
