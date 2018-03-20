@@ -936,7 +936,7 @@ Properties of differentiable functions:
 \begin{example}
 	$f(x) = \begin{cases} \sin\plr{\frac1x}; & x\neq 0 \\ 0; & x=0 \end{cases}$.
 	\begin{itemize}
-		\item[$\checkmark$] continuous at $x\neq 0$. 	
+		\item[$\checkmark$] continuous at $x\neq 0$. 
 		\item[?] $x=0$ $\lim_{x\ra0} f(x) = $ \ul{does not} exist $\implies$ not continuous at $x=0$.
 	\end{itemize}
 	Note $\lim_{x\ra c}f(x) = L$ if and only if $\forall$ sequences $(x_n)\subset\mb R$ such that $x_n\ra c$ implies $f(x_n)\ra L$.
@@ -1337,9 +1337,185 @@ Common refinement: $P^*$ is a common refinement of two partitions $P_1$ and $P_2
 					&< \eta\sum_{i=1}^n \Delta\alpha_i = \eta [\alpha(x_1) - \os{=\alpha(a)}{\alpha(x_0)} + \dots + \os{=\alpha(b)}{\alpha(x_n)} - \alpha(x_{n-1})] \\
 					&= \eta[\alpha(b)-\alpha(a)] < \epsilon.
 				\end{align*}
-				This implies $f\in\ms R(\alpha)$ on $[a,b]$.
 		\end{enumerate}
 	\end{note}
+	This implies $f\in\ms R(\alpha)$ on $[a,b]$.
+\end{proof}
+
+\ul{Test 2} (Chapter 5) 1-9,11,12,13,14,15,17,22,26.
+Definitions and examples.
+
+\iffalse
+\begin{example}
+Show $\lim_{h\ra0} \frac{f(x+h)+f(x-h)-2\cdot f(x)}{h^2} = f''(x)$.
+\end{example}
+\begin{proof}
+	Since $f''$ exists, both $f''(x) = \lim_{h\ra0} \frac{f'(x+h)-f'(x)}h$ and $f''(x) = \lim_{h\ra0} \frac{f'(x)-f'(x-h)}h$ exist.
+	Then 
+	\begin{align*}
+		f''(x) &= \frac12 \lim_{h\ra0} \frac{f'(x+h)-f'(x)}h + \frac12 \lim_{h\ra0} \frac{f'(x)-f'(x-h)}h \\
+			   &= \lim_{h\ra0} \frac{f'(x+h)-f'(x)+f'(x)-f'(x-h)}{2h} \\
+			   &= \lim_{h\ra0} \frac{f'(x+h)-f'(x-h)}{2h}.
+	\end{align*}
+	Observe $\ds\lim_{h\ra0} \fbox{$\frac{f(x+h)+f(x-h)-2\cdot f(x)}{h^2}$} = \lim_{h\ra0} \frac{f'(x+h)-f'(x-h)}{2h}$ by L'hospital rule.
+	So $$ f''(x) = \lim_{h\ra0} \frac{f(x+h)-f(x-h)-2f(x)}{h^2}.$$
+\end{proof}
+\begin{example}
+	$f(x) = 3x|x| \implies f(x) = \begin{cases} -3x^2, & x<0 \\ 3x^2, & x\geq 0 \end{cases}$.
+	So $f'(x) = \begin{cases} -6x, & x<0 \\ 6x, & x\geq0 \end{cases}$.
+	Then $f''(x) = \begin{cases} -6, & x<0 \\ 6, & x\geq 0 \end{cases}$.
+	$\lim_{h\ra0} \frac{f(h)=f(-h)-2\cdot f(0)}{h^2} = \lim_{h\ra0} \frac{3h|h|-3h|h|-0}{h^2} = 0$
+\end{example}
+
+
+\begin{example}
+	$f(x) = \begin{cases} |x|^a \sin(|x|^{-c}), & x\neq 0 \\ 0 & x=0 \end{cases}$, $f:[-1,1]\ra\mb R$, $\sin x$ is differentiable. Suppose $a>0$, show $f$ is continuous.
+\end{example}
+(my proof), then Daniel's
+\begin{proof}
+	Since $\sin x$ is differentiable then $\sin x$ is continuous on $[-1,1]$.
+	Define $|x|^a$ as $g(x) = \begin{cases} x^a; & x\geq 0 \\ -x^a; & x<0 \end{cases}$ then $g'(x) = \begin{cases} ax^{a-1}; & x\geq0 \\ -ax^{a-1}; & x<0 \end{cases}$, therefore $|x|^a$ is differentiable and also continuous at $x\neq0$.
+	Fix $\epsilon>0$ and $a>0$, then
+	$$ |f(x)-f(0)| = |f(x)| = \mlr{ |x|^a \sin(|x|^{-c})} = |x|^a |\sin(|x|^{-c})| \leq |x|^a.$$
+	If we choose $\delta>0$ such that $\delta = \epsilon^{1/a}$ then $|f(x)-f(0)| \leq |x|^a < |\epsilon^{1/a}|^a = \epsilon$.
+	Therefore, $f(x)$ is continuous at $x=0$.
+\end{proof}
+
+\begin{example}
+	Prove if $f$ is continuous, then $a>0$.
+	Suppose $f$ is continous on $[-1,1]$. BWOC suppose $a\leq0$. Now consider the sequence $x_n = \plr{\frac1{\frac\pi2+2\pi n}}^{1/c}$.
+	Note as $n\ra\infty$, $x_n\ra0$ and since $f$ is continuous $f(x_n) \ra f(0) = 0$.
+	But $f(x_n) = \plr{\frac1{\frac\pi2+2\pi n}}^{a/c}\sin\plr{\frac\pi2+2\pi  n} = \plr{\frac\pi2+2\pi n}^{-a/c}$.
+	If $a=0$, then as $n\ra\infty$, $f(x_n)\ra1\neq0$ and if $a<0$, then $f(x_n)\ra\infty\neq0$. Therefore we have a contradiction. Thus $a>0$.
+\end{example}
+
+\begin{example}
+	Prove $f'(0)$ exists if and only if $a>1$.
+
+	($\implies$) Suppose $f'(0)$ exists, WTS $a>1$.
+	BWOC, suppose $a\leq 1$. If $a<1$, $\lim_{h\ra0} \frac{f'(0+h)-f(0)}h = \lim_{h\ra0} \frac{|h|^a\sin(|h|^{-c})}h \ra \lim_{h\ra0} |h|^{a-1} \sin(|h|^{-c})$ implies $a-1<0$, so $\lim_{h\ra0}|h|^{a-1} \ra \infty$ is a contradiction.
+	If $a=1$, 
+	\begin{align*}
+		\lim_{h\ra0} \frac{f(0+h)-f(0)}h &= \lim_{h\ra0} \frac{|h|\sin(|h|^{-c})}h \\
+										 &= \lim_{h\ra0} \sin(|h|^{-c})
+	\end{align*}
+	does not exist. Contradiction, therefore $a>1$.
+
+	($\Lla$) Suppose $a>1$, WTS $f'(0)$ exists. $\lim_{h\ra0} \frac{f(0+h)-f(0)}h = \lim_{h\ra0} \frac{|h|^a\sin(|h|^{-c})}h = \lim_{h\ra0} |h|^{a-1}\sin(|h|^{-c}) = 0 \implies f'(0) = 0$.
+\end{example}
+
+\begin{example}
+	[3] By Chain rule \& product rule $$ f'(x) = \frac{|x|}x\plr{a|x|^{a-1}\sin(|x|^{-c}) - c|x|^{a-c-1} \cos(|x|^{-c})} $$ for $x\neq0$.
+	WTS: by contradiction: $f'(x)$ is not bounded if $a<1+c$. 
+	Let $x_n = (2n\pi+\frac\pi4)^{\frac{-1}c}$ for $n\in\mb N$.
+	Then $f'(x_n) = \frac{\sqrt2}2 (ax_n^{a-1}-cx_n^{a-c-1})$ when $a<1+c$, $f'(x_n)\ra-\infty$.
+
+	\ul{WTS}: $f'(x)$ is bounded if $a>1+c$. $|f'(x)| \leq |a|\,|x|^{a-1} + c|x|^{a-c-1}$ is bounded on $x\in[-1,1]$ if $a-1\geq0$ and $a-c-1\geq0$, $a-c-1\geq0$ impliels $a\geq 1+c$.
+\end{example}
+\fi
+
+When $f\in\ms R(\alpha)$ on $[a,b]$?
+\begin{enumerate}
+	\item[$\checkmark$] $f$ continuous on $[a,b] \os{\text{Thm 6.8}}\implies f\in\ms R(\alpha)$ on $[a,b]$.
+\end{enumerate}
+\begin{recall}
+	$f\in\ms R(\alpha)$ on $[a,b]$ if and only if $\forall\epsilon>0$, $\ub{a=x_0\leq\dots\leq x_n=b}{\exists P=P(\epsilon)}$ such that $U(P,f,\alpha)-L(P,f,\alpha)<\epsilon$.
+	$$ \begin{rcases} U(P,f,\alpha) = \sum_{i=1}^n M_i\Delta\alpha_i \\ L(P,f,\alpha) = \sum_{i=1}^n m_i\Delta\alpha_i \end{rcases} \begin{cases} \ds M_i = \sup_{[x_{i-1},x_i]} f(x) \\ \ds m_i = \inf_{[x_{i-1},x_i]} f(x) \end{cases}, $$
+	where $\Delta\alpha_i = \alpha(x_i)-\alpha(x_{i-1})\geq0$ because $\alpha$ monotonically increasing on $[a,b]$.
+\end{recall}
+
+\begin{theorem}
+	Suppose
+	\begin{itemize}
+		\item $f$ monotonic on $[a,b]$,
+	\end{itemize}
+	\begin{enumerate}
+		\item[$*$] $\alpha$ continuous on $[a,b]$ ($\alpha$ $\uparrow$ on $[a,b]$).
+	\end{enumerate}
+	Then $f\in\ms R(\alpha)$ on $[a,b]$.
+\end{theorem}
+\begin{proof}
+	Let $\epsilon>0$ be fixed.
+	\ul{\ul{NTS}}: $\exists$ a partition $P:x_0\leq x_1\leq\dots\leq x_n=b$ s.t. $U(P,f,\alpha) - L(P,f,\alpha)<\epsilon$.
+		WLOG assume $f$ monotonically increasing on $[a,b]$. $(1) \begin{cases} \text{Let }N\in\mb N\text{ such that } \\ [\alpha(b)-\alpha(a)][f(b)-f(a)]<\ul{\ul{N}}\epsilon \end{cases} $.
+		
+		$\alpha$ continuous + monotonically increasing on $[a,b] \implies \exists a = x_0\leq\dots\leq x_N = b$ such that $\Delta \alpha_j = \alpha(x_j) - \alpha(x_{j-1}) = \frac{\alpha(b)-\alpha(a)}N$ for all $j=1,\dots,N$.
+		\begin{note}
+			$f$ $\uparrow$ $\implies$ $M_j = f(x_j)$ and $m_j = f(x_{j-1})$ for all $j=1,\dots,N$. Then
+		\end{note}
+		\begin{align*}
+			U(P,f,\alpha)-L(P,f,\alpha) 
+				&= \sum_{j=1}^N (M_j-m_j)\Delta\alpha_j \\
+				&= \sum_{j=1}^N [f(x_j) - f(x_{j-1})]\frac{[\alpha(b)-\alpha(a)]}N \\
+				&= [f(b)-f(a)]\frac{[\alpha(b)-\alpha(a)]}N \os{(1)}< \epsilon.
+		\end{align*}
+		$\implies f\in\ms R(\alpha)$ on $[a,b]$.
+\end{proof}
+
+\begin{theorem}
+	Suppose
+	\begin{itemize}
+		\item $f$ is bounded on $[a,b]$,
+		\item $f$ not continuous at $\theta_1,\dots,\theta_k$ in $[a,b]$.
+	\end{itemize}
+	\begin{enumerate}
+		\item[$*$] $\alpha$ is continuous at $\theta_i$ for all $i=1,\dots,k$ ($\alpha$ $\uparrow$).
+	\end{enumerate}
+	Then $f\in\ms R(\alpha)$ on $[a,b]$.
+\end{theorem}
+\begin{proof}
+	Let $\epsilon>0$ be fixed. \ul{\ul{NTS}}: $\exists P$ such that $U(P,f,\alpha)-L(P,f,\alpha)<\epsilon$.
+	$\alpha$ continuous at $\theta_i$; $i=1,\dots,k \implies \exists u_i,v_i\in[a,b]$ such that 
+	\begin{itemize}
+		\item $\theta_i\in[u_i,v_i]$ for all $i=1,\dots,k$, and
+		\item $\ds\sum_{i=1}^k \alpha(v_i) - \alpha(u_i) <\epsilon_1 = \frac\epsilon{2M+\alpha(b)-\alpha(a)}$. --- $(*)$
+	\end{itemize}
+	Now work with $f$: Define $G:= [a,b]\bs\bigcup_{i=1}^k(u_i,v_i) = [a,u_1]\cup[v_1,u_1]\cup\dots\cup[v_k,b]$ -- closed (finite union of closed sets) $\implies G$ is compact (closed + bounded subset of $\mb R$).
+	This implies $f$ is uniformly continuous on~$G$.
+	So, $\exists\delta>0$ such that $\forall x,y\in G$ with $|x-y|<\delta$, $|f(x)-f(y)|<\epsilon_1$.
+
+	\ul{Construct $P$}: Let $n>2k$ and $a =x_0\leq\dots\leq x_n = b$ such that
+	\begin{itemize}
+		\item $u_i,v_i\in P$ for all $i=1,\dots,k$
+		\item $t\in(u_i,v_i) \implies t\notin P$ for all $i=1,\dots,k$
+		\item if for fixed $i$ $x_{i-1}\neq u_j$ for all $j=1,\dots,k$, then $\Delta x_i<\delta$
+
+			(choose $x_i<u_j$ if $x_{i-1} < u_j$,
+			choose $x_i>v_j$ if $x_{i-1}\geq v_j$)
+	\end{itemize}
+	$f$ bounded $\implies M=\sup|f(x)|<\infty$.
+	Then \fbox{$M_i-m_i \leq 2M$} for all $i=1,\dots,n$.
+	Also, if \fbox{$x_{i-1}\neq u_j$} for some $i$ and $\forall j$ then \fbox{$M_i-m_i<\epsilon_1$} (using uniform continuity since $\Delta x_i<\delta$).
+	Then 
+	\begin{align*}
+		U(P,f,\alpha)-L(P,f,\alpha)
+		&= \us{u_{i-1}=u_j\text{ for some }j}{\sum_{i=1}^n (\ob{<2M}{M_i-m_i})\Delta\alpha_i} + \us{x_{i-1}\neq u_j\ \forall j=1,\dots,k}{\sum_{i=1}^n (\ob{<\epsilon_1}{M_i-m_i})\Delta\alpha_i} \\
+		&\leq 2M \us{x_{i-1}=u_j}{\sum_{i=1}^n\Delta\alpha_i} + \epsilon_1 \us{x_{i-1}\neq u_j}{\sum_{i=1}^n\Delta\alpha_i} \\
+		&\os{(*)}< 2M\epsilon_1 + \epsilon_1(\alpha(b)-\alpha(a))
+		= \ul{\ul{\epsilon_1}}[2M+\alpha(b)-\alpha(a)]=\epsilon>0
+	\end{align*}
+	since $\epsilon>0$ is arbitraty, this proves $f\in\ms R(\alpha)$ on $[a,b]$.
+\end{proof}
+
+\begin{theorem}
+	Suppose
+	\begin{itemize}
+		\item $f\in\ms R(\alpha)$ on $[a,b]$,
+		\item $m\leq f(x)\leq M$ on $[a,b]$,
+		\item $\phi:[m,M]\ra\mb R$ continuous.
+	\end{itemize}
+	Then $h = \phi\circ f\in\ms R(\alpha)$ on $[a,b]$.
+	(Assume $\alpha$ $\uparrow$ on $[a,b]$.)
+\end{theorem}
+\begin{proof}
+	Let $\epsilon>0$ be fixed.
+	\ul{NTS}: $\exists P:=x_0\leq \dots\leq x_n=b$ such that $U(P,h,\alpha)-L(P,h,\alpha) < \epsilon$.
+	\begin{enumerate}
+		\item $\phi$ uniformly continuous on $[m,M] \implies \exists\delta >0$ such that $x,y\in[m,M]$ with $|x-y|<\delta \implies |\phi(x)-\phi(y)|<\epsilon$.
+		\item $f\in\ms R(\alpha)$ on $[a,b] \implies \exists P:=x_0\leq\dots\leq x_n=b$ such that $U(P,f,\alpha) - L(P,f,\alpha) < \dots$.
+	\end{enumerate}
+	Define $m_i^* = \inf_{[x_{i-1},x_i]} h(x)$ and $M_i^* = \sup_{[x_{i-1},x_i]} h(x)$.
+	$f$ bounded + $\phi$ continuous $\implies h=\phi$ of $f$ is bounded on $[a,b] \implies m_i^*,M_i^*$ are well defined. $\dots$ to be continued.
 \end{proof}
 
 \end{document}

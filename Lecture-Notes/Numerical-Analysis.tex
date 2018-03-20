@@ -1392,10 +1392,10 @@ $*$ convergence for $f$ nice and $x_0,x_1$ are close enough to $\alpha$. Slower 
 \begin{example}
 	$f(x) = 2^x-4$, ($\alpha = 2$). $x_0=0$, $x_1=1$. Find $x_3$. 
 	\begin{align*}
-		x_2 &= x_1-f(x_1)\cdot \frac{x_1-x_0}{f(x_1)-f(x_0)} \\
-			&= 1-(-2)\cdot\frac1{-2-(-3)} = 1+2(1) = 3. \\
-		x_3 &= x_2 - f(x_2) \cdot \frac{x_2-x_1}{f(x_2)-f(x_1)} \\
-			&= 3-(4)\cdot\frac{3-1}{4-(-2)} = \frac53.
+		x_2 &= x_1-f(x_1)\cdot \frac{x_1-x_0}{f(x_1)-f(x_0)}
+			= 1-(-2)\cdot\frac1{-2-(-3)} = 1+2(1) = 3. \\
+		x_3 &= x_2 - f(x_2) \cdot \frac{x_2-x_1}{f(x_2)-f(x_1)}
+			= 3-(4)\cdot\frac{3-1}{4-(-2)} = \frac53.
 	\end{align*}
 	$|\alpha-x_7|\approx 2.091\times10^{-6}$. $|\alpha-x_8| \approx 3.422\times10^{-10}$.
 \end{example}
@@ -1414,5 +1414,296 @@ $*$ convergence for $f$ nice and $x_0,x_1$ are close enough to $\alpha$. Slower 
 	$\tilde x_1$ requires 5 iterations.
 	Need 5 iterations of Bisection to generate $\tilde x_0,\tilde x_1$ for secant method.
 \end{example}
+
+\subsection*{\S3.9 Fixed-Point Iterations}
+
+\ul{Goal}: Develop abstract convergence tool for root-finding methods.
+\begin{definition}
+	$x = \beta$ is a fixed point of $g(x)$ \ul{if} $g(\beta)=\beta$.
+\end{definition}
+\ul{Idea}: solve $g(x)=x$ for $x=\beta$ i.e., solve $\ub{\text{root-finding}}{g(x)-x=0}$.
+\begin{example}
+	$f(x)=x^2$, $\alpha-0$ \ul{root}.
+	\begin{align*}
+		f(x) &=x \\
+		x^2 &=x \\
+		x(x-1) &=0 \\
+		x &= 0,1
+	\end{align*}
+	$\beta=0,1$ fixed points.
+\end{example}
+
+Relationship to root-finding:
+\begin{align*}
+	f(x) &=0 \\
+	f(x)+x-x &= 0 \\
+	\ub{g(x)}{f(x)+x)} &= x
+\end{align*}
+$x=\alpha$ is a zero of $f(x)$ if and only if $x=\alpha$ is a fixed point of $g(x) = f(x)+x$.
+Can go from $f(x)=0$ to $g(x)=\alpha$.
+Non-unique:
+\begin{example}
+	$f(x) = 3x^2-2x=0$. $\ub{g(x)}{3x^3-x}=x$.
+	\begin{align*}
+		3x^3 &= 2x, \qquad
+		x^3 = \frac23x, \qquad
+		x = \ub{g(x)}{\nrt3{\frac23x}}
+	\end{align*}
+\end{example}
+
+Fixed-Point Iteration/Solver:
+
+Want $x=g(x)$
+
+Choose $x_0$.
+
+Let $x_{n+1} = g(x_n)$ for $n=0,1,2,\dots$
+
+(hopefully $x_n\ra\beta$)
+
+\begin{example}
+	$f(x)=0$. Apply Newton's Method $$x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}.$$
+	This is a fixed-point iteration for $g(x) = x-\frac{f(x)}{f'(x)}$.
+	Observe; $x = x-\frac{f(x)}{f'(x)}$, $0 = -\frac{f(x)}{f'(x)} \implies f(x)=0$ \ul{if} $f'(x)\neq0$.
+	\begin{enumerate}
+		\item[$*$] We can analyse root-finding methods with the form $x_{n+1}=g(x_n)$.
+	\end{enumerate}
+\end{example}
+\begin{theorem}
+	Let $g\in \Cpb{}ab$ with $a\leq g(x)\leq b$ for all $a\leq x\leq b$. Then
+	\begin{enumerate}
+		\item $g$ has at least one fixed-point in $[a,b]$.
+		\item If there exists $\gamma<1$ such that $|g(x)-g(y)|\leq \gamma|x-y|$ for all $x,y$ in $[a,b]$, then
+			\begin{enumerate}
+				\item[a)] the fixed-point $\alpha$ is unique
+				\item[b)] The iteration $x_{n+1}=g(x_n)$ converges to $\alpha$ for any $x_0$ in $[a,b]$.
+				\item[c)] $|\alpha-x_n|\leq \frac{\gamma^n}{1-\gamma}|x_1-x_0|$.
+			\end{enumerate}
+		\item If $g\in\Cpb1ab$ with $x\in\max_{[a,b]}|g'(x)| = \gamma<1$. Then,
+			\begin{enumerate}
+				\item[a)] $\alpha$ is unique
+				\item[b)] $x_{n+1} = g(x_n) \ra\alpha$ for any $x_0\in[a,b]$.
+				\item[c)] $|\alpha-x_n| \leq \frac{\gamma^n}{1-\gamma} |x_1-x_0|$.
+				\item[d)] $\lim_{n\ra\infty} \frac{\alpha-x_{n+1}}{\alpha-x_n} = g'(\alpha)$.
+			\end{enumerate}
+		\item[$*$] Yields a local convergence theorem.
+			\begin{itemize}
+				\item verify $a\leq g(x)\leq b$ for all $x\in[a,b]$ where $\alpha\in[a,b]$ for some $a,b$.
+				\item Verify $|g'(x)|\leq\gamma<1$ for all $a\leq x\leq b$.
+			\end{itemize}
+			(Find $a,b$)
+	\end{enumerate}
+\end{theorem}
+\begin{example}
+	Let $g(x) = \frac12\cos(x)$, $[a,b] = [0,\frac12]$.
+	$\alpha = \frac12\cos(\alpha)$.
+	\begin{itemize}
+		\item $g(x) = \frac12\cos(x)$, $0\leq\frac12\cos(x)\leq\frac12$ for $0\leq x\leq\frac12$. $\checkmark$
+		\item $g'(x) = -\frac12\sin(x)$. $|g'(x)|\leq\frac12=\gamma<1$. $\checkmark$
+	\end{itemize}
+	$\implies \alpha$ exists such that $\alpha = g(\alpha) = \frac12\cos(\alpha)$.
+	Letting $x_{n+1}=g(x_n)$ and $x_0\in[0,\frac12]$, we have $x_n\ra\alpha\approx 0.450184$.
+	How many iterations are needed to guarantee $|x_n-\alpha|<\text{TOL}$ for $x_0=0$?
+	\begin{align*}
+		|\alpha - x_n| \leq \frac{\gamma^n}{1-\gamma}|x_1-x_0|.
+	\end{align*}
+	$\gamma=\frac12$. $x_1 = g(x_0) = \frac12\cos(0) = \frac12$.
+	$$ \frac{\gamma^n}{1-\gamma}|x_1-x_0| = \frac{\plr{\frac12}^n}{1/2}\frac12 = \frac1{2^n}.$$
+	$\frac1{2^n} < \text{TOL}$, $2^n > \frac1{\text{TOL}}$, $n>\log_2\plr{\frac1{\text{TOL}}}$.
+	$ x-\frac12\cos x=0$.
+\end{example}
+
+\begin{theorem}
+	[rate] $x_{n+1} = g(x_n)$.
+	Suppose $g\in\Cpb pab$ with $\alpha\in[a,b]$, $g(\alpha)=\alpha$.
+	If $g'(\alpha)=g''(\alpha)=\dots=g^{(p-1)}(\alpha)=0$ but $g^{(p)}(\alpha)\neq0$, then $x_n\ra\alpha$ with order $p$ for $x_0$ sufficiently close to $\alpha$.
+\end{theorem}
+
+\begin{example}
+	Show Newton's method has rate at least 2 for $f'(\alpha)\neq0$, $f(\alpha)=0$.
+	$$ g(x) = x-\frac{f(x)}{f'(x)} $$
+	Then \begin{align*}
+		g'(x) &= 1- \frac{[f'(x)]^2-f(x)f''(x)}{[f'(x)]^2}
+			  = \frac{[f'(x)]^2-[f'(x)]^2+f(x)f''(x)}{[f'(x)]^2}
+			  = \frac{f(x)f''(x)}{[f'(x)]^2}. \\
+		g'(\alpha) &= \frac{f(\alpha)f''(\alpha)}{[f'(\alpha)]^2} = 0, \qquad \text{(assuming $f''$ okay)}
+	\end{align*}
+\end{example}
+
+\ul{Review}:
+Solve $f(x)=0$ -- root finding.
+or solve $g(x)=x$ -- fixed point problem.
+To relate the two ideas, $g(x)=x+f(x)$.
+Start with $x_0$: update $x_{n+1} = g(x_n)$.
+$g(x) = x-\frac{f(x)}{f'(x)}$.
+\begin{theorem}
+	Let $g\in \Cb{}ab$, $a\leq g(x)\leq b$ for all $x\in[a,b]$.
+	There is a $\gamma<1$ such that $$|g(x)-g(y)|\leq\gamma|x-y|.$$
+	\begin{enumerate}
+		\item unique $\alpha$ such that $g(\alpha)=\alpha$.
+		\item The iteration of $x_{n+1}=g(x_n)$ converges to $\alpha$ for any $x_0[a,b]$.
+		\item $|\alpha-x_n|\leq \frac{\gamma^n}{1-\gamma}|x_1-x_0|$.
+	\end{enumerate}
+	If $g\in\Cb1ab$ with $\max_x|g'(x)| = \gamma<1$ then
+	$$ \begin{rcases} \alpha \text{ is unique} \\ \text{convergence} \\ \text{distance} \end{rcases} + \lim_{n\ra\infty} \frac{\alpha-x_{n+1}}{\alpha-x_n} = g'(\alpha) $$
+\end{theorem}
+
+\subsection*{\S3.11 Special Topics}
+\subsubsection*{\S3.11.4 Multiple Roots}
+Suppose $f'(\alpha)=0$
+
+\begin{lemma}
+	If $f\in\Cb kab$ (derivatives up to $k-1$) are all 0 at $x$, $f(\alpha) = f'(\alpha) = \dots = f^{(k)}(\alpha) = 0$ and $f^{(n)}(\alpha)\neq0$, then $f(x) = (x-\alpha)^k F(x)$, $F(\alpha)\neq0$.
+\end{lemma}
+\begin{example}
+	Suppose $f(x) = (x-\alpha)^2F(x)$, $F(\alpha)\neq0$, with 
+	\begin{align*}
+		g(x) &= x-\frac{f(x)}{f'(x)} \\
+			 &= x-\frac{(x-\alpha)^2f(x)}{2(x-\alpha)F(x) + (x-\alpha)^2F'(x)} \\
+			 &= x-\frac{(x-\alpha)F(x)}{2F(x)+(x-\alpha)F'(x)} \\
+		g'(x) &= 1- \frac{[f(x)-(x-\alpha)F'(x)][\text{Denom}] - (x-\alpha)F(x)[\text{Denom}]'}{[\text{Denom}]^2} \\
+			  &= 1- \frac{F(\alpha) \text{Denom}[\alpha]}{\text{Denom}[\alpha]^2} \\
+			  &= 1- \frac{F(\alpha)}{\text{Denom}[\alpha]} = 1 - \frac{F(\alpha)}{2F(\alpha)} = 1-\frac12 = \fbox{$\frac12$} \neq 0
+	\end{align*}
+\end{example}
+
+\ul{Modified Newton's Method}
+
+Let $u(x) = f(x)/f'(x)$.
+$u(x)$ has root $\alpha$ with multiplicity 1.
+Apply Newton's method to $u(x)$ to find $\alpha$.
+\begin{align*}
+	f(x) &= (x-\alpha)^k F(x) \\
+	u(x) &= \frac{(x-\alpha)^k F(x)}{k(x-\alpha)^{k-1}F(x) + (x-\alpha)^kF'(x)} \\
+		 &= \frac{x-\alpha)F(x)}{kF(x) + (x-\alpha)F'(x)} \\
+	u(\alpha) &= \frac0{kF(\alpha)} = 0 \\
+	u'(x) &= \text{(same thing as above)} \\
+	u'(\alpha) &= \frac{F(\alpha)}{\text{Denom}(\alpha)} = \frac{F(\alpha)}{kF(\alpha)} = \frac1k \neq0 \\
+	x_{n+1} &= x-\frac{u(x_n)}{u'(x_n)} \qquad \text{converges to }\alpha
+\end{align*}
+
+\subsubsection*{\S3.11.5 Hybrid Algorithm}
+
+\ul{Goal}: Combine the Bisection Method with the Secant Method.
+
+\ul{Idea}: $k$th interval $[a_k,b_k]$ either $x_k=a_k$ or $b_k$, and $x_{k-1} = b_k$ or $a_k$.
+
+Let $f(a_1)f(b_1)<0$. Set $x_0=a_1$ and $x_1=b_1$.
+For $k=1,2,3,\dots$ \ul{Secant Method}.
+$$ c = x_k - f(x_k)\cdot\frac{x_k-x_{k-1}}{f(x_k)-f(x_{k-1})} $$
+
+If $a_k\leq c\leq b_k$ then update brackets.
+
+If $f(a_k)f(c)<0 \implies \begin{cases} a_{k+1} &= a_k \\ b_{k+1} &=c \end{cases}$ otherwise $[f(b_k)f(c)<0] \implies \begin{cases} a_{k+1} &= c \\ b_{k+1} &= b_k \end{cases}$, $x_{k+1}=c$.
+
+If secant method doesn't work, use bisection.
+($c$ is outside the interval) $c = a_k+\frac12(b_k-a_k)$.
+
+If $f(a_k)f(c) < 0 \implies \begin{cases} a_{k+1} &= a_k \\ b_{k+1} &= c \end{cases}$ otherwise $\implies \begin{cases} a_{k+1} &= c \\ b_{k+1} &= b_k \end{cases}$, $x_{k+1}=c$.
+
+\section*{Interpolation + Approximation}
+
+\ul{Goal}: find a simpler function $p(x)$ to approximate $f(x)$.
+Set of data, $x_i, y_i=f(x_i)$, info about derivatives.
+
+\subsection*{\S4.1 Lagrange Interpolation}
+
+\ul{Goal}: Given $n+1$ data values $y_i = f(x_i)$ for distinct nodes $\set{x_i}_{i=1}^n$, find a polynomial of degree $\leq n$ such that $p_n(x_i)=y_i$ for all $i=0,1,\dots,n$.
+
+\begin{example}
+	$f(x) = |x|$. $x_0=-1$, $x_1=0$, $x_2=1$. Find $p_2(x)$.
+	Guess $p_2(x) = x^2$.
+	\begin{align*}
+		p_2(x) &= a_0 + a_1x + a_2x^2 \\
+		1 &= f(-1) = p_2(-1) = a_0 - a_1 + a_2 \\
+		0 &= f(0) = p_2(0) = a_0 \\
+		1 &= f(1) = p_2(1) = a_0 + a_1 + a_2
+	\end{align*}
+	So \ul{$a_0 = 0$},
+	\begin{align*}
+		- a_1 + a_2 &= 1 \\
+		+ a_1 + a_2 &= 1 \\
+		\implies 2a_2 &= 2
+	\end{align*}
+	\ul{$a_2=1$},
+	\begin{align*}
+		1 &= 0 + a_1 + 1 \\
+		1 &= a_1 + 1
+	\end{align*}
+	\ul{$a_1 = 0$}.
+	$\implies p_2(x) = x^2$.	
+\end{example}
+
+\ul{Alternative Construction}: Use Lagrange Basis Functions.
+$ L_i^{(n)}$ for $p_n$ so that $$ p_n(x) = \sum_{i=0}^n \us{\us{\text{polynomial}}{\text{degree }n}}{L_i^{(n)}(x)} \cdot \us{\us{\text{given}}{\text{constants}}}{f(x_i)} $$ $\implies p_n$ degree at most $n$,
+where 
+\begin{align*}
+	L_i^{(n)}(x) &= \prod_{\us{k\neq i}{k=0}}^n \frac{x-x_k}{x_i-x_k}
+				 = \frac{x-x_0}{x_i-x_0}\cdot\frac{x-x_1}{x_i-x_1}\cdot \dots \cdot \frac{x-x_{i-1}}{x_i-x_{i-1}} \cdot \frac{x-x_{i+1}}{x_i-x_{i+1}} \cdot \dots \cdot \frac{x-x_n}{x_i-x_n}
+\end{align*}
+product of $n$ linear terms $\la x_i\neq x_k$ don't divide by zero.
+\begin{observe}
+	\begin{align*}
+		L_i^{(n)}(x_i) &=\prod_{\us{k\neq i}{k=0}}^n \frac{x_i-x_k}{x_i-x_k} = 1^n = 1.\\
+		\us{j\neq i}{L_i^{(n)}(x_j)} &= \prod_{\us{k\neq i}{k=0}}^n \frac{x_j-x_k}{x_i-x_k} = \frac{()}{()} \cdot \dots \cdot \frac{()}{()} \cdot \frac{x_j-x_j}{x_i-x_j} \cdot \frac{()}{()} \cdot \dots \cdot \frac{()}{()} = 0.
+	\end{align*}
+	Thus, check: $p_n(x_k) = f(x_k)$
+	\begin{align*}
+		p_n(x_k) &= \sum_{i=0}^n L_i^{(n)} (x_k) f(x_i) \\
+				 &= L_k^{(n)}(x_k) f(x_k) \qquad (0 \text{ for }i\neq k) \\
+				 &= 1\cdot f(x_k)
+				 = f(x_k) \ \checkmark
+	\end{align*}
+\end{observe}
+
+In the example:
+\begin{align*}
+	L_0^{(2)}(x) &= \prod_{k=1}^2 \frac{x-x_k}{x_0-x_k} = \frac{x-x_1}{x_0-x_1}\cdot \frac{x-x_2}{x_0-x_2}
+				 = \frac{x-0}{-1-0} \cdot \frac{x-1}{-1-1}
+				 = \frac{x(x-1)}{(-1)(-2)} = \frac12x(x-1). \\
+	L_1^{(2)} &= \prod_{k=0,2} \frac{x-x_k}{x_1-x_k}
+			  = \frac{x-x_0}{x_1-x_0}\cdot \frac{x-x_2}{x_1-x_2}
+			  = \frac{x+1}{1-0}\cdot \frac{x-1}{0-1}
+			  = \frac{(x+1)(x-1)}{-1}
+			  = -(x+1)(x-1) \\
+\end{align*}
+Check: $L_0^{(2)}(\os{x_0}{-1}) = 1$, $L_0^{(2)}(x_1)=0$, $L_0^{(2)} (x_2) = 0$.
+
+Cheat: $L_2^{(2)}(x) = a(x+1)x$. Need $1=L_2^{(2)}(\os{x_2}1) = a(2)(1)$, so $a = \frac12$.
+Then $L_2^{(2)}(x) = \frac12 x(x+1)$.
+\begin{align*}
+	p_2(x) &= \sum_{i=0}^2 L_i^{(2)}(x)f(x_i)
+		   = +1 \cdot L_0^{(2)}(x) + 0\cdot L_1^{(2)}(x) + 1\cdot L_2^{(2)}(x) \\
+		   &= \frac12x(x-1)+\frac12x(x+1)
+		   = \frac12x^2-\frac12x + \frac12 x^2 + \frac12 x
+		   = x^2.
+\end{align*}
+
+\begin{theorem}
+	[Lagrange Interpolation Existence + Uniqueness]
+	Let $x_i\in I$, $0\leq i\leq n$, with $x_i\neq x_j$ for all $i\neq j$.
+	There exists a unique polynomial of degree $\leq n$ such that $p_n(x_i)=f(x_i)$ for a given fun. $f\in C(I)$.
+\end{theorem}
+\begin{proof}
+	\ul{Existence}: $p_n(x) = \sum_{i=0}^n L_i^{(n)}(x)f(x_i)$.
+
+	\ul{Uniqueness}: Assume there exists another polynomial $q(x)$ such that $q(x_i) = f(x_i)$ for all $i=0,\dots,n$.
+	Let $r(x) = \ub{\text{deg}\leq n}{p_n(x)} - \ub{\text{deg}\leq n}{q(x)} \implies r$ has degree $\leq n$.
+	Then $r$ has degree $\leq n$ \ul{\ul{and}}
+	\begin{align*}
+		r(x_i) &= p_n(x_i) - q(x_i)
+			   = f(x_i) - f(x_i)
+			   = 0
+	\end{align*}
+	for all $i=0,1,\dots,n \implies r(x)$ has $n+1$ zeros.
+	Therefore $r(x)=0$ since degree $n$ polynomials have at most $n$ distinct zeros unless they are the zero for (Fundamental Theorem of Algebra)
+	$r(x) = 0 \implies p_n(x) - q(x) = 0$ implies $p_n(x) = q(x) \implies p_n$ is unique.
+\end{proof}
+\begin{note}:
+	\begin{enumerate}
+		\item For $n$ large, $p_n(x)$ is hard to compute numerically.
+		\item $n\ra\infty$ does not guarantee $p_n(x)\approx f(x)$ even for some \say{nice} functions $f(x)$.
+	\end{enumerate}
+\end{note}
 
 \end{document}

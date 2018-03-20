@@ -975,4 +975,180 @@ The \ul{distance} $\delta$ from $x$ to $M$ is defined by $$\delta = \inf_{\tilde
 
 \ul{HW} 3.2: 5,7,9,G8
 
+\begin{recall}
+	[Last time]
+Let $X$ be inner product space.
+\begin{enumerate}
+	\item Let $M\neq\emptyset$ be complete, convex subset of $X$, and $x\in X$.
+		[Then there exists unique vector in $M$ closest to $x$.] Then $\exists!y\in M$ such that $$ \delta = \inf_{\tilde y\in M} ||x-\tilde y|| = ||x-y||. $$
+	\item If $Y$ is a complete subspace of $X$ and $x\in X$, then $\exists!y\in Y$ such that $z = x-y\perp Y$ and $||z||=\delta$.
+\end{enumerate}
+\end{recall}
+\begin{proof}
+	Every subspace is convex, so by 1. $\exists!y\in Y$ such that $||z||=\delta$, where $z=x-y$. Remains to show that $z=x-y\perp Y$.
+	BWOC, suppose $z\not\perp Y$. So $\exists y_1\in Y$ such that $\gen{z,y_1}=\beta\neq0$.
+	Clearly $y_1\neq0$. For any scalar $\alpha$, we have 
+	\begin{align*}
+		||z-\alpha y_1|| &= \gen{z-\alpha y_1,z-\alpha y_1} 
+						 = \gen{z,z} - \conj\alpha\beta - \alpha [\ub{\conj\beta}{\gen{y_1,z}}-\conj\alpha\gen{y_1,y_1}]
+	\end{align*}
+	Choose $\conj\alpha = \frac{\conj\beta}{||y_1||^2}$.
+	Then 
+	\begin{align*}
+		||z-\alpha y_1||^2 &= ||z|| - \frac{|\beta|^2}{||y_1||^2}
+						   = \delta^2 - \frac{|\beta|^2}{||y_1||^2} < \delta^2
+	\end{align*}
+	So $||z-\alpha y_1|| < \delta$. So $||x-\ul{(y+\alpha y_1)}|| < \delta$.
+	Contradiction since $y+\alpha y_1\in y$.
+\end{proof}
+
+\begin{definition}
+	Let $H$ be a Hilbert space and $Y$ a subspace.
+	The \ul{orthogonal complement} of $Y$, denoted $Y^\perp$, is the set of all vectors orthogonal to $Y$.
+	$$ Y^\perp = \setc{z\in H}{\gen{z,y}=0\ \forall y\in Y} $$
+\end{definition}
+This is a special case of
+\begin{definition}
+	If $M\neq\emptyset$ is a subset of $H$ the \ul{annihilator of $M$}, denoted $M^\perp$, is the set $$M^\perp = \setc{z\in H}{\gen{z,y}=0\ \forall y\in M}.$$
+\end{definition}
+\begin{note}
+	[alternative definition] For $M\subset X$, $M^\circ = \setc{f\in X'}{f(x)=0\ \forall x\in M}$.
+\end{note}
+\begin{definition}
+	A vector space $X$ is said to be the \ul{direct sum} of two subspaces $Y$ and $Z$ if each $x\in X$ has a unique representation $x=y+z$, $x\in X,y\in Z$.
+	Notation: $X = Y\oplus Z$.
+\end{definition}
+\begin{example}
+	Let $Y$ and $Z$ be any two non-parallel, intersecting subspaces of $\mb R^2$, then $Y\oplus Z = \mb R^2$.
+\end{example}
+\newpage
+\begin{theorem}
+	Let $H$ be a Hilbert space and $Y$ a closed subspace. Then $H = Y\oplus Z$, where $Z = Y^\perp$.
+\end{theorem}
+\begin{proof}
+	Let $x\in H$. Since $H$ is complete and $Y$ is closed, then $Y$ is complete.
+	By previous theorem, $\exists!y\in Y$ such that $z=x-y\in Y^\perp$.
+	Clearly $x=y+z$, and $y\in Y,z\in Y^\perp$ $(*)$. 
+	To see this is unique, suppose $x = y+z$ and $x = y_1+z_1$, where $y,y_1\in Y$, $z,z_1\in Y^\perp$.
+	Then $y-y_1=z_1-z$. But $y-y_1\in Y$, so $z_1-z\in Y\cap Y^\perp$.
+	Thus $z_1-z=0$, so $z=z_1$ and $y=y_1$.
+\end{proof}
+\ul{Notation}: The vector $y\in Y$ is called the \ul{orthogonal projection} of $x$ onto $Y$.
+\begin{note}
+	$(*)$ defines a linear operator on $H$ by $Px = y$. 
+	$P$ is a bounded linear operator on $H$.
+	Also $P^2x = Px$, so $P^2=P$. $\ms N(P) = Y^\perp$.
+\end{note}
+\begin{remark}
+	In Hilbert space $H$, an idempotent operator $P$ will have $\ms R(P) \oplus \ms N(P) = H$ (requires $\ms R(P)$ is closed (maybe $P$ is boundedq), but not necessarily in Banach space.
+\end{remark}
+Notice that if $x\in Y$, then $x\perp Y^\perp$, so $x\in(Y^\perp)^\perp$. Thus $Y\subset(Y\perp)^\perp$.
+\begin{lemma}
+	Let $H$ be Hilbert space and $Y$ a closed subspace. Then $Y = (Y^\perp)^\perp$.
+\end{lemma}
+\begin{proof}
+	We know $Y\subset (Y^\perp)^\perp$, need to show $(Y^\perp)^\perp\subset Y$.
+	Let $x\in(Y^\perp)^\perp$. By previous result, since $Y$ is closed and hence complete, $x = y+z$, where $y\in Y,z\in Y^\perp$.
+	Thus $z = x-y\in(Y^\perp)^\perp$, so $z\in Y^\perp\cap(Y^\perp)^\perp$, so $z=0$.
+	Thus $x=y$, so $x\in Y$.
+\end{proof}
+\ul{HW} 3.3: 1,3,8,G6.
+
+Last time: orthogonal complements, direct sums, projections.
+\ul{Next}: sets and sequences of orthogonal vectors.
+Motivation by considering $\mb R^3$.
+
+For $x\in\mb R^3$, $x=(x_1,x_2,x_3)$ and basis $e_1,e_2,e_3$.
+Then $x = \alpha_1e_1+\alpha_2e_2+\alpha_3e_3$, where $\alpha_1 = x_1 =\gen{x,e_1}$, $\alpha_2=x_2=\gen{x,e_2}$, $\alpha_3=x_3=\gen{x,e_3}$.
+
+\begin{definition}
+	An \ul{orthogonal set} $M$ in an inner product space is a subset $M\subset X$ where elements are pairwise orthogonal.
+	If all elements have norm 1, we asy $M$ is \ul{orthonormal}.
+	If $M$ is countable, we can write as an orthogonal or orthonormal \ul{sequence} $(x_n)_{n=1}^?$.
+\end{definition}
+\begin{note}
+	$x\perp y \iff ||x+y||^2 = ||x||^2 + ||y||^2$.
+\end{note}
+\begin{lemma}
+	An orthogonal set is linearly independent.
+\end{lemma}
+\begin{proof}
+	Assume $M$ is an orthogonal set in inner product space $X$.
+	Let $\set{e_1,\dots,e_n} \subset M$. Suppose $\alpha_1e_1+\dots+\alpha_ne_n=0$.
+	For any $k=1,\dots,n$,
+	\begin{align*} 
+		0 = \gen{0,e_k} &= \gen{\alpha_1e_1+\dots+\alpha_ne_n,e_k} \\
+						&= \alpha_1\gen{e_1,e_k} + \dots + \alpha_k\gen{e_k,e_k} + \dots + \alpha_n\gen{e_n,e_k} \\
+						&= \alpha_k\gen{e_k,e_k} = \alpha_n||e_k||^2,
+	\end{align*}
+	so $\alpha_k=0$. Thus $\set{e_1,\dots,e_n}$ is linearly independent.
+\end{proof}
+\begin{example}
+	$\mb R^n$, $e_1=(1,0,\dots,0),e_2=(0,1,0,\dots,0)$, $\set{e_1,\dots,e_n}$ is an orthonormal set.
+\end{example}
+\begin{example}
+	$\ell^2$, $e_1=(1,0,0,\dots),e_2(0,1,0,\dots)$.
+	Then $(e_k)_{k=1}^\infty$ is orthonormal.
+\end{example}
+\begin{example}
+	$L^2(0,2\pi)$, $\gen{f,g} = \int_0^{2\pi} f(x)g(x)\,dx$.
+	Define $u_n(t) = \cos nx$, $n=0,1,\dots$.
+	Can show 
+	\begin{align*}
+		\gen{u_n,u_m} &= \int_0^{2\pi} \cos(nx)\cos(mx)\,dx = \begin{cases} 0 & n\neq m \\ \pi & n=m=1,2,\dots \\ 2\pi & n=m=0 \end{cases}.
+	\end{align*}
+	Thus $(u_n)_{n=0}^\infty$ is an orthogonal sequence.
+	$e_0 = \frac1{\sqrt{2\pi}}, e_n = \frac1{\sqrt\pi}u_n$, then $(e_n)$ is orthonormal.
+\end{example}
+\begin{remark}
+	Gram-Schmidt process can be used to construct an orthonormal set.
+\end{remark}
+
+Let $\set{e_1,\dots,e_n}$ be orthonormal, and let $x\in\spn\set{e_1,\dots,e_n}$.
+Then $x = \sum_{k=1}^n \gen{x,e_k}e_k$.
+\begin{proof}
+	We know $\ds x=\sum_{j=1}^n \alpha_je_j$. Fix $k$. Then 
+		$\ds \gen{x,e_k} = \gen{\sum_{j=1}^n \alpha_je_j,e_k}
+					= \sum_{j=1}^n \alpha_j\gen{e_j,e_k}
+					= \alpha_k \ \checkmark $
+\end{proof}
+\newpage
+\ul{Next}, suppose $Y_n = \spn\set{e_1,\dots,e_n}\subset X$, and $x\notin Y_n$.
+Define $y = \sum_{k=1}^n \gen{x,e_k}e_k$. Set $z=x-y$.
+\ul{Claim} $z\perp Y_n$. In other words, $y$ is the unique vector in $Y_n$ closest to $x$.
+Let $\tilde y\in Y_n$. Then $\tilde y=\sum_{j=1}^n\alpha_je_j$. Then
+\begin{align*}
+	\gen{z,\tilde y} &= \gen{x-y,\tilde y} = \gen{x,\tilde y} - \gen{y,\tilde y} \\
+					 &= \gen{x,\sum_{j=1}^n\alpha_je_j} - \gen{\sum_{k=1}^n \gen{x,e_k}e_k,\sum_{j=1}^n \alpha_je_j} \\
+					 &= \sum_{j=1}^n \gen{x,\alpha_jeJ} - \sum_{k=1}^n \gen{x_j,e_k} \gen{e_k,\sum_{j=1}^n\alpha_je_j} \\
+					 &= \sum_{j=1}^n \conj\alpha_j\gen{x,e_j} - \sum_{k=1}^n\gen{x,e_k}\cdot\gen{e_k,\alpha_ke_k} \\
+					 &= \sum_{j=1}^n \conj\alpha_j\gen{x,e_j} - \sum_{k=1}^n \conj\alpha_k \gen{x,e_k} = 0
+\end{align*}
+Also note, since $z\perp y$, $||x||^2 = ||z+y||^2 = ||z||^2 + ||y||^2$.
+So $||z||^2 = ||x||^2 - ||y||^2$. Also
+\begin{align*}
+	||y||^2 &= \gen{y,y} = \gen{\sum_{k=1}^n\gen{x,e_k}e_k,\sum_{j=1}^n\gen{x,e_j}e_j}
+			=\dots= \sum_{k=1}^n |\gen{x,e_k}|^2.
+\end{align*}
+So $\ds||z||^2 = ||x||^2 - \sum_{k=1}^n|\gen{x,e_k}|^2$.
+So $\ds\sum_{k=1}^n |\gen{x,e_k}|^2 \leq ||x||^2 $ \fbox{Bessel's inequality.}
+\begin{theorem}
+	Let $(e_k)_{k=1}^\infty$ be an orthonormal sequence in an inner product space $X$.
+	Then for any $x\in X$, $$\sum_{k=1}^\infty |\gen{x,e_k}| \leq ||x||^2.$$
+\end{theorem}
+
+Let $H$ be a Hilbert space and let $(e_k)_{k=1}^\infty$ be orthonormal sequence.
+We consider series of the form $$\sum_{k=1}^\infty \alpha_k e_k \qquad (*) $$
+\begin{definition}
+	The series $(*)$ exists and has limit $s$ if $||s_n-s||\ra0$ as $n\ra\infty$, where $s_n = \sum_{k=1}^n \alpha_ke_k$.
+\end{definition}
+\begin{theorem}:
+	\begin{enumerate}
+		\item[a.] The series $(*)$ converges if and only if the series $\sum_{k=1}^\infty |\alpha_k|^2<\infty$.
+		\item[b.] If the series converges, then $\alpha_k = \gen{x,e_k}$ where $x=\sum_{k=1}^\infty \alpha_ke_k$.
+		\item[c.] For any $x\in H$, the series $\sum_{k=1}^\infty \gen{x,e_k}e_k$ converges.
+	\end{enumerate}
+\end{theorem}
+\ul{HW} 3.4: 7,9,10.
+
 \end{document}
