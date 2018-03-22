@@ -1515,7 +1515,106 @@ When $f\in\ms R(\alpha)$ on $[a,b]$?
 		\item $f\in\ms R(\alpha)$ on $[a,b] \implies \exists P:=x_0\leq\dots\leq x_n=b$ such that $U(P,f,\alpha) - L(P,f,\alpha) < \dots$.
 	\end{enumerate}
 	Define $m_i^* = \inf_{[x_{i-1},x_i]} h(x)$ and $M_i^* = \sup_{[x_{i-1},x_i]} h(x)$.
-	$f$ bounded + $\phi$ continuous $\implies h=\phi$ of $f$ is bounded on $[a,b] \implies m_i^*,M_i^*$ are well defined. $\dots$ to be continued.
+	$f$ bounded + $\phi$ continuous $\implies h=\phi\circ f$ is bounded on $[a,b] \implies m_i^*,M_i^*$ are well defined. $\dots$ to be continued.
 \end{proof}
+
+\begin{recall}
+	Suppose
+	\begin{itemize}
+		\item $f\in\ms R(\alpha)$ on $[a,b]$ and $m\leq f(x)\leq M$.
+		\item $\phi:[m,M]\ra\mb R$ continuous.
+	\end{itemize}
+	Then $h = \phi\circ f\in\ms R(\alpha)$ on $[a,b]$.
+\end{recall}
+\begin{proof}
+	Let $\epsilon>0$ be fixed.
+	\ul{NTS}: $\exists P$ such that $U(P,f,\alpha) - L(P,f,\alpha) <\epsilon$.
+	\begin{note}:
+		\begin{align*}
+			(1)
+			&\begin{cases}
+				\phi:[m,M]\ra\mb R \text{ continuous }\implies \phi \text{ uniformly continuous} \\ 
+				\implies \exists \delta>0 \text{ such that }\forall x,y\in[m,M] \text{ such that } |x-y|<\delta \\ 
+				\text{implies } |\phi(x)-\phi(y)| < \epsilon.
+			\end{cases} \\
+			(2)
+			&\begin{cases}
+				f\in\ms R(\alpha) \text{ on } [a,b] \implies \exists P: a=x_0\leq\dots\leq x_n = b \\
+				\text{such that } U(P,f,\alpha)-L(P,f,\alpha) < \delta^2.
+			\end{cases}
+		\end{align*}
+	\end{note}
+	Define $m_i,M_i$ \ul{usual way}.
+	Define $m_i^* = \inf_{[x_{i-1},x_i]} h(x), M_i^* = \sup_{[x_{i-1},x_i]} h(x)$.
+	$m_i^*$ and $M_i^*$ are well defined since $\phi$ continuous and $f$ bounded.
+	Let $i\in A\subset\set{1,\dots,n}$ if $M_i-m_i<\delta$, and $i\in B\subset\set{1,\dots,n}$ if $M_i-m_i\geq\delta$.
+	If $i\in A$, then $M_i-m_i<\delta$, so \fbox{$M_i^*-m_i^*<\epsilon$}.
+	If $i\in B$, then $M_i^*-m_i^*\leq 2K$, where $K = \sup_{[a,b]} |h(x)|<\infty$.
+	In this case, \ul{claim}: $$\sum_{i\in B} \Delta \alpha_i <\delta.$$
+	\begin{proof}
+		$\ds \delta \sum_{i\in B} \Delta\alpha_i \leq \sum_{i\in B}(M_i-m_i)\Delta\alpha_i \leq U(P,f,\alpha) - L(P,f,\alpha) < \delta^2 \implies \sum_{i\in B} \Delta\alpha_i<\delta$.
+	\end{proof}
+	Then
+	\begin{align*}
+		U(P,h,\alpha)-L(P,h,\alpha)
+		&= \sum_{i\in A} (\ub{<\epsilon}{M_i^*-m_i^*}) \ub{<\alpha(b)-\alpha(a)}{\Delta\alpha_i} + \sum_{i\in B} (\ub{\leq2K}{2M_i^*-m_i^*}) \ub{<\delta}{\Delta\alpha_i} \\
+		&< \epsilon[\alpha(b)-\alpha(a)] + \delta 2K \\
+		&< \epsilon[\alpha(b)-\alpha(a) + 2K] \text{ if } \delta<\epsilon
+	\end{align*}
+	Since $\epsilon>0$ is arbitraty, $U(P,h,\alpha) - L(P,h,\alpha) < \epsilon'$ for any $\epsilon'>0$.
+	Hence $h\in\ms R(\alpha)$ on $[a,b]$.
+\end{proof}
+
+\begin{theorem}
+	Let $f,g\in\ms R(\alpha)$ on $[a,b]$ and $c\in\mb R$. Then
+	\begin{enumerate}
+		\item[(a)] $f+g$, $cf\in\ms R(\alpha)$ on $[a,b]$, and
+			$ \int_a^b [f+g]\,d\alpha = \int_a^b f\,d\alpha + \int_a^b g\,d\alpha$, $\int_a^b cf\,d\alpha = c\int_a^b fd\alpha$.
+		\item[(b)] $f\leq g$ on $[a,b]$ then $\in_a^b f\,d\alpha \leq \int_a^b g\,d\alpha$.
+		\item[(c)] Let $a<c<b$. Then $f\in\ms R(\alpha)$ on $[a,c]$ and on $[c,b]$,
+			$\int_a^b f\,d\alpha = \int_a^c f\,d\alpha + \int_c^b f\,d\alpha$.
+		\item[(d)] If $|f|\leq M$ on $[a,b]$ then $|\int_a^b f\,d\alpha| \leq M[\alpha(b)-\alpha(a)]$.
+		\item[(e)] $f\in\ms R(\alpha_1)$ and $f\in\ms R(\alpha_2)$ on $[a,b]$, then 
+			\begin{itemize}
+				\item $f\in\ms R(\alpha_1+\alpha_2)$ on $[a,b]$, $\int_a^b f\,d(\alpha_1+\alpha_2) = \int_a^b f\,d\alpha_1 + \int_a^b f\,d\alpha_2$
+				\item $\int_a^b f\,d(c\alpha) = c\int_a^b f\,d\alpha$ for $c>0$ constant.
+		\end{itemize}
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\ul{HW}: Students present in class next time.
+\end{proof}
+
+\newpage
+
+\begin{theorem}
+	Suppose $f,g\in\ms R(\alpha)$ on $[a,b]$. Then
+	\begin{enumerate}
+		\item[1)] $fg\in\ms R(\alpha)$ on $[a,b]$.
+		\item[2)] $|f|\in\ms R(\alpha)$ on $[a,b]$ and
+			$$ \mlr{\int_a^b f\,d\alpha} \leq \int_a^b |f|\,d\alpha .$$
+	\end{enumerate}
+\end{theorem}
+\begin{recall}
+	$ fg = \frac{(f+g)^2-(f-g)^2}4 $
+\end{recall}
+\begin{proof}
+	Since $f,g$ bounded on $[a,b]$, $\exists M_1,M_2>0$ such that $|f|\leq M_1$ and $|g|\leq M_2$ on $[a,b]$.
+
+	$\implies |f+g|, |f-g| \leq M_1+M_2$
+
+	$\implies -(M_1+M_2) \leq (f+g)$, $(f-g) \leq M_1 + M_2$ on $[a,b]$.
+
+	Then $\phi(t) = t^2$ continuous on $[-(M_1+M_2),M_1+M_2]$.
+	So $h(t) = \phi\circ(f+g) = (f+g)^2\in\ms R(\alpha)$ and $\phi\circ(f-g)=(f-g)^2\in\ms R(\alpha)$ on $[a,b]$.
+	Then $fg = \frac{(f+g)-(f-g)^2}4\in\ms R(\alpha)$ on $[a,b]$.
+\end{proof}
+\begin{proof}
+	[2)] $\phi(t) = |t|$ continuous on $[-M_1,M_1]$.
+	So $h=\phi\circ f\in\ms R(\alpha)$ on $[a,b]$.
+	Now, $\mlr{\int_a^b f\,d\alpha} = c\int_a^b f\,d\alpha$, where $c = \sgn\int_a^b f\,d\alpha$.
+	$$ \mlr{\int_a^b f\,d\alpha} = c\int_a^b f\,d\alpha = \int_a^b cf\,d\alpha \leq \int_a^b |f|\,d\alpha. $$
+\end{proof}
+
 
 \end{document}

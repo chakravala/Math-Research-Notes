@@ -1706,4 +1706,87 @@ Then $L_2^{(2)}(x) = \frac12 x(x+1)$.
 	\end{enumerate}
 \end{note}
 
+\subsubsection*{\S4.2 Newton Interpolation and Divided Difference}
+
+\ul{Goal}: Efficiently construct Lagrange Interpolation polynomials.
+The method allows a partial factoring similar to Horner's method.
+
+\begin{theorem}
+	Let $p_n(x)$ interpolate $f$ at the nodes $x_i$, $i=0,1,2,\dots,n$.
+	$p_{n+1}(x)$ interpolate $f$ at $x_i$, $i=0,1,2,\dots,n+1$. $x_i\neq x_j$.
+	Then $p_{n+1}(x) = p_n(x) + a_{n+1}\omega_n(x)$, where
+	\begin{align*}
+		\omega_n(x) &= \prod_{i=0}^n (x-x_i) \\
+		a_{n+1}(x) &= \frac{f(x_{n+1})-p_n(x)}{\omega_{n+1}(x)} \\
+		p_0(x) &= a_0 = f(x_0)
+	\end{align*}
+	\begin{enumerate}
+		\item[$*$] constructs $p_{n+1}$ given $p_n$ when 1 extra node is added.
+		\item[$*$] can be implemented recursively.
+		\item[$*$] avoids repetitive computations: $w_{n+1} = (x-x_{n+1})\omega_n(x)$.
+	\end{enumerate}
+\end{theorem}
+\begin{corollary}
+	Given $\set{a_k}$ and $\omega_n$,
+	\begin{align*}
+		p_n(x) &= a_0 + a_1(x-x_0) + a_2(x-x_0)(x-x_1) + \dots + a_n(x-x_0)(x-x_1)\dots(x-x_{n-1}) \\
+			   &= \sum_{k=0}^n a_k\omega_{k-1}(x).
+	\end{align*}
+	for $\omega_{-1}(x)\equiv1$.
+	\begin{align*}
+		p_n(x) = a_0 + (x-x_0)\blr{a_1 + (x-x_1)\blr{a_2 + \dots + (x-x_{n-1})a_n}} \sim \text{Horner's}
+	\end{align*}
+	\begin{enumerate}
+		\item[$*$] $\set{a_k}_{k=0}^n$ called \ul{divided differences} and are used to evaluate $p_n(x)$.
+	\end{enumerate}
+\end{corollary}
+Alg. 4.1 constructs $\set{a_k}$.
+
+Alg. 4.2 evaluated $p_n(xx)$ given $\set{x_k}$.
+$\omega_n$ built/included in the algorithm using the partial factoring/Horner's approach.
+$X = \set{x_i}_{i=0}^n$ fixed nodes for defining $p_n$.
+
+\newpage
+\begin{example}
+	[Constructing $p_n(x)$ by hand] via divided difference tables.
+	Find $p_2(x)$ for $f(x)=\log_2x$, $x_0=1,x_2=2,x_3=4$.
+\end{example}
+
+	Define for $j\geq1$: 
+	\begin{align*}
+		\us{\fbox{$(j,k)$}}{f_j(x_k)} &\equiv \frac{f_{j-1}(x_{k+1})-f_{j-1}(x_k)}{x_{k+j}-x_k}
+	\end{align*}
+
+	Insert Table from class!!!
+
+	\begin{align*}
+		f_1(x_0) &= \frac{f_0(x_1)-f_0(x_0)}{x_1-x_0} = \frac{f(2)-f(1)}{2-1} = \frac11 = 1. \\
+		f_1(x_1) &= \frac{f_0(x_2)-f_0(x_1)}{x_2-x_1} = \frac{f(4)-f(2)}{4-2} = \frac{2-1}2 = \frac12. \\
+		f_2(x_0) &= \frac{f_1(x_1)-f_1(x_0)}{x_2-x_0} = \frac{\frac12-1}{4-1} =-\frac16.
+	\end{align*}
+	$f_2(x_1)$ not defined. So $x_{2+1}=x_3$.
+	\begin{align*}
+		p_2(x) &= \ul{\ul{f_0(x_0)}} + \ul{\ul{f_1(x_0)}}(x-x_0) + \ul{\ul{f_2(x_0)}}(x-x_0)(x-x_1) \\
+			   &= 0 + 1\cdot(x-1)+ \plr{-\frac16}(x-1)(x-2) \\
+			   &= (x-1)\blr{1+(x-2)\plr{-\frac16}} \qquad \text{evaluate} \\
+			   &= -\frac16(x-1)(x-2) \\
+		p_2(x) &= f_0(x_2) + f_1(x_1)(x-x_2) + f_2(x_0)(x-x_2)(x-x_1) \\
+			   &= 2 + \frac12(x-4) - \frac16(x-4)(x-2) \\
+			   &= -\frac16(x-1)(x-8).
+	\end{align*}
+\begin{example}
+	[continued] Now interpolate at $x_0=1,x_1=2,x_2=4,x_3=8$.
+	\begin{align*}
+		f_1(x_2) &= \frac{f_0(x_3)-f_0(x_2)}{x_3-x_2} = \frac{3-2}{8-4} = \frac14. \\
+		f_2(x_1) &= \frac{f_1(x_2)-f_1(x_1)}{x_3-x_1} = \frac{\frac14-\frac12}{8-2} = -\frac1{24}. \\
+		f_3(x_0) &= \frac{f_2(x_1)-f_2(x_0)}{x_3-x_0} = \frac{-\frac1{24}+\frac16}{8-1} = \frac1{56}. \\
+		p_3(x) &= f_0(x_0) + f_1(x_0)(x-x_0) + f_2(x_0)(x-x_0)(x-x_1) + f_3(x_0)(x-x_0)(x-x_1)(x-x_2) \\
+			   &= p_2(x) + f_3(x_0)(x-x_0)(x-x_1)(x-x_2) \\
+			   &= p_2(x) + \frac1{56}(x-1)(x-2)(x-4) \\
+			   &= \frac1{168}(x-1)(3x^2-46x+248) \\
+			   &= \frac1{168}(x-1)(248+x(3x-46)) \\
+			   &= \frac1{56}x^3 - \frac7{24}x^2 + \frac74x - \frac{31}{21}.
+	\end{align*}
+\end{example}
+
 \end{document}

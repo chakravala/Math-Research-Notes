@@ -1151,4 +1151,77 @@ We consider series of the form $$\sum_{k=1}^\infty \alpha_k e_k \qquad (*) $$
 \end{theorem}
 \ul{HW} 3.4: 7,9,10.
 
+\ul{Last time}: Bessel's Inequality: If $(e_k)_{k=1}^\infty$ is an orthonormal sequence in inner product space $X$, and $x\in X$, then $\sum_{k=1}^\infty|\gen{x,e_k}|^2\leq ||x||^2$.
+
+\begin{recall}
+	Let $(e_k)_{k=1}^\infty$ be orthonormal sequence in Hilbert space $H$, and consider $\sum_{k=1}^\infty \alpha_ke_k$ $(*)$.
+	\begin{enumerate}
+		\item[a.] The series $(*)$ converges if and only if the series $\sum_{k=1}^\infty |\alpha_k|^2$ converges.
+		\item[b.] If series converges, let $x=\sum_{k=1}^\infty \alpha_ke_k$.
+			Then $\alpha_k = \gen{x,e_k}$, $k=1,2,\dots$.
+		\item[c.] For any $x\in H$, \ul{define} $\alpha_k = \gen{x,e_k}$ (called Fourier coefficients). Then the series $(*)$ converges.
+	\end{enumerate}
+\end{recall}
+
+\begin{proof}:
+	\begin{enumerate}
+		\item[a.] Let $s_n = \sum_{k=1}^n \alpha_ke_k$ and $\sigma_n = \sum_{k=1}^n |\alpha_k|^2$.
+			For any $m,n$ with $n>m$,
+			\begin{align*}
+				||s_n-s_m||^2 &= \mlr{\mlr{\sum_{k=m+1}^n \alpha_ke_k}}^2
+							  = \sum_{k=m+1}^n ||\alpha_ke_k||^2
+							  = \sum_{k=m+1}^n |\alpha_k|^2
+							  = |\sigma_n-\sigma_m|.
+			\end{align*}
+			\begin{recall}
+				$x\perp y \implies ||x+y||^2 = ||x||^2+||y||^2$.
+			\end{recall}
+			Thus $(s_n)$ is Cauchy if and only if $(\sigma_n)$ is Cauchy.
+			Thus $\sum_{k=1}^\infty \alpha_ke_k$ converges $\iff (s_n)$ converges
+
+				$\iff (s_n)$ is Cauchy (because $H$ is complete)
+
+				$\iff (\sigma_n)$ is Cauchy
+
+				$\iff (\sigma_n)$ is convergent (because $\mb R$ is complete)
+
+				$\iff \sum_{k=1}^\infty|\alpha_k|^2$ converges.
+		
+		\item[b.] Suppose series converges, and let $x=\sum_{k=1}^\infty\alpha_ke_k$.
+			Thus $s_n\ra x$. Fix $j$. For $n\geq j$, $\gen{s_n,e_j} = \gen{\sum_{k=1}^n \alpha_ke_k,e_j} = \alpha_j$. Thus 
+			\begin{align*}
+				\gen{x,e_j} &= \lim_{n\ra\infty}\gen{s_n,e_j}
+				= \lim_{n\ra\infty} \alpha_j = \alpha_j.
+			\end{align*}
+		\item[c.] Let $x\in H$ and define $\alpha_k = \gen{x,e_k}$ for $k=1,\dots$.
+			By Bessel's inequality, $\sum_{k=1}^\infty |\gen{x,e_k}|^2 \leq ||x||^2$.
+			By part a., $\sum_{k=1}^\infty \gen{x,e_k}e_k$ converges.
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	Bessel's is for orthonormal sequences. If $E = (e_k)$ wtih $k\in I$ is an uncountable orthonormal set in $H$, we can still form Fourier coefficients $\gen{x,e_k}$ for any $x\in H$. There are uncountably many Fourier coefficients. Can we sum them?
+	By the argument for Bessel's inequality we have $\sum_{k=1}^n |\gen{x,e_k}|^2 \leq ||x||^2$ for any \ul{finite} subset $\set{e_1,\dots,e_n}$ of $E$.
+	Thus for any $m=1,2,\dots$ the set $E_m = \setc{e_k\in E}{|\gen{x,e_k}|>\frac1m}$.
+	The set of all nonzero Fourier coefficients is $\bigcup_{m=1}^\infty E_m$, hence countable.
+\end{note}
+
+Given $x\in H$i, and $E=(e_k)$ an orthonormal set, is $\sum_{k=1}^\infty \gen{x,e_k}e_k = x$?
+
+\begin{definition}
+	Let $X$ be normed space. A subset $M$ is \ul{total in $X$} if $\spn M$ is dense in $X$. That is, $M$ is total in $X\iff\conj{\spn M} = X$ (closure of span).
+		If $X$ is an inner product space, an orthonormal (set, sequence) is a \ul{total orthonormal} (set, sequence) if it is a total set in $X$.
+\end{definition}
+Above question is same as: Is $E=(e_k)$ a total orthonormal set in $H$?
+
+\begin{enumerate}
+	\item Every nontrivial Hilbert space has a total orthonormal set.
+		\begin{enumerate}
+			\item[-] For finite dimensions use basis, $\dots$
+			\item[-] For separable $H$, use Gram-Schmidt and induction on countable basis.
+			\item[-] otherwise, Zorn's lemma.
+		\end{enumerate}
+	\item In a nontrivial Hilbert space, all total orthonormal sets have same cardinality.
+\end{enumerate}
+
 \end{document}
