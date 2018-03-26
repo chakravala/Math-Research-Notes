@@ -704,8 +704,8 @@ Then
 	\end{align*}
 \end{example}
 \begin{proposition}
-	[Accuracy] (uniform grid) $h=\frac{b-a}N$
-	$$ I(f)-I_N(f) = -\frac{b-a}{12}\cdot h^2\cdot f''(\xi_h) $$
+	[Accuracy] (uniform grid) $h=\frac{b-a}N$,
+	$\ds I(f)-I_N(f) = -\frac{b-a}{12}\cdot h^2\cdot f''(\xi_h) $
 	for some $\xi_h$ in $[a,b]$.
 	Thus, $\ds|I(f)-I_N(f)|\leq \frac{b-a}{12}h^2 \max_{a\leq x\leq b}|f''(x)|$.
 \end{proposition}
@@ -843,8 +843,7 @@ Exam 1: Monday 2/19, Ch. 1 and 2.
 \begin{theorem}
 	[Algorithm ($n$ equations, $n$ unknowns, \ul{tridiagonal})]
 	$$ A\vx = \vf$$
-	$\vec\ell, \vd,\vu$
-
+	$\vec\ell, \vd,\vu$, 
 	\# Eliminate ($A\mapsto\tilde A$ for $A= \text{tridiag}$)
 \end{theorem}
 
@@ -1788,5 +1787,133 @@ $X = \set{x_i}_{i=0}^n$ fixed nodes for defining $p_n$.
 			   &= \frac1{56}x^3 - \frac7{24}x^2 + \frac74x - \frac{31}{21}.
 	\end{align*}
 \end{example}
+
+\subsection*{\S4.3 Interpolation Error}
+
+\ul{Goal}: Bound the error over the entire interval.
+
+\begin{theorem}
+	Let $f\in C^{n+1}([a,b])$, and let the nodes $x_k\in[a,b]$ for $0\leq k\leq n$ with $x_i\neq x_j$.
+	Then for each $x\in[a,b]$, there exists $\xi_x$ in $[a,b]$ such that $f(x)-p_n(x) = \frac{\omega_n(x)}{(n+1)!}f^{(n+1)}(\xi_x)$, where $\omega_n(x) = \prod_{k=0}^n (x-x_k)$.
+\end{theorem}
+\begin{corollary}
+	$\ds \max_{x\in[a,b]} |f(x)-p_n(x)| \leq \frac{\ds\max_{x\in[a,b]}|\omega_n(x)|}{(n+1)!} \max_{x\in[a,b]} |f^{(n+1)}(x)|$.
+\end{corollary}
+\begin{note}:
+	\begin{enumerate}
+		\item The error can blow-up since $f^{(n+1)}(x)$ may become unbounded (especially for $n$ large).
+		\item Chebyshev Interpolation: choose $x_k$ to minimize $|\omega_n(x)|$.
+			The nodes are non-uniformly spaced.
+		\item $|\omega_n(x)| \leq (b-a)^{n+1}$ since $x,x_k\in[a,b]$.
+			Fact: $\lim_{n\ra\infty} \frac{c^n}{n!} = 0$ for any fixed real number $c$.
+	\end{enumerate}
+\end{note}
+\begin{example}
+	What is the error for cubic interpolation to $f(x)=\sqrt x$ on the interval $[1,4]$ using equally spaced nodes?
+	\begin{align*}
+		\omega_n(x) &= (x-x_0)(x-x_1)(x-x_2)(x-x_3) \\
+					&= (x-1)(x-2)(x-3)(x-4) \\
+		\max_{1\leq x\leq 4} \omega_3(x) &= \frac9{16} \qquad\text{at }x=\frac52 \\
+		\min_{1\leq x\leq 4} \omega_3(x) &= -1 \qquad \text{at } x=\frac52\pm\frac{\sqrt5}2.\\
+		\implies \max_{1\leq x\leq 4} |\omega_3(x)| &= +1 \\
+		f^{(4)}(x) &= -\frac{15}{16} \cdot \frac1{\sqrt{x^7}} \\
+		\max_{1\leq x\leq 4} |f^{(4)}(x)| &= +\frac{15}{16}\cdot\frac1{\sqrt{1^7}} = \frac{15}{16}. \\
+		\implies f(x)-p_3(x) &\leq \ob{|\omega_3|}{\frac1{4!}}\cdot\ob{f^{(4)}}{\frac{15}{16}} = \frac5{128} \approx 0.039.
+	\end{align*}
+\end{example}
+\begin{example}
+	If we want to use a table of values to interpolate the sine function on the interval $[0,\pi]$, how many points are needed for $10^{-6}$ accuracy with linear interpolatoin (piecewise).
+	$f^{(2)}(x) = -\sin(x) \implies |f^{(2)}(x)| \leq 1$.
+	On the $k^\text{th}$ subinterval:
+	\begin{align*}
+		f(x)-p_1(x) &= \frac{\omega_1(x)}{2!} f^{(2)}(\xi_x) \\
+		\omega_1(x) &= (x-x_{k-1})(x-x_1)
+	\end{align*}
+	On the $k^\text{th}$ subinterval $[x_{k-1},x_k]$:
+	\begin{align*}
+		\omega_1(x) &= (x-x_{k-1})(x-x_k) \\
+					&\leq \plr{\frac{x_{k-1}+x_k}2-x_{k-1}}\mlr{\frac{x_{k-1}+x_k}2-x_k}\\
+					&= \plr{\frac{x_k-x_{k-1}}2}\mlr{\frac{x_{k-1}-x_k}2} = \frac{h^2}5\\
+		\implies |f(x)-p_1(x)| &\leq \frac{h^2}4\cdot\frac1{2!} = \frac{h^2}8.
+	\end{align*}
+	Want $\frac{h^2}8 \leq \text{TOL} = 10^{-6}$
+	\begin{align*}
+		h &\leq \sqrt{8\cdot10^{-6}} = \frac1{250\sqrt2} \approx 0.00283.\\
+		\pi = nh \implies n &= \frac\pi h \geq \frac\pi{(1/250\sqrt2)} = 250\pi\sqrt2 \approx 1110.72.
+	\end{align*}
+	Need at least 1,111 points.
+\end{example}
+\begin{example}
+	[continued] cubic interpolation?
+	\begin{align*}
+		\omega_3(x) &= (x-x_k)(x-x_{k+1})(x-x_{k+2})(x-x_{k+3}) \\
+		\max \omega_3\plr{\frac{x_k+x_{k+3}}2} &= \plr{\frac{3h}2}\plr{\frac h2}\plr{-\frac h2}\plr{-\frac{3h}2} = \frac9{16}h^4 \\
+		\max \omega_3\plr{\frac{x_k+x_{k+1}}2} &= \plr{\frac h2}\plr{-\frac h2}\plr{-\frac{3h}2}\plr{-\frac{5h}2} = -\frac{15}{16}h^4.
+		\frac{5h^4}{128} \leq 10^{-6} \implies h^4 &\leq \frac{128}510^{-6} \\
+		h &\leq \nrt4{\frac{128}{5\cdot10^6}} = \frac{\nrt4{10}}{25} \approx 0.07113
+	\end{align*}
+	Need at least 45 points. (FINISH from picture)
+\end{example}
+
+\subsection*{\$4.6 Hermite Interpolation}
+
+\ul{Goal}: Interpolate derivative data in addition to function values.
+
+\begin{theorem}
+	Given the nodes $x_i$, $1\leq i\leq n$, and a differentiable function $f(x)$, if the nodes are distinct, then there exists a unique polynomial $H_n$ of degree $\leq 2n-1$ such that $H_n(x_i) = f(x_i)$, $H'_n(x_i) = f'(x_i)$, $1\leq i\leq n$.
+\end{theorem}
+\begin{proof}
+	(idea) Define basis functions $h_k,\tilde h_k$ polynomials with degree $2n-1$ such that
+	\begin{align*}
+		\begin{cases} h_k(x_j) = \begin{cases} 1 & \text{if }j=k \\ 0 & \text{if }j\neq k \end{cases} \\ h_k'(x_j) = 0 \end{cases}, \\
+		\begin{cases} \tilde h_k(x_j) = 0 \\ \tilde h_k'(x_j) = \begin{cases} 1 & \text{if }j=k \\ 0 & \text{if } j\neq k \end{cases} \end{cases}.
+	\end{align*}
+	Then, $\ds H_n(x) = \sum_{k=1}^n \blr{f(x_k) h_k(x) + f'(x_k)\tilde h_k(x)}$.
+\end{proof}
+\ul{HW}: $h_k(x) = \set{1-2\blr{L_k^{(n)}}(x_k)(x-x_k)}\blr{L_k^{(n)}(x)}^2$, $\tilde h_k(x) = (x-x_k)\blr{L_k^{(n)}(x)}^2$.
+
+\begin{theorem}
+	[Error] Let $f\in\Cpb{2n}ab$ and let the nodes $x_k\in[a,b]$ for all $k$, $1\leq k\leq n$, with $x_i\neq x_j$ for $i\neq j$.
+	Then, for each $x\in[a,b]$, $\exists\xi_x\in[a,b]$ such that $$f(x) - H_n(x) = \frac{\psi_n(x)}{(2n)!}f^{(2n)}{\xi_x}$$ where $$\psi_n(x) = \prod_{k=1}^n (x-x_k)^2.$$
+\end{theorem}
+\begin{note}:
+	\begin{enumerate}
+		\item If $|f^{(m)}|$ bounded for all $M$, error $\ra0$ as $n\ra\infty$. Otherwise the error may diverge similar to Lagrange interpolation.
+		\item Fitting $2n$ data points: $f(x_k)$ and $f'(x_k) \implies$ need a degree $2n-1$ poly. (no node $x_0$ unlike Lagrange).
+		\item Can be generalized to fit higher order derivatives. \# derivatives at each point can vary.
+		\item Given 2 nodes $x_1=a,x_2=b$, can fit a cubic polynomial $H_2$ with
+			$$ |f(x)-H_2(x)| \leq \frac{(b-a)^4}{384} \max_{a\leq\xi\leq b} |f^{(4)}(\xi)|$$ for all $a\leq x\leq b$.
+	\end{enumerate}
+\end{note}
+\begin{example}
+	Construct $H_2(x)$ for $f(x) = \cos(x)$ on the interval $[0,\pi]$.
+	Idea: use divided differences. Count each node twice.
+	
+	[Difference table]
+
+	\begin{align*}
+		f_0(x_k) &= f(x_k) = \cos(x_k) \\
+		f_1(x_k) &= f'(x_k) = -\sin(x_k) \\
+		f_1(x_{1,2}) &= \frac{f(x_2)-f(x_1)}{x_2-x_1} = \frac{\cos(\pi)-\cos(0)}{\pi-0} = \frac{-2}\pi \\
+		f_2(x_1) &= \frac{f_1(x_2)-f'(x_1)}{x_2-x_1} = \frac{-\frac2\pi+\sin(x_1)}\pi = -\frac2{\pi^2} \\
+		f_2(x_2) &= \frac{f'(x_2)-f_1(x_{1,2})}{x_2-x_1} = \frac2{\pi^2} \\
+		f_2(x_{1,2}) &= \frac{f_2(x_2)-f_2(x_1)}{x_2-x_1} = \frac{\frac2{\pi^2}-\plr{-\frac2{\pi^2}}}\pi = \frac4{\pi^3}. \\
+		H_2(x) &= f_0(x_1) + f_1(x_1)\cdot(x-x_1) + f_2(x_1)(x-x_1)^2 + f_3(x_{1,2})(x-x_1)^2(x-x_2) \\
+		&= 1 + 0(x-0) + \plr{-\frac2{\pi^2}}(x-0)^2 + \plr{\frac4{\pi^2}}(x-0)^2(x-\pi) \\
+		&= 1-\frac2\pi x^2 + \frac4{\pi^2}x^2(x-\pi).
+	\end{align*}
+	\begin{remark}
+		This approach is not used for Finite Element.
+	\end{remark}
+	\ul{Max Error} (Theorem) $f^{(4)}(x) = \sin(x)$.
+	$$ \frac{(\pi-0)^4}{384} \max_{0\leq\xi\leq\pi} |f^{(4)}(\xi)| = \frac{\pi^4}{384} \approx 0.0257\times\pi^2.$$
+	\ul{Max Error} (Actual) $\approx 0.020017$ at $x\approx 2.26642$.
+
+	$H_2(0) = 1,H'_2(0) = 0$ and $H_2(\pi)=-1,H_2'(\pi)=0$.
+\end{example}
+
+Cubic Lagrange is $C^0$, cubic Hermite is $C^1$.
+Spline: Glue together piecewise cubic so that the global function is $C^2$.
+For a spline $s(x_k) = f(x_k)$ and $s'(x_k)\neq f'(x_k)$, but $s''(x_k)$ is continuous.
 
 \end{document}

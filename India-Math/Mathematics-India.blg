@@ -1,0 +1,61 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Arch Linux)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: Mathematics-India.aux
+The style file: plain.bst
+Database file #1: Mathematics-India.bib
+Warning--entry type for "chakravala-srinivas" isn't style-file defined
+--line 1 of file Mathematics-India.bib
+Warning--entry type for "ref:video" isn't style-file defined
+--line 71 of file Mathematics-India.bib
+Warning--entry type for "ref:incompleteness" isn't style-file defined
+--line 78 of file Mathematics-India.bib
+Warning--empty publisher in ref:summingitup
+Warning--empty journal in ref:Brahmagupta
+Warning--empty publisher in ref:brahmagupta-textbook
+Warning--empty publisher in ref:aryabhatiya
+Warning--empty journal in ref:series
+Warning--empty journal in srinivas-calculus
+Warning--empty journal in ref:brahmagupta-theorem
+Warning--empty journal in gamelin
+You've used 14 entries,
+            2118 wiz_defined-function locations,
+            555 strings with 5284 characters,
+and the built_in function-call counts, 3040 in all, are:
+= -- 272
+> -- 122
+< -- 0
++ -- 54
+- -- 36
+* -- 130
+:= -- 549
+add.period$ -- 39
+call.type$ -- 14
+change.case$ -- 57
+chr.to.int$ -- 0
+cite$ -- 22
+duplicate$ -- 137
+empty$ -- 269
+format.name$ -- 36
+if$ -- 616
+int.to.chr$ -- 0
+int.to.str$ -- 14
+missing$ -- 14
+newline$ -- 70
+num.names$ -- 28
+pop$ -- 100
+preamble$ -- 1
+purify$ -- 46
+quote$ -- 0
+skip$ -- 101
+stack$ -- 0
+substring$ -- 74
+swap$ -- 9
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 50
+warning$ -- 8
+while$ -- 28
+width$ -- 16
+write$ -- 128
+(There were 11 warnings)
