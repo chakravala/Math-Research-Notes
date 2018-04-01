@@ -1865,7 +1865,7 @@ $X = \set{x_i}_{i=0}^n$ fixed nodes for defining $p_n$.
 \begin{proof}
 	(idea) Define basis functions $h_k,\tilde h_k$ polynomials with degree $2n-1$ such that
 	\begin{align*}
-		\begin{cases} h_k(x_j) = \begin{cases} 1 & \text{if }j=k \\ 0 & \text{if }j\neq k \end{cases} \\ h_k'(x_j) = 0 \end{cases}, \\
+		\begin{cases} h_k(x_j) = \begin{cases} 1 & \text{if }j=k \\ 0 & \text{if }j\neq k \end{cases} \\ h_k'(x_j) = 0 \end{cases}, &\qquad
 		\begin{cases} \tilde h_k(x_j) = 0 \\ \tilde h_k'(x_j) = \begin{cases} 1 & \text{if }j=k \\ 0 & \text{if } j\neq k \end{cases} \end{cases}.
 	\end{align*}
 	Then, $\ds H_n(x) = \sum_{k=1}^n \blr{f(x_k) h_k(x) + f'(x_k)\tilde h_k(x)}$.
@@ -1915,5 +1915,72 @@ $X = \set{x_i}_{i=0}^n$ fixed nodes for defining $p_n$.
 Cubic Lagrange is $C^0$, cubic Hermite is $C^1$.
 Spline: Glue together piecewise cubic so that the global function is $C^2$.
 For a spline $s(x_k) = f(x_k)$ and $s'(x_k)\neq f'(x_k)$, but $s''(x_k)$ is continuous.
+
+\subsection*{\S4.7 Piecewise Polynomial Interpolation}
+
+\ul{Goal}: Use piecewise polynomials of low degree to avoid needing to bound $|f^{(n)}(\xi)|$ for $n$ large in the error result.
+Avoids large oscillations caused by high degree polynomials.
+
+\ul{Idea}: piecewise linear: one line on each interval $[x_i,x_{i+1}]$.
+piecewise quadratic: one function over two intervals.
+
+\begin{enumerate}
+	\item[$*$] for piecewise degree $d$ polynomials, we need $n=dm$ for some integer $M$.
+		Each subinterval is width $dh$ and defines $a$ polynimal with degree $\leq d$.
+	\item[$*$] piecewise Lagrange: the interpolating function is continuous.
+	\item[$*$] piecewise Hermite: $\implies$ interpolant function is $C^1$ (differentiable since avoids corners when gluing pieces together).
+\end{enumerate}
+
+\begin{theorem}
+	[Error for piecewise degree $d$]
+	Let $f\in\Cpb{d+1}ab$ and let $q_d$ be the piecewise polynomial interpolant of degree $d$ to $f$ on $[a,b]$ using $n+1$ equally spaced nodes, where $x_k$, $0\leq k\leq n$, $x_i\neq x_j$ for $i\neq j$, $n=Md$.
+	[$q_d(x_k) = f(x_k)$ for all $k$, $q_d$ has degree $\leq d$ on each subinterval].
+	Then $$ |f(x)-q_x(x)| \leq C_d h^{d+1} \max_{a\leq\xi\leq b}|f^{(d+1)}(\xi)| $$
+	for all $a\leq x\leq b$, where $h=x_k-x_{k-1}$.
+\end{theorem}
+\begin{fact}
+	$C_1 = \frac18$, $C_2 = \frac1{9\sqrt3}$, $C_3 = \frac1{24}$.
+\end{fact}
+\begin{proof}
+	For $x\in[x_{\ell-1},x_\ell]$, $\sim p_k$ interpolates $f$ on $k^\text{th}$ subinterval containing $[x_{\ell-1},x_\ell]$ 
+	\begin{align*}
+		|f(x)-q_d(x)| &= |f(x)-p_k(x)| \\
+					  &= \frac{|\omega_d(x)|}{(d+1)!}|f^{(d+1)}(\xi)| \\
+					  &\leq C_d h^{d+1} \max_{a\leq\xi\leq b} |f^{(d+1)}(\xi)|
+	\end{align*}
+	where $\omega_d = \prod_{k=0}^d(x-x_k) \leq Ch^{d+1}$ for some constant $C$.
+\end{proof}
+\begin{enumerate}
+	\item[$*$] Letting $n\ra\infty$ ($m\ra\infty$ for $n=md$)
+		$\implies h\ra0^+$ with $d$ fixed
+		$\implies$ error $\ra0$ if $|f^{(d+1)}|$ bounded.
+\end{enumerate}
+
+\begin{example}
+	Construct the piecewise cubic interpolating polynomial for $f(x) = \log_2(x)$ on the interval $[\frac18,8]$ using the nodes
+	$x_0=\frac18,x_1=\frac14,x_2=\frac12,x_3=1,x_4=2,x_5=4,x_6=8$.
+	\begin{note}
+		$6=n=3\cdot2$, $d=3$, $M=2$. two pieces.
+	\end{note}
+	\begin{align*}
+		p_1(x) &= \frac{64}7x^3 - \frac{56}3x^2 + 14x - \frac{94}{21} \\
+		p_2(x) &= \frac1{56}x^3 - \frac7{24}x^2 + \frac74x - \frac{31}{21}.
+	\end{align*}
+\end{example}
+\begin{example}
+	Using piecewise cubic interpolation, how many nodes are needed to approximate $\ln(x)$ over $[1,10]$ within $10^{-8}$ error using equally spaced nodes.
+	$f(x) = \ln(x)$, $$ f^{(4)}(x) = - \frac6{x^4} \implies \max_{1\leq\xi\leq 10} |f^{(4)}(\xi)| = 6.$$
+	\begin{align*}
+		C_dh^4\cdot 6 &\leq 10^{-8} \\
+		\frac1{24}h^4\cdot6 &\leq 10^{-8} \\
+		h^4 &\leq 4\times10^{-8} \\
+		h &\leq \frac1{30\sqrt2} \approx 0.01414. \\
+		n &= md. \\
+		h &= \frac{b-a}n = \frac{10-1}{m3} = \frac3m. \\
+		M &\geq \frac3h = 150\sqrt2 \approx 212.13. \\
+		M &= 213.
+	\end{align*}
+	\fbox{$n = 3M = 639$}.
+\end{example}
 
 \end{document}

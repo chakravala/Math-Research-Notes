@@ -1588,6 +1588,7 @@ When $f\in\ms R(\alpha)$ on $[a,b]$?
 \newpage
 
 \begin{theorem}
+	\label{thm-6-13}
 	Suppose $f,g\in\ms R(\alpha)$ on $[a,b]$. Then
 	\begin{enumerate}
 		\item[1)] $fg\in\ms R(\alpha)$ on $[a,b]$.
@@ -1616,5 +1617,89 @@ When $f\in\ms R(\alpha)$ on $[a,b]$?
 	$$ \mlr{\int_a^b f\,d\alpha} = c\int_a^b f\,d\alpha = \int_a^b cf\,d\alpha \leq \int_a^b |f|\,d\alpha. $$
 \end{proof}
 
+\ul{Evaluating $f\in\ms R(\alpha)$}:
+\begin{definition}
+	[Heaviside function]
+	$I(x) := \begin{cases} 1 & \text{if } x>0 \\ 0 & \text{if } x\leq 0 \end{cases}$.
+	$I(x)$ is monotonically increasing.
+	$s\in\mb R\implies I(x-s)$ is shifted Heaviside function.
+\end{definition}
+\begin{theorem}
+	\label{thm-6-15}
+	Suppose
+	\begin{itemize}
+		\item $f$ bounded on $[a,b]$,
+		\item $\exists s\in(a,b)$ such that $f$ continuous at $s$, and
+		\item $\alpha(x) = I(x-s)$.
+	\end{itemize}
+	Then $f\in\ms R(\alpha)$ on $[a,b]$ and $\int_a^b f\,d\alpha = f(s)$.
+\end{theorem}
+\begin{proof}
+	By HW6, $f\in\ms R(\alpha)$, since $\alpha$ is not continuous at $s$ but $f$ is continuous at $s$.
+	Let $P: a=x_0 \leq x_i \leq x_1 < x_2 < x_3= b$, where $s=x_1$.
+	Then $U(P,f,\alpha) = \sum_{i=1}^3 M_i\Delta\alpha_i = M_2$. Since
+	\begin{align*}
+		\Delta\alpha_1 &= \os{=0}{\alpha(x_1)} - \os{=0}{\alpha(x_0)} = 0 \\
+		\Delta\alpha_2 &= \os{=1}{\alpha(x_2)} - \os{=0}{\alpha(x_1)} = 1 \\
+		\Delta\alpha_3 &= \us{=1}{\alpha(x_3)} - \us{=1}{\alpha(x_2)} = 0
+	\end{align*}
+	Similarly, $L(P,f,\alpha) = m_2$.
+	Let $\epsilon>0$ be fixed.
+	Then $f$ continuous at $s \implies f(x_2)\ra f(s)$ as $x_2\ra s$.
+	This means $M_2-m_2 < \epsilon$ by letting $x_2\ra s$.
+	So $U(P,f,\alpha) - L(P,f,\alpha) = M_2-m_2 <\epsilon$.
+	This implies $\int_a^bf\,d\alpha = f(s)$.
+\end{proof}
+
+\begin{theorem}
+	Suppose
+	\begin{itemize}
+		\item $\sum c_n$ converges, $c_n\geq0$.
+		\item $\exists\set{s_n}$ of distinct points in $(a,b)$ such that $\alpha(x) = \sum_nc_n I(x-s_n)$
+		\item $f$ continuous on $[a,b]$.
+	\end{itemize}
+	Then $f\in\ms R(\alpha)$ and $\int_a^bf\,d\alpha = \sum c_n f(s_n)$.
+\end{theorem}
+\newpage
+\begin{proof}
+	\ul{Step 1}: Show $f\in\ms R(\alpha)$ on $[a,b]$.
+	Enough to show $\alpha$ is well defined and $\alpha$ is monotonically increasing.
+	\begin{itemize}
+		\item $\alpha$ is well defined by comparison test, since $c_nI(x-s_n) \leq c_n$ for all $n$ ($I(x-s_n)\leq 1$) and $\sum c_n$ converges.
+		\item Let $x_1<x_2$. Then $x_1-s_n < x_2<s_n \implies I(x_1-x_n)\leq I(x_2-s_n)$ implies $$\alpha(x_1) = \sum c_nI(x_1-s_n) \leq \sum c_nI(x_2-s_n) = \alpha(x_2).$$
+	\end{itemize}
+	This implies $\alpha$ $\uparrow$ $\implies f\in\ms R(\alpha)$.
+\end{proof}
+\begin{proof}
+	[\ul{Step 2}] $\int_a^b f\,d\alpha = \sum c_nf(s_n)$.
+
+	Let $\epsilon>0$. \ul{NTS}: $\exists N\in\mb N$ such that $\ds\mlr{\int_a^b f\,d\alpha - \sum_{k=1}^N c_kf(s_k)} < \epsilon$.
+	$\sum c_n$ converges $\implies \exists N\in\mb N$ such that $\ds\sum_{k=N+1}^\infty c_k < \frac\epsilon M$, where $M = \sup_{[a,b]} |f(x)|$.
+	Define
+	\begin{align*}
+		\alpha_1(x) &= \sum_{k=1}^N c_kI(x-s_k) \qquad \uparrow \\
+		\alpha_2(x) &= \sum_{k=N+1}^\infty c_kI(x-s_k) \qquad \uparrow
+	\end{align*}
+	$f$ continuous on $[a,b] \implies f\in\ms R(\alpha_1)$ and $f\in\ms R(\alpha_2)$.
+	But $$\alpha_1(x) = \ob{\beta_1}{c_1 I(x-s_1)} + \dots + \ob{\beta_N}{c_N I(x-s_N)} = \beta_1(x) + \dots + \beta_N(x),$$ so 
+	\begin{align*}
+		\int_a^b f\,d\alpha_1 = \int_a^b f\,d(\beta_1+\dots+\beta_N) 
+		&= \int_a^b f\,d\beta_1 + \dots + \int_a^bf\,d\beta_N
+		\os{\text{Thm \ref{thm-6-15}}}= c_1 f(s_1) + \dots + c_Nf(s_N)
+	\end{align*}
+	Now, estimate $\mlr{\int_a^bf\,d\alpha_2}$. Note 
+	\begin{align*}
+		\alpha_2(a) &= \sum_{k=N+1}^\infty c_k \ub{=0}{I(\ob{<0}{a-s_k})} = 0 \\
+		\alpha_2(b) &= \sum_{k=N+1}^\infty c_k \ub{=1}{I(\ob{>0}{b-s_k})} = \sum_{k=N+1}^\infty c_k < \frac\epsilon M.
+	\end{align*}
+	So $\mlr{\int_a^b f\,d\alpha_2} \os{\text{Thm \ref{thm-6-13}}}\leq \int_a^b |f|\,d\alpha_2 \leq M [\alpha_2(b)-\os{=0}{\alpha_2(a)}] < M\cdot\frac\epsilon M = \epsilon$.
+	Therefore,
+	\begin{align*}
+		\mlr{\int_a^b f\,d\alpha - \sum_{k=1}^N c_kf(s_k)}
+		&= \mlr{\int_a^b f\,d\alpha_1 + \int_a^b f\,d\alpha_2 - \sum_{k=1}^N c_kf(s_k)} \\
+		&= \mlr{\int_a^b f\,d\alpha_2} < \epsilon,
+	\end{align*}
+	so $\int_a^b f\,d\alpha = \sum c_nf(s_n)$.
+\end{proof}
 
 \end{document}

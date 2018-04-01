@@ -1224,4 +1224,184 @@ Above question is same as: Is $E=(e_k)$ a total orthonormal set in $H$?
 	\item In a nontrivial Hilbert space, all total orthonormal sets have same cardinality.
 \end{enumerate}
 
+Last time: convergent orthonormal series, total subsets
+
+\begin{lemma}
+	Let $H$ be a Hilbert space, and $M\neq\emptyset$ a subset.
+	Then $M^\perp = \set0$ if and only if $M$ is total. %$$\conj{\spn M}=H.$$
+\end{lemma}
+\begin{proof}
+	\ul{$\Lla$}$\mid$ Suppose $M$ is total and $M\neq\emptyset$.
+	Set $V = \spn M$, so $\conj V=H$.
+	Let $x\in M^\perp$. It follows that $x\in V^\perp$.
+	Also $x\in\conj V=H$. Thus $\exists$ sequence $(x_n)_{n=1}^\infty$ in $V$ such that $x_n\ra x$.
+	Note $\gen{x_n,x}=0$ for all $n$ since $x\in V^\perp$ and $x_n\in V$. So 
+	\begin{align*}
+		||x||^2 &= \gen{x,x} = \gen{\lim_{n\ra\infty}x_n,x} = \lim_{n\ra\infty}\gen{x_n,x} = 0.
+	\end{align*}
+	So $x=0$, $M^\perp=\set0$.
+
+	\ul{$\Lra$}$\mid$ Suppose $M^\perp=\set0$. Let $V=\spn M$.
+	If $x\in V^\perp$, then $x\in M^\perp$, so $V^\perp=\set0$.
+	Thus $\conj V^\perp = \set0$.
+	By previous result, $H = \conj V\oplus\conj V^\perp = \conj V\oplus\set0=\conj V$.
+	Thus $M$ is total.
+\end{proof}
+\begin{remark}
+	If we are just in an inner product space (not Hilbert space), then $M^\perp=\set0$.
+\end{remark}
+
+\begin{recall}
+	Let $(e_k)_{k=1}^\infty$ be an orthonormal sequence in Hilbert space.
+	If $x\in H$, then $$ \sum_{k=1}^\infty |\gen{x,e_k}|^2 \leq ||x||^2 \qquad \text{(Bessel)}$$
+	When this is an equality: $$ \sum_{k=1}^\infty |\gen{x,e_k}|^2 = ||x||^2 \qquad \text{(Parseval)} $$
+\end{recall}
+\begin{theorem}
+	An orthonormal set $M$ in a Hilbert space $H$ is total if and only if Parseval's holds $\forall x\in H$.
+\end{theorem}
+\begin{proof}
+	\ul{$\Lla$}$\mid$ Suppose Parseval's holds $\forall x\in H$.
+	BWOC suppose $M$ is not total.
+	By previous result, $M^\perp=\set0$, so $\exists x\in M^\perp$, $x\neq0$.
+	Thus $||x||^2\neq0$. But $\gen{x,e_k}=0$ for $k=1,\dots$ because $e_k\in M$ and $x\in M^\perp$.
+	So $\sum_{k=1}^\infty |\gen{x,e_k}|^2=0$, contradicting Parseval.
+
+	\ul{$\Lra$}$\mid$ (For the case $M$ is countable).
+	Assume $M=(e_k)_{k=1}^\infty$ is total orthonormal sequence.
+	Let $x\in H$. Define $y=\sum_{k=1}^\infty \gen{x,e_k}e_k$.
+	Note we know $||y||^2 = \sum_{k=1}^\infty |\gen{x,e_k}|^2$.
+	Claim: $x-y\in M^\perp$ (note $M^\perp=\set0$).
+	For any fixed $j$, 
+	\begin{align*}
+		\gen{x-y,e_j} &= \gen{x,e_j}-\gen{\sum_{k=1}^\infty\gen{x,e_k}e_k,e_j}
+					  = \gen{x,e_j}-\sum_{k=1}^\infty \gen{x,e_k}\gen{e_k,e_j}
+					  = \gen{x,e_j}-\gen{x,e_j}\cdot 1 = 0
+	\end{align*}
+	Thus claim is true, so $x=y$, and Parseval's holds.
+\end{proof}
+
+\begin{theorem}
+	Let $H$ be a Hilbert space.
+	\begin{enumerate}
+		\item[a.] If $H$ is separable, then every orthonormal set is countable.
+		\item[b.] If $H$ contains a total orthonormal sequence (countable), then $H$ is separable.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}:
+	\begin{enumerate}
+		\item[a.] Let $H$ be separable, and let $M$ be orthonormal subset.
+			BWOC, suppose $M$ is uncountable.
+			Let $B$ be any dense subset of $H$.
+			Note if $x,y\in M$, $x\neq y$, then
+			\begin{align*}
+				||x-y||^2 &= ||x||^2 + ||y||^2 = 2
+			\end{align*}
+			Thus distance from $x$ to $y$ is $\sqrt2$.
+			Let $N_x = \setc{z\in H}{||z-x||<\frac{\sqrt2}3}$.
+			Thus all neighborhoods of vectors in $M$ are mutually disjoint.
+			For each $x\in M$, $\exists b_x\in B$ such that $b_x\in B\cap N_x$.
+			Thus $b_x\neq b_y$ if $x,y\in M$, $x\neq y$. Thus $B$ is uncountable.
+			Contradiction to $H$ separable, which means $H$ has at least one countable dense subset.
+			Thus $M$ is countable.
+		\item[b.] Let $(e_k)_{k=1}^\infty$ be total orthonormal sequence.
+			Consider the set of all finite linear combinations of $e_k's$ with rational coefficients. Look at textbook for remainder.
+	\end{enumerate}
+\end{proof}
+
+\begin{recall}
+	Let $X$ be a normed space.
+	A bounded linear functional $f$ is bounded linear operator from $X$ to $\mb R$ or $\mb C$.
+	For Banach spaces, can sometimes characterize dual space. For Hilbert spaces it is easy.
+\end{recall}
+
+\ul{HW} 3.5: 3,6 and 3.6: 1,9,10.
+
+Last time: total orthonormal sequences and Parseval's equation, began discussion of bounded linear functionals.
+For general normed spaces or Banach spaces, can sometimes characterize the dual space (section 2.10), not always easy.
+For Hilbert spaces we have nice result.
+
+\begin{example}
+	Let $H$ be Hilbert space, and let $z\in H$.
+	Can define a bounded linear functional $f$ on $H$ by $f(x) = \gen{x,z}$.
+	Can show $f$ is linear, bounded, and $||f|| = ||z||$.
+	Consider $\ms N(f) = \setc{x\in H}{\gen{x,z}=0}$.
+	Then $$\ms N(f)^\perp = \spn\set z.$$
+\end{example}
+\begin{theorem}
+	[Riesz Representation Theorem]
+	Every bounded linear functional $f$ on Hilbert space $H$ can be represented by $f(x) = \gen{x,z}$ (1), where $z\in H$ is uniquely determined by $f$ and $||f||=||z||$ (2).
+\end{theorem}
+\begin{proof}
+	We show
+	\begin{enumerate}
+		\item[a.] $\exists z\in H$ such that (1) is true,
+		\item[b.] $z$ in a. is unique,
+		\item[c.] $z$ satisfies (2).
+	\end{enumerate}
+	Note result clearly true for $f\equiv 0$, so assume $f\not\equiv0$.
+	Thus $\ms N(f)\neq H$, so $\ms N(f)^\perp\neq\set0$.
+	Let $z_0\in\ms N(f)^\perp$ satisfy $z_0\neq0$.
+	Define $z = \frac{\conj{f(z_0)}}{\gen{z_0,z_0}}z_0$ so $z_0\in\ms N(f)^\perp$.
+	Let $x\in H$. Define $v = f(x)z_0-f(z_0)x$.
+	Observe $f(v) = f\blr{f(x)z_0-f(z_0)x} = 0$ so $v\in\ms N(f)$, which implies $z_0\perp v$.
+	\begin{align*}
+		0 = \gen{v,z_0} &= \gen{f(x)z_0-f(z_0)x,z_0} \\
+						&= f(x)\gen{z_0,z_0} - f(z_0)\gen{x,z_0},
+	\end{align*}
+	so
+	\begin{align*}
+		f(x) = \frac{f(z_0)}{\gen{z_0,z_0}}\gen{x,z_0} = \gen{x,\frac{\conj{f(z_0)}}{\gen{z_0,z_0}}z_0} = \gen{x,z}.
+	\end{align*}
+	\begin{enumerate}
+		\item[b.] To show $z$ is unique, suppose $\exists z_1,z_2$ such that $f(x) = \gen{x,z_1} = \gen{x,z_1}$ for all $x\in H$.
+			Then $\gen{x,z_1-z_2}=0$ for all $x\in H$.
+			Thus $z_1-z_2=0$, so $z_1=z_2$.
+		\item[c.] When $f\equiv0$, then $z=0$, and $||f||=0=||z||$.
+			So suppose $f\not\equiv0$, so $z\neq0$.
+			$$||z||^2 = \gen{z,z} = f(z) = |f(z)| \leq ||f||\cdot||z||.$$
+			So $ ||z|| \leq ||f||$.
+			On the other hand, for all $x\in H$
+			\begin{align*}
+				|f(x)| &= |\gen{x,z}|
+					   \leq ||x||\cdot||z||
+			\end{align*}
+			This implies $||f||\leq||z||$, so $||f|| = ||z||$.
+	\end{enumerate}
+\end{proof}
+\begin{example}
+	[$H = L^2(a,b)$] $\gen{f,g} = \int_a^bf(x)\conj{g(x)}\,dx$, $||f|| = \sqrt{\int_a^b |f(x)|^2\,dx}$.
+	If $F$ is bounded linear functional on $H$, then $\exists!f\in H$ such that $F(g) = \int_a^bg(x)\conj{f(x)}\,dx$ for all $g\in H$.
+\end{example}
+
+\begin{definition}
+	Let $X,Y$ be vector spaces over some field ($\mb R$ or $\mb C$).
+	A \ul{sesquilinear form} $h$ on $X\times Y$ is a mapping $h:X\times Y\ra\mb R$ or $\mb C$ such that.
+	\begin{enumerate}
+		\item[a.] $h(x_1+x_1,y) = h(x_1,y)+h(x_2,y)$,
+		\item[b.] $h(x,y_1+y_2) = h(x,y_1)+h(x,y_2)$,
+		\item[c.] $h(\alpha x,y) = \alpha h(x,y)$,
+		\item[d.] $h(x,\alpha y) = \conj\alpha h(x,y)$.
+	\end{enumerate}
+\end{definition}
+\begin{definition}
+	Let $X,Y$ be normed spaces.
+	A sesquilinear form $h$ on $X\times Y$ is \ul{bounded} if $\exists c>0$ such that $|h(x,y)|\leq c||x||\,||y||$.
+	If $h$ is bounded, then the \ul{norm} of $h$ is $$||h|| = \sup_{\us{y\in Y\bs\set0}{x\in X\bs\set0}} \frac{|h(x,y)|}{||x||\,||y||}.$$
+\end{definition}
+\begin{example}
+	Let $H_1,H_2$ be Hilbert spaces.
+	Suppose $S\in\ms L(H_1,H_2)$ be a bounded linear operator.
+	Define $h:H_1\times H_2\ra\mb R$ or $\mb C$ by $h(x,y) = \gen{Sx,y}_{H_1}$.
+	Easy to check that $h$ is a sesquilinear form on $H_1\times H_2$. Also
+	\begin{align*}
+		|h(x,y)| &= |\gen{Sx,y}_{H_2}| \\
+				 &\leq ||Sx||_{H_2} \cdot ||y||_{H_2} \\
+				 &\leq ||S||\,||x||_{H_1}\,||y||_{H_2}
+	\end{align*}
+	So $h$ is a bounded sesquilinear form.
+	Can also show $||h||=||S||$.
+\end{example}
+
+\ul{HW} 3.8: 1,2,3.
+
 \end{document}
