@@ -1696,10 +1696,98 @@ When $f\in\ms R(\alpha)$ on $[a,b]$?
 	Therefore,
 	\begin{align*}
 		\mlr{\int_a^b f\,d\alpha - \sum_{k=1}^N c_kf(s_k)}
-		&= \mlr{\int_a^b f\,d\alpha_1 + \int_a^b f\,d\alpha_2 - \sum_{k=1}^N c_kf(s_k)} \\
-		&= \mlr{\int_a^b f\,d\alpha_2} < \epsilon,
+		&= \mlr{\int_a^b f\,d\alpha_1 + \int_a^b f\,d\alpha_2 - \sum_{k=1}^N c_kf(s_k)}
+		= \mlr{\int_a^b f\,d\alpha_2} < \epsilon,
 	\end{align*}
 	so $\int_a^b f\,d\alpha = \sum c_nf(s_n)$.
 \end{proof}
+
+Connection between $\ms R$ and $\ms R(\alpha)$ on $[a,b]$.
+
+\begin{theorem}
+	\label{thm-6-17}
+	Suppose
+	\begin{enumerate}
+		\item[$\checkmark$] $\alpha$ $\uparrow$ on $[a,b]$,
+		\item[$*$] $\alpha'=\frac d{dx}\alpha\in\ms R$ on $[a,b]$,
+		\item[$\checkmark$] $f$ bounded on $[a,b]$.
+	\end{enumerate}
+	Then $f\in\ms R(\alpha)$ on $[a,b] \iff f\alpha'\in\ms R$ on $[a,b]$ and $\int_a^b f\,d\alpha = \int_a^b f\alpha'\,dx$.
+\end{theorem}
+\newpage
+\begin{proof}
+	Enough to show $\int_a^bf\,d\alpha = \int_a^bf\alpha'\,dx$.
+	\ul{We will show}: $^-\int_a^b f\,d\alpha = ^-\int_a^bf\alpha'\,dx$ --- (1) and $_-\int_a^bf\,d\alpha =\, _-~\int_a^bf\alpha'\,dx$ --- (2).
+	We'll prove (1), proof of (2) is similar.
+	Let $\epsilon>0$. We'll show $ \mlr{^-\int_a^bf\,d\alpha-^-\int_a^bf\alpha'\,dx} < \epsilon$.
+	For this we'll show: $\exists$ a partition $P$ such that
+	$ |U(P,f,\alpha)-U(P,f\alpha')|<\epsilon$.
+	Let $\epsilon>0$ be fixed. $\alpha'\in\ms R$ on $[a,b] \implies \exists P: x_0\leq x_1\leq \dots \leq x_n=b$ such that $U(P,\alpha')-L(P,\alpha') < \frac\epsilon{2M}$, $|f(x)|\leq M$, $x\in[a,b]$.
+	$\alpha'$ exists $\implies $ by MVT, $\exists t_i\in(x_{i-1},x_i)$ such that 
+	$$\alpha'(t_i) = \frac{\alpha(x_i)-\alpha(x_{i-1})}{x_i-x_{i-1}} = \frac{\Delta\alpha_i}{\Delta x_i}$$
+	$\implies \fbox{$\Delta\alpha_i=\alpha'(t_i)\Delta x_i$}$.
+	If $s_i\in[x_{i-1},x_i]$ then by Theorem \ref{thm-6-7}(b)
+	$\ds \sum_{i=1}^n |\alpha'(s_i)-\alpha'(t_i)|\Delta x_i<\frac\epsilon{2M}$ --- (3).
+	Then
+	\begin{align*}
+		\mlr{\sum_{i=1}^n f(s_i)\ub{\alpha'(t_i)\Delta x_i}{\Delta\alpha_i} - \sum_{i=1}^n f(s_i) \alpha'(s_i)\Delta x_i}
+		&= \mlr{\sum_{i=1}^n f(s_i)\blr{\alpha'(t_i)-\alpha'(s_i)}\Delta x_i} \\
+		&\leq M\sum_{i=1}^n \mlr{\alpha'(t_i)-\alpha'(s_i)}\Delta x_i < M\cdot\frac\epsilon{2M}=\frac\epsilon2 \qquad \text{--- (4)}
+	\end{align*}
+	This means $\ds\sum_{i=1}^n f(s_i)\Delta\alpha_i < \sum_{i=1}^n f(s_i)\alpha'(s_i) \Delta x_i + \frac\epsilon2$ for any $s_i\in[x_{i-1},x_i] \implies U(P,f,\alpha) < U(P,f\alpha')+\frac\epsilon2$.
+	Switching $f$ and $f\alpha'$ and repeating, $U(P,f\alpha') < U(P,f,\alpha)+\frac\epsilon2 \implies \mlr{ U(P,f,\alpha)-U(P,f\alpha')} \leq \frac\epsilon2 < \epsilon$.
+	Repeating the argument with $P^*$ of $P$ and that $U(P^*,\alpha')-L(P^*,\alpha') < \frac\epsilon{2M}$, we get $\mlr{^-\int_a^bf\,d\alpha=\,^-\int_a^bf\alpha'\,dx} \leq \frac\epsilon2<\epsilon$.
+	$\implies ^-\int_a^bf\,d\alpha =\,^-\int_a^bf\alpha'\,dx$.
+	Similarly $_-\int_a^bf\,d\alpha=\,_-\int_a^bf\alpha'\,dx \implies \int_a^bf\,d\alpha = \int_a^bf\alpha'\,dx$.
+\end{proof}
+
+\begin{theorem}
+	[Change of variable]
+	\label{thm-6-19}
+	Suppose
+	\begin{itemize}
+		\item $f\in\ms R(\alpha)$ on $[a,b]$,
+		\item $\alpha$ $\uparrow$ on $[a,b]$,
+		\item $\phi:[A,B]\ra[a,b]$ \ul{strictly increasing} and continuous
+	\end{itemize}
+	Then $g\in\ms R(\beta)$ and $\int_A^B g\,d\beta=\int_a^bf\,d\alpha$, where $g = f\circ\phi$ and $\beta=\alpha\circ\phi$.
+\end{theorem}
+\begin{note}
+	Take $\alpha(x)=x$. Then $\alpha'\in\ms R$ and $\alpha$ $\uparrow$.
+	Then $\beta = \alpha\circ\phi = \phi$.
+	Suppose $\phi'\in\ms R$ on $[A,B]$.
+	Then $$\int_a^bf\,d\alpha = \int_a^b f\,dx \os{\text{Thm \ref{thm-6-19}}}= \int_A^Bg\,d\beta = \int_A^B (f\circ\phi)\,\ub{d\phi}{d\beta} \os{\text{Thm \ref{thm-6-17}}}= \int_A^B f(\phi(y))\phi'(y)\,dy.$$
+\end{note}
+\begin{proof}
+	Let $\epsilon>0$.
+	\ul{\ul{NTS}}: $\exists$ partition $Q$ of $[A,B]$ such that $U(Q,g,\beta)-L(Q,g,\beta)<\epsilon$, and $\int_A^Bg\,d\beta = \int_a^bf\,d\alpha$.
+	$f\in\ms R(\alpha)$ on $[a,b] \implies \exists P:x_0\leq\dots\leq x_n$ of $[a,b]$ such that $U(P,f,\alpha)-L(P,f,\alpha)<\epsilon$ --- $(*)$.
+	$\phi$ strictly increasing on $[a,b] \implies \phi$ is injective $\implies \exists$ a $\us{y_0\leq\dots\leq y_n}{\text{partition}}$ $Q$ of $[A,B]$ such that $x_i=\phi(y_i)$; $i=1,\dots,n$.
+	Also, $$\us{x\in[x_{i-1},x_i]}{f(x)} = \us{y\in[y_{i-1},y_i]}{f(\phi(y))} = \us{y\in[y_{i-1},y_i]}{(f\circ\phi)(y)} = \us{y\in[y_{i-1},y_i]}{g(y)} \implies$$
+	$ U(P,f,\alpha) = U(Q,g,\beta)$ and $L(P,f,\alpha) = L(Q,g,\beta)$.
+	So $(*)\implies U(Q,g,\beta)-L(Q,g,\beta)<\epsilon\implies g\in\ms R(\beta)$.
+	\ul{Clearly} $\int_A^Bg\,d\beta=\int_a^bf\,d\alpha$.
+\end{proof}
+
+\begin{theorem}
+	[Mean Value Theorem for Integrals]
+	Suppose
+	\begin{itemize}
+		\item $f$ continuous on $(a,b)$
+	\end{itemize}
+	Then $\exists x_0\in[a,b]$ such that $\int_a^bf(x)\,dx=f(x_0)(b-a)$ or $\frac1{b-a}\int_a^bf(x)\,dx=f(x_0)$.
+\end{theorem}
+\newpage
+\begin{proof}
+	$f$ continuous on $[a,b] \implies f$ bounded on $[a,b] \implies \exists m,M\in\mb R$ such that $m\leq f(x)\leq M$; $x\in[a,b]$.
+	Also, $f$ continuous $\implies f\in\ms R$ on $[a,b]$.
+	Then $m(b-a) \leq \int_a^b f(x)\,dx \leq M(b-a)$.
+	Let $A:=\frac1{b-a}\int_a^bf(x)\,dx$.
+	Then $m\leq\frac1{b-a}\int_a^bf(x)\,dx \leq M$ or $m\leq A\leq M$.
+	By IVT, $\exists x_0\in(a,b)$ such that $f(x_0)=A$ $\checkmark$.
+\end{proof}
+\begin{remark}
+	$m = \min f(x)$, $M = \max f(x)$.
+\end{remark}
 
 \end{document}

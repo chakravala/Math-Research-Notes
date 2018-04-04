@@ -1849,10 +1849,11 @@ $X = \set{x_i}_{i=0}^n$ fixed nodes for defining $p_n$.
 		\omega_3(x) &= (x-x_k)(x-x_{k+1})(x-x_{k+2})(x-x_{k+3}) \\
 		\max \omega_3\plr{\frac{x_k+x_{k+3}}2} &= \plr{\frac{3h}2}\plr{\frac h2}\plr{-\frac h2}\plr{-\frac{3h}2} = \frac9{16}h^4 \\
 		\max \omega_3\plr{\frac{x_k+x_{k+1}}2} &= \plr{\frac h2}\plr{-\frac h2}\plr{-\frac{3h}2}\plr{-\frac{5h}2} = -\frac{15}{16}h^4.
-		\frac{5h^4}{128} \leq 10^{-6} \implies h^4 &\leq \frac{128}510^{-6} \\
-		h &\leq \nrt4{\frac{128}{5\cdot10^6}} = \frac{\nrt4{10}}{25} \approx 0.07113
+		\frac{5h^4}{128} \leq 10^{-6} \\\implies h^4 &\leq \frac{128}510^{-6} \\
+		h &\leq \nrt4{\frac{128}{5\cdot10^6}} = \frac{\nrt4{10}}{25} \approx 0.07113 \\
+		\pi = nh \implies n &= \frac\pi h\geq \frac{25\pi}{4\sqrt{10}} \approx 44.17
 	\end{align*}
-	Need at least 45 points. (FINISH from picture)
+	Need at least 45 points.
 \end{example}
 
 \subsection*{\$4.6 Hermite Interpolation}
@@ -1887,10 +1888,8 @@ $X = \set{x_i}_{i=0}^n$ fixed nodes for defining $p_n$.
 \end{note}
 \begin{example}
 	Construct $H_2(x)$ for $f(x) = \cos(x)$ on the interval $[0,\pi]$.
-	Idea: use divided differences. Count each node twice.
-	
+	Idea: use divided differences. Count each node twice.	
 	[Difference table]
-
 	\begin{align*}
 		f_0(x_k) &= f(x_k) = \cos(x_k) \\
 		f_1(x_k) &= f'(x_k) = -\sin(x_k) \\
@@ -1906,9 +1905,9 @@ $X = \set{x_i}_{i=0}^n$ fixed nodes for defining $p_n$.
 		This approach is not used for Finite Element.
 	\end{remark}
 	\ul{Max Error} (Theorem) $f^{(4)}(x) = \sin(x)$.
-	$$ \frac{(\pi-0)^4}{384} \max_{0\leq\xi\leq\pi} |f^{(4)}(\xi)| = \frac{\pi^4}{384} \approx 0.0257\times\pi^2.$$
-	\ul{Max Error} (Actual) $\approx 0.020017$ at $x\approx 2.26642$.
+	$\ds \frac{(\pi-0)^4}{384} \max_{0\leq\xi\leq\pi} |f^{(4)}(\xi)| = \frac{\pi^4}{384} \approx 0.0257\times\pi^2$.
 
+	\ul{Max Error} (Actual) $\approx 0.020017$ at $x\approx 2.26642$.
 	$H_2(0) = 1,H'_2(0) = 0$ and $H_2(\pi)=-1,H_2'(\pi)=0$.
 \end{example}
 
@@ -1920,7 +1919,6 @@ For a spline $s(x_k) = f(x_k)$ and $s'(x_k)\neq f'(x_k)$, but $s''(x_k)$ is cont
 
 \ul{Goal}: Use piecewise polynomials of low degree to avoid needing to bound $|f^{(n)}(\xi)|$ for $n$ large in the error result.
 Avoids large oscillations caused by high degree polynomials.
-
 \ul{Idea}: piecewise linear: one line on each interval $[x_i,x_{i+1}]$.
 piecewise quadratic: one function over two intervals.
 
@@ -1982,5 +1980,180 @@ piecewise quadratic: one function over two intervals.
 	\end{align*}
 	\fbox{$n = 3M = 639$}.
 \end{example}
+
+\subsection*{\S4.8 An introduction to splines}
+
+\ul{Goal}: Construct \ul{smooth} piecewise polynomial interpolation functions using only given function values (no derivative information). 
+
+\begin{definition}
+	$q_d$ is a spline of degree $d$ if:
+	\begin{itemize}
+		\item each piece (defined on $[x_{k-1},x_k]$) is a polynomial of degree $\leq d$
+		\item $q_d(x_k) - f(x_k)$ for aall $k=0,1,\dots,n$, $x_j\neq x_i$ for $i\neq j$. (interpolation)
+		\item $\ds\lim_{x\ra x_k^-} q_d^{(i)}(x) = \lim_{x\ra x_k^+} q_d^{(i)}(x)$ for all $i=0,1,\dots,M$. (smoothness) 
+			
+			$M$ is the degree of smoothness.
+	\end{itemize}
+	In practice;
+	\begin{enumerate}
+		\item $M=d-1$ (cubic $\implies 2$ continuous derivatives) $\sim$ existence
+		\item $d$ is odd $\implies$ conditions can be added at \ul{both} $x_0,x_n$ to ensure existence and \ul{uniqueness} of the spline.
+	\end{enumerate}
+\end{definition}
+\begin{example}
+	For what value of $k$ is the following a spline function?
+	$$ q(x) = \begin{cases} x^2-x^2+kx+1, & 0\leq x\leq1 \\ -x^3+(k+2)x^2-kx+3, & q\leq x\leq2 \end{cases} $$
+	$q$ is piecewise cubic with 2 pieces.
+	\begin{align*}
+		\lim_{x\ra1^-} q(x) &= 1-1+k+1 = k+1. \\
+		\lim_{x\ra1^+} q(x) &= -1 (k+2)-k+3 = 4. \\
+							&\implies k+1 = 4 \qquad \text{for continuity} \\
+							&\implies \fbox{$k = 3$}
+	\end{align*}
+	Check $q'$ and $q''$ (since $d=3$, $M=2$)
+	\begin{align*}
+		\lim_{x\ra1^-} q'(x) &= \lim_{x\ra1^-} \blr{ 3x^2-2x+k} = 3-2+k = k+1. \\
+		\lim_{x\ra1^+} q'(x) &= \lim_{x\ra1^+} \blr{-3x^2+2(k+2)x-k}=-3+2(k+2)-k=k+1 \\
+		\lim_{x\ra1^-}q''(x) &= \lim_{x\ra1^-} \blr{ 6x-2} = 6-2=4. \\
+		\lim_{x\ra1^+}q''(x) &= \lim_{x\ra1^+} \blr{-6x+2(k+2)}=-6+2k+4=-2+2k. \\
+							 & k=3 \implies -2+2(3) = -2+6 = 4. \\
+							 & \fbox{$k=3$}
+	\end{align*}
+	Then $q\in\Cpb202$ and $q$ is cubic on $[0,1]$ and $[1,2]$.
+\end{example}
+\begin{example}
+	Construct a quadratic spline interpolating $(-1,0)$, $(0,1)$, and $(1,3)$.
+	$x_0=-1,x_1=0,x_2=1$. 
+	$\implies 2$ pieces, $p_1$ on $[-1,0]$ and $p_2$ on $[0,1]$.
+	$$ q_2(x) = \begin{cases} p_1(x) = a_1+b_1x+c_1x^2, & -1\leq x<0, \\ p_2(x) = a_2+b_2x+c_2x^2, & 0\leq x\leq1. \end{cases} $$
+	\begin{align*}
+		p_1(-1) &= 0 \implies 1_1-b_1+c_1 = 0 \\
+		p_1(0) &= 1 \implies a_1 = 1 \\
+		p_2(0) &= 1 \implies a_2 = 1 \\
+		p_2(1) &= 3 \implies a_2+b_2+c_2 = 3
+	\end{align*}
+	4 equations, 6 unknowns. $a_1=1,a_2=1$.
+	\begin{align*}
+		p_1'(0) &= p_2'(0) \\
+		b_1+2c_1x\big|_{x=0} &= b_2 + 2c_2x\big|_{x=0} \\
+		b_1 &= b_2
+	\end{align*}
+	$\begin{cases} -b_1+c_1 &= -1 \\ b_2+c_2 &= 2 \\ b_1-b_2 &= 0 \end{cases}$ 3 equations, 4 unknowns $\implies$ infinitely many choices.
+	
+	Suppose $q_2'(-1)=0$ (Arbitrary) $\sim$ best choice: $f'(-1)$ complete spline.
+	\begin{align*}
+		p_1'(-1) = 0 \implies b_1+2c_1x\big|_{x=-1} = 0 \\
+		b_1 - 2c_1 = 0
+	\end{align*}
+	$$ \begin{cases} -b_1 + c_1 &= -1 \\ b_1-2c_1 &= 0 \\ b_1-b_2 &= 0 \\ b_2 + c_2 &=2 \end{cases}$$
+	\begin{align*}
+		-c_1 = -1 \\
+		\fbox{$c_1=1$} \\
+		b_1-2 = 0 \\
+		\fbox{$b_1=2$} \\
+		2-b_2=0 \\
+		\fbox{$b_2=2$} \\
+		2+c_2=2 \\
+		\fbox{$c_2=0$}
+	\end{align*}
+	$ q_2(x) = \begin{cases} 1+2x+x^2, & -1\leq x<0 \\ 1+2x, & 0\leq x\leq 1 \end{cases}$
+\end{example}
+
+\subsection*{4.8.2 Cubic $B$-splines}
+
+\ul{Goal}: Efficiently construct piecewise cubic splines.
+\ul{Idea}: Define basis functions $B_i(x)$ such that $$q_3(x) = \sum_i c_iB_i(x)$$ for some constants $c_i$ [determined by given function values $f(x_k)$].
+\begin{enumerate}
+	\item[$*$] smoothness built into $B_i(x)$.
+\end{enumerate}
+Define a single reference function $B(x)$ by
+\begin{align*}
+	B(x) =
+	\begin{cases}
+		0 & x\leq -2 \\
+		(x+2)^3 & -2<x\leq-1 \\
+		1+3(x+1)+3(x+1)^2-3(x+1)^3 & -1<x\leq0 \\
+		1+3(1-x)+3(1-x)^2-3(1-x)^3 & 0<x\leq1 \\
+		(2-x)^3 & 1<x\leq 2 \\
+		0 & x > 2
+	\end{cases}
+\end{align*}
+Then, $B(x)$ is $C^2$, symmetric, and only locally defined.
+\begin{align*}
+	B(2) &= B(-2) = 0 \\
+	B(-1) &= B(1) = 1 \\
+	B(0) &= 4 \\
+	B'(-2) &= B'(0) = B'(2) = 0 \\
+	B'(-1) &= 3 \\
+	B'(1) &= -3
+\end{align*}
+Using translations and scaling:
+$B_i(x) \equiv B\plr{\frac{x-x_i}h}$ for $h=x_j-x_{j-1}$ (uniform spacing)
+\begin{itemize}
+	\item $B_i$ is centered at $x_i$
+	\item $B_i$ is zero for $x\notin[x_{i-2},x_{i+2}]$.
+\end{itemize}
+
+\ul{Construction $q_3(x)$ (cubic spline)}
+
+Let $x_i=a+ih$, $h=\frac{b-a}n$.
+Given $a = x_0 < x_1 < x_2 < \dots < x_{n-1} < x_n = b$ and $f(x_0),f(x_1),\dots,f(x_n)$.
+Introduce extra  nodes
+\begin{align*}
+	x_{-3} &= a-3h, & x_{-2} &= a-2h, & x_{-1} &= a-h \\
+	x_{n+1} &= b+h, & x_{n+2} &= b+2h, & x_{n+3} &= b+3h
+\end{align*}
+Let \fbox{$\ds q_3(x) = \sum_{i=-1}^{n+1} c_i B_i(x)$} $\sim$ extended because $B_{-1}(x)$ is nonzero for $x$ in $[a,b]$ ($B_{-2}(x)=0$ for all $x\in[a,b]$).
+\ul{Goal}: \fbox{$q_3(x_k) = f(x_k)$ for all $0\leq k\leq n$.}
+\begin{enumerate}
+	\item[$*$] $q_3$ is $C^2$ by construction using $B$-splines.
+\end{enumerate}
+\begin{align*}
+	f(x_k) &= q_3(x_k) \\
+		   &= \sum_{i=-1}^{n+1} c_i B_i(x_k) \\
+		   &= c_{k-1} B_{k-1}(x_k) + c_k B_k(x_k) + c_{k+1} B_{k+1}(x_k) \\
+	(*)    &= c_{k-1} B(-1) + c_k B(0) + c_{k+1} B(1) \\
+		   &= c_{k-1} + 4 c_k + c_{k+1}.
+\end{align*}
+Matrix Form
+$$ \mat{
+	4 & 1 & & & & \\
+	1 & 4 & 1 & & & \\
+	  & 1 & 4 & 1 &  &\\
+	  &   & \ddots & \ddots & \ddots & \\
+	  &   &   &  1 & 4 & 1 \\
+	  &   &   &    & 1 & 4} \mat{c_0\\c_1\\c_2\\\vdots\\c_{n-1}\\c_n} = \mat{f(x_0) \fbox{$-c_{-1}$} \\ f(x_1) \\ f(x_2) \\ \vdots \\ f(x_{n-1}) \\ f(x_n)\fbox{$-c_{n+1}$}} $$
+\begin{align*}
+	\begin{cases}
+		n+1 \text{ equations} & \text{(interpolation)} \\
+		n+3 \text{ unknowns} & c_{-1} = \, ?,\ c_{n+1} = \, ?
+	\end{cases}
+\end{align*}
+This is a cubic spline for any choice of $c_{-1},c_{n+1}$.
+(satisfies the definition)
+\begin{question}
+	What is the \say{best} choice?
+\end{question}
+\ul{Complete Splines}
+
+Assume $f'(x_0)$ and $f'(x_n)$ are given.
+\begin{align*}
+	f'(x_0) = q'_3(x_0) &= c_{-1} B_{-1}'(x_0) + c_0 B_0'(x_0) + c_1 B_1'(x_0) \\
+			  &= c_{-1} \frac1h B'(1) + c_1 \frac1h B'(-1) \\
+			  &= -\frac3h c_{-1} + \frac3h c_1. \\
+	\implies & c_{-1} = -\frac h3 q'_3(x_0) + c_1
+\end{align*}
+Choose $q_3'(x_0) = f'(x_0)$.
+So \ul{$c_{-1} = -\frac h3 f'(x_0) + c_1$}.
+\begin{align*}
+	\implies 1^\text{st} \text{ eqn} &: & 4c_0 + c_1 &= f(x_0) - c_{-1} \\
+									 &  & &= f(x_0) + \frac h3 f'(x_0) - c_1 \\
+									 & & \implies & \fbox{$4c_0 + 2c_1 = f(x_0) + \frac h3 f'(x_0)$} \\
+	\text{Last eqn} &: & & \fbox{$ 2c_{n-1} + 4c_n = f(x_n) - \frac h3 f'(x_n)$}
+\end{align*}
+$\implies n+1$ equations, $n+1$ unknowns $(c_0,\dots,c_n) \implies $ has 1 unique solution.
+\begin{enumerate}
+	\item[$*$] Finding a complete cubic spline is equivalent to solving an $(n+1)\times(n+1)$ system of linear equations that is diagonally dominant and tri-diagonal (see \S2.6).
+\end{enumerate}
 
 \end{document}

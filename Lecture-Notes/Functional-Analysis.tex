@@ -1394,7 +1394,7 @@ For Hilbert spaces we have nice result.
 	Define $h:H_1\times H_2\ra\mb R$ or $\mb C$ by $h(x,y) = \gen{Sx,y}_{H_1}$.
 	Easy to check that $h$ is a sesquilinear form on $H_1\times H_2$. Also
 	\begin{align*}
-		|h(x,y)| &= |\gen{Sx,y}_{H_2}| \\
+		|h(x,y)| = |\gen{Sx,y}_{H_2}|
 				 &\leq ||Sx||_{H_2} \cdot ||y||_{H_2} \\
 				 &\leq ||S||\,||x||_{H_1}\,||y||_{H_2}
 	\end{align*}
@@ -1403,5 +1403,91 @@ For Hilbert spaces we have nice result.
 \end{example}
 
 \ul{HW} 3.8: 1,2,3.
+
+\begin{example}
+	[Gram-Schmidt]
+	$x_1,x_2$ vectors,
+	$v_1 = x_1 \ra e_1=\frac1{||v_1||}v_1$, 
+	$v_2 = x_2-\gen{x_2,e_1}e_1$, 
+	$e_2 = \frac1{||v_2||}v_2$.
+\end{example}
+
+\ul{Last time}: Riesz Representation Theorem: If $f$ is a bounded linear functional on a Hilbert space $H$ (that is, $f\in H'$), then $\exists! z\in H$ such that $f(x) = \gen{x,z}$ for all $x\in H$.
+A bounded sesquilinear form $h$ on $H_1\times H_2$ satisfies $|h(,y)| \leq ||h||\,||x||\,||y||$.
+
+If $S$ is bounded linear operator from $H_1$ to $H_2$, then $h(x,y) = \gen{Sx,y}$ is a bounded sesquilinear form, and $||h||=||S||$.
+
+\begin{theorem}
+	[Representation Theorem]
+	Let $H_1,H_2$ be Hilbert spaces, and let $h:H_1\times H_2\ra\mb R$ or $\mb C$ be a bounded sesquilinear form.
+	Then $\exists!$ bounded linear operator $S$ from $H_1$ to $H_2$ such that $h(x,y) = \gen{Sx,y}$ $\forall x\in H_1,\forall y\in H_2$, and $||h||=||S||$.
+\end{theorem}
+\begin{proof}
+	Assume $h$ is bounded sesquilinear form on $H_1\times H_2$.
+	Fix $x\in H_1$. Define a bounded linear functional on $H_2$ by $f(y)=\conj{h(x,y)}$.
+	Easy to check that $f$ is bounded linear functional on $H_2$.
+	By Riesz Representation Theorem, $\exists z\in H_2$ such that $f(y) = \gen{y,z}_{H_2}$ for all $y\in H_2$.
+	Note $z$ depends uniquely on $x$.
+	Define $S:H_1\ra H_2$ by $Sx=z$. $S$ is linear (see text).
+	Notice $h(x,y) = \gen{Sx,y}$.
+	Also,
+	\begin{align*}
+		||S|| &= \sup_{x\neq0} \frac{||Sx||}{||x||} = \sup_{\us{Sx\neq0}{x\neq0}} \frac{\gen{Sx,Sx}}{||Sx||\,||x||}
+			  \leq \sup_{\us{y\neq0}{x\neq0}} \frac{\gen{Sx,y}}{||y||\,||x||}
+			  = \sup_{\us{y\neq0}{x\neq0}} \frac{|h(x,y)|}{||y||\,||x||} = ||h||
+	\end{align*}
+	So $S$ is bounded and $||S||\leq||h||$.
+	Also 
+	\begin{align*}
+		||h|| = \sup_{\us{y\neq0}{x\neq0}} \frac{|h(x,y)|}{||x||\,||y||} = \sup_{\us{||y||\neq0}{||x||\neq0}} \frac{|\gen{Sx,y}|}{||x||\,||y||}
+		\leq \sup_{\us{y\neq0}{x\neq0}} \frac{||Sx||\,||y||}{||x||\,||y||} = ||S||.
+	\end{align*}
+	So $||h||=||S||$. Finally, $S$ is unique (see text).
+\end{proof}
+\begin{example}
+	[$H_1=H_2=\mb R^3$] 
+	Let $x = \pmat{\xi_1\\\xi_2\\\xi_3}, y = \pmat{\eta_1\\\eta_2\\\eta_3}$, 
+	then $\gen{x,y} = \xi_1\eta_1+\xi_2\eta_2+\xi_3\eta_3 = y^Tx$.
+	Define $h(x,y) = (\xi_2+\xi_3)\eta_1+2\xi_1\eta_2+\xi_2\eta_3$, \ul{HW}: Show $h$ is (sesqui)linear and bounded.
+	By theorem, $\exists T:\mb R^3\ra\mb R^3$ such that $h(x,y) = \gen{Tx,y}$.
+	So $Tx = \pmat{\xi_2+\xi_3\\2\xi_1\\\xi_2}$.
+\end{example}
+\begin{example}
+	[$H_1=H_2=\ell^2$]
+	Let $x = (\xi_k)_{k=1}^\infty, y = (\eta_k)_{k=1}^\infty$, then $\gen{x,y} = \sum_{k=1}^\infty \xi_k\eta_k$.
+	Define $h(x,y) = \xi_1\eta_2+\xi_2\eta_3+\dots$.
+	\ul{HW}: Show $h$ is sesquilinear and bounded (Cauchy-Schwartz p.14).
+	Determine the operator $T$ such that $h(x,y) = \gen{Tx,y}$.
+\end{example}
+
+Consider $H_1=\mb R^n$, $H_2=\mb R^m$ wih usual inner product $\gen{x,y}= y^Tx = x^Ty$.
+If $A$ is $m\times n$ matrix, it defines linear operator from $H_1$ to $H_2$, $A:H_1\ra H_2$.
+\begin{align*}
+	\gen{Ax,y} &= y^TAX
+			   = (y^TAx)^T
+			   = x^TA^Ty
+			   = \gen{A^Ty,x^T}
+			   = \gen{x,A^Ty}.
+\end{align*}
+In complex case, $\gen{x,y} = \conj y^Tx$ and we get $\gen{Ax,y}=\dots=\gen{x,\conj A^Ty}$.
+\begin{definition}
+	Let $H_1,H_2$ be Hilbert spaces, and let $T:H_1\ra H_2$ be a bounded linear operator.
+	The \ul{Hilbert-adjoint} operator $T^*$ of $T$ is the unique bounded linear operator satisfying $T^*:H_2\ra H_1$ $$\gen{Tx,y}_{H_2} = \gen{x,T^*y}_{H_1}$$ for all $x\in H_1,y\in H_2$.
+\end{definition}
+
+\newpage
+
+\begin{theorem}
+	The Hilbert-adjoint operator $T^*$ exists, is unique, and satisfies $||T^*||=||T||$.
+\end{theorem}
+Some properties of adjoint:
+\begin{align*}
+	(S+T)^* &= S^*+T^* \\
+	(\alpha T)^* &= \conj\alpha T^* \\
+	(T^*)^* &= T \\
+	||T^*T|| &= ||TT^*|| = ||T^2|| \\
+	(ST)^* &= T^*S^*
+\end{align*}
+So $(T^*T)^* = T^*T^{**} = T^*T$.
 
 \end{document}
