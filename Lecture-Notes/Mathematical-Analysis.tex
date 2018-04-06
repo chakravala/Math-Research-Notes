@@ -1790,4 +1790,121 @@ Connection between $\ms R$ and $\ms R(\alpha)$ on $[a,b]$.
 	$m = \min f(x)$, $M = \max f(x)$.
 \end{remark}
 
+\begin{theorem}
+	\label{thm-6-20}
+	Let $f\in\ms R$ on $[a,b]$. Define $F(x) := \int_a^x f(t)\,dt \la$ accumulation function; $x\in[a,b]$. Then
+	\begin{enumerate}
+		\item $F$ is continuous on $[a,b]$.
+		\item If in addition, $f$ continuous at $x_0\in(a,b)$, then $F$ is differentiable at $x_0$ and $F'(x_0) = f(x_0)$.
+	\end{enumerate}
+\end{theorem}
+\begin{note}
+	In particular, if $f$ is continuous on $[a,b]$ then $F$ is differentiable on $(a,b)$.
+\end{note}
+\begin{proof}
+	\begin{enumerate}
+		\item Let $\epsilon>0$ be fixed. Let $x,y\in[a,b]$ with $x\neq y$. Then 
+			\begin{align*}
+				|F(x)-F(y)| = \mlr{\int_a^xf(t)\,dt - \int_a^yf(t)\,dt}
+				= \mlr{\int_x^yf(t)\,dt}
+				\leq M|y-x|
+			\end{align*}
+			since $f\in\ms R$ on $[a,b] \implies \exists M>0$ such that $|f(x)|\leq M$ on $[a,b]$.
+			Then if $|y-x|<\frac\epsilon M = \delta$, then $|F(x)-F(y)|<\epsilon$.
+			So $F$ is uniformly continuous on $[a,b]$.
+		\item Need to show: $\ds\lim_{t\ra x_0} \frac{F(t)-F(x_0)}{t-x_0} = f(x_0)$.
+			Fix $\epsilon>0$. Enough to show: $\exists\delta>0$ such that $\forall s,t\in [a,b]$ with $s,t\in(x_0-\delta,x_0+\delta)$ and $s<t$ (WLOG)
+			$$ \mlr{\frac{F(t)-F(s)}{t-s}-f(x_0)}<\epsilon. $$
+			$f$ continuous at $x_0 \implies \exists \delta>0$ such that $\forall z\in[a,b]$ with $|z-x_0|<\delta$, $|f(z)-f(x_0)|<\epsilon$.
+			Now,
+			\begin{align*}
+				\mlr{\frac{F(t)-F(s)}{t-s}-f(x_0)} 
+				&= \mlr{\frac1{t-s}\int_t^s f(u)\,du - f(x_0)} \\
+				&\os{\text{MVT(I)}}= \mlr{f(x^*)-f(x_0)} < \epsilon \qquad \text{for some }x^*\in(s,t)
+			\end{align*}
+			since $|x^*-x_0|<\delta$.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	[Fundamental Theorem of Calculus]
+	\label{thm-6-21}
+	Suppose
+	\begin{itemize}
+		\item $f\in\ms R$ on $[a,b]$,
+		\item $\exists$ a differentiable function $F$ such that $F'=f$.
+	\end{itemize}
+	Then $\int_a^bf\,dx=F(b)-F(a)$.
+\end{theorem}
+\begin{proof}
+	Fix $\epsilon>0$. \ul{NTS}: $\mlr{\int_a^b f(x)\,dx-F(b)+F(a)}<\epsilon$.
+	$f\in\ms R\implies \exists P: x_0\leq x_1\leq\dots\leq x_n = b$ such that $U(P,f)-L(P,f)<\epsilon$.
+	$F$ differentiable on $(a,b) \implies$ by MVT $\exists t_i\in(x_{i-1},x_i)$ such that $F(x_i)-F(x_{i-1}) = F'(t_i)\Delta x_i$ for all $i=1,\dots,n$.
+	By Theorem \ref{thm-6-7}(c) implies 
+	\begin{align*}
+		& \mlr{\int_a^bf\,dx - \sum_{i=1}^n \ub{F(x_i)-F(x_{i-1})}{f(t_i)\Delta x_i} } < \epsilon \\
+		\implies & \mlr{\int_a^b f\,dx - \sum_{i=1}^n F(x_i)-F(x_{i-1})} < \epsilon \\
+		\implies & \mlr{\int_a^b f\,dm - F(b)+F(a)} < \epsilon.
+	\end{align*}
+\end{proof}
+
+\begin{theorem}
+	[Integration by parts formula]
+	\label{thm-6-22}
+	Suppose
+	\begin{itemize}
+		\item $F,G:[a,b]\ra\mb R$ are differentiable functions on $(a,b)$,
+		\item $F',G'\in\ms R$ on $[a,b]$.
+	\end{itemize}
+	Then $\int_a^b FG'\,dx = F(b)G(b) - F(a)G(a) - \int_a^b GF'\,dx$.
+\end{theorem}
+\begin{proof}
+	Take $H:= FG \implies H' = F\us{\in\ms R}{G'} + G\us{\in\ms R}{F'}\in\ms R$ since $F,G\in\ms R$ (being continuous) and product of integrable functions is integrable.
+	Applying Theorem \ref{thm-6-21} to $H'$ (for $f$), we get
+	\begin{align*}
+		\int_a^bH'\,dx = H(b)-H(a)
+		\implies \int_a^b \blr{FG'+GF'}\,dx = F(b)G(b)-F(a)G(a) \\
+		\implies \int_a^b FG'\,dx = F(b)G(b)-F(a)G(a) - \int_a^b GF'\,dx.
+	\end{align*}
+\end{proof}
+
+Vector-valuef functions
+\begin{align*}
+	\vf:[a,b]\ra\mb R^k \text{ as} \\
+	\vf(t) = (f_1(t),\dots,f_k(t)).
+\end{align*}
+Define $\int_a^b \vf(t)\,dt = (\int_a^bf_1(t)\,dt,\dots,\int_a^bf_k(t)\,dt)$.
+Most theorems for scalar-valued functions hold also for $\vf$.
+
+\section*{\ul{Sequence} and series \ul{of functions}}
+
+Let $f_n:E^{\la\text{any set}}\ra\mb R$ (or $\mb C$) for each $n\in\mb N$
+\begin{definition}
+	[Pointwise convergence]
+	A sequence of functions $\set{f_n}$ defined on $E$ (any set) converges \ul{pointwise} to a function $f$ (defined on $E$) if and only if $\forall x\in E,\forall\epsilon>0$, $\exists N=N(\epsilon,x)\in\mb N$ such that $\forall x\in E$
+	$$ |f_n(x)-f(x)| < \epsilon \qquad \text{for }n>N. $$
+\end{definition}
+\begin{remark}
+	$\forall x\in E$, $f_n(x)\lra f(x)$.
+\end{remark}
+\begin{definition}
+	[Uniform convergene]
+	A sequence of functions $\set{f_n}$ \ul{converges uniformly} to $f$ \ul{on $E$} if and only if $\forall\epsilon>0$, $\exists N\in\mb N$, $N=N(\epsilon)$ such that $|f_N(x)-f(x)| < \epsilon$ for $n\geq N$ and $\forall x\in E$.
+\end{definition}
+When can we expect properties of $\set{f_n}$ to be preserved in the limiting process?
+\begin{example}
+	Pointwise convergence does not preserve continuity.
+	$f_n(x) = \frac{n^2x}{1+n^2x}$; $x\in\mb R$, \fbox{$n\geq 2$}.
+	If $x\neq0$, $\ds\lim_{n\ra\infty} f_n(x) = \frac{n^2}{\frac1x+n^2} = 1\ra 1$ as $n\ra\infty$.
+	For $x=0$, $f_n(0)=0\ra0$ as $n\ra\infty$.
+	$f(x) = \begin{cases} 1 & \text{if }x\neq0 \\ 0 & \text{if }x=0 \end{cases}$ -- not continuous at $x=0$.
+\end{example}
+
+Two criterions for uniform convergence:
+\begin{theorem}
+	[Cauchy Criterion]
+	\label{thm-7-8}
+	$f_n:E\ra\mb R$ converges uniformly on $E$ if and only if $\forall\epsilon>0$, $\exists N\in\mb N$, $N=N(\epsilon)$ such that $|f_n(x)-f_m(x)|<\epsilon$ for all $m,n> N$.
+\end{theorem}
+
 \end{document}

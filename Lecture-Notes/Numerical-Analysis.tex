@@ -2094,7 +2094,7 @@ $B_i(x) \equiv B\plr{\frac{x-x_i}h}$ for $h=x_j-x_{j-1}$ (uniform spacing)
 	\item $B_i$ is zero for $x\notin[x_{i-2},x_{i+2}]$.
 \end{itemize}
 
-\ul{Construction $q_3(x)$ (cubic spline)}
+\subsubsection*{Construction $q_3(x)$ (cubic spline)}
 
 Let $x_i=a+ih$, $h=\frac{b-a}n$.
 Given $a = x_0 < x_1 < x_2 < \dots < x_{n-1} < x_n = b$ and $f(x_0),f(x_1),\dots,f(x_n)$.
@@ -2134,7 +2134,7 @@ This is a cubic spline for any choice of $c_{-1},c_{n+1}$.
 \begin{question}
 	What is the \say{best} choice?
 \end{question}
-\ul{Complete Splines}
+\subsubsection*{Complete Splines}
 
 Assume $f'(x_0)$ and $f'(x_n)$ are given.
 \begin{align*}
@@ -2155,5 +2155,56 @@ $\implies n+1$ equations, $n+1$ unknowns $(c_0,\dots,c_n) \implies $ has 1 uniqu
 \begin{enumerate}
 	\item[$*$] Finding a complete cubic spline is equivalent to solving an $(n+1)\times(n+1)$ system of linear equations that is diagonally dominant and tri-diagonal (see \S2.6).
 \end{enumerate}
+
+\subsubsection*{Evaluation}
+
+Given $c_0,c_1,\dots,c_n$ ($c_{-1},c_{n+1}$), then $q_3(x) = \sum_{i=1}^{n+1} c_i B_i(x)$.
+Suppose $x\in[x_{k-1},x_k]$ for some $1\leq k\leq n$.
+\begin{align*}
+	\implies q_3(x) &= c_{k-2} B_{k-2}(x) + c_{k-1} B_{k-1}(x) + c_kB_k(x) + c_{k+1}B_{k+1}(x).
+\end{align*}
+For a uniform grid: $k = \lfloor \frac{x-x_0}h \rfloor +1$, round down to nearest integers (floor).
+
+\begin{theorem}
+	[Convergence]
+	If $f\in\Cpb4ab$ with $\max (x_k-x_{k-1})\leq h$ for all $k$, then for all $a\leq x\leq b$, $$ |f(x)-q_3(x)| \leq \frac5{384}h^4 \max_{a\leq\xi\leq b} |f^{(4)}(\xi)|. $$
+	Moreover, $$|f^{(k)}(x)-q_3^{(k)}(x)| \leq C_kh^{4-k}\max_{a\leq\xi\leq b}|f^{(4)}(\xi)|$$ for some constants $C_1,C_2,C_3$.
+	\begin{align*}
+		\implies |f'(x)-q'(x)| \leq C_1h^3 \max |f^{(4)}(\xi)|
+	\end{align*}
+\end{theorem}
+\begin{note}:
+	\begin{enumerate}
+		\item Accuracy consistent with piecewise cubic but better approximates derivatives due to smoothness. % of spline.
+		\item see Example 4.8 for building $q_3(x)$ using $B$-splines.
+		\item The construction with $B$-splines can be generalized/adapted to any degree spline.
+
+			lines are $C^0$, quadratic are $C^1$
+		\item If $f'(x_0),f'(x_N)$ are unknown, they can be approximated using finite differences for complete splines.
+			Need to be $\mc O(h^4)$.
+		\item Common alternative construction finds $q''_3(x)$ by solving a system of equations (tri-diagonal \& diagonally dominant) (called moments) and then integrate twice locally and choose constants based on interpolation constraints. $f(x_{k-1}),f(x_k)$
+	\end{enumerate}
+\end{note}
+
+\section*{Ch. 5 Numerical Integration}
+
+\ul{Goal}: Approximate $I(f)=\int_a^b f(x)\,dx$.
+\ul{Idea}: $\ds I(f) \approx I_n(f) \equiv \sum_{i=0,1}^n \omega_if(x_i)$ for some
+\begin{itemize}
+	\item nodes/abscissas $x_i$
+	\item weights $\omega_i$
+\end{itemize}
+Then, $\ds\lim_{n\ra\infty} I_n(f) = I(f)$ for $f$ sufficiently nice.
+\begin{definition}
+	$I_n(f)$ called a \ul{quadrature rule}.
+\end{definition}
+
+\begin{example}
+	Trapezoidal Rule (\S2.5)
+	$$ T_n(f) = \frac h2 \blr{ f(x_0)+2f(x_1)+\dots+2f(x_{n-1})+f(x_n) } $$
+	$\set{x_i}_{i=0}^n$ uniformly spaced, $\omega_0 = \frac h2,\omega_n = \frac h2, \omega_i = h$ for $i=1,\dots,n-1$.
+	$$ |I(f)-I_n(f)| \leq \frac{b-a}{12}h^2 \max_{a\leq\xi\leq b}|f''(\xi)| \ra 0 $$
+	as $h\ra 0$ ($n\ra\infty$) for $h = \frac{b-a}n$. Better method is corrected trapezoidal rule.
+\end{example}
 
 \end{document}

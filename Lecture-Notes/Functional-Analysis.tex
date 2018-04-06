@@ -1490,4 +1490,114 @@ Some properties of adjoint:
 \end{align*}
 So $(T^*T)^* = T^*T^{**} = T^*T$.
 
+Last time: representation theorem for bounded sesquilinear forms.
+
+\begin{recall}
+	Let $H_1,H_2$ be Hilbert spaces, and let $T$ be a bounded linear operator from $H_1$ to $H_2$.
+	Then $\exists!$ bounded linear operator $T^*$ from $H_2$ to $H_1$, called the Hilbert-adjoint of $T$, satisfying $$\gen{Tx,y} = \gen{x,T^*y}$$ for all $x\in H_1,y\in H_2$ and $$||T^*||=||T||.$$
+\end{recall}
+\begin{proof}
+	Let $T$ be bounded linear operator from $H_1$ to $H_2$.
+	Define function on $H_2\times H_1$ by $h(y,x) = \gen{y,Tx}$.
+	Clearly $h$ is sesquilinear because inner product is sesquilinear.
+	Also, $$|h(y,x)| = |\gen{y,Tx}| \leq ||y||\cdot ||Tx|| \leq ||y||\,||T||\,||x||.$$
+	Thus $h$ is bounded, and $||h||\leq||T||$. Also,
+	\begin{align*}
+		||h|| &= \sup_{\us{y\neq0}{x\neq0}} \frac{|h(y,x)|}{||x||\,||y||}
+			  = \sup_{\us{y\neq0}{x\neq0}} \frac{|\gen{y,Tx}|}{||x||\,||y||} \\
+			  &\geq \sup_{\us{Tx\neq0}{x\neq0}} \frac{|\gen{Tx,Tx}|}{||x||\,||Tx||}
+			  = \sup_{\us{Tx\neq0}{x\neq0}} \frac{||x||^2}{||x||\,||Tx||}
+			  = \sup_{x\neq0} \frac{||Tx||}{||x||} = ||T||.
+	\end{align*}
+	Thus $||h||\geq||T||$, so $||h||=||T||$.
+	By representation theorem, $\exists!$ bounded linear operator $T^*$ from $H_2$ to $H_1$ such that $h(y,x) = \gen{T^*y,x}_{H_1}$ and $||T^*||=||h||$, so $||T^*|| = ||T||$. Also,
+	\begin{align*}
+		\gen{T^*x,y} &= \conj{\gen{y,Tx}} = \conj{h(y,x)}
+		= \conj{\gen{T^*y,x}} = \gen{x,T^*y}
+	\end{align*}
+\end{proof}
+
+\begin{example}
+	[$H_1=H_2=H=\ell^2$] 
+	Let $x=(\xi_1,\xi_2,\dots),y=(\eta_1,\eta_2,\dots)$, then $\ds\gen{x,y} = \sum_{k=1}^\infty \xi_k\conj{\eta_k}$.
+	Define $T:H\ra H$ by $Tx = (0,\xi_1,\xi_2,\dots)$ \say{right shift} operator.
+	Clearly $||T||=1$, $\ms N(T) = \set0$, $\ms R(T) = \setc{z=(\lambda_1,\lambda_2,\dots)}{\lambda_1=0}$.
+	For $x,y\in H$
+	\begin{align*}
+		\gen{Tx,y} = \sum_{k=2}^\infty \xi_{k-1}\conj{\eta_k}
+		= \sum_{j=1}^\infty \xi_j \conj{\eta_{j+1}}
+		= \gen{x,T^*y},
+	\end{align*}
+	where $T^*y = (\eta_2,\eta_3,\dots)$ \say{left shift.}
+	$\ms N(T^*) = \setc{y=(\eta_1,\eta_2,\dots)}{\eta_k=0\text{ for }k=2}$.
+	Observe $$\ms N(T^*)\perp\ms R(T).$$
+\end{example}
+\begin{note}
+	If $H_1=H_2=H$, and $T:H\ra H$, then $T^*:H\ra H$.
+\end{note}
+
+\begin{definition}
+	Let $H$ be a Hilbert space and let $T:H\ra H$ be bounded linear operator.
+	\begin{itemize}
+		\item $T$ is self adjoint (or Hermitian) if $T=T^*$
+		\item $T$ is unitary if $T$ is bijective and $T^*=T\inv$
+		\item $T$ is normal if $T^*T=TT^*$
+	\end{itemize}
+\end{definition}
+
+\newpage
+
+\begin{example}
+	[Square matrices]
+	A real square matrix $A = (a_{ij})_{n\times n}$ is \ul{symmetric} if $A=A^T$.
+	A complex square matrix is Hermitian if $A=\conj A^T$.
+	A real square matrix is \ul{orthogonal} if $A^T=A\inv$.
+	A complex square matrix is \ul{unitary} if $\conj A^T=A\inv$.
+	A complex square matrix is \ul{normal} if $\conj A^TA=A\conj A^T$.
+\end{example}
+
+\begin{theorem}
+	Let $H$ be Hilbert space and let $U,V$ be unitary operators on $H$. Then
+	\begin{enumerate}
+		\item[a.] $U$ is length preserving (isometric): $||Ux||=||x||$ for all $x\in H$.
+		\item[b.] $||U||=1$
+		\item[c.] $U\inv$ is unitary
+		\item[d.] $UV$ is unitary
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	[a.] 
+	$||Ux||^2 = \gen{Ux,Ux} = \gen{x,U^*(Ux)} = \gen{x,U\inv Ux} = \gen{x,x} = ||x||^2$.
+\end{proof}
+\begin{proof}
+	[b.] Immediate from $a$.
+\end{proof}
+\begin{proof}
+	[c.]
+	$U$ is bijective, so $U\inv$ is bijective.
+	$ (U\inv)^* = (U^*)^* = U = (U\inv)\inv $. So $U\inv$ is unitary.
+\end{proof}
+\begin{proof}
+	[d.]
+	$(UV)^* = V^*U^* = V\inv U\inv = (UV)\inv$.
+\end{proof}
+
+\section*{Spectral Theory}
+We extend theory for eigenvalues and eigenvectors of square matrices to operators on general normed spaces.
+First review ideas for matrices. Let $A=(a_{ij})_{n\times n}$ be a square matrix.
+Consider equation $(*)$ $Ax = \lambda x$, $x$ is $n\times 1$ in $\mb C^n$, $\lambda\in\mb C$.
+\begin{definition}
+	An \ul{eigenvalue} of $A$ is a $\lambda\in\mb C$ such that $(*)$ has a nontrivial solution.
+	Such a nonzero solution $x$ is called an \ul{eigenvector} associated with $\lambda$.
+	The \ul{spectrum} $\sigma(A)$ is the set of all eigenvalues of $A$.
+	The \ul{resolvent set} of $A$ is the set $\rho(A)=\mb C\bs\sigma(A)$.
+\end{definition}
+\begin{note}
+	$(*)$ is equivalent to $(A-\lambda I)x=0$,
+	has nonzero solution $\iff A-\lambda I$ is singular $\iff \det(A-\lambda I)=0$.
+	This is a polynomial of degree $n$, so $A$ has at most $n$ distinct eigenvalues.
+\end{note}
+
+\ul{HW} 3.9: (G) 4,5,6; 3.10: (G) 13.
+
 \end{document}
