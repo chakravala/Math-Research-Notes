@@ -1868,11 +1868,9 @@ Connection between $\ms R$ and $\ms R(\alpha)$ on $[a,b]$.
 	\end{align*}
 \end{proof}
 
-Vector-valuef functions
-\begin{align*}
-	\vf:[a,b]\ra\mb R^k \text{ as} \\
-	\vf(t) = (f_1(t),\dots,f_k(t)).
-\end{align*}
+Vector-valued
+	$\vf:[a,b]\ra\mb R^k$ as
+	$\vf(t) = (f_1(t),\dots,f_k(t))$.
 Define $\int_a^b \vf(t)\,dt = (\int_a^bf_1(t)\,dt,\dots,\int_a^bf_k(t)\,dt)$.
 Most theorems for scalar-valued functions hold also for $\vf$.
 
@@ -1906,5 +1904,122 @@ Two criterions for uniform convergence:
 	\label{thm-7-8}
 	$f_n:E\ra\mb R$ converges uniformly on $E$ if and only if $\forall\epsilon>0$, $\exists N\in\mb N$, $N=N(\epsilon)$ such that $|f_n(x)-f_m(x)|<\epsilon$ for all $m,n> N$.
 \end{theorem}
+
+\begin{recall}
+	Criterion for uniform convergence
+	\begin{enumerate}
+		\item Cauch-criterion $\set{f_n}\subset(E,d)$ converges uniformly on $E$ if and only if $\forall\epsilon>0$ $\exists N\in\mb N$ such that $|f_n(t)-f_m(t)|<\epsilon$ for all $m,n>N$ and $\forall t\in E$.
+		\item For each $n$, define $\ds\epsilon_n:=\sup_{x\in E} |f_n(x)-f(x)|$, where $f_n\ra ff$ pointwise.
+	\end{enumerate}
+	Then $f_n\ra f$ uniformly if and only if $\epsilon_n\ra0$ as $n\ra\infty$.
+\end{recall}
+
+\newpage
+
+\begin{theorem}
+	\label{thm-7-11}
+	Suppose $\set{f_n},f$ real-valued functions defined on a metric space $(E,d)$ such that
+	\begin{itemize}
+		\item $f_n\ra f$ uniformly on $E$,
+		\item $x$ a limit point of $E$ and $\ds\lim_{t\ra x}f_n(t)=A_n$ for all $n\in\mb N$.
+	\end{itemize}
+	Then
+	\begin{enumerate}
+		\item $\set{A_n}$ converges in $\mb R$ to $A$, say
+		\item $\ds\lim_{t\ra x}f(t) = A$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	(1)	Let $\epsilon>0$. We'll show that $\set{A_n}\subset\mb R$ is Cauchy.
+	Since $f_n\lra f$ uniformly on $E$, $\exists N\in\mb N$ such that $|f_n(t)-f_m(t)|<\frac\epsilon3$ for all $t\in E$, $n,m>N$.
+	Since $\ds\lim_{t\ra x} f_k(t) = A_k$ for all $k\in\mb N$, $\exists\delta>0$ such that $\forall t\in(N_\delta(x)\bs\set x)\cap E$, $|f_k(t)-A_k|<\frac\epsilon3$.
+	Then for $m,n>N$ and $\forall t\in(N_\delta(x)\bs\set x)\cap E$,
+	\begin{align*}
+		|A_n-A_m|&=|A_n-f_n(t)+f_n(t)-A_m+f_m(t)-f_m(t)| \\
+				 &\os\Delta\leq |A_n-f_n(t)| + |f_m(t)-A_m| + |f_n(t)-f_m(t)| \\
+				 &< \frac\epsilon3+\frac\epsilon3+\frac\epsilon3=\epsilon \implies \set{A_n} \text{ is Cauchy},
+	\end{align*}
+	which implies \ul{$\exists A\in\mb R$ such that $A_n\ra A$}.
+
+	(2) \ul{\ul{NTS}}: $\ds\lim_{t\ra x} f(t) = A$. 
+	\ul{NTS}: $\exists\delta>0$ such that $\forall t\in(N_\delta(x)\bs\set x)\cap E$, $|f(t)-A|<\epsilon$ using $|f(t)-A| = |f(t)-f_n(t)+f_n(t)+A_n-A_n-A|$.
+	$A_n\ra A\implies \exists N\in\mb N$ such that $|A_n-A|<\frac\epsilon3$, $n>N$.
+	So $f_n(t)\ra A_n$ as $t\ra x \implies \exists\delta>0$ such that $\forall t\in(N_\delta(x)\bs\set x)\cap E$, $|f_n(t)-A_n|<\frac\epsilon3$.
+	Then for $n>N$ and for $t\in(N_\delta(x)\bs\set x)\cap E$,
+	\begin{align*}
+	|f(t)-A| \leq \ob{<\frac\epsilon3\text{ since }f_n\ra f\text{ unif.}}{|f(t)-f_n(t)|} + |f_n(t)-A_n|+|A_n-A| < \frac\epsilon3+\frac\epsilon3+\frac\epsilon3 = \epsilon
+	\end{align*}
+	implies $\ds\lim_{t\ra x}f(t) =A$.
+\end{proof}
+\begin{corollary}
+	\label{cor-thm-7-11}
+	If $\set{f_n}$ is a sequence of continuous functions on $E$ such that $f_n\lra f$ uniformly, then $f$ is continuous on $E$. (Uniform limit of continuous functions is continuous).
+\end{corollary}
+\begin{remark}
+	For each $x\in E$, $\ds\lim_{t\ra x} f_n(T)=f_n(x)$ and $f_n(x)\lra f(x)$.
+	Then $\ds\lim_{t\ra x}f(t) = f(x)$ or $$\lim_{t\ra x}\plr{\lim_{n\ra\infty}} = \lim_{n\ra\infty} f_n(x) = \lim_{n\ra\infty}\plr{\lim_{t\ra x} f_n(T)}$$
+	i.e., the limit composition communtes when there is uniform convergence.
+\end{remark}
+Converse of corollary \ref{cor-thm-7-11} is not necessarily true.
+\begin{example}
+	Take $f_n(x) = \frac1{nx}$; $x\neq0$. Then $\ub{cts}{f_n}\ra\ub{cts}{0=f}$ pointwise on $(0,1]$.
+	But $f_n\not\ra0$ uniformly.
+
+	Take \fbox{$\epsilon=\frac12$} and \fbox{$x_n=\frac1{n+1}$} $\in(0,1]$. Then
+	$ |f_n(x)-0| = \frac1{n\plr{\frac1{n+1}}} = \frac{n+1}n = 1+\frac1n>\frac12=\epsilon$.
+\end{example}
+
+\begin{theorem}
+	\label{thm-7-13}
+	Suppose $K\subset (E,d)$ is compact, and
+	\begin{itemize}
+		\item $\set{f_n}$ sequence of functions on $K$,
+		\item $f_n\ra f$ pointwise on $K$,
+		\item $f$ continuous on $K$,
+		\item $f_n(x)\geq f_{n+1}(x)$ for all $n\in\mb N$ and $\forall x\in K$.
+	\end{itemize}
+	Then $f_n\lra f$ uniformly on $K$.
+\end{theorem}
+\begin{remark}
+	Uses compact nested sets in proof.
+\end{remark}
+
+\newpage
+
+\begin{theorem}
+	[Uniform convergence and integrability]
+	\label{thm-7-16}
+	Suppose
+	\begin{itemize}
+		\item $\alpha$ monotonically increasing on $[a,b]$,
+		\item $f_n\in\mb R(\alpha)$ for alll $n\in\mb N$ on $[a,b]$,
+		\item $f_n\lra f$ uniformly on $[a,b]$.
+	\end{itemize}
+	Then
+	\begin{itemize}
+		\item $f\in\mb R(\alpha)$ on $[a,b]$, and
+		\item $\ds\int_a^b f\,d\alpha = \lim_{n\ra\infty} \int_a^b f_n\,d\alpha$
+		\item[or,] $\ds\int_a^b\lim_{n\ra\infty} f_n\,d\alpha = \lim_{n\ra\infty} \int_a^b f_n\,d\alpha$.
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	Define $\ds\epsilon_n:= \sup_{x\in[a,b]} |f_n(x)-f(x)|$ $\forall n\in\mb N$.
+	By (2) for uniform convergence $\epsilon_n\ra0$ as $n\ra\infty$. $(*)$
+
+	Then $|f_n(x)-f(x)| \leq \epsilon_n$ for all $x\in[a,b]$, $\forall n\in\mb N$.
+	This implies $$(**) \qquad \epsilon_n\leq f(x) - f_n(x) \leq \epsilon_n \implies f_n(x)-\epsilon_n \leq f(x) \leq \epsilon_n + f_n(x).$$
+	So $_-\int_a^b\blr{f_n(x)-\epsilon_n}\,d\alpha \leq\, _-\int_a^bf\,d\alpha \leq\, ^-\int_a^bf\,d\alpha \leq\, ^-\int_a^b \blr{\epsilon_n+f_n(x)}\,d\alpha$.
+
+	$\implies 0\leq\, ^-\int_a^bf\,d\alpha -\, _-\int_a^bf\,d\alpha \leq \int_a^b \blr{\epsilon_n+f_n - f_n +\epsilon_n}\,d\alpha = 2\epsilon_n\int_a^b\,d\alpha = 2\us{\downarrow0\text{ as }n\ra\infty}{\epsilon_n[\alpha(b)-\alpha}(a)]$.
+
+	Fix $\epsilon>0$. Then $\exists N\in\mb N$ such that $0\leq\, ^-\int_a^bf\,d\alpha -\,_-\int_a^bf\,d\alpha < \epsilon$ \ul{\ul{for $n>N$}}.
+	
+	This implies $^-\int_a^bf\,d\alpha = _-\int_a^bf\,d\alpha = \int_a^bf\,d\alpha \implies f\in\ms R(\alpha)$. Now,
+	\begin{align*}
+		\mlr{\int_a^bf\,d\alpha - \int_a^bf_n\,d\alpha}
+		&\leq \us{\downarrow0}{\epsilon_n} \ub{\alpha(b)-\alpha(a)}{\int_a^b d\alpha} \qquad \text{using }(**)
+	\end{align*}
+	For fixed $\epsilon>0$, $\exists N\in\mb N$ such that $\mlr{\int_a^bf\,d\alpha - \int_a^bf_n\,d\alpha} < \epsilon \implies \int_a^bf\,d\alpha = \lim_{n\ra\infty} \int_a^b f_n\,d\alpha$.
+\end{proof}
 
 \end{document}

@@ -2158,7 +2158,7 @@ $\implies n+1$ equations, $n+1$ unknowns $(c_0,\dots,c_n) \implies $ has 1 uniqu
 
 \subsubsection*{Evaluation}
 
-Given $c_0,c_1,\dots,c_n$ ($c_{-1},c_{n+1}$), then $q_3(x) = \sum_{i=1}^{n+1} c_i B_i(x)$.
+Given $c_0,c_1,\dots,c_n$ ($c_{-1},c_{n+1}$), then $\ds q_3(x) = \sum_{i=1}^{n+1} c_i B_i(x)$.
 Suppose $x\in[x_{k-1},x_k]$ for some $1\leq k\leq n$.
 \begin{align*}
 	\implies q_3(x) &= c_{k-2} B_{k-2}(x) + c_{k-1} B_{k-1}(x) + c_kB_k(x) + c_{k+1}B_{k+1}(x).
@@ -2206,5 +2206,74 @@ Then, $\ds\lim_{n\ra\infty} I_n(f) = I(f)$ for $f$ sufficiently nice.
 	$$ |I(f)-I_n(f)| \leq \frac{b-a}{12}h^2 \max_{a\leq\xi\leq b}|f''(\xi)| \ra 0 $$
 	as $h\ra 0$ ($n\ra\infty$) for $h = \frac{b-a}n$. Better method is corrected trapezoidal rule.
 \end{example}
+
+\subsection*{\S5.1 A review of the Definite Integral}
+
+\begin{itemize}
+	\item Choose $n>0$.
+	\item Pick $n-1$ points such that $x_i^{(n)}\in(a,b)$ with $x_i^{(n)}\neq x_j^{(n)}$, $x_0^{(n_)}=a$, $x_n^{(n)}=b$.
+	\item Let $h_i^{(n)} = x_i^{(n)}-x_{i-1}^{(n)}$ and $h^{(n)}=\max_i \set{h_i^{(n)}}$.
+	\item Define \fbox{$\ds I_n(f,\vec\eta\,^{(n)} = \sum_{i=1}^n f(\eta_i\,^{(n)})h_i^{(n)}$} for some points $\vec\eta\,^{(n)}$ such that $x_{i-1}^{(n)} \leq \eta_i\,^{(n)} \leq x_i^{(n)}$ (arbitrary).
+\end{itemize}
+\begin{definition}
+	[Riemann Integral]
+	Suppose $\lim_{n\ra\infty} h^{(n)}=0$.
+	Then $C = \int_a^b f(x)\,dx$ exists for a given $a,b,f$ \ul{if} $\ds\lim_{n\ra\infty} I_n(f,\vec\eta\,^{(n)}) = C$ independent of the choices for $\vec\eta\,^{(n)}$ and $\set{x_i^{(n)}}$.
+\end{definition}
+\begin{example}:
+	\begin{itemize}
+		\item $L_n(f)$ - left-endpoint rule $\eta_i=x_{i-1}$
+		\item $R_n(f)$ - right-endpoint rule $\eta_i=x_i$
+		\item $M_n(f)$ - midpoint rule $\eta_i=\frac{x_{i-1}+x_i}2$
+	\end{itemize}
+	\begin{enumerate}
+		\item[$*$] Riemann sums integrate a piecewise constant-valued approximation/interpolant of $f$ exactly, where $p_0(x) = f(\eta_i)$ for all $x_{i-1}<x<x_i$.
+		\item[$*$] They are all quadrature rules $\ds I_n(f) = \sum_{i=i_0}^n \omega_i f(x_i)$ for $x_i=\eta_i^{(n)}$, $\omega_i = h_i^{(n)}$, $i_0=1$.
+		\item[$*$] converges for $f$ continuous.
+		\item[$*$] Typically say it converges slowly due to the inaccuracy of a piecewise \ul{constant} approximation.
+	\end{enumerate}
+\end{example}
+
+\begin{theorem}
+	Suppose a quadrature rule $I_n$ integrates all polynomials of degree $\leq N$ exactly.
+	Let $f(x)=p_N(x) + R_N(x)$ for $p_N$ a polynomial of degree $\leq N$ (Ex. Taylor's Remainder Theorem).
+	Then $$I(f)-I_n(f) = I_n(R_N)-I_n(R_N).$$
+\end{theorem}
+\begin{proof}
+	\begin{align*}
+		I(f)-I_n(f) &= I\plr{p_N+R_N}-I_n\plr{p_N+R_N} \\
+					&= I(p_N)+I(R_N) - \us{=I(p_N)}{I_n(p_N)} - I_n(R_N) \\
+					&= I(R_N)-I_n(R_N).
+	\end{align*}
+\end{proof}
+\begin{enumerate}
+	\item[$*$] To gauge how accurate a given rule $I_n(f)$ is, we see what the largest degree $N$ is such that $I(p)=I_n(p)$ for all polynomials $p$ of degree $\leq N$.
+		$L_n,R_n:N=0$. $T_n,M_n:N=1$.
+\end{enumerate}
+
+\subsection*{\S5.4 The Midpoint Rule}
+
+\ul{Goal}: show it is more accurate than $L_n,R_n$, and $T_n$.
+
+Riemann sums: $\int_{x_{i-1}}^{x_i} f(x)\,dx \approx \int_{x_{i-1}}^{x_i} f(\eta_i)\,dx = f(\eta_i)(x_i-x_{i-1})$,
+Midpoint rule: $\eta_i=\frac{x_{i-1}+x_i}2$.
+
+\begin{observe}
+	$f(x) = f(\eta_i)+(\eta_i-x)f'(\eta_i) + \frac12(\eta_i-x)^2f''(\xi_i)$ by Taylor's Theorem.
+\end{observe}
+\begin{align*}
+	\int_{x_{i-1}}^{x_i} f(x)\,dx - \int_{x_{i-1}}^{x_i} f(\eta_i)\,dx
+	&= \int_{x_{i-1}}^{x_i} \blr{ \us{(1)}{(\eta_i-x)f'(\eta_i)} + \us{(2)}{\frac12(\eta_i-x)^2f''(\os{\xi_i(x)}{\xi_i})} } \\
+	(1) &= f'(\eta_i)\int_{x_{i-1}}^{x_i}(\eta_i-x)\,dx
+		= f'(\eta_i)\blr{\eta_ix-\frac12x^2}_{x_{i-1}}^{x_i} \\
+		&= f'(\eta_i)\blr{\eta_i(x_i-x_{i-1}) - \frac12\set{x_i^2-x_{i-1}^2} } \\
+		&= f'(\eta_i)\blr{\eta_i(x_i-x_{i-1}) - \frac12(x_i-x_{i-1})(x_i+x_{i+1}) } \\
+		&= f'(\eta_i)(x_i-x_{i-1})\blr{\eta_i - \frac{x_i+x_{i+1}}2 } \\
+		&= \begin{cases} 0 & \text{if } \eta_i = \frac{x_{i-1}+x_i}2, \\ \mc O(h^2) & \text{otherwise}. \end{cases} \\
+	(2) &\leq \int_{x_{i-1}}^{x_i} \frac12h^2 \max_{a\leq\xi\leq b} |f''(\xi)|\,dx
+		= \frac12h^3\max_{a\leq\xi\leq b} |f''(\xi)|
+\end{align*}
+$\int_{x_{i-1}}^{x_i} 1\,dx = h$ Integral MVT
+$$ (2) = \frac1{24}(x_i-x_{i-1})^3 f''(\xi_i')$$ for some $\xi_i'$.
 
 \end{document}

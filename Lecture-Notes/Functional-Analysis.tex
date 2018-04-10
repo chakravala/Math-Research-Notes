@@ -1600,4 +1600,76 @@ Consider equation $(*)$ $Ax = \lambda x$, $x$ is $n\times 1$ in $\mb C^n$, $\lam
 
 \ul{HW} 3.9: (G) 4,5,6; 3.10: (G) 13.
 
+Last time: spectral theory in finite dimensions (equivalently, eigenvalues and eigenvectors of $n\times n$ matrices).
+characeristic equation: $\det(A-\lambda I) = 0 = \det(\lambda I-A)$.
+$\lambda$ is an eigenvalue of $A \iff \lambda$ is a solution (or zero) of characteristic equation.
+The spectrum of $A$ is $\sigma(A) = \setc{\lambda}{\lambda\text{ is an eigenvalue}}$.
+\begin{note}
+	$\sigma(A)$ is a closed subset of $\mb C$.
+\end{note}
+The resolvent set is $\rho(A)= \mb C\bs\sigma(A)$, So $\rho(A)$ an pen subset of $\mb C$.
+\begin{note}
+	$\lambda\in\rho(A)\iff (A-\lambda I)\inv$ exists.
+\end{note}
+Since we are in finite dimensional space, there are additional properties guaranteed, that may not hold in inf. dimensions.
+\fbox{Thus $\lambda\in\rho(A)\iff(A-\lambda I)\inv$ exists, $(A-\lambda I)\inv$ is bounded, and $\ms D(A-\lambda I)\inv = X$.}
+
+In order to generalize to possibly infinite dimensional spaces, we first define resolvent set.
+Let $X$ be a complex normed space, and let $T:\ms D(T)\subset X\ra X$ be a linear operato be a linear operator. Define
+\begin{align*}
+	T_\lambda &= T-\lambda I, & \ms D(T_\lambda) &= \ms D(T) \\
+	R_\lambda &= T_\lambda\inv = (T-\lambda I)\inv & \qquad \text{if it} & \text{ exists}
+\end{align*}
+is called the \ul{resolvent operator} of $T$.
+Consider the following properties:
+\begin{enumerate}
+	\item[(R1)] $(T-\lambda I)\inv$ exists
+	\item[(R2)] $(T-\lambda I)\inv$ is bounded
+	\item[(R3)] $(T-\lambda I)\inv$ is densely defined
+		(equivalently $\ms D(T-\lambda I)\inv$ is dense in $X$ or, $\ms R(T-\lambda I)$ is dense in $X$).
+\end{enumerate}
+In finite dimensions, either all true or none true.
+\begin{remark}
+	$Ax=\lambda x\iff Ax=\lambda Ix\iff Ax-\lambda Ix = 0 \iff (A-\lambda I)x = 0$.
+\end{remark}
+\newpage
+Define following subsets of $\mb C$: 
+\begin{align*}
+	\rho(T) &= \setc{\lambda\in\mb C}{\text{R1, R2, R3 are satisfied}} \\
+	\sigma_p(T) &= \setc{\lambda\in\mb C}{\text{R1 not satisfied}} = \text{point spectrum}:\text{set of eigenvalues} \\
+	\sigma_c(T) &= \setc{\lambda\in\mb C}{\text{R1, R3 satisfied, but R2 not satisfied}}\\
+	\sigma_r(T) &= \setc{\lambda\in\mb C}{\text{R1 satisfied, R3 not satisfied,}} \\
+	\sigma(T) &= \sigma_p(T)\cup\sigma_c(T)\cup\sigma_r(T)
+\end{align*}
+is the spectrum of $T$.
+So $\sigma(T) = \mb C\bs\rho(T)$
+\begin{example}
+	[$X=\ell^2$] For $x=(\xi_1,\xi_2,\dots)$ define $Tx=(0,\xi_1,\xi_2,\dots)$.
+	$T$ is a bounded linear operator, $||T||=1$. Consider $\lambda = 0$:
+	\begin{align*}
+		R_\lambda(T) = (T-0I)\inv = T\inv \qquad \text{exists (the left shift)}
+	\end{align*}
+	But $\ms D(T\inv) = \ms R(T) = \setc{y=(\eta_j)}{\eta_1=0}$.
+	This is not dense in $\ell^2$. So $0\in\sigma_r(T)$.
+\end{example}
+For spectral properties of bounded linear operators, the following is useful.
+\begin{theorem}
+	Let $X$ be Banach space, and let $T\in B(X,X)$.
+	If $||T||<1$, then $(I-T)\inv$ exists, $\ms D(I-T)\inv=X$, and $(I-T)\inv = \sum_{j=0}^\infty T^j = I+T+T^2+\dots$ $(*)$.
+\end{theorem}
+\begin{proof}
+	Note: $||T^j|| \leq ||T||^j$.
+	Note also geometric series $\sum_{j=0}^\infty \alpha^j$ converges absolutely if $0\leq\alpha<1$. Thus $\sum_{j=0}^\infty||T||^j$ converges.
+	Thus $\sum_{j=0}^\infty T^j$ is Cauchy in $B(X,X)$.
+	Since $B(X,X)$ is complete, then series converges, say $S=\sum_{j=0}^\infty T^j$.
+	Observe
+	\begin{align*}
+		(I-T)(I+T+T^2+\dots+T^n)
+		&= (I+T+T^2+\dots+T^n)(I-T) \\
+		&= (I-T^{n+1})
+	\end{align*}
+	Let $n\ra\infty$:
+	$ (I-T)S = S(I-T) = I$.
+\end{proof}
+
 \end{document}
