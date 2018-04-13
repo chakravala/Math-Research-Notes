@@ -1655,7 +1655,7 @@ So $\sigma(T) = \mb C\bs\rho(T)$
 For spectral properties of bounded linear operators, the following is useful.
 \begin{theorem}
 	Let $X$ be Banach space, and let $T\in B(X,X)$.
-	If $||T||<1$, then $(I-T)\inv$ exists, $\ms D(I-T)\inv=X$, and $(I-T)\inv = \sum_{j=0}^\infty T^j = I+T+T^2+\dots$ $(*)$.
+	If $||T||<1$, then $\exists(I-T)\inv$, $\ms D(I-T)\inv=X$, and $(I-T)\inv = \sum_{j=0}^\infty T^j = I+T+T^2+\dots$ $(*)$.
 \end{theorem}
 \begin{proof}
 	Note: $||T^j|| \leq ||T||^j$.
@@ -1665,11 +1665,90 @@ For spectral properties of bounded linear operators, the following is useful.
 	Observe
 	\begin{align*}
 		(I-T)(I+T+T^2+\dots+T^n)
-		&= (I+T+T^2+\dots+T^n)(I-T) \\
-		&= (I-T^{n+1})
+		&= (I+T+T^2+\dots+T^n)(I-T)
+		= (I-T^{n+1})
 	\end{align*}
 	Let $n\ra\infty$:
 	$ (I-T)S = S(I-T) = I$.
 \end{proof}
+
+Last time: resolvent set and spectrum for linear operators on normed spaces,
+$T_\lambda = T-\lambda I$, $R_\lambda(T) = (T-\lambda I)\inv$.
+If $T$ is a linear operator on Banach space $X$, and $||T||<1$, then $(I-T)\inv$ exists and is bounded, $\ms D(I-T)\inv = X$, and $(I-T)\inv = I+T+T^2+\cdots$.
+
+\begin{theorem}
+	Let $T$ be bounded linear operator on complex Banach space $X$.
+	Then $\rho(T)$ is an open subset of $\mb C$ (Hence $\sigma(T)$ is closed in $\mb C$).
+\end{theorem}
+\begin{proof}
+	Note it is true if $\rho(T)=\emptyset$, so assume $\rho(T)\neq0$.
+	[To show $\rho(T)$ is open, show for every $\lambda\in\rho(T)$ there is an open disk/neighborhood containing $\lambda$ which is also in $\rho(T)$].
+	Fix $\lambda_0\in\rho(T)$. Observe if $\lambda\in\mb C$,
+	\begin{align*}
+		T-\lambda I &= (T-\lambda_0I)-(\lambda-\lambda_0)I \\
+					&= (T-\lambda_0I)[I-(\lambda-\lambda_0)(T-\lambda_0I)\inv]
+	\end{align*}
+	Thus, $ T_\lambda = T_{\lambda_0} V$, where $V = I-(\lambda-\lambda_0)(T-\lambda_0I)\inv$.
+	By previous theorem, $V$ is invertible, $V\inv$ is bounded, and $\ms D(V\inv)=X$ if $||(\lambda-\lambda_0)R_{\lambda_0}|| < 1$ and $|\lambda-\lambda_0|\cdot||R_{\lambda_0}||<1$.
+	This is true if $|\lambda-\lambda_0|<\frac1{||R_{\lambda_0}||}$.
+	For these~$\lambda$, $\lambda\in\rho(T)$.
+	Thus $\rho(T)$ is open in $\mb C$.
+\end{proof}
+Also true in more general case of unbounded (closed) operators on complex normed spaces.
+\begin{note}
+	When $T$ is bounded, then $\rho(T)\neq\emptyset$, in fact $\rho(T)\supset\setc\lambda{|\lambda|>||T||}$.
+	To see this, suppose $|\lambda|>||T||$. Then $T-\lambda I = -\lambda(I-\frac1\lambda T)$.
+	But $||\frac1\lambda T||=\frac1{|\lambda|}||T||<1$.
+	Thus $(I-\frac1\lambda T)\inv$ exists, is bounded, and domain $=X$.
+	So same true for $T-\lambda I$, hence $\lambda\in\rho(T)$.
+	Later we show when $T$ is bounded, $\sigma(T)\neq\emptyset$.
+\end{note}
+Next we define a class of unbounded linear operators important for applications.
+\begin{definition}
+	Let $X,Y$ be normed spaces and $T:\ms D(T)\subset X\ra Y$.
+	$T$ is \ul{closed} if whenever $(x_n)\subset\ms D(T)$ and $x_n\ra x$ in $X$ and $Tx_n\ra y$ in $Y$, it implies $x\in\ms D(T)$ and $Tx=y$.
+\end{definition}
+\begin{note}
+	This is \ul{not} the same as bounded operator.
+	However, if $T$ is bounded and $\ms D(T)=X$, then $T$ is closed.
+\end{note}
+
+\begin{theorem}
+	$T$ is \ul{closed} if and only if its graph $\ms G(T)$ is closed in the normed space $X\times Y$, where $G(T) = \setc{(x,y)}{x\in\ms D(T),y=Tx}$ and $X\times Y = \setc{(x,y)}{x\in X,y\in Y}$.
+	$$ ||(x,y)|| = \plr{||x||_X^2+||y||_Y^2}^{1/2} $$
+\end{theorem}
+\newpage
+\begin{theorem}
+	[Closed Graph Theorem]
+	Let $T:X\ra Y$ be closed operator, $X,Y$ Banach spaces.
+	If $\ms D(T)$ is closed, then $T$ is bounded.
+\end{theorem}
+\begin{example}
+	[$X=\Cb{}01$]
+	$||\,||_\infty$, $\ms D(T)=\Cb101$, $(Tx)(t)=X'(t)$.
+	Previously we verified $T$ is unbounded. We claim $T$ is closed.
+	Suppose $(x_n)\subset\ms D(T)$ satisfies $x_n(t)\ra x(t)$ in $X$ and $Tx_n\ra y$.
+	Need to show $x\in\ms D(T)$ and $Tx=y$.
+	Then $Tx_n\ra y$ means $x_n'(t)\ra y(t)$. Observe
+	\begin{align*}
+		\int_0^t y(\tau)\,d\tau 
+		&= \int_0^t \lim_{n\ra\infty}(Tx_n)(\tau)\,d\tau
+		= \lim_{n\ra\infty} \int_0^t x_n'(\tau)\,d\tau
+		= \lim_{n\ra\infty}\blr{x_n(t)-x_n(0)} = x(t)-x(0).
+	\end{align*}
+	So $x(t)=x(0)+\int_0^t y(\tau)\,d\tau$.
+	Thus $x$ is differentiable and $x'(t)=y(t)\in \Cb{}01$, so $x\in\Cb101=\ms D(T)$ and $Tx=y$. $\checkmark$
+	$T$ is closed, and so are several related operators.
+	\begin{align*}
+		T_1x &= x', & \ms D(T_1) &= \setc{x\in\Cb101}{x(0)=0} \\
+		T_0x &= x', & \ms D(T_0) &= \setc{x\in\Cb101}{x(0)=0=x(1)} \\
+		T_kx &= x', & \ms D(T_k) &= \setc{x\in\Cb101}{x(1)=k x(0)}
+	\end{align*}
+	$T$ onto, not invertible ($Tx=0$ for $x(t)\equiv$ constant).
+	$T_1$ onto, invertible: $Tx=0$ implies $x(t)\equiv0$.
+	Also, if $y\in X$, then $Tx=y$ for $x(t)=\int_0^ty(\tau)\,d\tau$.
+	$T_0$ invertible, not onto.
+	%If $y\in\Cb{}01$, then $x(t)=\int_0^ty(\tau)\,d\tau$.
+\end{example}
 
 \end{document}

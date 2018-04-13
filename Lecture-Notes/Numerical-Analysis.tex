@@ -2276,4 +2276,146 @@ Midpoint rule: $\eta_i=\frac{x_{i-1}+x_i}2$.
 $\int_{x_{i-1}}^{x_i} 1\,dx = h$ Integral MVT
 $$ (2) = \frac1{24}(x_i-x_{i-1})^3 f''(\xi_i')$$ for some $\xi_i'$.
 
+\begin{align*}
+	\int_{x_{i-1}}^{x_i}f(x)\,dx - \int_{x_{i-1}}^{x_i} f(\eta_i)\,dx 
+	&= (1) + (2) \\
+	(1) &= \begin{cases} 0 & \text{if } \eta_i = \frac{x_{i-1}+x_i}2, \\ \mc O(h^2) & \text{otherwise}. \end{cases} \\
+	(2) &= v\frac1{24}(x_i-x_{i-1})^3 f''(\xi_i') \qquad \text{for some }\xi_i' \\
+	I(f) - I_n(f) &= \int_a^b f(x)\,dx- \sum_{i=1}^n f(\eta_i)h \\
+				  &= \sum_{i=1}^n \int_{x_{i-1}}^{x_i} [f(x)-f(\eta_i)]\,dx = c\sum_{i=1}^n h^3 = ch^3n = ch^2(b-a) \\
+				  &\leq \begin{cases} \mc O(h^2) & \text{if } \eta_i = \frac{x_{i-1}+x_i}2 \\ \mc O(h) & \text{otherwise} \end{cases}
+\end{align*}
+Exact result:
+\begin{itemize}
+	\item[$M_n:$] $I(f)-I_n(f)=\frac{b-a}{24} h^2 f''(\xi)$ for some $a\leq\xi\leq b$.
+	\item[$T_n:$] $T(f)-T_n(f)=\frac{b-a}{12} h^2 f''(\xi)$
+	\item[$*$] $M_n$ is typically considered more accurate than $L_n,R_n,T_n$.
+	\item $L_n,R_n$ exact for constant functions.
+	\item $I_n,M_n$ are exact for linear functions.
+	\item $M_n$ uses a piecewise constant interpolant, but is exact for linear all functions.
+	\item[$*$] $\exists$ integral fules more accurate than $M_n$ despite having the same form $I_n = \sum_{i=1}^n \omega_i f(x_i)$.
+\end{itemize}
+
+Motivation: integrate piecewise polynomial interpolants instead of using Riemann sums (assuming piecewise constant).
+$M_n$ integrates a piecwise constant (discontinuous) interpolate where $p_0(\eta_i)=f(\eta_i)$.
+\begin{example}
+	Apply midpoint rule with $h=\frac14$ to approximate $\int_0^1 \ln(1+x)\,dx=2\ln 2-1$.
+	How small does $h$ need to be to guarantee $|I-M_n(f)|\leq 10^{-6}$ ?
+	\begin{align*}
+		M_4(f) &= \sum_{i=1}^4 \ln(1+\eta_i)\cdot h \\
+			   &= \frac14\blr{ \ln\plr{1+\frac13}+\ln\plr{1+\frac38}+\ln\plr{1+\frac58}+\ln\plr{1+\frac78}} \\
+			   &= \frac14 \ln\plr{\frac{19305}{4096}} \approx 0.387588 \\
+		I *= 2\ln 2-1 \approx 0.38629
+	\end{align*}
+	\begin{align*}
+		\frac{b-a}{24} h^2 \max_{a\leq\xi\leq b} |f''(\xi)| &\leq 10^{-6} \\
+		\frac1{24} h^2 \max_{0\leq\xi\leq 1} \os{=1}{\mlr{-\frac1{(1+x)^2}}} & \leq 10^{-6} \\
+		h^2 &\leq 24\cdot 10^{-6} \\
+		\fbox{$ h \leq \frac{\sqrt6}{500} \approx 0.0004899$}
+	\end{align*}
+	$n = \frac1h$, $n\geq 204.1$, \fbox{$n\geq 205$ for $M_n$}.
+\end{example}
+
+\subsection*{\S5.2 Improving the Trapezoidal Rule}
+
+\ul{Goal}: Derive an $\mc O(h^4)$ version of $T_n$.
+Define $T_n^c(f) = T_n(f) = -\frac1{12} h^2 \blr{ f'(b)-f'(a) }$, which can be approximated with the right choice of difference quotients $\implies$ don't need $f'$.
+\begin{observe}
+	\begin{align*}
+		\int_a^b f(x)\,dx - T_1^c(f)
+		&= \us{\text{\S2.5}}{\fbox{$\int_a^b f(x)\,dx - T_1(f)$}} + \frac1{12}(b-a)^2\blr{f'(b)-f'(a)} \\
+		&= \ul{-\frac1{12}(b-a)^3 f''(\xi)} + \frac1{12} (b-a)^3 f''(\eta)^{\la\text{\text{MVT}}} \\
+		&= \frac1{12} (b-a)^2 \blr{f''(\eta)-f''(\xi)} \qquad |\eta-\xi|\leq b-a \\
+		&= \frac1{12} (b-a)^4 f'''(c)
+	\end{align*}
+	In composite form:
+	$\ds |I(f)-T_n^c(f)| \leq ch^3 \max_{a\leq c\leq b} |f'''(c)| $
+	lost a power when summing.
+	Lazy analysis $\implies$ gained one order of accuracy.
+\end{observe}
+\begin{fact}
+	Error $= \mc O(h^2)$ using a more refined analysis (Grad HW).
+\end{fact}
+\begin{fact}
+	$T_n^c$ is equivalent to exactly integrating the piecewise cubic Hermite interpolate, where interior derivatives cancel in the summation (requires uniform spacing).
+\end{fact}
+
+\begin{example}
+	Apply the trapezoidal rule and the corrected trapezoidal rule to approximate $$I=\int_0^1 \ln(1+x)\,dx = 2\ln2-1$$ with $h=\frac14$.
+	\begin{align*}
+		T_4(f) &= \frac h2\blr{\ln(1+0)+2\ln\plr{1+\frac14}+2\ln\plr{1+\frac12}+2\ln\plr{1+\frac34}+\ln(1+1)} \\
+			   &\approx 0.3836995. \\
+		T_4^c(f) &= T_4(f)-\frac1{12}h^2\blr{\frac1{1+x}\bigg|_{x=1}-\frac1{1+x}\bigg|x_{x=0}} \\
+				 &= T_4(f) + \frac1{384} \approx 0.386303676. \\
+		I &= 2\ln2-1 \approx 0.38629436. \\
+		|I-T_4| &\approx 0.00259. \\
+		|I-T_4^c| &\approx 0.00000932.
+	\end{align*}
+\end{example}
+
+\subsubsection*{\ul{Application} Error Estimation}
+
+The correction term is easily computable $\frac1{12}h^2[f'(b)-f'(a)]$ when compared to the exact error $$\frac1{12}h^3\sum_{i=1}^nf''(\xi_i)$$ and approximate the error to high order. (for $f$ nice)
+$\implies$ Bound the approximate error when choosing $h$ $$\frac1{12}h^2|f'(b)-f'(a)|\leq\text{TOL}.$$
+
+\subsection*{\S5.3 Simpson's Rule}
+
+\ul{Goal}: Develop a more accurate method by exactly integrating a piecewise \ul{quadratic} interpolant.
+\begin{align*}
+	\int_a^b f(x)\,dx &\approx \int_a^b p_2(x)\,dx \qquad \text{where} \\
+	p_2(a) &= f(a) \\
+	* \ p_2\plr{\frac{a+b}2} &= f\plr{\frac{a+b}2} \\
+	p_2(b) &\approx f(b) \\
+\end{align*}
+\begin{enumerate}
+	\item[$*$] increased accuracy by using midpoint.
+\end{enumerate}
+$$ p_2(x) = f(a) L_0(x) + f\plr{\frac{a+b}2}L_1(x) + f(b)L_2(x)$$ for the Lagrange basis functions $L_j$.
+\begin{fact}For $h = \frac{b-a}2$,
+	\begin{align*}
+		\int_a^b L_0(x)\,dx &= \frac h3, &
+		\int_a^b L_1(x)\,dx &= \frac{4h}3, &
+		\int_a^b L_2(x)\,dx &= \frac h3.
+	\end{align*}
+\end{fact}
+Thus
+\begin{align*}
+	\int_a^b f(x)\,dx &\approx \int_a^b p_2(x)\,dx \\
+					  &= f(a)\int_a^b L_0(x)\,dx + f\plr{\frac{a+b}2}\int_a^b L_1(x)\,dx + f(b)\int_a^b L_2(x)\,dx \\
+					  &= \frac h3\blr{f(a)+4f\plr{\frac{a+b}2}+f(b)} \\
+					  &\equiv S_2(f).
+\end{align*}
+Letting $p_2$ be the \ul{piecewise} quadratic interpolant for a \ul{uniform} mesh $x_i=a+ih$, $i=0,1,\dots,n=2m$, we have $S_n(f) = \frac h3\blr{f(x_0)+4f(x_1)+2f(x_2)+4f(x_3)+ \dots + 2f(x_{n-2})+4f(x_{n-1})+f(x_n)}$.
+\begin{enumerate}
+	\item[$*$] $n$ must be an even number, $n=2m$.
+\end{enumerate}
+\begin{example}
+	Apply Simpson's rule with $h=\frac14$ to approximate $\int_0^1 \frac1{1+x^3}\,dx$.
+	\begin{align*}
+		S_4\plr{\frac1{1+x^3}}
+		&= \frac{1/4}3\blr{ f(0)+4f\plr{\frac14}+2f\plr{\frac12}+4f\plr{\frac34}+f(1)} \\
+		&= \frac1{12}\blr{1+4\plr{\frac{64}{65}}+2\plr{\frac89}+4\plr{\frac{64}{91}}+\frac12} \\
+		&= \frac{82141}{98280} \approx 0.835\ul{7}855. \\
+		\int_0^1 \frac1{1+x^3}\,dx &= \frac13\ln2+\frac19\sqrt3\pi \\
+								   &\approx 0.835\ul{6}488
+	\end{align*}
+\end{example}
+
+\subsubsection*{Convergence}
+
+Interpolation: $f(x)-p(x) = \frac{\omega_2(x)}{3!} f^{(3)}(\xi_x)$ for some $\xi_x$ in $(a,b)$, where $\omega_2(x) = (x-a)\plr{x-\frac{a+b}2}(x-b)$.
+\begin{align*}
+	|I(f)-S_2(f)|
+	&= \mlr{\int_a^b\blr{f(x)-p_2(x)}\,dx}
+	= \mlr{\int_a^b \frac{\omega_2(x)}{3!} f^{(3)}(\xi_x)\,dx} \\
+	&\leq \frac{(b-a)^3}6\int_a^b \max_{a\leq\xi\leq b} \mlr{f^{(3)}(\xi)}\,dx
+	= \frac{(b-a)^4}6 \max_{a\leq\xi\leq b}\mlr{f^{(3)}(\xi)} \\
+	\implies |I(f)-S_{2m}(f)|
+	&\leq \frac{(b-a)h^3}5 \max_{a\leq\xi\leq b} \mlr{f^{(3)}(\xi)}.
+\end{align*}
+\begin{enumerate}
+	\item Better than $T_n$, $\mc O(h^2)$
+	\item exact for quadratics since then $f^{(3)}=0$.
+\end{enumerate}
+
 \end{document}

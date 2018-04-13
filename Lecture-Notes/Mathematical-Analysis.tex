@@ -142,7 +142,7 @@ Alternative definition of limit.
 \end{theorem}
 \begin{proof}
 	\say{$\implies$} Suppose $\lim_{x\ra p} f(x) = q$. Let $\set{x_n}\subset E$ such that $x_n\neq p$ and $x_n\ra p$.
-	\ul{\ul{NTS}}: $\lim_{n\ra\infty} f(x_n) = p$.
+	\ul{\ul{NTS}}: $\ds \lim_{n\ra\infty} f(x_n) = p$.
 	Let $\epsilon>0$ be fixed. 
 	(NTF: $N\in\mb N$ such that $d_Y(f(x_n),q)<\epsilon$ for all $n>N$).
 	Since $x_n\ra p \implies \exists N\in\mb N$ such that $d_X(x_n,p)<\delta$ for $n>N$.
@@ -2020,6 +2020,96 @@ Converse of corollary \ref{cor-thm-7-11} is not necessarily true.
 		&\leq \us{\downarrow0}{\epsilon_n} \ub{\alpha(b)-\alpha(a)}{\int_a^b d\alpha} \qquad \text{using }(**)
 	\end{align*}
 	For fixed $\epsilon>0$, $\exists N\in\mb N$ such that $\mlr{\int_a^bf\,d\alpha - \int_a^bf_n\,d\alpha} < \epsilon \implies \int_a^bf\,d\alpha = \lim_{n\ra\infty} \int_a^b f_n\,d\alpha$.
+\end{proof}
+
+\ul{Test 3}: Definitions and examples. 1-5,7,8, Theorem 6.12, 10 (G), 11 (G), 15 (G), 16 (G)
+
+\begin{recall}
+	$\us{\in\ms R(\alpha)}{f_n}\lra f$ uniformly on $[a,b] \implies f\in\ms R(\alpha)$ and $\ds\lim_{n\ra\infty} \int_a^b f_n\,d\alpha = \int_a^b f\,d\alpha = \int_a^b \lim_{n\ra\infty} f_n\,d\alpha$.
+\end{recall}
+
+\subsection*{Series of functions}
+
+We say $\sum_{n=1}^\infty f_n(x)$ converges pointwise (uniform) on $(E,d)$ if and only if the sequence of partial sums $\set{s_n}$ converges pointwise (uniform) on $(E,d)$.
+
+\begin{corollary}
+	Suppose
+	\begin{itemize}
+		\item $f_n\in\ms R(\alpha)$ on $[a,b]$, $\forall n$
+		\item $\ds\sum_{n=1}^\infty f_n(x) = f(x)$ \ul{uniformly} on $[a,b]$.
+	\end{itemize}
+	Then $\int_a^b f\,d\alpha = \sum_{n=1}^\infty \int_a^b f_n\,d\alpha$ or, $\int_a^b \sum_{n=1}^\infty f_n\,d\alpha = \sum_{n=1}^\infty \int_a^b f_n\,d\alpha$.
+\end{corollary}
+\begin{proof}
+	Let $s_n:= \sum_{k=1}^n f_k$ for each $n\in\mb N$.
+	$f_n\in\mb R(\alpha)$ for each $n \implies s_n\in\ms R(\alpha)$ for each $n\in\mb N$.
+	$\sum f_n$ converges uniformly to $f \implies s_n\ra f$ uniformly.
+	By Theorem \ref{thm-7-16}, $\lim_{n\ra\infty} \int_a^b s_n\,d\alpha = \int_a^b f\,d\alpha$.
+	That is, $\ds\lim_{n\ra\infty} \int_a^b \plr{\sum_{k=1}^n f_k}\,d\alpha = \int_a^b \sum_{n=1}^\infty f_n\,d\alpha \implies \lim_{n\ra\infty} \sum_{k=1}^n \int_a^b f_k\,d\alpha = \int_a^b \sum_{n=1}^\infty f_n\,d\alpha \implies \sum_{n=1}^\infty \int_a^b f_n\,d\alpha = \int_a^b \lim_{n\ra\infty} f_n\,d\alpha$.
+\end{proof}
+
+\subsection*{Uniform convergence and differentiability}
+
+\begin{note}
+	Uniform convergence does not necessarily preserve differentiability.
+\end{note}
+\begin{recall}
+	$\epsilon_n := \sup_{x\in E} |f_n(x)-f(x)|$, $f_n\ra f$ uniformly on $E$ if and only if $\epsilon_n\ra 0$ as $n\ra\infty$.
+\end{recall}
+\begin{example}
+	Define $f_n(x) = \frac{\sin(nx)}{\sqrt n}$; $n\in\mb N$, $x\in[-1,1]$.
+	Then $f_n\ra 0$ pointwise on $[-1,1]$.
+	$f_n\ra 0$ uniformly? Define $\epsilon_n:= \sup_{x\in[-1,1]} |f_n(x)-0| = \sup_{x\in[-1,1]} \frac{|\sin(nx)|}{\sqrt n} \ra 0$ as $n\ra\infty$.
+	\ul{Now}, $f(x)\equiv 0$ on $[-1,1] \implies f'(x)=0$ $\checkmark$.
+	Also, $f_n'(x) = \sqrt n\cos(nx)$.
+	In particular, $f_n'(0) = \sqrt n\not\ra0=f'(0)$ implies that $$f_n'(x)\not\ra f'(x).$$
+\end{example}
+
+\begin{theorem}
+	\label{thm-7-17}
+	Suppose
+	\begin{enumerate}
+		\item $f_n:[a,b]\ra\mb R$ differentiable,
+		\item $\exists x_0\in(a,b)$ such that $\set{f_n(x_0)}_n\subset\mb R$ converges,
+		\item $f_n'$ converges uniformly.
+	\end{enumerate}
+	Then
+	\begin{enumerate}
+		\item[a)] $f_n$ converges uniformly to a function, say $f$
+		\item[b)] $\ds\lim_{n\ra\infty} f_n'(x) = f'(x)$
+	\end{enumerate}
+\end{theorem}
+\begin{proof} Cases:
+	\begin{enumerate}
+		\item[a)] We'll use Cauchy criterion to show $\set{f_n}$ converges uniformly.
+			Let $\epsilon>0$ be fixed. $\set{f_n(x_0)}\subset\ul{\ul{\mb R}}$ converges $\implies \exists N_1\in\mb N$ such that $|f_n(x_0)-f_m(x_0)|<\epsilon/2$ for $n,m>N_1$.
+			Next, $f_n'$ converges uniformly $\implies \exists N_2\in\mb N$ such that $|f_n'(t)-f_m'(t)|< \frac\epsilon{2(b-a)}$
+			(Not usable in This form!).
+			Since $f_n-f_m$ is differentiable, by MVT, for any $[s_1,s_2]\subset[a,b]$, $\exists t_0\in(s_1,s_2)$ such that
+			\begin{align*}
+				f_n'(t_0)-f_m'(t_0) &= \frac{(f_n-f_m)(s_1)-(f_n-f_m)(s_2)}{s_1-s_2}.
+			\end{align*}
+			Then
+			\begin{align*}
+				|f_n(s_1)-f_m(s_1)-f_n(s_2)+f_m(s_2)|
+				&= |f_n'(t_0)-f_m'(t_0)|(s_1-s_2) \\
+				&< \frac\epsilon{2(b-a)}|s_1-s_2| < \frac\epsilon2{(b-a)}(b-a) = \frac\epsilon2
+			\end{align*}
+			For $n,m>\max\set{N_1,N_2}$ and for all $t\in[a,b]$
+			\begin{align*}
+				|f_n(t)-f_m(t)| &= |f_n(t)-f_n(x_0)+f_n(x_0)-f_m(x_0)+f_m(x_0)-f_m(t)| \\
+								&\leq |f_n(x_0)-f_m(x_0)|+|f_n(t)-f_n(x_0)+f_m(x_0)-f_m(t)|
+								< \frac\epsilon2+\frac\epsilon2=\epsilon
+			\end{align*}
+			$\implies \set{f_n}$ is uniformly Cauchy $\implies f_n$ converges to some \ul{\ul{$f$}}.
+		\item[b)] Remains to show: Fix $x\in(a,b)$,
+			$\ds \lim_{n\ra\infty} \ub{\ds\lim_{\us{t\neq x}{t\ra x}} \frac{f_n(t)-f_n(x)}{t-x}}{f_n'(x)} = \ub{\ds\lim_{\us{t\neq x}{t\ra x}} \frac{f(t)-f(x)}{t-x}}{f'(x)} $.
+			
+			Define $\phi_n(t) := \frac{f_n(t)-f_n(x)}{t-x}$, $\phi(t) = \frac{f(t)-f(x)}{t-x}$; $t\neq x$.
+			\ul{Claim}: $\phi_n\ra\phi$ uniformly on $[a,b]\bs\set x$. Fix $\epsilon>0$.
+			For $m,n>N_2$ (same $N_2$ as above), $|f_n'(t)-f_m'(t)|<\frac\epsilon{2(b-a)}$.
+			Using definition of $\phi_n$, letting $s\ra t$, $\dots$
+	\end{enumerate}
 \end{proof}
 
 \end{document}
