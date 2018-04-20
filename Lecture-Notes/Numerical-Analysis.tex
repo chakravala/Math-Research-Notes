@@ -2418,4 +2418,144 @@ Interpolation: $f(x)-p(x) = \frac{\omega_2(x)}{3!} f^{(3)}(\xi_x)$ for some $\xi
 	\item exact for quadratics since then $f^{(3)}=0$.
 \end{enumerate}
 
+\ul{Goal}: Show the method is $\mc O(h^4)$ error [same as $T_n^c$]
+
+\begin{observe}
+	$I(x^3) = \int_a^b x^3\,dx = S_2(x^3)$, $x_0=a$, $x_1 = \frac{a+b}2$, $h=\frac{b-a}2$, $x_2=b$, so $I(x^3) = \frac14 x^4\big|_a^b = \frac14[b^4-a^4]$.
+\end{observe}
+\begin{align*}
+	S_2(x^3) &= \frac h3\blr{ f(a)+4f\plr{\frac{a+b}3}+f(b)} \\
+			 &= \frac{(b-a)/2}3\blr{a^3+4\plr{\frac{a+b}2}^3+b^3} \\
+			 &= \frac{b-a}6 \blr{a^3+\frac12(a+b)^3+b^3} \\
+			 &= \frac{b-a}{12} \blr{2a^3+(a+b)^3+2b^3} \\
+			 &= \frac{b-a}{12} \blr{2a^3+a^3+3a^2b+3ab^2+b^3+2b^3} \\
+			 &= \frac{b-a}4 \blr{a^3+a^2b+ab^2+b^3} \\
+			 &= \frac14\blr{a^3b+a^2b^2+ab^3+b^4-a^4-a^3b-a^2b^2-ab^3} \\
+			 &= \frac14[b^4-a^4] = \frac14x^4\bigg|_a^b = \int_a^b x^3\,dx = I(x^3).
+\end{align*}
+\begin{enumerate}
+	\item[$*$] Required choosing $x_1 = \frac{a+b}2$.
+\end{enumerate}
+\begin{theorem}
+	Simpson's Rule is exact for all cubic functions.
+\end{theorem}
+\begin{proof}
+	Let $p_3$ be a polynomial of degree $\leq 3$.
+	Then $p_3(x) = cx^3 + p_2(x)$ for some $c$ and polynomial $p_2$ with degree $\leq 2$.
+	Thus, $S_n(p_3) = S_n(cx^3+p_2(x)) = c S_n(x^3) + S_n(p_2) = cI(x^3)+I(p_2) = I(cx^3+p_2(x)) = I(p_3)$.
+\end{proof}
+\begin{theorem}
+	$|I(f)-S_2(f)| = \mc O\plr{(b-a)^5}$.
+\end{theorem}
+\begin{proof}
+	Define the Hermite cubic interpolant $q_3(x)$ by
+	\begin{itemize}
+		\item $q_3(a) = f(a)$
+		\item $q_3(b) = f(b)$
+		\item $q_3\plr{\frac{a+b}2} = f\plr{\frac{a+b}2}$
+		\item $q_3'\plr{\frac{a+b}2} = f'\plr{\frac{a+b}2}$.
+	\end{itemize}
+	Then, $\exists c$ such that, for $a\leq x\leq b$, 
+	$f(x)-q_3(x) = c\,\psi(x)f^{(4)}(\xi_x)$ with $\psi(x) = (x-a)\plr{x-\frac{a+b}2}^2(x-b)$ (interpolation error).
+	Note $|\psi(x)|\leq (b-a)^4$.
+	Thus,
+	\begin{align*}
+		|I(f)-S_2(f)| &= |I(f)-S_2(q_3)| \qquad \text{--- since function values agree}\\
+					  &= \mlr{\int_a^b [f(x)-q_3(x)]\,dx} \qquad \text{--- } S_2(q_3)=I(q_3) \text{ -- cubic} \\
+					  &\leq c(b-a)^4 \int_a^b \mlr{f^{(4)}(\xi_x)}\,dx \\
+					  &\leq c(b-a)^5 \max_{a\leq\xi\leq b} \mlr{f^{(4)}(\xi)}
+	\end{align*}
+\end{proof}
+\begin{corollary}
+	$\ds|I(f)-S_{2m}(f)| \leq ch^4(b-a)\max_{a\leq\xi\leq b} \mlr{f^{(4)}(\xi)}$.
+\end{corollary}
+\begin{fact}
+	$I(f)-S_2(f) = -\frac1{90}\plr{\frac{b-a}2}^5 f^{(4)}(\xi)$ and
+	$\ds|I(f)-S_{2m}(f)|\leq\frac{b-a}{180}h^4\max_{a\leq\xi\leq b}\mlr{f^{(4)}(\xi)}$.
+\end{fact}
+\begin{example}
+	How small of an $h$ is needed to have $|I(f)-S_{2m}(f)|\leq 10^{-6}$ for $I(f) = \int_0^1 \ln(1+x)\,dx = 2\ln2-1$?
+	\begin{align*}
+		\frac{b-a}{180} h^4 \max_{a\leq\xi\leq b} \mlr{f^{(4)}(\xi)}
+		&\leq 10^{-6} \\
+		\frac1{180} h^4 \max_{0\leq\xi\leq1} \mlr{-\frac6{(x+1)^4}}
+		&\leq 10^{-6} \\
+		\frac1{180} h^4 \cdot 6 &\leq 10^{-6} \\
+		h^4 &\leq \frac{180}6\cdot10^{-6} = \frac3{100,000} \\
+		h &\leq \frac1{10} \nrt4{\frac3{10}} \approx 0.074008.
+	\end{align*}
+	$2m = \frac1h = 13.15$, $2m\geq14$ --- next bigest even number \fbox{$n\geq14$}, $M_n(f)\implies n\geq 205$.
+\end{example}
+
+\subsection*{Gaussian Quadrature}
+
+\ul{Goal}: $I_n = \sum_{i=1}^n \omega_i^{(n)} f(x_i^{(n)})$ on $(a,b)$.
+Choose the weights and \ul{nodes} such that $I_n(p) = I(p)$ for $p$ a polynomial of degree $\leq d$ with $d$ as big as possible.
+\ul{Idea}: $f(x) = p_d(x) + R(x)$, Error $= I(R)-I_n(R)$ should be smaller when $d$ is maximized (Taylor's series: $R\ra0$ as $d\ra\infty$).
+
+\begin{observe}
+	\begin{align*}
+		M_1(f) &= \int_a^b f\plr{\frac{a+b}2}\,dx = (b-a)f\plr{\frac{a+b}2} \\
+		M_2(f) &= \frac{b-a}2f\plr{a+\frac{b-a}4}+\frac{b-a}2f\plr{a+\frac34(b-a)}
+	\end{align*}
+	writing $M_n(f) = I_n(f) = \sum_{i=0}^n \omega_i^{(n)} f(x_i^{(n)})$, we have the weights and nodes depend upon $a,b$.
+\end{observe}
+\begin{itemize}
+	\item[$*$] Make one rule on the interval $[-1,1]$ and describe a way to adapt the rule to $[a,b] \implies$ only need one list of weights and nodes.
+\end{itemize}
+\ul{Substitution} $a\leq x\leq b \longleftrightarrow -a\leq u\leq1$, let $\fbox{$x = a+\frac{b-a}2(u+1)$}=\frac{b-a}2u+\frac{a+b}2$, so $x(-1)=a$ and $x(1)=b$.
+Then $u = -1+2\frac{x-a}{b-a} = \frac{2x-a-b}{b-a}$, so $u(a)=-1$ and $u(b)=1$.
+Thus $du=\frac2{b-a}\,dx$ and \fbox{$dx=\frac{b-a}2\,du$}.
+$$ \int_a^b f(x)\,dx = \int_{-1}^1 f\plr{a+\frac{b-a}2(u+1)}\cdot\frac{b-a}2\,du$$
+Let $F(u) = f\plr{a+\frac{b-a}2(u+1)}\cdot\frac{b-a}2$.
+Then $$ \us{a\leq x\leq b}{\int_a^b f(x)\,dx}=\us{-1\leq u\leq1}{\int_{-1}^1 F(u)\,du}.$$
+Replacing $f(x)$ with $F(u)$, we integrate $F(u)$ over the interval $[-1,1]$.
+\begin{enumerate}
+	\item[$*$] The rescaling preserves the definite integral.
+
+		We only need rules on $-1\leq u\leq1$.
+\end{enumerate}
+
+\ul{Gaussian Quadrature}: $G_n(f) = \sum_{i=\ul{\ul{1}}}^n \omega_i^{(n)} F(u_i^{(n)})$ for $-1\leq u_i^{(n)}\leq 1$ for all $i$.
+\begin{align*}
+	n & & u_i^{(n)} & & \omega_i^{(n)} \\
+	\hline
+	1 & & 0 & & 2 \\
+	2 & & \pm\sqrt{\frac13} & & 1 \\
+	3 & & 0,\pm\sqrt{\frac35} & & \frac89,\frac59 \\
+	4 & & \pm\sqrt{\frac37-\frac27\sqrt{\frac65}}, \pm\sqrt{\frac37+\frac27\sqrt{\frac65}} & & \frac{18+\sqrt{30}}{36}, \frac{18-\sqrt{30}}{36}
+\end{align*}
+\begin{example}
+	\begin{align*}
+		G_3(f) &= \sum_{i=1}^3 \omega_i^{(3)} F(u_i^{(3)}) \\
+			   &= \omega_1^{(3)} F(u_1^{(3)}) + \omega_2^{(3)} F(u_2^{(3)}) + \omega_3^{(3)} F(u_3^{(3)}) \\
+			   &= \frac59 F\plr{-\sqrt{\frac35}} + \frac89 F(0) + \frac59 F\plr{\sqrt{\frac35}}
+	\end{align*}
+\end{example}
+\begin{fact}
+	$G_n(f)$ is exact if $f$ is a polynomial of degree $d\leq2n-1$.
+\end{fact}
+\begin{example}
+	$G_3(x^p)$ is exact for $0\leq p\leq 2(3)-1=5$ --- Same number of points as Simpson's rule $S_1$ ($u=01,0,1$, $0\leq p\leq3$).
+\end{example}
+\begin{example}
+	\begin{align*}
+		I &= \int_0^1 \ln(1+x)\,dx = 2\ln(2)-1 \\
+		f(x) &= \ln(1+x), \qquad a=0, \qquad b=1 \\
+		F(u) &= \ln\plr{1+\frac12(u+1)}\plr{\frac{1-0}2} = \ln\plr{\frac{u+3}2}\cdot\frac12. \\
+		G_1(f) &= 2\cdot\frac12\ln\plr{\frac{0+3}2}=\ln\plr{\frac32}\ \plr{= M_1(f)}. \\
+		G_2(f) &= 1\cdot\frac12\ln\plr{\frac{\sqrt{\frac13}+3}2}+1\cdot\frac12\ln\plr{\frac{-\sqrt{\frac13}+3}2}
+			   = \frac12\ln\plr{\frac{13}6}. \\
+		G_3(f) &= \frac59\cdot\frac12\ln\plr{\frac{-\sqrt{\frac35}+3}2} + \frac89\cdot\frac12\ln\plr{\frac32} + \frac59\cdot\frac12\ln\plr{\frac{\sqrt{\frac35}+3}2}
+			   = \ln\blr{\plr{\frac75}^{5/18}\plr{\frac32}^{13/18}}.
+	\end{align*}
+	\begin{align*}
+		\text{Rule} & & \text{Error} \\
+		G_1 & & 0.01917 \\
+		G_2 & & 0.000306 \\
+		G_3 & & 0.0000060605
+	\end{align*}
+	Simpson's rule with error $\leq 6.1\times10^{-6} \implies n\geq10$ (8.5978), 11 points using $x_0=a$, but $G_3$ used 3 points.
+\end{example}
+
 \end{document}

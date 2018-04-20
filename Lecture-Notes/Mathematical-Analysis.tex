@@ -2111,5 +2111,96 @@ We say $\sum_{n=1}^\infty f_n(x)$ converges pointwise (uniform) on $(E,d)$ if an
 			Using definition of $\phi_n$, letting $s\ra t$, $\dots$
 	\end{enumerate}
 \end{proof}
+\begin{recall}
+	Suppose
+	\begin{itemize}
+		\item $f_n:[a,b]\ra\mb R$ differentiable
+		\item $\exists x_0\in(a,b)$ such that $\set{f_n(x_0)}$ converges
+		\item $f_n'$ converges uniformly
+	\end{itemize}
+	Then
+	\begin{enumerate}
+		\item[(I)] $f_n$ converges uniformly to, say $f$, $\checkmark\checkmark$ and
+		\item[(II)] $\lim_{n\ra\infty} f_n'(x) = f'(x)$; $a<x<b$.
+	\end{enumerate}
+\end{recall}
+\begin{proof}
+	\begin{enumerate}
+		\item[(II)] Fix $x\in(a,b)$.
+			\ul{\ul{NTS}}: $\lim_{n\ra\infty} f_n'(x) = f'(x)$.
+			Define $\phi_n(t) = \frac{f_n(t)-f_n(x)}{t-x}$ and $\phi(t) = \frac{f(t)-f(x)}{t-x}$;
+			$\set{f_n}$ converges uniformly $\implies \set{\phi_n}$ converges uniformly on $[a,b]\bs\set x$.
+			In particular, $\phi_n\ra\phi$ uniformly on $[a,b]\bs\set x$.
+			Applying Theorem, \ref{thm-7-11} $$ \lim_{n\ra\infty} \ub{f_n'(x)}{\lim_{t\ra x} \phi_n(t)} = \lim_{t\ra x} \ub{\phi(t)}{\lim_{n\ra\infty} \phi_n(t)}$$
+			implies $\ds\lim_{n\ra\infty} f_n'(x) = f'(x)$.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	[not in book, stronger assumption]
+	Suppose
+	\begin{itemize}
+		\item $f_n:[a,b]\ra\mb R$ such that $f_n\ra f$ pointwise on $[a,b]$,
+		\item $f_n'$ is \ul{\ul{continuous}} for each $n$
+		\item $f_n'\lra g$ uniformly.
+	\end{itemize}
+	Then \ul{$g$ is continuous} $\checkmark\checkmark$ and $g=f'$ on $[a,b]$.
+\end{theorem}
+\begin{proof}
+	$f_n'$ continuous + $f_n'\us{\ul{\ul{\text{unif}}}}\lra g \implies g$ continuous $\checkmark\checkmark$.
+	Let $x\in(a,b)$. $f_n'$ continuous on $[a,b] \implies f_n'\in\ms R$ on $[a,b]$.
+	For any $c\leq x$ such that $[c,x]\subset[a,b]$, since $f_n'\us{\text{unif}}\lra g$
+	\begin{align*}
+		\int_c^x \ub{\ds\lim_{n\ra\infty} f_n'(t)}{g(t)}\,dt 
+		&\os{\text{Thm \ref{thm-7-16}}}= \lim_{n\ra\infty} \int_c^x f_n'(t)\,dt \\
+		\implies \int_c^x g(t)\,dt 
+		= \lim_{n\ra\infty} \int_c^x f_n'(t)\,dt
+		&\os{\text{FTC}}= \lim_{n\ra\infty} [\us{\downarrow f(x)}{f_n(x)} - \us{\downarrow f(c)}{f_n(c)}] = f(x)-f(c)
+	\end{align*}
+	implies $g(x) = f'(x)$.
+\end{proof}
+
+\subsection*{Space of functions}
+
+$(X,d)$ -- metric space
+
+$\ms C(X) = \setc{f:X\ra\mb R}{f \text{ continuous + bounded}}$ -- space of continuous bounded functions
+
+If $X$ is compact, $\ms C(X) = \setc{f:X\ra\mb R}{f\text{ continuous}}$
+
+$\checkmark$ Vector Space with \say+ and \say{$\cdot$} defined as
+$$ \begin{rcases} (f_1+f_2)(x) &= f_1(x)+f_2(x) \\ (cf)(x) &= cf(x) \end{rcases} \forall x\in X,c\in\mb R.$$
+Define norm on $\ms C(X)$ by: $||f||_\infty := \sup_{x\in X} |f(x)|$
+\ul{satisfies}:
+\begin{enumerate}
+	\item $||f||_\infty \geq 0$ for all $f\in\ms C(X)$ and $||f||_\infty=0$ if and only if $f\equiv 0$.
+	\item $||cf||_\infty = |c|\,||f||_\infty$; $c\in\mb R$, $f\in\ms C(X)$
+	\item $||f+g||_\infty \leq ||f||_\infty + ||g||_\infty$ -- triangle inequality
+
+		($\ds\sup_{x\in X} |(f+g)(x)| \leq \sup_{x\in X}|f(x)| + \sup_{x\in X}|g(x)|$)
+\end{enumerate}
+Metric on $\ms C(X)$ induced by $||f||_\infty$ (supremum norm) $d(f,g) = ||f-g||_\infty$.
+$\ms C(X)$ is \ul{complete} (every Cauchy sequence converges) with respect to $||\cdot||_\infty$.
+That is, if $\set{f_n}$ is a Cauchy sequence in $\ms C(X)$, then $\forall\epsilon>0$, $\exists N\in\mb N$ such that for $n,m>N$ $||f_n-f_m||_\infty < \epsilon$.
+-- Such spaces are called \ul{Banach spaces}: A complete normed space.
+Hilbert space -- A complete normed space, where norm is induced by \ul{inner product}.
+\ul{Inner product} (Dot product in $\mb R^k$) $\gen{\vx,\vy} = x_1y_1+\dots+x_ky_k$.
+Then $||\vx||_{\mb R^k}= \sqrt{\gen{x,x}}$.
+For function space, replace $\vx$ by $f$.
+
+\begin{note}
+	On $\ms C([a,b])$, we can define
+	$$\begin{rcases}
+		||f||_\infty &= \sup_{[a,b]} |f(x)|, \\
+		||f||_1 &= \int_a^b |f(t)|\,dt
+	\end{rcases} \text{define norms}$$
+	$\ms C([a,b])$ is complete with $||f||_\infty$ but not complete with $||f||_1$.
+\end{note}
+\begin{example}
+	[$\ms C{[}0,1{]}$] Take $f_n(x) = \begin{cases} nx; & 0\leq x\leq\frac1n \\ 1; & x>\frac1n \end{cases}$ on $[0,1]$.
+	$f_n\lra f(x) = \begin{cases} 1; & 0<x\leq1 \\ 0; & x=0 \end{cases} \ra$ not continuous.
+\end{example}
+
+Extra credit problems chapter 7, exercises 1,2,3.
 
 \end{document}

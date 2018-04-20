@@ -1725,7 +1725,7 @@ Next we define a class of unbounded linear operators important for applications.
 \end{theorem}
 \begin{example}
 	[$X=\Cb{}01$]
-	$||\,||_\infty$, $\ms D(T)=\Cb101$, $(Tx)(t)=X'(t)$.
+	$||\,||_\infty$, $\ms D(T)=\Cb101$, $(Tx)(t)=x'(t)$.
 	Previously we verified $T$ is unbounded. We claim $T$ is closed.
 	Suppose $(x_n)\subset\ms D(T)$ satisfies $x_n(t)\ra x(t)$ in $X$ and $Tx_n\ra y$.
 	Need to show $x\in\ms D(T)$ and $Tx=y$.
@@ -1749,6 +1749,78 @@ Next we define a class of unbounded linear operators important for applications.
 	Also, if $y\in X$, then $Tx=y$ for $x(t)=\int_0^ty(\tau)\,d\tau$.
 	$T_0$ invertible, not onto.
 	%If $y\in\Cb{}01$, then $x(t)=\int_0^ty(\tau)\,d\tau$.
+\end{example}
+
+Last time: closed linear operators, Closed Graph theorem, examples of $1^\text{st}$ order differential operators
+
+\begin{theorem}
+	If $T:\ms D(T)\subset X\ra Y$ is closed, and $T\inv$ exists, then $T\inv$ is closed.
+\end{theorem}
+\begin{note}
+	$T$ is closed if whenever $(x_n)\subset\ms D(T)$ satisfies $x_n\ra x$ in $X$ and $Tx_n\ra y$ in $Y$, this implies $x\in\ms D(T)$ and $Tx=y$.
+\end{note}
+\begin{remark}
+	In this case, $x_n\ra x$ means $||x_n-x||\ra0$. 
+	However, another type of convergence is $x_n\os w\ra x$, which means $f(x_n)\ra f(x)$ for all $f\in X^*$. 
+	Note that this does not necessarily imply $x_n\ra x$ due to the inequality $$|f(x_n)-f(x)|=|f(x_n-x)| \leq ||f||\,||x_n-x||.$$
+\end{remark}
+\begin{proof}
+	Suppose $T$ is closed and $T\inv$ exists. Note $\ms D(T\inv) = \ms R(T)$.
+	Suppose $(y_n)\subset\ms D(T\inv)$ satisfying $y_n\ra y$ in $Y$ and $T\inv y_n\ra x$ in $X$.
+	Need to show $y\in\ms D(T\inv)$ and $T\inv y=x$.
+	For each $n$, $y_n\in\ms D(T\inv)=\ms R(T)$, so $\exists x_n\in\ms D(T)$ such that $Tx_n=y_n$.
+	Thus $T\inv y_n=x_n$. So $x_n\ra x$ and $Tx_n\ra y$. Since $T$ is closed, we have $x\in\ms D(T)$ and $Tx=y$.
+	So $y\in\ms R(T)=\ms D(T\inv)$ and $T\inv y=x$. $\checkmark$
+
+	Alternative argument using graph:
+	Observe $$(x,y)\in\ms G(T)\subset X\times Y\iff y=Tx \iff x=T\inv y \iff (y,x)\in\ms G(T\inv)\subset Y\times X .$$
+	Thus $\ms G(T)$ is closed subset of $X\times Y$ if and only if $\ms G(T\inv)$ is closed subset of $Y\times X$.
+\end{proof}
+
+\begin{recall}
+	Resolvent and spectrum are defined for closed operators $T:\ms D(T)\subset X\ra X$.
+	It can be shown $\rho(T)$ is open subset of $\mb C$.
+\end{recall}
+Next consider spectrum for the differential operators $T,T_0,T_1,T_k$.
+\begin{example}
+	[$X=\Cb{}01,\ms D(T)=\Cb101$] $T:\ms D(T)\subset X\ra X$ by $(Tx)(t)=x'(t)$.
+	Claim: $\sigma(T) = \sigma_p(T)=\mb C$.
+	If $\lambda\in\mb C$, then $(T-\lambda I)x=0$ means $x'(t)-\lambda x(t)=0$, with $x(t)=e^{\lambda t}$ is a nontrivial solution for any $\lambda\in\mb C$.
+\end{example}
+\begin{example}
+	[$T_1$ where $\ms D(T_1)=\setc{x\in\Cb101}{x(0)=0}$]
+	If $\lambda\in\mb C$, then $(T_1-\lambda I)x=0$ means $x'(t)-\lambda x(t)=0$ and $x(0)=0$. So only solution is $x(t)\equiv 0$.
+	Thus $(T_1-\lambda I)\inv$ exists. What can we say about $(T_1-\lambda I)\inv$ ?
+	Consider $x(t)=(T_1-\lambda I)\inv y(t)$ means $x'(t)-\lambda x(t)=y(t)$ and $x(0)=0$.
+	\begin{align*}
+		\frac d{dx}\blr{e^{-\lambda t}x(t)} &= e^{-\lambda t}y(t) \\
+		e^{-\lambda t}x(t) &= \int_0^t e^{-\lambda s}y(s)\,ds \\
+		x(t) &= e^{\lambda t}\int_0^t e^{-\lambda t} y(s)\,ds \qquad (*)
+	\end{align*}
+	Thus for every $y\in X$, $(T_1-\lambda I)\inv y$ exists and is given by $(*)$ i.e., $\ms D(T_1-\lambda I)\inv = X$.
+	Also,
+	\begin{align*}
+		||(T_1-\lambda I)\inv y|| = ||x|| 
+		&= \mlr{\mlr{e^{\lambda t}\int_0^t e^{-\lambda s} y(s)\,ds}} \\
+		&= \max_{0\leq t\leq1} \mlr{e^{\lambda t}} \mlr{\int_0^t e^{-\lambda s}y(s)\,ds}
+		\leq k||y||
+	\end{align*}
+	Thus $(T_1-\lambda I)\inv$ is bounded. So $\lambda\in\rho(T_1)$. So $\rho(T_1)=\mb C$.
+\end{example}
+\begin{example}
+	[$T_0$ where $\ms D(T_0)=\setc{x\in\Cb101}{x(0)=0,x(1)=0}$]
+	Similar to the argument for $T_1$, $T_0-\lambda I$ is invertible, and $(T_0-\lambda I)\inv$ is bounded $\forall\lambda\in\mb C$.
+	But if $y\in\ms D(T_0-\lambda I)\inv=\ms R(T_0-\lambda I)$, then $y=(T_0-\lambda I)x$, so $x'(t)-\lambda x(t)=y(t)$, $x(0)=0$, $x(1)=0$.
+	So $x(t)=e^{\lambda t}\int_0^t e^{-\lambda s}y(s)\,ds$.
+	So $0 = x(t) = e^\lambda \int_0^1 e^{-\lambda s}y(s)\,ds$.
+	Thus $\int_0^t e^{-\lambda s}y(s)\,ds=0$.
+	Thus: $\ms D(T_0-\lambda I)=\setc{y\in\Cb{}01}{\int_0^1e^{-\lambda s}y(s)\,ds=0}$.
+	So not dense in $\Cb{}01$. Thus $\sigma(T_0)=\sigma_r(T_0)=\mb C$.
+\end{example}
+\begin{example}
+	[$T_k$ where $\ms D(T_k)=\setc{x\in\Cb101}{x(1)=k\,x(0)}$]
+	$$\sigma(T_k) = \sigma_p(T_k) = \setc{\lambda=\ln k+2n\pi i}{n=0,\pm 1,\pm 2,\dots}$$
+	For $\lambda\notin\sigma_p(T_k)$, $$(T_k-\lambda I)\inv = \frac{e^{\lambda t}}{k-e^\lambda}\blr{ k\int_0^te^{-\lambda s}y(s)\,ds + e^\lambda \int_t^1 e^{-\lambda s}y(s)\,ds}.$$
 \end{example}
 
 \end{document}
