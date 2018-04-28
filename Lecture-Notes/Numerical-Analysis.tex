@@ -2558,4 +2558,170 @@ Replacing $f(x)$ with $F(u)$, we integrate $F(u)$ over the interval $[-1,1]$.
 	Simpson's rule with error $\leq 6.1\times10^{-6} \implies n\geq10$ (8.5978), 11 points using $x_0=a$, but $G_3$ used 3 points.
 \end{example}
 
+\ul{Goal}: Determine how to choose the nodes $x_i^{(n)}$ and weights $\omega_i^{(n)}$ to ensure $\int_{-1}^1p(x)\,dx = G_n(p) = \sum_{i=1}^n \omega_i^{(n)} f(x_i^{(n)}$ for all polynomials $p$ with degree $\leq N=2n-1$.
+
+\begin{lemma}
+	There are no sets of nodes and weights such that $G_n$ is exact for all polynomials with deg $\leq N=2n$.
+\end{lemma}
+\begin{proof}
+	Suppose there exist nodes $\set{x_i^{(n)}}$ and weights $\set{w_i^{(n)}}$ such that $G_n(p) = \int_{-1}^1 p(x)\,dx$ for all $p$ with degree $\leq2n$.
+	Define $P(x) = \prod_{j=1}^n(x-x_j^{(n)})^2$ so $P(x)\geq0$ on $[-1,1]$ and $\int_{-1}^1 P(x)\,dx>0$.
+	However, $$G_n(P) = \sum_{j=1}^n \omega_i^{(n)} P(\os{=0}{x_i^{(n)}}) = 0 \neq \int_{-1}^1 P(x)\,dx,$$ a contradiction since $P$ has degree $2n$.
+\end{proof}
+
+Finding weights to ensure $N=2n-1$ (given nodes).
+
+\begin{lemma}
+	Suppose $G_n$ is exact for all $x^k$, $k=0,1\dots,N=2n-1$.
+	Then the weights must satisfy
+	\begin{align*}
+		\omega_i^{(n)} &= \int_{-1}^1 L_i^{(n)}(x)\,dx &
+					   &\text{for} & 
+		L_i^{(n)} &= \prod_{\us{k\neq i}{k=1}}^n \frac{x-x_k^{(n)}}{x_i^{(n)}-x_k^{(n)}}
+	\end{align*}
+	(polynomials with degree $=n-1$).
+\end{lemma}
+\begin{proof}
+	$G_n$ exact for all polynomials with degree $\leq 2n-1 \implies G_n$ is exact for $L_i^{(n)}$ for all $i=1,2,\dots,n$ since $n-1\leq2n-1$ for $n\geq1$. Thus,
+	\begin{align*}
+		\int_{-1}^1 L_i^{(n)}(x)\,dx &= G_n(L_i^{(n)})
+									 = \sum_{j=1}^n \omega_j^{(n)} L_i^{(n)}(\os{=0}{x_j^{(n)}})
+									 = \omega_i^{(n)} L_i^{(n)}(x_i^{(n)})
+									 = \omega_i^{(n)}
+	\end{align*}
+\end{proof}
+\begin{itemize}
+	\item[$*$] Given nodes, we can find the weights. Nodes $\implies L_i^{(n)}(x)$.
+\end{itemize}
+
+Idea for finding nodes: use orthogonal polynomials.
+
+\begin{definition}
+	The functions $f,g$ are orthogonal over the interval $[-1,1]$ if $\int_{-1}^1 f(x) g(x)\,dx = 0$.
+\end{definition}
+\begin{definition}
+	Legendre family of orthogonal polynomials $\set{\phi_j}_{j=0}^n$ are polynomials that
+	\begin{itemize}
+		\item degree $\phi_j=j$
+		\item $\int_{-1}^1 \phi_j(x)\phi_i(x)\,dx = \begin{cases} 0 & \text{if }j\neq k \\ \frac2{2j+1} & \text{if } j=k \end{cases}$
+		\item All roots of $\phi_j$ are distinct and are all in the interval $[-1,1]$.
+		\item $\set{\phi_j}$ forms a basis: there exist constants $c_j$ such that
+			$ \ds p(x) = \sum_{i=0}^n c_j \phi_j(x) $
+			for all polynomials with degree $\leq n$.
+	\end{itemize}
+\end{definition}
+\begin{fact}
+	\begin{align*}
+		\phi_0(x) &= 1 \\
+		\phi_1(x) &= x \\
+		(j+1)\phi_{j+1}(x) &= (2j+1)x\phi_j(x)-j\phi_{j-1}(x) \\
+		\implies \phi_2(x) &= \frac12 (3x^2-1) \\
+		\phi_3(x) &= \frac12 (5x^3-3x) \\
+		\phi_3(x) &= \frac18 (35x^4-30x^2+3) \\
+				  &\, \vdots
+	\end{align*}
+\end{fact}
+
+\begin{lemma}
+	If $\deg(p)\leq n$, then $\int_{-1}^1 p(x)\phi_i(x)\,dx=0$ for all $i>n$.
+\end{lemma}
+\begin{proof}
+	$\ds p(x) = \sum_{i=0}^n c_j\phi_j(x)$.
+	\begin{align*}
+		\implies \int_{-1}^1 p(x)\phi_i(x)\,dx
+		&= \int_{-1}^1 \sum_{j=0}^n c_j\phi_j(x)\,dx \\
+		&= \sum_{j=0}^n c_j\int_{-1}^1 \phi_j(x)\phi_i(x)\,dx \qquad j\neq i \\
+		&= 0
+	\end{align*}
+\end{proof}
+
+\begin{theorem}
+	For $N=2n-1$, there exist points $\set{x_i^{(n)}}$ (and corresponding weights $\omega_i^{(n)}$) such that $$G_n(x^k) = I(x^k) = \int_{-1}^1 x^k\,dx$$ for all $k=0,1,\dots,N=2n$.
+\end{theorem}
+\begin{proof}
+	Choose $\set{x_i^{(n)}}$ to be the $n$ distinct zeros of the function $\phi_n$ (Legendre basis functions).
+	Then $\phi_n$ degree $n\implies n$ zeros.
+	Let $p(x)$ have degree $\leq 2n-1$.
+	Then, $p(x) = \psi_n(x) Q(x) + R(x)$ for $Q,R$ degree $\leq n-1$ and $\psi_n$ degree $n$ defined by $\psi_n(x) = \prod_{i=1}^n (x-x_i^{(n)})$.
+	$$ \blr{ \frac{p(x)}{\psi_n(x)} = Q(x) + \frac{R(x)}{\psi_n(x)} } $$
+	Using Lagrange interpolation: $\ds R(x) = \sum_{i=1}^n R(x_i^{(n)}) L_i^{(n)}(x)$ (exact for polynomials degree $\leq n-1$).
+	Also, $\psi_n(x_i^{(n)}) = 0 \implies p(x_i^{(n)}) = R(x_i^{(n)})$.
+	Thus,
+	\begin{align*}
+		\int_{-1}^1 p(x)\,dx &= \int_{-1}^1 \blr{\psi_n(x) Q(x) + R(x)}\,dx
+							 = \os{(1)}{\int_{-1}^1 \psi_n(x)Q(x)\,dx} + \os{(2)}{\int_{-1}^1 R(x)\,dx}. \\
+		(2) \qquad \int_{-1}^1 R(x)\,dx
+		&= \int_{-1}^1 \sum_{i=1}^n R(x_i^{(n)}) L_i^{(n)}(x)\,dx
+		= \sum_{i=1}^n R(x_i^{(n)}) \int_{-1}^1 L_i^{(n)}(x)\,dx \\
+		&= \sum_{i=1}^n R(x_i^{(n)}) \omega_i^{(n)}
+		= \sum_{i=1}^n p(x_i^{(n)}) \omega_i^{(n)}
+		= G_n(p).
+	\end{align*}
+\end{proof}
+
+\begin{align*}
+	I(p) = \int_{-1}^1 p(x)\,dx &= \us{(1)}{\int_{-1}^1 \psi_n(x) Q(x)\,dx} + \us{(2)}{\int_{-1}^1 R(x)\,dx} \\
+	(2) &= G_n(p)
+\end{align*}
+Goal: show $(1) = 0$i.
+$$ \psi_n(x) = \prod_{i=1}^n (x-x_i^{(n)}) \qquad [\deg n] $$
+$\set{x_i^{(n)}}_{i=1}^n$ are $n$-distinct zeros of $\phi_n$ (Legendre Basis function) of degree $n$.
+\begin{align*}
+	p &= \psi_n Q+R \\
+	\deg &\leq n, n-1, n-1
+\end{align*}
+$$ \int_{-1}^1 \phi_n Q\,dx = 0$$
+\begin{align*}
+	\phi_n(x) &= \us{\text{FT of Algebra}}{A(x-x_1^{(n)})(x-x_2^{(n)})\cdots(x-x_n^{(n)})}
+			  = A\psi_n(x) \\
+	(1) &= \int_{-1}^1 \psi_n(x) Q(x)\,dx
+		= \frac1A \int_{-1}^1 \phi_n(x) Q(x)\,dx = 0 \qquad \text{(by lemma)}.
+\end{align*}
+
+\subsubsection*{Error Formula}
+
+Letting $H_n$ be the Hermite interpolant of $f$ at the Gaussian nodes $\set{x_i^{(n)}}$, we have $H_n$ degree $\leq 2n-1$.
+Chapter 4: $$ f(x) - H_n(x) = \frac1{(2n)!} \psi_n(x) f^{(2n)}(\xi_x) $$
+with $\psi_n(x) = \prod_{i=1}^n (x-x_i^{(n)})^2$.
+Integrating and using the MVT: $$ I(f) - G_n(f) = G_n(H_n) = I(H_n) = \fbox{$ \frac{2^{2n+1}(n!)^4}{(2n+1)[(2n)!]^3} $}\, f^{(2n)}(\xi) $$
+$$ \square = K_n \ub{M_n}{\frac{\sqrt n}{n+\frac12}\plr{\frac e{16n}}^{2n}} \qquad \text{for } 0.7\leq K_n\leq 1.04. $$
+Assuming $f^{(2n)}$ bounded, the error decays exponentially.
+\begin{align*}
+	n &= 2 : & M_n &\approx 2.9\times10^{-5} \\
+	n &= 3 : & M_n &\approx 1.6\times10^{-8} \\
+	n &= 4 : & M_n &\approx 4.7\times10^{-12} \\
+	n &= 8 : & M_n &\approx 5.7\times10^{-28} \\
+	n &= 16 : & M_n &\approx 1.7\times10^{-64}
+\end{align*}
+
+\subsection*{\S4.3 Lagrange Interpolation Error}
+
+\begin{theorem}
+	Let $f\in\Cpb{n+1}ab$ and let the nodes $x_k\in[a,b]$ for $0\leq k\leq n$ with $x_i\neq x_j$.
+	Then, for each $x\in[a,b]$, $\exists\xi_x\in[a,b]$ such that
+	$$ f(x)-p_n(x) = \frac{\omega_n(x)}{(n+1)!} f^{(n+1)}(\xi_x) $$
+	where $$\omega(x) = \prod_{k=0}^n (x-x_k).$$
+\end{theorem}
+Chapter 2: Proof for $n=1$.
+\begin{proof}
+	[Proof for $n=3$]
+	Choose $t\in[a,b]$, $t\neq x_k$. Define the function $$ G(x) = E(x) - \frac{\omega(x)}{\omega(t)}E(t) $$
+	for $E(x) = f(x)-p_3(x)$ and $$\omega(x) = \prod_{k=0}^3 (x-x_k).$$ Then
+	\begin{itemize}
+		\item $G(x_k) = E(x_k)-\frac{\omega(x_k)}{\omega(t)} E(t) = 0-0 = 0$
+		\item $G(t) = E(t) - \frac{\omega(t)}{\omega(t)} = 0$.
+	\end{itemize}
+	$\implies G$ has 5 zeros, $x_0,x_1,x_2,x_3,x_4$.
+	Rolle's Theorem $\implies G'(x)$ has 4 zeros, $c_1,c_2,c_3,c_4$.
+	$G''$ has 3 zeros $\xi_1,\xi_2,\xi_3 \implies G'''$ has 2 zeros $\implies G^{(4)}$ has 1 zero $G^{(4)}(\xi) = 0$, $\xi$ in $[a,b]$.
+	\begin{align*}
+		G^{(4)}(x) &= f^{(4)}(x) - 4!\frac{E(t)}{\omega(t)} \\
+		E^{(4)}(x) &= f^{(4)}(x) - \us{=0}{p_3^{(4)}(x)} = f^{(4)}(x). \\
+		\omega^{(4)}(x) &= 4! \\
+		0 = G^{(4)}(\xi) &= f^{(4)}(\xi) - 4!\cdot\frac{E(t)}{\omega(t)} \\
+		\implies E(t) &= \frac{\omega(t)}{4!}f^{(4)}(\xi) \ \checkmark
+	\end{align*}
+	$t$ in $[a,b]$, $\xi$ depends on $t$.
+\end{proof}
+
 \end{document}

@@ -2203,4 +2203,87 @@ For function space, replace $\vx$ by $f$.
 
 Extra credit problems chapter 7, exercises 1,2,3.
 
+\ul{Final exam}: Fri 3:30-6:30 (Here)
+
+\ul{Definitions} (10 pts)
+
+True/False (15 pts) -- Relating theorems and examples
+
+Ch 7 (5 pts) -- (1,2,3,7 + definitions)
+
+7 problems to choose from 9 -- $\ub{\text{must do 2 from each}}{\text{3 from each section}}$
+
+\begin{example}
+	[Test 3, 1b]
+	$\alpha:[a,b] \ra\mb R$ $\uparrow$ + continuous at $x_0$, $f(x) = \begin{cases} 1 & x\neq x_0 \\ 0 & x=x_0 \end{cases}$.
+	Prove $f\in R(\alpha)$.
+\end{example}
+\begin{proof}
+	Since $f$ is bounded + discontinuous at $x_0$ and $\alpha$ is continuous at $x_0$, then $f\in R(\alpha)$.
+
+	$\int_a^b f\,d\alpha = 0$:
+	Ever $P$ contains $x\neq x_0$, $\inf_{[x_{i-1},x_i]} f(x) = 0$ therefore $\int_a^b f\,d\alpha = \sup_P(L(P,f,\alpha)) = 0$.
+\end{proof}
+
+\begin{proof}
+	[Test 3, 2]
+	Define $f^*(x) = \begin{cases} f(1) & 0 \leq x< 1 \\ f(x) & x\geq 1 \end{cases}$.
+	Let $P:0\leq1\leq\dots\leq n-1\leq n$ be a partition of $[0,m]$.
+	\begin{align*}
+		U(P,f) &= \sum_{i=1}^n f^*(i) \\
+		L(P,f) &= \sum_{i=0}^{n-1} f^*(i)
+	\end{align*}
+	$f\in\ms R$ on $[1,m]\implies f^*\in\ms R$ on $[0,m]$, so $$L(P,f^*) = \sum_{i=0}^{n-1} \leq \int_0^n f^*(x) \leq \sum_{i=1}^n f^*(i) = U(P,f).$$
+
+	$(\implies)$ Suppose $\int_1^\infty f(x)\,dx$ converges. Then $$\lim_{n\ra\infty} \int_1^n f(x)\,dx<\infty \implies \lim_{n\ra\infty} \int_0^m f^*(x)\,dx < \infty.$$
+	$$ \sum_{i=0}^{n-1} f^*(i) \leq \int_0^\infty f^*(x)\,dx < \infty $$
+	$\implies \set{s_n}$ is bounded $\os{\text{Thm 3.23}}{\implies} \sum_{i=0}^\infty f^*(i)$ \ul{\ul{converges}}.
+
+	$(\Lla)$ Suppose by contrapositive $\int_1^\infty f(x)\,dx$ diverges, then
+	\begin{align*}
+		\implies\lim_{n\ra\infty} \sum_{i=1}^n f(x) < \infty \\
+		\implies \infty = \int_1^n f(x)\,dx \leq \sum_{i=1}^n f(i) \implies =\infty \\
+		\implies \sum_{i=1}^\infty f(i) = \infty.
+	\end{align*}
+\end{proof}
+
+\begin{proof}
+	[Test 3, 4]
+	BWOC, suppose $f(x_0) = c>0$ for some $x_0\in[a,b]$.
+	By continuity, there is a $\delta$-neighborhood $(x_0-\delta,x_0+\delta)$ such that $|f(x_0)-f(x)| < \frac c2 \implies f(x) > \frac c2$ for all $x\in(x_0-\delta,x_0+\delta)$.
+	\begin{align*}
+		-\frac c2 < f(x_0) - f(x) < \frac c2 \\
+		-\frac c2 < \fbox{$ c-f(x) < \frac c2$} \\
+		\frac c2 < f(x)
+	\end{align*}
+	Let $P$ be a partition such that $x_{j-1} = x_0-\delta$ and $x_j = x_0+\delta$.
+	Then $m_j \geq \frac c2$ and $M_j \geq f(x_0) = c$. So...
+	\begin{itemize}
+		\item $L(P,f) \geq \frac c2$
+		\item $U(P,f) \geq c$
+	\end{itemize}
+	In particular, we know $\int_a^b f(x)\,dx \geq L(P,f) \geq \frac c2 > 0$.
+	\ul{But} $\int_a^b f(x)\,dx = 0$, a contradiction.
+	Thus $f(x) = 0$ for all $x\in[a,b]$.
+\end{proof}
+
+\begin{example}
+	[Counterexample] $f(x) = \begin{cases} 1 & \text{if } x\in\mb Q \\ -1 & \text{if } x\in\mb R\bs\mb Q\cap[a,b] \end{cases}$.
+	Clearly, $f^2\in\ms R$, since $f(x)^2 = 1$ for all $x\in[a,b]$.
+	However, by the density of $\mb Q$ and $\mb R\bs\mb Q$ in $[a,b]$, we know that for any partition $P$, $m_j=-1$, $M_j=1$ for all $j\in[1,n]$. Thus
+		$_-\int f(x)\,dx = \sup_P \sum_i (-1)\Delta x_i = -(b-a)$ and
+		$^-\int f(x)\,dx = \inf_P \sum_i \Delta x_i = b-a$.
+	Thus, since $b\neq a$, we have $_-\int f(x)\,dx \neq ^-\int f(x)\,dx$ and so $f\notin \ms R$.
+\end{example}
+
+\begin{example}
+	Define $f,g$ such that $f_n\ra f$ and $g_n\ra g$ as $n\ra\infty$.
+	Fix $\epsilon>0$. Then $\exists N_1\in\mb N$ such that $\forall n>N_1$, $|f_n(x)-f(x)|<\frac\epsilon 2$.
+	Similarly, $N_2\in\mb N$ for $g_n$.
+	Let $N = \max\set{N_1,N_2}$.
+	$\forall n>N$,
+	$	|f_n(x)+g_n(x)-(f(x)+g(x))| \leq |f_n(x)-f(x)| + |g_n(x)-g(x)| < \frac\epsilon2 + \frac\epsilon 2 = \epsilon$.
+	Therefore $f_n+g_n\ra f+g$.
+\end{example}
+
 \end{document}

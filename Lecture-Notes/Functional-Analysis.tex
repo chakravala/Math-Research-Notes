@@ -1823,4 +1823,62 @@ Next consider spectrum for the differential operators $T,T_0,T_1,T_k$.
 	For $\lambda\notin\sigma_p(T_k)$, $$(T_k-\lambda I)\inv = \frac{e^{\lambda t}}{k-e^\lambda}\blr{ k\int_0^te^{-\lambda s}y(s)\,ds + e^\lambda \int_t^1 e^{-\lambda s}y(s)\,ds}.$$
 \end{example}
 
+Last time: closed operators, resolvent + spectrum for differential operators.
+
+\begin{recall}
+	[The definition of adjoint of bounded operator]
+	If $T:H_1\ra H_2$ is bounded linear operator and $\ms D(T)=H_1$, then $T^*:H_2\ra H_1$ is the unique bounded linear operator satisfying $\ms D(T^*)=H_2$ and 
+	$$\gen{Tx,y}_{H_2} = \gen{x,T^*y}_{H_1}.$$	
+\end{recall}
+For general linear operators, possibly unbounded, $T,S$ are adjoint to each other if $\gen{Tx,y} = \gen{x,Sy}$.
+If $T$ is densely defined $\set{\ms D(T)\text{ dense in }H_1}$, then $\exists!$ maximal operator $S$ adjoint to $T$, which we define to be the adjoint $T^*$.
+Let $T:\ms D(T)\subset H\ra H$ be a densely defined (but possibly unbounded) linear operator.
+The adjoint operator $T^*$ is defined by $\ms D(T^*) = \setc{y\in H}{\text{there exists! }y^*\in H\text{ satisfying }\gen{Tx,y}=\gen{x,y^*}\ \forall x\in\ms D(T)}$.
+For $y\in\ms D(T^*)$, define $T^*y=y^*$.
+Thus $T^*$ satisfies $\gen{Tx,y}=\gen{x,T^*y}$ $\forall x\in\ms D(T),\forall y\in\ms D(T^*)$.
+
+\begin{recall}
+	The differential operators $T_0,T_1,T_k,T$ are not densely defined in $X=\Cb{}ab$.
+	But they \ul{are} densely defined on $H=L^2(0,1)$ with $\gen{f,g} = \int_0^1 f(t)g(t)\,dt$, where $||f||=\sqrt{\int_0^1 |f(t)|^2\,dt}$.
+\end{recall}
+To define the domain, need to define the Sobolev spaces $H^1(0,1)$ like $\Cb101$.
+$f\in H^1(0,1)$ means
+\begin{align*}
+	f(t) &= c+\int_0^t g(s)\,ds, & g &\in L^2(0,1).
+\end{align*}
+$$ \Cb101\subset H^1(0,1) \subset C(0,1) \subset L^2(0,1) $$
+$$H_0^1(0,1) = \setc{f\in H^1(0,1)}{f(0)=0=f(1)}$$
+\begin{example}
+	[$H = L^2(0,1), T_1x=x'$] $\ms D(T_1) = \setc{x\in H^1(0,1)}{x(0)=0}$.
+	Then $T_1$ is densely defined, so $T_1^*$ exists.
+	\ul{Aside} observe: If $f(t) = $ constant, then $\int_0^1 f(t)g'(t)\,dt=0$ for all $g\in H_0^1(0,1)$.
+\end{example}
+\begin{theorem}
+	[Fundamental Lemma of Calculus of Variations]
+	If $\int_0^1 f(t) g'(t)\,dx = 0$ for all $g\in H_0^1(0,1)$, then $f(t) = $ constant.
+\end{theorem}
+By definition, $\gen{T_1x,y} = \gen{x,T_1^*y}$ $\forall x\in\ms D(T_1),\forall y\in\ms D(T_1^*)$.
+Set $z(t) = T_1^*y$. So $$ \int_0^1 x'(s)y(s)\,ds = \int_0^1 x(s)z(s)\,ds $$ for all $x\in\ms D(T_1)$.
+Set $w(t) = \int_0^t z(s)\,ds$, so $w'(t) = z(t)$. So,
+\begin{align*}
+	\int_0^1 x'(s)y(s)\,ds = \int_0^1 x(s) w'(s)\,ds &= x(s)w(s)\big|_0^1 - \int_0^1 x'(s)w(s)\,ds \\
+	(*) \qquad \int_0^1 x'(s) [y(s)+w(s)]\,ds - x(1)w(1) &= 0
+\end{align*}
+is true $\forall\in\ms D(T_1)$, so also true $\forall x\in H_0^1(0,1)$.
+By Fundamental Lemma of Calculus of Variations (FLCV), $y(t)+w(t)= c = $ constant so $y(t) = c-w(t) = c - \int_0^1 z(s)\,ds$ so $y\in H^1(0,1)$, and $y'(t)=-z(t)$ so $T_1^*y = -y'$.
+Also, from $(*)$, $\int_0^1 x'(s)\cdot c\,ds -x(1)w(1) = 0$ so $x(1)c - x(1)w(1) = 0$ for all $x\in\ms D(T_1)$.
+Since $x(1)$ may not be 0, then $c=w(1)$.
+Thus $y(t) = c-w(t) = w(1)-w(t)$ so $y(1)=0 \implies \ms D(T_1^*) = \set{y\in H^1(0,1),y(1)=0}$.
+
+\begin{example}
+	[Test 2 \#4] $T:H_1\ra H_2$ bounded linear operator.
+	If $M_1\subset H_2$, $M_2\subset H_2$ and $T(M_1)\subset M_2$, then $T^*(M_2^\perp)\subset M_1^\perp$.
+\end{example}
+\begin{proof}
+	Let $y\in M_2^\perp$. Need to show $0=\gen{x,T^*y}$ for all $x\in M_1$.
+	Note $Tx\in M_2$ if $x\in M_1$.
+	So $\forall x\in M_1$, $\gen{x,T^*y} = \gen{Tx,y}=0$ because $Tx\in M_2$ and $y\in M_2^\perp$.
+	So $T^*y\in M_1^\perp$ true for all $y\in M_2^\perp$, so $$T^*(M_2^\perp)\subset M_1^\perp.$$
+\end{proof}
+
 \end{document}
