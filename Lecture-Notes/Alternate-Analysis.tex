@@ -1,0 +1,298 @@
+\documentclass[]{article}
+\input{../mathdoc}
+\input{../mathsym}
+\input{../theorem}
+%\input{../preview}
+
+\author{Presenter: Richard Fabiano, Notes by Michael Reed}
+\title{Mathematical Analysis (Alternate)}
+%date{}
+
+\begin{document}
+\maketitle
+
+%\begin{abstract}
+%\end{abstract}
+
+We assume basic definitions of sets:
+$A\subset B$ means if $x\in A$ then $x\in B$.
+Text does not use $\subseteq$.
+$A = B$ means $A\subset B$ and $B\subset A$.
+Assume familiarity with rational numbers, denoted by $\mb Q$.
+Rational numbers are not adequate for calculus and analysis.
+
+\begin{example}
+	There is no solution to $p^2-2=0$ for $p\in\mb Q$.
+\end{example}
+\begin{proof}
+	BWOC, suppose $p^2=2$ for some $p\in\mb Q$. Then $p = \frac mn$, where $m,n$ are integers, $n\neq0$, $m$ and $n$ are not both even.
+	Then $\plr{\frac mn}^2=2$, so $m^2$ is even. Thus $m$ is even. (If $r$ is prime and $r\mid a\cdot b$, where $a$ and $b$ are integers, then $r$ divides either $a$ or $b$).
+	Thus $m = 2k$ for some integer $k$. So $(2k)^2=2n^2$, so $2k^2=n^2$.
+	Thus $n^2$ is even, which implies $n$ is even.
+	So $m$ and $n$ are both even, a contradiction.
+	Thus there is no $p\in\mb Q$ such that $p^2-2=0$.
+\end{proof}
+
+So one way $\mb Q$ is not adequate is there are not always solutions to such equations in $\mb Q$.
+We want to characterize another more important way in which $\mb Q$ is not adequate for analysis.
+Let $ A = \setc{p\in\mb Q}{p^2<2} $ and $B=\setc{p\in\mb Q}{p^2>2}$.
+Claim: $A$ has no largest number $B$ has no smallest number.
+
+\begin{proof}
+	For any $p>0$ define $q = p-\frac{p^2-2}{p+2} = \frac{2p+2}{p+2}$ $(*)$ so $q>0$.
+	Also
+	\begin{align*}
+		q^2-2 &= \frac{(2p+2)^2}{(p+2)^2} - 2 = \frac{(2p+2)^2-2(p+2)^2}{(p+2)^2} \\
+			  &= \frac{4p^2+8p+4-2p^2-8p-8}{(p+2)^2} \\
+		q^2-2 &= \frac{2p^2-4}{(p+2)^2} = \frac{2(p^2-2)}{(p+2)^2} \qquad (**)
+	\end{align*}
+	If $p\in A$, $p>0$, then $p^2-2<0$, so $q>p$ by $(*)$.
+	Also, $q^2-2<0$ by $(**)$, so $q\in A$.
+	So $A$ has no largest element. If $p\in B$, $p>0$, then $p^2-2>0$, so $q<p$ by $(*)$.
+	Also, if $q^2-2>0$ by $(**)$, so $q\in B$.
+\end{proof}
+
+\begin{definition}
+	Let $S$ be a set. An \ul{order} on $S$ is a relation, denoted $<$, with the properties
+	\begin{enumerate}
+		\item[(i)] If $x,y\in S$, then exactly one of the following is true. $x<y$ or $y<x$ or $x=y$.
+		\item[(ii)] If $x,y,z\in S$ and $x<y$ and $y<z$, then $x<z$.
+	\end{enumerate}
+	Also $>,\leq,\geq$.
+\end{definition}
+
+\begin{definition}
+	An \ul{ordered set} is a set on which an order is defined.
+\end{definition}
+
+\begin{definition}
+	Let $S$ be ordered set and $E\subset S$. If $\exists\beta\in S$ such that $x\leq \beta$ for every $x\in E$, then we say $\beta$ is an \ul{upper bound of $E$}, and \ul{$E$ is bounded above}. Similar for lower bounds.
+\end{definition}
+
+\begin{definition}
+	Let $S$ be ordered set, and suppose $E\subset S$ and $E$ is bounded above.
+	If $\exists\alpha\in S$ such that
+	\begin{enumerate}
+		\item[(i)] $\alpha$ is an upper bound of $E$
+		\item[(ii)] If $\gamma<\alpha$, then $\gamma$ is not an upper bound of $E$
+
+			or
+
+		\item[(ii)'] If $\gamma$ is an upper bound of $E$, then $\alpha\leq\gamma$.
+	\end{enumerate}
+	Then $\alpha$ is the least upper bound of $E$.
+	Also called the \ul{supremum} of $E$, denoted $\alpha=\sup E$.
+	Similar definition for infimum, greatest lower bound, $\inf E$.
+\end{definition}
+
+\begin{example}
+	Consider $A$ and $B$ from previous (with only positive elements). $A$ is bounded above.
+	The set of upper bounds of $A$ is $B$.
+	Since $B$ has no least element, then $A$ has no least upper bound $\sup A$ does not exist in $\mb Q$.
+\end{example}
+
+HW Ch1: 1,2,4,5
+
+\begin{definition}
+	An ordered set $S$ has the least upper bound property if every nonempty subset $E\subset S$ which is bounded above has a supremum in $S$.
+\end{definition}
+\begin{note}
+	by previous example, $\mb Q$ does not have l.u.b. property.
+\end{note}
+
+\begin{theorem}
+	Suppose $S$ is an ordered set with l.u.b property, $B\subset S$, $B$ is nonempty, and bounded below. Then $\inf B$ exists in $S$.
+	In particular, $\inf B=\alpha$ where $\alpha = \sup L$ and $L$ is the set of all lower bounds of $B$.
+\end{theorem}
+\begin{proof}
+	Let $B$ and $L$ be as described. $L$ is nonempty since $B$ is bounded below. $L$ is bounded above because $B$ is nonempty and every element of $B$ is an upper bound of $L$.
+	Since $S$ has l.u.b prperty, $\alpha=\sup L$ exists in $S$. We claim $\alpha=\inf B$.
+	If $\gamma<\alpha$, then $\gamma$ is no an upper bound for $L$ (because $\alpha=\sup L$), so $\gamma\notin B$.
+	Thus $\alpha$ is a lower bound for $B$.
+
+	If $\alpha < \beta$, then $\beta\notin L$ since $\alpha=\sup L$.
+	So $\beta$ is not a lower bound of $B$.
+	Thus $\alpha=\inf B$.
+\end{proof}
+
+Fields and axioms: 1.12-1.16
+
+\begin{example}
+	$\mb Q$ is a field.
+\end{example}
+
+\begin{definition}
+	An \ul{ordered field} is a field $F$ which is also an ordered set, satisfying
+	\begin{enumerate}
+		\item[(i)] $x+y<x+z$ if $x,y,z\in F$ and $y<z$.
+		\item[(ii)] If $x,y\in F$ and $x>0$ and $y>0$, then $xy>0$.
+	\end{enumerate}
+\end{definition}
+\begin{note}
+	$\mb Q$ is an ordered field.
+\end{note}
+
+\begin{theorem}
+	The following are true in any ordered field
+	\begin{itemize}
+		\item[a.] If $x>0$, then $-x<0$ and vice-versa.
+		\item[b.] If $x>0$, and $y<z$, then $xy<xz$.
+		\item[c.] If $x<0$, and $y<z$, then $xy>xz$.
+		\item[d.] If $x\neq0$, then $x^2>0$. Thus $1>0$.
+		\item[e.] If $0<x<y$, then $0<\frac1y<\frac1x$.
+	\end{itemize}
+\end{theorem}
+\begin{proof}:
+	\begin{itemize}
+		\item[a.] If $x>0$, then $0=-x+x>-x+0=-x$. So $-x<0$.
+		\item[b.] If $z>y$, then $z-y>0$, so $x(z-y)>0$. Thus $xz=x(z-y)+xy>0+xy=xy$.
+		\item[d.] If $x>0$, then $x^2=x\cdot x>0$. If $x<0$, then $-x>0$, so $(-x)^2>0$.
+			But $(-x)^2=x^2$ so $x^2>0$. Also, $1>0$ because $1=1^2$.
+	\end{itemize}
+\end{proof}
+
+HW Chap1: 8, Grad: Let $S$ be a nonempty subset of $R$, bounded above and below, and let $b<0$. Show that $\inf(bS) = b\sup S$ and $\sup(bS) = b\inf S$.
+
+\begin{note}
+	$bS = \setc{bs}{s\in S}$.
+\end{note}
+
+Last time: least-upper-bound property, ordered fields
+
+\begin{theorem}
+	There exists an ordered field with the l.u.b. property, called the real numbers, denoted $\mb R$, and $\mb R$ contains $\mb Q$ as a subfield.
+\end{theorem}
+\begin{note}
+	$\mb R$ contains $\mb Z$ and $\mb N$.
+\end{note}
+\begin{note}
+	l.u.b. property is equivalent to completeness (in $\mb R^1$).
+\end{note}
+\begin{note}
+	Proof using \say{cuts.}
+\end{note}
+
+\begin{theorem}:
+	\begin{enumerate}
+		\item[a.] (Archimedean Property) If $x,y\in\mb R$ and $x>0$, then there exists positive integer $n$ such that $nx>y$.
+		\item[b.] (denseness) If $x,y\in\mb R$ and $x<y$, then $\exists p\in\mb Q$ such that $x<p<y$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	[Proof of (a)]
+	Let $x,y\in\mb R$ and $x>0$.
+	Define set $A=\setc{nx}{n\in\mb N}$. BWOC, suppose (a) is false. Then $y$ is an upper bound of $A$. Since $A$ is nonempty, $A$ has a l.u.b. in $\mb R$, say $\alpha = \sup A$. Since $x>0$, $\alpha-x<\alpha$ so $\alpha-x$ is not an upper bound of $A$.
+	Thus $\alpha-x\leq a$ for some $a\in A$. That is, $\alpha-x\leq mx$ for some $m\in\mb N$.
+	This implies $\alpha\leq\ul{(m+1)x}$, which contradicts that $\alpha$ is an upper bound of $A$. Thus (a) is true.
+\end{proof}
+\begin{note}
+	(a) is equivalent to: If $x\in\mb R$ and $x>0$, then $\exists n\in\mb N$ such that $\frac1n<x$.
+\end{note}
+\begin{note}
+	(a) is equivalent to: $\mb N$ is unbounded above.
+\end{note}
+
+\begin{theorem}
+	For every real $x>0$ and positive integer $n>0$, $\exists!$ positive real $y$ such that $y^n=x$.
+\end{theorem}
+\begin{proof}
+	Uniqueness is clear since $0<y_1<y_2$ implies $y_1^n<y_2^n$.
+	To show existence, define $E=\setc{t\in\mb R}{t^n<x}$.
+	For $t=\frac x{x+1}$, we have $0<t<1$. Thus $t^n<t<x$, so $t\in E$, $E$ is nonempty.
+	To show $E$ is bounded above, suppose $t\in\mb R$ and $t>x+1$.
+	Then $t^n>t>x$, so $t\notin E$. So $x+1$ is an upper bound of $E$.
+	Thus $E$ has a l.u.b., say $y=\sup E$. To show $y^n=x$, we show $y^n\nless x$ and $y^n\ngtr x$.
+	We use $b^n-a^n<(b-a)nb^{n-1}$ $(*)$ when $0<a<b$. This follows from $b^n-a^n = (b-a)(b^{n-1}+b^{n-2}a+\dots+ba^{n-2}+a^{n-1})$.
+	
+	Suppose $y^n<x$. Pick $h$ such that $0<h<1$ and $h<\frac{x-y^n}{n(y+1)^{n-2}}$.
+	With $a=y$, $b=y+h$ in $(*)$ we get
+	\begin{align*}
+		(y+h)^n - y^n &< hn(y+h)^{n-1} < hn(y+1)^{n-1} < x-y^n.
+	\end{align*}
+	Thus $(y+h)^n<x$, so $y+h\in E$. But $y+h>y$, contradicting $y=\sup E$.
+	Thus $y^n\nless x$.
+
+	Suppose $y^n$. Set $k = \frac{y^n-x}{ny^{n-1}}$, clearly $0<k$.
+	Also, $ky^{n-1} \leq kny^{n-1} = y^n-x < y^n$. So $k<y$, $0<k<y$.
+	To see that $y-k$ is an upper bound of $E$, suppose $t\geq y-k$. Then
+	\begin{align*}
+		y^n-t^n &\leq y^n-(y-k)^n \\
+				&< kny^{n-1} \\
+				&= y^n-x
+	\end{align*}
+	Thus $t^n>x$, so $t\notin E$. Thus $y-k$ is an upper bound of $E$.
+	But $y-k<y$, contradicting $y=\sup E$. Thus $y^n\ngtr x$, so $y^n=x$.
+\end{proof}
+
+HW: Chap 1, 12-14,17, grad 9,10.
+
+Last time: properties of $\mb R$
+
+\begin{note}:
+	\begin{itemize}
+		\item $\mb R$ can be represented via infinite decimal expansion
+		\item Extended real numbers consist of $\mb R$ with $\pm\infty$ and some algebra, such as $x+\infty=+\infty$, $\frac x{+\infty}=0$, $x\cdot(\infty) = \pm\infty$ depending on sign of $x$.
+	\end{itemize}
+\end{note}
+
+One deficiency of $\mb R$ is not all polynomials have zeros in $\mb R$.
+This can be \say{fixed} by considering the complex field.
+
+\begin{definition}
+	A complex number is an ordered pair $(a,b)$, where $a,b\in\mb R$.
+	The set of complex numbers is a field with $+,\cdot$ defined by $(a,b)+(c,d)=(a+c,b+d)$ and $(a,b)\cdot(c,d)=(ac-bd,ad+bc)$.
+\end{definition}
+\begin{definition}
+	$i=(0,1)$
+\end{definition}
+\begin{theorem}
+	$i^2=-1=(-1,0)$
+\end{theorem}
+\begin{theorem}
+	$(a,b)=a+bi$
+\end{theorem}
+
+\begin{definition}
+	If $a,b\in\mb R$ and $z=a+bi$, then the \ul{complex conjugate} of $z$ is $\conj z=a-bi$. The \ul{absolute value} or \ul{modulus} of $z$ is $|z|=\sqrt{z\conj z}=\sqrt{a^2+b^2}$.
+\end{definition}
+\begin{note}
+	$z\conj z \geq0$ and $z\conj z=0$ only when $z=0$.
+\end{note}
+\begin{proposition}
+	Properties:
+	\begin{enumerate}
+		\item[(i)] $|\Re z|\leq|z|$
+		\item[(ii)] $|z+w|\leq|z|+|w|$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Let $z=a+bi,w=c+di$, and $a,b,c,d,\in\mb R$. Then
+	\begin{enumerate}
+		\item[(i)] $|\Re z|=|a|=\sqrt{a^2}\leq\sqrt{a^2+b^2}=|z|$
+	\item[(ii)] Using $w\conj z = \conj{z\conj w}$,
+		\begin{align*}
+			|z+w|^2 &= (z+w)(\conj z+\conj w)=z\conj z+z\conj w+w\conj z+w\conj w = |z|^2+2\Re z\conj w+|w|^2 \\
+					&\leq |z|^2+2|w\conj z|+|w|^2 = |z|^2+2|w||z|+|w|^2 = (|z|+|w|)^2
+		\end{align*}
+	\end{enumerate}
+	So $|z+w|\leq|z|+|w|$ $\checkmark$
+\end{proof}
+
+\ul{Schwarz Inequality}: If $a_1,\dots,a_n$ and $b_1,\dots,b_n$ are complex, then
+$$ \mlr{\sum_{j=1}^n a_j\conj{b_j}}^2 \leq \sum_{j=1}^n|a_j|^2\cdot\sum_{j=1}^n|b_j|^2.$$
+
+\begin{example}
+	[HW] Suppose $S\subset R$ bounded above and $a>0$. Show $\sup(aS)=a\sup S$.
+	\begin{recall}
+		$aS = \setc{as}{s\in S}$
+	\end{recall}
+	Let $\alpha = \sup S$. Want to show $\sup(aS)=a\alpha$. To do this, show $a\alpha$ is an upper bound of $aS$, and if $\gamma$ is an upper bound of $aS$, then $a\alpha\leq\gamma$.
+	Let $x\in aS$. Then $x=a\cdot s$ for some $s\in S$. Thus $s\leq\alpha$, so $as\leq a\alpha$, $x\leq a\alpha$.
+	So $a\alpha$ is an upper bound of $aS$. Suppose $\gamma$ is an upper bound of $aS$.
+	Then $\gamma\geq as$ for all $s\in S$, so $\frac\gamma a\geq s$ for all $s\in S$.
+	Thus $\frac\gamma a$ is an upper bound of $S$, so $\frac\gamma a\geq\alpha$ since $\alpha=\sup S$. So $\gamma\geq a\alpha$. Thus $a\alpha$ is the l.u.b. (or $\sup$) of $aS$.
+\end{example}
+
+
+
+\end{document}
