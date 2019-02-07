@@ -1,0 +1,857 @@
+\documentclass[]{article}
+\input{../mathdoc}
+\input{../mathsym}
+\input{../theorem}
+%\input{../preview}
+
+\author{Presenter: Dan Yasaki, Notes by Michael Reed, Book: Gallian}
+\title{Abstract Algebra}
+%date{}
+
+\begin{document}
+\maketitle
+
+%\begin{abstract}
+%\end{abstract}
+
+\ul{Groups}, Rings, Fields
+
+\section{Introduction to Rings}
+
+\begin{definition}
+	A \ul{ring} is a set $R$ with two binary operations, addition \say{$a+b$} and multiplication \say{$ab$} such that
+	\begin{itemize}
+		\item[(i)] $a+b=b+a$, for all $a,b\in R$.
+		\item[(ii)] $(a+b)+c=a+(b+c)$ for all $a,b,c\in R$.
+		\item[(iii)] There exists an element $\in R$ such that $0+a=a+0$ for all $a\in R$.
+		\item[(iv)] For each $a\in R$, there exists $-a\in R$ such that $a+(-a)=0$.
+	\end{itemize}
+	(i)-(iv) imply $(R,+)$ is an Abelian group.
+	\begin{itemize}
+		\item[(v)] $a(bc) = (ab)c$ for all $a,b,c\in R$.
+		\item[(vi)] $a(b+c)=ab+ac$ for all $a,b,c\in R$.
+	\end{itemize}
+\end{definition}
+\begin{remark}
+	A ring may not have a multiplicative identity.
+	\begin{itemize}
+		\item When it does, we call it a \ul{unity}, denoted often as 1.
+			[if a ring has unity, then it is unique.] (exercise)
+		\item elements of a ring need not have multiplicative inverses.
+			If $a\in R$ has a multiplicative inverse, we denote it $a\inv$ and call $a$ a \ul{unit}.
+		\item we use words like \say{factor} or \say{divides} since rings have multiplication. e.g., if $a,b\in R$ and $ab=c$, then $a$ is a factor of $c$ or $a$ divides $c$.
+		\item For $n\in\mb Z_{>0}$, $a\in R$, define $n\cdot a = a+a+\dots+a$.
+	\end{itemize}
+\end{remark}
+
+\begin{example}
+	\begin{itemize}
+		\item[(i)] $\mb Z$ with regular addition and regular multiplication is a commutative ring with unity 1.
+			The units are $\set{1,-1} = U(\mb Z) = \mb Z^\times = \mb Z^*$.i
+		\item[(ii)] Fix positive integer $n$, $\mb Z_n=\set{0,1,2,\dots,n-1}$ with addition modulo $n$ and multiplication modulo $n$ is a commutative ring with unity.
+			The units are $\mb Z_n^\times U(n) = \setm{a\in\mb Z_n}{\gcd(a,n)=1}$.
+		\item[(iii)] $2\mb Z=\setm{2k}{k\in\mb Z}$ with regular addition and multiplication is a commutative ring without unity.
+		\item[(iv)] Let $M_2(\mb R)=\text{Mat}_{2\times2}(\mb R) = \setm{\mat{a&b\\c&d}}{a,b,c,d\in\mb R}$ with matrix addition and multiplication.
+			This is a non-commutative ring with unity $I=\mat{1&0\\0&1}$.
+		\item[(v)] $C^\infty(\mb R) = \setm{f:\mb R\ra\mb R}{f\text{ is infinitely differentiable}}$ with addition given by: for $f,g\in C^\infty(\mb R)$, $(f+g)(x) = f(x)+g(x)$ and multiplication given by  $(fg)(x) = f(x)g(x)$.
+			Additive identity is $z(x)=0$, unity $u(x)=1$. $C^\infty(\mb R)$ is a commutative ring with unity $u(x)=1$.
+	\end{itemize}
+\end{example}
+
+\ul{Notation}: for $a,b\in R$, $a-b$ is $a+(-b)$.
+\ul{\say{Rules} for multiplication}: Let $R$ be a ring. Let $a,b\in R$.
+\begin{itemize}
+	\item[(i)] $0a=a0=0$
+	\item[(ii)] $a(-b)=(-a)b = -(ab)$
+	\item[(iii)] $(-a)(-b) = ab$
+	\item[(iv)] $a(b-c)=ab-ac$, $(b-c)a=ba-ca$
+\end{itemize}
+Furthermore, if $R$ has unity 1,
+\begin{itemize}
+	\item[(v)] $(-1)a=-a$
+	\item[(vi)] $(-1)(-1)=1$
+\end{itemize}
+\begin{proof}
+	Exercise.
+\end{proof}
+
+\begin{definition}
+	A subset $S$ of a ring $R$ is a \ul{subring} if $S$ is a ring with the operations of $\mb R$.
+\end{definition}
+\ul{Subring Test}: A subset $S$ of a ring $R$ is a subring if
+\begin{itemize}
+	\item[(i)] $S=\emptyset$
+	\item[(ii)] for every $a,b\in S$, $a-b\in S$.
+	\item[(iii)] for every $a,b\in S$, $ab\in S$.
+\end{itemize}
+\begin{example}
+	Let $R$ be a ring. Then $R$ is a subring of $R$. $\set{0_R}$ is a subring of $R$.
+\end{example}
+\begin{example}
+	$S = \set{0,2,4}\subseteq\mb Z_6$ then $S$ is a subring of $\mb Z_6$.
+\end{example}
+\begin{example}
+	Let $S=\setm{\mat{a&0\\0&b}}{a,b\in\mb Z}\subseteq M_2(\mb Z)$.
+\end{example}
+\begin{proof}
+	\begin{itemize}
+		\item[(i)] $\mat{1&0\\0&1}\in S$ so $S\neq\emptyset$.
+		\item[(ii)] Let $A=\mat{a_1&0\\0&a_1}$ and $B=\mat{b_1&0\\0&b_2}$ be elements of $S$. $A-B=\mat{a_1-b_1&0\\0&a_2b-2} \in S$ [since $a_1-b_2\in\mb Z$ and $a_2-b_2\in\mb Z$ and off-diag are 0 $A-B\in S$.]
+		\item[(iii)] Let $A=\mat{a_1b_1&0\\0&a_2b_2}\in S$.
+	\end{itemize}
+	Thus by Subring Test, $S$ is a subring of $M_2(\mb Z)$.
+\end{proof}
+
+\section{Integral Domains}
+\begin{definition}
+	A \ul{zero divisor} in a commutative ring $R$ is a non-zero element $a\in R$ such that there exists a non-zero element $b\in R$ with $ab=0$.
+\end{definition}
+\begin{definition}
+	An \ul{integral domain} is a commutative ring with unity with no zero-divisors.
+\end{definition}
+\begin{remark}
+	If $R$ is an integral domain and $a,b\in R$ with $ab=0$, then $a=0$ or $b=0$.
+\end{remark}
+\begin{example}
+	$\mb Z$ is an integral domain.
+\end{example}
+\begin{example}
+	$\mb Z_6$ is not an integral domain since $\alpha\neq0$ and $3\neq0$ but \say{$\set{0,1,2,3,4,5}$}, $2\cdot3=0$ is $\mb Z_6$.
+\end{example}
+\begin{example}
+	$\mb Z_5$ \ul{is} an integral domain. (exercise).
+\end{example}
+More generally $\mb Z_p$ is an integral domain for any prime $p$ (exercise) [Hint: for $a,b\in\mb Z$ if $p\mid(ab)$ and $p$ prime, then $p\mid a$ or $p\mid b$.]
+
+Last time: \ul{\ul{Roughly}}, a ring $R$ is an abelian group $(R,+)$ with an associative binary operation (multiplication) on $R$ such that multiplication and addition play nice.
+An integral domain is a commutative ring with unity and no zero-divisors.
+
+\begin{theorem}
+	[Cancellation Theorem for integral domains]
+	Let $R$ be an integral domain. Let $a,b,c\in R$ with $a\neq0$ and $ab=ac$. Then $b=c$.
+\end{theorem}
+\begin{proof}
+	Suppose $ab=ac$ and $a\neq0$. $ab-ac=0$, so $a(b-c)=0$.
+	Since $R$ is an integral domain and $a\neq0$, $b-c=0$. Thus $b=c$.
+\end{proof}
+\begin{definition}
+	A \ul{field} is a commutative ring with unity in which every nonzero element is a unit.
+\end{definition}
+\begin{example}
+	$\mb Q,\mb C,\mb R,\mb Z_p$ for $p$ prime.
+\end{example}
+\begin{remark}
+	A field is an integral domain.
+\end{remark}
+\begin{proof}
+	Let $F$ be a field. Let $a,b\in F$ with $a\neq0$ and $ab=0$.
+	We just need to show $b=0$. Then $a\neq0$ implies $a\inv$ exists. So $a\inv(ab)=a\inv\cdot 0$ and $(a\inv a)b=0$ imply $b=0$.
+	So $F$ has no zero-divisors, hence $F$ is an integral domain.
+\end{proof}
+\begin{theorem}
+	Let $R$ be a finite integral domain. Then $R$ is a field.
+\end{theorem}
+\begin{proof}
+	We just need to show every non-zero element in $R$ is a unit.
+	Let $a\in R,a\neq0$.
+	\ul{Case 1}: $a=1$. $a\inv=1\in R$.
+	\ul{Case 2}: $a\neq1$. Consider $a,a^2,a^3,a^4,\dots,a^i,\dots,a^j,d\dots$.
+	There exists $i,j$ positive integers such that $a^i=a^j$ and $i\neq j$.
+	Without loss of generality, assume $i<j$. Then $a^i=a^j$ implies $1=a^{j-i}$ by cancellation theorem.
+	Then $1=a^{j-i-1}a$.
+	\begin{note}
+		since $i<j$, $j-i-1\geq0$. So $a^{j-i-1}$ is $a\inv$, so $a$ is a unit.
+	\end{note}
+\end{proof}
+\begin{corollary}
+	Let $p$ be prime. Then $\mb Z_p$ is a field.
+\end{corollary}
+\begin{proof}
+	$\mb Z_p$ is finite, so it suffices to show $\mb Z_p$ is an integral domain.
+	It is clear that $\mb Z_p$ is a commutative ring with unity.
+	Let $a,b\in\mb Z_p$ with $a\neq0$ and $ab=0$ in $\mb Z_p$.
+	We need to show $b=0$ in $\mb Z_p$. Since $ab=0$ in $\mb Z_p$, there exists a $k\in\mb Z$ such that $ab=p$.
+	$p$ is prime, so $p\mid pk$, so $p\mid ab$, so $p\mid a$ or $p\mid b$.
+	Since $a\neq0$ in $\mb Z_p$, $p\nmid a$ so $p\mid b$. Thus $b=0$ in $\mb Z_p$.
+\end{proof}
+\begin{example}
+	Let $\mb Z_3[i]=\setm{a+ib}{a,b\in\mb Z_3,i^2}$ where addition and multiplication is \say{nice} and $i^2=-1$.
+	\begin{align*}
+		(a+ib)+(a'+ib') &= (a+a')+i(b+b') \\
+		(a+ib)(a'+ib') &= aa'+iab'+iba'+\ub{-1}{i^2}bb' = (aa'-bb')+i(ab'+ba')
+	\end{align*}
+	\ul{Claim}: $\mb Z_3[i]$ is a field.
+	Show $\mb Z_3[i]$ is an integral domain by showing it has no zero-divisors. Write multiplication table (exercise).
+\end{example}
+\begin{example}
+	$\mb Q[\sqrt2] = \setm{a+\sqrt2b}{a,b\in\mb Q}\subseteq\mb R$.
+	Then $\mb Q[\sqrt2]$ is a field.
+	Let $a+\sqrt2b\in\mb Q[\sqrt2]\bs\set0$. What is $(a+\sqrt2b)\inv$?
+	$$ \frac1{a+\sqrt2b}\cdot\plr{\frac{a-\sqrt2b}{a-\sqrt2b}} = \frac{a-\sqrt2b}{a^2-2b} = \us{\in\mb Q}{\frac a{a^2-2b}} + \us{\in\mb Q}{\plr{\frac{-1}{a^2-2b}}}\sqrt2 $$
+\end{example}
+\begin{definition}
+	Let $R$ be a ring. The \ul{characteristic of $R$}, denoted $\text{char}(R)$, is the least positive integer $n$ such that $\ub{=\ub{n\text{ times}}{x+x+\dots+x}}{n\cdot x=0}$ for all $x\in R$.
+	If no such integer exists, we say the characteristic of $R$ is 0.
+\end{definition}
+\begin{example}
+	$\text{char}(\mb Z_4)=4$, $\text{char}(\mb Z_n)=n$, $\text{char}(\mb Z)=0$
+\end{example}
+\begin{theorem}
+	\label{thm-*}
+	Let $R$ be a ring with unity 1.
+	\begin{enumerate}
+		\item if 1 has infinite order in $(R,+)$, then $\text{char}(R)=0$.
+		\item if 1 has finite order $n$ in $(R,+)$, then $\text{char}(R)=n$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	exercise.
+\end{proof}
+\begin{theorem}
+	Let $R$ be an integral domain. Then $\text{char}(R)=0$ or $\text{char}(R)=p$, $p$ prime.
+\end{theorem}
+\begin{proof}
+	\ul{Case 1}: The order of 1 in $(R,+)$ is infinite. Then $\text{char}(R)=0$ by Theorem \ref{thm-*}. Done.
+	\ul{Case 2}: Suppose the order of 1 in $(R,+)$ is finite integer $n$
+	Suppose $n=s\cdot t$, $s,t\in\mb Z$. $1\leq s,t\leq n$.
+	Then $(st)\cdot1=(s\cdot1)(t\cdot 1)=0$. $R$ is an integral domain, so $s\cdot1=0$ or $t\cdot1=0$.
+	Thus $s=n$ and $t=1$ or $s=1$ and $t=n$. Thus $n$ is prime.
+\end{proof}
+Suppose $R$ is a commutative ring with unity. For $n\in\mb Z_{>0}$, view $n$ as element of $R$, $$n=n\cdot 1=\ub{n\text{ times}}{1+1+\dots+1}.$$
+
+Consider $x^2-4x+3=0$ or $(x-3)(x-1)=0$.
+If $R$ is an integral domain, then $x-3=0$ or $x-1=0$, so $x=3$ or $x=1$.
+\begin{example}
+	Let $R=\mb Z_{12}$. Brute force check by plugging in elements of $\mb Z_{12}$ into $x^2-4x+3$, to see when 0. $x=3,x=1$ work.
+	\ul{Claim}: $x=7$ and $x=9$ also work.
+\end{example}
+
+\section{Ideals and Factor Rings (Quotient Rings)}
+Let $G$ be a group. $N\leq G$. $G/N$ is a group precisely when $N$ is normal subgroup of $G$.
+\begin{definition}
+	A subring $A$ of a ring $R$ is a \ul{(two-sided) ideal} of $R$ if for every $r\in R$ and every $a\in A$, $ar$ and $ra$ are in $A$.
+\end{definition}
+\begin{remark}
+	\begin{enumerate}
+		\item if $R$ is commutative, $ar=ra$ so only check one.
+		\item all ideals in our course are two-sided ideals, so \say{two-sided} is dropped from name.
+	\end{enumerate}
+\end{remark}
+\begin{example}
+	Let $R=\mb Z$. Let $A=\setm{5k}{k\in\mb Z}$. $A$ is a subring of $\mb Z$ by subring test.
+	Let $r\in\mb Z$, let $a\in A$. Then there exists $k\in\mb Z$ such that $a=5k$. $ra=ar=5(kr)\in A$ since $kr\in\mb Z$.
+	So $A$ is an ideal of $\mb Z$.
+	$A$ is an example of a principal ideal. $A=\gen5=5\mb Z$.
+\end{example}
+
+\subsection{External Direct Products}
+
+Let $G$ and $H$ be groups. The \ul{external direct product of $G$ and $H$}, denoted by $G\times H$ or $G\oplus H$, is
+$$ G\times H = \setm{(g,h)}{g\in G,h\in H}$$
+with binary operation: for $(g,h),(g',h')\in G\times H$ the product is $$(g,h)(g',h') = (gg',hh').$$
+\begin{xca}
+	$G\times H$ is a group.
+\end{xca}
+More generally, for groups $G_1,G_2,\dots,G_n$ the direct product, denoted $G_1\times G_2\times\cdots\times G_n$ is $G_1\times G_2\times\cdots\times G_n = \setm{(g_1,g_2,\dots,g_n)}{g_i\in G_i}$ with componentwise group operation.
+
+\begin{example}
+	$G = \mb Z_2\times\mb Z_3 = \set{(0,0),(0,1),(0,2),(1,0),(1,1),(1,2)}$
+	Then $$(1,0)+_G(1,1) = (1+_{\mb Z_2}1,0+_{\mb Z_3}1) = (0,1) $$
+	$$ (1,1)+(1,1) = (0,2) $$
+	$$ (0,1)+(1,1) = (1,0) $$
+\end{example}
+\begin{note}
+	$G$ is cyclic, generated by $(1,1)$, so $G\cong\mb Z_6\cong\mb Z_2\times\mb Z_3$.
+\end{note}
+\begin{fact}
+	[Useful fact] Let $G,H$ be finite cyclic groups.
+	Then $G\times H$ is cyclic if and only if $|G|$ and $|H|$ are relatively prime.
+\end{fact}
+\begin{corollary}
+	Let $m,n$ be positive integers. $\mb Z_{mn}\cong\mb Z_m\times\mb Z_n$ if and only if $\gcd(m,n)=1$.
+\end{corollary}
+\begin{example}
+	$\mb Z_{12}\cong\mb Z_4\times\mb Z_3$, but not $\mb Z_2\times\mb Z_6 = \mb Z_2\times\mb Z_2\times\mb Z_3$.
+\end{example}
+
+\subsection{Fundamental Theorem of finite abelian groups}
+
+\begin{theorem}
+	Every finite abelian group is a direct product of cyclic groups of prime power order.
+	Moreover, the number of terms in the decomposition and the orders of the cyclic groups are uniquely determined by the group.
+\end{theorem}
+\begin{example}
+	$\mb Z_{10}\cong\mb Z_2\times\mb Z_5$.
+\end{example}
+\begin{example}
+	$\mb Z_{24}\cong \mb Z^{2^3}\times\mb Z_3$.
+\end{example}
+\begin{example}
+	$D_{10}$ (order 10 dihedral group)? not abelian!
+\end{example}
+\begin{question}
+	What are the isomorphism classes of abelian groups of order $7^4$.
+\end{question}
+\ul{Partitions of 4}: $\mb Z_{7^4}$, $\mb Z_{7^2}\times\mb Z_{7^2}$, $\mb Z_7\times\mb Z_{7^3}$, $\mb Z_7\times\mb Z_7\times\mb Z_{7^2}$, $\mb Z_7\times\mb Z_7\times\mb Z_7\times\mb Z_7$.
+\begin{question}
+	isomorphism classes for abelian grous of order $3^2\times 7^4$?
+\end{question}
+\ul{Partitions of 2}: $\mb Z_{3^2}$ and $\mb Z_3\times\mb Z_2$.
+There are $5\times2=10$ different abelian groups of order $3^2\times7^4$.
+
+\section{Ideals and Factor Rings (\ul{\ul{Quotient}} rings)}
+
+\begin{definition}
+	A subring $A$ of a ring $R$ is a \ul{(two-sided) ideal of $R$} if for every element $r\in R$ and every $a\in A$, the product $ar$ and $ra$ are both in $A$.
+\end{definition}
+
+\begin{theorem}
+	[Ideal test] A subset $A\subseteq R$ is an ideal if
+	\begin{itemize}
+		\item[(i)] $A\neq\emptyset$
+		\item[(ii)] $a-b\in A$ for every $a,b\in A$
+		\item[(iii)] $ra$ and $ar$ are in $A$ for every $r\in R$ and $a\in A$.
+	\end{itemize}
+\end{theorem}
+
+\begin{definition}
+	Let $R$ be commutative ring with unity. Let $a\in R$.
+	The \ul{principal ideal generated by $a$}, denoted $\gen a$, is $\gen a = \setm{ra}{r\in R}$.
+	\begin{enumerate}
+		\item[$*$] $\gen a$ is an ideal. (exercise)
+	\end{enumerate}
+\end{definition}
+
+More generally, if $a_1,a_2,\dots,a_n\in R$, the \ul{ideal generated by $a_1,a_2,\dots,a_n$}, denoted $\gen{a_1,a_2,\dots,a_n}$, is $\gen{a_1,a_2,\dots,a_n} = \setm{r_1a_1+r_2a_2+\dots+r_na_n}{r_i\in R}$.
+\begin{example}
+	$\mb R=\mb Z$, then $\gen{5,7} = \setm{5s+7t}{s,t\in\mb Z} = \gen1=\mb Z$, since Bezout $\exists s,t\in\mb Z$ such that $52+7t=\ub{1}{\gcd(5,7)}$.
+\end{example}
+In general, for $m,n\in\mb Z$, $\gen{m,n}=\gen{\gcd(m,n)}$.
+
+\begin{example}
+	Let $\mb Z[x] = $ ring of polynomials with coefficients in $\mb Z$ in variable $x$.
+	Consider the ideal $I=\gen{x,2}$, then $I=\setm{f(x)x+g(x)2}{f(x),g(x)\in\mb Z[x]}$, e.g. contains $x+2,x,x^2,516\in I$, but not $x+3,1\notin I$.
+
+	Let $J = \setm{f(x)\in\mb Z[x]}{f(0)\text{ is even}}$.
+	\ul{Claim}: $I=J$.
+\end{example}
+\begin{proof}
+	We show $I\subseteq J$ and $J\subseteq I$.
+
+	\ul{$I\subseteq J$}: let $p(x)\in I$. We want to show $p(x)\in J$.
+	Then there exists polynomials $f(x)$ and $g(x)$ in $\mb Z[x]$ such that $p(x)=f(x)\cdot x+g(x)\cdot2$.
+	We compute: $p(0)=f(0)\cdot0+g(0)\cdot2 = 2g(0)$ and $g(0)\in\mb Z$, so $p(0)$ is even.
+	$\therefore p(x)\in J$ so $I\subseteq J$.
+
+	\ul{$J\subseteq I$}: let $q(x)\in J$. We want to show $g(x)\in I$.
+	Then $q(0)$ is even. There exists integers $a_0,a_1,\dots,a_n$ such that $q(x)=a_0+a_1x+\dots+a_nx^n$, so $a_0$ is even.
+	There exists integer $k$ such that $a_0=2k$.
+	Then $q(x) = 2k+x(a_1+a_2x+\dots+a_nx^{n-1})$, finish at home.
+\end{proof} 
+
+Factor Rings (Quotient Ring)
+
+Let $R$ be a ring and let $A\subseteq R$ be an ideal.
+$R/A=\setm{r+A}{r\in R}$
+\begin{note}
+	$r+A = \setm{r+a}{a\in A}$
+\end{note}
+Endow $R/A$ with add \& multiplication:
+\begin{align*}
+	(r+A)+(s+A) &= (r+s)+A \\
+	(r+A)(s+A) &= (rs)+A
+\end{align*}
+Show this is well-defined i.e., show this does not depend on the representatives chosen.
+Suppose $r,s,r',s'\in R$ such that $r'=r+a$ for some $a\in A$ and $s'=s+b$ for some $b\in A$.
+\begin{note}
+	$r+A=r'+A$, $s+A=s'+A$.
+\end{note}
+Let's show $(r'+A)+(s'+A)=(r+A)+(s+A)$. LHS $(r'+s')+A$, RHS $(r+s)+A$.
+We need to show $(r'+s')-(r+s)\in A$.
+Compute: $r'+s'-r-s = r+a + s+b-r-s = a+b\in A$ since $A$ is an ideal and $a,b\in A$.
+Let's show $(r'+A)(s'+A) = (r+A)(s+A)$. LHS: $(r's')+A$, RHS: $(rs)+A$.
+We need to show $r's'-rs\in A$. Compute:
+$r's'-rs = (r+a)(s+b)-rs = rs+as+ab+rb-rs = as+ab+rb\in A$ since $A$ is an ideal.
+$\therefore$ operations are well defined.
+\begin{xca}
+	show $R/A$ is a ring.
+\end{xca}
+\begin{example}
+	$R=\mb Z$, $A=\gen5=5\mb Z$.
+	$R/A = \mb Z/5\mb Z = \setm{r+5\mb Z}{r\in\mb Z}$, $|R/A|=5$, absorb multiples of 5 \say{$5=0$ in the quotient,} \say{$\mb Z/5\mb Z\cong\mb Z_5$.}
+\end{example}
+\begin{example}
+	$R=\mb Z[x]$, $A=\gen{x^2+1} = \setm{f(x)(x^2+1)}{f(x)\in\mb Z[x]}$,
+	$$R/A = \mb Z[x]/\gen{x^2+1} = \setm{p(x)+\gen{p(x)+\gen{x^2+1}}}{p(x)\in\mb Z[x]}$$.
+	Think of $x^2+1$ as 0 in the quotient, $x^2$ is -1 in the quotient, then $x^4=1$, i.e., $x^2+\gen{x^2+1} = -1 + \gen{x^2+1}$.
+	Then  e.g., $x^7-3x^5+x^3-x^2+2x-1+\gen{x^2+1} = -x-3x-x-(-1)+2x-1+\gen{x^2+1} = -3x+\gen{x^2+1}$.
+	Thus, $\mb Z[x]/\gen{x^2+1} = \setm{a+bx+\gen{x^2+1}}{a,b\in\mb Z}$.
+	$\setm{a+bi}{a,b\in\mb Z}$ such that $x^2=-1=i^2$.
+	\say{$\mb Z[x]/\gen{x^2+1}\cong\mb Z[i]$}, \say{$\mb R[x]/\gen{x^2+1}\cong\mb C$.}
+\end{example}
+
+\begin{definition}
+	Let $A$ be a $\os{\da A\neq R}{\text{proper}}$ ideal of commutative ring $R$. 
+	Then $A$ is a \ul{prime ideal} if for every $a,b\in R$, if $ab\in A$ then $a\in A$ or $b\in A$.
+\end{definition}
+\begin{example}
+	$\gen7$ is a prime ideal in $\mb Z$ since for $a,b\in\mb Z$ if $ab\in\gen7$ then $ab$ is a multiple of 7.
+	So 7 is prime, so $7\mid a$ or $7\mid b$. Thus $a\in\gen7$ or $b\in\gen7$.
+	More generally, if $p$ is prime, then $\gen p$ is a prime ideal in $\mb Z$.
+\end{example}
+\begin{example}
+	[Non-example] $\gen6$ is not a prime ideal in $\mb Z$. $2,3\in\mb Z$, $2\cdot3=6\in\gen6$ but $2\notin\gen6$ and $3\notin\gen6$, so $\gen6$ is not prime.
+\end{example}
+\begin{question}
+	is $\gen0$ prime in $\mb Z$? Yes, since $\gen0=\set0$. If $ab=0$ then $a=0$ or $b=0$ in $\mb Z$.
+\end{question}
+\begin{question}
+	is $\gen0$ prime in $\mb Z_6$?
+	$2,3\in\mb Z_6$, $2\cdot3=6$ in $\mb Z_6$ but $2\notin\gen0$ and $3\notin\gen0$.
+\end{question}
+\begin{definition}
+	A proper ideal $A$ of a commutative ring $R$ is \ul{maximal} if for every ideal $B$ with $A\subseteq B\subseteq R$, we have $B=A$ or $B=R$.
+\end{definition}
+\begin{theorem}
+	Let $R$ be a commutative ring with unity, and let $A$ be an ideal of $R$.
+	\begin{itemize}
+		\item[(i)] $R/A$ is an integral domain if and only if $A$ is prime.
+		\item[(ii)] $R/A$ is a field if and only if $A$ is maximal.
+	\end{itemize}
+\end{theorem}
+\begin{example}
+	$R=\mb Z$, $A=5\mb Z$.
+
+	$R=\mb Z[x]$, $A=\gen{x^2+1}$, $R/A\cong\mb Z[i]$,
+
+	$R=\mb R[x]$, $A=\gen{x^2+1}$, $R/A\cong\mb C$.
+\end{example}
+\begin{proof}
+	\begin{itemize}
+		\item[(i)] exercise.
+		\item[(ii)] Suppose $R/A$ is a field. Let $B$ be an ideal in $R$ such that $A\subseteq B\subseteq R$.
+			\ul{Case 1}: $B=A$. done.
+			\ul{Case 2}: $B\neq A$. Then there exists $b\in B$ such that $b\notin A$.
+			Then $b+A\neq0+R$ i.e., $b+A$ is nonzero in $R/A$.
+			Thus $b+A$ is a unit and so has an inverse, call it $c+A$.
+			Then $(b+A)(c+A)=bc+A=1+A$. Then $bc-1\in A\subseteq B$, so $bc-1\in B$.
+			Then $\us{\in B}{bc}-(\us{\in B}{bc-1})=1\in B$, $\therefore B=R \la$ exercise.
+
+			Conversely, suppose $A$ is maximal. Let $b\in R,b\notin A$.
+			Then $b+A\neq0+A$. We need to show $b+A$ is a unit.
+			Let $B=\setm{rb+a}{a\in A,r\in R}$. Then
+			\begin{itemize}
+				\item[(i)] $B$ is an ideal of $R$ (exercise. use ideal test.)
+				\item[(ii)] $B$ contains $A$ properly. (clear once you stare.)
+			\end{itemize}
+			Since $A$ is maximal, $B=R$. Then $1\in B$. There exists $r\in R$ and $a\in A$ such that $rb+a=1$.
+			Then $(r+A)(b+A)=rb+A=1+A$, so $b+A$ is a unit. $\therefore R/A$ is a field.
+	\end{itemize}
+\end{proof}
+
+\begin{question}
+	Let $R$ be a commutative ring with unity. Let $A\subseteq R$ be an ideal.
+	\begin{enumerate}
+		\item If $A$ is maximal, is $A$ prime? (Yes. exercise)
+		\item If $A$ is prime, is $A$ maximal? (No. produce counterexample)
+	\end{enumerate}
+	Counterexample for (2). Find ring $R$ and ideal $A$ such that $R/A$ is an integral domain but $R/A$ is not a field.
+	$\mb Z$ is a ring that is an integral domain, but not a field.
+	$A=\gen0=\set0$, $\mb Z/\gen0=\mb Z$.
+	Counterexample: $R=\mb Z$, $A=\gen0$.
+\end{question}
+
+\section{Ring Homomorphisms}
+
+\begin{definition}
+	A \ul{(ring) homomorphism} is a map between rings $\varphi:R\ra S$, such that for every $a,b\in R$
+	\begin{itemize}
+		\item[(i)] $\varphi(a+b)=\varphi(a)+\varphi(b)$
+		\item[(ii)] $\varphi(ab)=\varphi(a)\varphi(b)$
+	\end{itemize}
+	A bijective ring homomorphism is called a \ul{(ring) isomorphism}.
+\end{definition}
+\begin{example}
+	$\varphi:\mb Z\ra\mb Z$, $\varphi(x)=x$
+\end{example}
+\begin{example}
+	Fix positive integer $n$. $\varphi:\mb Z\ra\mb Z_n$, $\varphi(x)=x\mod n$, is a ring homomorphism.
+\end{example}
+
+I will grade test this weekend.
+
+\ul{Last time}:
+\begin{definition}
+	A ring homomorphism s a map between rings $\varphi:R\ra S$ such that
+	\begin{itemize}
+		\item[(i)] $\varphi(a+b)=\varphi(a)+\varphi(b)$, for all $a,b\in R$
+		\item[(ii)] $\varphi(ab)=\varphi(a)\varphi(b)$, for all $a,b\in R$.
+	\end{itemize}
+\end{definition}
+For positive integer $n$, $\varphi:\mb Z\ra\mb Z_n$, $\varphi(x)=x\mod n$ \say{natural homomorphism $\mb Z$ to $\mb Z_n$}
+\begin{xca}
+	Confirm $\varphi$ is a homomorphism.
+\end{xca}
+\ul{Applications}: 1573435789\ul{6} even?
+Decimal representation of $N\in\mb Z_{>0}$, $N=a_ka_{k-1}a_{k-2}\dots a_1a_0$ i.e., $N=\sum_{i=1}^k a_i 10^i$.
+\begin{align*}
+	\varphi_2(N) &= \varphi_2(\sum_{i=1}^k a_i10^i) \\
+				 &= \sum_{i=1}^k \varphi_2(a_i)\varphi_2(10^i) \\
+				 &= \sum_{i=1}^k \varphi_2(a_i)\varphi_2(10)^i = \varphi_2(a_0).
+\end{align*}
+\begin{note}
+	$\varphi_2(10)=0$.
+\end{note}
+$\therefore \varphi_2(N)=\varphi_2(a_0$.
+\begin{note}
+	$N$ is divisible by 2 iff $\varphi_2(N)=\varphi_2(a_0)=0$.
+\end{note}
+\begin{xca}
+	get divisibility rule for $n=3$. \ul{Note}: $\varphi_(10)=1$.
+	$n=9$. \ul{Note}: $\varphi_9(1)=1$.
+	$n=11$. \ul{Note}: $\varphi_{11}(10) = \varphi_{11}(-1)$.
+	$n=4$. \ul{Note}: $\varphi_4(10) = 2$, $\varphi_4(10^2)=0$, $k\geq2$, $\varphi_4(10^k)=0$.
+\end{xca}
+
+\subsection{Properties of Ring homomorphisms}
+
+Let $\varphi:R\ra S$ be a ring homomorphism.
+\begin{enumerate}
+	\item for every $r\in R$ and every $n\in\mb Z_{>0}$, $\varphi(n\cdot r)=n\cdot\varphi(r)$ and $\varphi(r^n)=\varphi(r)^n$.
+	\item the image of a subring of $R$ is a subring of $S$ i.e., for every subring $A\subseteq R$, $\varphi(A)=\setm{\varphi(a)}{a\in A}$ is a subring of $S$.
+		\begin{note}
+			In particular, $im(\varphi)$ is a subring of $S$.
+		\end{note}
+	\item If $\varphi$ is surjective, the image of an ideal of $R$ is an ideal of $S$.
+	\item The preimage of an ideal of $S$ is an ideal of $R$.
+	\item if $R$ is commutative, then $im(\varphi)$ is commutative.
+	\item if $R$ has unity, $S\neq\set0$, and $\varphi$ is surjective, then $\phi(1)=1$.
+	\item $\varphi$ is injective if and only if $\ker\phi=\setm{r\in R}{\varphi(r)=0}$ is trivial i.e., $=\set0$.
+	\item If $\varphi$ is an isomorphism, then $\varphi\inv:S\ra R$ is an isomorphism.
+	\item $\ker\phi$ is an ideal of $R$.
+\end{enumerate}
+\begin{remark}
+	if $\varphi:R\ra S$ is a ring homomorphism, then $\varphi:(R,+)\ra(S,+)$ is a group homomorphism.
+\end{remark}
+For (3), you can't remove the surjective hypothesis.
+$R = \mb Z$, $S=\mb Z[x]$, $\varphi:\mb Z\ra\mb Z[x]$.
+$\varphi(n)=n$. Consider the ideal $2\mb Z=\gen2$, then $\varphi(2\mb Z)=2\mb Z=\setm{2k}{k\in\mb Z}$.
+$2\mb Z$ is \ul{not} an ideal in $\mb Z[x]$. $2\in2\mb Z$, $x\in\mb Z[x]$, but $2x\notin2\mb Z$.
+
+\begin{theorem}
+	Let $R$ be a ring with unity 1. Then $\varphi:\mb Z_{>0}\ra R$ with $n\mapsto n\cdot 1 = \ub{n\text{ times}}{1+1+\dots+1}$ can be extended in the obvious way to a map $\varphi\mb Z\ra R$ to be a ring homomorphism.
+\end{theorem}
+\begin{proof}
+	[sketch] let $a,b\in\mb Z_{>0}$.
+	\begin{align*}
+		\varphi(a+b) &= (a+b)\cdot1 = \ub{a+b\text{times}}{1+1+\dots+1} \\
+		\varphi(a)+\varphi(b) &= (\ub{a\text{ times}}{1+1+\dots+1}) + (\ub{b\text{ times}}{1+1+\dots+1})
+	\end{align*}
+	$\therefore \varphi(a+b)=\varphi(a)+\varphi(b)$ for $a,b\in\mb Z_{>0}$.
+	\begin{align*}
+		\varphi(ab) &= \ub{ab\text{ times}}{1+1+\dots+1}
+					= \begin{rcases} \ob{a\text{ times}}{1+1+\dots+1} \\ + 1+1+\dots+1 \\ +\vdots \\ + 1+1+\dots+1 \end{rcases} b\text{ times}
+	\end{align*}
+\end{proof}
+\begin{theorem}
+	Let $R$ be a ring and let $A$ be an ideal of $R$. Then there exists a ring $S$ and a ring homomorphism $\varphi:R\ra S$ such that $\ker\phi=A$.
+\end{theorem}
+\begin{proof}
+	[idea of proof] Let $S=R/S$. (Note: $S$ is a ring since $A$ is an ideal)
+	Define $\varphi:R\ra R/A$ by $\varphi(r)=r+A$ for $r\in R$ is a ring homomorphism and \ul{$\ker\phi=A$} (\ul{exercise}: check!)
+\end{proof}
+\begin{enumerate}
+	\item[$*$] How could we show $\ker\phi=A$?
+		\begin{itemize}
+			\item[(i)] Show $\ker\phi\subseteq A$
+			\item[(ii)] Show $A\subseteq\ker\phi$
+		\end{itemize}
+\end{enumerate}
+
+\begin{theorem}
+	[First Isomorphism Theorem]
+	Let $\varphi:R\ra S$ be a ring homomorphism.
+	Then $\Phi:R/\ker\phi\ra im(\phi)$ given by $r+\ker\phi\mapsto\phi(r)$ is a ring isomorphism.
+\end{theorem}
+\begin{proof}
+	First show $\Phi$ is well-defined. Suppose $r+\ker\phi=r'+\ker\phi$ for some $r,r'\in R$.
+	Then $r'=r+t$ for some $t\in\ker\phi$.
+	\begin{align*}
+		\varphi(r') = \varphi(r+t) = \varphi(r)+\varphi(t) = \varphi(r)+0 = \varphi(r)
+	\end{align*}
+	$\therefore\Phi$ is well-defined. Next, show $\Phi$ is a ring homomorphism.
+	Let $a+\ker\varphi$, $b+\ker\varphi\in R/\ker\phi$.
+	\begin{align*}
+		\Phi((a+\ker\varphi)+(b+\ker\varphi)) &= \Phi((a+b)+\ker\varphi) = \varphi(a+b) \\
+		&= \varphi(a)+\varphi(b) = \Phi(a+\ker\varphi) + \Phi(b+\ker\varphi)
+	\end{align*}
+	multiplication (exercise). Finally, show $\Phi$ is a bijection.
+	\ul{surjective}: let $b\in im(\varphi)$. There exists $r\in R$ such that $\varphi(r)=b$.
+	Then $\Phi(r+\ker\varphi)=\varphi(r)=b$. $\therefore\Phi$ is surjective.
+	\ul{injective}: option (1): let $a_1+\ker\varphi,a_2+\ker\varphi\in R/\ker\varphi$ with $\Phi(a_1+\ker\varphi)=\Phi(a_2+\ker\varphi)$.
+	Then $\varphi(a_1)=\varphi(a_2)$. Then $\varphi(a_1)-\varphi(a_2)=0$ and $\varphi(a_1-a_2)=0$. $\therefore a_1-a_2\in\ker\varphi$, $\therefore a_1+\ker\varphi=a_2+\ker\varphi$. $\therefore \Phi$ is injective.
+	\ul{option 2}: Show $\ker\Phi=\set{\ker\varphi}$ (exercise).
+	Thus $\Phi$ is a ring isomorphism.
+\end{proof}
+\begin{example}
+	Fix $n>0$ integer. $\varphi_n:\mb Z\ra\mb Z_n$, then $\ker(\varphi_n)=n\mb Z=\gen n$ and $im(\varphi_n)=\mb Z_n$ since $\varphi_n$ is surjective.
+	$\therefore$ by first isomorphism theorem, $\mb Z/n\mb Z\cong\mb Z_n$.
+\end{example}
+
+\subsection{Field of Quotients (Fraction field)}
+Let $R$ be an integral domain. Then there exists a field $F$ that contains a subring isomorphic to $R$.
+\begin{example}
+	[$\mb Z= R$, $\mb Q = F$]
+	$\mb Q=\setm{\frac ab}{a,b\in\mb Z,b\neq0,\dots}$, $\mb Z\not\subset\mb Q$, $\frac ab+\frac cd=\frac{ad+bc}{bd}$, $\mb Z\us{inj}\lra\mb Q$, $n\mapsto\frac n1$.
+
+	Let $S=\setm{(a,b)}{a,b\in R,b\neq0}$, impose equivalence relation on $S$ such that $(a,b)\sim(c,d)$ if and only if $ad-bc=0$ or equivalently iff $ad=bc$.
+	Denote the equivalence class of $(a,b)$ by $\frac ab$.
+	\begin{note}
+		$\frac ab=\frac cd$ if and only if $ad=bc$.
+	\end{note}
+	Define addition and multiplication on the equivalence classes: $\frac ab+\frac cd=\frac{ad+bc}{bd}$ and $\plr{\frac ab}\plr{\frac cd}=\frac{ac}{bd}$.
+	We need to
+	\begin{enumerate}
+		\item show operations are well-defined
+		\item Show $S/\sim$ with addition and multiplication as above is a field.
+		\item let $\varphi:R\ra S/sim$ be defined y $\varphi(r)=\frac r1$. Show $\varphi$ is an injective homomorphism.
+			\begin{note}
+				Then $im(\varphi)\cong R/\ker\varphi\cong R$, 1st isomorphism theorem.
+			\end{note}
+	\end{enumerate}
+	Show operations are well-defined.
+	Suppose $\frac ab=\frac{a'}{b'}$ and $\frac cd=\frac{c'}{d'}$.
+	Then $ab'=a'b$ and $cd'=c'd$.
+	So $\plr{\frac{a'}{b'}}\plr{\frac{c'}{d'}}=\frac{a'c'}{b'd'}$ and $\plr{\frac ab}\plr{\frac cd}=\frac{ac}{bd}$.
+	Therefore $a'c'bd=a'bc'd=ab'c'd=ab'cd'=acb'd'$.
+	Thus $\plr{\frac{a'}{b'}}\plr{\frac{c'}{d'}}=\plr{\frac ab}{\plr{\frac cd}}$.
+
+	\ul{addition}: Check at home that $\frac{a'}{b'}+\frac{c'}{d'}=\frac ab+\frac cd$.
+	$S/\sim$ with addition and multiplication is a field $F$ (exercise).
+\end{example}
+
+\begin{theorem}
+	[Steinitz 1910] If $F$ is a field of characteristic $p$ (prime), then $F$ contains a subfield isomorphic to $\mb F_p$. If $char(F)=0$, $F$ contains a subfield isomorphic to $\mb Q$.
+\end{theorem}
+\begin{proof}
+	[Sketch] $\varphi:\mb Z\ra F$, $n\mapsto n\cdot 1$ is a ring homomorphism.
+	By 1st isomorphism theorem $im(\varphi)\cong\mb Q/\ker\varphi$.
+	If $char(F)$ is $p$ prime, then $\ker\varphi=\gen p=p\mb Z$.
+	Then $\mb Z/p\mb Z\cong\mb F_p$, so $S=im(\varphi)\subseteq F$ is the subfield isomorphic to $\mb F_p$.
+	If $char(F)=0$, then $\ker\varphi=\set0$ so $F$ contains a subring isomorphic to $\mb Z$.
+	Let $T=\setm{ab\inv}{a\in S,b\in S,b\neq0}$
+	\begin{xca}
+		Show $T$ is a field.
+	\end{xca}
+\end{proof}
+\begin{remark}
+	$\mb F_p$ is the finite field with $p$ elements $\mb Z_p=\set{0,1,2,\dots,p-1}$ with arithmetric $\mod p$.
+\end{remark}
+
+\section{Polynomial Rings}
+Let $R$ be a commutative ring. The \ul{ring of polynomials over $R$ in indeterminate $x$}, denoted $R[x]$, is the set
+$R[x] = \setm{a_nx^n+a_{n-1}x^{n-1}+\dots+a_1x+a_0}{a_i\in R,n\in\mb Z_{\geq0}}$.
+Two polynomials $a_nx^n+\dots+a_1x+a_0$ and $b_mx^m+\dots+b_1x+b_0$ are equal if $a_i=b_i$ for all $i\in\mb Z_{\geq0}$, where
+\begin{itemize}
+	\item $a_i$ is defined to be 0 for $i>n$,
+	\item $b_i$ is defined to be 0 for $i>m$.
+\end{itemize}
+endow $R[x]$ with addition and multiplication:
+\begin{itemize}
+	\item $\sum_{i=0}^n a_ix^i+\sum_{j=0}^m b_jx^j = \sum_{k=0}^{\max(n,m)} (a_k+b_k)x^k$ (using same convention ofr $a_i,b_i$, $i,j$ large)
+	\item $\plr{\sum_{i=0}^na-ix^i}\plr{\sum_{j=0}^mb_jx^j} = \sum_{k=0}^{n+m}c_kx^k$, where $c_k = a_0b_k+a_1b_{k-1}+\dots+a_kb_0$ (FOIL)
+\end{itemize}
+let $f(x)=a_nx^n+\dots+a_1x+a_0$. if $a_n\neq0$, we say the degree of $f(x)$ is $n$, and we say $a_n$ is the \ul{leading coefficient}.
+\begin{note}
+	The zero polynomial has no degree. if leading coefficient of $f(x)$ is 1, we say $f(x)$ is monic.
+\end{note}
+\begin{example}
+	Polynomials are different from polynomial functions.
+	Consider for $\mb Z_3[x]$ the polynomial $g(x)=x(x+1)(x+2)=x(x^2+0x+2)=x^3+2x$ and the function $f:\mb Z_3\ra\mb Z_3$ with $f(x)=0$.
+	Interpret $g(x)$ as a polynomial function $\mb Z_3$ to $\mb Z_3$, $g(0)=0^3+2(0)=0$, $g(1)=1^3+2(1)=0$, $g(2)=2^3+2(2)=0$.
+\end{example}
+\begin{theorem}
+	If $R$ is an integral domain then $R[x]$ is an integral domain.
+\end{theorem}
+\begin{proof}
+	[sketch] We already have $R[x]$ is a ring. Since $R$ is commutative, $R[x]$ is commutative (exercise).
+	Let $1\in R$ be unity. Then constant polynomial $f(x)=1$ is unity in $R[x]$.
+	Let $f(x)=a_nx^n+\dots+a_1x+a_0$ and $g(x)=b_mx^m+\dots+b_1x+b_0$ be elements of $R[x]$, with $a_n\neq0$ and $b_m\neq0$.
+	The leading coefficient of $f(x)g(x)$ is $a_mb_m\neq0$ since $a_n\neq0,b_m\neq0$ and $R$ is an integral domain.
+	Therefore $f(x)g(x)$ is not zero polynomial. Thus $R[x]$ is an integral domain.
+\end{proof}
+\begin{theorem}
+	[Division Alrogithm for Polynomial Field]
+	Let $F$ be a field, let $f(x),g(x)\in F[x]$, with $g(x)\neq0$.
+	Then there \ul{\ul{exists}} \ul{unique} polynomials $q(x)$ and $r(x)$ such that $f(x)=g(x)q(x)+r(x)$, where $r(x)=0$ or $\deg(r(x))<\deg(g(x))$. ($q(x)$ is the quotient and $r(x)$ is the remainder)
+\end{theorem}
+\begin{example}
+	$f(x)=3x^3-wx^2+x+1$, $g(x)=x^2+3x-1$
+	\begin{align*}
+		x^2 + 3x - 1 &\mid 3x^3-2x^2+x+1 \\
+					 &- (3x^3+9x^2-3x) \\
+					 &= -11x^2+4x+1 \\
+					 &- (-11x^2-33x+11) \\
+					 &= 37x-10
+	\end{align*}
+	Remainder $r(x)=37x-10$ and quotient $q(x)=3x-11$.
+	\ul{check}: $f(x)=g(x)q(x)+r(x)$.
+\end{example}
+\begin{corollary}
+	[Remainder Theorem] Let $F$ be a field. Let $f(x)\in F[x]$. Let $a\in F$.
+	Then $f(a)$ is equal to the remainder of $f(x)$ divided by $(x-a)$.
+\end{corollary}
+\begin{proof}
+	By Division algorithm, there exists unique $q(x),r(x)$ such that $f(x)=(x-a)q(x)+r(x)$, where $r(x)=0$ or $\deg(r(x))<\deg(x-a)=1$ i.e., $r(x)=0$ or $r(x)$ is constant nonzero.
+	Plug in $x=a$ to $f$, so $f(a)=(a-a)q(a)+r(a)=0\cdot q(a)+r(a)=r(a)$.
+	Then $r(a)=f(a)$ and $r(x)=f(a)$, since $r(x)$ is constant.
+\end{proof}
+\begin{corollary}
+	[Factor Theorem] $x-a$ is a factor of $f(x)$ if and only if $a$ is a zero of $f(x)$ i.e., $f(a)=0$.
+\end{corollary}
+\begin{proof}
+	exercise.
+\end{proof}
+
+Test 2: Tues, covers chapters 14,15
+\begin{itemize}
+	\item Ideals and Factor Rings
+	\item Ring Homomorphisms
+\end{itemize}
+No Office hours Tues (email or post).
+\begin{theorem}
+	A polynomial of degree $n$ over a field $f$ has at most $n$ zeros, counting multiplicity.
+\end{theorem}
+\begin{proof}
+	By induction on $n$.
+	\ul{Base case} (n=0) These polynomials are the nonzero constants, hence they have no zeros.
+	\ul{Inductive step}: Fix $n\geq1$ and assume result for polynomials of degree less than $n$.
+	Let $f(x)\in F[x]$ be a polynomial of degree $n$.
+	If $f(x)$ has no zeros, then done. $(0<n)$.
+	Otherwise, $f(x)$ has a zero. Let $a\in F$ be a zero.
+	Then $x-a$ is a factor of $f(x)$. If $a$ has multiplicity $k$ as a root, then $f(x)=(x-a)^kq(x)$ for some polynomial $q(x)\in F[x]$.
+	\begin{note}
+		$n=\deg(f(x))=\deg((x-a)^kq(x))=\deg((x-a)^k)+\deg(q(x)) = k+\deg(q(x))$
+	\end{note}
+	Since $k\geq1$, $\deg(q(x))<n$. Additionally, $k\leq n$.
+	If $f(x)$ has no other zeros, then done. Otherwise let $b\neq a$ be a zero of $f(x)$.
+	Then $0=f(b)=(b-a)^kq(b)$. Since $F$ is a field, this implies $q(b)=0$.
+	In particular, $b$ is a zero of $q(x)$ \ul{and} the multiplicity of $b$ is a root of $q(x)$ is the same as the multiplicity of $b$ as a root of $f(x)$.
+	Since $\det(q(x))<n$, by the inductive hypothesis $q(x)$ has at most $n-k$ roots, counting multiplicity.
+	Thus $f(x)$ has at most $k+(n-k)=n$ roots, counting multiplicity.
+	By induction, done.
+\end{proof}
+
+We cannot relax $F$ field hypothesis
+\begin{example}
+	for $x^2+x\in\mb Z_6[x]$, $f(0)=0^2+0=0$, $f(2)=2^2+2=0$, $f(3)=3^2+3=0$
+\end{example}
+\begin{question}
+	What about polynomials over an integral domain?
+\end{question}
+\begin{recall}
+	If $R$ is a commutative ring and $a\in R$, then $\gen a=aR=\setm{ra}{r\in R}$ is \ul{principal ideal} generated by $a$.
+\end{recall}
+\begin{definition}
+	A \ul{principal ideal domain} (PID) is an integral domain $R$ such that every ideal has the form $\gen a=\setm{ra}{r\in R}$ for some $a\in R$.
+\end{definition}
+\begin{example}
+	$\mb Z$ is PID, for $n\in\mb Z$, $\gen{n}=n\mb Z=\setm{km}{k\in\mb Z}$.
+	Take $\gen{3,5}\subseteq\mb Z$, which is $\setm{3s+5t}{s,t\in\mb Z}=\gen1=\mb Z$ in general for $a,b\in\mb Z$, $\gen{a,b}=\gen{\gcd(a,b)}$.
+\end{example}
+
+\begin{theorem}
+	Let $F$ be a field. Then $F[x]$ is a PID.
+\end{theorem}
+\begin{proof}
+	Since $F$ is a field, $F$ is an integral domain. Thus $F[x]$ is an integral domain.
+	Thus $F[x]$ is an integral domain. Let $I\subseteq F[x]$ be an ideal.
+	If $I=\set0$, then $I=\gen0$, so $I$ is principal.
+	Otherwise, let $g(x)\in I$ be a polynomial of minimal degree.
+	We want to show $\gen{g(x)}=I$. It's clear that $\gen{g(x)\subseteq I}$.
+	Let's show $I\subseteq\gen{g(x)}$. Let $f(y)\in I$.
+	By the division algorithm, there exist unique polynomials $q(x)$ and $r(x)\in F[x]$ such that $f(x)=g(x)q(x)+r(x)$, and $r(x)=0$ or $\deg(r(x))<\deg(g(x))$.
+	\begin{note}
+		$r(x)=\ub{\in I}{\us{\in I}{f(x)}-\ub{\in I}{\us{\in I}{g(x)}q(x)}}\in I$.
+	\end{note}
+	Since $g(x)$ is chosen to have minimal degree, we must have $r(x)=0$.
+	Then $f(x)=g(x)q(x)\in\gen{g(x)}$. Thus $I\subseteq\gen{g(x)}$.
+\end{proof}
+
+\newpage
+
+\begin{theorem}
+	Let $F$ be a field. Let $I\subseteq F[x]$ be a nonzero ideal. Let $g(x)\in F[x]$.
+	Then $I=\gen{g(x)}$ if and only if $g(x)$ is a nonzero polynomial of minimal degree in $I$.
+\end{theorem}
+\begin{example}
+	Consider the ring homomorphism $\varphi:\mb R[x]\ra\mb C$ with $f(x)\mapsto f(i)$.
+	What is $\ker\varphi$? Note $\ker\varphi$ is an ideal in $\mb R[x]$.
+	It's clear that $x^2+1\in\ker\varphi$. It's clear that no nonzero constant function ($\deg 0$), no linear polynomial ($\deg1$ are in $\ker\varphi$.
+	Thus $x^2+1$ is a polynomial of minimal degree in $\ker\varphi=\gen{x^2+1}$.
+	Claim: $\varphi$ is surjective. Let $a+bi\in\mb C$. Then $\varphi(a+bx)=a+bi$.
+	Thus $\varphi$ is surjective.
+	Then by the first isomorphism theorem, $\mb C\cong\mb R[x]/\gen{x^2+1}$.
+	\begin{note}
+		$\gen{x^2+1}$ is a prime ideal since $\mb C$ is an integral domain.
+		$\gen{x^2+1}$ is a maximal ideal since $\mb C$ is a field.
+	\end{note}
+\end{example}
+\begin{example}
+	[$R=\mb Z$] $\gen4\cap\gen{20}=\gen g$ for some $g\in\mb Z$, and $g=20$.
+	Take $\gen4\cap\gen{10}=\gen{20}$.
+\end{example}
+In general, for $a,b\in\mb Z$,
+\begin{align*}
+	\gen a\cap\gen b &=\gen{\text{lcm}(a,b)} \\
+	\gen{a,b}=\gen{\gcd(a,b)} \\
+	\gen a+\gen b = \, ? \\
+	\gen a\gen b = \, ?
+\end{align*}
+\ul{general}
+if $A,B$ are ideals in a common ring $R$,
+\begin{align*}
+	A+B &= \setm{a+b}{a\in A,b\in B} \\
+	AB &= \setm{\sum a_ib_i}{a_i\in A,b_i\in B}
+\end{align*}
+\begin{example}
+	[$R=\mb Z$] $\gen4+\gen{10} = \setm{a+b}{a\in\gen4,b\in\gen{10}} = \setm{4s+10t}{s,t\in\mb Z} = \gen{\gcd(4,10)} = \gen2$
+\end{example}
+for $a,b\in\mb Z$, $\gen a+\gen b=\gen{\gcd(a,b)}$.
+\begin{align*}
+	\gen4\gen{10} &= \setm{\sum a_ib_i}{a_i\in\gen4,b_i\in\gen{10}} = \setm{\sum4s_i10t_i}{s_i\in\mb Z,t_i\in\mb Z} = \setm{\sum40r_i}{r_i\in\mb Z}=\gen{40}.
+\end{align*}
+In general, $\gen a\gen b=\gen{ab}$. exercise.
+
+\begin{definition}
+	Let $R$ be integral domain. A nonzero, nonunit polynomial $f(x)\in R[x]$ is \ul{irreducible over $R$} if whenever $f(x)=g(x)h(x)$ with $g(x),h(x)\in R[x]$, then $g(x)$ or $h(x)\in R[x]^\times$.
+\end{definition}
+\begin{example}
+	$f(x)=2x^2+4$
+	\begin{itemize}
+		\item factors to $f(x)=2(x^2+2)$, so $f(x)$ is reducible over $\mb Z$.
+			(Note: $2,(x^2+2)\notin\mb 1[x]^\times$)
+		\item $f(x)=2x^2+4$ is irreducible over $\mb Q$ (2 is a unit in $\mb Q$)
+			\begin{itemize}
+				\item irreducible over $\mb R$
+				\item reducible over $\mb C$
+			\end{itemize}
+	\end{itemize}
+\end{example}
+\ul{intuition}: think about polynomials of degree 2,3, if there are no roots then it is irreducible.
+
+\subsection*{Reducibility Test for degree 2 and 3}
+Let $F$ be a \ul{field}. Let $f(x)\in F[x]$ be a polynomial of degree 2 or 3.
+Then $f(x)$ is reducible over $F$ if and only if $f(x)$ has a zero in $F$.
+\begin{proof}
+	(later).
+\end{proof}
+\begin{example}
+	$f(x)=x^3+x+1\in\mb Z_2[x]$
+	\begin{note}
+		$\mb Z_2$ is a field.
+	\end{note}
+	$f(0)=0^3+0+1=1\neq0$, $f(1)=1^3+1+1=1\neq0$, $\therefore f(x)$ has no zeros so by the reducibility test, $f(x)$ is irreducible over $\mb Z_2$.
+\end{example}
+
+\end{document}
