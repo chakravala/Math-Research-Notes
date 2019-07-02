@@ -1,0 +1,59 @@
+\begin{thebibliography}{10}
+
+\bibitem{artin}
+Emil Artin.
+\newblock {\em Geometric Algebra}.
+\newblock 2012.
+
+\bibitem{bishop-goldberg}
+Richard~L. Bishop and Samuel~I. Goldberg.
+\newblock {\em Tensor Analysis on Manifolds}.
+\newblock 1968.
+
+\bibitem{browne}
+John Browne.
+\newblock {\em Grassmann Algebra, Volume 1: Foundations}.
+\newblock 2011.
+
+\bibitem{garling}
+D.J.H. Garling.
+\newblock {\em Clifford Algebras: An Introduction}.
+\newblock 2011.
+
+\bibitem{grassmann-2}
+Hermann Grassmann.
+\newblock {\em Extension Theory (Ausdehnungslehre 1862)}.
+\newblock 2000.
+
+\bibitem{hestenes}
+David Hestenes.
+\newblock Tutorial on geometric calculus.
+\newblock {\em Advances in Applied Clifford Algebras}, 2013.
+
+\bibitem{chappell-iqbal-gunn-abbott}
+Lachlan Gunn Derek~Abbott James~Chappell, Ashar~Iqbal.
+\newblock Functions of multivector variables.
+\newblock 2011.
+
+\bibitem{optim-poly}
+Michael Reed.
+\newblock Optimal polynomial form characteristic methods.
+\newblock {\em AES}, 2019.
+
+\bibitem{shahshahani}
+Siavash Shahshahani.
+\newblock {\em An Introductory Course on Differntiable Manifolds}.
+\newblock 2016.
+
+\bibitem{sobczyk}
+Garret Sobczyk.
+\newblock {\em New Foundations in Mathematics: The Geometric Concept of
+  Number}.
+\newblock 2013.
+
+\bibitem{ivancevic}
+Vladimir and Tijana Ivancevic.
+\newblock Undergraduate lecture notes in de rahm-hodge theory.
+\newblock {\em arXiv}, 2011.
+
+\end{thebibliography}
