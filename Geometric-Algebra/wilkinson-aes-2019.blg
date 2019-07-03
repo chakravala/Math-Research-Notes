@@ -1,0 +1,66 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Arch Linux)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: poly.aux
+The style file: elsarticle-num.bst
+Illegal, another \bibstyle command---line 52 of file poly.aux
+ : \bibstyle
+ :          {plain}
+I'm skipping whatever remains of this command
+Database file #1: poly.bib
+Warning--entry type for "chakravala-reduce" isn't style-file defined
+--line 1 of file poly.bib
+Warning--entry type for "chakravala-wilkinson" isn't style-file defined
+--line 7 of file poly.bib
+Warning--entry type for "chakravala-syntax-tree" isn't style-file defined
+--line 13 of file poly.bib
+Warning--empty publisher in wilkinson
+Name 1 in "Siegfried M. Rump, Florian Bunger, and Claude-Pierre Jeannerod" has a comma at the end for entry rump-bunger-jeannerod
+while executing---line 1497 of file elsarticle-num.bst
+Warning--empty publisher in sapir
+Warning--empty publisher in epperson
+Warning--empty publisher in higham
+Warning--empty publisher in demmel
+Warning--empty publisher in rudin
+Warning--empty publisher in tveito
+You've used 17 entries,
+            2952 wiz_defined-function locations,
+            750 strings with 6646 characters,
+and the built_in function-call counts, 3786 in all, are:
+= -- 323
+> -- 80
+< -- 0
++ -- 38
+- -- 21
+* -- 156
+:= -- 499
+add.period$ -- 17
+call.type$ -- 17
+change.case$ -- 10
+chr.to.int$ -- 0
+cite$ -- 24
+duplicate$ -- 118
+empty$ -- 532
+format.name$ -- 23
+if$ -- 1042
+int.to.chr$ -- 0
+int.to.str$ -- 17
+missing$ -- 21
+newline$ -- 59
+num.names$ -- 17
+pop$ -- 131
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 305
+stack$ -- 0
+substring$ -- 138
+swap$ -- 10
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 7
+while$ -- 29
+width$ -- 19
+write$ -- 132
+(There were 2 error messages)

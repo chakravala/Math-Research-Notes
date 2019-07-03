@@ -1,0 +1,68 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{borodin}
+A.~B. Borodin, Horner's rule is uniquely optimal, Theory of machines and
+  computations (1971) 45--58.
+
+\bibitem{wilkinson}
+J.~H. Wilkinson, Rounding Errors in Algebraic Processes, 1963.
+
+\bibitem{muller}
+K.~H. Muller, Rounding error analysis of horner's scheme, Computing 30 (1982)
+  285--303.
+
+\bibitem{rump-bunger-jeannerod}
+F.~B. Siegfried M.~Rump, C.-P. Jeannerod, Improved error bounds for
+  floating-point products and horner's scheme, BIT Numer Math 56 (2015)
+  293--307.
+
+\bibitem{newbery}
+A.~C.~R. Newbery, Error analysis for polynomial evaluation, Mathematics of
+  Computation 28~(127) (1974) 789--793.
+
+\bibitem{oliver}
+J.~Oliver, Rounding error propagation in polynomial evaluation schemes, Journal
+  of Computational and Applied Mathematics 5~(2) (1979) 85--97.
+
+\bibitem{barrio}
+R.~Barrio, A unified rounding error bound for polynomial evaluation, Advances
+  in Computational Mathematics 19 (2003) 385--399.
+
+\bibitem{sapir}
+M.~V. Sapir, Combinatorial Algebra: Syntax and Semantics, 2014.
+
+\bibitem{epperson}
+J.~F. Epperson, An Introduction to Numerical Methods and Analaysis, 2013.
+
+\bibitem{higham}
+N.~J. Higham, Accuracy and Stability of Numerical Algorithms, 2002.
+
+\bibitem{demmel}
+J.~W. Demmel, Applied Numerical Linear Algebra, 1997.
+
+\bibitem{rudin}
+W.~Rudin, Principles of Mathematical Analysis, 1976.
+
+\bibitem{tveito}
+A.~Tveito, H.~Langtangen, B.~Nielsen, X.~Cai, Elements of Scientific Computing,
+  2010.
+
+\bibitem{chakravala-syntax-tree}
+M.~Reed, Syntaxtree.jl, https://github.com/chakravala/syntaxtree.jl (2018).
+
+\bibitem{chakravala-wilkinson}
+M.~Reed, Wilkinson.jl, https://github.com/chakravala/wilkinson.jl (2018).
+
+\bibitem{chakravala-reduce}
+M.~Reed, Reduce.jl, https://github.com/chakravala/reduce.jl (2017).
+
+\bibitem{grassmann-juliacon-2019}
+M.~Reed, Differential geometric algebra using leibniz, grassmann, Proceedings
+  of JuliaCon (2019).
+
+\end{thebibliography}
